@@ -33,6 +33,8 @@ Thumbs.db
 # generated content pipeline artefacts
 src/data/roadmap/generated/
 scripts/generate-content/reports/*.json
+pipeline/packets/
+pipeline/state.json
 
 # misc
 *.pem

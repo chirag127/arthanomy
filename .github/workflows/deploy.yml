@@ -35,6 +35,10 @@ jobs:
         run: npm test
       - name: Content validation (cross-reference registry check)
         run: npm run validate:content
+      - name: Series plan is complete and current
+        run: npm run content:plan -- --check
+      - name: No links to unpublished briefs in article bodies
+        run: npm run content:links -- --check
 
   build:
     name: Build & verify

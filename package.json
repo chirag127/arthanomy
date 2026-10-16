@@ -25,7 +25,12 @@
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install --with-deps chromium",
     "validate:content": "vitest run tests/registries.test.ts",
-    "validate:links": "node scripts/audit-internal-links/index.mjs"
+    "validate:links": "node scripts/audit-internal-links/index.mjs",
+    "content:status": "node scripts/content-pipeline/manifest.mjs",
+    "content:plan": "node scripts/content-pipeline/build-reading-order.mjs",
+    "content:packets": "node scripts/content-pipeline/export-packets.mjs",
+    "content:batches": "node scripts/content-pipeline/batches.mjs",
+    "content:links": "node scripts/content-pipeline/link-queued.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.3",
