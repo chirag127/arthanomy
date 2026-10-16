@@ -362,11 +362,22 @@ const confidenceLabel: Record<string, string> = {
       }
 
       <footer class="mt-12 border-t border-[var(--color-border)] pt-5 text-xs leading-5 text-[var(--color-ink-faint)]">
-        <p class="m-0">
-          Written by {author}. Found an error or an outdated figure?
-          <a href={href('/contact')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">Report a correction</a>
-          — corrections are logged publicly and the article's updated date is revised.
-        </p>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <p class="m-0">
+            Written by {author}. Found an error or an outdated figure?
+            <a href={href('/contact')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">Report a correction</a>
+            — corrections are logged publicly and the article's updated date is revised.
+          </p>
+          <span class="select-none text-[var(--color-border)]" aria-hidden="true">|</span>
+          <p class="m-0">
+            Download this article:{' '}
+            <a href={href(`/downloads/articles/${id}.txt`)}
+               class="text-[var(--color-link)] underline decoration-1 underline-offset-2" download>plain text (TTS)</a>
+            {' · '}
+            <a href={href(`/downloads/articles/${id}.md`)}
+               class="text-[var(--color-link)] underline decoration-1 underline-offset-2" download>markdown</a>
+          </p>
+        </div>
       </footer>
     </div>
 

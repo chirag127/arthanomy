@@ -7,6 +7,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import DifficultyBadge from '../../components/DifficultyBadge.astro';
 import Mermaid from '../../components/Mermaid.astro';
+import SeriesProgress from '../../components/SeriesProgress';
 import { href } from '../../lib/url';
 import { categoryMeta } from '../../config/site';
 
@@ -110,6 +111,18 @@ const prerequisites = data.prerequisites
               ))}
             </ol>
           </section>
+        )
+      }
+
+      {
+        published.length > 0 && (
+          <div class="mt-8">
+            <SeriesProgress
+              client:load
+              seriesId={entry.id}
+              articles={published.map((a) => ({ id: a.id, title: a.data.title }))}
+            />
+          </div>
         )
       }
 

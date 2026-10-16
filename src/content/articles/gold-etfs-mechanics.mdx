@@ -1,0 +1,168 @@
+---
+title: 'Gold ETF Mechanics: Metal Held Inside a Demat Account'
+description: 'How Indian gold exchange-traded funds hold vaulted metal, price against domestic spot and trade like shares — and where the tracking difference between the fund and the metal actually comes from.'
+shortTitle: 'Gold ETF Mechanics'
+category: gold-silver
+series: gold-precious-metals
+seriesOrder: 7
+topics: ['gold etf', 'demat', 'nav', 'tracking difference']
+tags: ['gold', 'precious-metals', 'etf', 'mutual-funds']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'A gold ETF is a mutual fund scheme whose units are listed on an exchange and whose NAV tracks the domestic price of physical gold.'
+  - 'The metal is held in vaults by a custodian on behalf of the scheme, removing storage and purity risk at the cost of annual expenses.'
+  - 'Units trade like shares during exchange hours at prices that can deviate modestly from the underlying metal value.'
+  - 'The tracking difference — the gap between the fund NAV and the price of the metal it holds — comes from expenses, cash drag and the timing of valuation.'
+  - 'Domestic gold prices embed import duty, so a gold ETF does not track the international quote rupee for rupee.'
+faqs:
+  - question: 'Do I hold physical gold in a gold ETF?'
+    answer: 'No. You hold units of a mutual fund scheme. The scheme holds gold or gold-related instruments in a vault, and your units represent a claim on a fraction of that holding.'
+  - question: 'Why does the ETF price differ from the gold price?'
+    answer: 'Several reasons: annual expenses reduce the NAV below the metal value, the exchange price can trade at a premium or discount to NAV, and the domestic price itself includes import duty and other costs.'
+  - question: 'Is a gold ETF the same as a gold mutual fund?'
+    answer: 'No. A gold mutual fund is bought and redeemed at NAV directly with the fund house. A gold ETF trades on an exchange like a share, with prices that can differ from NAV during the day.'
+  - question: 'What is tracking difference?'
+    answer: 'It is the gap between the return on the fund and the return on the underlying metal over a period. It arises from expenses, cash holdings and the valuation method.'
+relatedCalculators:
+  - { id: gold-comparison, label: 'Gold Vehicle Comparison' }
+  - { id: real-return, label: 'Real Return Calculator' }
+relatedArticles:
+  - gold-as-a-portfolio-asset
+  - physical-bars-and-coins-economics
+  - sovereign-gold-bonds-in-detail
+  - gold-mutual-funds-versus-etfs
+  - digital-gold-platforms-and-their-risks
+glossaryTerms: [gold-etf, sovereign-gold-bond-scheme, troy-ounce, import-duty-bullion, making-charges]
+sources:
+  - { id: amfi-nav-file, supports: 'Daily scheme-level NAV and scheme-code data used to describe how NAV is published and how tracking difference is computed from a reproducible source' }
+  - { id: nse-india, supports: 'Listed-security trade data and exchange contract specifications used to describe how ETF units trade and how exchange prices relate to NAV' }
+  - { id: rbi-home, supports: 'Policy context for gold in India and the sovereign gold bond scheme as a comparable vehicle' }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Expense ratios, tracking difference figures and custody charges for specific products are not in the packet and must be verified against current scheme documents before any decision.'
+  - 'This is an educational treatment of how gold ETFs work, not a recommendation to buy or sell any product.'
+openQuestions:
+  - 'How large is the tracking difference across Indian gold ETFs in practice, and how much of it is explained by expenses versus cash drag?'
+  - 'How consistently do ETF market prices converge to NAV at the end of each trading day?'
+  - 'Does the structure of gold ETFs create any tax disadvantage relative to sovereign gold bonds for long-term holders?'
+  - 'How does the domestic premium or discount on gold, driven by import duty and local demand, affect the ETF''s tracking of the international price?'
+---
+
+A gold exchange-traded fund (ETF) is a mutual fund scheme whose units are listed on a stock exchange and whose net asset value (NAV) tracks the domestic price of physical gold. The scheme holds gold or gold-related instruments as permitted under the applicable regulations. An investor in a gold ETF holds units in a demat account, not metal in a vault, and the price of those units moves with the domestic gold price during exchange trading hours.
+
+The structure looks simple on the surface, but several mechanical details determine what an investor actually receives: how the metal is held, how the NAV is computed, how the exchange price relates to the NAV, and what causes the fund's return to differ from the return on gold itself. This article works through each of those mechanisms.
+
+## What a gold ETF is
+
+A gold ETF is a mutual fund scheme, not a stock and not a physical product. It pools money from investors and uses the proceeds to buy gold or gold-related instruments. The scheme's units are listed on an exchange and can be bought and sold during trading hours through a demat account, much like shares.
+
+The defining feature is the NAV. The NAV of a gold ETF is computed from the value of the gold and any other assets held by the scheme, minus liabilities, divided by the number of units outstanding. Because the underlying asset is gold, the NAV is designed to track the domestic price of gold. The Association of Mutual Funds in India (AMFI) publishes a daily NAV file containing scheme-level NAV and scheme-code data for all mutual fund schemes, including gold ETFs. This file is the reproducible source from which returns, drawdowns and tracking difference can be computed.
+
+What an investor owns is a unit of the scheme — a fraction of a pool of gold held in vaults. The investor does not have a claim on any specific bar or coin, and does not take delivery of metal. This is the fundamental difference from buying physical gold, and it is what makes the ETF inexpensive to hold but also introduces the costs and frictions discussed below.
+
+## How the metal is held
+
+The gold backing a gold ETF sits in vaults, held by a custodian on behalf of the scheme. The custodian's role is to store the metal securely and to ensure that the quantity and purity of the gold match the scheme's records. The custodian is typically a bank or a specialist vaulting provider, and the arrangement is subject to audit.
+
+Because the metal is held in bulk by the scheme rather than by each investor individually, the per-investor cost of vaulting is very low. This is one of the main economic advantages of the ETF structure over physical ownership: a retail investor gains exposure to vault-grade metal without paying retail vaulting costs.
+
+The custody and insurance of the metal are not free. The scheme pays for them, and those costs are recovered from investors through the annual expense ratio. Some products also charge custody and insurance separately. The specific expense ratio and the exact custody arrangements vary by product and are not stated in the packet; they must be verified against the current scheme documents before any investment decision.
+
+## How units trade on the exchange
+
+Gold ETF units trade on the exchange like shares. During trading hours, the price is determined by supply and order matching on the exchange. The National Stock Exchange (NSE) publishes daily trade data, including bhavcopy archives, for listed securities, which includes gold ETF units. An investor can buy or sell units through a broker, and settlement follows the exchange's normal cycles.
+
+This exchange trading gives the gold ETF two properties that a physical purchase does not have:
+
+- **Intraday liquidity.** Units can be bought or sold at any time during exchange hours at the prevailing market price, rather than at a jeweller's counter price.
+- **Price discovery.** The exchange price reflects the current supply and demand for units, which may differ from the NAV at any moment.
+
+The exchange price is not the same as the NAV. The NAV is computed once a day after market close, based on the closing value of the underlying gold. The exchange price is continuous. During the day, the exchange price may trade at a premium or discount to the NAV, depending on demand, liquidity and the mechanics of the market-making process.
+
+## Pricing: NAV versus the exchange price
+
+The relationship between NAV and exchange price is where many investors become confused. Two prices exist:
+
+- The NAV, published once daily by the fund, reflects the value of the underlying gold minus expenses.
+- The exchange price, determined by trading, reflects what buyers and sellers will pay for units.
+
+In an efficient market with active market makers, the exchange price stays close to the NAV because arbitrageurs can create or redeem units against the fund. If the exchange price rises above the NAV, an arbitrageur can buy gold, create new units, and sell them on the exchange for a profit, which pushes the price back down. If the exchange price falls below the NAV, an arbitrageur can buy units cheaply, redeem them for gold, and sell the gold, which pushes the price back up.
+
+This arbitrage mechanism is what keeps exchange prices close to NAV. But it is not perfect. The arbitrage requires the ability to create and redeem units with the fund, which typically happens only in large creation units, and only at certain times. For a retail investor buying or selling small quantities, the exchange price can deviate modestly from the NAV, and the investor pays or receives that deviation.
+
+## Where the tracking difference comes from
+
+The tracking difference is the gap between the return on the fund and the return on the underlying metal over a stated period. It is the most important metric for evaluating a gold ETF, and it arises from several sources:
+
+- **Expenses.** The scheme charges an annual expense ratio covering management, custody, administration and other costs. This is deducted from the NAV daily, so the NAV grows more slowly than the price of gold by approximately the expense ratio each year.
+- **Cash drag.** The scheme may hold a small amount of cash or cash-equivalent instruments to manage subscriptions and redemptions. This cash does not rise with the gold price, so it creates a drag on returns when gold rises and a cushion when gold falls.
+- **Premium or discount at purchase.** If an investor buys units on the exchange at a price above NAV, the tracking difference for that investor is worse than the fund-level tracking difference. The reverse applies to purchases below NAV.
+- **Valuation timing.** The NAV is computed using a specific gold price at a specific time, typically the closing domestic gold price. The exchange price of the ETF may incorporate a different timing or a slightly different reference price, especially around market close.
+- **Taxes and transaction costs within the fund.** When the fund itself buys or sells gold for creations and redemptions, it incurs transaction costs. These are borne by the scheme and reduce the NAV.
+
+The glossary definition of a gold ETF on this site notes that price discovery in the ETF can deviate modestly from the underlying gold price, and that investors should compare tracking difference across products. The direction and size of the tracking difference vary by product, and the only way to evaluate a specific ETF is to compute its historical tracking difference from the AMFI NAV data and compare it across products.
+
+## The domestic price and the duty wedge
+
+A gold ETF tracks the domestic price of gold, not the international spot price. The difference between the two is driven primarily by import duty. Gold imports attract customs duty, including any applicable cess, as prescribed by the central government from time to time. This duty creates a wedge between the international price, quoted in US dollars per troy ounce on the London market, and the domestic price, quoted in rupees per ten grams.
+
+A troy ounce, the international unit, equals 31.1034768 grams. Indian prices are conventionally quoted in rupees per ten grams. The conversion from the international quote to the domestic price involves the exchange rate, the import duty, and any local premium or discount. The result is that the domestic gold price, and therefore the NAV of a gold ETF, does not move rupee-for-rupee with the international quote.
+
+This matters for two reasons. First, an investor comparing the ETF's NAV change over a period to a headline change in the international gold price may find a discrepancy that is entirely explained by the duty and currency movements, not by tracking difference. Second, changes in import duty, announced in the budget or by notification, shift the relationship between the domestic and international prices, and the ETF's NAV reflects that shift.
+
+## Explain simply
+
+A gold ETF is a fund that buys gold and sells units in that gold on a stock exchange. You buy units through your demat account, and the price of those units moves with the price of gold in India. The fund pays for storage, insurance and management out of its assets, so the value of your units grows slightly more slowly than gold itself each year. That gap is called the tracking difference. You can sell your units any time the exchange is open, which you cannot do with a bar of gold at home. The price you pay on the exchange can be slightly above or below the true value of the gold in the fund, and the gap is usually small but not zero. The fund tracks the price of gold in India, which is higher than the international price partly because of import duty.
+
+## Worked example: tracking difference over a year
+
+This is an illustrative calculation, not observed data, and the figures are hypothetical numbers chosen only to make the arithmetic visible. They are not the actual expense ratios or returns of any specific fund.
+
+Suppose the domestic gold price is ₹7,000 per gram at the start of a year and rises by 10% to ₹7,700 per gram by the end. Assume, purely for illustration, that the scheme charges an annual expense ratio of 1% and holds 2% of assets in cash that earns no interest in this example.
+
+The NAV at the start is proportional to ₹7,000 per gram. Over the year, the gold portion of the NAV rises by 10% but the cash portion does not rise at all. The gold portion at the end is:
+
+$$0.98 \times 7700 = 7546$$
+
+The cash portion remains:
+
+$$0.02 \times 7000 = 140$$
+
+The total before expenses is ₹7,686. After deducting the 1% expense ratio:
+
+$$7686 \times (1 - 0.01) = 7609$$
+
+The NAV return is approximately:
+
+$$\frac{7609 - 7000}{7000} = 0.0870$$
+
+The gold price return was 10%. The tracking difference over the year is therefore approximately 1.30 percentage points, arising from the expense ratio and the cash drag. The calculation is illustrative and depends entirely on the assumed figures; what is structural is the direction: expenses and cash drag make the NAV grow more slowly than the price of gold, and the gap compounds over time.
+
+## Comparing gold ETFs to other vehicles
+
+A gold ETF is one of several ways to hold a gold exposure. The main alternatives are:
+
+- **Physical bars and coins.** The investor holds metal directly, with no expense ratio but with fabrication, storage and insurance costs. Making charges on jewellery are typically non-recoverable on sale, which makes physical jewellery a poor vehicle for short-term gold-price exposure.
+- **Sovereign gold bonds.** These are government securities denominated in grams of gold, issued by the RBI on behalf of the Government of India, paying a fixed rate of interest and redeemable on terms linked to the gold price. They carry no storage or purity risk but are securities with their own issue terms and secondary-market availability.
+- **Gold mutual funds.** These invest in gold ETFs or gold-related instruments and are bought and redeemed at NAV directly with the fund house, without exchange trading.
+
+Each vehicle trades off cost, liquidity, purity risk and tax treatment differently. The gold comparison calculator on this site works the comparison for a specific set of assumptions.
+
+## What this does not tell you
+
+This article does not state the expense ratio, custody charge or tracking difference of any specific gold ETF, because those figures are not in the packet and must be verified against current scheme documents. It does not compare the after-tax returns of gold ETFs, sovereign gold bonds and physical gold, because the packet carries no tax rules for this brief. It does not predict the future tracking difference of any product or recommend any specific ETF. And it does not address the regulatory treatment of gold ETF units in a demat account, which is covered in the article on how a share reaches your demat account.
+
+## Open questions
+
+- How large is the tracking difference across Indian gold ETFs in practice, and how much of it is explained by expenses versus cash drag?
+- How consistently do ETF market prices converge to NAV at the end of each trading day?
+- Does the structure of gold ETFs create any tax disadvantage relative to sovereign gold bonds for long-term holders?
+- How does the domestic premium or discount on gold, driven by import duty and local demand, affect the ETF's tracking of the international price?

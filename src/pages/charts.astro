@@ -1,0 +1,84 @@
+---
+/**
+ * /charts — interactive arithmetic, rendered with ECharts.
+ *
+ * Every series here is a labelled illustrative construction, not observed data.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Chart from '../components/Chart';
+import { href } from '../lib/url';
+
+const growth = Array.from({ length: 31 }, (_, i) => Math.round(100000 * 1.1 ** i));
+const monthly = Array.from({ length: 31 }, (_, i) => {
+  const r = 0.1 / 12;
+  const n = i * 12;
+  return Math.round(1000 * (((1 + r) ** n - 1) / r));
+});
+const labels = Array.from({ length: 31 }, (_, i) => `Y${i}`);
+
+const drawdown = Array.from({ length: 41 }, (_, i) => i * -1);
+const recovery = drawdown.map((d) => (d === 0 ? 0 : -d / (1 + d / 100)));
+
+const lossLadder = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
+const gainNeeded = lossLadder.map((d) => Math.round((d / (100 - d)) * 10000) / 100);
+---
+<BaseLayout title="Interactive charts" description="Illustrative arithmetic rendered with ECharts." path="/charts">
+  <header class="shell pt-10">
+    <p class="eyebrow">Charts</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">Interactive arithmetic</h1>
+    <p class="mt-4 max-w-3xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      Every series on this page is a labelled illustrative construction. Change the inputs inside the related
+      calculators for your own numbers.
+    </p>
+  </header>
+
+  <section class="shell mt-10 pb-16 grid gap-8">
+    <div class="card p-5">
+      <h2 class="font-serif text-xl font-semibold">Compound growth — lumpsum vs monthly contribution</h2>
+      <p class="mt-2 text-sm text-[var(--color-ink-muted)]">
+        Illustrative 10% a year. Lumpsum ₹1,00,000 at year 0; monthly ₹1,000 starting at year 0.
+      </p>
+      <div class="mt-4">
+        <Chart
+          client:only="react"
+          spec={{
+            legend: { data: ['Lumpsum', 'Monthly SIP'] },
+            tooltip: { trigger: 'axis', valueFormatter: (v: number) => v.toLocaleString('en-IN') },
+            xAxis: { type: 'category', data: labels },
+            yAxis: { type: 'value', axisLabel: { formatter: (v: number) => (v / 100000).toFixed(1) + 'L' } },
+            series: [
+              { name: 'Lumpsum', type: 'line', smooth: true, data: growth },
+              { name: 'Monthly SIP', type: 'line', smooth: true, data: monthly },
+            ],
+          }}
+          height={360}
+        />
+      </div>
+    </div>
+
+    <div class="card p-5">
+      <h2 class="font-serif text-xl font-semibold">Recovery from loss — the asymmetry of drawdowns</h2>
+      <p class="mt-2 text-sm text-[var(--color-ink-muted)]">
+        The percentage recovery needed after a percentage loss. Derived as $g = d/(1-d)$.
+      </p>
+      <div class="mt-4">
+        <Chart
+          client:only="react"
+          spec={{
+            tooltip: { trigger: 'axis' },
+            xAxis: { type: 'category', data: lossLadder.map((d) => d + '% loss') },
+            yAxis: { type: 'value', name: '% needed', axisLabel: { formatter: (v: number) => v + '%' } },
+            series: [{ type: 'bar', data: gainNeeded, itemStyle: { color: '#b8860b' } }],
+          }}
+          height={360}
+        />
+      </div>
+    </div>
+
+    <p class="text-sm text-[var(--color-ink-faint)]">
+      Chart component source: <code>src/components/Chart.tsx</code> (ECharts 6). Use
+      <code>&lt;Chart client:only="react" spec=&#123;...&#125; height=&#123;360&#125; /&gt;</code>
+      in any <code>.astro</code> page.
+    </p>
+  </section>
+</BaseLayout>

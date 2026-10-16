@@ -1,0 +1,198 @@
+---
+title: "Malicious Trading Apps and Sideloaded APK Files"
+description: "How fraudulent trading applications mimic legitimate brokers, why sideloaded APK files and excessive data permissions are the mechanism, and the verification steps that establish an app's authenticity before any money moves."
+shortTitle: "Malicious Trading Apps and APK Files"
+category: fraud-risk
+series: fraud-investor-protection
+seriesOrder: 12
+topics: ["trading apps", "apk sideloading", "data permissions", "unregistered brokers"]
+tags: ["fraud", "investor-protection", "app-security", "upi-fraud"]
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+updatedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 16
+keyTakeaways:
+  - "A legitimate trading app is a front end to a regulated broker; a fraudulent app is a picture of one, and the numbers on its screen are typed by the operator rather than produced by any market."
+  - "Sideloading an APK file bypasses the store review that is the first, imperfect checkpoint; the absence of a store listing is itself evidence."
+  - "The permissions an app requests are a diagnostic: a trading app that wants SMS, contacts and accessibility access is behaving like a data harvester, not a broker."
+  - "Deposits in fraudulent apps travel by UPI to personal handles and mule accounts, never to a regulated broker's account, and a push payment is effectively irreversible once made."
+  - "Verification runs through the regulator, not the store: an app's authenticity is established by checking the broker's registration against SEBI's records and alerts."
+  - "The gap between the app's screen and the bank statement is the entire fraud: one is a number the operator controls, the other is a payment the user authorised."
+faqs:
+  - question: "How can I tell a genuine trading app from a cloned one?"
+    answer: "Check the broker's registration number against SEBI's registry, confirm the broker itself links to the app from its official website, and inspect the publisher name and the permission list at install. A genuine app has a verifiable registrar behind it; a cloned one has a familiar logo and nothing behind it."
+  - question: "Why do fake trading apps ask for SMS and contacts permissions?"
+    answer: "Because the app's real product is often the victim's data: SMS access intercepts banking one-time passwords, contacts maps the victim's network for further targeting, and accessibility access lets the app read screens and act on them. No legitimate trading function needs these."
+  - question: "I deposited money into an app and it shows profits. Are they real?"
+    answer: "If the money went to a personal UPI handle rather than a regulated broker's account, the on-screen profits are invented by the operator. Check the payment counterparty in your bank statement: that, not the app's display, is what your money actually bought."
+  - question: "What should I do if I have already installed a suspicious trading app?"
+    answer: "Revoke its permissions in your phone's settings, especially SMS and accessibility access, then uninstall it. Change your banking credentials, dispute any transaction with your bank immediately, preserve screenshots and payment records, and report the entity through SEBI's published route for unauthorised entities."
+  - question: "Does being on an app store prove an app is safe?"
+    answer: "No. Store review is an imperfect check that determined operators circumvent with new publisher accounts; a listing is weak evidence of legitimacy, and the absence of a listing is strong evidence against. The authoritative check is the regulator's registry."
+relatedCalculators:
+  - id: opportunity-cost
+    label: "Opportunity Cost Calculator"
+relatedArticles:
+  - sebi-registration-checks-before-investing
+  - pump-and-dump-in-small-caps
+  - unregistered-collective-investment-schemes
+  - ponzi-scheme-mechanics
+glossaryTerms: [unauthorised-collective-investment-scheme, money-multiplier]
+sources:
+  - id: sebi-unsolicited-tips
+    supports: "SEBI investor alerts naming unregistered advisers and unauthorised entities, and the reporting route for suspected unregistered schemes"
+  - id: npci-home
+    supports: "The UPI rails over which fraudulent app deposits move and the fraud typologies in retail payments that describe these transfers"
+  - id: sebi-enforcement-orders
+    supports: "Evidence that unregistered entities and schemes are acted against, with orders stating findings of fact"
+  - id: trai-sms-credentials
+    supports: "The traceability mechanism behind SMS distribution channels and the reduced feasibility of sender-ID spoofing, relevant to how fraudulent app links are delivered"
+  - id: bns-2023
+    supports: "The criminal provisions on cheating and criminal breach of trust under which fraudulent app operations can be reported"
+  - id: consumer-protection-2019
+    supports: "The remedy available to a user who was misled into using a fraudulent app product"
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "This article analyses fraud mechanisms for education. It does not name, accuse or imply wrongdoing by any specific app, broker, entity or person."
+  - "Fraud techniques and app-store review processes evolve; the verification steps here are durable, but any specific app's status must be checked against current regulator records."
+  - "The sources carry no verified figures on losses from fraudulent apps; where prevalence would be relevant, the article says so rather than estimating."
+applicablePeriods: ["Reviewed October 2026"]
+openQuestions:
+  - "Could a regulator-verified directory of authentic trading apps, carrying a standard verification mark, reduce the cloning problem?"
+  - "Do permission warnings at install time change user behaviour, or are they accepted reflexively?"
+  - "What share of retail payment fraud losses originate in fake trading apps rather than remote-access Trojans, and is industry data granular enough to say?"
+---
+
+Trading applications have put a broker's terminal in every pocket, and that openness is exactly what fraudulent operators exploit. A wave of applications distributed outside official app stores now imitates legitimate brokers: cloned branding, plausible dashboards, even customer-support chat. Behind the screen there is no broker, no exchange connection and no market. The numbers are invented, the deposits go to strangers, and the data permissions the app requests on install are part of the same machine. This article explains how a fake app mimics a real broker, what the sideloading vector and the permission requests are really for, and the verification steps that establish authenticity before any money moves.
+
+## Explain simply
+
+A genuine trading app is a front end to a regulated broker. Your money sits with the broker and your securities sit in a depository; the app only shows you your positions and lets you place orders. A fraudulent app is a picture of that arrangement. It looks like a broker's app, it may show live-looking prices, and once you deposit it may even show your portfolio growing, because the operator can type any number into a screen it controls. The real money travels by UPI to a personal handle, and the app's other job is reading your messages, contacts and banking details. The rule of thumb is blunt: an app you cannot verify against the regulator's records is not a trading app, however professional it looks.
+
+## How a fake app mimics a real broker
+
+The imitation is built from parts that are each easy to fake and hard to check.
+
+- **Cloned branding.** The name, logo and colour scheme copy a known broker closely, with a small difference, an extra word, a different spelling, a look-alike domain, that a hurried user does not notice.
+- **A live-looking dashboard.** Generic market data is freely available, so a screen full of ticking prices proves nothing. What matters is whether the portfolio behind the screen exists at a broker at all.
+- **Invented profits.** After a deposit, the app shows the investment growing at whatever rate the operator types. The number has no counterpart in any exchange record.
+- **Withdrawal friction.** Withdrawal requests are delayed, held for "KYC pending", "tax clearance" or "server maintenance", while deposits are accepted instantly. The asymmetry is the tell: money in is easy, money out is hard.
+- **Recruitment incentives.** Users are paid to bring friends, which converts depositors into a salesforce and gives the scheme the inflow it needs. This is the structure of a money-multiplier scheme, where each entrant is paid from the fees of those who follow.
+- **Unverifiable registration.** The app displays a registration number or claims a famous broker's name; the number fails verification, or belongs to an entity that has nothing to do with the app.
+
+SEBI publishes investor alerts naming unregistered advisers and unauthorised entities, and its enforcement orders state findings of fact against such operations; that is where the verified record of this category lives. Where an app pools deposits from many users into a common fund managed by an operator, the arrangement has the shape of a collective investment scheme, and an unregistered scheme of that kind is unlawful.
+
+## The sideloading vector: why the app store is the first checkpoint
+
+Official stores run review processes: imperfect, slow, and circumvented with new publisher accounts, but real. Sideloading bypasses them entirely. An APK file is an installation package; it arrives by link in a message, a QR code, a trading group chat, or a third-party store, and installing it grants the app whatever permissions it declares. The delivery chain typically starts with a phishing SMS or message; telecom regulations now require traceability of bulk commercial SMS and have made sender-ID spoofing harder, which constrains but does not eliminate the channel. The link still gets clicked.
+
+Three consequences follow. First, absence from the official stores is itself evidence: whatever else is true about the app, it has not passed even the basic check. Second, the store listing is not proof of safety either, because determined operators reappear under new publisher accounts; the listing is a first checkpoint, not a certificate. Third, the authoritative check sits outside the store entirely, with the regulator's registry of registered brokers and advisers.
+
+## What the permissions are for
+
+When an app is installed it asks for permissions, and the pattern of those requests is a diagnostic more reliable than any screenshot.
+
+- **SMS read and receive.** This is the most dangerous permission a financial app can hold: it lets the app read the one-time passwords that banks send for authentication. With an OTP, an operator can approve transactions the user never authorised. The companion article on [OTP phishing and account takeover](/library/otp-phishing-and-account-takeover) explains this mechanism in detail.
+- **Contacts.** A trading app has no legitimate use for the user's address book. Contacts map the victim's network, family, colleagues, other investors, for further targeting and for impersonation.
+- **Accessibility services.** On Android, accessibility access can read screen contents and interact with other apps; it is the mechanism behind much remote-control fraud.
+- **Storage and media.** Genuine use: saving statements. Malicious use: reading saved identity documents, photographs and PDFs.
+- **Call and phone state.** Confirms the device identity and SIM, useful for tracking a victim across SIM changes.
+
+The test is overlap. A trading app needs a camera for KYC and storage for statements; it has no need for SMS, contacts or accessibility access. The moment a market app asks for the second group, the question is no longer whether it is well built but what it is harvesting.
+
+## Where the money goes
+
+Deposits in fraudulent apps do not reach any broker. They move by UPI, to a personal handle, a QR code, a collection account, or a chain of mule accounts, because UPI is fast, cheap and available to anyone. The National Payments Corporation of India operates the UPI rails, and the fraud typologies it publishes for retail payments describe exactly this pattern: social-engineered transfers to unknown handles, with the victim's own authorisation as the only checkpoint the system saw. Because a UPI payment is a push transaction, it is effectively irreversible once made; the money is gone, and recovery depends on tracing accounts that were built to be emptied.
+
+The app then often adds a second extraction: the user is told a tax, a fee or a refundable deposit is due before withdrawals are released. That is the advance-fee pattern inside the app, a fee to receive money the user believes is already theirs.
+
+## Verifying an app before you install it
+
+The verification routine takes ten minutes and runs entirely through public records.
+
+1. **Identify the entity.** Which broker or adviser does the app claim to represent? Get the legal name and any registration number from the app and its website.
+2. **Verify against SEBI's records.** SEBI maintains registries of registered brokers, advisers and investment products, and publishes alerts listing unauthorised entities. A registration number that does not verify, or that belongs to a different entity, is conclusive.
+3. **Cross-check the listing.** Does the broker's own official website link to this app store listing? Does the publisher name match the broker? A listing the broker itself does not point to is a clone.
+4. **Inspect the permissions.** Before installing, read the permission list. SMS, contacts or accessibility access on a trading app is a stop signal regardless of what the registry says.
+5. **Inspect the payment rail.** A genuine broker never asks for UPI transfers to a personal handle. Any app whose deposit screen shows a personal UPI ID is not taking deposits; it is collecting them.
+6. **Check the alerts.** Search the entity's name against SEBI's investor alerts before depositing, not after.
+
+SEBI's investor-education material on interpreting return claims and advertisements is the companion discipline: the same scepticism applied to a returns claim applies to an app that promises trading profits with no risk language.
+
+## Worked example: the screen and the bank statement
+
+An illustrative calculation, not a description of any real scheme.
+
+Suppose an app shows a portfolio of ₹1,00,000 growing at 10 per cent a month on screen. After three months the display shows:
+
+$$ 100000 \times 1.10^3 = 133100 $$
+
+The user deposits ₹50,000 through UPI, and the screen's profit keeps climbing. But the only real event is the UPI transfer: ₹50,000 has left the user's bank account to an unknown handle, and the on-screen profit is a number the operator typed. If two hundred users deposit the same amount, the operator has collected:
+
+$$ 200 \times 50000 = 10000000 $$
+
+while the obligation shown on screens compounds towards a figure no one can pay. The gap between the screen and the bank statement is the whole fraud. One is a display; the other is a payment the user authorised. Everything the app does after the deposit, the growing balance, the tax due, the delayed withdrawal, is stage management to keep the next deposit coming.
+
+## If you have already installed one
+
+- **Revoke the dangerous permissions first.** In the phone's settings, remove SMS, contacts and accessibility access before uninstalling, so the app cannot keep reading the device while you act.
+- **Uninstall the app**, and clear any accounts, mandates or registered devices it may have created inside your banking apps.
+- **Secure the banking layer.** Change passwords and PINs, review UPI handles and registered mandates, and turn on whatever app-level locks the bank offers.
+- **Dispute any transaction with the bank immediately.** Speed matters in payment fraud: the bank's own fraud investigation, not the app, is the route to any recovery.
+- **Preserve the evidence.** Screenshots of the app and its offers, the APK file itself, payment receipts, chat messages and the UPI handles that received the money.
+- **Report through the right channel.** Where the app posed as a securities entity, SEBI's published route for unauthorised entities is the channel; the conduct is also potentially criminal, since cheating and criminal breach of trust are offences under the criminal law in force since July 2024, and states maintain Economic Offences Wings for these cases. Where the user was misled by a representation, a consumer commission route exists in parallel.
+
+## The commercial stack around the app
+
+Behind the screen sits a small and unremarkable business that moves money from the investor to the operator. Understanding that stack matters, because it explains why checks that rely on a single identity often fail: no single identity owns the whole flow.
+
+The first piece is distribution. The link that delivers the app is usually not sent by the apparent broker. It is sent by an "affiliate" or "mentor" or a person in the recipient's messaging contact list, who is paid per activation rather than per trade. That person's incentive is conversion, not execution, and their explanation of what the app is need not be accurate or consistent with the app's claims, because they are not accountable for either. Where recruitment flows through affiliates, the fraud looks like a social referral, and that is deliberate: it converts an institutional-looking request into a favour from a friend.
+
+The second piece is the payment destination. A single operator rarely takes deposits into an account in their own name. Accounts belong to rented individuals, to small shell companies, or to businesses in adjacent categories, and they are changed when one is marked or frozen. The turnover in receiving accounts is a signal in itself: an institution that handles genuine client funds does not need to alter the account into which those funds are paid, because its permission to hold them is stable. A handle that changes every few deposits is evidence of instability or of evasion, and either reading disqualifies the arrangement.
+
+The third piece is the payment aggregator sitting in front of the account. Aggregators accept merchant applications with documentation that may be nominal, and they route card or UPI collections to the underlying account. The aggregator is a real, supervised business in that case, but its review of a merchant's genuine intent is bounded by what documentation it requests, and documentation is not intent. A payment flowing through an aggregator does not therefore imply that the merchant is genuine, and it implies nothing about where the money goes afterward. The aggregator layer exists in this kind of stack primarily to put a regulated skin between the investor and the account.
+
+The fourth piece is the customer service function. Fake apps run genuine-looking support desks through messaging apps: polite, responsive, and trained to answer questions that are not about the fraud. They never confirm or deny anything in writing, because the script requires them to move the conversation forward, and written confirmation is a document. A support function whose only answer is patience is not support.
+
+The fifth piece is the legal entity. Where there is one, it is often a dormant or lightly filed company whose existence proves nothing, because any company can be incorporated cheaply. Where there is no entity at all, the WhatsApp group itself is the brand, and the brand can be renamed in seconds. The absence of a verifiable, continuously active legal entity behind the app is not a minor gap; it is the structural feature that makes every other form of redress hollow, because there is no one to sue and nothing to enforce against.
+
+## When the screen and the market disagree
+
+A borderline case deserves attention, because it is the one where careful users stop trusting the right thing.
+
+Some fraudulent operators do route a small portion of deposits into real market trades, through real or borrowed accounts, in order to be able to produce account statements that match the market for a time. The mechanism is not admirable; it is expensive, and it exists only to make verification harder by supplying evidence that a statement, even a genuine-looking one, cannot settle the question of whether the whole operation is genuine. The test remains where the money came from and where it goes, not what an account statement says. A statement is a document issued by a party to the transaction; it is not an audit of the institution.
+
+## Device hygiene after an incident
+
+Where the phone has been enrolled in a fraudulent trading app's permissions, recovery of control is a separate step from recovery of money and should be done first.
+
+Change the passwords and revoke the active sessions on every account that relied on SMS delivery to that SIM, from a different device. Re-register two-factor authentication where possible using an authenticator that does not depend on SMS. Notify the bank that the SIM has been compromised, so that it can add or strengthen restrictions on the account. Cancel any mandate or auto-debit permission that was authorised by messages that may have been intercepted. Review the device's installed apps for anything unfamiliar that arrived alongside the fraudulent one, because a common companion is a stealth duplicate of a genuine banking or wallet app placed to capture credentials when the user attempts a legitimate login.
+
+The reasons for prioritising device hygiene are twofold. First, the credential exposure continues whether or not the victim deposits more money. Second, the evidence needed later — message logs, notification history, app lists — is on the same device, and cleaning it too thoroughly destroys it. The right order is therefore to capture and save externally, then to clean, not the reverse.
+
+## How the investigation burden is distributed
+
+It is worth being honest about who does what, because the practical answer shapes what a victim can realistically expect to contribute.
+
+The receiving bank's first line is trained to move quickly on documented fraud reports, but it moves on its own schedule and its own documentation. The operator's counterparts move faster. The victim's contribution is therefore concentrated in the first hours, when an account freeze is still possible and the evidence is still on the device, and it is much more limited afterward. Knowing that in advance prevents the predictable and exhausting experience of pursuing the same institutions for weeks while the practical opportunity has closed.
+
+The investigative trail is also fragmented by design from the victim's point of view, because the operator's parts of the fraud are intentionally unconnected: a link sent in one app, a deposit to an account held by someone the victim never met, a WhatsApp admin whose number has since been reassigned. Unifying those pieces is what enforcement does and what a single complaint cannot do, which is why several small complaints from unrelated victims often accomplish what one large complaint does not. Reporting is therefore not only a recovery step; it is the mechanism by which the pattern becomes visible to the people who can act on it.
+
+## Worked example, revisited: the cost of a token withdrawal
+
+An illustrative arithmetic, not a parameter of any real app. Suppose a fake trading app extracts a first deposit of Rs 50,000, pays a token withdrawal of Rs 5,000, and relies on that token to attract a second deposit of Rs 2,00,000. The operator's cash outlay to produce the appearance of legitimacy is Rs 5,000 against Rs 2,50,000 collected. The return on that position is large, and the marginal cost of sending another link is near zero. The illustration shows why a registration that costs an operator nothing to fake per additional target is economic to repeat without limit, and why deterrence at the level of individual victims has not been sufficient. The figures are illustrative of the structure; any real case's numbers would be set by the operator's own testing of what target would deposit at each stage.
+
+## What this does not tell you
+
+This article does not tell you whether any specific app is fraudulent. That verdict belongs to verification against the regulator's records, which this article explains but cannot substitute for. It does not cover malware analysis, reverse-engineering an APK, or the technical detection of malicious code; that requires a professional. It does not estimate how much money is lost to fake trading apps in India; the sources carry no verified figure, and the honest answer is that the scale is not established here. And it does not treat store presence as proof of legitimacy: review processes can be circumvented, which is why the registry, not the store, is the authority.
+
+## Open questions
+
+Three questions remain open. Could a regulator-verified directory of authentic trading apps, carrying a standard verification mark, reduce the cloning problem, or would clones simply copy the mark? Do permission warnings at install time change behaviour, or are they accepted reflexively, and would a stronger default warning for financial apps help? And what share of retail payment fraud losses originate in fake trading apps rather than in remote-access Trojans and phishing; is the industry's fraud-typology data granular enough to say?
+

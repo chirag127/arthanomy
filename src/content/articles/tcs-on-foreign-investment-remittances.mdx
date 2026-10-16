@@ -1,0 +1,176 @@
+---
+title: "Tax Collected at Source on Foreign Investment Remittances"
+description: "Which remittances attract collection at source, the mechanics by which the amount is collected and credited, how it is recovered through the return, and the cash-flow effect when planning an overseas investment."
+shortTitle: "TCS on Foreign Remittances"
+category: international
+series: global-investing
+seriesOrder: 2
+topics: ['TCS', 'FEMA', 'LRS', 'remittances']
+tags: ['taxation', 'international', 'regulation', 'payments']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 16
+keyTakeaways:
+  - "Tax collected at source is a collection mechanism, not a final tax: it is credit against the year's liability and is refundable if it exceeds it."
+  - "The cash-flow effect comes first. The money leaves the remitter's pocket at the time of remittance and comes back only when the return is processed."
+  - "Whether a given remittance attracts collection, and at what rate, depends on the purpose category and on the threshold and purpose rules set in the Income-tax Act and the Finance Acts."
+  - "Recovery through the return requires the credit to be matched and claimed correctly; a mismatch of the tax-deduction number or a missing declaration leaves the credit unapplied."
+  - "Modelling the effect means treating the collected amount as an interest-free advance to the government for the duration between remittance and refund."
+faqs:
+  - question: "Is tax collected at source on a remittance the same as income tax?"
+    answer: "No. It is a collection made at the time of the transaction under the Income-tax Act; it counts as a credit against the person's final tax liability for the year and is refundable if it exceeds that liability."
+  - question: "When does the collected money come back?"
+    answer: "It is credited to the person's tax account on remittance and is adjustable against the liability declared in the annual return. Any excess is refunded once the return is processed."
+  - question: "Does the collection apply to every remittance abroad?"
+    answer: "No. Whether a remittance attracts collection, and at what rate, depends on the purpose category, the applicable threshold and the exemption categories set out for that type of transaction."
+  - question: "Can a remitter avoid collection by selecting a different purpose description?"
+    answer: "The purpose recorded in the remittance has to match the underlying transaction. Mis-describing the purpose to reduce collection would be a breach of the foreign-exchange reporting route, not a legitimate planning step."
+  - question: "How does collection interact with the Liberalised Remittance Scheme?"
+    answer: "The scheme and the collection rules operate together: the scheme governs what a resident may remit for, and the collection rule governs what is skimmed off at that remittance."
+relatedCalculators:
+  - id: currency-impact
+    label: Currency Impact on Foreign Returns
+  - id: post-tax-return
+    label: Post-Tax Return Calculator
+  - id: portfolio-allocation
+    label: Portfolio Allocation Analyser
+  - id: multi-asset
+    label: Multi-Asset Portfolio
+relatedArticles:
+  - lrs-basics-and-annual-limits
+  - opening-an-overseas-investment-route
+  - buying-us-stocks-from-india
+  - currency-risk-in-global-portfolios
+glossaryTerms: [lrs, tcs, dtaa, foreign-tax-credit, schedule-fa]
+sources:
+  - id: rbi-fema-lrs
+    supports: "LRS annual remittance limits, permitted and prohibited purposes, reporting through authorised dealer banks, and the interaction of LRS with tax-collection-at-source rules."
+  - id: income-tax-act-1961
+    supports: "Statutory basis for all provisions cited for FY 2025-26 and earlier, including the provisions under which tax is collected at source on remittances and related filing and credit obligations."
+  - id: itd-efiling-ay2026-27
+    supports: "Tax slabs, surcharge bands, rebate limits and marginal relief bands for AY 2026-27, used when contextualising final liability against which collected amounts are adjusted."
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+hasDiagram: false
+warnings:
+  - "Tax rules, thresholds and rates change and must be taken from the current Income-tax Act, the Finance Act and the Income Tax Department's published material; figures are deliberately not stated here."
+  - "This article is educational description. It is not tax advice for a specific person or remittance."
+openQuestions:
+  - "What is the current collection rate and threshold by purpose category, and how often are these revised?"
+  - "How long does a refund of excess collected amounts typically take in practice once the return is filed?"
+  - "How much of a remittance planning decision is driven by the collection effect versus by the underlying asset and currency view?"
+  - "Do lower-rate certificates materially reduce the cash-flow lockup for large one-off remitters, and on what evidence are they available?"
+applicablePeriods: ["FY 2025-26", "AY 2026-27"]
+---
+
+A remitter tends to think about a foreign investment in terms of the asset and the currency, because those are the parts that earn a return. But the route from the rupee account to the foreign account contains an extra step that is purely administrative and yet is the first cash that leaves the wallet: the collection made at source at the time of the remittance. It is not a tax on income. It is a loan to the government, free of interest, for the period between the remittance and the refund of the excess. On a large programme of investment that period is long enough to matter.
+
+This is the second article in the Global Investing series. It explains the collection mechanism, how it interacts with the Liberalised Remittance Scheme, what the collection depends on, how the credit is recovered through the return, and how to model the cash-flow effect when planning a remittance. It deliberately does not quote the collection rates or the threshold amounts, because those are set by statute and by the Finance Acts and must be read from the current official material; quoting a possibly dated number would be worse than quoting none.
+
+## What the Liberalised Remittance Scheme requires
+
+The Reserve Bank of India's master direction on the Liberalised Remittance Scheme and the FEMA (Current Account Transactions) Rules govern what a Indian resident may remit abroad and on what conditions. The scheme permits resident individuals, including minors through guardians, to remit funds abroad up to the prescribed annual limit for permitted current and capital account transactions, including investment in securities and property, education, travel and gifts. Remittances are routed through authorised dealer banks. The scheme defines the permitted purposes and the prohibited ones; it does not itself set the tax rule, but it determines which remittances enter the collection net at all, because collection rides on the purpose recorded in the remittance.
+
+The important claim in the source is the interaction rather than the arithmetic: the scheme governs what may be sent, the Income-tax Act governs what is collected on it, and the authorised dealer is the institution that sits between the two and performs both sets of obligations simultaneously. A disallowed purpose is not merely a tax issue; it is a foreign-exchange issue.
+
+## How collection is made at the authorised dealer
+
+Collection at source in this context operates as a separate mechanism: a seller of specified value, or an authorised remitter in the case of foreign-exchange transactions, collects a prescribed amount from the buyer or remitter at the time of the transaction and deposits it with reference to the person's identity. In practice the authorised dealer bank calculates the amount, draws it against the remittance amount, and credits the balance to the foreign currency account or investment route selected.
+
+Three mechanics follow. First, the amount collected is determined at the time of remittance against the purpose and the threshold rules then in force, not at the time of filing the return. Second, the credit is written against the remitter's permanent account number and therefore appears in the tax-deduction records. Third, because the amount is blocked from the remittance at source, the person's foreign investment is, from that point, smaller than the rupees they set out to invest, and the difference is the collected amount sitting in the government's account until reconciliation.
+
+The threshold and purpose categories, including the distinctions that matter most for investors, such as those between education, medical treatment, foreign travel and investment, are set in the Income-tax Act and have been revised by successive Finance Acts. The precise breakpoints, the set of purposes that attract a higher or lower rate, and the exemptions available have changed several times in recent years. This article does not state them. They must be read from the current text of the provision and from the Income Tax Department's published guidance, and re-verified before any remittance is planned, because a programme that assumes a rate that has changed is a programme that misprices its own cash flow.
+
+## Why collection is exposure-dependent rather than tax-dependent
+
+A point that is easy to miss: the collected amount under these rules is computed on the remittance, not on the gain. A person remitting Rs 10 lakh to buy foreign securities pays the collection on Rs 10 lakh even if the investment subsequently loses half its value before it is sold. The collection is therefore a property of the size of the transfer, not of the profitability of the investment, and it scales with total foreign exposure rather than with after-tax return.
+
+For a long-term investor this changes the experience of the programme. Each incremental unit of foreign exposure carries the collection cost on that unit, regardless of what the asset does. The payback, if the collection exceeds final liability for the year, comes only on annual reconciliation, often with a lag. The real cost is the time value of the locked amount, plus the risk that the credit is delayed by a data mismatch.
+
+## Recovery through the annual return
+
+The collected amount is not a loss. It is a credit against the remitter's final income-tax liability for the year, provided it is correctly reported. Recovery runs through the return for the assessment year rather than through any separate application or refund mechanism at the bank.
+
+The steps, in substance, are as follows. The credit appears in the tax-deduction records against the same permanent account number. The person then files the annual return and claims the credit against the computed liability. The return is processed, the liability is assessed, and any excess of collection over liability is refunded through the usual refund channel. The refund is subject to the same net a: it is gross to the excess. The usual administrative caveats apply, and they are the source of most of the friction.
+
+Friction appears in four places. First, where the foreign remittance is made through more than one authorised dealer, the credits must each be matched; a misspelled name or an incorrect permanent account number leaves a credit invisible for the purpose of set-off. Second, where the remittance date and the return year do not align neatly, the credit attaches to the year of collection, and the person must ensure the underlying foreign asset's income and the credit land in the same computation. Third, the annual return of a person holding foreign assets also carries the disclosure requirements for foreign holdings, including the schedule in which foreign assets are declared; a return that claims the credit but omits the underlying holding is, on its face, incomplete and likely to be queried. Fourth, where the return shows a higher total liability than the person expected, because of other income, the collection does not produce a refund; it merely satisfies an existing liability, which is still worth having, but it explains why some remitters see no refund at all.
+
+The cross-check before filing is therefore to reconcile the tax-deduction statement with the foreign asset disclosure and with the remittance record for the year, line by line.
+
+## Planning implications that are real, and the ones that are not
+
+What is legitimate to plan around is the timing and the cash flow. A remittance made early in the financial year spends ten or eleven months as a loan to the government; a remittance made later in the year spends less. A person with a known liability for the year can treat part of a collection as satisfying that liability rather than as idle money. A remitter who uses a single authorised dealer for a multi-year programme has simpler reconciliation than one who chases the best rate across many banks.
+
+What is not legitimate, and is worth saying plainly, is restructuring a transaction to put it outside the collection net when the purpose is really investment. The purpose recorded in a remittance has to match the underlying transaction, and the authorised dealer records and reports both. An understated purpose is a foreign-exchange breach with consequences beyond any tax. Similarly, splitting a single investment remittance across names or entities to stay below a threshold, which is the same trick that never works for long, trades a cash-flow inconvenience for a compliance problem.
+
+The real lever is therefore not the rate or the threshold, which are statutory, but the reconciliation and the timing, which are within the remitter's control.
+
+## An illustrative calculation of the cash-flow effect
+
+An illustrative calculation, not a forecast. The figures are invented to show the arithmetic. The collected rate is left as a symbolic variable because none is stated in this article.
+
+Suppose a remitter sends Rs 10,00,000 abroad for investment, out of which Rs 1,20,000 is collected at source and deposited with the government. The amount actually reaching the foreign account is Rs 8,80,000. If the remitter then plans the foreign return on the assumption that Rs 10,00,000 was invested, every expected future rupee would be overstated by 12 percent. More importantly, the remitter has Rs 1,20,000 less earning anything, anywhere, from the remittance date until the return is processed and the refund is paid. If that handling lag is eight months, and if the money would otherwise have earned 6 percent per annum in domestic liquid instruments, the time value of the lockup is roughly Rs 4,800. On a Rs 10 lakh remittance that is 0.48 percent. On Rs 1 crore remitted, with the same proportional collection and handling lag, the time value compounds to roughly Rs 48,000. The amounts are not large in isolation but they are a cost of the programme, they are predictable, and they recur with every remittance.
+
+The calculation uses deliberately round figures. The point is that the locked amount deserves its own line in the model.
+
+## Thinking in terms of the foreign exposure ladder
+
+For a person who builds foreign exposure over time, the collection effect and the foreign-exchange control interact with the exposure decision. Three observations:
+
+1. **The collection is per remittance.** A single large remittance incurs one collection event on its full amount; a programme of monthly remittances incurs twelve. Whether batching reduces friction depends on whether the purpose and timing fit the threshold structure, which is not uniform across purposes and must be checked for each.
+2. **The collection ladders with exposure.** Every unit of foreign exposure carries collection on that unit. An incremental unit bought inside a domestic fund of funds that invests abroad does not pass through the individual's own collection step, because the fund is the remitter; this is one reason the feeder-fund or international-fund route is attractive for certain investors, quite apart from the currency or the diversification arguments.
+3. **The collection is not the whole cost.** It sits alongside currency conversion, custody and trading costs abroad, platform fees, dividend withholding where applicable, and the tax compliance cost, including the foreign-asset disclosure schedule and the foreign-tax-credit computation. Treating the collection as the dominant cost is a mistake; treating it as zero is also one.
+
+## The compliance layer around the remittance
+
+The scheme requires reporting through the authorised dealer, and the dealer both authenticates the purpose category and applies the collection. The bank's reporting and record-keeping obligations are the reason that mis-stating the purpose is detectable: the remittance, the collection and the foreign asset all have to line up, and the dealer's own reporting provides the audit trail.
+
+For the investor this translates into documentation discipline. Keep the remittance advice, the collection certificate or deduction record, the corresponding amount credited abroad, and the broker statement showing the purchase. At return time the foreign asset must be declared in the relevant schedule and the foreign income reported in the appropriate head. Cross-jurisdictional income that has suffered foreign tax may attract foreign tax credit, computed under the rules in the Income-tax Act read with the applicable treaty, and the credit is normally limited to the Indian tax attributable to that income. The credit is not automatic; it has to be claimed with the foreign tax payment evidence and through the prescribed procedural route. Improperly claimed credits are a common source of adjustment notices.
+
+Double taxation-avoidance agreements assign taxing rights between jurisdictions over dividends, interest, royalties, capital gains and salaries. For a typical long-term equity holder the relevant articles are usually dividends and capital gains, and the relief is given either by exempting the income in the source country or by crediting the tax paid abroad in the resident country. Claiming treaty benefits generally requires evidence of tax residency, such as a tax residency certificate, and, where prescribed, a no-permanent-establishment or beneficial-ownership declaration. These documents are raised in advance, not after the dividend arrives.
+
+## Keeping the collected credit alive through filing
+
+The collected amount does not travel from the bank to the return by itself. Three routine checks keep it alive, and the absence of any one of them delays or loses the credit.
+
+**Match the deduction record to the permanent account number.** The credit is written against the investor's permanent account number at the time of remittance. If the number differs from the number on the return, or the name differs in any way, the credit does not self-match. The reconciliation year starts with the tax-deduction statement, and each entry there should be ticked against the remittance advice.
+
+**Match the year of collection to the year of the foreign holding.** The credit attaches to the year of collection, and the foreign-asset disclosure attaches to the year of holding. A December remittance that buys software held into January still has the credit in the first year, while the asset disclosure belongs in the second year. Both have to be right, and the only way to ensure that is to keep the remittance-and-purchase file by tax year.
+
+**Match the foreign tax credit to its own evidence lane.** Foreign tax withheld against dividends on the same foreign portfolio is a different animal from the collection on the remittance. The withheld tax is claimed as a foreign tax credit, computed against the Indian tax on that income and capped at that level, and requires the withholding statement from the broker as evidence. Conflating the two credits in the same computation is the commonest reason that a return is revised on processing.
+
+**Track the refund, not only the filing.** Filing ends the claim; the refund ends the cash flow. The refund follows the rules that govern refund determination and the procedural route for crediting it to the account nominated in the return. Where the refund should be, or already was, partly set off against an outstanding demand, the net credit differs from the gross collection, and the remittance plan should not assume the gross number.
+
+The routine is short but it is not automatic. A person who treats the collection as "handled" by the bank at the time of the remittance and then files in March has discovered, in most cases, that the bank handled its part and the return still has to handle the credit. The bank is the supplier of the credit; the return is the consumer of it, and the gap between the two is where money gets lost. Early reconciliation, done monthly from the remittance advices rather than annually from memory, removes most of the gap.
+
+## Explain simply
+
+Tax collected at source on a foreign remittance is not income tax and is not a loss: it is a collection made at the time of the transfer, credited against the year's liability and refunded if it exceeds it. The damage is not the amount but the timing, because the money leaves at remittance and returns only when the annual return is processed, and in the interval it earns nothing. Whether a given remittance attracts collection, and at what rate, depends on the purpose category and on thresholds set in the Income-tax Act and successive Finance Acts, and those figures change, so they are worth verifying each time rather than memorised. Recovery through the return requires the credit to be matched and claimed correctly; a mismatch of the tax number or a missing foreign-asset disclosure leaves the credit sitting unused.
+
+## Worked example
+
+An illustrative calculation, not a forecast. The figures are invented to show the cash-flow effect; the collection rate is left unconstrained and labelled accordingly.
+
+Consider a remitter planning to send Rs 50,00,000 in foreign investment over a financial year. Under an illustrative collection rate of 10 percent, the amount collected is Rs 5,00,000 and the amount that actually reaches the foreign account at the first remittance is Rs 45,00,000. The remitter forgoes 8 to 10 months of earning on Rs 5,00,000 if the filing and refund take that long.
+
+Suppose the remitter would otherwise deploy that capital in liquid instruments earning 6 percent per annum. The idle cost is approximately Rs 3,33,333 x 0.10 of turnover, or roughly Rs 30,000 to Rs 50,000 depending on the average lag month. Computed as an interest-only sum, Rs 5,00,000 at 6 percent for eight months is Rs 20,000. The exact number is less important than the model: the idle cost equals the locked amount multiplied by the remitter's short-term hurdle rate multiplied by the handling lag measured in years. Planning the remittance timing so that the lockup sits against a known liability, or falls in the same year as an expected refund, halves it.
+
+If the same Rs 50,00,000 is built through an international fund of funds held domestically, the collection step does not arise at the unit holder's level, though the underlying costs of the fund do. The comparison should therefore weigh both the collection cash flow and the fund's own expense, hedging cost and tracking error, none of which is settled by this article.
+
+## What this does not tell you
+
+This article deliberately states no collection rates, thresholds or exemption categories, because those are set by the Income-tax Act and the Finance Acts and are revised from time to time. Where a planning decision requires a specific number, it should be taken from the current official text or from the Income Tax Department's published material. Applying an out-of-date or recalled number is materially worse than applying none.
+
+The article also does not detail the foreign-tax-credit computation beyond its general shape, because the computation depends on the asset, the income type, the treaty article and the evidence, and is a job of the person's tax adviser rather than of a general explainer. It does not state the annual remittance limit, for the same reason as the collection rates. And it does not cover the treatment of proceeds on sale, repatriation of foreign capital, or the taxation of foreign assets on death and succession, each of which raises separate questions outside this brief.
+
+## Open questions
+
+- What is the current collection rate and threshold by purpose category, and how often are these revised in practice?
+- How long does a refund of excess collected amounts typically take, measured from filing to credit, and what causes delay?
+- How much of a remittance planning decision is driven by the collection effect versus by the underlying asset and currency view?
+- Do rates-certificates, where applicable, materially reduce the cash-flow lockup for large one-off remitters, and on what evidence are they granted?

@@ -1,0 +1,185 @@
+---
+title: "Reporting Cyber Fraud and the Money-Recovery Window"
+description: "What to do minute by minute when money moves out of an account without consent, how the bank, NPCI and RBI ombudsman routes interact, and why recovery usually depends on speed rather than on any later process."
+shortTitle: "Reporting Cyber Fraud"
+category: fraud-risk
+series: fraud-investor-protection
+seriesOrder: 27
+topics: ['cyber fraud', 'money recovery', 'UPI fraud', 'ombudsman']
+tags: ['fraud-risk', 'payments', 'consumer-protection', 'regulation']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 16
+keyTakeaways:
+  - "The money moves first and the complaint follows it; recovery is therefore a race between the freeze process and whatever the fraudster does next."
+  - "The realistic first calls are the bank and the card or wallet issuer, because they are the parties who can still place a lien on funds that have not yet moved on."
+  - "NPCI's position as the interoperability layer matters mainly because it is where payment disputes and settlement queries are raised and tracked."
+  - "The RBI Integrated Ombudsman Scheme, 2026 is the escalation path only after the regulated entity has had its mandated waiting period and then failed to resolve the complaint."
+  - "Criminal law under the Bharatiya Nyaya Sanhita, 2023 describes consequences; it does not itself move money back."
+faqs:
+  - question: "Who should be called first after an unauthorised UPI transfer?"
+    answer: "The bank or wallet that holds the source account, because only that institution can place a hold on funds while they are still traceable. The transaction reference and timestamp should be quoted immediately."
+  - question: "Is a UPI transfer reversible once it has completed?"
+    answer: "A push transfer that has cleared is settlement-final in practice. Reversal is not a standard right and depends on whether the funds are still in the beneficiary account and on the bank's dispute process."
+  - question: "When can the RBI ombudsman be approached?"
+    answer: "Only after the regulated entity has been approached first and either rejected the complaint or failed to resolve it within the mandated period, which is 30 days or the longer period set by RBI, NPCI or card-network guidelines."
+  - question: "Does a criminal complaint improve the chance of recovering money?"
+    answer: "It is necessary for the legal record and for the investigation, but it does not itself freeze funds. The freeze depends on the bank and payment-system steps, which run in parallel."
+  - question: "What is included in compensation under the RBI ombudsman scheme?"
+    answer: "The scheme provides for compensation up to Rs 30 lakh for consequential loss and up to Rs 3 lakh for loss of time, expenses and harassment, with no cap on the disputed amount itself."
+relatedCalculators:
+  - id: risk-of-ruin
+    label: Risk of Ruin
+  - id: emergency-fund
+    label: Emergency Fund Sizing
+  - id: opportunity-cost
+    label: Opportunity Cost Calculator
+relatedArticles:
+  - ponzi-scheme-mechanics
+  - unregistered-collective-investment-schemes
+  - pump-and-dump-in-small-caps
+  - insider-trading-and-its-consequences
+glossaryTerms: [economic-offences-wing, money-multiplier, ponzi-scheme]
+sources:
+  - id: npci-home
+    supports: "UPI and AEPS payment rails as the interoperability layer for retail payments, settlement plumbing and fraud typologies in retail payments."
+  - id: bns-2023
+    supports: "Criminal provisions that replaced the Indian Penal Code from 1 July 2024, including cheating, criminal breach of trust, forgery and organised crime, used when describing legal consequences of financial fraud."
+  - id: rbi-ombudsman-2026
+    supports: "The RBI Integrated Ombudsman Scheme, 2026: requirement to approach the regulated entity first, the 30-day wait or the longer period set by RBI, NPCI or card-network guidelines, the 90-day escalation window, filing routes, no fee, no cap on the disputed amount, compensation limits and the 30-day appeal window."
+  - id: rbi-home
+    supports: "Banking supervision and grievance-redressal context for regulated entities, including AD bank roles in payment systems."
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+hasDiagram: false
+warnings:
+  - "This article is educational and describes processes. It is not a substitute for acting immediately through the bank and any available payment-system dispute rail."
+  - "Recovery statistics and exact freeze windows are not stated because they are not present in the sources used; treat any such figure found elsewhere as needing verification."
+openQuestions:
+  - "How long, in practice, do banks take to place a lien on funds that are still in the beneficiary account after a reported fraud, and does that window vary by channel?"
+  - "How often does money reported within a short window actually get frozen, and what share is subsequently returned?"
+  - "Can cross-border enforcement reach fraudsters operating outside India in time to matter, or is the practical remedy always prevention?"
+applicablePeriods: ["FY 2025-26", "AY 2026-27"]
+---
+
+A fraud complaint begins after the money has left. That ordering is the entire problem. Once a push transfer is accepted into a beneficiary account it is settlement-final in practice, and the only thing that changes afterwards is how far the money travels before anyone with authority freezes it. The complaint is therefore a race, and the person reporting has to trigger the freeze as quickly as communication permits, using the bank and payment-system channels that still have their hands on the funds, rather than the slower legal channels that describe the offence.
+
+This article treats the operational path: what UPI and card settlement plumbing looks like, what actually can and cannot be reversed, the order in which to speak to the bank, the payment-system layer and the regulator, and why the legal route under the Bharatiya Nyaya Sanhita, 2023 matters even though it does not itself move money. It is the twenty-seventh article in the Fraud and Investor Protection series.
+
+## What a push transfer actually does
+
+A UPI payment is a push from the payer's account to the beneficiary's, routed through the National Payments Corporation of India, which runs UPI and AEPS as interoperability layers that connect banks and payment applications. The transaction is authored at the payer's bank, validated through the payment system, and credited at the beneficiary's bank. Once credited, the beneficiary's bank treats it as available funds.
+
+Two features of this design matter for recovery. First, because the payer initiates and authorises the push, the payment is treated as completed by the sender's own bank; there is no automatic right to reverse it built into the flow. Second, settlement between participating banks happens on netting cycles, so the money in the beneficiary account is already real before any internal reconciliation has caught up. A reversal therefore has to be executed as an exception, by a human or system decision, rather than unwound as part of the normal process.
+
+Card and wallet payments differ in important ways, and the channel matters. A card-present or card-not-present transaction carries a chargeback window under card-network rules, which is a genuinely different legal object from a UPI push. A wallet transfer depends on whether the wallet is operated as a prepaid instrument by a permitted issuer, and whether the funds have been swept to the underlying bank account. The complaint to make, and the speed at which it must be made, depend on which of these rails the money used.
+
+## Why speed decides the outcome
+
+Money stolen through a compromised application or a social-engineering call is usually moved again quickly. The first destination is often a mule account, the second is a chain of accounts, and the third is conversion into cash or into assets that are harder to trace. At each step the fraudster's cost of exit falls and the victim's chance of recovery falls with it.
+
+The freeze that helps is the one placed on the first destination while the funds are still there. Nothing after the first hop is under the original bank's control. This is why the first conversation that matters is with the bank or wallet issuer, not with any legal or regulatory channel: only that institution still has its hands on the money during the short interval in which it can be held.
+
+The exact interval within which a freeze is effective is not stated here because none of the sources used give a verified, channel-specific figure. The packet's NPCI source describes the payment rails and fraud typologies, and the RBI ombudsman source describes grievance process, but neither publishes a freeze window. Any precise number encountered elsewhere should be treated as needing verification rather than as a regulatory fact. The honest operational rule is simpler: treat the interval as very short, and make every contact in the first hour if at all possible.
+
+## The first hour: what to do, in order
+
+The sequence below is ordered by who can still freeze funds, not by how legally important each channel is.
+
+1. **Call the source bank or wallet's fraud or dispute desk, not the general helpline.** Quote the transaction reference number, the exact amount, the beneficiary identifier if it is shown, and the time of the transaction. Ask for a written acknowledgement, a complaint reference number, and a written freeze request to the beneficiary bank. Ask specifically for the lien to be raised with the beneficiary bank through the payment system.
+2. **If the payment was a card transaction, use the card issuer's dispute route at the same time.** Card chargebacks have their own windows and evidence requirements, and the card issuer controls both. Raise the dispute in writing, follow up with the transaction reference, and keep the acknowledgement.
+3. **Retain every message, screenshot and reference number.** Save the transaction history, the SMS, the emails and any call recordings the bank provides. The reconstruction of the chain later, by the bank or by an investigator, will depend on these records.
+4. **Make a written record of the timeline.** Date and time of the fraud, first contact with the bank, reference numbers given and received, names of staff spoken to, and follow-up actions agreed. This document becomes the evidence trail that supports every later escalation.
+5. **Approach the payment-system layer if the bank's process requires it.** NPCI sits between the banks as the interoperability operator for UPI and AEPS. Dispute and complaint references are raised through the participating banks, which is where the tracking number is issued. The objective is a written record that the rail operator and both banks are aware of the dispute.
+6. **File the criminal complaint.** This is important for the legal record, for the investigation, and for the anti-money-laundering trail, but it does not itself freeze funds. Do it in parallel with the bank process, not instead of it.
+7. **Then prepare the consumer and regulatory escalation.** The RBI ombudsman path comes later in the sequence and is described in its own section.
+
+This is a sequence for preserving options, not a guarantee. Bank policies differ between institutions and change over time. The practical objective is not to win an argument with a front-line desk but to create a written trail that the bank cannot later disown, and to get the hold placed before the money moves on.
+
+## The bank's role and its limits
+
+Every bank in India is a regulated entity, and the source bank remains the single point through which the customer can seek relief. The bank operates the account, holds the transaction records, and is the party that can raise a lien or hold request with the beneficiary's bank through the payment system. It is also the party that will eventually be asked, by the RBI ombudsman, to account for how it handled the complaint.
+
+The realistic limits are these. A bank can act quickly against a mule account only while the funds remain in it. It cannot reverse a credit that the beneficiary has already moved or withdrawn. It cannot trace money that has been split, converted into cash or swept to an account outside its visibility. And it cannot guarantee a recovery timeline, because the timeline depends on the beneficiary bank's response and on whether the account was already flagged as a mule. These limits are structural, and they are why the early report matters more than the strength of the later escalation.
+
+Banks typically run a first-information intake for unauthorised transactions. The terms and conditions of the account and the bank's own fraud-policy documents govern how the dispute is acknowledged, how long the investigation runs, and what temporary credit, if any, is afforded. These documents are available on the bank's website and are the definitive reference for the specific institution. They change, so a figure or promise heard second-hand should be checked against the current document.
+
+## The payment-system layer: NPCI
+
+NPCI operates the UPI and AEPS switches that connect participating banks, and it sits at the point where cross-bank payment disputes are most naturally raised. Its relevance to a fraud report is operational rather than remedial. A disputed UPI transaction can be raised through the complaint reference mechanism that runs across the participating banks, and the rail operator is the party that can answer whether a transaction identifier corresponds to a credited leg in the switch records.
+
+This matters in two situations. The first is when the beneficiary bank is unresponsive or disputes that its customer can be identified from the reference alone, which a complaint raised through the rail can force closed. The second is when the money is suspected to have passed through several accounts quickly, in which case a switch-level trace is the only way to see the path with precision. Neither of these guarantees a recovery, but both convert a vague complaint into a tracked, timestamped event that later stages can rely on.
+
+## The RBI Integrated Ombudsman Scheme, 2026: the verified route
+
+The RBI Integrated Ombudsman Scheme, 2026 replaced the previous scheme and is in force from 01-Jul-2026. It is the route to the Reserve Bank for unresolved complaints against a regulated entity. Its mechanics, as stated in that source, are worth knowing precisely because they are procedural rather than discretionary.
+
+- **Approach the regulated entity first.** The complainant must have first raised the matter with the bank, NBFC, prepaid-instrument issuer or credit information company concerned and given it a chance to respond.
+- **Wait the mandated period.** The wait is 30 days, or the longer period set by RBI, NPCI or card-network guidelines, from the date of the complaint. The regulated entity needs that time to investigate and respond.
+- **Escalate within 90 days.** The complainant has 90 days from that deadline, or from the last communication received, to take the matter to the ombudsman. Missing that window forecloses the route.
+- **File without fee.** There is no charge for filing. Complaints go through cms.rbi.org.in or the Centralised Receipt and Processing Centre.
+- **No cap on the disputed amount.** The amount in dispute is not limited by the scheme.
+- **Compensation.** The ombudsman scheme provides for compensation up to Rs 30 lakh for consequential loss, and up to Rs 3 lakh for loss of time, expenses and harassment.
+- **Appeal window.** There is a 30-day appeal window against orders.
+
+**Coverage and exclusions.** The scheme covers banks, including co-operative banks with a deposit size of Rs 50 crore and above, certain NBFCs with an asset size of Rs 100 crore and above or that accept deposits, non-bank prepaid-instrument issuers, and credit information companies. Housing finance companies and core investment companies are among the major exclusions. A complainant whose regulated entity falls outside coverage has to use the entity's own grievance process or, for insurance, the Insurance Regulatory and Development Authority's route, and for securities complaints, the Securities and Exchange Board of India's route.
+
+Two operational cautions follow. First, compensation under the ombudsman is not automatic and is assessed against the facts and loss; the ceilings are upper bounds, not entitlements. Second, the ombudsman's jurisdiction is against the regulated entity, not against the fraudster, which is why the criminal and consumer routes remain relevant.
+
+## Criminal law: what the BNS, 2023 does and does not do
+
+The Bharatiya Nyaya Sanhita, 2023 together with the Bharatiya Nagarik Suraksha Sanhita, 2023 replaced the Indian Penal Code and the Code of Criminal Procedure from 1 July 2024. For financial fraud it carries provisions on cheating, criminal breach of trust, forgery and organised crime, operating alongside the Information Technology Act, 2000. These are the statutes under which an economic offences wing or cyber cell registers and investigates a case.
+
+What criminal law does: it creates the offences, it supports search and seizure, it exposes the fraudster to prosecution, and it generates the paper trail, including orders that can freeze or attach assets. The Prevention of Money-Laundering Act, 2002 adds the reporting-entity and record-keeping obligations that make the proceeds of fraud traceable, and the attachment mechanism through which traced proceeds can be restrained. A money-laundering trail is only as good as the records kept by the regulated entities through which the money passed, which is the practical reason the reporting entity is usually the bank rather than the victim.
+
+What criminal law does not do: it does not return money on its own. A conviction or an attachment order does not automatically credit the victim's account. The victim participates through a complaint, through evidence and sometimes through separate civil or consumer proceedings, and any recovery ordering comes later and is subject to execution against assets that the fraudster actually controls. This is a reason the bank and payment-system steps remain the first calls rather than an afterthought.
+
+The Economic Offences Wing is the specialised unit within state police that investigates economic crimes, including investment fraud, cheating and criminal breach of trust. Cases under the Banning of Unregulated Deposit Schemes Act and the Prize Chits and Money Circulation Schemes (Banning) Act, among others, are typically registered there, and proceedings there run parallel to, or sometimes instead of, regulator proceedings.
+
+## Consumer, securities and tax routes
+
+Three other channels matter depending on who the counterparty was.
+
+- **Consumer commission route.** Where a retail investor was mis-sold a product or misled by a representation, the Consumer Protection Act, 2019 and its commission structure, district, state and national, provide a remedy. The applicable conduct and the remedy depend on the facts of the case.
+- **Securities route.** Where an investment scheme, advisor or market intermediary was involved, the Securities and Exchange Board of India's investor-education and grievance routes, including SCORES, apply, and SEBI's alerts on unauthorised entities and unregistered advisors describe the current list of flagged operators. Reporting an unauthorised scheme also gives the regulator grounds to act.
+- **Tax and tracing cooperation.** Where money crossed borders or laundered through accounts, the Prevention of Money-Laundering Act framework is the mechanism through which a reporting entity's records become the basis for tracing and attachment, rather than something a private complainant can invoke directly.
+
+Insurance complaints have their own sequence through IRDAI and its consumer-affairs function before any national ombudsman in the sector, and payment-specific complaints of a different kind may be routed through NPCI's dispute processes before or alongside the bank process.
+
+## Why recovery is usually slow or impossible
+
+The realistic view is that the speed of the first report is the dominant variable, and that most losses are not recovered because of how the assets move afterwards. Four structural reasons account for most failures.
+
+First, money that is converted to cash, cryptocurrency or cross-border remittance within hours has left the domestic banking system and with it the jurisdiction of the freeze. Second, the account the money first went to is often a mule account held by a person who is themselves a victim or a paid participant, holding no attachable wealth. Third, identifying and locating the person behind the account is a police function with its own timelines, and the attachable assets, if any, may be in another jurisdiction. Fourth, even where the money is traced, the legal process to attach and return it runs through the courts, and the victim's position as claimant competes with other claimants.
+
+Against this, the two things that actually improve outcomes are speed and documentation. A freeze request placed with a timestamped transaction reference in the first window preserves the possibility of recovery; an undocumented late complaint converts it into a complaint about the complaint.
+
+## Explain simply
+
+When money leaves an account without consent, the complaint is the last thing. The first is the bank and the payment system, because those are the two parties that can still put a hold on the funds while they are sitting in the receiving account. Every minute changes the odds, because the money is moved on quickly and once it has been converted to cash or sent abroad there is nothing left to freeze. The Reserve Bank ombudsman scheme is an escalation route rather than a recovery route: it exists for cases where the regulated entity has had its mandatory waiting period and has still not resolved the matter, and its compensation ceilings are upper bounds rather than entitlements. Criminal law describes consequences and supports investigation, but it does not by itself move money back, and the Prevention of Money-Laundering Act's reporting-entity framework is the reason bank records rather than private complaints are the basis of tracing.
+
+## Worked example
+
+An illustrative calculation, not a forecast or an observed case. The numbers are invented to show the arithmetic of delay.
+
+Suppose a victim discovers a single unauthorised UPI push of Rs 1,00,000 at 10.00 a.m. and places the first freeze request with the source bank at 10.10 a.m., quoting the transaction reference. The beneficiary account, at the time the bank raises the hold with the beneficiary bank at 10.25 a.m., still holds Rs 1,00,000, because the first thing a mule account does is wait for the money to clear before moving it on. In the second scenario the same discovery is made at 2.00 p.m., four hours later, by which time the mule has withdrawn Rs 95,000 in cash and the beneficiary account holds Rs 5,000. A freeze placed then recovers Rs 5,000 at best.
+
+The difference is not a quality-of-service distinction between the two complaints. It is purely the interval between the money landing and the bank acting on it. The illustrative loss is Rs 95,000 in this scenario, and the only lever the victim has is the interval. A maximum-drawdown view of the position is instructive: recovering Rs 1,00,000 from a standing corpus of Rs 5,000 requires a gain of 1,900% on the recovered residual, which is arithmetic rather than opinion and is why speed dominates later argument.
+
+## What this does not tell you
+
+This article is a process description, not a live manual. Bank, NPCI and card-network procedures change, and the definitive wording of any process is the current version published by that institution. The exact interval within which a freeze can be placed after a reported fraud is not verified in the sources used and is deliberately not stated as a number; it varies by channel, by beneficiary bank and by whether the mule account is already under suspicion. Recovery rates and the share of reported fraud that is ever returned are likewise not stated here.
+
+The article also does not cover cross-border recovery in detail, because cross-border proceedings raise jurisdictional, evidentiary and timing questions that are not resolved by any source used here. Where money leaves India, the recovery option depends on the other jurisdiction and on whether a mutual legal assistance process is started early enough to matter, and that starting point is outside this article's scope.
+
+## Open questions
+
+- How long, in practice, do banks take to place a lien on funds still sitting in a beneficiary account after a reported fraud, and does that window vary by channel and by beneficiary bank?
+- What share of money reported within a short window is actually frozen, and what share of frozen money is ultimately returned to the victim?
+- Can cross-border enforcement reach fraudsters operating outside India in time to matter, or is the practical remedy always prevention?
+- How should a small retail complainant document and pursue a loss where the individual amount is below the level that would attract a police or regulatory case on its own?

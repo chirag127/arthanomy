@@ -1,5 +1,7 @@
 # build output
 dist/
+# generated book downloads
+public/downloads/
 .astro/
 
 # dependencies

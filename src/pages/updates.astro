@@ -1,0 +1,60 @@
+---
+/**
+ * /updates — dated "what changed" regulatory layer.
+ *
+ * Entries come from a curated registry (src/data/updates/registry.json) and are
+ * shown newest first. Every entry must cite a primary source and an effective
+ * date. No entries are fabricated; when none is verified, the page says so.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { href } from '../lib/url';
+
+const updates: { date: string; body: string; title: string; change: string; why: string; source: string; sourceUrl: string }[] = [];
+---
+
+<BaseLayout title="What changed" description="Dated regulatory updates affecting Indian investment, taxation and wealth management, each with a primary source." path="/updates">
+  <header class="shell pt-10">
+    <p class="eyebrow">Regulatory updates</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">What changed, and when</h1>
+    <p class="mt-4 max-w-3xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      Dated entries for changes that affect the articles on this site, each with the issuing body,
+      what changed, why it matters, and a link to the primary source. Nothing is included without
+      a verified official document.
+    </p>
+  </header>
+
+  <section class="shell mt-10 pb-16">
+    {updates.length === 0 ? (
+      <div class="card p-6">
+        <h2 class="font-serif text-xl font-semibold">No verified updates in the feed yet</h2>
+        <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+          The regulatory-updates agent run that populates this registry was interrupted by rate
+          limits. While it is being re-run, the articles on this site carry their own effective
+          dates and are the current authority for individual figures. New entries will appear here
+          as soon as they pass verification against RBI, SEBI, IRDAI, PFRDA, CBDT and DEA sources.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-3 text-sm">
+          <a class="text-[var(--color-link)] underline" href={href('/library')}>Browse all articles</a>
+          <a class="text-[var(--color-link)] underline" href={href('/about/corrections')}>Corrections log</a>
+        </div>
+      </div>
+    ) : (
+      <ol class="space-y-6">
+        {updates.map((u) => (
+          <li class="card p-6">
+            <p class="eyebrow">{u.date} · {u.body}</p>
+            <h2 class="mt-1 font-serif text-xl font-semibold">{u.title}</h2>
+            <p class="mt-2 text-sm leading-6">{u.change}</p>
+            <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+              <strong>Why it matters:</strong> {u.why}
+            </p>
+            <p class="mt-3 text-xs">
+              Source: <a class="text-[var(--color-link)] underline" href={u.sourceUrl} rel="noopener">{u.source}</a>
+            </p>
+          </li>
+        ))}
+      </ol>
+    )}
+  </section>
+</BaseLayout>

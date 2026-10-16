@@ -1,0 +1,189 @@
+---
+title: "Corporate and NBFC Fixed Deposits: Reading the Risk Behind the Extra Yield"
+description: "How company and NBFC deposits are issued, which regulator supervises whom, and what ratings and public filings can and cannot establish about whether a higher quoted rate compensates for real default risk."
+shortTitle: "Corporate and NBFC Deposits"
+category: debt
+series: debt-encyclopedia
+seriesOrder: 3
+topics: ["fixed deposits", "corporate deposits", "NBFC deposits", "credit risk", "deposit insurance"]
+tags: ["banking", "debt", "credit-risk", "nbfc"]
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 16
+keyTakeaways:
+  - "A company or NBFC deposit is an unsecured claim on a non-bank balance sheet, not a bank deposit, and the deposit-insurance scheme that stands behind bank deposits does not attach to it."
+  - "The quoted rate is a contractual promise, not a record of performance; whether the extra yield over a bank deposit compensates for default risk cannot be read from the rate alone."
+  - "Expected credit loss is the product of probability of default and loss given default; a spread that covers one assumption set can be consumed entirely by another."
+  - "The regulatory perimeter differs by issuer: the RBI supervises banks and NBFCs under its frameworks, while SEBI's market-conduct rules govern securities-market behaviour and enforcement."
+  - "The RBI Integrated Ombudsman Scheme covers banks, qualifying cooperative banks and certain deposit-accepting NBFCs, so the complaint route and its time limits can be checked before the deposit is made."
+  - "After default, recovery runs through the insolvency and bankruptcy framework, where creditor ranking, moratoriums and partial recoveries are the documented reality."
+faqs:
+  - question: "Is my NBFC deposit insured like a bank deposit?"
+    answer: "No. Deposit insurance under the DICGC scheme is expressed per depositor per bank; deposits accepted by NBFCs and companies are not bank deposits and fall outside that cover. Verify the scheme's scope and exclusions against the DICGC's own disclosure."
+  - question: "Why do company and NBFC deposits pay more than bank deposits?"
+    answer: "Because the claim is riskier and uninsured: the issuer must pay more to attract funds. How much of the premium compensates genuine expected loss, and how much reflects funding structure and distribution costs, is a question the rate itself cannot answer."
+  - question: "Who regulates an NBFC deposit?"
+    answer: "The Reserve Bank of India regulates NBFCs under its NBFC regulatory framework and master directions, which govern their operations including the conditions attached to accepting public deposits; the specific conditions should be verified against the current directions."
+  - question: "What can I check before depositing money with a company?"
+    answer: "The offer document, the issuer's published financial statements, any credit rating and the agency's methodology behind it, the regulator's registers, and the grievance scheme that covers the institution. Evasiveness on any of these is itself evidence."
+  - question: "What happens if the company cannot repay?"
+    answer: "Recovery runs through the insolvency and bankruptcy framework, where claims are ranked, moratoriums can apply and recoveries are typically partial and slow. This article makes no assessment of any specific institution."
+relatedCalculators:
+  - id: credit-spread
+    label: "Credit Spread Calculator"
+  - id: default-recovery
+    label: "Expected Credit Loss"
+  - id: deposit-comparison
+    label: "Deposit Comparison"
+relatedArticles:
+  - bank-fixed-deposit-anatomy
+  - cooperative-bank-deposits-and-insurance-limits
+  - deposit-insurance-mechanics-per-depositor
+  - treasury-bills-as-the-risk-free-anchor
+glossaryTerms: [credit-spread, probability-of-default, loss-given-default]
+sources:
+  - id: rbi-home
+    supports: "The NBFC regulatory framework and master directions under which NBFCs operate and accept public deposits, and the RBI's role in deposit insurance and grievance redressal"
+  - id: sebi-home
+    supports: "SEBI's market-conduct rules and its enforcement orders stating findings of fact in securities-market cases, including those involving listed issuers"
+  - id: dicgc
+    supports: "The statutory deposit-insurance limit expressed per depositor per bank, which is why company and NBFC deposits sit outside the scheme's cover"
+  - id: rbi-fd-rates
+    supports: "Published deposit-rate statistics, including the spread between term-deposit and lending rates, used as the contractual-return benchmark"
+  - id: rbi-ombudsman-2026
+    supports: "Coverage of the RBI Integrated Ombudsman Scheme, including qualifying cooperative banks and deposit-accepting NBFCs, its exclusions, time limits and compensation structure"
+  - id: bcbs-credit-risk
+    supports: "The formal definitions of probability of default, loss given default and expected credit loss used in the worked example"
+  - id: ibbi-home
+    supports: "Corporate insolvency resolution mechanics, resolution-plan statistics and recovery rates relevant to what follows a default"
+  - id: nclt-judgments
+    supports: "Judicial treatment of recovery claims, moratorium effects and the ranking of creditors referenced when describing what follows a default"
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "Every rate and threshold in this article is illustrative or drawn from the cited packet sources; verify current figures against the primary disclosures before acting on them."
+  - "Rating-agency scales and the specific conditions in the RBI's NBFC master directions are not among this article's sources and are flagged for verification where they arise."
+  - "Nothing here is a recommendation to place or avoid any deposit; no credit assessment of any institution is made."
+applicablePeriods: ["FY 2026-27"]
+openQuestions:
+  - "How much of the premium paid on company and NBFC deposits compensates genuine expected loss, and how much reflects funding structure, distribution and regulation?"
+  - "What recovery experience have company depositors actually had in insolvency proceedings, relative to the published resolution statistics?"
+  - "Do premature-withdrawal terms on company and NBFC deposits price liquidity honestly, or do they conceal the true cost of an early exit?"
+---
+
+A fixed deposit with a bank and a fixed deposit with a company or a non-banking financial company (NBFC) can carry the same label, the same tenor and headline rates separated by a full percentage point or more, and they are not the same product. The bank deposit is a claim on a regulated deposit-taking institution standing behind a deposit-insurance scheme; the company or NBFC deposit is an unsecured claim on a supervised but non-bank balance sheet with no such backstop. This article, the third in the Debt Encyclopedia, examines how these deposits are issued, which regulator supervises whom, what published evidence can and cannot establish about the risk, and how to read an extra percentage point of quoted rate as a question to be answered with evidence rather than a fact to be accepted. The first article in this series covered the mechanics of bank deposits — compounding, exit rules and the insurance limit — and this one takes the same questions to the institutions that sit outside that perimeter.
+
+## Two balance sheets, two products
+
+A bank deposit is a claim on an institution whose business is taking deposits and making loans under a banking licence, and whose depositors benefit from a statutory insurance cover expressed per depositor per bank. A company deposit or an NBFC deposit is, in economic substance, an unsecured loan to a firm. The borrower may be a finance company lending to households and small businesses, a manufacturer parking surplus cash, or a holding group raising funds from the public; what it is not, is a bank. The distinction matters at three points. First, in supervision: banks operate under a dedicated banking framework, NBFCs operate under the Reserve Bank of India's NBFC regulatory framework and master directions, and companies under their own acceptance-of-deposits rules. Second, in protection: the deposit-insurance scheme's cover is written per depositor per bank, so it does not attach to deposits accepted by companies or NBFCs. Third, in consequence: if the issuer cannot pay, the depositor is an unsecured creditor, and the queue, the timeline and the likely recovery are set by the insolvency framework rather than by an insurance payment.
+
+None of this makes a company or NBFC deposit improper. These instruments exist because firms need term funding and because depositors with large sums may want a contractual rate above what a bank offers. The question this article sets out to answer is narrower and more useful: does the extra yield compensate for real default risk, and what evidence would show it?
+
+## Who supervises whom
+
+The regulatory perimeter is the first thing to check, and it differs by issuer. Banks — including cooperative banks and small finance banks — fall under the Reserve Bank's banking supervision. NBFCs fall under the RBI's NBFC regulatory framework: the packet's primary sources establish that the RBI regulates NBFCs and issues master directions governing their operations, including the conditions attached to accepting public deposits. The specific conditions — eligibility criteria, size limits, disclosure requirements, any requirements to maintain liquid assets — sit in those master directions, and they change; the honest position is that they must be verified against the current directions before any deposit is accepted, because this article's sources establish the framework's existence and scope but not the text of the current directions.
+
+The Securities and Exchange Board of India occupies a different lane. SEBI's market-conduct rules govern behaviour in the securities market, its registration and conduct regimes govern advisers and intermediaries, and its enforcement orders state findings of fact in cases that reach adjudication. If the deposit-taking company is listed, or if the money is raised or promoted through market channels, SEBI's disclosure and conduct regime is part of the picture. Two practical lessons follow. First, the existence of a regulator is not the same as the existence of a guarantee: supervision reduces the range of permitted behaviour; it does not promise repayment. Second, the grievance route is knowable in advance. The Reserve Bank - Integrated Ombudsman Scheme, 2026 — in force from 1 July 2026, replacing the 2021 scheme — covers banks, cooperative banks with a deposit size of Rs 50 crore and above, and certain NBFCs with an asset size of Rs 100 crore and above that accept deposits; housing finance companies and core investment companies are among the excluded categories. The scheme requires the complainant to approach the institution first, allows a 30-day response window (or the longer period set by RBI, NPCI or card-network guidelines), and then opens a 90-day escalation window measured from that deadline or from the institution's last communication. Filing is through the RBI's cms.rbi.org.in portal or the CRPC; there is no fee and no cap on the disputed amount, with compensation of up to Rs 30 lakh for consequential loss and up to Rs 3 lakh for time, expenses and harassment, and a 30-day appeal window. A depositor can check, before placing money, whether their complaint route exists and on what terms.
+
+## How these deposits are issued
+
+Accepting a public deposit is a formal act, not a marketing one. A legitimate issue is documented: an offer document or advertisement states the issuer, the amount sought, the rate, the tenor, the security if any, and the terms of repayment and premature withdrawal; the offer is made under the conditions of the governing framework, and the issuer's obligations are enforceable terms rather than promotional claims. Two implications follow for the depositor. The offer document is itself evidence — its completeness, its consistency with the framework's conditions, and the issuer's willingness to answer questions about it are all informative. And the terms that decide the realised outcome — minimum amounts, lock-in periods, premature-withdrawal penalties, renewal and interest-payment conventions — differ across issuers and across frameworks in ways this article cannot summarise, because the packet does not contain the operative directions or statute text. Read them on the offer document; that is where they live.
+
+## What the extra yield is paying for
+
+A deposit rate is a contractual return: it is the issuer's promised cost of funds, not a record of what the instrument has earned. It is worth separating the lanes this series insists on. The quoted rate is contractual. What company or NBFC deposits as a category actually delivered in some past period would be a historical realised return, and no such series is in this packet, so none is quoted here. The expected-loss arithmetic below is a model-estimated figure, built on assumptions, not an observation. Any promise about future performance would be speculative. Keeping the lanes apart is what makes the central question answerable.
+
+The question is: what is the extra yield over a comparable bank deposit actually paying for? Decompose it conceptually. First, expected loss: the Basel Committee's credit-risk framework defines probability of default — the chance the borrower fails to meet its obligations over a horizon — and loss given default — the share of the exposure that is not recovered. Their product, applied to the exposure, is expected credit loss. Second, a liquidity premium: these deposits are not traded, cannot usually be exited at par before maturity, and sit in a narrower market than bank deposits. Third, a risk premium for the uncertainty around the first two estimates. A fourth element is compensation for the absence of deposit insurance: an uninsured depositor bears, in full, the loss given default that an insured bank depositor does not. The credit spread — the difference between the instrument's yield and a benchmark of comparable maturity — is the market's price for this bundle of things. The published statistics the packet cites show the spread between term-deposit and lending rates for banks; no equivalent published series for company or NBFC deposits is in the packet, and that gap is itself worth noting: the extra yield on these instruments is far less transparently observed than the bank rate.
+
+## Worked example: is a two-hundred-basis-point spread enough?
+
+An illustrative calculation, not a forecast. Assume an illustrative NBFC deposit offering 9.50 per cent for a year, and an illustrative comparable bank deposit offering 7.50 per cent: a spread of 200 basis points. Assume, purely illustratively, a one-year probability of default of 2 per cent and a loss given default of 50 per cent. Expected credit loss is then one per cent per year:
+
+$$ EL = 0.02 \times 0.50 = 0.01 $$
+
+The 200-basis-point spread leaves roughly 100 basis points to cover the liquidity premium, the risk premium for estimation error, and the operating cost of taking the deposit. Now change only one assumption: if the true probability of default were 4 per cent with the same loss given default, expected loss doubles to 2 per cent and the entire spread is consumed by expected loss before any compensation for risk-taking at all. The lesson is not that 2 per cent is the right probability — it is an invented number — but that the adequacy of a spread is a joint property of the rate and the assumptions, and the rate alone reveals neither. Two further cautions. The benchmark matters: a bank deposit rate already reflects the bank's own credit risk and the depositor's insurance cover, so the spread over a bank deposit is not a clean measure of incremental company credit risk. And the example prices one year; over longer tenors the same arithmetic compounds, for better or worse.
+
+## What public evidence can and cannot show
+
+What the public record can do is discipline what you pay for. For a listed issuer, periodic financial statements are public: leverage, asset quality, related-party exposures, auditor remarks and cash generation can all be examined, and the questions an investor brings to them — how leveraged is this balance sheet, what is happening to its loan book, who else is lending to it — are the right questions. For an NBFC, the RBI's supervisory framework means prudential reporting exists even where public filings are thinner; the depositor's problem is access, not absence. A credit rating is a structured, monitored opinion on the issuer's ability and willingness to meet financial obligations on time; rating agencies publish scales and methodologies, and those publications are not among this article's sources, so the specific scales and their interpretation are flagged for verification against the agencies' own material. What the packet does support is the logic: a rating is a summary judgement about the same expected-loss arithmetic set out above, rendered by a specialist with better access than an individual depositor.
+
+What no public evidence can do is guarantee an outcome. Filings describe the past; ratings are opinions, not predictions; and after a default the matter passes to the insolvency and bankruptcy framework, whose documented features are creditor ranking, moratorium effects and recovery rates that are published as statistics and realised case by case. The honest summary: the public record can tell you what you are being paid and how much evidence sits behind it; it cannot tell you that the risk is absent.
+
+## Explain simply
+
+A company or NBFC deposit is a loan to a firm, not money in a bank. The firm pays more than a bank because the claim is riskier and carries no deposit insurance. Before handing over money, read the offer document, check who regulates the firm and on what terms, look at its published accounts and any credit rating, and ask what happens if the firm cannot pay. If the paperwork is evasive, the rate is unexplained, or the story cannot be shared, treat that as the finding it is.
+
+## A practical leading-indicator set for distress
+
+Credit deterioration is usually visible before it becomes default, and the filings disclose it in plain sight if read across years rather than in a single snapshot. Track these indicators in sequence across at least three consecutive annual reports, and treat a movement in the wrong direction for two periods running as a reason to stop rather than to average in.
+
+- Growth in borrowings relative to growth in operating profit. Borrowing that grows faster than the cash that services it is the signature of refinancing dependence, and it is the earliest tell.
+- Interest coverage trending down. A fall from a comfortable multiple to a thin one is more informative than the level itself, and a ratio below two on a sustained basis is a caution regardless of the name.
+- Working capital stretching. Rising receivables and inventory against revenue, or falling payables discipline, indicate that the company is funding operations with its suppliers' and creditors' money.
+- Cash and equivalents shrinking relative to near-term maturities. A cash buffer that covers less than the next twelve months of obligations, combined with a blocked refinancing window, is the acute risk.
+- Related-party exposure growing. Loans to subsidiaries, associates or promoters, or guarantees given on their behalf, convert a deposit in the parent into exposure to the group's weakest member.
+- Auditor qualifications and emphasis-of-matter notes. A clean opinion with an emphasis of matter is not the same as an unqualified one, and a change of auditor close to a year-end is a signal in itself.
+- Slippage in the maturity ladder. If a company begins issuing shorter and shorter tenor to fund longer assets, the refinancing risk is being ratcheted up.
+- Covenant breaches or waivers, even if cured, disclose in offer documents and exchange filings, and should be tracked.
+
+None of these is decisive alone. A deteriorating issuer rarely shows all eight; it usually shows three or four moving together, and that constellation, not any single line, is the warning.
+
+## Comparing corporate deposits with the realistic alternatives
+
+A corporate deposit should not be chosen or rejected against a bank deposit alone. Three comparisons are the useful ones.
+
+Against a bank deposit, the question is whether the extra yield exceeds the expected loss and the valuation of illiquidity. The arithmetic of the worked example answers it in principle. What it does not capture is the convenience and recoverability of a bank claim, and the psychological cost of monitoring a corporate name for the duration.
+
+Against a debt mutual fund, the fund offers diversification across issuers, professional credit surveillance, and daily liquidity, at the cost of a management charge and mark-to-market valuation. The corporate deposit offers a fixed rate and no daily price, but it concentrates the credit judgement in one issuer and imposes exit terms that are usually worse. Many savers compare the deposit rate to the fund's trailing yield; the better comparison is to the fund's yield to maturity net of expenses, because the deposit is held to maturity while the fund is marked to market.
+
+Against a direct bond of comparable credit, the bond wins on exit, because exchange-traded or over-the-counter liquidity and transparency are higher, and loses on ticket size, because the minimum investment in primary and secondary markets is larger. A deposit is the small investor's version of a bond; the price of that convenience is a rate lower than the corporate bond market would pay for the same name, and terms that the depositor cannot negotiate.
+
+The ranking of these alternatives changes with the rate cycle and with the credit cycle. In a period of tight liquidity and elevated default, bank deposits and government securities reassert their ranking. In a period of easy credit and rising confidence, the penalty for holding the safer assets looks larger than it is. Keeping that cyclicality in mind prevents the classic mistake of reading a late-cycle spread as a durable opportunity.
+
+## Documentation and record-keeping as risk control
+
+A significant share of corporate-deposit loss is not credit loss but process loss: misplaced certificates, disputed nominations, unrecorded renewal instructions, and tax paperwork that surfaces only at maturity. The controls are mechanical and cheap.
+
+- Keep the deposit certificate or allotment confirmation, the offer document, the repayment schedule and the security details together in one file, in a form that a family member can locate without assistance.
+- Note the maturity date in a calendar that is reviewed monthly, and act on it thirty days ahead, because re-deployment or recovery of the proceeds has a lag.
+- Confirm in writing that nomination details are registered as intended, and update them on any family change.
+- Keep proof of source funds and of payment, so that a successor can establish ownership.
+- Reconcile every interest payment to the terms at the time it is received; a missed or short payment is the first and most reliable signal of trouble, and it is worth more than any annual report.
+- Keep the correspondence path to the issuer's investor-relations function in working order, and test it before it is needed.
+
+These housekeeping steps do not change the credit risk. They change the probability that a problem is noticed early and dealt with competently, which is the part of the outcome savers actually control.
+
+## What this does not tell you
+
+- Tax. How interest on these deposits is taxed sits outside this article's sources, and the packet carries no tax rules for this brief.
+- Any actual rate or offer. Every rate in this article is illustrative, chosen to show the arithmetic.
+- The current text of the RBI's NBFC master directions, including the conditions attached to accepting public deposits. Verify against the directions themselves.
+- Rating-agency scales, outlooks and triggers. Not among the packet's sources.
+- Whether any specific institution is sound. No credit assessment is made or implied.
+
+## Open questions
+
+- How much of the premium paid on company and NBFC deposits compensates genuine expected loss, and how much reflects funding structure, distribution costs and the regulatory perimeter?
+- What recovery experience have company depositors actually had in insolvency proceedings, relative to the published resolution statistics?
+- Do premature-withdrawal terms on these instruments price liquidity honestly, or do they conceal the true cost of changing your mind?
+
+
+## The reading checklist before transferring money
+
+Work through this in order. It is the same method applied to every debt claim on this site, with the insurance line replaced by credit work.
+
+1. Confirm that the issuer is entitled to take public deposits at all, from current regulatory records.
+2. Record the rating and, separately, the date at which it was last reaffirmed or changed.
+3. Read three consecutive filings for leverage, interest coverage, cash conversion and maturity concentration.
+4. Identify whether the deposit is secured, and if so, what the assets and their recent valuations are.
+5. Read the premature-exit, callability and servicing terms in the deposit document itself.
+6. Test the extra yield against an estimated loss given default and an honest probability of default, using the decomposition above.
+7. Compare the outcome, on that basis, with a bank deposit, a government security or a debt fund of comparable tenor.
+8. Re-check everything immediately before the funds are transferred; conditions and ratings move.
+
+Done in that order, a corporate deposit stops being a rate on a board and becomes what it is: a priced credit decision, made with the company's own published numbers in hand. The rest of this series applies the same discipline to cooperative banks, to deposit insurance mechanics, and to the sovereign instruments that sit above all of them on the risk ladder. The deeper you go down that ladder, the more the work matters, because the insurance, if it exists, runs out first.

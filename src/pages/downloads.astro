@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { href } from '../lib/url';
+
+const manifest = { articles: 155, words: 352149 };
+---
+<BaseLayout title="Downloads" description="Download the entire Arthanomy library as a single book or as per-article text files." path="/downloads">
+  <header class="shell pt-10">
+    <p class="eyebrow">Downloads</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">Read it anywhere</h1>
+    <p class="mt-4 max-w-3xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      The whole published library, packaged for offline reading and text-to-speech. Plain-text files write
+      short spoken sentences, mark every equation as <code>[equation: …]</code>, and list articles in the
+      recommended reading order.
+    </p>
+  </header>
+
+  <section class="shell mt-10 grid gap-5 md:grid-cols-3 pb-16">
+    <div class="card p-5">
+      <h2 class="eyebrow">Book — plain text (TTS)</h2>
+      <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+        All published articles in one file. Optimised for text-to-speech.
+      </p>
+      <a class="mt-4 inline-block text-sm text-[var(--color-link)] underline" href={href('/downloads/arthanomy-book.txt')} download>arthanomy-book.txt</a>
+    </div>
+    <div class="card p-5">
+      <h2 class="eyebrow">Book — markdown</h2>
+      <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+        The same content in markdown, for readers. {manifest.articles} articles · {manifest.words.toLocaleString('en-IN')} words.
+      </p>
+      <a class="mt-4 inline-block text-sm text-[var(--color-link)] underline" href={href('/downloads/arthanomy-book.md')} download>arthanomy-book.md</a>
+    </div>
+    <div class="card p-5">
+      <h2 class="eyebrow">Manifest</h2>
+      <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+        Build metadata and file listing.
+      </p>
+      <a class="mt-4 inline-block text-sm text-[var(--color-link)] underline" href={href('/downloads/manifest.json')}>manifest.json</a>
+    </div>
+  </section>
+
+  <section class="shell pb-16">
+    <h2 class="eyebrow">Per-article files</h2>
+    <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+      Every published article is also available on its own page as plain text and markdown
+      (scroll to the bottom of any article). The complete set lives under
+      <code>/downloads/articles/&lt;article-id&gt;.&#123;txt,md&#125;</code>.
+    </p>
+    <p class="mt-4 text-sm">
+      <a class="text-[var(--color-link)] underline" href={href('/library')}>Browse articles →</a>
+    </p>
+  </section>
+</BaseLayout>

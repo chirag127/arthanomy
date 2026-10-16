@@ -76,6 +76,11 @@ const topics = categories.slice(0, 10);
             </li>
           ))
         }
+        <li><a href={href('/updates')} class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]">What changed</a></li>
+        <li><a href={href('/downloads')} class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]">Downloads</a></li>
+        <li><a href={href('/data/articles.json')} class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]">JSON API</a></li>
+        <li><a href={href('/llms.txt')} class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]">LLM index</a></li>
+        <li><a href="https://github.com/chirag127/arthanomy/issues/new?template=questions.md" class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]" rel="noopener">Ask a question</a></li>
         <li><a href={href('/rss.xml')} class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]">RSS feed</a></li>
       </ul>
     </nav>

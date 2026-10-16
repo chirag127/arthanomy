@@ -46,17 +46,19 @@ export function publishedIds() {
  * Priority-1 foundational pieces are the "front door" and get the most room.
  */
 export function wordTarget(brief) {
+  // "As large as possible" (product direction 2026-10-16): every article is
+  // now treated as a long-form major piece. The audit treats out-of-range word
+  // counts as warnings, not failures, so previously published short articles
+  // remain valid.
   const base =
     {
-      foundational: 1400,
-      intermediate: 1600,
-      advanced: 1800,
-      expert: 1800,
-    }[brief.difficulty] ?? 1500;
-  const priorityBoost =
-    brief.priority === 1 ? 400 : brief.priority === 2 ? 150 : 0;
-  const lo = base + priorityBoost;
-  return { min: lo, max: lo + 700 };
+      foundational: 3000,
+      intermediate: 3200,
+      advanced: 3400,
+      expert: 3400,
+    }[brief.difficulty] ?? 3000;
+  const lo = base;
+  return { min: lo, max: 5000 };
 }
 
 function uniqueBy(items, key = "id") {

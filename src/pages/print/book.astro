@@ -1,0 +1,44 @@
+---
+/**
+ * /print/book — all published articles, rendered for printing / PDF export.
+ * (Generated via `npm run pdf` using Playwright's print-to-PDF.)
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort((a, b) =>
+  (a.data.seriesOrder ?? 999) - (b.data.seriesOrder ?? 999),
+);
+
+const bySeries = new Map<string, any[]>();
+for (const a of articles) {
+  const s = a.data.series ?? 'other';
+  if (!bySeries.has(s)) bySeries.set(s, []);
+  bySeries.get(s)!.push(a);
+}
+---
+<BaseLayout title="Print book — Arthanomy" description="All published articles for printing." path="/print/book">
+  <main class="max-w-3xl mx-auto p-10">
+    <header class="mb-10 pb-6 border-b">
+      <h1 class="font-serif text-3xl font-semibold tracking-tight">Arthanomy — The Science of Wealth</h1>
+      <p class="mt-2 text-sm text-gray-600">All published articles, in reading order. Plain-text and per-article files are available in /downloads.</p>
+    </header>
+    <nav class="mb-10 print:block">
+      <h2 class="font-serif text-2xl mb-2">Index</h2>
+      <ol class="text-sm">
+        {articles.map((a, i) => (
+          <li>{i + 1}. {a.data.title}</li>
+        ))}
+      </ol>
+    </nav>
+    {articles.map((article) => (
+      <article class="page-break">
+        <header class="mt-10 mb-4 border-t border-b py-3">
+          <h1 class="font-serif text-2xl font-semibold">{article.data.title}</h1>
+          <p class="mt-1 text-xs text-gray-600">{article.data.description}</p>
+        </header>
+        {article.body && <div class="prose">{article.body}</div>}
+      </article>
+    ))}
+  </main>
+</BaseLayout>
