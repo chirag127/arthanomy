@@ -1,0 +1,178 @@
+---
+title: "P2P Mis-Selling and Realistic Return Expectations"
+description: "Advertised peer-to-peer yields and lender outcomes are different quantities. This article keeps the four return lanes apart, shows how a headline rate conceals default, recovery delay and tax, and sets out the written expectations a cautious lender can measure against."
+shortTitle: "P2P Returns: Realistic Expectations"
+category: p2p-lending
+series: p2p-first-principles
+seriesOrder: 30
+topics: ['P2P lending', 'realised return', 'default and recovery', 'mis-selling']
+tags: ['p2p', 'credit', 'investor-protection', 'returns']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - "P2P lending is sold on the borrower's contractual rate, but what a lender earns is a realised, money-weighted outcome assembled from repayments that may be late, partial or absent."
+  - "Four lanes must be kept apart: the contractual rate belongs to the borrower, the realised return comes from the lender's dated cash flows, the expected return is model-estimated, and an asserted yield with no stated assumptions is speculative."
+  - "A headline rate is a calculation performed with defaults set to zero, recoveries set to arrive instantly and tax set aside; each of those settings moves the realised number in one direction only."
+  - "A recovery is not a preserved rupee: money returned years later has a lower present value and a lower money-weighted return than the same amount returned on time."
+  - "The RBI framework bars a platform from guaranteeing returns, promising liquidity or providing credit enhancement, so any assured-return claim about a licensed platform is either a misdescription or a breach of the framework."
+  - "The discipline that protects a lender is a written expectation for each lane, measured afterwards against the actual cash-flow record rather than against the platform's marketing."
+faqs:
+  - question: "If a platform advertises a yield, is that a lie?"
+    answer: "Not necessarily. A yield can be a truthful statement about the borrower's contractual rate, or a model output with stated assumptions. It becomes a mis-selling problem when the lane is not disclosed and the reader is left to infer that the number is a realised outcome."
+  - question: "Why does a default cost more than the loss of the interest?"
+    answer: "Because a default costs principal as well as the interest it would have earned. Recovery usually returns only part of the defaulted principal, and it returns it later, so the loss combines a shortfall and a delay."
+  - question: "Is interest taxed even if the borrower has stopped paying?"
+    answer: "Interest is generally taxed as it is received or reported in the lender's hands. Where a platform reports interest that subsequently proves uncollectable, the tax outcome depends on how and when the loss is recognised, which is a point to verify rather than assume."
+  - question: "Can a licensed platform offer a guaranteed return?"
+    answer: "No. The RBI framework prohibits platforms from guaranteeing returns, providing credit enhancement or promising liquidity. A guarantee advertised alongside an NBFC-P2P registration is a reason to stop and verify."
+relatedCalculators:
+  - id: p2p-return
+    label: "P2P Realised Return"
+  - id: p2p-stress
+    label: "P2P Stress Test"
+  - id: default-recovery
+    label: "Expected Credit Loss"
+  - id: xirr
+    label: "XIRR Calculator"
+relatedArticles:
+  - rbi-p2p-licensing-framework
+  - platform-as-intermediary-not-lender
+  - no-guarantee-rule-and-credit-enhancement-ban
+  - lender-exposure-limits-across-platforms
+  - how-p2p-loans-are-underwritten-in-india
+glossaryTerms: [nbfc-p2p, risk-grade, vintage, default, recovery, write-off, cash-flow-irr]
+sources:
+  - id: rbi-p2p-md
+    supports: "The NBFC-P2P framework: the prohibition on guaranteeing returns, promising liquidity or providing credit enhancement; the role of the platform as intermediary; escrow-based fund movement; disclosure obligations; and the exposure limits that force diversification."
+  - id: sebi-unsolicited-tips
+    supports: "The official red-flag categories used here: unregistered advisers, assured-return claims and unauthorised collective investment schemes, together with the route for reporting a suspected unregistered scheme."
+  - id: bcbs-credit-risk
+    supports: "The expected-loss decomposition into probability of default, loss given default and exposure at default that structures the walk from a headline rate to a lender's net figure."
+  - id: rbi-ombudsman-2026
+    supports: "The grievance path after a complaint to the regulated entity itself, including the requirement to approach the entity first and the coverage criteria that determine whether a given platform is within the scheme."
+  - id: dicgc
+    supports: "Contrast only: statutory deposit insurance covers bank deposits, and a peer-to-peer loan is not a deposit, so no part of the P2P chain carries it."
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "Every rate, loss, fee, tax and recovery figure in the worked example is an illustrative construction chosen to show the arithmetic. None is observed market data, a platform's track record or a forecast."
+  - "Regulatory limits, fee structures and product terms change. Verify the current master direction, the RBI register and the platform's own disclosures before relying on any summary, including this one."
+  - "This article describes mechanisms for recognition. It is not advice to lend and makes no claim about any specific platform."
+applicablePeriods: ["RBI NBFC-P2P master direction as in force on 16 October 2026"]
+openQuestions:
+  - "Should cohort-level realised loss rates and cash-flow IRRs be a standardised disclosure, so that a lender can compare platforms without relying on each platform's own framing?"
+  - "For a lender comparing a P2P loan with a bond of similar credit quality, which costs — collection, idle cash, delayed recovery and tax timing — are most often omitted from the comparison?"
+  - "How much of the divergence between advertised and realised return is underwriting quality, and how much is the age of the book?"
+---
+
+Peer-to-peer lending in India is sold on a number: the rate the borrower pays. What a lender receives is a different quantity, assembled from repayments that may arrive late, be reduced by recoveries that take months or years, and be taxed on a schedule that does not wait for the cash. The distance between the advertised rate and the realised outcome is not a defect in the product. It is the ordinary arithmetic of lending, and it is the reason the field is so easy to mis-sell without anyone telling a literal lie.
+
+## Explain simply
+
+A number in a brochure is not a number in a bank account. The advertised figure is the interest the borrower is contracted to pay, calculated as though every borrower pays on time, as though the money is never idle, and as though tax does not exist. The lender's result is whatever actually arrives: after some borrowers stop paying, after whatever fraction of those loans is eventually recovered, after the wait for those recoveries, and after tax. Each of those steps moves the number in one direction only, and their combined effect can turn a comfortable headline into a modest or even negative outcome. The habit that protects a lender is to write down, before committing money, what each step is expected to cost — and then to measure the cash that arrives against that written expectation rather than against the advertisement.
+
+## The four return lanes, kept apart
+
+Every number that looks like a return belongs to exactly one of four lanes, and they must not be blended silently.
+
+| Lane | What it is | How it appears in P2P |
+| --- | --- | --- |
+| Historical realised | Observed outcomes computed from actual dated cash flows | The lender's money-weighted return on repayments received |
+| Contractual | A rate fixed by agreement, known in advance | The borrower's loan rate, and the platform fee |
+| Model-estimated | An output of stated assumptions | Expected return after assumed default, recovery, fees and tax |
+| Speculative | A figure that is asserted rather than observed, contracted or modelled | A quoted yield with no loss assumption, or an assured-return claim |
+
+The lane question resolves most disputes about P2P yields. The borrower's rate is a contractual number — for the borrower. It is not contractual for the lender, because the lender's receipt is contingent on repayment, collection and recovery time. The lender's expected return is model-estimated, and the lender's realised return exists only in the cash-flow record. A platform that shows the contractual rate and lets the reader supply the word "return" has not made a false statement; it has made an omitted one.
+
+## What a headline rate hides first: default
+
+A headline rate is a calculation performed with the probability of default set to zero. The correction is the expected-loss expression that banks use for retail credit, and Arthanomy reuses it unchanged:
+
+$$ \text{Expected loss} = PD \times LGD \times EAD $$
+
+probability of default (the share of exposures that stop meeting the obligation), loss given default (the share of that exposure not recovered) and exposure at default (the amount outstanding when it happens). A portfolio's expected credit cost is the average of that product across the book, and it is subtracted from gross interest before anything else is counted.
+
+Default rarely arrives as a single event. It announces itself through delinquency, which is measured in days past due and bucketed into age bands, and the buckets are the leading indicators: loans that have just missed a first payment have not defaulted, but the rate at which they roll into longer buckets tells a lender what the loss rate is becoming. This is why the honest unit of analysis is the vintage — the cohort of loans originated in a given month — compared across cohorts at the same age. A young book looks clean because its loans have not aged; a performance figure drawn from recent cohorts is a description of an ageing process, not a durable loss rate. A platform can therefore present a real number from a real cohort, choose the cohort that flatters it, and mislead entirely within the truth.
+
+## What a headline rate hides next: recovery delay
+
+A recovery is not a preserved rupee. When a loan that has stopped paying returns part of what it owes, the returned money arrives later than it was owed, and the delay is a cost even when the recovery itself is real. The same rupee returned in year three is worth less than a rupee returned in year one, and the lender's money-weighted return falls accordingly.
+
+This is why write-off policy matters to the comparison. A write-off is an accounting recognition that a loan is unlikely to be recovered in full; it removes the exposure from the active book while collection continues. Platforms differ in when they write down, and the difference changes the shape of the reported loss series without changing the economics. Two platforms with identical credit outcomes can report different default rates purely because they book the recognition at different points.
+
+Two further idlenesses compound the problem. Money waiting to be matched to a loan earns nothing while it waits. A repayment that sits in an escrow before it is reinvested earns nothing for that interval. Neither appears in a quoted rate, and both shrink the denominator's productivity. The measure that captures all of this is the cash-flow internal rate of return on the actual dated flows, which is the honest test of realised performance and the reason a simple annual yield and a money-weighted return can differ materially on the same portfolio.
+
+## What a headline rate hides third: tax
+
+Interest received by a lender is income, taxed in the lender's hands at the lender's own applicable rate rather than at a single headline rate. The effective burden therefore varies with the lender, which already makes a single post-tax yield figure misleading for an arbitrary reader.
+
+The harder point is timing. Where a platform reports interest as it accrues, a lender may face a tax liability on interest that is later shown to be uncollectable. Whether — and how — a credit loss can be recognised against that income is a question of the applicable provisions, not of arithmetic, and it should be verified against the current rules rather than assumed. The practical consequence is stated plainly: the tax outcome, and any offset for losses, is a point to verify, and the safest planning assumption is that interest is taxed before the credit loss is settled, which raises the effective cost of default above the cash loss alone.
+
+## How mis-selling happens without a single false statement
+
+The conduct problems in this market rarely take the form of an invented number. They take the form of a lane left unlabelled.
+
+- **The track record that is really a model.** A forward-looking expected return, computed with assumed losses, is presented in the visual language of past performance.
+- **Cohort selection.** A completed vintage with unusually good outcomes is shown as "how the platform has performed", while the ageing cohorts that would change the picture are not.
+- **"Regulated" read as "protected".** Registration regulates the marketplace; the framework keeps the credit risk with the lender, and the loan is not a deposit. There is no deposit insurance anywhere in the chain.
+- **A grade treated as a rating.** A risk grade is the platform's own opinion about a borrower, not a regulated assessment. The test of a grade is whether realised losses by grade match what the grade implied at origination.
+- **Concentration marketed as curation.** A small number of high-rate loans presented as a premium selection works against the framework's own logic, which caps exposure precisely to force many small positions rather than a few large ones.
+- **Idle cash excluded from the yield.** A yield quoted on deployed capital rather than on committed capital overstates what a partially deployed account earns.
+- **Guarantees in the marketing, when the framework bans them.** The RBI directions prohibit a platform from guaranteeing returns, promising liquidity or providing credit enhancement. A guarantee offer is a feature the licensed product cannot lawfully carry.
+
+## Where to check the claims
+
+Three checks cover most of the exposure. First, whether the entity is registered: the RBI publishes the register of NBFC-P2P entities, and the answer should come from the register rather than the platform's own materials. Second, what the framework permits the entity to say: the master direction sets out the prohibited features, so an assurance that the direction forbids is a contradiction on its face. Third, whether the offer is something else wearing a P2P label: the market regulator's investor alerts describe the recurring categories — unregistered advisers, assured-return schemes and unauthorised collective investment schemes — and provide a route for reporting a suspected unregistered scheme.
+
+If a dispute does arise, escalation runs through the regulated entity first. The integrated ombudsman scheme for the banking regulator requires a complaint to the entity before escalation, and its coverage depends on the entity meeting the scheme's criteria, so whether a particular platform falls within it is a point to confirm rather than assume. The scheme's design — an approach to the entity first, a defined waiting period, then escalation — is itself the useful information here, because it means the lender's own written record of the complaint is part of the process.
+
+## Worked example: from an advertised rate to money kept
+
+Every figure below is an illustrative construction, not a forecast and not any platform's record. A lender commits ₹10,00,000 at a contractual borrower rate of 14 per cent, fully deployed for the year.
+
+| Step | Cumulative yield |
+| --- | --- |
+| Advertised borrower rate | 14.0% |
+| After expected credit loss: 6% of principal defaults, 25% of that is recovered | 9.5% |
+| After platform fees of 1.5% | 8.0% |
+| After an illustrative idle-cash drag | 7.6% |
+| After tax, treatment A: 30% applied to the net 7.6% | 5.3% |
+| After tax, treatment B: 30% applied to gross interest with no credit-loss offset | 3.4% |
+| Real return on treatment B, at 5% inflation | about −1.5% |
+
+The arithmetic: gross interest is 14 per cent of ₹10,00,000, or ₹1,40,000. Defaulted principal of 6 per cent is ₹60,000; a recovery of 25 per cent of that is ₹15,000, leaving a net credit loss of ₹45,000, which is 4.5 percentage points of yield. Fees of 1.5 per cent are ₹15,000, a further 1.5 points. The idle-cash drag is modelled as 5 per cent of the balance sitting unproductive against a net rate of about 8 per cent, which is roughly 0.4 points. The real figure follows from dividing the gross return factor by the inflation factor:
+
+$$ \text{Real return} \approx \frac{1 + 0.034}{1 + 0.05} - 1 \approx -1.5\% $$
+
+Note the lane discipline in the table. Only the first row is contractual, and it is contractual for the borrower. Everything below it is a model-estimated walk, and the only figure that would become realised is the one measured from dated repayments after the fact.
+
+Two sensitivities show where the assumptions carry the result. Default and recovery are proportional: every additional percentage point of default costs about 0.75 points of yield after a 25 per cent recovery. And delay is not neutral: if the ₹15,000 recovery arrives in year three rather than year one, its present value at an illustrative 7 per cent discount rate is about ₹13,100, so the recovery returns less than its face value in today's terms. If recovery never materialises at all, the net credit loss is the full 6 points rather than 4.5, and the pre-tax figure falls a further 1.5 points.
+
+## The expectation sheet
+
+The remedy for mis-selling is a document the lender writes before lending, in four parts.
+
+1. **A realistic return range, not a number.** State the contractual rate, then subtract expected credit loss, fees, idle-cash drag and tax, and write the result as a range keyed to a pessimistic and a central loss assumption.
+2. **A loss assumption you can defend.** Commit to a default rate and a recovery rate, say where they came from — completed vintages of a comparable age, not the newest cohorts — and write down what would make you revise them.
+3. **A recovery timing assumption.** Assume recoveries arrive slowly. Record the assumption so that a later comparison shows whether collections are faster or slower than you planned.
+4. **A measurement plan.** Fix the date at which you will compute a money-weighted return on the actual cash flows and compare it with the expectation. A realised return is not an opinion; it is a number computed from a dated flow record.
+
+Kept alongside the platform's own reporting, that sheet converts a marketing claim into a testable one, which is the only form of expectation that survives contact with an ageing loan book.
+
+## What this does not tell you
+
+This does not tell you what any particular platform will return, and it does not rank platforms, because the inputs that would allow a ranking — cohort loss rates and cash-flow records at comparable ages — are not standardised disclosures. It does not say that P2P lending is unsuitable for every investor; it says that the suitable version is assessed on cash flows rather than on advertisements. And it does not resolve the tax question, which depends on provisions that must be read in their current form: the article identifies the mechanism and the point of uncertainty rather than supplying a rate.
+
+## Open questions
+
+- Should cohort-level realised loss rates and cash-flow IRRs be a standardised disclosure, so that platforms can be compared without each one's framing?
+- For a lender comparing a P2P loan with a bond of similar credit quality, which costs — collection, idle cash, delayed recovery or tax timing — are most often left out of the comparison?
+- How much of the divergence between advertised and realised return is underwriting quality, and how much is simply the age of the book?
+
+The advertised rate is a fact about the borrower's obligation. The realised rate is a fact about the lender's cash. The work of investing honestly in this market is to keep those two sentences separate, and to write down the assumptions that connect them before the money leaves.

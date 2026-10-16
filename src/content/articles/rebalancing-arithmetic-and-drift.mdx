@@ -1,0 +1,180 @@
+---
+title: 'Rebalancing Arithmetic: Bands, Calendars and Drift'
+description: 'Target weights do not stay put: assets that outperform grow into a larger share of the portfolio whether or not anyone decides they should. This article derives the drift, the exact trade needed to restore a target, how band rules convert that drift into action, and when rebalancing adds or subtracts value.'
+shortTitle: 'Rebalancing Arithmetic'
+category: financial-mathematics
+series: financial-mathematics
+seriesOrder: 30
+topics: ['rebalancing', 'asset allocation', 'drift', 'portfolio operations']
+tags: ['financial-mathematics', 'asset-allocation', 'risk']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'In an unrebalanced portfolio a weight changes because the asset''s return differs from the portfolio return, and its growth rate is the weight multiplied by that difference.'
+  - 'The weight of an asset after any period is its starting weight times its growth factor, divided by the portfolio''s overall growth factor.'
+  - 'Restoring a target requires a trade equal to the target weight times total value minus current value, and the trades across all holdings sum to zero.'
+  - 'A band rule converts drift into action at a threshold, so the rebalancing frequency is an output of the rule rather than a choice made in advance.'
+  - 'Rebalancing is a risk-control transaction first: it restores the risk profile that the allocation was chosen for, not a forecast of which asset will win.'
+  - 'In an oscillating market rebalancing sells high and buys low; in a persistent trend it trims the winner repeatedly, and the cost of doing so is the price of the risk control.'
+relatedCalculators:
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: sip
+    label: 'SIP Calculator'
+  - id: monte-carlo
+    label: 'Monte Carlo Simulator'
+relatedArticles:
+  - cagr-versus-xirr
+  - compounding-discrete-and-continuous
+  - logarithmic-returns-in-practice
+  - present-and-future-value-of-annuities
+glossaryTerms: [compounding, effective-annual-rate, rule-of-72]
+sources:
+  - id: markowitz-1952
+    supports: 'The mean-variance framework in which the risk of a portfolio is a property of the combination and its correlations, which is why restoring target weights restores the intended risk profile'
+  - id: fama-french-1992
+    supports: 'Empirical evidence that cross-sectional returns are not explained by a single factor, which is why a rebalancing rule cannot be justified as a forecast of which asset will outperform'
+  - id: bis-home
+    supports: 'Research on the statistical properties of asset returns and on leverage, relevant to rebalancing into an asset whose decline reflects deteriorating credit rather than a temporary price move'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+faqs:
+  - question: 'Why do my weights move if I never trade?'
+    answer: 'Because each holding grows or shrinks at its own rate. The portfolio''s weight in an asset is its value divided by the portfolio value, and as the two numerators diverge, so do the weights. Drift is the default; a constant allocation requires action.'
+  - question: 'Is rebalancing a way to earn extra return?'
+    answer: 'Not reliably. In an oscillating market it harvests volatility by selling the recently strong asset and buying the recently weak one. In a persistent trend it repeatedly trims the winner, which costs return. It is more defensible as a way of keeping risk at the level intended.'
+  - question: 'Are bands better than a fixed calendar?'
+    answer: 'Bands respond to the thing being controlled, which is drift, so they trade when the risk has actually moved. A calendar is simpler to automate and easy to explain. Hybrids, such as checking a calendar date and trading only if a band is breached, are common.'
+  - question: 'Does rebalancing cost money?'
+    answer: 'Yes. Every restoring trade incurs transaction costs and, in a taxable account, may realise gains. The arithmetic of restoring a target is exact; the decision to trade at that moment is a cost-benefit judgement against the drift that prompted it.'
+warnings:
+  - 'All portfolio values, weights, returns and transaction costs here are illustrative constructions that demonstrate the arithmetic; they are not observed market data and do not describe any scheme or index.'
+openQuestions:
+  - 'For an Indian taxable investor, what band width best balances drift control against the capital-gains tax realised by restoring trades?'
+  - 'When systematic contributions are already directing money to underweight holdings, how much of a formal band rule remains necessary?'
+  - 'Should a rebalancing rule be suspended when the underperforming asset''s decline reflects a genuine change in its risk rather than a price fluctuation?'
+---
+
+An asset allocation is a decision about risk, and it is made once, in a document, at a point in time. The portfolio does not read the document. Assets grow at different rates, so the weights that were chosen deliberately drift by themselves, and after a good run in one holding the portfolio is no longer the portfolio that was designed. Rebalancing is the arithmetic of restoring the intended weights. Understanding the drift first makes the rule that controls it much easier to choose, because drift is a quantity with a formula, not a matter of opinion.
+
+## Explain simply
+
+A portfolio's weight in each asset is that asset's value divided by the total. When one holding performs better than the rest, its value rises faster than the total, so its weight rises too, with no trade involved. Left alone, a portfolio slowly becomes a bet on whatever has recently done well. Rebalancing sells some of the asset that has grown beyond its target and buys the one that has fallen below its target, which returns the weights to where they were intended to be. The point is not to predict which asset will win next; it is to keep the risk of the portfolio where it was chosen to be.
+
+## Drift: why weights move on their own
+
+Let one holding have value v, weight w equal to v divided by the portfolio value, and per-period return r, while the portfolio as a whole returns the weighted average of its holdings' returns:
+
+$$ r_p = \sum_j w_j r_j $$
+
+In continuous time the weight changes according to
+
+$$ \dot{w}_i = w_i \left( r_i - r_p \right) $$
+
+which follows directly from differentiating the ratio of value to total, since the value grows at the asset's own rate and the denominator grows at the portfolio rate. The equation says something simple and useful: a weight rises when its asset beats the portfolio and falls when it lags, and the size of the movement is proportional both to the weight and to the gap between the asset's return and the portfolio's. Nothing here involves a decision. Drift is what a portfolio does when it is left alone.
+
+Over several periods the weight becomes an explicit ratio of products. Starting from weights that sum to one and letting each holding compound at its own rate:
+
+$$ w_i(T) = \frac{ w_i(0) \prod_{s=1}^{T} \left( 1 + r_{i,s} \right) }{ \sum_j w_j(0) \prod_{s=1}^{T} \left( 1 + r_{j,s} \right) } $$
+
+For a single period the update collapses to a form worth memorising:
+
+$$ w_i' = \frac{ w_i \left( 1 + r_i \right) }{ 1 + r_p } $$
+
+The numerator grows at the asset's rate and the denominator at the portfolio's, and their ratio is the new weight. A holding that returns more than the portfolio must, by definition, have a larger numerator than the portfolio needed, and its weight rises.
+
+## The arithmetic of restoring a target
+
+Restoring the targets is a subtraction. If the target weight for a holding is fixed and the current weight is known, the trade required is the target weight times total value, minus the current value:
+
+$$ \Delta_i = V \left( w_i^{*} - w_i \right) $$
+
+Adding those trades across all holdings gives zero, because the target weights and the current weights each sum to one:
+
+$$ \sum_i \Delta_i = V \left( \sum_i w_i^{*} - \sum_i w_i \right) = V \left( 1 - 1 \right) = 0 $$
+
+Every rupee bought in an underweight holding comes from an overweight one. The magnitude of the trading effort is summarised by one-way turnover, half the sum of the absolute trades, against total value:
+
+$$ \text{Turnover} = \frac{1}{2V} \sum_i \left| \Delta_i \right| $$
+
+That single number is what the transaction costs are charged on, which makes it the natural quantity to hold down when choosing a rule.
+
+## Bands, and how long a breach takes
+
+A band rule states that a holding is restored when its weight drifts a stated distance from target. Because the drift rate is the weight times the excess return of the asset over the portfolio, a first-order estimate of the time to breach a band of width b is the width divided by that rate:
+
+$$ T_{\text{breach}} \approx \frac{b}{w_i \left( r_i - r_p \right)} $$
+
+This is a local approximation and it is offered as one, not as a forecast: it assumes the returns stay constant, which they do not. Its practical use is comparative. A wider band tolerates more drift before trading, so it trades less often; a narrower band holds the allocation closer to target, so it trades more often. The rule therefore sets the trading frequency as an output of the drift and the threshold, rather than as a schedule fixed in advance.
+
+## Calendar rules, threshold rules and hybrids
+
+| Rule | What triggers a trade | Strength | Weakness |
+| --- | --- | --- | --- |
+| Calendar | A stated date or interval | Simple to automate and to explain; predictable | Trades whether or not the risk has drifted; ignores the size of the move |
+| Threshold | Weight drifts beyond a band | Responds to the quantity being controlled | Requires monitoring; frequency varies with markets |
+| Hybrid | A calendar check, with the trade executed only if the band is breached | Fewer unnecessary trades; still on a schedule | Two parameters to document and hold to |
+
+The choice is ultimately about which error is more tolerable: trading when nothing has moved, or holding a materially different risk profile than intended. A rule that is written down and followed beats a rule that is improvised, because the value of the rule lies partly in preventing decisions made under stress.
+
+## Rebalancing is risk control before it is a return strategy
+
+The reason to rebalance is embedded in the framework that allocation rests on. In the mean-variance tradition, the risk of a portfolio is a property of the combination and of the correlations between its holdings, not the sum of the risks of the parts. The target weights were chosen for that combined risk. When the weights drift, the combined risk changes with them — usually upward, because the asset that has appreciated is often the riskier one. Restoring the weights restores the risk profile that was chosen, and that is a claim the arithmetic supports directly.
+
+What the arithmetic does not support is the claim that rebalancing reliably adds return. Restoring a target is a mechanical sell of the recent relative winner and a purchase of the recent relative laggard. Whether that helps depends entirely on what happens next, and there is no general reason to expect the recent laggard to outperform. Empirical work on cross-sectional returns has repeatedly found that a single factor does not explain which assets outperform, which is a reason to treat any rebalancing rule as a risk-control convention rather than as an edge.
+
+## Worked example: a 60/40 portfolio over two years
+
+Every figure here is an illustrative construction. A portfolio of 10,00,000 rupees is split 60 per cent equity and 40 per cent debt, so 6,00,000 and 4,00,000. The adopted band is five percentage points around each target, so equity is restored when it reaches 65 per cent or falls to 55 per cent.
+
+| Stage | Equity | Debt | Total | Equity weight | Band |
+| --- | --- | --- | --- | --- | --- |
+| Start | 6,00,000 | 4,00,000 | 10,00,000 | 60.0% | inside |
+| Year 1, equity +25%, debt +4% | 7,50,000 | 4,16,000 | 11,66,000 | 64.3% | inside |
+| Year 2, equity +25%, debt +4% | 9,37,500 | 4,32,640 | 13,70,140 | 68.4% | **breached** |
+
+After the first year equity has drifted from 60.0 to 64.3 per cent, inside the five-point band, so the rule does nothing. After the second year equity sits at 68.4 per cent, outside the band, and the rule fires. The restoration trade is
+
+$$ \Delta_{\text{equity}} = 13,70,140 \times \left( 0.60 - 0.6842 \right) \approx -1,15,416 $$
+
+so about **1,15,416 rupees** of equity are sold and the same amount is bought in debt, leaving each at its target: 8,22,084 in equity and 5,48,056 in debt. One-way turnover is 1,15,416 divided by 13,70,140, or about **8.4 per cent**, with a round-trip of twice that. If the transaction cost were a hypothetical 0.1 per cent on each side, the round trip would cost roughly 231 rupees, about 0.017 per cent of the portfolio — small next to the drift it corrected, which is exactly the comparison the rule is meant to make.
+
+Notice what the band rule bought. A calendar rule on the same dates would have traded at the end of year one, when the drift was a modest 4.3 percentage points, and would have incurred a cost for a correction that the following year would have undone part of anyway. The band rule waited until the risk had actually moved enough to matter, and traded then.
+
+## When rebalancing adds and when it subtracts
+
+The mechanism that sometimes helps is volatility harvesting. Consider an illustrative portfolio split evenly between an asset that rises 50 per cent and then falls 50 per cent, and an asset that is flat throughout.
+
+| Path | End value from 100 | Comment |
+| --- | --- | --- |
+| Never rebalanced | 87.50 | The oscillating asset ends below its start and there was nothing to offset it |
+| Rebalanced each period | 93.75 | Each recovery was bought with money taken from the flat asset at the top |
+
+The difference of about 6.25 rupees, an illustrative calculation rather than a forecast, is the harvest: rebalancing converted the oscillation into a gain that neither asset delivered on its own. The mirror case is equally real. If the oscillating asset trended upward persistently instead, rebalancing would have trimmed it at each step and the unrebalanced portfolio would have finished ahead. Rebalancing therefore tends to help when markets oscillate and tends to cost when a trend persists, and no rule can know in advance which regime is running.
+
+## Where the arithmetic misleads
+
+- **Costs and taxes are outside the formulas.** The restoration trades are computed as if they were free. They are not, and in a taxable account they may realise gains, so the benefit of a smaller drift must be weighed against a real cash cost.
+- **Correlations are not constant.** The whole justification for target weights rests on the combined risk, and correlations between asset classes change with the regime. Restoring weights does not restore a risk profile if the underlying correlations have shifted.
+- **Rebalancing into deterioration.** A falling asset is not always cheap. If the decline reflects a permanent change in the asset's prospects rather than a price fluctuation, the rule systematically adds to the impaired holding.
+- **Path dependence.** A band rule that fires on a particular date produces different weights from a calendar rule that fires on another, and the historical performance of a rebalancing rule is therefore partly an artefact of its trigger.
+- **Contributions and withdrawals do much of the work for free.** Regular investment directed toward underweight holdings rebalances without a sale, and ignoring this overstates the need for discretionary trades.
+- **Target weights are not a forecast.** The arithmetic restores what was chosen. It says nothing about whether what was chosen was right.
+
+## What this does not tell you
+
+This arithmetic does not tell you which band width is optimal, which rule will have performed better in hindsight, or whether the target allocation is appropriate for any particular investor. It reports no realised returns and no observed costs; every figure above is a hypothetical input chosen to show the mechanism. What it establishes is a set of exact relationships: how a weight drifts given returns, what trade restores it, what that trade costs in turnover, and the fact that the trades must sum to zero. A rebalancing policy is then a documented choice about how much drift to tolerate and how much trading to pay for.
+
+## Open questions
+
+- For an Indian taxable investor, what band width best balances drift control against the capital-gains tax that restoring trades realise?
+- When systematic contributions already direct new money to underweight holdings, how much of a formal band rule remains necessary?
+- Should a rule be suspended when an underperforming asset's decline reflects a change in its underlying risk rather than a price fluctuation?
+
+Target weights are a promise about risk, and drift is what a portfolio does to that promise while nobody is watching. The arithmetic is exact and small: compute the drift, apply the band, trade the difference, and pay the turnover. Everything else is a judgement about how often to do it.

@@ -1,0 +1,156 @@
+---
+title: 'Understanding Market-Capitalisation Segments'
+description: 'Large, mid and small cap are defined by a ranking, not by a quality judgement. This explains how the segments are drawn, how a company migrates between them, and what that migration actually changes.'
+shortTitle: 'Market-Capitalisation Segments'
+category: equity
+series: equity-mastery
+seriesOrder: 13
+topics: ['market capitalisation', 'large cap', 'mid cap', 'small cap', 'index construction']
+tags: ['equity', 'market-structure', 'indexing', 'foundations']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 9
+keyTakeaways:
+  - 'Market capitalisation is the share count multiplied by the price, so it measures what the market currently pays for the equity rather than the intrinsic worth of the business.'
+  - 'The regulatory size segments are defined by rank, not by a fixed rupee threshold: large-cap is the top 100 companies by full market capitalisation, mid-cap the next 150, and small-cap the universe beyond that.'
+  - 'Index membership and the regulatory category are related but not identical, because indices are built on published selection rules and are weighted by free-float market capitalisation.'
+  - 'A company migrates between segments as its price, its share count or the universe around it changes, and the migration itself can move investor demand through index funds and category mandates.'
+  - 'Segment membership describes where a company sits by size; it says nothing about profitability, leverage, governance or whether the shares are worth owning.'
+faqs:
+  - question: 'Is a large-cap company safer than a small-cap one?'
+    answer: 'Not by definition. The segment is a size ranking. Safety depends on the balance sheet, the business and its governance, which are unrelated to how the company is classified. Larger companies often have more liquid shares, which is a separate property from safety.'
+  - question: 'Why did a stock I hold move from small-cap to mid-cap?'
+    answer: 'Because the ranking is recomputed periodically and the full market capitalisation rose relative to the universe, whether through a price increase, new shares, or other companies falling past it. The segment label follows the ranking, not the other way round.'
+  - question: 'Do index funds have to buy a stock when it enters an index?'
+    answer: 'A fund that tracks an index must hold the constituents in the weights the methodology prescribes, so a change in membership obliges the fund to adjust. That buying or selling is driven by the rules of the index rather than by a view on the company.'
+  - question: 'Is market capitalisation the same as the value of the company?'
+    answer: 'No. It is the market value of the equity alone and excludes debt. Two companies with the same market capitalisation can have very different enterprise values once borrowings are counted, and market capitalisation is a market estimate rather than an intrinsic valuation.'
+relatedCalculators:
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: rolling-returns
+    label: 'Rolling Return Comparator'
+  - id: opportunity-cost
+    label: 'Opportunity Cost Calculator'
+relatedArticles:
+  - reading-a-shareholding-pattern
+  - primary-market-ipo-process-and-asba
+  - follow-on-public-offers-and-book-building
+  - promoter-pledge-as-a-risk-signal
+glossaryTerms: [market-capitalisation, free-float, pe-ratio, promoter-holding]
+sources:
+  - id: nse-indices-methodology
+    supports: 'Index-construction rules, constituent selection criteria and rebalancing frequency for the broad-market index families used as size benchmarks'
+  - id: sebi-home
+    supports: 'The regulatory size definitions used for fund classification, and the scheme-categorisation framework that ties a fund name to a prescribed universe'
+  - id: fama-french-1992
+    supports: 'The empirical evidence that size is associated with return differences across stocks, used here to frame segment size as a documented factor rather than a quality signal'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Segment boundaries, index constituents and review cycles change over time; the current methodology and the latest published list are authoritative for any live decision.'
+  - 'All market-capitalisation figures in the worked example are illustrative constructions, not the actual figures of any listed company.'
+applicablePeriods: ['2026']
+openQuestions:
+  - 'How much of the long-run return difference between size segments is explained by illiquidity and information risk rather than by size itself?'
+  - 'Do the periodic reclassifications create a measurable price effect around the review date, or is it arbitraged away in advance?'
+  - 'Should the segment that a company belongs to be based on full or free-float market capitalisation for the purpose of investor classification?'
+---
+
+Two companies can be equally profitable, equally well governed and equally good businesses, and still sit in different market-capitalisation segments, because the segments are a ranking rather than a verdict. That distinction is worth holding on to, because the segment label changes what funds can own, which index a holding is measured against, and how the shares behave in a thin market — all of which are real, and none of which is a statement about quality.
+
+This article in the Equity Mastery series explains what market capitalisation measures, how the large, mid and small-cap segments are drawn, how a company migrates between them, and what that migration changes for an investor.
+
+## What market capitalisation measures
+
+Market capitalisation is the number of outstanding shares multiplied by the current market price.
+
+$$\text{market capitalisation} = \text{shares outstanding} \times \text{price per share}$$
+
+It is the market's current estimate of what the equity is worth, and only the equity. Debt is excluded, so market capitalisation is not enterprise value; two companies with the same market capitalisation can have very different total capital structures. Nor is it intrinsic value: it is a price, and prices move for reasons that have nothing to do with the business.
+
+Two consequences follow immediately. First, market capitalisation can change without any change in the company, because the price changed. Second, a company can rise in the ranking because it performed well or simply because others fell past it. Neither path says anything about the business itself.
+
+## The regulatory size definitions
+
+For regulatory and fund-classification purposes in India, the size segments are defined by rank rather than by a rupee threshold. Large-cap companies are those in the top 100 by full market capitalisation, mid-cap companies are those ranked 101 to 250, and small-cap companies are those beyond that, determined from an industry-maintained ranking list. Because the boundary is a rank in a moving universe, the rupee value that separates one segment from the next changes over time and is not a constant.
+
+Two refinements matter in practice. The ranking uses full market capitalisation rather than free-float market capitalisation, so a company with a large promoter stake is classified on its total size and not on the portion available to trade. And the ranking is calculated on an averaging convention intended to prevent a single day's price from shifting a company between categories, with the exact method prescribed in the framework. The current published list, not a remembered rule of thumb, is the authority for any live classification.
+
+## Why fund categories need a universe
+
+The regulatory definitions exist largely so that fund categories can mean something. Under the scheme-categorisation framework for mutual funds, categories such as large-cap, mid-cap and small-cap are prescribed with a defined universe and minimum investment proportions, so that a fund sold under a particular name must actually hold the kind of company the name implies. The framework is the amended version of the categorisation circular originally issued in October 2017, and the specific proportions belong to that document rather than to any summary of it.
+
+This is a governance mechanism, not a market opinion. Its purpose is to stop a fund being labelled on its intention while being invested on its convenience. For an investor, the practical consequence is that the segment label on a fund is enforceable, which is why a change in a holding's segment can force a fund's hand even when the manager would rather not trade.
+
+## Index families and constituent selection
+
+The broad index families are built on the same ranking principle. The Nifty 50 covers the largest companies, the Nifty 100 extends the coverage, and the mid-cap and small-cap index families extend it further down the ranking, with constituent selection criteria and rebalancing frequency set out in the published methodology. Index membership is a rule-based outcome, and the rules — eligibility, float, liquidity, periodic review — are public.
+
+An important difference from the regulatory definition is weighting. Indices are typically weighted by free-float market capitalisation, so a company's index weight reflects the supply of shares actually available to trade rather than its total size. A company with a small free float carries a small index weight even if its full market capitalisation is large. Membership and weight are therefore two separate facts about the same security.
+
+## Full market capitalisation versus free float
+
+The two measures answer different questions. Full market capitalisation asks how large the company is. Free-float market capitalisation asks how much of it the market can actually buy and sell. Where promoters or strategic holders own most of the equity, the two diverge sharply.
+
+The divergence has consequences in both directions. Because the regulatory ranking uses full market capitalisation, a closely held company can be classified as large-cap while its tradable supply remains thin. Because index weights use free-float, that same company may have a modest weight in the index that includes it. And because a small free float means a small number of shares clears each trade, price moves in such a security can be sharper than its size would suggest — a mechanical property of thin supply rather than a judgement about the company.
+
+## How a company moves between segments
+
+Migration is normal and happens for several reasons.
+
+- **Price movement.** A sustained rise in the share price lifts full market capitalisation and the rank with it.
+- **Change in the share count.** An issue of new shares, a conversion of convertible securities, a buyback or a corporate action changes the count and therefore the market capitalisation.
+- **Universe change.** New listings add companies at the top of the ranking and delistings remove them, so a company can change segment without changing at all.
+- **Periodic review.** The ranking list and index constituents are refreshed on a schedule, so migration is often recognised at a review date rather than continuously.
+
+The direction is not permanent. A company that rises into the mid-cap segment can fall back to small-cap if its price declines or if newly listed companies enter above it.
+
+## What segment membership actually changes
+
+Size classification is not a neutral label. It has operational consequences.
+
+1. **Fund eligibility.** Category mandates restrict what a given fund may hold, so a reclassification can create forced demand or forced supply.
+2. **Index membership.** Inclusion or exclusion obliges index-tracking funds to adjust, and the timing of that adjustment is set by the methodology rather than by any view.
+3. **Liquidity and market depth.** Segment membership usually correlates with trading activity, because the larger companies attract more institutional participation and wider coverage.
+4. **Benchmarking.** A holding is normally measured against the index of its segment, so the benchmark itself changes when the segment changes.
+5. **Screening.** Research screens and institutional mandates frequently use segment as a filter, which affects who even looks at the company.
+
+The academic literature adds a separate observation. Work by Fama and French found that market beta alone did not explain differences in returns across stocks, and identified size and value as factors associated with those differences. That is a documented empirical regularity across long samples, not a promise that small companies will outperform, and it does not license treating any particular small company as cheap.
+
+## What segment membership does not tell you
+
+It does not tell you whether a business is good. A large-cap company can be heavily indebted, poorly governed or in structural decline, and a small-cap company can be profitable, cash-generative and conservatively financed. Profitability, returns on capital, leverage and the quality of management are separate measurements, and the related articles on return on equity and return on capital employed take those up.
+
+Nor does segment membership settle the risk question. Size is associated with differences in liquidity and in the information available to the market, but it is not a risk category on its own, and the shares of a thinly traded large-cap can behave like those of a small company when the float is small.
+
+## Explain simply
+
+Market capitalisation is the share price multiplied by the number of shares, which is roughly what the market thinks the equity is worth right now. The segments are just slices of a ranking: the biggest 100 are large-cap, the next 150 are mid-cap, and everything after that is small-cap. Because it is a ranking, you can move between slices when your price changes or when other companies move past you. It matters because funds are only allowed to buy certain slices, so when a company changes slice, funds tracking that slice may be forced to buy or sell. But the label tells you about size, not about whether the business is any good.
+
+## Worked example
+
+An illustrative construction, not the figures of any actual company or index.
+
+Suppose a company has 10 crore shares outstanding trading at ₹500, giving a market capitalisation of ₹5,000 crore. Suppose, purely for illustration, that the company ranked 100th by full market capitalisation has a market capitalisation of ₹40,000 crore, and the company ranked 250th has one of ₹12,000 crore. On those assumptions the company sits below the 250th boundary and is classified as small-cap.
+
+Now suppose the price rises to ₹1,500 while the share count is unchanged, giving a market capitalisation of ₹15,000 crore. On the same illustrative boundaries, the company now sits above the 250th position and is classified as mid-cap, even though nothing about its operations has changed in that step. Had the price instead fallen to ₹300, market capitalisation would be ₹3,000 crore and the company would remain small-cap, further down the ranking.
+
+The arithmetic shows the point: the segment follows the product of the share count and the price, and both move. It also shows why a segment change should be read as a statement about the ranking rather than as news about the business.
+
+## What this does not tell you
+
+This article explains how the segments are defined and what follows from them; it does not provide a valuation, a forecast, or a view on which segment to hold. It cannot tell you whether a company at a segment boundary is fairly priced, and it cannot tell you how index flows will affect a specific security, because the size of those flows depends on the assets tracking each index.
+
+Three limits deserve mention. The definitions are not static: boundaries, constituents and review cycles change, so the current methodology is authoritative for any live question. The regulatory category and the index membership of the same company need not coincide, because they are computed by different bodies under different rules. And the rupee figures used above are illustrative boundaries chosen to demonstrate ranking, not published thresholds, because the real boundaries move with the market and are not fixed numbers.
+
+## Open questions
+
+- How much of the long-run return spread between size segments survives adjustment for liquidity and information risk, rather than being attributable to size alone?
+- Do scheduled reclassifications produce a detectable price effect around the review date, or do market participants anticipate the change?
+- For investor classification, is full market capitalisation or free-float market capitalisation the more useful basis, given that index weights already use the latter?

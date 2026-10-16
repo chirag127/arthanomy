@@ -1,0 +1,180 @@
+---
+title: "Margins: Span, Exposure and Peak Margin"
+description: "What a derivatives margin account actually requires: portfolio-based initial margin under the exchange's scenario framework, the exposure add-on charged on notional, why the requirement is sampled at peak points during the session, and how shortfalls are collected and penalised."
+shortTitle: "Margins: Span, Exposure and Peak Margin"
+category: derivatives
+series: derivatives-lab
+seriesOrder: 3
+topics: ["margin", "SPAN margin", "exposure margin", "peak margin", "leverage"]
+tags: ["derivatives", "margin", "risk-management"]
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 12
+keyTakeaways:
+  - "Margin is a performance bond posted against an obligation, not a limit on how much a position can lose; the obligation itself is the size of the contract."
+  - "Initial margin is computed for the combined portfolio under simulated price and volatility scenarios, so offsetting legs attract less collateral than the same legs held separately."
+  - "Exposure margin is an add-on charged on the notional value of the position, on top of the scenario-based initial margin, and its rate is prescribed and revised by the exchanges."
+  - "Peak-margin monitoring samples the requirement at several points during the session rather than only at the close, so intraday leverage is capped at what the exchange framework allows throughout the day."
+  - "A shortfall is penalised on the shortfall amount for the period it remains, and the applicable rates and slabs must be read from the exchange circular in force rather than remembered."
+  - "Leverage can produce losses larger than intuition suggests: a move that is unremarkable in the underlying can consume the entire deposit, and a position can be closed by a margin call before the view is proved right."
+  - "A broker's house requirement is typically stricter than the exchange minimum, so the exchange figure is a floor and not necessarily the amount a client is funded against."
+faqs:
+  - question: "Is the margin I post the most I can lose on the position?"
+    answer: "No. The margin is a bond against the obligation the contract creates, not a cap on that obligation. A futures position moves rupee for rupee with the underlying, and a written call has no upper bound, so the loss can exceed the deposit and the broker can recover the balance from the client."
+  - question: "Why does a spread need less margin than its two legs separately?"
+    answer: "Because initial margin is computed for the combined portfolio under simulated scenarios. Legs that lose in different states of the world partly offset each other, so the worst simulated loss for the pair is smaller than the sum of the two worst losses taken alone. That offsetting benefit is a property of the portfolio calculation, and regulators have narrowed parts of it for index derivatives."
+  - question: "What is the difference between the exchange requirement and what my broker asks for?"
+    answer: "The exchange and clearing corporation framework sets a minimum, and the broker may impose a higher house requirement on top of it, along with its own top-up rules and square-off practices. A position is funded against the broker's number, not the exchange minimum."
+  - question: "Can I ignore the requirement as long as the position is profitable at the close?"
+    answer: "No. The requirement is measured during the session as well as at the close. A position can breach the limit at the worst intraday point and be squared off even if it would have recovered before the close, which is why the path of the position matters and not only its endpoint."
+  - question: "Are the margin rates fixed?"
+    answer: "No. Scenario parameters, exposure rates, floors and penalty slabs are prescribed by the exchanges and clearing corporations and revised from time to time. The mechanics described here are stable; the figures are not, and this article deliberately states none of them."
+relatedCalculators:
+  - { id: margin-requirement, label: "Futures Margin and Liquidation" }
+  - { id: futures-fair-value, label: "Futures Fair Value and Basis" }
+  - { id: option-payoff, label: "Option Payoff Calculator" }
+relatedArticles:
+  - futures-contracts-from-first-principles
+  - contract-specifications-and-lot-sizes
+  - mark-to-market-and-daily-settlement
+  - stock-futures-and-single-name-leverage
+  - options-calls-and-puts-payoffs
+glossaryTerms: [span-margin, futures, settlement, option-premium, open-interest]
+sources:
+  - { id: nse-derivatives-cm, supports: "Contract specifications, the settlement framework and the exchange publications in which margin parameters and collection rules are prescribed" }
+  - { id: sebi-derivatives-2024, supports: "The 2024 index-derivatives measures, including intraday monitoring of position limits, removal of the calendar-spread margin benefit and upfront collection of option premium from buyers" }
+  - { id: nse-india, supports: "Margin and expiry calendars and the contract-level specifications that margin parameters attach to" }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "No margin percentage, exposure rate, floor or penalty rate is stated in this article. Those figures are prescribed and revised by the exchanges and clearing corporations, and any current figure must be taken from the circular in force."
+  - "The deposit, index level, lot size and adverse moves in the worked example are hypothetical constructions for arithmetic. They are not the margin that any particular position would attract."
+applicablePeriods: ["FY 2025-26"]
+openQuestions:
+  - "How much of the observed loss rate among retail derivatives participants is attributable to margin-driven exits rather than to directional error?"
+  - "Does sampling margin at peak intraday points reduce leverage overall, or relocate it into products outside the margin framework?"
+  - "How should the offsetting benefit between correlated but economically distinct positions be calibrated so that portfolio margin reflects genuine risk without becoming an inducement to size up?"
+---
+
+An exchange-traded derivative is a promise between two parties who will never meet. The clearing corporation stands in the middle, becoming the buyer to every seller and the seller to every buyer, which removes the question of whether the other side will pay. What replaces that question is collateral. Margin is the collateral a participant must keep against the obligation the contract creates, and it is what keeps the promise credible when the market moves. Margin is not a cap on the loss a position can produce, and it is not a fee: it is a performance bond, and the contract's exposure can be many times the bond.
+
+This article sets out the three layers an Indian derivatives participant meets — the initial margin computed by the exchange's portfolio risk system, the exposure margin charged on top of it, and the peak-margin snapshots taken during the session — and then describes what happens when the collateral falls short. It is about mechanics. It does not recommend a position size, a leverage level or a strategy, and it does not state a single margin rate, because those are prescribed, revised and published elsewhere.
+
+## Explain simply
+
+A margin account is a security deposit. To hold a futures position, or to write an option, you must keep cash or approved collateral with your broker, and the exchange framework sets the minimum. When the position loses money the deposit shrinks and you are asked to bring it back to the required level; if you do not, the position can be closed for you. The deposit is calculated for the whole portfolio rather than contract by contract, so a position that offsets another needs less collateral than the two would need on their own. Because the requirement is checked during the day and not only at the close, a position that would fall short at the worst point of the session has to be funded for that point. And because the deposit is small relative to the value of the contract, a move that looks modest in the underlying can consume the entire deposit — and the loss does not stop there. Leverage can produce losses larger than intuition suggests, precisely when the market is moving fastest.
+
+## Why the clearing corporation demands margin
+
+A bilateral forward contract carries credit risk: if the market moves in your favour, you depend on the other side's ability to pay. An exchange-traded contract removes that dependence by novation, with the clearing corporation interposing itself between the two sides so that settlement is guaranteed. Such a guarantee is only sound if the guaranteed obligation is collateralised, and margin is how that collateralisation is achieved.
+
+The obligation differs by instrument, and so does the treatment.
+
+- A futures contract is an obligation on both sides. Both the buyer and the seller post margin, because a price move hurts one of them.
+- An option buyer holds a right, not an obligation, and pays the premium in full up front. SEBI's framework requires exchanges to collect option premium from buyers up front, which is what bounds the buyer's exposure to the premium already paid.
+- An option writer carries the obligation and therefore posts margin, computed alongside the premium received and marked to market as the underlying and the premium move.
+
+The asymmetry is the point: the buyer's maximum outlay is known and paid, while the writer's depends on how far the market moves against an obligation with no ceiling on a written call.
+
+## Initial margin: a portfolio calculation, not a flat percentage
+
+Initial margin is the amount that must be available when the position is opened and maintained while it is held. In the Indian framework it is computed by the exchange's portfolio-based risk system, known as SPAN, which does not apply a single percentage to notional value. Instead it evaluates the combined position against a set of simulated price and volatility scenarios, identifies the largest loss the portfolio would suffer across those scenarios, and sets the requirement to cover it. That is the essential idea, and it explains most of the practical behaviour that participants observe.
+
+Three consequences follow from the portfolio basis.
+
+1. **Offsetting legs attract less collateral.** A long and a short position that lose in opposite states of the world partly cancel inside the scenario set, so the worst simulated loss for the pair is smaller than the sum of the two worst losses taken separately. Margin is therefore a property of the portfolio, not of the contract.
+2. **The requirement is not the same as the risk.** The scenario set is a model, and its parameters are the exchange's judgement about plausible adverse moves. A move larger than the scenarios anticipate produces a loss larger than the margin, which is exactly why the deposit is a bond rather than a limit.
+3. **The framework can be tightened without the contract changing.** Changing scenario parameters or narrowing an offsetting benefit raises the requirement on the same position. SEBI's 2024 measures for index derivatives removed the calendar-spread margin benefit, among other changes, and the effect is felt as a larger deposit for positions that previously relied on the offset.
+
+A floor per contract normally applies in addition, so a small or heavily hedged position still attracts a minimum requirement.
+
+## Exposure margin and the add-on
+
+Scenario-based initial margin covers the losses the simulation imagines. Exposure margin is a separate add-on charged on the notional value of the position, intended to cover risks the scenario set does not capture well — a move larger than the stressed scenarios, or a concentration in a single underlying. The two are collected together, so the requirement a participant sees is initial margin plus exposure margin plus whatever the broker adds.
+
+Because exposure margin is charged on notional, it scales with the size of the position rather than with the portfolio's net risk. This is worth noticing: it means that even a perfectly offsetting portfolio carries an exposure charge, and it means the requirement grows arithmetically with the number of contracts rather than being reabsorbed by netting.
+
+The rate is prescribed by the exchanges and clearing corporations and revised from time to time, including as part of the tightening of the index-derivatives framework. It is one of the figures this article deliberately does not state; the current value belongs to the circular in force.
+
+## Peak margin: when the requirement is measured
+
+For a long period, margin was assessed effectively on end-of-day positions, which left a gap: a participant could hold a much larger position intraday than the collateral would support, provided it was reduced before the close. Regulatory tightening closed that gap by requiring the requirement to be met at several points through the session, with the obligation assessed on the highest or peak requirement observed rather than on the closing position.
+
+The practical effect of peak-margin monitoring is that the intraday leverage available to a participant is no longer a free option on the day's movement. If the position is at its largest and the requirement at its highest at some point during the session, that is the number the account must be able to support. Reversing part of the position to reduce the requirement is therefore not a substitute for funding it.
+
+The 2024 index-derivatives measures also introduced intraday monitoring of position limits, which addresses a related question: not only whether the collateral is present at the peak, but whether the position was within the permitted limit at every point rather than only at the close. Intraday behaviour, not merely the end-of-day record, is the unit of compliance.
+
+## What the broker requires on top
+
+The exchange and clearing corporation framework prescribes a minimum. A broker almost always imposes more: a house margin, which may be a multiple of the exchange requirement; a concentration charge for clients whose exposure is large relative to the broker's own capital; and its own top-up threshold and square-off practice, set out in the member-client agreement.
+
+Two consequences matter. The amount a client is asked to fund is the broker's number, and the broker's number can change without the exchange requirement changing. And square-off practice is set by the broker and exercised under the agreement, so the decision of when a position is closed in a shortfall is not entirely the client's.
+
+## Collection, shortfall and penalty mechanics
+
+The collection process is mechanical, and most of the pain lies in its timing.
+
+1. The requirement is computed for the position, including the intraday peak, on the prescribed schedule.
+2. Available collateral — cash plus approved securities after any framework haircut — is compared with the requirement.
+3. If the collateral covers the requirement, nothing further happens. If it falls short, the shortfall is a reportable, penalisable event for the period it exists.
+4. The exchange levies a penalty on the shortfall amount over that period, using the prescribed method and slabs; the broker passes it through and may add its own charge.
+5. The broker may issue a top-up call and, if it is not met within the terms of the agreement, close positions to restore compliance.
+
+The penalty is charged on the shortfall and the duration, not on the trade's outcome, so a shortfall costs money even if the position later becomes profitable. The rates and slabs have been revised more than once and are set out in the exchange circular in force; they are not stated here. What is durable is the structure: a shortfall is a priced event, and repeated or persistent shortfalls lead to squaring off, restrictions on trading and, in serious cases, disablement of the account.
+
+## Worked example: the deposit and the move that consumes it
+
+An illustrative calculation using hypothetical numbers. The deposit figure is assumed purely for arithmetic and is not the margin any exchange currently prescribes for any contract.
+
+Suppose a hypothetical index futures position of one lot at an index level of 20,000, with a lot size of 50 units. One index point is worth ₹50 on this contract, so the notional exposure is:
+
+$$ 20000 \times 50 = \text{₹10,00,000} $$
+
+Suppose further, again purely illustratively, that the total requirement for this position — scenario-based initial margin plus exposure margin — is ₹1,25,000, funded entirely in cash. The deposit is therefore one eighth of the notional value, which is the leverage the position carries at entry.
+
+| Index move against the position | Loss on 50 units | Deposit consumed |
+| --- | --- | --- |
+| 500 points, to 19,500 | ₹25,000 | one fifth |
+| 1,000 points, to 19,000 | ₹50,000 | two fifths |
+| 2,500 points, to 17,500 | ₹1,25,000 | all of it |
+| 3,500 points, to 16,500 | ₹1,75,000 | the deposit, plus ₹50,000 |
+
+The last row is the sentence that the phrase "capped at the margin" gets wrong. The loss is not capped at ₹1,25,000; it is ₹1,75,000, and the extra ₹50,000 is owed. A 2,500-point move is a 12.5% move in the index — the kind of move that happens without any change in the market's underlying character — and it is enough to exhaust a deposit that funds eight times the notional.
+
+If the account cannot be topped up at that point, the broker closes the position, possibly at a worse level than the one that triggered the call, and any resulting shortfall remains a claim against the client.
+
+## Leverage and the shape of the loss
+
+Statements that appear obvious in a payoff diagram are easy to lose sight of in a live account, and they are worth making without hedging.
+
+First, **leverage can produce losses larger than intuition suggests**. The deposit is small relative to the contract's value by construction. That is not an accident of pricing; it is what makes the exposure large relative to the money posted. A move that a cash investor would regard as routine is, for a leveraged position, a move of a large fraction of the capital committed.
+
+Second, **the margin requirement is not a stop**. It is a threshold above which the account is in shortfall. Nothing about it converts a losing position into a closed one at a chosen price, and nothing about it protects the client from a gap in prices.
+
+Third, **a correct view can still fail on cash-flow grounds**. Marking positions to market and sampling margin at the peak means the position must survive its worst intermediate state, not merely its final state. Being right at expiry about a position that was closed earlier is an expensive kind of being right.
+
+None of this argues for or against holding leveraged positions. It establishes what the collateral actually does: it keeps the promise funded, and it does nothing to make the promise safe for the person who made it.
+
+## The four lanes
+
+- **Contractual.** The obligation to post margin, the scenarios and rates the framework prescribes, the collection schedule and the penalty mechanism.
+- **Model-estimated.** The SPAN requirement itself, which is the output of a scenario model whose parameters the exchange chooses rather than a measurement of risk.
+- **Historical realised and speculative.** How often positions are actually squared off, and the profit or loss of the position that the margin exists to collateralise.
+
+## What this does not tell you
+
+- **It states no figure.** No margin percentage, scenario parameter, exposure rate, floor, haircut or penalty slab appears here. Every one of those is prescribed and revised by the exchanges and clearing corporations, and the current values must be read from the circular in force.
+- **It does not price the liquidation risk.** The worked example shows the arithmetic of a shortfall; it does not model the risk that the enforced close happens at the worst point of a volatile session.
+- **It does not cover tax, brokerage or cost.** Charges, the securities transaction tax, and the treatment of derivatives gains and losses are separate, dated matters.
+- **It is not advice.** Nothing here indicates a suitable size, a suitable instrument or a suitable level of leverage for any person.
+
+## Open questions
+
+- How much of the observed loss rate among retail derivatives participants is attributable to margin-driven exits rather than to directional error, and how would that be separated in the data?
+- Does sampling margin at peak intraday points reduce aggregate leverage, or does it relocate leveraged exposure into products and venues that sit outside the framework?
+- How should the offsetting benefit between correlated but economically distinct positions be calibrated, so that portfolio margin captures genuine net risk without itself encouraging participants to size up?

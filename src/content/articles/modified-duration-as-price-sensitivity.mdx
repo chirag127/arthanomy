@@ -1,0 +1,191 @@
+---
+title: 'Modified Duration: Pricing a Bond Interest-Rate Sensitivity'
+description: 'How modified duration turns Macaulay duration into a first-order estimate of the price change for a yield move, how to run the estimate, and the precise conditions under which it fails.'
+shortTitle: 'Modified Duration and Price Sensitivity'
+category: debt
+series: debt-encyclopedia
+seriesOrder: 20
+topics: ['modified duration', 'interest-rate risk', 'price sensitivity', 'convexity']
+tags: ['debt', 'fixed-income', 'risk', 'financial-mathematics']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'Modified duration is Macaulay duration divided by one plus the yield per compounding period, and it approximates the percentage fall in price for a one-percentage-point rise in yield.'
+  - 'The estimate is the first term of a series; it assumes a parallel shift in the yield curve and a fixed schedule of cash flows, and it says nothing on its own about credit or liquidity.'
+  - 'Because the price-yield relationship is convex, the duration-only estimate always lies below the true price, so it overstates losses when yields rise and understates gains when yields fall.'
+  - 'For a straight bond and a shock of a hundred basis points the error is small; for a move of several hundred basis points, or for a long-duration bond, the convexity term becomes material and the estimate must be corrected or replaced by a full revaluation.'
+  - 'For bonds with embedded options the cash flows change with the level of rates, so effective duration computed from shocked prices is required and can be negative in some structures.'
+  - 'Duration measures sensitivity to the whole yield, so a corporate bond can lose value because its credit spread widened even when the benchmark curve has not moved.'
+faqs:
+  - question: 'What is modified duration in one sentence?'
+    answer: 'It is Macaulay duration divided by one plus the yield per compounding period, and it estimates the percentage change in a bond price for a one-percentage-point change in its yield, with the sign reversed: a rise in yield produces a fall in price of roughly the modified duration in per cent.'
+  - question: 'Why divide Macaulay duration by one plus the yield?'
+    answer: 'Because the price responds to a proportional change in the discount factor rather than to a change in time. Differentiating the price with respect to the yield brings down a factor of one divided by one plus the yield, and collecting the terms leaves Macaulay duration scaled by that factor.'
+  - question: 'How accurate is the estimate?'
+    answer: 'For a small parallel yield move on a straight bond it is accurate to a fraction of a percent of price. The error grows with the square of the yield change, so a hundred basis point move is usually fine and a three hundred basis point move is not, especially for a long-duration bond.'
+  - question: 'Does duration apply to a bond fund?'
+    answer: 'It applies as the market-value-weighted average duration of the portfolio, so it estimates the fund sensitivity to a parallel shift in the curve. It does not capture spread moves, curve twists, or the effect of options in the underlying holdings, and a fund holding callable or prepayable assets should be read with effective duration rather than Macaulay duration.'
+  - question: 'If yields fall, does the estimate understate my gain?'
+    answer: 'Yes, for a bond with positive convexity. The straight-line estimate from duration lies below the true convex price curve on both sides of the starting point, so it understates the gain when yields fall and overstates the loss when yields rise. The asymmetry is the value of convexity.'
+relatedCalculators:
+  - id: modified-duration
+    label: 'Duration Calculator'
+  - id: convexity
+    label: 'Convexity Calculator'
+  - id: bond-price-yield
+    label: 'Bond Price and Yield'
+relatedArticles:
+  - dated-gsecs-and-the-coupon-myth
+  - treasury-bills-as-the-risk-free-anchor
+  - state-development-loans-yield-question
+  - bank-fixed-deposit-anatomy
+glossaryTerms: [modified-duration, macaulay-duration, convexity, yield-to-maturity]
+sources:
+  - id: rbi-home
+    supports: 'The policy and regulatory framework within which rupee interest rates and the benchmark for floating-rate retail lending are set, providing the setting for a rate-shock estimate'
+  - id: rbi-dbie
+    supports: 'Published interest-rate and yield series from which a realistic size of a rate shock could be taken if the illustrative inputs are replaced with observed data'
+  - id: sebi-home
+    supports: 'The mutual-fund categorisation framework that governs Indian debt-scheme categories, the context in which duration-based interest-rate risk is disclosed to investors'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'All prices, yields, durations and price changes in the worked example are constructed illustrative values. They are not quotations and no market level or forecast is asserted.'
+applicablePeriods: ['FY 2025-26']
+openQuestions:
+  - 'For a large parallel shock, at what size does the convexity correction stop being a refinement and start being essential for a retail portfolio report?'
+  - 'How should a portfolio duration be aggregated when the holdings sit at very different points on the curve and the shock is expected to be a twist rather than a parallel move?'
+  - 'For a fund that holds callable and prepayable assets, how stable is the published effective duration across different rate scenarios?'
+---
+
+A holder who owns a bond wants to know one thing before anything else: if interest rates move against me, how much do I lose? That question has a precise first-order answer, and it is modified duration. The measure is short enough to fit in a sentence, and it is quoted for almost every debt fund, portfolio and security in India. It is also misunderstood in a consistent way, because it is usually presented as a fact about the bond rather than as the first term of an approximation with a stated domain. This article derives it, works the estimate in both directions, and states exactly where the linear reading stops being usable.
+
+## From Macaulay duration to price sensitivity
+
+Start with the price as the sum of discounted cash flows, with the yield as the single discount rate that reconciles the cash flows to the observed price:
+
+$$ P = \sum_{k=1}^{n} \frac{C_k}{(1+y)^{t_k}} $$
+
+Differentiating the price with respect to the yield brings a factor of the time down from each exponent:
+
+$$ \frac{dP}{dy} = \sum_{k=1}^{n} -t_k \, C_k \, (1+y)^{-t_k-1} $$
+
+The factor of one plus the yield is common to every term, so it can be taken outside:
+
+$$ \frac{dP}{dy} = -\frac{1}{1+y} \sum_{k=1}^{n} t_k \, C_k \, (1+y)^{-t_k} $$
+
+The sum that remains is exactly the numerator of Macaulay duration, the present-value-weighted sum of the times. Dividing it by the price produces Macaulay duration, so the sum equals the price multiplied by Macaulay duration:
+
+$$ \sum_{k=1}^{n} t_k \, C_k \, (1+y)^{-t_k} = P \times D_{Mac} $$
+
+Substituting this back gives the sensitivity result:
+
+$$ \frac{dP}{dy} = -\frac{P \times D_{Mac}}{1+y} $$
+
+Define modified duration as Macaulay duration divided by one plus the yield per compounding period:
+
+$$ D_{Mod} = \frac{D_{Mac}}{1 + y} $$
+
+Then the derivative becomes the statement that the proportional change in price is modified duration times the change in yield, with the sign reversed:
+
+$$ \frac{dP}{P} = -D_{Mod} \, dy \qquad \text{and therefore} \qquad \frac{\Delta P}{P} \approx -D_{Mod} \, \Delta y $$
+
+That is the whole mechanism. Modified duration is Macaulay duration rescaled by one plus the yield so that it converts a yield change into a proportional price change directly.
+
+## Explain simply
+
+Macaulay duration tells you the average time you wait for the money, measured in years. Modified duration turns that waiting time into a price sensitivity by dividing it by one plus the yield. The practical reading is simple: a modified duration of 2.6 means that if the yield rises by one percentage point, the price falls by roughly 2.6 per cent; if the yield falls by one percentage point, the price rises by roughly 2.6 per cent. It is an estimate, and the word roughly is doing real work, but for small moves it is a very good estimate. For big moves, and for bonds with unusual features, it stops being good, and that is what the rest of the article is about.
+
+## The per-period adjustment
+
+If a bond pays coupons more than once a year, the derivation runs in periods rather than years and the adjustment changes to match the period yield. With a quoted annual yield and a compounding frequency of several periods a year, modified duration is Macaulay duration divided by one plus the yield per period:
+
+$$ D_{Mod} = \frac{D_{Mac}}{1 + y / m} $$
+
+where the frequency is the number of coupons a year and the yield is quoted on the same annual basis as the cash flows. The two measures must be expressed on the same convention before any price change is computed. Indian dated government securities, for instance, commonly pay semi-annually, so the per-period yield is half the quoted annual yield and the divisor is one plus half the annual yield. Using an annual divisor on a semi-annual bond is a routine arithmetic error that produces a duration that is too short.
+
+## Worked example
+
+Take a constructed bond: ₹1,000 face value, a 7.00 per cent annual coupon, three years to maturity, priced at par because the yield is also 7.00 per cent. This is an illustrative calculation, not a quotation and not a forecast. Its Macaulay duration is 2.808 years, so its modified duration is:
+
+$$ D_{Mod} = \frac{2.808}{1.07} = 2.624 $$
+
+Now apply the formula to three yield scenarios. The exact price in each row is obtained by discounting the fixed cash flows at the new yield.
+
+| Yield moves to | Estimate | Duration-only price | Exact price | Gap |
+| --- | --- | --- | --- | --- |
+| 8.00 per cent, up 100 bp | −2.624 per cent | ₹973.76 | ₹974.23 | +₹0.48 |
+| 6.00 per cent, down 100 bp | +2.624 per cent | ₹1,026.24 | ₹1,026.73 | +₹0.49 |
+| 10.00 per cent, up 300 bp | −7.873 per cent | ₹921.27 | ₹925.39 | +₹4.12 |
+
+Three things are visible. The estimate works well for a hundred basis points in either direction, with a gap of under 50 paise on a ₹1,000 bond. The estimate is too pessimistic on both sides, because the duration-only price sits below the exact price in every row, which is the effect of convexity. And the gap grows faster than the shock: tripling the move from 100 to 300 basis points increases the gap from about ₹0.48 to about ₹4.12, an increase of more than eight times, which is the quadratic growth of the omitted term.
+
+The same arithmetic on a longer bond shows why duration matters more as maturity extends. A constructed ten-year bond with a 7.00 per cent coupon at a 7.00 per cent yield has a Macaulay duration of about 7.52 years and a modified duration of about 7.02. A hundred basis point rise is estimated to cost about 7.02 per cent of price, or roughly ₹3.12 more than the exact fall, which is already a larger absolute error than the three-year bond produced under the same shock.
+
+## The price value of a basis point
+
+A related and convenient form of the same number is the price value of a basis point, often called the price value of a basis point or DV01. It is the change in price for a one basis point move, obtained from the same relationship:
+
+$$ PVBP = P \times D_{Mod} \times 0.0001 $$
+
+For the three-year bond above, the price value of a basis point is about ₹0.2624, or roughly 26 paise per ₹1,000 of face value. For the ten-year bond it is about ₹0.70. The measure is useful because it is additive across positions, so a portfolio's sensitivity is the sum of the price values of its holdings. It also has the same domain of validity as modified duration: it is a first-order, parallel-shift estimate and carries the same convexity error.
+
+## Why the linear estimate fails as the move grows
+
+The price-yield relationship is curved, and duration captures only the slope of the tangent at one point. A fuller expansion adds a second-order term built from convexity:
+
+$$ \frac{\Delta P}{P} \approx -D_{Mod} \, \Delta y + \frac{1}{2} \, C \, (\Delta y)^2 $$
+
+where the convexity term is positive for an option-free bond. Because that term is positive, the true price lies above the duration-only line for any nonzero move. The duration estimate therefore overstates the loss when yields rise and understates the gain when yields fall, and the size of the misstatement rises with the square of the yield change. For a hundred basis points on a short bond the omitted term is a rounding matter. For three hundred basis points it is visible. For a long-duration bond under a large shock it can be the difference between two materially different numbers, and at that point the honest approach is to revalue the bond at the shocked yield rather than to patch the approximation.
+
+## Where the approximation breaks, precisely
+
+Four conditions mark the boundary of the estimate.
+
+- **The size of the move.** The error grows quadratically in the yield change. The estimate is useful for small parallel moves and progressively misleading for large ones, especially at long duration. There is no universal threshold, because the error also scales with duration, but any move large enough to be described as a rate cycle rather than a rate wobble should be accompanied by a convexity term or a full revaluation.
+- **A non-parallel shift.** Modified duration assumes every point on the curve moves by the same amount. When the curve twists, with the short end moving differently from the long end, one duration number aggregates the change incorrectly even if the average move is small.
+- **Changing cash flows.** The derivation holds the cash flows fixed. Floating-rate notes reset their coupon at each reset date, so their price sensitivity collapses to the time to the next reset rather than to the life of the instrument. Inflation-linked bonds have cash flows that move with realised inflation. In both cases the analytic formula is the wrong tool.
+- **Embedded options.** A callable bond gives the issuer the right to repay early when rates fall. As yields fall toward the call level, the price stops rising the way an option-free bond would, and the bond behaves as though its duration shortened. The correct measure is effective duration, computed by revaluing the instrument under an upward and a downward shock and taking the difference. Callable, putable, sinkable and prepayable structures all require it, and the result can be negative, which is precisely what a negative effective duration describes. A duration quoted for a portfolio that holds such assets should be read as a model-conditional effective duration and not as a Macaulay duration observed from a fixed schedule.
+
+## Spread risk is not duration risk
+
+Modified duration measures sensitivity to the yield used to discount the cash flows. For a sovereign bond that yield is essentially the benchmark. For a corporate bond the yield is the benchmark plus a credit spread, so a change in price can come from either. If the benchmark is unchanged but the issuer's spread widens, the bond loses value, and duration does not distinguish the two sources because it takes the whole yield as its input. A rate-shock estimate built on duration is therefore a statement about the curve, not about credit, and the two should be reported separately rather than netted into a single number. The same caution applies to liquidity: a widening bid-offer spread reduces the amount a seller receives without appearing anywhere in a duration figure.
+
+## Running a first-order rate-shock estimate
+
+The useful procedure is short and its discipline lies in the labelling.
+
+1. Take the current price and the modified duration of the position, on a consistent period convention.
+2. Choose a shock and state it as a scenario. A scenario is not a forecast.
+3. Compute the estimated proportional change as modified duration times the shock, with the sign reversed, and convert it to an amount using the position value.
+4. If the shock is large, or the duration long, add the convexity term or revalue the position outright.
+5. For a portfolio, use the market-value-weighted average modified duration and the summed price value of a basis point, and report the result as an estimate conditional on a parallel shift.
+6. Report the result in the model-estimated lane, keep spread and liquidity effects separate, and never present the estimate as an observed loss.
+
+## The four lanes
+
+- **Contractual.** The coupon and redemption are fixed, and the initial price is an observed transaction.
+- **Historical realised.** A past period's actual return is the sum of income, price change and reinvestment, and it is not implied by any current duration.
+- **Model-estimated.** The estimated price change from duration, and any convexity correction, is a model output conditional on a parallel shift.
+- **Speculative.** Any view that the policy rate will be cut or raised, or that yields will move by a particular amount, is a forecast and belongs in this lane.
+
+## What this does not tell you
+
+- **Any current yield, price or duration.** All inputs here are constructed. Take market levels from a published series.
+- **Credit and liquidity outcomes.** Duration is silent on default, on rating migration and on the price impact of selling an illiquid line.
+- **The direction of rates.** Duration sizes a move; it does not predict one.
+- **Tax.** The after-tax treatment of income and capital gains is a separate question for the tax reference.
+
+## Open questions
+
+- At what size does a parallel shock make the convexity correction essential rather than a refinement for a retail portfolio report?
+- How should duration be aggregated when holdings sit at very different tenors and the expected move is a twist rather than a parallel shift?
+- For a fund holding callable and prepayable assets, how stable is the disclosed effective duration across scenarios?
+
+Modified duration earns its prominence because it compresses an entire bond into one number that answers a practical question with serviceable accuracy. Its limitation is equally simple: it is a tangent, and a tangent describes a curve accurately only close to the point where it touches. Used within its domain, with the sign, the convention and the size of the move all stated, it is one of the most efficient risk summaries available. Used past that domain, without a convexity check or a revaluation, it is a number that is precisely wrong.

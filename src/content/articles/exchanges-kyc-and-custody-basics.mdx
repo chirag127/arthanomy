@@ -1,0 +1,167 @@
+---
+title: "Exchanges, KYC and Custody Basics"
+description: "What a balance on a crypto exchange actually represents, how venue onboarding, banking rails and asset custody fit together, and how to read the structure of a venue before trusting it with anything."
+shortTitle: "Exchanges, KYC and Custody Basics"
+category: digital-assets
+series: digital-assets-lab
+seriesOrder: 2
+topics: ["crypto exchanges", "KYC", "custody", "counterparty risk", "payment rails"]
+tags: ["digital-assets", "custody", "regulation"]
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - "A balance shown on an exchange is not property held in the customer's name; it is a contractual claim on a private company, and its value depends on that company remaining able to pay."
+  - "Onboarding rests on identity verification: the venue collects documents to establish who the customer is, and where the business is a reporting entity under the anti-money-laundering framework it carries record-keeping and reporting obligations."
+  - "The rupee leg of a crypto purchase runs on the regulated banking and payment system, while the token leg does not, so the two halves of the same transaction sit under entirely different rules."
+  - "Customer assets on a venue are typically held in wallets the venue controls, which means key custody, segregation and any attestation of reserves are the questions that matter, and all three are matters of the venue's own design."
+  - "The failure modes of a custodial balance are concentrated rather than idiosyncratic: an insolvency, a withdrawal freeze or a compromise of the venue's keys can affect every customer at once."
+  - "There is no depositor-protection or investor-compensation scheme behind a crypto balance, in contrast to bank deposits, which are insured up to a statutory limit per depositor per bank."
+  - "Evaluating a venue is a structural exercise: who holds the keys, whether customer assets are segregated, what the terms say about title, how withdrawals have behaved under stress, and where a complaint can be taken."
+faqs:
+  - question: "Is my crypto balance on an exchange insured?"
+    answer: "There is no product-level protection or compensation scheme behind a crypto balance in India, and it is not covered by deposit insurance, which applies to bank deposits up to a statutory limit per depositor per bank. A balance on a venue is a claim on that company, and its recovery in a failure depends on the assets available and the claims against them."
+  - question: "Does an exchange hold my coins in my name?"
+    answer: "Typically not in a way that would give you direct ownership of specific addresses. Venues usually control wallets in their own systems and credit customer accounts internally, so what the customer holds is a recorded entitlement rather than a set of keys. The terms of service are where the legal character of that entitlement is stated."
+  - question: "Why does KYC matter if the asset is outside the regulated system?"
+    answer: "Because the fiat leg of the transaction runs through regulated banks and payment systems, and because venues that are designated reporting entities under the anti-money-laundering framework must identify customers and keep records. Onboarding is where those two tracks meet."
+  - question: "What is proof of reserves?"
+    answer: "A published attestation that the assets a venue controls cover, in some defined sense, the balances it owes customers. Its usefulness depends almost entirely on scope and independence: what was included, who checked it, and whether the liabilities side was measured on the same basis as the assets."
+  - question: "Can a venue freeze withdrawals if the market moves against it?"
+    answer: "It can, and venues have. Suspension of withdrawals is usually a signal that the venue's ability to meet redemptions is in question, and a customer's options at that point are limited to whatever the terms of service and the applicable law provide. That is a property of the custodial model, not of any particular platform."
+relatedCalculators:
+  - { id: max-drawdown, label: "Drawdown Analyser" }
+  - { id: risk-of-ruin, label: "Risk of Ruin" }
+  - { id: opportunity-cost, label: "Opportunity Cost Calculator" }
+  - { id: currency-impact, label: "Currency Impact on Foreign Returns" }
+relatedArticles:
+  - crypto-assets-in-india-an-orientation
+  - wallet-custody-self-versus-custodial
+  - blockchain-basics-for-investors
+  - stablecoins-and-depeg-risk
+  - smart-contracts-and-their-risks
+glossaryTerms: [virtual-digital-asset, private-key, self-custody, stablecoin, tokenisation]
+sources:
+  - { id: rbi-home, supports: "The boundary of the regulated payments and deposit system that crypto assets sit outside, the deposit-insurance framework that applies to bank deposits, and the KYC and reporting expectations that shape onboarding" }
+  - { id: npci-home, supports: "The retail payment plumbing, principally UPI, through which the rupee leg of a crypto transaction settles and through which payment-system rules are enforced" }
+  - { id: pmla-2002, supports: "The record-keeping and reporting obligations that attach to businesses designated as reporting entities, which is where venue onboarding obligations originate" }
+  - { id: sebi-home, supports: "The securities-market perimeter within which a tokenised or pooled offering could fall, and the investor-protection machinery that does not extend to unregulated tokens" }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "The venue balance, claim and recovery figures in the worked example are hypothetical arithmetic. They describe a mechanism, not any actual exchange, insolvency or recovery."
+  - "This article describes how custodial arrangements are structured and what to examine. It does not endorse any venue, and it describes no method of concealing identity, evading reporting obligations or accessing an account that is not the reader's own."
+applicablePeriods: ["FY 2025-26"]
+openQuestions:
+  - "How should the liability side of a crypto venue be measured so that an attestation of reserves answers the question customers actually care about?"
+  - "Whether crypto assets should be treated as securities, commodities or a separate category remains unresolved, and the answer would change the custody and disclosure obligations that apply."
+  - "How much of the risk in a custodial balance is disclosed in venue terms of service in a form an ordinary customer can assess before depositing?"
+---
+
+A customer who deposits rupees with a crypto exchange and sees a balance appear on the screen has entered a very specific kind of arrangement, and it is worth being precise about which one. The customer has not taken delivery of coins. The customer has a record, maintained by a private company, of an entitlement that the company undertakes to honour. That record is useful because it can be traded, withdrawn or transferred, and it is fragile because everything it depends on lives inside a single counterparty. This article explains how venue onboarding, banking rails and asset custody fit together, what the resulting balance actually is, and what questions decide whether a venue's structure is sound.
+
+It is an orientation, not an endorsement, and it names no platform. Nothing here describes how to conceal identity, avoid reporting obligations or access an account that is not the reader's own.
+
+## Explain simply
+
+When you buy crypto on an exchange, you are dealing with a company rather than with the blockchain itself. The company checks who you are, takes your rupees through an ordinary bank payment, and then shows you a balance in its own system. The coins sit in wallets that the company controls, not in a wallet that only you can open. That is convenient, and it means the company can lose, freeze or misappropriate the assets, or fail while owing them. Legally, your balance is a claim on the company, similar in structure to the claim a bank customer has, except that there is no insurance and no ombudsman behind it. The alternative is to take the assets off the venue and control the keys yourself, which removes the counterparty and replaces it with the risk of losing the keys. Both routes trade one risk for another.
+
+## What a balance on a venue really is
+
+A custodied crypto balance is an entry in the venue's books. The customer experiences it as an asset because it can be exchanged for other assets or for rupees, but legally and technically it is a liability of the venue towards the customer. Three consequences follow.
+
+- **It is a claim, not property in hand.** If the venue fails, the balance does not follow the customer automatically; it is a claim in whatever process follows, alongside the claims of every other customer and creditor.
+- **It depends on the venue's solvency.** The assets behind the balance are whatever the venue holds, not necessarily the specific coins the customer bought. A venue that has lent out, lost or commingled customer assets still shows balances.
+- **It depends on the venue's continued operations.** Access requires the venue to keep its systems running and to honour withdrawals. A suspension of withdrawals severs the link between the balance and anything the customer can actually do with it.
+
+None of this is unique to crypto. What is unique is the absence of the machinery that usually sits behind a similar claim: no deposit insurance, no investor-compensation fund for an unregulated token, and no ombudsman with jurisdiction over the venue's conduct. A bank deposit is insured up to a statutory limit per depositor per bank; a crypto balance on a venue has no equivalent backstop.
+
+## Onboarding: the identity layer
+
+Venues onboard customers through a process they describe as KYC, short for know your customer. In practice it means establishing and recording who the customer is before allowing transactions: an identity document, an address record, a bank account in the customer's own name for the fiat leg, and increasingly a live verification step. The purpose is twofold. It satisfies the venue's own due diligence, and it satisfies the obligations that attach to a business designated as a reporting entity under the anti-money-laundering framework, which include identifying customers, keeping records and reporting prescribed transactions.
+
+Two points follow from the onboarding layer. First, the customer's identity is known to the venue and retained in its records, which is a substantive difference from self-custodied holdings. Second, the obligations run both ways: the same framework that obliges the venue to identify customers also places its records within the reach of authorities investigating the movement of funds, which is why tracing is a legal process rather than a technical reversal of transactions.
+
+## Banking rails and the payment side
+
+The rupee leg of a crypto transaction is an ordinary payment. It leaves and enters through a bank account or a payment application, and the principal retail rail in India is UPI, operated by the National Payments Corporation of India. This is worth stating plainly because it means the two halves of a single purchase sit under completely different regimes: the fiat half runs on a regulated payment system with its own rules, limits and fraud controls, while the token half does not.
+
+The practical implications are asymmetry and fragility.
+
+- **The payment can be reversed or refused at the rail.** A bank can decline to process a transfer, and the payment system's rules can restrict a flow, without touching the tokens.
+- **The token transfer cannot be reversed.** Once an on-chain transfer is signed and confirmed, no bank, venue or regulator undoes it. The regulated character of the rupee leg provides no protection on the asset leg.
+- **Payment-system rules govern payments, not assets.** Compliance questions at the payment layer and the regulatory status of the token are separate inquiries, and it is a common error to read the regulated nature of the fiat leg as conferring legitimacy on the asset.
+
+Crypto assets in India are not legal tender, are not a regulated investment product, and sit outside the regulated payments and deposit system. That boundary is the reason the fiat leg and the asset leg are governed so differently.
+
+## Record-keeping and reporting obligations
+
+Where a venue is a designated reporting entity under the anti-money-laundering framework, it carries the record-keeping and reporting obligations that framework imposes: maintaining records of transactions and customers, and reporting prescribed matters to the designated authority. These obligations are not optional courtesies, and they shape what a venue can offer and what it must ask of a customer.
+
+For a customer, the relevant consequence is that a custodial balance is documented. There is an audit trail connecting identity, funding and transactions, which is useful in a dispute and inescapable in an investigation. A self-custodied holding has none of that machinery, which is exactly its appeal and exactly its cost: the same absence of records that limits the venue's power over the assets also removes the paper trail that would help establish what happened.
+
+## Where the assets actually sit
+
+When the customer's balance is credited, the venue's own wallets hold the assets. The technical structure varies, and the variations are the substance of custody risk.
+
+- **Hot and cold holdings.** Assets kept in wallets connected to the internet are available for withdrawals and exposed to compromise; assets moved offline are safer but slower to retrieve. An operational venue needs some of both.
+- **Omnibus or segregated wallets.** Assets for many customers may be held together in shared wallets, with individual entitlements tracked in the venue's database, or separated by customer. Segregation matters most in a failure, when it determines whether a customer's claim is against specific assets or a general pool.
+- **Third-party sub-custody.** The venue may not hold the keys itself but delegate to a custodian, which adds a layer to the chain of counterparties between the customer and the asset.
+- **Proof of reserves.** Some venues publish attestations that assets under control cover customer balances. The value of such an attestation depends on what was included, who performed it and whether liabilities were measured on the same basis. A reserve figure without a matching and equally rigorous liability figure answers a narrower question than customers assume.
+
+The common thread is that in every case the keys belong to the venue. The customer's control is therefore contractual and operational, exercised through the venue's interface, and never cryptographic.
+
+## The failure modes a custodial balance carries
+
+Custody failures are concentrated, and that is their defining property. An idiosyncratic loss affects one customer; a custodial failure affects all of them at once.
+
+- **Insolvency.** If the venue's assets are insufficient to meet customer claims, customers become creditors in the resulting process, with recoveries that depend on the estate.
+- **Withdrawal suspension.** A venue that cannot meet redemptions may suspend withdrawals, effectively locking customers in while attempts at resolution continue.
+- **Compromise.** If the venue's keys, systems or internal controls are breached, assets can move irreversibly, and the loss falls on the venue's balance sheet and therefore on customers.
+- **Operational and legal restriction.** Systems can fail, and a venue's ability to operate can be constrained by legal process, in either case interrupting access without any failure of the asset.
+
+The scale of the loss does not depend only on the venue's honesty. It depends on the answers to a few structural questions, which is why examining structure before depositing is more useful than examining marketing after.
+
+## How to read a venue's structure
+
+The following questions are diagnostic. They are not a recommendation to use or avoid any venue, and answering them well does not eliminate risk.
+
+1. **Who holds the keys?** A venue that controls keys in its own systems is a counterparty. The relevant question is not whether it says so but what its technical and organisational controls are.
+2. **Are customer assets segregated?** And segregated from what, with what record of the entitlements, and with what happens on failure?
+3. **What do the terms of service say about title?** The terms are where the legal character of the balance is stated, and they control more than most customers expect.
+4. **Are reserves attested, by whom, and against what liabilities?** The scope and independence of an attestation determine how much it can be relied on.
+5. **How have withdrawals behaved under stress?** Past behaviour during volatility is the most informative available evidence about the venue's liquidity management.
+6. **What is the complaint route?** If there is no regulator with jurisdiction over the venue's conduct and no ombudsman, the practical remedy may be litigation, which is slow and expensive.
+7. **Is the venue a reporting entity?** Where it is, onboarding, records and reporting follow from that designation and the venue operates within a framework it must observe.
+
+The pattern across the list is that each question is about structure rather than performance. A venue's returns, fees and interface say little about whether the balance is recoverable; the answers above say a great deal.
+
+## Worked example: the shortfall arithmetic
+
+An illustrative calculation using hypothetical quantities. Nothing here describes an actual venue, insolvency or recovery.
+
+Suppose a venue's customers hold claims recorded at ₹100 and the assets available to satisfy those claims are worth ₹70. Recovery per unit of claim in the first distribution is:
+
+$$ \text{Recovery per unit of claim} = \frac{70}{100} = 0.70 $$
+
+Each ₹1 of recorded balance returns ₹0.70, before any costs of the process, and any further distribution depends on assets recovered later. Two features of this arithmetic are worth noticing. First, the loss is shared proportionally rather than falling on whoever withdrew first, which is the purpose of a collective process. Second, every customer's exposure was to the same balance sheet, so no amount of diversification across different tokens within that venue would have changed the outcome. That concentration is the structural feature of custodial holding; it is removed only by moving assets to self-custody, which substitutes a different risk.
+
+For contrast, a bank deposit of the same size would be covered by deposit insurance up to a statutory limit per depositor per bank, which is precisely the protection a crypto venue balance does not carry.
+
+## What this does not tell you
+
+- **It does not assess any venue.** The structure described here is generic, and no platform's custody arrangements, controls or solvency are audited by this article.
+- **It states no regulatory status.** Whether a particular business is a reporting entity, whether a particular token is within any regulator's perimeter, and what current obligations apply are questions of current fact and current law, not of mechanism.
+- **It does not cover tax.** The treatment of gains from transfers, deductions at source and reporting obligations are separate matters with their own dated rules.
+- **It is not advice.** Nothing here indicates whether to hold assets on a venue or in self-custody, and it describes no method of circumventing any obligation.
+
+## Open questions
+
+- How should the liability side of a crypto venue be measured so that an attestation of reserves answers the question customers actually care about, which is whether their own claim can be met?
+- Will crypto assets be classified as securities, commodities or a separate category in India, and how would the answer change custody and disclosure obligations?
+- How much of the risk in a custodial balance is disclosed in venue terms of service in a form an ordinary customer can assess before depositing?

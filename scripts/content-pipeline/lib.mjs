@@ -112,7 +112,8 @@ export function buildPacket(brief, ctx) {
         (s.topic ?? []).some((t) => topicTags.has(t)),
     )
     .sort(
-      (a, b) => Number(bibliographyIds.has(b.id)) - Number(bibliographyIds.has(a.id)),
+      (a, b) =>
+        Number(bibliographyIds.has(b.id)) - Number(bibliographyIds.has(a.id)),
     )
     .slice(0, 14)
     .map((s) => ({

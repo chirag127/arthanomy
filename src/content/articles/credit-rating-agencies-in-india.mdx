@@ -1,0 +1,198 @@
+---
+title: "How Indian Credit Rating Agencies Arrive at a Rating"
+description: "A credit rating is a structured opinion about one obligation, not a verdict on a company. How Indian rating agencies assess business risk, financial risk and group support, and where the symbol quietly stops answering the question the investor is asking."
+shortTitle: "How Indian Rating Agencies Work"
+category: debt
+series: debt-encyclopedia
+seriesOrder: 27
+topics: ["credit ratings", "rating process", "credit risk", "group support", "rating outlook"]
+tags: ["debt", "credit", "ratings", "fixed-income"]
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 12
+keyTakeaways:
+  - "A rating is an opinion about the likelihood of timely servicing of a specific obligation, not a statement that a company is sound or that a bond is worth its price."
+  - "Agencies assess business risk and financial risk separately, then decide how the two interact by looking at cash-flow adequacy against the debt-maturity profile rather than at a single ratio."
+  - "Support assumptions — from a parent, a group or a government — can lift an instrument's rating above the standalone credit quality of the issuer, which is why two instruments from one company can carry different symbols."
+  - "The symbol is ordinal, not cardinal: it ranks relative safety and does not by itself state a numeric probability of default."
+  - "A high rating speaks only to credit risk; interest-rate, liquidity, reinvestment and inflation risk remain outside the scope of the symbol."
+  - "Ratings are revised on surveillance rather than continuously, so a rating action is evidence about the past as much as a forecast about the future."
+faqs:
+  - question: "Does a high rating mean the bond cannot default?"
+    answer: "No. It means the agency currently assesses the probability of timely servicing as low relative to its other categories. Default is a payment event; a rating is an opinion about the likelihood of that event, and opinions are revised."
+  - question: "Why do two bonds from the same company have different ratings?"
+    answer: "Because ratings attach to specific obligations. Security, seniority, a corporate guarantee or a structured feature can make one instrument safer than another issued by the same borrower, and agencies are expected to reflect that difference."
+  - question: "What is a rating outlook, and does it change the rating?"
+    answer: "An outlook indicates the direction the agency currently expects the rating to move over its stated horizon. It is not a rating change, and a negative outlook does not by itself imply an imminent downgrade."
+  - question: "Are rating agencies paid by the companies they rate?"
+    answer: "The prevalent model in India, as globally, is issuer-pays. That creates a structural conflict of interest, which the regulatory framework addresses through registration conditions, a code of conduct for agencies and mandated disclosure of rating actions and criteria."
+  - question: "Should I check the offer document if the rating looks adequate?"
+    answer: "Yes. The rating is one input; the security, covenants, use of proceeds and exit terms sit in the offer document and in the company's registry filings, and a rating does not certify any of those terms."
+relatedCalculators:
+  - id: credit-spread
+    label: "Credit Spread Calculator"
+  - id: default-recovery
+    label: "Expected Credit Loss"
+  - id: bond-price-yield
+    label: "Bond Price and Yield"
+relatedArticles:
+  - corporate-fixed-deposits-and-nbfc-deposit-risk
+  - treasury-bills-as-the-risk-free-anchor
+  - dated-gsecs-and-the-coupon-myth
+  - state-development-loans-yield-question
+glossaryTerms: [credit-spread, probability-of-default, loss-given-default, yield-to-maturity]
+sources:
+  - id: sebi-home
+    supports: "The regulatory framework for credit rating agencies in India — registration, code of conduct, the prescribed rating symbols and categories, and the disclosure of rating actions and criteria"
+  - id: bcbs-credit-risk
+    supports: "The formal definitions of probability of default, loss given default, exposure at default and expected credit loss used in this article's discussion of what a rating does and does not estimate"
+  - id: ibbi-home
+    supports: "Insolvency-resolution mechanics, timelines and recovery outcomes, which determine what a rating action ultimately delivers to a bondholder"
+  - id: rbi-home
+    supports: "The regulatory and policy framework governing the banks and non-bank lenders whose instruments are rated, and the policy backdrop against which rating actions are taken"
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "No issuer, instrument or agency is named or evaluated in this article. The description of the process is general and does not constitute a rating opinion."
+  - "The default probability, loss given default and spread figures in the worked example are illustrative assumptions chosen to show the arithmetic. They are not observations of any market and not estimates for any issuer."
+  - "The exact rating symbols, category definitions and procedural timelines are set out in the SEBI credit rating agency regulations and in each agency's published criteria. They change, and they should be verified at the source rather than taken from a summary."
+applicablePeriods: ["FY 2025-26"]
+openQuestions:
+  - "Across the full population of rated Indian instruments rather than the widely publicised cases, how much of the incremental yield on lower-rated paper has survived realised defaults, delayed recoveries and trading costs?"
+  - "How long does it typically take a rating action to follow publicly available evidence of deterioration, and does the lag differ between the liquid and illiquid parts of the market?"
+  - "How should investors test the credibility of an explicit group-support assumption before accepting the notched-up rating it produces?"
+  - "Is an ordinal symbol sufficient for investor decisions without an accompanying numeric estimate of default probability and expected loss?"
+---
+
+Most investors meet a credit rating as a three-letter verdict attached to a bond they are already considering. The offer document says the instrument sits in a high category, the broker repeats the symbol, and the app shows it in green. Almost nothing in that chain explains where the symbol came from, what the agency examined, or which risks it deliberately left outside its scope. That gap is why rating actions so often surprise the investors who lean on them hardest.
+
+A credit rating is a forward-looking opinion about an issuer's ability and willingness to meet a specific financial obligation on time. In India the opinion is produced by firms registered and regulated by SEBI under the credit rating agency regulations, published against a defined symbol set, and maintained through continuing surveillance. It is a structured professional judgement. It is not an audit, not a guarantee and not a price.
+
+This article describes how that judgement is built and what the resulting symbol does not certify. It names no issuer and evaluates no instrument.
+
+## Explain simply
+
+Think of a rating as a specialist's credit opinion rather than a certificate of health. The specialist reads the accounts, meets the management, visits the plant, and works through two broad questions: how risky is this business, and how much debt can it safely carry? The answers are combined with judgement about the group the company belongs to and the specific obligation being rated, and the whole thing is compressed into a symbol. What the opinion does not do is promise the borrower will not stumble, or tell you whether the price of the bond is attractive. A doctor's note about your fitness says nothing about whether your gym membership is good value.
+
+## What the symbol certifies, and what it does not
+
+A rating is scoped to a particular obligation, a particular currency and a particular set of promises. Read that way, it certifies relatively little and says a great deal:
+
+- **It states** the agency's current opinion of the relative likelihood that the obligation will be serviced on time and in full, on the agency's own scale.
+- **It does not state** that default will not happen. It is a probability judgement, revised over time.
+- **It does not price anything.** A rating says nothing about whether the yield on offer compensates the buyer for the risk being taken.
+- **It does not transfer between instruments.** One company's secured debenture, its unsecured borrowing and its subordinated capital can each carry a different symbol.
+- **It does not cover non-credit risk.** Price movement, secondary-market liquidity, reinvestment and tax sit outside the assessment entirely.
+
+The distinction between an **issuer rating** and an **instrument rating** does most of the practical work here. An issuer rating speaks to the borrower's general ability to meet obligations; an instrument rating speaks to one contract, and takes account of security, seniority, guarantee and structure. A buyer who reads only the company name and the symbol will miss the difference.
+
+## The process, from mandate to symbol
+
+Although each agency documents its own criteria, the shape of the process is common. Understanding the sequence is useful because each step is a place where assumptions enter.
+
+1. **Mandate and information.** The issuer engages the agency and provides the material the agency asks for: audited accounts, management projections, debt terms, group structure and any legal opinions or guarantee documents.
+2. **Analyst work.** One or more analysts build the case, usually through management meetings, site visits, lender references and comparison with peers in the same sector.
+3. **Rating committee.** A committee, separate from the relationship function, weighs the analysis and decides the symbol and any outlook. The decision is a collective judgement rather than the outcome of a formula.
+4. **Assignment and publication.** The rating and the stated rationale are published, subject to the disclosure requirements in the regulatory framework.
+5. **Surveillance.** The agency monitors the obligation and reviews the assignment as new information arrives, and on the occurrence of events the criteria treat as material.
+
+Surveillance is the part investors most often mistake for a live feed. It is a review process, not a market price. Rating actions follow information, and information reaches an agency on a reporting cycle. That is a structural lag, not a failure of diligence.
+
+## Business risk: can this enterprise generate cash?
+
+The first half of the assessment asks whether the business can produce cash reliably through a cycle, independent of how it is financed. The lines of enquiry are recognisable to anyone who has read an annual report:
+
+- **Demand and pricing power.** Who buys the product, on what terms, and how easily the buyer can switch or delay.
+- **Competitive position.** Market share, entry barriers, cost position and the credibility of the competitor set.
+- **Operating profile.** Fixed versus variable costs, capacity utilisation, efficiency, and how sharply earnings fall when volumes soften.
+- **Diversity.** Product, customer and geographic concentration, because a single large buyer or a single plant is a single point of failure.
+- **Cyclicality and regulation.** Whether the cash flow is set by a cycle, a tariff, a subsidy or a licence, and what happens when that support changes.
+- **Management and governance.** Track record, succession, related-party dealings and the quality of disclosure — a qualitative area where judgement matters more than any ratio.
+
+## Financial risk: how much debt, against what cash?
+
+The second half asks how much of that cash flow is already committed. Agencies work with a standard family of measures, all computed from the reported financials and then adjusted by the analyst:
+
+- **Leverage**, typically total debt against operating earnings, which states how many years of current earnings the debt represents.
+- **Coverage**, the ratio of earnings or cash flow to interest and to total debt service, which states how much room exists before a payment is missed.
+- **Cash-flow adequacy**, the projected net cash available against the debt-maturity profile year by year, which is where a healthy ratio can hide a bad wall of maturities.
+- **Liquidity**, cash and committed undrawn facilities against near-term obligations.
+- **Working capital**, because inventory and receivables can consume the cash that the earnings statement appears to generate.
+- **Contingent liabilities and off-balance-sheet exposures**, including guarantees, disputed claims and any obligation that would become debt if a counterparty failed.
+
+The important word is **adjusted**. Analysts routinely reclassify items the reported statements treat as something else — leases, acceptances, quasi-equity from promoters, receivables from related parties — so that the adjusted leverage figure in the rating rationale can differ materially from the one a reader computes from the published balance sheet. When the two disagree, the difference is the analysis.
+
+## Support, group structure and notching
+
+An obligation can be rated above or below the standalone credit quality of the borrower, and both directions are common.
+
+**Notching up** happens where the agency expects external support to be available when it is needed: an explicit corporate guarantee from a stronger parent, a group with a demonstrated record of funding a subsidiary, or sovereign or state support for an entity the government treats as strategically important. The rating then reflects the credit of the supporter as much as the credit of the borrower, and it depends on an expectation about a future decision rather than on a contractual right.
+
+**Notching down** happens where an obligation is subordinated to others, faces structural obstacles to repayment, or is issued by an entity whose cash flows are contractually trapped at a lower level in the group.
+
+Two consequences follow. First, the same company can support several different symbols at once, and the reason is written in the rating rationale rather than in the symbol. Second, when an agency withdraws or suspends a rating because an issuer has stopped supplying information, that is itself information — about the issuer's willingness to be looked at.
+
+## Outlooks, watches and rating actions
+
+Three different instruments are routinely confused:
+
+- **The rating** is the current opinion.
+- **The outlook** states the direction the agency currently expects the rating to move over its horizon. It is not a hidden rating change.
+- **A watch placement** flags likely movement over a shorter period, usually after a specific event such as an acquisition, a demerger or a large borrowing, and can be resolved either way.
+
+A downgrade is not a default. Default is a payment failure or a defined restructuring event, and the two events are decided by different tests. A market can price a deteriorating credit long before a rating action, which is why the credit spread often moves first and the symbol follows.
+
+## Reading the scale without over-reading it
+
+Rating scales are ordered: the highest categories denote the strongest assessed capacity to service the obligation on time, and each step down denotes greater vulnerability to adverse conditions. Modifiers within a category distinguish position inside it.
+
+The scale should be read as **ordinal**, not cardinal. It ranks relative safety. It does not attach a single numeric probability of default to a symbol, and the movement of a rating between categories is a judgement about relative risk rather than a measured distance. Agencies do publish historical studies of how instruments in each category have behaved, and those studies are the right place to look for base rates — with the reminder that a base rate describes a past population and not a particular issuer.
+
+The exact list of symbols, the definitions attached to each and the factors that must be considered are prescribed in the SEBI credit rating agency framework and reproduced in each agency's published criteria. Because that list is regulator-defined and periodically amended, it should be read at the source rather than reconstructed from memory, including any recollection in this article.
+
+## Worked example: an illustrative expected-loss comparison
+
+The following is an illustrative calculation, not an observation of any market and not a view on any instrument. It shows what a rating does not put on the page.
+
+Suppose a bond carries an assumed one-year probability of default of 1 per cent and an assumed loss given default of 60 per cent. Expected credit loss is:
+
+$$ \text{Expected loss} \approx PD \times LGD $$
+
+That gives $0.01 \times 0.60 = 0.6$ per cent of the exposure for the year, or ₹6,000 on a ₹10,00,000 holding. Now suppose the same bond offers 200 basis points, or 2 per cent, over a comparable government security. The spread clears the expected loss with room to spare — roughly 1.4 percentage points — but that margin is not free income. It has to absorb unexpected loss in the bad tail, illiquidity in the secondary market, and the possibility that the 1 per cent default assumption is itself wrong.
+
+Both inputs are assumptions, and they are printed next to the result precisely so they can be challenged. The rating would have told the investor only that the instrument sits in some category. The arithmetic, the assumptions and the price are the investor's own work.
+
+## Where ratings mislead in practice
+
+- **Confusing the issuer with the instrument.** A group name and a strong symbol can pull attention away from the specific obligation being purchased.
+- **Treating the opinion as permanent.** Ratings are point-in-time judgements under surveillance; a symbol from last year is not a statement about this year.
+- **Ignoring the conflict of interest.** The prevailing issuer-pays model is a structural conflict; the regulatory response is conduct rules and disclosure, which is a mitigation and not an elimination.
+- **Extending a structured rating to the originator.** A rating on a securitised instrument speaks to the pool, the enhancement and the structure, not to the credit of the firm that assembled it.
+- **Applying a credit opinion to a price decision.** The rating does not know what yield you are being offered.
+
+## The four lanes, in this context
+
+- **Contractual.** The coupon and the repayment of principal are promises with a legal basis, belonging to a specific obligor. The rating is an opinion about those promises, not one of them.
+- **Historical realised.** Published default and transition statistics by category describe what happened to past populations. They are evidence, and they do not bind the future.
+- **Model-estimated.** The probability of default and loss given default figures above are model inputs, as is any rating-agency cash-flow projection underlying an action.
+- **Speculative.** The gain from an upgrade that narrows a spread, or the loss from the reverse, sits in this lane. The rating does not belong to it.
+
+## What this does not tell you
+
+- **It does not select or compare issuers.** Nothing here evaluates a real company, instrument or agency.
+- **It does not price the obligation.** Yield, duration and the compensation embedded in a spread require separate analysis.
+- **It does not cover the non-credit risks.** Rate, liquidity, reinvestment, inflation and tax risk remain outside the scope of any rating.
+- **It does not substitute for primary documents.** Security, covenants, use of proceeds and exit terms live in the offer document and in the filings at the corporate registry.
+- **It does not resolve the recovery question.** What a bondholder receives after an insolvency depends on the resolution outcome and the priority of the claim, which a pre-default rating does not fix.
+
+## Open questions
+
+- Across the full population of rated Indian instruments, rather than the handful of widely covered cases, how much of the extra yield on lower-rated paper survived realised defaults, delayed recoveries and exit costs?
+- How long does a rating action typically lag publicly available signs of deterioration, and is the lag different in the liquid and illiquid parts of the market?
+- How can an investor test a group-support assumption, given that it rests on an expectation of future funding rather than on a contractual right?
+- Is an ordinal rating scale sufficient for investor decisions without a published numeric estimate of default probability and expected loss alongside it?

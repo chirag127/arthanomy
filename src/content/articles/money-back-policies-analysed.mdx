@@ -1,0 +1,168 @@
+---
+title: "Money-Back Policies Analysed: Periodic Payouts and the Return They Deliver"
+description: "A money-back policy returns part of the sum assured at fixed intervals if the policyholder survives. This article separates the guaranteed refund schedule from the non-guaranteed bonus, works the arithmetic of what the contract actually returns, and asks whether the liquidity is worth its cost."
+shortTitle: "Money-Back Policies Analysed"
+category: insurance-pensions
+series: insurance-pensions-decoded
+seriesOrder: 3
+topics: ["money-back policy", "survival benefit", "maturity value", "participating policies"]
+tags: ["insurance", "returns", "risk-transfer", "savings"]
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - "A money-back policy pays part of the sum assured at fixed intervals if the policyholder survives to each date; on death during the term it pays the death benefit defined in the contract, which may or may not be reduced by payouts already made."
+  - "The guaranteed payout schedule is a return of the policyholder's own premium in instalments, spread over years and with no interest for the delay; on the geometry of a typical schedule it is not a yield."
+  - "Any positive return can only come from the participating, non-guaranteed element — the bonuses declared by the insurer — and that element is not promised at the point of sale."
+  - "Periodic liquidity is a real feature but an expensive one: the same premium could be split into cheap term cover plus a separate savings vehicle, and the split is the honest comparison."
+  - "The four lanes of this contract must be kept apart: the contractual guarantee, the declared participating element, a model-estimated figure, and the speculative upside that is sometimes implied but never promised."
+  - "Nothing here is a recommendation to buy or avoid any policy; it is a description of contract structure and an illustrative calculation."
+faqs:
+  - question: "Is a money-back policy an investment?"
+    answer: "It is a protection contract with a refund schedule attached. The guaranteed refund element returns premiums in instalments and produces a zero internal rate of return in the illustrative schedule shown here; any gain depends on bonuses that are not guaranteed. It should be judged first as protection, then as a savings contract on its own terms."
+  - question: "Why does the policy return exactly the premiums paid?"
+    answer: "Because the guaranteed component is designed as a schedule of refunds, not as compounding. The instalments are portions of the sum assured, and the premium is set so that the guaranteed outgo matches what is paid in. The economics only change if the insurer declares bonuses from its surplus."
+  - question: "Are bonuses guaranteed?"
+    answer: "No. Non-linked participating policies contain both guaranteed and non-guaranteed elements, and the non-guaranteed portion depends on how the insurer's participating fund performs and on the insurer's declared bonus rates. Those declarations are not a promise of future bonuses."
+  - question: "What happens if the policyholder dies during the term?"
+    answer: "The nominee receives the death benefit stated in the policy. Whether that benefit is the full sum assured or the sum assured reduced by survival payouts already made is a term of the individual contract, and the difference materially changes the cover."
+  - question: "Should the payouts be counted as income?"
+    answer: "In this article the payouts are treated as a receipt within the contract. The tax treatment of survival benefits, maturity proceeds and premiums is governed by the Income-tax Act as amended by successive Finance Acts and is deliberately not restated here; verify the current position rather than relying on a brochure."
+relatedCalculators:
+  - id: annuity-vs-swp
+    label: "Annuity vs SWP"
+  - id: retirement-corpus
+    label: "Retirement Corpus Calculator"
+  - id: term-insurance-need
+    label: "Term Insurance Need"
+relatedArticles:
+  - term-insurance-as-the-foundation
+  - endowment-policies-and-return-reality
+  - ulip-anatomy-charges-and-funds
+  - whole-life-and-participating-policies
+  - immediate-annuities-and-payout-options
+glossaryTerms:
+  - endowment-plan
+  - surrender-value
+  - mortality-charge
+  - term-insurance
+sources:
+  - id: irdai-home
+    supports: "IRDAI's product regulations for non-linked savings products and the framework within which guaranteed and non-guaranteed benefits, insurer disclosures and policyholder protections are defined."
+  - id: irdai-linked-products
+    supports: "The regulatory treatment of non-linked savings products, including minimum guaranteed-return requirements and surrender-value rules, which set the boundary between the guaranteed and non-guaranteed parts of a policy."
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "This article describes contract structure and includes illustrative arithmetic. It is not a recommendation to buy, keep or surrender any policy, and no figure here is a bonus rate, a premium or a return offered by any insurer."
+  - "Bonus rates, premiums and surrender factors are product-specific and are not quoted in this article. Any such figure must be taken from the policy document and the insurer's published disclosures."
+openQuestions:
+  - "How should a buyer value a survival benefit that arrives in five years against a maturity benefit that arrives in twenty, when both are parts of the same premium?"
+  - "Do declared bonus rates on participating policies have any predictable relationship to the returns on the assets backing them, or are they effectively a matter of insurer discretion?"
+  - "Is the death benefit of a typical money-back contract reduced by survival payouts, and how much of the market is on each structure?"
+  - "If the payout schedule is liquidated at a discount, what does that reveal about its true value to the policyholder?"
+---
+
+A money-back policy is a life insurance contract that returns a portion of the sum assured at fixed intervals during the term, provided the policyholder survives to each date. It is sold on the appeal of getting something back: cash every few years, a final payment at maturity, and protection running alongside. The appeal is genuine, but the label is doing more work than the arithmetic supports. In its guaranteed part, the schedule returns the policyholder's own premium, paid back in instalments and without the interest those instalments could have earned in the meantime.
+
+This article takes the money-back structure apart the way the rest of this series takes apart every bundled insurance product: protection is priced as protection, the savings promise is priced on its own terms, and the two are then compared with buying them separately.
+
+## What the contract actually promises
+
+A money-back policy is a non-linked, traditional life policy. Two promises sit inside one premium.
+
+- **A death benefit.** If the insured dies within the term, the insurer pays the sum assured to the nominee, subject to the terms of the contract.
+- **A survival benefit.** If the insured survives to each stated date, the insurer pays a stated portion of the sum assured. At maturity, the remaining portion is paid.
+
+The two promises interact in a way that is easy to miss. The contract states whether the survival payouts **reduce** the sum assured still payable on death, or whether the full sum assured continues to be paid in addition. These are materially different products. A policy that pays the full sum assured on death *and* pays portions on survival is more expensive, because the insurer faces two sets of outgo. A policy whose death benefit is reduced by earlier payouts is cheaper and provides less cover late in the term, precisely when the household may still need it. Which one a given product is, and what the reduction rules are, belongs to the policy document.
+
+Everything else in the contract — exclusions, the treatment of death by suicide in the first policy year, the grace period, revival conditions, surrender terms — is ordinary life-policy machinery, described in the foundation article of this series. What is distinctive about a money-back contract is the payout schedule, and that is where the analysis belongs.
+
+## The schedule returns your own premium, not a yield
+
+The single most important fact about a money-back schedule is that it is a **refund pattern**, not a compounding instrument.
+
+The premium is set so that the guaranteed survival benefits, taken together, roughly equal the premiums paid over the term. The insurer is not investing the premium and handing back a profit; it is collecting premiums and returning portions of them at dates written into the contract. Because the instalments are paid later than the premiums that fund them, the delay costs the policyholder the time value of money, and the guaranteed element alone does not compensate for it.
+
+That is not a defect in the product so much as a description of it. A schedule that returns ₹10,00,000 over twenty years is not the same as ₹10,00,000 today; a rupee returned in year fifteen has had fifteen fewer years to be used or invested than a rupee paid in year one. The correct measure of the guaranteed element is its internal rate of return, the discount rate at which the timing-adjusted value of the payouts equals the timing-adjusted value of the premiums. When outgo equals income in nominal terms, that rate is zero. A "money back" schedule is a return of your own premium in instalments, not a yield, unless the contract says otherwise.
+
+## Guaranteed and non-guaranteed: the two halves of the payout
+
+A participating money-back policy has both a guaranteed and a non-guaranteed element, and the two must never be blended.
+
+- **The guaranteed element** is the survival schedule and the death benefit defined in the policy. These are contractual and do not depend on how the insurer's fund performs.
+- **The non-guaranteed element** is the bonus. In a with-profits policy the insurer may declare a reversionary bonus that attaches to the policy year by year, and a terminal bonus at maturity. Bonuses depend on the performance of the insurer's participating fund, on its expenses and on how it chooses to distribute surplus. They are not promised in advance, they can vary between policies declared in different years, and a bonus rate declared in one year tells the buyer nothing certain about the next.
+
+The point of the split is straightforward. If the guaranteed element is a refund schedule with a zero return, then **the entire investment case rests on the non-guaranteed element**. The buyer is being asked to accept a certain zero return in exchange for an uncertain bonus, and to hold the contract for twenty years to get it. Whether that trade is attractive cannot be settled by looking at the maturity amount printed on an illustration; it requires looking at the internal rate of return implied by the guaranteed flows and asking what bonus would be needed to lift it.
+
+## The four lanes you have to keep separate
+
+Discussions of money-back returns routinely fail because four different things are blended into one number. This series keeps them apart.
+
+1. **The contractual guarantee.** The scheduled survival payouts and the death benefit. Certain, in nominal rupees, and in the geometry shown below, worth a zero return.
+2. **The declared or participating element.** Bonuses actually declared by the insurer. Real when declared, but not promised in advance and not knowable at the point of sale.
+3. **The model-estimated figure.** What the return *would* be under a stated bonus assumption. This is arithmetic, not observed performance, and it must be labelled as illustrative every time.
+4. **The speculative upside.** The possibility of a strong terminal bonus, an improving participating fund, or a favourable interest-rate environment. This is not a number; it is a hope, and it should never be presented as part of the expected outcome.
+
+The failure mode of the sales process is to present lane four as though it were lane one. The discipline is to price the guarantee, then show the bonus assumption separately, then note what is speculation.
+
+## Worked example: the return a money-back schedule delivers
+
+An illustrative schedule, not any insurer's product and not a quotation. Sum assured ₹10,00,000 over a twenty-year term. Annual premium ₹50,000, payable for twenty years. Survival payouts of 20 per cent of the sum assured at the end of years five, ten and fifteen, and the balance of 40 per cent at maturity in year twenty. For this illustration, ignore bonuses, taxes, riders and any expense loading, and assume for simplicity that the death benefit is not reduced by the payouts already made.
+
+**Guaranteed element.** Total premium paid is ₹50,000 multiplied by twenty, or ₹10,00,000. Total guaranteed payouts are ₹2,00,000 three times plus ₹4,00,000, which is ₹10,00,000.
+
+The guaranteed element therefore returns exactly the premiums paid, in instalments. Its internal rate of return is zero. The policyholder receives the same number of rupees, later, with nothing for the delay. This is the contractual lane, and it is where a naive "total payouts equal total premium" comparison stops. If the schedule had returned less than the premiums paid, as many schedules do, the guaranteed return would be negative.
+
+**The participating element.** The only route to a positive return is additional payout from bonuses. Using the same cash flows, an illustrative calculation of how much extra payout at maturity would be needed to lift the internal rate of return on the whole contract is as follows. To reach about 4 per cent, roughly ₹2,49,000 of additional maturity payout is needed. To reach about 6 per cent, roughly ₹4,45,000. These are illustrative calculations, not declared bonuses, and they are modelled as a single payment at maturity; a real reversionary bonus accrues year by year and would behave somewhat differently.
+
+Two things follow. First, on a policy of this shape the bonus needed to turn a zero-return refund schedule into a competitive savings return is large relative to the sum assured. Second, and more usefully for a buyer, the question to ask is not "what is the maturity amount?" but "what bonus rate would this policy have to declare, in every future year, to beat the alternatives I already have?" That question has an answer, and it can be checked.
+
+## Explain simply
+
+A money-back policy hands you some of your own premium back every few years. Because the money arrives years after you paid it in, and the guaranteed payouts only add up to what you paid, the guaranteed part earns you nothing. The only way you come out ahead is if the insurer adds bonuses on top, and those bonuses are not promised. The protection inside the policy is real but expensive, because you are paying for the refund schedule as well. The clean comparison is to price the cover on its own and put the rest of the money somewhere you can see the return.
+
+## Why the liquidity is less valuable than it looks
+
+Periodic payouts are marketed as liquidity, and liquidity has value. But the value is smaller than it appears for three reasons.
+
+- **The payout is a return of capital, not income.** Spending a survival benefit is spending money that was already yours. It is not a yield that leaves the principal intact, because there is no principal compounding underneath.
+- **The schedule is fixed.** The dates and amounts are set at the point of sale, so the liquidity cannot be redirected when the household's needs change. A lump sum at a date of the policyholder's choosing would be more useful, and less costly to provide.
+- **The liquidity is embedded in the price.** The insurer must hold reserves to meet each scheduled payout, and that costs money. The same rupee of premium buys less protection inside a money-back policy than inside a pure term policy.
+
+An honest test of the schedule is to ask what it would cost to reproduce it outside the policy. A buyer could take cheap term cover and fund a series of dated deposits or investments to create the same cash flows, with full flexibility and visibility of the return. If the money-back policy cannot beat that combination after the cover is priced in, the schedule is not adding value; it is packaging cost.
+
+## Comparing money-back with the alternatives
+
+| Structure | Protection | Savings element | Where the return comes from |
+| --- | --- | --- | --- |
+| Money-back | Sum assured, possibly reduced by payouts on death | Scheduled refunds of sum assured | Non-guaranteed bonuses only |
+| Level term plus deposits | Full sum assured throughout | Separate, fully visible | The chosen deposits or investments |
+| Endowment | Sum assured | Lump sum plus bonuses at maturity | Bonuses plus the guaranteed maturity value |
+| ULIP | Sum assured | Market-linked fund value | The funds, less charges |
+
+The table is a comparison of structures, not a ranking of products. Each row is a different contract with different obligations, and the right row depends on what the household is trying to do. What the table clarifies is that the money-back structure occupies an awkward middle: it is costlier than term for the protection it gives, and less flexible than a separately held savings vehicle for the money it returns.
+
+## When a periodic payout can be defensible
+
+There are situations where a scheduled payout is not obviously wrong. A household that will not, in practice, invest a lump sum and needs the discipline of forced dates may find the structure useful. A buyer who values the certainty of a fixed nominal schedule — for a known future expense, for instance — is buying something real, even if the return on it is zero, because the certainty is the product. And a policyholder who would otherwise leave money in a low-yield deposit may not lose much by accepting the guarantee.
+
+None of these is an argument that the product is efficient. They are arguments that a specific household, with specific behaviour, might tolerate the inefficiency. That is a different claim, and it deserves to be stated as such rather than dressed up as performance.
+
+## What this does not tell you
+
+This article describes contract structure and works one illustrative schedule. It does not quote any insurer's premium, bonus rate, surrender factor or maturity amount, because those are product-specific and must be read from the policy document and the insurer's disclosures. The internal rate of return computed above is arithmetic on assumed cash flows; it is not observed performance of any policy.
+
+The tax treatment of premiums, survival benefits and maturity proceeds is a separate lane and is deliberately not restated here. It is governed by the Income-tax Act as amended by successive Finance Acts and it changes; where a decision rests on a tax advantage, the current provisions should be read in their current form rather than remembered. Nothing here recommends buying, keeping or surrendering a policy, and no outcome is promised.
+
+## Open questions
+
+- How should a buyer value a survival benefit that arrives in five years against a maturity benefit that arrives in twenty, when both are funded by the same premium?
+- Do declared bonus rates on participating policies bear any predictable relationship to the returns on the assets backing them, or are they effectively a matter of insurer discretion?
+- Is the death benefit of a typical money-back contract reduced by survival payouts, and how is the market split between the two structures?
+- If a scheduled payout is liquidated at a discount in the secondary market, what does that reveal about its true value to the policyholder?

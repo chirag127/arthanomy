@@ -1,0 +1,159 @@
+---
+title: "Immediate Annuities and Payout Options: Trading a Lump Sum for Income"
+description: "An immediate annuity converts a lump sum into a stream of payments, usually for life. This article sets out the payout variants, shows why the annuity rate is not a yield on invested capital, and works the arithmetic of what different survival outcomes actually deliver."
+shortTitle: "Immediate Annuities and Payout Options"
+category: insurance-pensions
+series: insurance-pensions-decoded
+seriesOrder: 6
+topics: ["annuity", "immediate annuity", "pension payout", "longevity risk"]
+tags: ["insurance", "pensions", "retirement", "risk-transfer"]
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - "An immediate annuity converts a lump sum into periodic payments that begin straight away, and its purpose is to transfer longevity risk — the risk of outliving your money — to an insurer."
+  - "The annuity rate quoted is not a yield on invested capital in the ordinary sense, because in most variants the payments include a return of the purchase price itself, not only a return on it."
+  - "Variants such as life annuity, life with return of purchase price, and joint-life options trade a higher income for a guarantee about the capital, and the trade can be read straight off the quoted rates."
+  - "On an illustrative no-return-of-capital annuity, the effective return is deeply negative if the annuitant dies early and rises towards the assumed pricing rate only with long survival; the certainty, not the return, is what is being bought."
+  - "Quotes can only be compared on equivalent terms: same purchase price, same payout frequency, same capital guarantee, same joint-life and escalation features."
+  - "Nothing here is a recommendation to annuitise or to choose a particular payout option, and no annuity rate quoted here is offered by any insurer."
+faqs:
+  - question: "Why is the annuity rate not simply the return I earn?"
+    answer: "Because an annuity pays back capital as well as interest. Part of each payment is a return of the amount you paid in, so the quoted rate is a payout rate on the purchase price, not a compound return on money that stays invested. The return conditional on surviving is a different number."
+  - question: "Does a higher annuity rate always mean a better deal?"
+    answer: "No. A higher rate is usually the price of giving something up — returning the capital to the insurer rather than to your estate, accepting a lower joint-life rate, or forgoing an escalation clause. Quotes can only be compared when the features are identical."
+  - question: "What happens to the money if I die soon after buying?"
+    answer: "Under a life annuity with no capital guarantee, payments stop and nothing is returned, so an early death delivers a poor outcome in money terms. Variants that return the purchase price or guarantee a minimum number of payments exist precisely to address this, and they pay a lower income in exchange."
+  - question: "Is annuitisation compulsory when I retire?"
+    answer: "For some retirement products, such as the National Pension System, a prescribed minimum portion of the accumulated corpus must be used to buy an annuity and the balance may be withdrawn. The current proportions are set by the PFRDA framework and should be taken from PFRDA rather than from memory."
+  - question: "How do I compare two annuity quotes?"
+    answer: "Match the purchase price, the payout frequency, the capital guarantee, whether the annuity is single or joint, and whether the income escalates. A quote is only comparable to another if every one of those features is the same; otherwise you are comparing two different contracts."
+relatedCalculators:
+  - id: annuity-vs-swp
+    label: "Annuity vs SWP"
+  - id: nps-calculator
+    label: "NPS Calculator"
+  - id: retirement-corpus
+    label: "Retirement Corpus Calculator"
+relatedArticles:
+  - deferred-annuities-and-accumulation
+  - money-back-policies-analysed
+  - term-insurance-as-the-foundation
+  - underwriting-disclosure-and-claim-denial
+  - endowment-policies-and-return-reality
+glossaryTerms:
+  - annuity
+  - surrender-value
+  - term-insurance
+  - mortality-charge
+sources:
+  - id: irdai-home
+    supports: "The product regulations and insurer disclosures that govern annuity contracts, the payout variants an insurer may offer, and the policyholder protections attached to them."
+  - id: pfrda-home
+    supports: "The National Pension System framework, including the annuity rules and exit conditions that determine what part of an accumulated corpus must be used to purchase an annuity."
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "Every annuity rate used in this article is an assumption for illustration only, not a quotation from any insurer or intermediary."
+  - "This article describes contract structure and illustrative arithmetic. It is not advice to purchase an annuity, and it does not recommend any payout option."
+openQuestions:
+  - "How should an annuitant weigh the certainty of a level nominal income against the erosion of its purchasing power over a long retirement?"
+  - "Is the loading charged for a return-of-purchase-price option fairly priced relative to the protection it provides?"
+  - "For a household with an inflation-linked essential expense, is any level annuity ever the right mechanism, or only an escalating one?"
+  - "How much does insurer selection matter for an annuity promise that may extend thirty years or more?"
+---
+
+An immediate annuity is the simplest idea in retirement finance and the most misunderstood. You hand an insurer a lump sum; the insurer pays you an income, usually for as long as you live, starting almost at once. The misunderstanding is what that income represents. It is not interest on money that stays invested. It is a combination of interest and a return of your own capital, pooled across everyone who bought the same contract, and it is calibrated so that the pool as a whole pays out what it took in plus a margin. The product is longevity insurance: it removes the risk that you outlive your money by handing that risk to an insurer that can spread it across thousands of lives.
+
+This article covers the immediate variants, how each one converts a lump sum into income, and — because the return is where the sales language is loosest — what an annuity actually delivers under different survival outcomes.
+
+## What an immediate annuity is
+
+An immediate annuity begins payments shortly after the purchase price is paid, in contrast with a deferred annuity, which accumulates first and pays later. The purchase price is the capital handed to the insurer; the annuity rate is the income it buys, usually expressed per year per unit of purchase price.
+
+Two features define the contract.
+
+- **The payout basis.** Whether the income is payable for life, for a fixed number of years, or for whichever is longer, and whether it ceases or continues for a survivor.
+- **The treatment of capital.** Whether any part of the purchase price is returned — to the annuitant's estate on death, to a joint annuitant, or through a guaranteed minimum number of payments — or whether it is retained by the insurer on death.
+
+Those two choices generate almost all the variants, and they explain almost all of the differences between quotes. An insurer's product filings and the contract itself set the terms; this article describes the shapes.
+
+## The payout options and what each trades
+
+| Variant | What it pays | What it costs in income |
+| --- | --- | --- |
+| Life annuity, no capital return | Income for life, stops at death | Highest initial income; nothing returned on death |
+| Life annuity with return of purchase price | Income for life, plus purchase price to nominee on death | Lower income, because the capital guarantee is being funded |
+| Life annuity with a certain period | Income for life, with a minimum number of years guaranteed to the estate | Lower income than pure life; paid for through guaranteed early payments |
+| Joint life, last survivor | Income continues for the surviving spouse until their death | Lowest income of the basic variants, as two lives are covered |
+| Increasing annuity | Income rises by a stated rate each year | Materially lower initial income, funding the escalation |
+| Participating annuity | Income plus possible bonuses from the participating fund | Lower guaranteed income; bonuses are not guaranteed |
+| Variable or market-linked annuity | Payments linked to the performance of chosen funds | Payments can fall as well as rise, subject to any guarantee |
+
+The pattern is consistent. **The insurer accepts the longevity risk in every variant; what changes is how much of the capital risk the annuitant keeps.** A life annuity with no capital return loads all the capital risk onto the annuitant — an early death means the capital is gone — in exchange for the highest income while alive. A return-of-purchase-price variant moves the capital risk back to the insurer, and the lower quoted rate is the price of that transfer. Reading a quote is therefore a matter of asking which risks have been retained.
+
+## Why the annuity rate is not a yield
+
+Consider the cleanest case, a life annuity with no capital guarantee. The insurer holds the purchase price and pays an income for life. For an annuitant who lives a long time, total payments will far exceed the purchase price, because the insurer has been earning a return on the capital it holds. For an annuitant who dies soon, total payments will be far less than the purchase price, and the balance is retained by the insurer.
+
+Because payments include both interest and capital, the quoted annuity rate overstates the return on capital in the ordinary sense. To measure the return properly, the cash flows must be discounted: the purchase price paid out at the start, the payments received in each later year, and — for variants that return capital — the capital returned at death. The discount rate at which those flows net to zero is the internal rate of return, and it depends entirely on **how long the annuitant lives**, because that determines how many payments are received.
+
+This is the key point. An annuity has no single return. It has a schedule of returns, one for each possible duration of life, and the insurer's profitability depends on the pool averaging out to the assumption it priced.
+
+## Comparison with a withdrawal plan
+
+The natural alternative to an annuity is a systematic withdrawal plan: keep the lump sum invested, draw an income from it, and retain whatever is left. The trade is stark.
+
+- **The annuity** offers the certainty of income for life and, in the capital-guaranteed variants, a defined capital outcome; it removes investment and longevity risk from the annuitant. Its returns are fixed at purchase, so a long period of high inflation erodes them.
+- **The withdrawal plan** retains the capital but retains the risks: the income is not guaranteed, markets can fall, and the plan can run out if it is drawn too hard or if the annuitant lives too long.
+
+Neither is superior in the abstract. The annuity is a transfer of risk for a price; the withdrawal plan is a retention of risk for flexibility. The right question is which risks the household can afford to carry. Where income must be certain — for essential expenses — the annuity's certainty is the whole point. Where flexibility and a legacy matter, the withdrawal plan's retained capital is the whole point.
+
+## The link to pension products
+
+For several retirement products, the annuity is not optional but built into the exit rules. Under the National Pension System, at the prescribed exit point a minimum proportion of the accumulated corpus must be used to purchase an annuity and the balance may be withdrawn; the proportions and conditions are set by the PFRDA framework. The exact current percentages must be taken from PFRDA and are deliberately not stated here, because they change and because a figure recalled from memory is the kind of error that matters.
+
+The structural consequence is that many retirees do not choose whether to annuitise; they choose only how, and with which insurer, for the compulsory portion. That makes the payout-option comparison more, not less, important.
+
+## Worked example: the return an annuity actually delivers
+
+An illustrative calculation, not a quotation and not a forecast. Purchase price ₹10,00,000. For the purpose of showing the mechanism, assume an annuity rate of 6 per cent per year under a life annuity with no return of capital, and 5 per cent per year under a life annuity with return of purchase price. These rates are assumptions chosen to illustrate the arithmetic; they are not available from any insurer and must be verified against live quotes.
+
+**Life annuity, no return of capital.** The assumed income is ₹60,000 a year. The internal rate of return depends on how many payments are received. In an illustrative calculation:
+
+| Payments received to | Total received | Illustrative return |
+| --- | --- | --- |
+| Year 5 | ₹3,00,000 | about -30 per cent |
+| Year 10 | ₹6,00,000 | about -8 per cent |
+| Year 15 | ₹9,00,000 | about -1 per cent |
+| Year 20 | ₹12,00,000 | about +2 per cent |
+| Year 25 | ₹15,00,000 | about +3 per cent |
+| Year 30 | ₹18,00,000 | about +4 per cent |
+
+The pattern is the whole story of a life annuity. Death before the purchase price has been recovered in nominal terms delivers a negative return; the cumulative income passes ₹10,00,000 only after about seventeen years. The assumed rate of 6 per cent is approached only with very long survival. This is not a flaw — it is what buying longevity insurance looks like. The annuitant is paying for the certainty of income while alive, and the "return" is a distribution across survival outcomes, not a fixed rate.
+
+**Life annuity with return of purchase price.** The assumed income is ₹50,000 a year, and the ₹10,00,000 purchase price is returned to the nominee on death. Because the capital is returned, an illustrative calculation shows the internal rate of return is close to the assumed 5 per cent regardless of when death occurs: the payments are effectively interest on capital that comes back. The trade is explicit — a lower income in exchange for the capital guarantee — and it can be read straight off the difference between the two quoted rates.
+
+**The speculative element.** Some annuities are participating and may pay bonuses, and escalating annuities raise the income by a stated rate. Both reduce the guaranteed starting income in exchange for possible or certain future increases. The bonuses on a participating annuity are not guaranteed and depend on the insurer's participating fund; the escalation on an increasing annuity is contractual but starts from a lower base. Neither is a free improvement, and neither belongs in the same sentence as the guaranteed income.
+
+## Explain simply
+
+An annuity turns a lump sum into a regular income, usually for life. The insurer can offer that because it pools your money with everyone else's: those who die early subsidise the long lives, and the insurer keeps the difference in the middle. So the income you receive is part interest and part your own money coming back. If you live a long time you get far more than you paid; if you die soon you get much less. That is the deal, and the variants let you decide how much of your capital you want guaranteed back in exchange for a smaller income.
+
+## What this does not tell you
+
+This article explains contract structures and works an illustrative calculation on assumed rates. It does not quote any insurer's annuity rate, and it does not recommend annuitising, delaying annuitisation, or choosing any particular payout option. The returns shown are arithmetic on assumed cash flows conditional on survival; they are not observed returns and they assume no expenses, taxes or insurer margin.
+
+The tax treatment of the purchase price and of annuity income is governed by the Income-tax Act as amended by successive Finance Acts and is deliberately not restated here. Where an annuitisation decision rests on a tax consideration, the current provisions should be read in their current form, and any renumbering introduced by recent Finance Acts should be treated as pending verification. The compulsory-annuitisation percentages for pension products must be taken from PFRDA, not from this article, and the escalation and participation features must be taken from the specific policy document.
+
+## Open questions
+
+- How should an annuitant weigh the certainty of a level nominal income against the erosion of its purchasing power over a long retirement?
+- Is the loading charged for a return-of-purchase-price option fairly priced relative to the protection it provides?
+- For a household whose essential expenses are inflation-linked, is a level annuity ever the right mechanism, or only an escalating one?
+- How much does insurer selection matter for a promise that may extend thirty years or more, and what disclosures should inform that choice?

@@ -11,15 +11,17 @@ difficulty: intermediate
 status: published
 kind: reference
 publishedAt: 2026-10-16
+updatedAt: 2026-10-16
 researchDate: 2026-10-16
 reviewedAt: 2026-10-16
 reviewDue: 2027-02-28
-readingMinutes: 10
+readingMinutes: 12
 applicablePeriods:
   - 'Transfers on or after 23 July 2024'
   - 'AY 2026-27 (FY 2025-26)'
 warnings:
   - 'Tax rules are dated facts, not permanent features. The rates and thresholds in this article reflect the cited primary sources as of 16 October 2026; verify the current position before filing or transacting.'
+  - 'The Income-tax Act, 2025 capital-gains entry in this site''s tax registry is provisional: the substance is confirmed, the new section numbering is not yet individually verified. Confirm any specific 2025-Act section reference against the official mapping utility.'
   - 'This is a reference for education, not tax advice for your circumstances. Filing positions depend on facts this article cannot know.'
 keyTakeaways:
   - 'Long-term gains on STT-paid listed equity are taxed at 12.5% above an aggregate ₹1,25,000 annual exemption, without indexation — the position effective for transfers on or after 23 July 2024.'
@@ -36,9 +38,9 @@ faqs:
   - question: Do I need to hold for 12 months exactly or one day more?
     answer: 'The test in the provision is a holding period of more than 12 months from acquisition. In practice, day-counting depends on exact dates, which is why transaction records matter more than rules of thumb. When a sale is close to the boundary, the dates on your contract notes are the evidence.'
   - question: I bought shares in 2017 — does grandfathering still help me?
-    answer: 'The grandfathering mechanism keyed to the fair market value as on 31 January 2018 continues to apply for assets acquired before that date. It substitutes the higher of the actual cost and the FMV (subject to statutory caps) as the base, and is why old holdings sometimes show less taxable gain than the raw purchase-to-sale difference suggests.'
+    answer: 'The grandfathering mechanism keyed to the fair market value as on 31 January 2018 continues to apply for assets acquired before that date. It substitutes the fair market value, subject to statutory conditions and caps, as the base, and is why old holdings sometimes show less taxable gain than the raw purchase-to-sale difference suggests.'
   - question: Does the new Income-tax Act change this?
-    answer: 'The Income-tax Act, 2025 takes effect from 1 April 2026 with restructured provisions and form numbering. The capital-gains provisions are carried forward in substance; the individual section mapping is flagged in this site''s tax reference as pending verification and will be updated as official guidance is published.'
+    answer: 'The Income-tax Act, 2025 takes effect from 1 April 2026 with restructured provisions and form numbering. The capital-gains provisions are carried forward in substance; the individual section mapping is flagged in this site''s tax reference as provisional — the substance is confirmed but the new numbering is not yet individually verified — and will be updated as official guidance is published.'
 relatedCalculators:
   - { id: post-tax-return, label: Post-Tax Return Calculator }
   - { id: tax-loss-harvesting, label: Tax-Loss Harvesting Calculator }
@@ -46,25 +48,31 @@ relatedCalculators:
 relatedArticles:
   - what-an-investment-return-actually-is
   - nominal-returns-and-the-inflation-toll
-glossaryTerms: [capital-gains, long-term-capital-gains, short-term-capital-gains, stt, indexation, cost-inflation-index]
+glossaryTerms: [capital-gains, long-term-capital-gains, short-term-capital-gains, stt, indexation, cost-inflation-index, surcharge, health-and-education-cess, set-off-and-carry-forward, rebate]
 sources:
   - { id: income-tax-act-1961, supports: 's.112A and the capital-gains machinery — rate, exemption, STT condition and holding period' }
   - { id: itd-efiling-ay2026-27, supports: 'Income Tax Department guidance for AY 2026-27: s.112A eligibility and thresholds as published' }
   - { id: clear-tax-capital-gains, supports: 'Secondary cross-check on rate and exemption changes effective 23 July 2024' }
-  - { id: income-tax-act-2025, supports: 'Successor statute effective 1 April 2026 and its transitional treatment of capital gains' }
+  - { id: clear-tax-slabs, supports: 'Cross-check of the surcharge bands within which the 15% capital-gains cap operates' }
+  - { id: income-tax-act-2025, supports: 'Successor statute effective 1 April 2026 and its carried-forward treatment of capital gains, flagged as provisional' }
 dataConfidence: high
 hasWorkedExample: true
+openQuestions:
+  - 'How will the 2025 Act''s capital-gains sections map on to the 1961 provisions once the Gazette-level mapping is confirmed?'
+  - 'For a resident whose total income is near the rebate limit, do special-rate capital gains affect eligibility, and how?'
+  - 'How should the grandfathering computation treat corporate actions between 31 January 2018 and the sale?'
+  - 'For business-trust units, how do the component-wise distribution rules and the s.112A capital-gains rules interact over a full holding period?'
 ---
 
 Of all the tax rules applying to Indian investors, section 112A is the one most people get approximately right and exactly wrong. They know "12.5% and a lakh twenty-five free" and stop there. The conditions around that sentence — what qualifies, when the exemption applies, what stacks on top, and what happens to losses — decide the actual cheque in cases the summary misses.
 
-This article states the position as verified against the cited sources for **AY 2026-27 (FY 2025-26)**, with every figure dated. It is a reference page: the numbers live in the tax registry that powers this site's calculators, and the primary sources are one click away.
+This article states the position as verified against the cited sources for **AY 2026-27 (FY 2025-26)**, with every figure dated. The numbers live in the tax registry that powers this site's calculators, and the primary sources are one click away.
 
 ## The rule in one paragraph
 
 Where a resident taxpayer transfers a listed equity share, an equity-oriented fund unit, or a business-trust unit on which **securities transaction tax (STT) has been paid**, and the asset was held for **more than 12 months**, the resulting long-term capital gain is taxed at **12.5%**, with the first **₹1,25,000 of aggregate annual gain exempt** — no indexation, no currency-translation benefit. Surcharge applies but is capped at 15% for this class of income; cess applies at 4% on tax plus surcharge.
 
-Every clause of that paragraph is load-bearing. Take them in order.
+Every clause of that paragraph is load-bearing.
 
 ## What qualifies
 
@@ -76,13 +84,25 @@ The ₹1,25,000 exemption is available to **resident individuals and HUFs** for 
 
 The exemption is a single annual threshold applied to the **aggregate** of eligible long-term gains, not a per-transaction allowance, and not per asset or per platform. Gains across your demat account, two mutual fund folios and a REIT position all consume the same ₹1,25,000 for the year. Plans built around "sell just under a lakh in each account" mistake the arithmetic for a reason worth understanding: the exemption is applied once to the total.
 
+It is worth stating what the exemption is *not*. It is not available against short-term gains: the short-term provision for this asset class carries no equivalent free band, so a gain realised after eleven months attracts the flat short-term rate on the whole amount. And for s.112A purposes the exemption is for resident individuals and HUFs; the treatment differs for non-residents.
+
 Used well, the exemption is a small annual gift: a disciplined investor can realise a measured slice of long-term gains each year, pay nothing on the first ₹1,25,000, and continue — but each sale re-enters the base at the new price, so it is a choice between deferral and exemption, not a free lunch. For someone in the accumulation phase, deferral is often worth more; for someone rebalancing anyway, the exemption is waiting to be used.
+
+## Grandfathering: the 31 January 2018 mechanism
+
+For assets acquired before 31 January 2018, the computation does not necessarily begin from the price actually paid. The statute substitutes the fair market value of the holding as on 31 January 2018 for the cost of acquisition where the mechanism applies, subject to statutory conditions and caps. The design intent is to keep appreciation accrued before that date out of the charge introduced for later periods.
+
+The practical effect is that an old holding can show a much smaller taxable gain than the raw purchase-to-sale difference suggests. This article states no figure for the substituted value or the caps: the conditions are technical, they interact with the sale consideration, and the correct values depend on facts, including the fair market value on the relevant date. Treat the mechanism as a reason to check the computation line by line, not a rule of thumb to apply from memory.
 
 ## Surcharge, capped — and why that cap matters
 
-Surcharge on ordinary income rises with total income; it is why a ₹51 lakh salary pays more per extra rupee than a ₹49 lakh one. For capital gains taxed under the special regimes — section 112A among them — the surcharge is **capped at 15%** regardless of income level, because the enhanced rates are not applied to this class of income. An investor with ₹5 crore of salary income and ₹10 lakh of 112A gains does not pay 25% or 37% surcharge on those gains. On top of tax and surcharge, cess is 4%.
+Surcharge on ordinary income rises with total income; it is why a ₹51 lakh salary pays more per extra rupee than a ₹49 lakh one. The bands run from nil up to ₹50 lakh, then 10%, then 15% above ₹1 crore, then 25% above ₹2 crore; above ₹5 crore the new regime stays at 25% while the old regime rises to 37%.
 
-## Worked example, with every figure shown
+For capital gains taxed under the special regimes — section 112A among them — the surcharge is **capped at 15%** regardless of income level, because the enhanced rates are not applied to this class of income. An investor with ₹5 crore of salary income and ₹10 lakh of s.112A gains does not pay 25% or 37% surcharge on those gains. On top of tax and surcharge, cess is 4%.
+
+## Worked examples, with every figure shown
+
+### Example 1: the basic computation
 
 A resident investor buys listed shares for **₹10,00,000** and sells after **20 months** for **₹18,00,000**, with STT paid.
 
@@ -93,21 +113,68 @@ A resident investor buys listed shares for **₹10,00,000** and sells after **20
 
 Effective rate on the full ₹8,00,000 gain: about **11.0%** — the exemption doing its work. Prefer the calculator to this paragraph: the same computation runs on the **post-tax return calculator**, with the exemption, surcharge cap and cess applied inline from the dated registry.
 
+### Example 2: the surcharge cap doing real work
+
+An illustrative computation using only the dated rates above. A resident individual whose total income is above ₹5 crore realises a s.112A long-term gain of **₹51,25,000**.
+
+- Taxable gain after the exemption: ₹51,25,000 − ₹1,25,000 = **₹50,00,000**.
+- Tax at 12.5%: **₹6,25,000**.
+- Surcharge at the capped 15%: **₹93,750** — not the 25% that would apply to ordinary income at this level under the new regime.
+- Cess at 4% of tax plus surcharge: **₹28,750**.
+- **Total: ₹7,47,500**, an effective 14.6% on the full gain.
+
+Had the enhanced surcharge applied, the surcharge alone would have been about ₹65,000 higher (at the 25% new-regime rate), and more again under the old regime's top rate. The cap is not a rounding detail for a high-income investor; it is a material part of why the long-term equity route is treated differently from interest income, which faces the ordinary surcharge scale.
+
+### Example 3: losses and the exemption interacting
+
+Long-term gains and losses on eligible assets are netted within the class before the exemption is applied. Suppose an investor realises a **₹3,00,000** long-term gain on one holding and a **₹60,000** long-term loss on another, both s.112A-eligible with STT paid:
+
+- Net long-term gain: ₹2,40,000.
+- After the exemption: ₹1,15,000 taxable.
+- Tax at 12.5%: ₹14,375; cess ₹575; **total ₹14,950**.
+
+Now suppose the ₹60,000 loss had arisen instead on a long-term asset outside the class — an unlisted holding, say. The loss cannot reduce the s.112A gain, because a s.112A loss sets off only against s.112A-character long-term gains, and the reverse also holds. The netting above would not happen: the ₹3,00,000 gain stands, taxable ₹1,75,000, tax ₹21,875 plus ₹875 cess, **₹22,750** — and the ₹60,000 loss waits, for up to eight assessment years, against future long-term gains of its own kind.
+
 ## Losses: narrow set-off, long carry-forward
 
-A long-term capital loss on 112A-class assets may be set off only against long-term capital gains, and a 112A loss cannot be used against gains outside the class — a point many portfolios discover in a correcting market. Unused long-term losses carry forward **up to eight assessment years**, provided the return for the loss year was filed by the due date. That last condition is the one people miss: filing late, even with an otherwise clean position, can extinguish the carry-forward.
+A long-term capital loss on s.112A-class assets may be set off only against long-term capital gains, and a s.112A loss cannot be used against gains outside the class — a point many portfolios discover in a correcting market. Unused long-term losses carry forward **up to eight assessment years**, provided the return for the loss year was filed by the due date. That last condition is the one people miss: filing late, even with an otherwise clean position, can extinguish the carry-forward.
 
 The asymmetry is deliberate: the government is willing to wait eight years, but only for those who file on time, and only within the corridor of long-term gains.
 
-## Advance tax: due as you realise, not at filing
+## How s.112A sits beside the other capital-gains regimes
 
-Large capital gains are not invisible to the instalment system. If your tax liability for the year exceeds the threshold, advance tax is payable in four instalments as the year runs — and a gain realised in, say, September puts two instalments in play immediately. Waiting until filing to pay invites interest on the shortfall. The **advance-tax schedule calculator** on this site lays out the due dates and computes the instalment effect of gains realised in any quarter. This is also where short-term gains, taxed at their own higher rate, tend to collide with reality: a trading-heavy year can create an instalment obligation long before the money is "kept".
+The s.112A summary makes most sense next to the provisions it is easily confused with.
 
-## Filing mechanics — and the Act transition
+| Provision | Asset | Holding period | Rate | Annual exemption | Indexation |
+| --- | --- | --- | --- | --- | --- |
+| s.111A | Listed equity and equity-oriented funds, STT paid | 12 months or less | 20% flat | None | Not available |
+| s.112A | Listed equity, equity-oriented funds and business-trust units, STT paid | More than 12 months | 12.5% | ₹1,25,000 aggregate, resident individuals and HUFs | Not available |
+| s.112 | Other long-term assets — gold, unlisted shares, most property | More than 24 months for most, including property and unlisted shares | 12.5% | None (separate s.54-series routes) | Not available for transfers on or after 23 July 2024, except a transitional 20%-with-indexation option for resident individuals and HUFs on land or buildings acquired before that date |
+| s.50AA | Specified mutual funds, market-linked debentures and unlisted bonds acquired on or after 1 April 2023 | Irrelevant — always deemed short-term | Applicable slab rate | None | Not available |
 
-The gain is reported in the return for the relevant year; the Income Tax Department's AY 2026-27 guidance confirms the s.112A treatment and the exemption threshold in the context of ITR eligibility. Keep the trail: broker contract notes, the brokers' capital-gains statements, and the transaction-level dates — the day-counting and STT evidence live there.
+Two comparisons matter. First, the threshold separating short-term from long-term is 12 months for listed equity but 24 months for gold, unlisted shares and most other assets: the same twelve-month holding that earns the long-term rate on shares earns the short-term rate on a gold ETF. Second, indexation is unavailable for s.112A entirely, and for other assets on transfers on or after 23 July 2024 — except the transitional option that lets a resident individual or HUF choose 20% with indexation on land or buildings acquired before that date. Debt-oriented mutual funds acquired on or after 1 April 2023 sit in a third regime again, where s.50AA treats the gain as short-term at slab rates however long the units are held.
 
-One genuine forward-looking caveat, recorded plainly: the **Income-tax Act, 2025** takes effect from **1 April 2026**, replacing the 1961 Act with restructured provisions and renumbered forms (the familiar Form 16 and 26AS give way to new numbers in the new architecture). The capital-gains provisions are carried forward in substance; the individual section mapping for the new Act is flagged in this site's tax registry as **pending verification**, and this article will be updated — with its updated date changed and the correction logged — as official guidance settles it.
+## Advance tax and filing, as the year runs
+
+Large capital gains are not invisible to the instalment system. If your tax liability for the year exceeds the threshold, advance tax is payable in four instalments, falling due on **15 June, 15 September, 15 December and 15 March**. Capital gains are treated as income of the quarter in which they arise, so a gain realised in September is included in the September instalment rather than being spread evenly across the year; a shortfall attracts interest under the advance-tax provisions, which also cover failure to pay the balance before the year-end. The **advance-tax schedule calculator** on this site lays out the due dates and computes the instalment effect of gains realised in any quarter. Short-term gains, taxed at their own higher rate, can create an instalment obligation long before the money is "kept".
+
+The gain is reported in the return for the relevant year; the Income Tax Department's AY 2026-27 guidance confirms the s.112A treatment and the exemption threshold in the context of ITR eligibility. Keep the trail: contract notes, capital-gains statements and transaction dates — the day-counting and STT evidence live there.
+
+Two forward-looking points. The **Income-tax Act, 2025** takes effect from **1 April 2026**, replacing the 1961 Act with restructured provisions and renumbered forms. The capital-gains provisions are carried forward in substance, but the individual section mapping under the 2025 Act is marked **provisional** in this site's tax registry: the substance is confirmed, the new section numbering is not yet individually verified against the Gazette text. Readers relying on a specific section reference should confirm it through the Income Tax Department's official mapping utility.
+
+The second concerns the rebate. The Act provides a rebate for resident individuals whose total income is below a prescribed limit; whether and how it interacts with income taxed at special rates is technical. This article states no figure for the limit, because it is set by the Act and revised by Finance Acts — verify it for the year before relying on it.
+
+## Where the summary misleads
+
+A rule of thumb is a compression, and compressions lose the cases that matter. The places this summary most often misleads:
+
+- **The exemption is aggregate and annual.** It is consumed across every eligible account and holding.
+- **Using it resets your base.** Realising gains to soak up the exemption trades deferral for exemption; it is not free.
+- **The STT condition can fail.** Off-market transfers and some other transactions do not carry STT, and the concessional treatment with them.
+- **Losses are ring-fenced by character.** A s.112A loss stays inside the class; so does a gain it might have offset.
+- **Cess always applies,** and effective rates are always above the headline 12.5%.
+- **The surcharge cap limits the rate, not the effective rate,** which still varies with the surcharge band your total income falls in.
+- **Advance tax is due as the gain arises,** not when you file.
 
 ## The summary card
 
@@ -124,3 +191,10 @@ One genuine forward-looking caveat, recorded plainly: the **Income-tax Act, 2025
 | Advance tax | Instalments as gains are realised during the year |
 
 Read the table as a snapshot, not a fixture: each line carries its effective date, and the sources above allow every one of them to be checked in the original. That is the standard this library holds itself to — and the reason the tax reference exists as a living document rather than a static page.
+
+## Open questions
+
+- How will the 2025 Act's capital-gains sections map on to the 1961 provisions once the Gazette-level mapping is confirmed?
+- For a resident whose total income is near the rebate limit, do special-rate capital gains affect eligibility for the rebate, and how?
+- How should the grandfathering computation treat corporate actions — splits, bonuses, mergers — between 31 January 2018 and the sale?
+- For business-trust units, how do the component-wise distribution rules and the s.112A capital-gains rules interact over a full holding period?

@@ -1,0 +1,195 @@
+---
+title: "Secured and Unsecured Debentures: What Recovery Depends On"
+description: "Two debentures can pay the same coupon and still be different investments. What security creation, charge registration and guarantees actually put behind a promise to pay, and how the recovery hierarchy decides who is paid first."
+shortTitle: "Secured vs Unsecured Debentures"
+category: debt
+series: debt-encyclopedia
+seriesOrder: 29
+topics: ["debentures", "security", "charge registration", "recovery", "creditor hierarchy"]
+tags: ["debt", "corporate-bonds", "credit-risk", "insolvency"]
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - "'Secured' is a description of a legal arrangement, not a score: what matters is what is charged, in whose favour, whether the charge was registered, and what the asset is worth when it is needed."
+  - "A charge that is not registered within the period the Companies Act prescribes may be ineffective against a liquidator and other creditors, so the registry entry is part of the security and not a formality."
+  - "A corporate guarantee substitutes one obligor for another; it improves recovery only to the extent the guarantor is itself able to pay."
+  - "In insolvency, the order in which claims are paid is set by statute, and a secured claim can still rank behind statutory dues and resolution costs."
+  - "Two debentures from the same issuer, with the same coupon and the same maturity, can differ in expected recovery by more than the coupon difference an investor is arguing over."
+  - "Expected loss is probability of default multiplied by loss given default, and security acts on the second term rather than the first."
+faqs:
+  - question: "If a debenture is secured, does that mean I get my money back?"
+    answer: "No. Security improves the position of the debenture holder in a workout, but recovery depends on the value of the charged asset at the time, the validity and priority of the charge, the claims that rank ahead, and how long the process takes. It changes the expected loss, not the possibility of loss."
+  - question: "What is the difference between a fixed charge and a floating charge?"
+    answer: "A fixed charge attaches to identified assets that the company cannot ordinarily deal with freely. A floating charge hovers over a changing pool of assets such as stock and receivables until it crystallises on default or winding up, and its priority is generally weaker than that of a fixed charge."
+  - question: "Why does charge registration at the corporate registry matter to a retail holder?"
+    answer: "Because the register is the public evidence that the security exists. An unregistered charge can be treated as ineffective against the liquidator and other creditors, which is the moment when the holder most needs it to work."
+  - question: "Can a guarantee make an unsecured debenture safe?"
+    answer: "It can make it safer, by adding a second obligor, but only to the credit quality of the guarantor. If the guarantor is the parent of the issuer and shares its cash flows, the guarantee may add less protection than the document suggests."
+  - question: "How does the debenture trustee fit in?"
+    answer: "The trustee holds the security and enforces rights on behalf of all holders, which is why the trust deed and the creation of security are documented in favour of the trustee rather than of each investor individually. The trustee's powers and duties come from the trust deed and the applicable regulations."
+relatedCalculators:
+  - id: default-recovery
+    label: "Expected Credit Loss"
+  - id: credit-spread
+    label: "Credit Spread Calculator"
+  - id: bond-price-yield
+    label: "Bond Price and Yield"
+relatedArticles:
+  - deposit-insurance-mechanics-per-depositor
+  - corporate-fixed-deposits-and-nbfc-deposit-risk
+  - treasury-bills-as-the-risk-free-anchor
+  - dated-gsecs-and-the-coupon-myth
+glossaryTerms: [loss-given-default, probability-of-default, credit-spread, coupon-rate]
+sources:
+  - id: sebi-home
+    supports: "The framework for public issue and listing of non-convertible debentures, the role and obligations of the debenture trustee, disclosure in the offer document, and the rules on credit enhancement and guarantees for debt securities"
+  - id: mca-home
+    supports: "Statutory company filings, the registration of charges against a company's assets, master data on the entity, and the annual accounts used to verify what a borrower actually owns and owes"
+  - id: ibbi-home
+    supports: "Corporate insolvency resolution and liquidation mechanics, the treatment of secured and unsecured claims, and published recovery outcomes under the Insolvency and Bankruptcy Code"
+  - id: nclt-judgments
+    supports: "The judicial treatment of recovery claims, the moratorium, the ranking of creditors and the practical outcome of proceedings referenced in the discussion of the recovery hierarchy"
+  - id: bcbs-credit-risk
+    supports: "The formal definitions of loss given default, probability of default and expected credit loss used to compare recovery between a secured and an unsecured claim"
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+hasDiagram: true
+warnings:
+  - "No issuer, instrument or trustee is named or evaluated in this article. The description is of structure and law in general terms."
+  - "Recovery rates, default probabilities and expected-loss figures in the worked example are illustrative assumptions chosen to show the arithmetic. They are not observations and not estimates for any issuer."
+  - "The exact statutory periods for charge registration, the priority ordering in insolvency and the monetary caps within it are set by legislation and rules that change. They are flagged here as needing verification at the Ministry of Corporate Affairs and IBBI rather than stated from memory."
+applicablePeriods: ["FY 2025-26"]
+openQuestions:
+  - "For secured Indian debentures in practice, how often does the value realised on the charged asset, net of costs and senior statutory dues, approach the security cover stated at issue?"
+  - "How much time typically passes between default and a distribution to debenture holders, and how should that delay be priced?"
+  - "Do guarantees from a parent or a group company change realised recovery measurably, or do they tend to fail in the same stress that causes the default?"
+  - "When two issues from one issuer differ only in security, how much of the yield gap in the secondary market reflects the security difference rather than liquidity?"
+---
+
+Two debentures can carry the same coupon, the same maturity and the same issuer name, and still be different investments. One may have a first claim on a specific asset, registered at the corporate registry and enforceable through a trustee. The other may be a plain promise to pay, ranked behind everything with a charge and paid from whatever is left. On a liquid secondary market the difference shows up in price; in a stress it shows up in recovery. This article is about what actually stands behind a promise to pay, and why the answer is more specific than the word "secured".
+
+Nothing here names or evaluates a real issuer, trust deed or issue. The mechanisms described are general.
+
+## Explain simply
+
+Think of lending money to a shop. An unsecured loan is a handshake with a repayment date: if the shop shuts, you queue with everyone else the shop owes. A secured loan is the same handshake plus a signed claim on a named asset — the freezer, the delivery van — which you can enforce if the shop stops paying. The claim is only as good as three things: whether the asset really exists and is worth what is claimed, whether your claim on it was properly recorded and ranks ahead of others, and whether the asset will still be there by the time you are allowed to take it. "Secured" tells you a claim was intended. It does not tell you the claim will produce cash.
+
+## The two contracts, side by side
+
+| Feature | Secured debenture | Unsecured debenture |
+| --- | --- | --- |
+| Claim on assets | Against specified or floating assets, through the trustee | Against the issuer generally, as an ordinary creditor |
+| Rank | Ahead of unsecured creditors to the extent of the charge | Behind secured creditors and any statutory priority claims |
+| Public evidence | Charge registered at the corporate registry and searchable | Not applicable |
+| Typical stated protection | Security cover, covenants, sometimes a guarantee | Covenants and, at times, a negative pledge |
+| What drives recovery | Asset value, charge validity, priority, process length | Residual value of the estate after prior claims |
+| Effect on expected loss | Reduces loss given default | Leaves loss given default close to the unsecured benchmark |
+
+The table is deliberately about mechanics rather than about safety. A coupon difference between the two issues is compensation for a difference in the second and third columns, and nothing else.
+
+## How security is created
+
+Security for a debenture is not created by the language in the offer document alone. It is created by a chain of documents and filings, and a break anywhere in the chain is where recovery erodes.
+
+```mermaid
+graph LR
+  A[Issue and trust deed] --> B[Charge created over assets]
+  B --> C[Charge registered at registry]
+  C --> D[Trustee holds security]
+  D --> E[Default and enforcement]
+  E --> F[Realisation and distribution]
+```
+
+1. **The trust deed.** The issuer and a debenture trustee execute a trust deed that sets out the security, the covenants, the events of default and the trustee's powers. Individually, holders have limited ability to act alone; the trustee acts for the body of holders.
+2. **Creation of the charge.** The charge may be a **fixed charge** over identified assets, or a **floating charge** over a changing pool such as stock and receivables. Mortgages over immovable property, hypothecation of movables and pledges each have their own formalities.
+3. **Registration.** The charge is filed with the registrar of companies within the period the Companies Act prescribes. The registry record is what makes the charge visible to lenders, buyers and a future liquidator.
+4. **Enforcement.** On default, the trustee enforces the security subject to the trust deed and applicable law, and the proceeds are applied to the holders after costs and any claims ranking ahead.
+
+The single most under-read step is the third. The consequence of failing to register a charge within the statutory period is severe and is set out in the Companies Act: the charge can be treated as ineffective against the liquidator and creditors. An investor who never looks at the registry is relying on a term in an offer document rather than on a recorded right. The precise registration period and the late-filing provisions are statutory details, and they are flagged here as needing verification at the Ministry of Corporate Affairs rather than quoted from memory.
+
+## What a floating charge does and does not do
+
+A floating charge is security over a class of assets that keeps changing — inventory, receivables, sometimes cash — and the company trades those assets freely until the charge **crystallises**, typically on default, on winding up or on an event specified in the document. Two properties matter to a debenture holder:
+
+- **Weaker priority.** A floating charge is generally subordinate to a fixed charge over the same assets, and is exposed to statutory preferential claims, so the effective cover is thinner than the headline figure.
+- **A disappointed pool.** By the time a floating charge crystallises, the assets it covers are often the ones a stressed company has already consumed. A charge over receivables collects only what the receivables are worth in a stressed market.
+
+The practical test is whether the security covers assets that hold value independent of the issuer's continuing business, and whether the charge over them is fixed and registered.
+
+## Guarantees and credit enhancement
+
+A guarantee adds an obligor. When a parent, a promoter or a group company guarantees a debenture, the holder acquires a second claim if the issuer fails to pay. The value of that claim is exactly the credit quality of the guarantor, assessed as if the holder had lent to it directly.
+
+Two failures are common. First, the guarantee may be structurally weak — limited in amount, subject to conditions, or expiring before the debenture matures. Second, the guarantor may fail in the same event that breaks the issuer: a parent whose only cash flow is dividends from the borrower is not a second line of defence. For these reasons, market convention and the regulatory framework treat certain guarantees and credit-enhancement arrangements with particular care, and the offer document is the place to check what the guarantee actually covers and for how long.
+
+## The recovery hierarchy
+
+When the issuer enters insolvency, the order of payment is decided by statute and supervised by the tribunal, not by the order in which creditors appear on a list. The shape of the waterfall is broadly this, and the details, caps and conditions are statutory:
+
+1. **Resolution or liquidation costs** and the expenses of running the process.
+2. **Secured creditors**, to the extent of realising the security, with the ability in some circumstances to relinquish the charge and claim as unsecured creditors, which changes their ranking.
+3. **Workmen and employee dues**, within the limits the statute sets, and which in some orderings rank alongside secured creditors.
+4. **Financial debts of unsecured creditors**, which is where an unsecured debenture typically sits.
+5. **Government and other statutory dues**, then any surplus to shareholders.
+
+Two implications follow for a debenture holder. Security does not place a claim at the very top of the queue, because process costs and certain statutory dues precede it. And an unsecured claim is not simply last — it belongs to a defined class with a defined position, which is precisely why the class matters more than the adjective.
+
+The moratorium that accompanies an insolvency proceeding also freezes individual enforcement, so a secured holder cannot simply walk in and take the asset; the claim is worked out within the process. The exact ordering, the statutory caps and the treatment of secured creditors who relinquish security are matters to verify against IBBI's framework and the tribunal's decisions rather than to take from a summary.
+
+## Why the coupon is not the comparison
+
+An investor comparing two bonds often argues about the coupon or the yield. The decision that actually differs is the expected recovery, and expected loss is a two-part product:
+
+$$ \text{Expected loss} \approx PD \times LGD $$
+
+Probability of default is largely a property of the issuer; loss given default is largely a property of the instrument. Security, seniority and guarantees act on the second term. That is why two issues from one issuer — identical in coupon — can differ in expected loss by more than the coupon gap being debated, and why a rating that attaches to the issuer rather than the instrument can be misleading at exactly this decision point.
+
+## Worked example: an illustrative recovery comparison
+
+The following is an illustrative calculation, not an observation of any market and not an estimate for any issuer.
+
+Assume a ₹10,00,000 holding in an issuer with an assumed one-year probability of default of 4 per cent, and two instruments from that issuer. For the secured debenture, assume a recovery rate of 70 per cent; for the unsecured one, 25 per cent. Loss given default is one minus recovery:
+
+$$ \text{LGD} = 1 - \text{recovery rate} $$
+
+Expected loss is then $0.04 \times 0.30 = 1.2$ per cent for the secured instrument, or ₹12,000, and $0.04 \times 0.75 = 3.0$ per cent for the unsecured one, or ₹30,000. The difference is 1.8 percentage points of exposure for the same issuer, the same default assumption and the same coupon. That gap is what the security is worth, and it has to be compared against whatever yield difference the two instruments are actually offering. Every input above is an assumption printed so that it can be challenged.
+
+## Covenants, and what they are for
+
+Security is a claim on assets after things go wrong. Covenants are the terms that try to keep the asset base intact before they do. The clauses to look for are the same in most trust deeds:
+
+- **Security cover** — a required ratio of charged asset value to outstanding debentures, and the consequences of breaching it.
+- **Negative pledge** — a promise not to create further charges ranking ahead of, or equally with, the debentures.
+- **Restrictions on further borrowing, disposal of assets, or change of control.**
+- **Events of default**, including cross-default with other lenders, and what the trustee may then do.
+- **Acceleration and redemption terms**, including any early-redemption right and what it is priced at.
+
+Covenants only matter if someone monitors them. The trustee and the holders' meeting are the mechanism, and a covenant reported in an annual certificate without enforcement is a description of intent.
+
+## The four lanes, in this context
+
+- **Contractual.** The coupon, the security, the guarantee and the covenants are all contractual. The recovery hierarchy is statutory.
+- **Historical realised.** Published recovery outcomes in Indian insolvency describe past proceedings and vary widely with the estate, the tribunal and the market at the time.
+- **Model-estimated.** The default probability, recovery rate and expected loss in the example above are model inputs.
+- **Speculative.** The gain from a spread narrowing as an issuer is upgraded, or the loss when credit conditions weaken, sits in this lane and is untouched by whether the instrument is secured.
+
+## What this does not tell you
+
+- **It does not value any specific security.** Whether a given charge is worth anything depends on the asset, the encumbrances already on it and the market at enforcement.
+- **It does not establish priority.** Priority is decided by the charge documents, the registry, the statute and the tribunal.
+- **It does not fix the timeline.** Recovery timing affects the return even when the amount is unchanged, because a rupee received years later is worth less.
+- **It does not replace the registry search.** Charges, guarantees and any subsisting encumbrance should be verified in filings at the corporate registry.
+- **It does not cover conversion features.** A convertible or partly convertible instrument mixes debt with equity and introduces dilution, which is a separate analysis.
+
+## Open questions
+
+- For secured Indian debentures in practice, how often does the net realisation on the charged asset approach the security cover stated at issue?
+- How long does a holder typically wait between default and distribution, and how should that delay be priced into the yield at purchase?
+- Do parent or group guarantees measurably improve recovery, or do they fail in the same stress that causes the default?
+- When two issues from one issuer differ only in security, how much of the observed yield gap reflects the security and how much reflects secondary-market liquidity?

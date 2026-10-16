@@ -1,0 +1,171 @@
+---
+title: 'The Sharpe Ratio and Reward per Unit of Risk'
+description: 'The reward-to-variability ratio puts excess return and dispersion on one scale, which is why it is the default way to ask whether extra return justified extra volatility. This article derives it, shows how the answer changes with the measurement window and the risk-free rate, and sets out the assumptions it silently relies on.'
+shortTitle: 'The Sharpe Ratio'
+category: financial-mathematics
+series: financial-mathematics
+seriesOrder: 23
+topics: ['Sharpe ratio', 'risk-adjusted return', 'measurement windows']
+tags: ['financial-mathematics', 'risk', 'performance']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'The Sharpe ratio is average excess return divided by the standard deviation of returns, so it answers how much return above the risk-free rate was earned per unit of dispersion.'
+  - 'It is only meaningful when both portfolios are measured on the same frequency, over the same window, against the same risk-free rate and in the same currency.'
+  - 'Annualising a periodic ratio multiplies it by the square root of the number of periods, which assumes returns are independent and identically distributed.'
+  - 'The ratio is invariant to leverage applied at the risk-free rate, because borrowing scales the numerator and the denominator equally — a higher ratio is not a higher return.'
+  - 'It inherits every limitation of standard deviation, including indifference to skew, to order and to the risk hidden in infrequently valued holdings.'
+  - 'A ratio estimated from a handful of periods is noisy: removing a single year from a short sample can move it by more than a whole point.'
+relatedCalculators:
+  - id: monte-carlo
+    label: 'Monte Carlo Simulator'
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: bond-price-yield
+    label: 'Bond Price and Yield'
+relatedArticles:
+  - cagr-versus-xirr
+  - logarithmic-returns-in-practice
+  - compounding-discrete-and-continuous
+  - deflating-returns-with-cpi
+glossaryTerms: [compounding, effective-annual-rate, fisher-equation]
+sources:
+  - id: sharpe-1966
+    supports: 'The origin of the reward-to-variability ratio now called the Sharpe ratio, and that paper''s own caveats about using a single ratio to rank portfolios'
+  - id: markowitz-1952
+    supports: 'The mean-variance framework that makes excess return per unit of dispersion a meaningful summary, and the role of covariance between holdings'
+  - id: bis-home
+    supports: 'Research on the statistical properties of asset returns and on leverage, relevant to the ratio''s behaviour under borrowing and under non-normal return distributions'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+faqs:
+  - question: 'Is a higher Sharpe ratio always better?'
+    answer: 'Within a comparison that holds frequency, window, risk-free rate and mandate constant, a higher ratio means more excess return per unit of dispersion. Across incomparable funds, or across a short window, a higher ratio may mean nothing more than a luckier sample.'
+  - question: 'Why does leverage not change the Sharpe ratio?'
+    answer: 'Because borrowing at the risk-free rate scales the expected excess return and the standard deviation by the same factor. The ratio of the two is unchanged, which is exactly why the ratio measures efficiency rather than return.'
+  - question: 'Can the Sharpe ratio be negative?'
+    answer: 'It is negative whenever the average return is below the risk-free rate, because the numerator is then negative. A negative ratio is hard to interpret and is one of the recognised cases where the measure should not be used for ranking.'
+  - question: 'Which window should I use?'
+    answer: 'One long enough to contain a range of conditions and reported consistently. A ratio computed over a bull phase and one computed over a full cycle are not the same measurement, and mixing the two in a ranking produces artefacts rather than information.'
+warnings:
+  - 'Every return series, mean, standard deviation and ratio here is an illustrative construction that demonstrates the arithmetic; none is observed market data and none is attributed to a scheme, index or period.'
+openQuestions:
+  - 'Which risk-adjusted measure communicates more honestly than the Sharpe ratio for portfolios with option-like or credit-like payoffs that are not normally distributed?'
+  - 'For Indian funds, how much does the choice of risk-free proxy change the ranking of schemes on a reward-to-variability basis?'
+  - 'Should a ratio estimated from fewer than about sixty monthly observations be published at all, or shown with an interval?'
+---
+
+Ask whether a fund earned enough for the risk it took and the honest answer is a ratio, not a return. The reward-to-variability ratio — universally called the Sharpe ratio after the 1966 study that introduced it — divides the average return earned above the risk-free rate by the standard deviation of returns. It is compact, universally computed, and routinely quoted without the three things that decide what it means: the frequency, the window, and the risk-free rate it was measured against. This article derives the measure, shows how sensitive it is to each of those choices, and states precisely what it assumes.
+
+## Explain simply
+
+A raw return tells you how much a portfolio made but not what it had to endure to make it. The Sharpe ratio fixes that by comparing return above the safe rate with how much the return bounced around. Divide the extra return by the typical size of the bounce. If two funds both returned twelve per cent but one did it in a smooth line and the other only by surviving a violent year, the smooth one has the higher ratio, because it delivered the same reward with less dispersion. The catch is that "typical size of the bounce" is a choice: it depends on how often you measured, over how long, and against which safe rate. A ratio without those facts attached is a number looking for a claim.
+
+## Constructing the ratio
+
+Let the periodic returns be a series, let the risk-free rate for the same period be a constant, and let the standard deviation of the returns be the sample figure. The excess return in each period is the return above the risk-free rate, and the ratio compares its average to the dispersion:
+
+$$ SR = \frac{\bar{r} - r_f}{s} \qquad s = \sqrt{ \frac{1}{n - 1} \sum_{t=1}^{n} \left( r_t - \bar{r} \right)^2 } $$
+
+Two features of the construction are easy to miss. The numerator is an *arithmetic* mean excess return, so it inherits the outlier sensitivity of any average. The denominator is the sample standard deviation, the same measure of dispersion used everywhere else, with the same square-root-of-time convention for rescaling to another horizon. Nothing in the ratio requires returns to be well behaved; the formula computes regardless. Whether the resulting number means what a reader thinks it means is a separate question, taken up below.
+
+## Annualising the ratio
+
+A ratio computed from monthly data can be put on an annual scale, but the scaling is not the simple multiplication used for a return:
+
+$$ SR_{\text{annual}} = SR_{\text{monthly}} \times \sqrt{12} $$
+
+The reason is that both numerator and denominator carry a frequency. Annualising a monthly excess return multiplies it by twelve, while annualising a monthly standard deviation multiplies it by the square root of twelve, and the twelve cancels against one of the two factors of the root:
+
+$$ SR_{\text{annual}} = \frac{12 \left( \bar{r} - r_f \right)}{\sqrt{12} \, s} = \sqrt{12} \cdot \frac{\bar{r} - r_f}{s} = SR_{\text{monthly}} \times \sqrt{12} $$
+
+The scaling is exact only if returns are independent and identically distributed and the risk-free rate is constant in the same terms. When returns cluster, as market returns do, the square-root rule misstates the annual figure, exactly as it does for volatility itself. A monthly ratio of 0.23 becomes an annual ratio of about 0.80 under the shortcut, and that 0.80 is a convention rather than a measured property.
+
+## Why divide by dispersion at all
+
+The ratio is not an arbitrary construction. In the mean-variance framework, where risk is summarised by the variance of portfolio returns and returns are traded off against it, the quantity that measures how efficiently a portfolio converts risk into excess return is precisely the excess return per unit of dispersion. The framework's central result is that risk is a property of the combination, not of the parts, so the relevant dispersion is that of the whole portfolio, including the correlations between its holdings.
+
+That is what gives the ratio its meaning and also its boundary. It ranks portfolios that sit in the same mean-variance world: same asset classes, similar distributional shape, comparable liquidity, comparable measurement convention. Move outside that world and the units stop being comparable. The original paper proposed the measure for ranking portfolios and was itself careful about the conditions, and that care remains the right posture.
+
+## Which return runs through the numerator
+
+Returns enter the ratio in one of four distinct forms, and they must not be blended silently.
+
+- **Historical realised return.** What the portfolio actually earned, computed from observed values. This is the only lane that is observed, and it is available only in the past.
+- **Contractual return.** A rate fixed by agreement, such as the coupon on a bond or the rate on a deposit. It is known in advance and is not a performance outcome.
+- **Model-estimated return.** An output of an assumption-driven model, such as a Monte Carlo simulation or a valuation model. It is a consequence of its inputs, not an observation.
+- **Speculative return.** A figure that is neither observed, contracted nor derived from a stated model, but simply asserted. It has no place in a ratio presented as evidence.
+
+A Sharpe ratio built on realised excess returns is a historical statistic. A Sharpe ratio built on a model's expected excess return is a property of the model. Both can be reported, but the label must say which one is being shown, because the same formula over different lanes produces incomparable numbers.
+
+## Dependence on the measurement window
+
+The ratio is more window-sensitive than either of its parts, because the numerator and the denominator respond differently to the sample. The average excess return is a slow, noisy quantity that a good period inflates; the standard deviation is dominated by how turbulent the sample happened to be. A short, calm stretch therefore raises the ratio twice: it flatters the average and depresses the dispersion. This is not a subtle effect, and it is the single most common way the ratio misleads.
+
+There is a second window effect that is purely statistical. A ratio estimated from n observations has an estimation error that falls only with the square root of n, so doubling the sample does not double the precision — it improves it by about forty per cent. A ratio computed from twelve monthly observations is therefore a very rough estimate of the quantity it claims to measure, and one computed from five annual observations is rougher still.
+
+## Worked example: five years of excess returns
+
+This is an illustrative construction, not observed data. Suppose a portfolio's annual returns in excess of the risk-free rate over five years are, in per cent: +8, +6, −4, +10, +2.
+
+The average excess return is 22 divided by 5, or **+4.4% a year**. The deviations from that average are +3.6, +1.6, −8.4, +5.6 and −2.4, whose squares sum to 123.20. Dividing by four gives a sample variance of 30.80 and a standard deviation of about **5.55%**. The ratio is therefore
+
+$$ SR = \frac{4.4}{5.55} \approx 0.79 $$
+
+Now remove one year and recompute, exactly as an investor comparing two start dates would do.
+
+| Sample | Mean excess | Standard deviation | Ratio |
+| --- | --- | --- | --- |
+| All five years | +4.4% | 5.55% | 0.79 |
+| Drop the worst year, −4% | +6.5% | 3.42% | 1.90 |
+| Drop the best year, +10% | +3.0% | 5.29% | 0.57 |
+
+Removing a single annual observation moves the ratio from 0.79 to either 1.90 or 0.57. The finding is not that either number is wrong; it is that a ratio quoted from a handful of annual observations has an uncertainty far larger than the differences typically claimed between funds. Any comparison that hinges on a gap of a few tenths, computed over a few years, is comparing noise with noise.
+
+## Leverage invariance and the risk-free rate
+
+Two further properties follow from the algebra and both are frequently misread.
+
+First, the ratio is unchanged by leverage applied at the risk-free rate. If a portfolio is scaled by a factor k, financed partly by borrowing at the risk-free rate, the excess return and the standard deviation both scale by k:
+
+$$ SR(k) = \frac{k \left( \bar{r} - r_f \right)}{k \, s} = \frac{\bar{r} - r_f}{s} = SR $$
+
+So a leveraged portfolio is not a higher-quality portfolio by this measure; it is the same portfolio with a larger position. A higher ratio never by itself means a higher rupee return, and a lower ratio never by itself means a worse outcome.
+
+Second, the numerator depends on the risk-free rate chosen, and the ratio moves with it. For a portfolio with an average return of 10 per cent and a standard deviation of 12 per cent, the ratio is 0.33 against a 6 per cent risk-free rate, 0.50 against 4 per cent, and 0.25 against 7 per cent. Two funds measured against different risk-free proxies are not comparable, even when both used the same window.
+
+## Where the ratio misleads
+
+- **Skew and fat tails.** The ratio uses only the first two moments. A portfolio that sells insurance collects steady premiums punctuated by rare large losses; it can display an enviable ratio right up to the moment it does not. The distribution, not the ratio, holds the information.
+- **Suppressed volatility.** Holdings valued infrequently record stale prices, which smooth the measured series and depress the denominator. The ratio rises because the risk has moved out of the measurement, not out of the portfolio.
+- **Incomparable mandates.** Ranking an equity fund against a debt fund, or a concentrated portfolio against a diversified one, asks the ratio to compare quantities defined on different distributions.
+- **Negative or near-zero numerators.** A negative average excess return produces a negative ratio whose interpretation is awkward, and a numerator close to zero produces a ratio dominated by whatever the denominator happened to be.
+- **Discretionary windows and frequencies.** A start date, an end date and a measurement frequency chosen after the fact can move the ratio by more than any genuine difference in skill.
+- **Gross versus net.** Fees reduce realised return and may reduce volatility, so the ratio on gross returns is not the ratio an investor experiences.
+
+## How to compare on a risk-adjusted basis
+
+1. **Same frequency.** Monthly against monthly, or annual against annual, never mixed.
+2. **Same window and the same start and end dates.** Ideally one window long enough to contain both a rising and a falling phase.
+3. **Same risk-free proxy and same currency.** State the proxy explicitly; it is a choice, not a constant of nature.
+4. **Same lane.** Historical with historical, model with model, and never speculative with either.
+5. **Report the sample size.** A ratio from sixty months and a ratio from twelve months do not deserve equal confidence.
+6. **Look at shape too.** Skewness, the worst period, and the maximum drawdown belong next to the ratio, because they describe what the ratio cannot.
+
+## What this does not tell you
+
+The ratio does not tell you the return you will earn, the loss you might suffer, or the probability of either. It does not rank portfolios whose distributions differ in shape, and it does not survive a change of window without changing its value. It assumes a risk-free rate that is itself a modelling choice, and it treats dispersion as the definition of risk, which is one definition among several. Used within a consistent comparison, it is a useful summary. Used as a verdict, it will eventually be contradicted by a month that the first two moments never saw coming.
+
+## Open questions
+
+- Which risk-adjusted measure communicates more honestly than the Sharpe ratio for portfolios with option-like or credit-like payoffs?
+- For Indian funds, how much does the choice of risk-free proxy change the ranking of schemes on a reward-to-variability basis?
+- Should a ratio estimated from fewer than about sixty monthly observations be published at all, or only shown alongside an interval?
+
+The Sharpe ratio earns its place by making one comparison possible that returns alone cannot: reward measured against the dispersion endured to earn it. Its value depends entirely on being quoted with the frequency, the window, the risk-free proxy and the lane attached. Strip those away and a number that looks like evidence becomes an assertion.

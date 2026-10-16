@@ -1,0 +1,200 @@
+---
+title: 'Building a Research Tracking File for Each Holding'
+description: 'A thesis drifts when it lives only in memory. This article sets out a concrete, reusable file structure and field set for tracking a holding through time — what to record, when to record it, and why each field exists.'
+shortTitle: 'Building a Research Tracking File'
+category: equity
+series: equity-mastery
+seriesOrder: 40
+topics: ['research process', 'investment thesis', 'falsifiers', 'record keeping']
+tags: ['equity', 'process', 'documentation', 'review']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 12
+keyTakeaways:
+  - 'A tracking file is the fixed, dated point against which later claims about a holding are checked, because memory revises the past to make the present look consistent.'
+  - 'The thesis, the value drivers and the falsifiers are written before purchase and only appended to, never edited once events begin to test them.'
+  - 'Every recorded number must name the primary document it came from, so that a decade later the figure can be audited rather than merely believed.'
+  - 'Reviews run on a schedule and on filed events, not on price moves, because price movement is not news about a business.'
+  - 'Evidence against the thesis is collected in its own field, without commentary, so that the observation and its interpretation cannot be edited together.'
+  - 'The four return lanes — historical realised, contractual, model-estimated and speculative — must be labelled at the moment a figure is written down.'
+faqs:
+  - question: 'What is the single most important field in a tracking file?'
+    answer: 'The falsifiers, written before purchase. They convert a private conviction into a claim that a third party could check, and they cannot be quietly rewritten once the news turns bad.'
+  - question: 'Should I update the thesis when the business changes?'
+    answer: 'Add a dated revision rather than editing the original. The history of the thesis is itself evidence, and an edited thesis destroys the ability to tell a disciplined change of mind from a rationalisation.'
+  - question: 'How often should a holding be reviewed?'
+    answer: 'On a schedule fixed in advance, typically each quarter alongside results and once a year for the thesis itself. A review is also triggered when a stated falsifier fires, and only then is a decision required.'
+  - question: 'Where should the numbers come from?'
+    answer: 'From the primary document: the exchange for announcements, corporate actions and shareholding patterns, and the corporate registry for statutory filings and annual accounts. A figure that cannot be traced to a primary source is an estimate and must be labelled as one.'
+relatedCalculators:
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: dividend-return
+    label: 'Total Return Decomposition'
+  - id: rolling-returns
+    label: 'Rolling Return Comparator'
+  - id: opportunity-cost
+    label: 'Opportunity Cost Calculator'
+relatedArticles:
+  - how-a-share-reaches-your-demat-account
+  - order-types-and-execution-on-indian-exchanges
+  - reading-a-shareholding-pattern
+  - promoter-pledge-as-a-risk-signal
+  - t-plus-one-settlement-and-what-changed
+glossaryTerms: [pe-ratio, roe, roce, promoter-holding, eps]
+sources:
+  - id: bse-india
+    supports: 'The exchange disclosures, corporate actions and shareholding patterns that a tracking file cites as the primary record for a listed company'
+  - id: mca-home
+    supports: 'Statutory filings, charge registrations and annual accounts used to verify what a company has filed rather than what it has announced'
+  - id: sebi-home
+    supports: 'The listing and disclosure obligations that determine which company events a tracking file is entitled to expect, and when'
+  - id: nse-indices-methodology
+    supports: 'Index-construction and rebalancing rules, which explain why a benchmark comparison in a tracking file must name the index and its method'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'The folder names and record entries in the worked example are illustrative constructions that show the shape of a file; they describe no real company and contain no observed data.'
+openQuestions:
+  - 'How should a personal research file label an estimate that arrived through an intermediary rather than a primary filing, without cluttering the record?'
+  - 'For a holding reviewed quarterly, what is the least misleading way to record a thesis that has been partly invalidated but not yet falsified?'
+  - 'Should the decision log be written before the trade or after it, given that writing it beforehand removes the room to rationalise?'
+---
+
+A portfolio is only as good as the record behind it. Three years after buying a business, most investors can still recite the reason they bought it — and that reason has usually been quietly edited by everything that has happened since. The price fell, so the story became "the market is mispricing it". The price rose, so the story became "the thesis is playing out". A research tracking file exists to stop that drift. It is not a diary and not a table of prices; it is the fixed, dated point against which every later claim about the holding is checked.
+
+## Explain simply
+
+Write down, before you buy, why you are buying, what would prove you wrong, and which numbers you will watch. Date every entry, and never overwrite an old one — add a new one instead. Then read the file on a schedule rather than when the price moves. The point is straightforward: your memory will quietly rewrite the past so that you look consistent, and a dated file is the only defence against that. If the thesis turns out wrong, the file will show that you said so at the time, which is far more useful than a story that you always knew.
+
+## The problem the file solves: memory revision
+
+Two failures recur often enough to be named.
+
+The first is **hindsight rewriting**. Memory is reconstructive: it tends to store the conclusion and rebuild the reasoning to fit it. An investor who sold a loser and then watched it recover remembers a "near miss". A file records that the sale happened because a stated falsifier fired — a rule-based decision that happened to be followed by luck. Those are different events, and only one of them is evidence about the process.
+
+The second is **evidence amnesia**. A thesis rests on a handful of facts: a margin, a debt level, a growth rate, a promoter's behaviour. Without a record of the level at the time, a later claim that "margins have always been strong" cannot be checked against what was actually true when the position was opened. The claim sounds like history and is in fact a reconstruction.
+
+A tracking file is the mechanism that makes a thesis falsifiable. It converts a private conviction into a dated, checkable claim, and it separates what was observed from what was concluded.
+
+## The file: a concrete structure
+
+Use one folder per holding, and the same six files in every folder. Consistency matters more than sophistication: the purpose of a fixed structure is that a review can be completed in ten minutes, because there is no question about where anything lives.
+
+```
+research/
+  holdings/
+    HOLDING-A/            illustrative placeholder, not a real company
+      thesis.md           the buy case, written before purchase
+      falsifiers.md       the three observations that would end it
+      metrics.csv         tracked quantities, one row per review
+      events.md           dated company and market events
+      decisions.md        buys, adds, trims, exits, and the reason
+      sources.md          where each number came from
+  watchlist/
+    WATCHLIST-A/
+      thesis.md
+      falsifiers.md
+```
+
+The split is deliberate, and each file has one job.
+
+- `thesis.md` is written once and thereafter appended to. It holds the one-sentence case, the value drivers and the valuation anchor.
+- `falsifiers.md` holds the small number of observable events that would end the thesis. It should be short enough to memorise.
+- `metrics.csv` is machine-readable and grows exactly one row per review, so the series is easy to chart and impossible to rewrite.
+- `events.md` is a dated log of what the company actually filed or announced, with no interpretation.
+- `decisions.md` records what was done and which rule triggered it.
+- `sources.md` keeps the provenance of every figure used anywhere else in the folder.
+
+Two smaller conventions are worth adopting. Name files and folders with stable identifiers rather than current names, so that a corporate action or a rebrand does not orphan the history. And treat the folder as append-only: a correction is a new dated line, not a replacement of an old one.
+
+## The field set: what to record, when, and why
+
+Every field earns its place by answering a question that will be asked later.
+
+| Field | What to record | When | Why it exists |
+| --- | --- | --- | --- |
+| Stable identifier | ISIN, and the exchange scrip code | At creation | Symbols and names change; the identifier is what survives |
+| Entity name | Name as exactly filed with the registry | At creation | Corporate actions and name changes otherwise break the link to the filing |
+| Thesis, one sentence | The reason to own it, stripped of adjectives | Before purchase | A thesis that cannot be stated in one sentence cannot be falsified |
+| Value drivers | The two or three quantities that decide the outcome | Before purchase | Keeps the review on what matters rather than on price |
+| Falsifiers | Three observable events that would end the thesis | Before purchase | Written in advance, they cannot be rewritten when the news is bad |
+| Valuation anchor | The specific metric and the level at which the thesis is judged | Before purchase | Stops the anchor drifting to whatever level the price later implies |
+| Base rate | What the same metric looks like for peers or the sector | Before purchase | Separates an unusual business from an ordinary one |
+| Position rationale | Why this size, in one line | At purchase | Records whether conviction or position size was the real driver |
+| Entry facts | Date, quantity, price and costs | At purchase | Needed for the return calculation and for lane discipline |
+| Review log | Date, metric values, and any change to the thesis | Each scheduled review | The growing part of the record; a changed thesis must show its dates |
+| Disconfirming evidence | Evidence against the thesis, without commentary | Whenever found | Evidence against is systematically under-collected |
+| Decision log | Action taken, and the rule that triggered it | At every trade | Separates a rule-based exit from a mood-based one |
+| Source per figure | The document each number came from | At entry | A figure without a source is an opinion wearing a number |
+
+Two of these deserve expansion.
+
+The **falsifiers** are the heart of the file. They should be phrased as observations a third party could verify: a reported metric crossing a stated level, a regulatory finding, a capital-allocation decision, a change in promoter holding. "Management quality deteriorates" is not a falsifier, because it can never be assessed honestly after the fact — it can only be felt.
+
+The **valuation anchor** protects against the most common drift. An investor buys at a given multiple of earnings; the multiple rises; the thesis is silently restated as "a quality compounder that deserves a premium". Recording the anchor at entry, and holding it fixed while the price moves, is what makes that drift visible.
+
+## Where the numbers come from
+
+Every figure in `thesis.md` and `metrics.csv` should carry a line in `sources.md`, and the source should be the primary document rather than a summary of it. For an Indian listed company the two anchors are the exchange, which carries announcements, corporate actions and shareholding patterns for listed securities, and the corporate registry, which carries statutory filings, charge registrations, director details and annual accounts. Where a number cannot be traced to one of those, it is an estimate, and it should be labelled as one on the line where it appears.
+
+This matters for a subtler reason than accuracy. A file whose figures are traceable can be audited by its own author a decade later, when memories have faded and the original research is no longer recallable. A file of remembered numbers cannot be audited at all, and so cannot be trusted even when it is right.
+
+## When to write: the review schedule
+
+A tracking file is read on a schedule, not on a price move. Three rhythms work together.
+
+- **Event-driven.** Append to `events.md` whenever the company files something material. This is a record, not a decision point.
+- **Scheduled.** A fixed review per holding, typically quarterly alongside results, plus a longer annual review of the thesis itself. The quarterly pass updates metrics and checks falsifiers; the annual pass asks whether the thesis still describes the business.
+- **Triggered.** A review is forced when a falsifier fires. Only then is a decision actually required.
+
+The separation matters because price movement is not news about a business. Without a fixed schedule, an investor naturally reviews when the price is volatile, which is precisely when judgement is at its worst and the urge to act is strongest. The schedule is the commitment device.
+
+## Recording disconfirming evidence
+
+People gather evidence in a way that favours the conclusion they already hold. The remedy is procedural rather than moral: keep a dedicated field for evidence against the thesis, and require an entry whenever such evidence appears. Keep that entry free of commentary. The interpretation then goes into `decisions.md`, dated, so that the observation and its interpretation can be reviewed separately.
+
+This is also where the **four lanes** are enforced. There are four distinct things a return or a claim can be, and they must not blend. A **historically realised** figure is what the company actually reported. A **contractual** figure is what an agreement or the terms of a security state in advance. A **model-estimated** figure is an output of an assumption. A **speculative** figure is a hope with no arithmetic attached. Labelling the lane at the moment a number is written down prevents the slide in which an estimate is later quoted as a fact, or a hope is quoted as an estimate.
+
+## Worked example: an illustrative record
+
+The following is an illustrative construction, not a real company and not observed data. It shows the shape of a filled record, not a claim about any listed business.
+
+Holding A was entered with a position rationale of "conviction formed before purchase, sized at half the eventual maximum weight". The thesis in one sentence: earnings grow because an existing asset base is being used more fully, not because new capital is being spent. The three falsifiers: utilisation falls for two consecutive reporting periods; net debt rises by more than a stated amount within a year; the promoter holding falls by more than a stated number of percentage points.
+
+At the first quarterly review, `metrics.csv` gains exactly one row, holding only observations.
+
+| Review date | Utilisation | Net debt | Promoter holding | Anchor metric |
+| --- | --- | --- | --- | --- |
+| Quarter 1 | recorded level | recorded level | recorded level | recorded level |
+
+Nothing in that row is a judgement. The judgement belongs in `decisions.md`, dated, on the same day: "no falsifier triggered; no action taken." If the next period shows utilisation falling once, the file records the observation and the fact that the falsifier requires two consecutive periods. That single line is what later prevents a claim that the exit was always planned, or that the thesis was always intact.
+
+The record is deliberately boring. Its value is that it is dated, and that the dates cannot be moved.
+
+## Where this discipline fails
+
+A tracking file has its own failure modes, and they are worth naming.
+
+- **The file as a substitute for thinking.** A meticulously maintained record of a thesis that was never sound is still a record of a bad thesis. Documentation does not validate a premise.
+- **The log that never changes.** If the review entries are identical for three years, either the business is genuinely stable or the review has become a ritual. Stable businesses still change; the record should show what was examined, not merely that something was examined.
+- **Retro-fitted falsifiers.** Adding a falsifier after it has already fired converts a rule into a rationalisation. Falsifiers can only be written in advance.
+- **Survivorship inside the folder.** Investors maintain files for positions that worked and quietly abandon the folders for the ones that did not. The abandoned folders hold the most informative evidence on the process.
+- **Precision without provenance.** A metric quoted to two decimal places with no source line is more misleading than a range with a source, because the precision implies an audit that never took place.
+
+## What this does not tell you
+
+A tracking file is a record of reasoning, not a valuation model. It does not tell you what a business is worth, and it will not stop you from being wrong. It contains no information about the distribution of outcomes, only about the claims you made and whether the observations met them. It is backward-looking in the strict sense: every entry describes something already true. Its value is not prediction but accountability — the ability, years later, to distinguish a sound decision that turned out badly from a poor one that happened to work.
+
+## Open questions
+
+- How should a personal research file label an estimate that arrived through an intermediary rather than a primary filing, so that the provenance is visible without cluttering the record?
+- For a holding reviewed quarterly, what is the least misleading way to record a thesis that has been partly invalidated but not yet falsified?
+- Should the decision log be written before the trade or after it, given that writing it beforehand removes the room to rationalise afterwards?
+
+A tracking file is only as useful as its worst-maintained folder. The discipline is not in the template; it is in the habit of writing the objection down on the day you find it, and of leaving the earlier line where it stands.

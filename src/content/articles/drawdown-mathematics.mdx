@@ -1,0 +1,194 @@
+---
+title: 'Drawdown Mathematics and the Recovery Asymmetry'
+description: 'Drawdown is measured from a running peak to the following trough, and the arithmetic of recovering it is brutally asymmetric: a 50 per cent decline needs a 100 per cent gain. This article derives the formulas, separates depth from duration, and sets out what maximum drawdown can and cannot tell you.'
+shortTitle: 'Drawdown Mathematics'
+category: financial-mathematics
+series: financial-mathematics
+seriesOrder: 20
+topics: ['drawdown', 'recovery', 'risk measurement', 'time under water']
+tags: ['financial-mathematics', 'risk', 'behaviour']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'A drawdown is the fall from a running peak to a later value, expressed as a fraction of that peak; the maximum drawdown is the deepest such fall in the sample.'
+  - 'Recovering a decline of depth d requires a gain of d divided by one minus d, so the required gain grows faster than the loss: 20 per cent needs 25 per cent, 50 per cent needs 100 per cent, 80 per cent needs 400 per cent.'
+  - 'The recovery formula follows directly from the fact that wealth multiplies and percentages are applied to a shrunken base.'
+  - 'Maximum drawdown as a fraction of the running peak is unchanged if a series of returns is played in reverse, because it is a property of a block of periods, not of where that block sits.'
+  - 'What reversal does change is the path: the same returns can end at a new high on one ordering and far below a peak on the other, which is why duration and sequence matter to an investor drawing on the portfolio.'
+  - 'Drawdown is a realised path statistic, not a forecast, and its measured depth depends on the measurement frequency and the window chosen.'
+relatedCalculators:
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: monte-carlo
+    label: 'Monte Carlo Simulator'
+  - id: xirr
+    label: 'XIRR Calculator'
+relatedArticles:
+  - logarithmic-returns-in-practice
+  - cagr-versus-xirr
+  - real-versus-nominal-returns
+  - compounding-discrete-and-continuous
+glossaryTerms: [compounding, rule-of-72, effective-annual-rate]
+sources:
+  - id: shiller-cape
+    supports: 'Long-horizon real return series and valuation ratios used to frame the difference between short-horizon noise and long-horizon return expectation'
+  - id: markowitz-1952
+    supports: 'The mean-variance framework in which risk is a property of the whole portfolio rather than of its parts, which is the reason drawdown is reported on the combined holding and not asset by asset'
+  - id: bis-home
+    supports: 'Research on the statistical properties of asset returns and on leverage, which is relevant because leverage scales a drawdown proportionally'
+  - id: mospi-home
+    supports: 'Consumer Price Index series, used when a nominal drawdown is restated in real terms against a spending need'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+faqs:
+  - question: 'Why does a 50 per cent loss need a 100 per cent gain to recover?'
+    answer: 'Because the gain is applied to the reduced value. After a 50 per cent fall, one rupee has become fifty paise, and doubling fifty paise is the only way back to one rupee. The percentage you need is measured against the smaller base, which is why it is larger than the percentage you lost.'
+  - question: 'Is maximum drawdown a good measure of risk?'
+    answer: 'It is a vivid and honest description of what a particular path did, but it is a single realised outcome from one ordering of returns over one window. Treat it as a description of the past, not as a ceiling on the future.'
+  - question: 'Does a drawdown change if I look daily instead of monthly?'
+    answer: 'Yes. A finer measurement grid captures intra-month lows and troughs that monthly data smooths away, so daily maximum drawdown is almost always deeper than the monthly figure for the same period. Two drawdown numbers are comparable only if the frequency matches.'
+  - question: 'Is a drawdown the same as a permanent loss?'
+    answer: 'No. A drawdown is a decline from a peak and it can be recovered; a permanent loss is capital that never comes back. For a diversified, positively drifting portfolio most drawdowns are recovered, but some holdings and some strategies are not.'
+warnings:
+  - 'All wealth paths, returns and drawdowns in this article are illustrative constructions that demonstrate the arithmetic; they are not observed market data and are not drawn from any index or scheme.'
+openQuestions:
+  - 'How should drawdown be communicated alongside volatility so that an investor understands the depth without being misled about its likelihood?'
+  - 'For Indian equity indices, how much deeper is the daily maximum drawdown than the month-end figure over the same crisis, and does the gap vary by regime?'
+  - 'What is the right way to incorporate sequence risk into a drawdown measure when the investor is adding or withdrawing money during the decline?'
+---
+
+Drawdown is the risk measure that investors feel. Volatility describes the spread of periodic returns; drawdown describes the distance a portfolio has fallen from its own high point, and it is the number that prompts a phone call. The arithmetic behind it is simple, and one consequence of that arithmetic — that the gain needed to recover is always larger than the loss sustained, and grows without limit as the loss deepens — does more to explain investor behaviour than any statistical argument. This article derives the formulas, separates the depth of a drawdown from its duration, and marks the edges of the measure.
+
+## Explain simply
+
+Track the highest value the portfolio has ever reached. A drawdown is how far below that high point it currently sits, as a percentage of the high point. The maximum drawdown is the deepest such gap over the period you are looking at. The awkward part is recovering. If a portfolio falls from one hundred to fifty, it has to gain fifty to get back to one hundred — and a fifty-point gain on a base of fifty is a one-hundred per cent rise, not a fifty per cent one. That is the whole asymmetry: percentages lost and percentages needed to recover are measured against different bases, so the recovery is always the harder half of the round trip.
+
+## Defining drawdown from a wealth path
+
+Start with a wealth index. If the periodic returns are known, wealth after t periods is the starting value multiplied by the growth factors accumulated so far:
+
+$$ W_t = W_0 \prod_{i=1}^{t} \left( 1 + r_i \right) $$
+
+The running peak is the highest value reached so far, including the starting point:
+
+$$ M_t = \max_{0 \le s \le t} W_s $$
+
+A drawdown at time t is the shortfall from that running peak, expressed as a fraction of it, so it is zero at a new high and negative during any decline:
+
+$$ D_t = \frac{W_t}{M_t} - 1 \le 0 $$
+
+The maximum drawdown over the sample is the deepest of these values:
+
+$$ \text{MDD} = \min_{0 \le t \le T} D_t $$
+
+Three definitional details carry most of the practical weight. First, the peak is a running peak, not the all-time high of the series; a decline that begins from a local high counts. Second, the fraction is taken against the peak, so a decline from a high base and the same rupee decline from a low base are different numbers. Third, the trough is the lowest point before a new peak is reached, so the end of the drawdown period is defined by recovery, not by the passage of time.
+
+## The recovery asymmetry, derived
+
+Suppose the portfolio has fallen by a fraction d of its peak, so it now sits at one minus d of the peak. To get back to the peak, the required gain g must satisfy
+
+$$ \left( 1 + g \right) \left( 1 - d \right) = 1 $$
+
+Rearranging gives the whole result:
+
+$$ g = \frac{1}{1 - d} - 1 = \frac{d}{1 - d} $$
+
+The numerator is the size of the loss and the denominator is what remains. When the loss is small the denominator is close to one and the required gain is only slightly larger than the loss. As the loss approaches the whole of the peak, the denominator shrinks toward zero and the required gain grows without bound. The same relationship in logarithms makes the symmetry and the asymmetry visible together:
+
+$$ \ln \left( 1 + g \right) = -\ln \left( 1 - d \right) $$
+
+A fall of d and a rise of g are equal in continuous compounding terms but not in percentage terms, and the gap between the two widens rapidly.
+
+| Decline from peak | Gain required to recover |
+| --- | --- |
+| 10% | 11.1% |
+| 20% | 25.0% |
+| 30% | 42.9% |
+| 40% | 66.7% |
+| 50% | 100% |
+| 60% | 150% |
+| 70% | 233% |
+| 80% | 400% |
+| 90% | 900% |
+
+Doubling the depth from 25 to 50 per cent does not double the required recovery; it raises it from one third to a full one hundred per cent, an increase of three times. This is the arithmetic fact behind a behavioural one: deep drawdowns feel disproportionately worse because they arithmetically are.
+
+## Recovery time as a separate quantity
+
+Depth is not the only cost of a drawdown. The time spent below the previous peak depends on both the depth and the rate at which the portfolio recovers. If the portfolio earns a constant rate r per period after the trough, the number of periods needed to get back to the peak is
+
+$$ T = \frac{-\ln \left( 1 - d \right)}{\ln \left( 1 + r \right)} $$
+
+The numerator is the log of the shortfall and the denominator is the log of the growth factor, so a shallower decline shortens the wait and a higher rate shortens it further. For small rates the denominator is roughly r, which gives the intuitive approximation that the number of periods is the log shortfall divided by the periodic return. This is a recovery calculation, not a forecast: it says how long the arithmetic takes if the stated rate is earned, and says nothing about whether it will be.
+
+## Depth, duration and sequence
+
+The set of returns in a period determines the terminal wealth, because the growth factors multiply and multiplication does not care about order. A less obvious fact is that the maximum drawdown, as a fraction of the running peak, is also unchanged if the series is played in reverse. The deepest decline is a product over a block of consecutive periods, and reversal maps blocks to blocks, so the deepest block is the same block. Depth, in other words, is a property of the returns that occurred, not of where in the period they occurred.
+
+What reversal changes is the path, and the path is what an investor lives through. The same returns can leave the portfolio ending at a new high on one ordering and ending well below a peak on the other, because the peak itself depends on the order. This is the sequence problem: an investor who must withdraw during a trough locks in the damage, while an investor who adds during the same trough buys the recovery cheaply. Drawdown depth is symmetric under reversal; the experience of drawdown is not.
+
+## Worked example: a path with a 44 per cent drawdown
+
+This is an illustrative construction, not observed data. Start with a wealth index of 100 and apply eight monthly returns in the order shown.
+
+| Month | Return | Wealth | Running peak | Drawdown |
+| --- | --- | --- | --- | --- |
+| 0 | — | 100.00 | 100.00 | 0% |
+| 1 | +10% | 110.00 | 110.00 | 0% |
+| 2 | +20% | 132.00 | 132.00 | 0% |
+| 3 | −30% | 92.40 | 132.00 | −30.0% |
+| 4 | −20% | 73.92 | 132.00 | −44.0% |
+| 5 | +10% | 81.31 | 132.00 | −38.4% |
+| 6 | +15% | 93.51 | 132.00 | −29.2% |
+| 7 | +20% | 112.21 | 132.00 | −15.0% |
+| 8 | +20% | 134.65 | 134.65 | 0% |
+
+The maximum drawdown is **44 per cent**, reached at month four from a peak of 132. The trough is 73.92, and using the recovery formula with d equal to 0.44:
+
+$$ g = \frac{0.44}{1 - 0.44} = 0.7857 \approx 78.6\% $$
+
+So a 44 per cent decline requires about a **79 per cent gain** to restore the peak, even though the decline itself was only 44. The terminal wealth of 134.65 is a gain of about 34.7 per cent over the starting point, which shows how easily a large drawdown hides inside an acceptable ending. At a constant 12 per cent a year after the trough, the recovery time is
+
+$$ T = \frac{-\ln \left( 0.56 \right)}{\ln \left( 1.12 \right)} \approx \frac{0.580}{0.113} \approx 5.1 \text{ years} $$
+
+about five years below the old peak on those assumptions — the depth and the duration are two different costs, and both are large.
+
+## The same returns, reversed
+
+Take three returns: +10 per cent, −50 per cent, +150 per cent, and then the same three in reverse order. The terminal wealth is identical in both cases, at 137.5 on a base of 100, and the maximum drawdown is identical at 50 per cent, for the reason set out above.
+
+| Ordering | Wealth path | Peak | Ends below peak? |
+| --- | --- | --- | --- |
+| +10%, −50%, +150% | 100 → 110 → 55 → 137.5 | 110 | No, ends at a new high |
+| +150%, −50%, +10% | 100 → 250 → 125 → 137.5 | 250 | Yes, ends 45% below the peak |
+
+The same assets, the same returns, the same final wealth, the same maximum drawdown — and two completely different experiences. In the first ordering the investor finishes ahead. In the second the investor finishes 45 per cent below a peak they saw and never regains. Neither ordering is more likely than the other in advance; the point is that a drawdown statistic alone does not capture which one happened to you, and the length of time spent under water does not either unless it is measured separately.
+
+## Where a drawdown number misleads
+
+- **Frequency dependence.** A drawdown measured on daily values captures intra-month troughs that month-end data smooths away, so daily maximum drawdown is generally deeper than the monthly figure for the same episode. Two drawdown figures are comparable only if the measurement grid matches.
+- **Window dependence.** A longer window contains more episodes, so the reported maximum drawdown grows mechanically with the sample length. A ten-year maximum will almost always exceed a three-year maximum for the same asset, without anything having changed about its risk.
+- **One realised path.** Maximum drawdown reports the worst ordering that actually occurred in a particular sample. The worst ordering that could occur is worse, and no sample guarantees it has been seen.
+- **Nominal versus real.** A decline measured in nominal terms understates the ground lost against spending if prices are rising. The same path restated with an official price index is a deeper drawdown in real terms, which is the relevant comparison for a retirement or education goal.
+- **It ignores the investor's cash flows.** An index drawdown assumes no contributions or withdrawals. An investor who keeps adding during the decline has a personal drawdown, on their own money-weighted return, that can differ sharply from the index figure, in either direction.
+- **Leverage scales it.** A portfolio held with leverage loses a multiple of the unlevered percentage and can be forced to sell at the trough, converting a recoverable drawdown into a permanent one.
+
+## What this does not tell you
+
+A drawdown number says nothing about the probability of the next decline, the level at which the next trough will be found, or whether the current one will be recovered. It is descriptive, and it is a single summary of a path that may have contained several deep episodes and long flat stretches. It does not distinguish a decline caused by a broad market repricing, which is usually temporary for a diversified holding, from one caused by the impairment of a specific asset, which often is not. And it is silent about the return earned over the whole cycle: two portfolios with the same maximum drawdown can end the period with very different amounts of money.
+
+Long-horizon series, such as the long-run real return and valuation data maintained for research use, are one honest way to see the difference between short-horizon noise and longer-horizon expectation, but they describe history rather than the future, and their conclusions depend on the window and the country chosen.
+
+## Open questions
+
+- How should drawdown be communicated alongside volatility so that the depth registers without being mistaken for a likelihood?
+- For Indian equity indices, how much deeper is the daily maximum drawdown than the month-end figure over the same crisis, and does that gap vary with the regime?
+- When an investor is adding or withdrawing during a decline, what is the right way to fold sequence risk into a drawdown measure?
+
+Drawdown is worth measuring precisely because it is the risk investors actually bear: the distance from the high-water mark, and the time spent waiting to get back. Compute it from a running peak, quote the frequency and the window with it, and never read the depth without also reading the duration.

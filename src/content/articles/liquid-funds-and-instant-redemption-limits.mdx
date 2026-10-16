@@ -1,0 +1,172 @@
+---
+title: 'Liquid Funds and the Limits of Instant Redemption'
+description: 'A liquid fund is a tightly constrained short-term debt portfolio with a same-day redemption facility bolted on. What the category may hold, the conditions attached to instant redemption, the exit-load window, and how it differs from a bank deposit on credit, liquidity and certainty of value.'
+shortTitle: 'Liquid Funds and Instant Redemption'
+category: mutual-funds
+series: mutual-fund-atlas
+seriesOrder: 19
+topics: ['liquid funds', 'instant redemption', 'money market instruments', 'exit load', 'liquidity risk']
+tags: ['mutual-funds', 'debt', 'liquidity', 'fund-categories']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 12
+keyTakeaways:
+  - 'A liquid scheme is defined by a portfolio rule at the shortest end of the debt spectrum, so the category is a constraint on holdings rather than a claim about safety.'
+  - 'The instant-redemption facility is a bounded convenience attached to some liquid schemes, limited by a per-investor amount, a share-of-folio condition and the scheme''s available liquid assets, and it can be suspended.'
+  - 'The exit-load window after purchase is the price of treating a fund as a current account, and it is disclosed in the scheme documents rather than in the category label.'
+  - 'A liquid fund and a bank deposit are not substitutes on three separate axes: whose promise backs the money, how reliably the money can be withdrawn, and whether the rupee value is contractually fixed.'
+  - 'The four risks that decide a liquid fund''s outcome are credit, interest-rate, liquidity and mark-to-market, and a higher yield in this segment is payment for one of them rather than a free improvement.'
+  - 'The maturity ceilings, the instant-redemption cap and the exit-load window are set in circulars that have been amended, so the operative numbers must be read from the current text.'
+faqs:
+  - question: 'Does instant redemption mean my whole liquid fund balance is available on the same day?'
+    answer: 'No. The facility is bounded, typically by a maximum amount per investor and by a share of the folio value, whichever is lower, and it is paid out of the scheme''s available liquid assets. A normal redemption of the rest follows the scheme''s usual settlement timetable. The specific caps are set in the operative circular and should be checked there.'
+  - question: 'Is a liquid fund as safe as a bank deposit?'
+    answer: 'They are different contracts. A deposit is a contractual liability of the bank with a fixed rupee repayment and, within statutory limits, protection under a deposit-insurance scheme. A liquid fund holds securities valued at market, so its NAV can fall, and its protection comes from portfolio rules rather than from a guarantee.'
+  - question: 'Why does a liquid fund charge an exit load at all if it is for parking money?'
+    answer: 'Because frequent entry and exit forces the scheme to hold costly cash buffers and to sell instruments, and those costs are borne by the investors who stay. The exit-load window discourages churn and is disclosed in the scheme documents. The window and the rate are set by the scheme within a regulatory framework.'
+  - question: 'Can a liquid fund ever lose money?'
+    answer: 'Yes, in principle. Credit risk, small interest-rate sensitivity and mark-to-market valuation all apply. A liquid fund''s short maturity profile limits how far its value can move from a rate change, but it does not eliminate movement, and a credit event in even a small holding is felt directly in the NAV.'
+  - question: 'Where do I find what a liquid scheme actually holds?'
+    answer: 'In the monthly portfolio disclosure, which shows holdings, the total expense ratio and the portfolio turnover ratio, and in the scheme information document, which states the mandate and the asset allocation pattern. The category label sets the rules; the disclosures show whether the scheme is using them.'
+relatedCalculators:
+  - id: expense-ratio-impact
+    label: 'Expense Ratio Impact'
+  - id: swp
+    label: 'SWP Calculator'
+  - id: post-tax-return
+    label: 'Post-Tax Return Calculator'
+relatedArticles:
+  - how-sebi-categorises-mutual-funds
+  - dividend-yield-funds-and-income-myths
+glossaryTerms: [nav, exit-load, expense-ratio, total-expense-ratio, aum]
+sources:
+  - id: sebi-mf-categorisation
+    supports: 'The debt-scheme taxonomy, the placement of liquid schemes at the shortest maturity end of it, and the portfolio-holding restrictions that define what the category may hold'
+  - id: amfi-nav-file
+    supports: 'Scheme-level NAV and scheme-code data from which category statistics and the day-to-day value movements of liquid schemes can be computed reproducibly'
+  - id: amfi-home
+    supports: 'Scheme-category definitions and the industry-level scheme data used to place liquid schemes alongside the other debt categories'
+  - id: sebi-mf-ter-disclosure
+    supports: 'Monthly portfolio holdings, the total expense ratio and the turnover disclosures on which a liquid scheme''s compliance and cost can be checked'
+  - id: sebi-home
+    supports: 'The mutual fund regulatory framework, including the categorisation circular as amended, from which the operative maturity and redemption-facility limits must be read'
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'The maturity ceilings that define a liquid scheme, the caps on the instant-redemption facility and the exit-load window have all been amended since the categories were introduced. No numeric cap is stated in this article; each is described structurally and must be verified against the operative SEBI circular and the scheme document.'
+  - 'Nothing here recommends a scheme or a category. All arithmetic is an illustrative calculation from assumed inputs, not an observation of any market or scheme.'
+applicablePeriods: ['FY 2025-26']
+openQuestions:
+  - 'If a stressed fund suspends the instant-redemption facility precisely when investors most want it, does the facility add genuine liquidity or only the appearance of it?'
+  - 'How much of a liquid scheme''s yield premium over an overnight scheme is compensation for the small duration it carries, and how much is compensation for the credit it holds?'
+  - 'Does the expectation of instant redemption in liquid schemes increase the industry''s exposure to redemption runs in a short-rate shock?'
+---
+
+Liquid funds occupy the narrowest position in the Indian debt range and carry the largest volume of short-term retail money. They are sold as a parking place for money that will be needed soon, and the pitch rests on one visible feature: part of the balance can be redeemed quickly. That feature is real but bounded, and it is only one of several properties that decide what the product actually delivers. This article sets out what a liquid scheme is permitted to hold, how the instant-redemption facility works and where it stops, when the exit-load window applies, and how the category differs from a bank deposit once credit risk, liquidity and certainty of value are separated.
+
+## Explain simply
+
+A liquid fund is a basket of very short-term debt — instruments that are due to be repaid in days, weeks or months — managed so that the value of one unit, the NAV, barely moves. It is designed for money you might need soon but do not need in a savings account, and the scheme offers a facility that lets you pull a limited amount out quickly, subject to conditions. The important difference from a bank deposit is that nobody promises the value of a liquid fund unit; you own a share of a portfolio whose price can move, and the protection comes from the rules about what the portfolio may contain. The rules are what keep the movement small; they are not a guarantee that there is none.
+
+## What the liquid category is for
+
+The categorisation framework sorts debt schemes by two things at once: the maturity profile of the portfolio and the credit quality it is allowed to hold. Liquid schemes sit at the shortest end of the maturity axis, reserved for parking money with a very short horizon. The category label is a portfolio rule, not a marketing description, which is why a liquid fund from one fund house is broadly comparable in kind with a liquid fund from another, even though the two may earn different returns.
+
+That comparability is the point of the framework. Before it, a scheme could call itself liquid and hold something else entirely. Today the name attaches to a defined mandate, and the manager may not step outside it. The mandate fixes what the money is exposed to; the investor's return is then decided by how carefully the manager uses the freedom the mandate leaves, and by what the scheme charges.
+
+## What a liquid scheme may hold
+
+Liquid schemes are defined by structural limits that keep the portfolio short and liquid.
+
+- **A weighted-average maturity ceiling.** The portfolio as a whole must have a maturity profile no longer than the category permits, measured on a weighted-average basis. This is the rule that stops a liquid scheme from quietly becoming a short-duration fund.
+- **A per-instrument maturity ceiling.** Individual holdings are also constrained, so no single long-dated instrument can pull the portfolio's sensitivity out of the intended range.
+- **A credit-quality floor.** The category is restricted to instruments of stated minimum quality and to money-market and debt instruments within permitted limits, which narrows the default risk the portfolio may take.
+
+The exact numbers behind each of these rules — the weighted-average maturity limit, the instrument ceiling and the credit floor — are set in the categorisation circular and have been amended since it was introduced. This article deliberately states none of them, because a summary article is not the operative text; anyone relying on a figure should read the current circular. What can be stated with confidence is the shape: short average maturity, short instrument maturity and a quality floor, all enforced through portfolio rules rather than through promise.
+
+## The instant-redemption facility
+
+The facility that gives liquid funds their name in retail conversation is usually described as the ability to get money out the same day. The accurate description is narrower. It is an optional facility, provided under a framework set by the regulator and implemented by individual schemes, that allows a redemption to be processed and proceeds made available on a compressed timeline, rather than the ordinary settlement cycle that applies to a normal redemption.
+
+Four structural conditions define how far it reaches:
+
+1. **A per-investor cap.** There is a maximum amount that can be drawn through the facility at one time, set as an absolute figure.
+2. **A share-of-folio condition.** The amount drawn is also limited to a proportion of the value of the investor's holding, so the facility cannot be used to empty a large folio.
+3. **Whichever is lower.** The two limits apply together, so the smaller of the absolute cap and the share-of-folio amount is what actually governs.
+4. **Availability of liquid assets.** The scheme must have enough readily available money to pay, and the facility can be suspended or restricted when markets or the scheme are under stress.
+
+The specific cap and the proportion are set in the operative circular and in the scheme's own terms, and they apply only where the scheme, the plan and the platform offer the facility. There is a further practical condition that is easy to miss: the facility is normally intended for units that are past any exit-load period, which links it directly to the next section. The honest summary is that instant redemption is a genuine convenience with defined edges, not a right to withdraw the whole balance on demand.
+
+## The exit-load window after purchase
+
+A liquid scheme typically imposes an exit load on redemptions made within a short window after purchase, and this is deliberate. If a fund is used as a current account, money flows in and out constantly, and each flow forces the manager to hold more cash than the mandate needs and to trade instruments. Those costs land on the investors who remain. The exit load makes the short-term user bear part of that cost instead.
+
+The window and the rate are disclosed in the scheme information document and the key information memorandum, and the structure is set within a regulatory framework. Two consequences follow for planning. First, money you may need within the window is not costlessly available, whatever the marketing says. Second, the interaction between the exit-load window and the instant-redemption facility is a scheme-specific detail: if the facility is confined to units past the window, then money that has just arrived may be the least liquid money in the folio. Reading the scheme document answers that question directly.
+
+## A liquid fund and a bank deposit are different contracts
+
+These two products are routinely compared as if they were points on one line of safety. They are not. They differ on three axes, and each has to be assessed separately.
+
+**Credit risk — whose promise is it?** A bank deposit is a liability of the bank. The depositor's claim is on the institution, and the deposit is ordinarily backed by a statutory protection scheme up to a limit and subject to conditions. A liquid fund holds a diversified portfolio of debt instruments from many issuers; the investor's claim is on the portfolio's assets, and the credit risk is the blended risk of every issuer the scheme holds. Both carry credit risk, but the shape differs: a deposit concentrates it in one institution, while a liquid scheme diversifies it across a mandated set of securities.
+
+**Liquidity — can the money be obtained when needed?** A deposit can normally be withdrawn on demand, though large amounts or term deposits may carry conditions or penalties. A liquid fund is withdrawn by redemption at the applicable NAV, with settlement on the scheme's timetable, and the fast lane is the bounded instant-redemption facility. The difference is not that one is liquid and the other is not; it is that the fund's fast access is capped and conditional, while the deposit's access is contractual.
+
+**Certainty of value — is the rupee amount fixed?** This is the decisive difference. A deposit is a nominally fixed claim: the number of rupees is contractual, subject to the institution's ability to pay. A liquid fund unit is a share of a market-valued portfolio; its NAV is marked to market and can fall. The category rules keep that movement small by holding very short maturities, but small is not zero. Anyone who needs a mathematically fixed number of rupees on a given date is holding the wrong instrument, however well-run the fund.
+
+## The four risks, separated
+
+Every debt fund carries four distinct risks, and conflating them is the root of most disappointment with liquid funds.
+
+- **Credit risk** is the risk that an issuer fails to pay. In a liquid scheme it is limited by the category's quality floor, but a floor is not a guarantee, and a depreciated rating on one holding is felt in the NAV at once.
+- **Interest-rate risk** is the risk that a change in market yields revalues the portfolio. It is small in a liquid scheme because the portfolio's maturity is short, which is exactly what the maturity ceilings are for.
+- **Liquidity risk** is the risk of being unable to sell at a fair price when needed. It lives in the instruments themselves — some money-market instruments trade in thin markets — and it is the risk the instant-redemption conditions exist to manage.
+- **Mark-to-market behaviour** is not a separate risk but the mechanism that transmits the other three into the NAV: holdings are valued at prevailing market levels, so credit news and rate moves show up as a change in the unit price rather than as a hidden loss.
+
+## Why a higher yield here is compensation, not free money
+
+Within the rules, two liquid schemes can earn different yields. The difference is never a free gift; it is the price of something the manager accepted.
+
+- A marginally higher yield can come from a slightly longer weighted-average maturity, which is a small interest-rate bet.
+- It can come from the credit spread on lower-rated but still permitted holdings, which is payment for default risk.
+- It can come from holding less cash, which pays for the yield with tighter liquidity precisely when liquidity is worth most.
+- It can be clawed back by a higher expense ratio, which reduces the NAV growth the investor actually receives.
+
+The correct reading of a yield gap is as a question: which of these did the manager take on, and is the extra return larger than the cost of the risk? A liquid fund that yields more than its peers is not simply better managed; it is holding a different, and usually riskier, portfolio.
+
+## Worked example: an illustrative NAV calculation
+
+The following is an illustrative calculation using assumed inputs, not a forecast and not an observation of any real scheme. Suppose an investor holds ₹1,00,000 in a liquid scheme whose portfolio is assumed to have a modified duration of 0.15 years.
+
+**A rate move.** If short-term market yields rise by 0.25 of a percentage point, the approximate NAV change is the modified duration multiplied by the yield change, with the sign reversed:
+
+$$ \Delta NAV \approx -D \times \Delta y $$
+
+That gives an assumed fall of about 0.0375%, or roughly ₹38 on ₹1,00,000, before any interest the portfolio continues to earn. The short maturity profile is what keeps this number small.
+
+**A credit event.** Now assume separately that one holding representing 1% of the portfolio's value defaults, with a recovery of 50% assumed, so the loss given default is 50%. The loss to the portfolio is the holding's weight multiplied by the loss given default:
+
+$$ \text{Loss} \approx w \times LGD $$
+
+That is 0.01 multiplied by 0.50, or 0.5% of NAV, about ₹500 on ₹1,00,000. The illustration makes the asymmetry plain: in a portfolio this short, a single credit event can cost far more than a meaningful rate move. That asymmetry is why the quality floor, not the maturity ceiling, is the more important protection in a liquid scheme.
+
+**Combining with the exit load.** If the investor redeems inside the exit-load window, a load is deducted from the proceeds on top of whatever NAV movement has occurred. The load and window are scheme-specific; the arithmetic here does not assume a rate, because the operative figure belongs to the scheme document.
+
+## What this does not tell you
+
+- **It does not name the operative limits.** The weighted-average maturity ceiling, the instrument ceiling, the credit floor, the instant-redemption cap and the exit-load window are all set in circulars and scheme documents that have been amended. Treat any figure read elsewhere, including from an older summary, as needing verification.
+- **It does not rank schemes.** Two liquid schemes hold different portfolios and charge different costs; the disclosures, not the label, are where they are compared.
+- **It does not cover tax.** Redemption gains from debt-oriented schemes are taxed under rules that distinguish holding periods and change over time; the post-tax arithmetic belongs with the dated tax reference, not here.
+- **It does not treat the facility as guaranteed.** A scheme may restrict or suspend instant redemption, and the conditions under which it does so are part of the facility, not an edge case.
+- **It does not extend to cash-like instruments outside the category.** Overnight schemes, arbitrage schemes and exchange-traded liquid products have their own rules and their own liquidity mechanics.
+
+## Open questions
+
+- If the instant-redemption facility is suspended exactly when investors most want it, does it add genuine liquidity or only the appearance of it?
+- How much of a liquid scheme's yield premium over an overnight scheme is compensation for carrying a little duration, and how much for the credit it is permitted to hold?
+- Does the widespread expectation of instant redemption make the liquid category more fragile in a sharp short-rate shock, and if so, should the facility's conditions be tightened further?
+- As disposal timelines and settlement cycles change across the industry, does the exit-load window remain the right tool for discouraging churn?

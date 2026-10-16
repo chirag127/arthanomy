@@ -1,0 +1,206 @@
+---
+title: "Bond Market Risks Beyond Credit: Rate, Liquidity and Reinvestment"
+description: "A high rating speaks only to credit risk. Six other risks — interest-rate, liquidity, reinvestment, inflation, tax and default — decide what a debt holding actually returns, and several of them pull in opposite directions."
+shortTitle: "Bond Risks Beyond Credit"
+category: debt
+series: debt-encyclopedia
+seriesOrder: 59
+topics: ["interest-rate risk", "liquidity risk", "reinvestment risk", "inflation", "duration"]
+tags: ["debt", "fixed-income", "risk", "bonds"]
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - "Credit risk is one of several risks in a bond, and the one a rating addresses. Interest-rate, liquidity, reinvestment, inflation and tax risk are outside the rating's scope entirely."
+  - "Interest-rate risk is a price risk, not a default risk: it decides what a bond is worth if it must be sold before maturity, and modified duration approximates the size of that exposure."
+  - "Price risk and reinvestment risk move in opposite directions, so a long horizon partially offsets them while a short horizon compounds them."
+  - "Liquidity risk is the cost of needing to sell when the market for that instrument is thin, and it tends to appear exactly when credit conditions are worsening."
+  - "Inflation and tax together decide the real, post-tax outcome, which is the only return that matters for a future expense."
+  - "Naming each risk present in a holding is the first useful step, because a portfolio can be diversified across issuers and still concentrate one of the non-credit risks."
+faqs:
+  - question: "If a bond has the highest rating, is it a safe investment?"
+    answer: "It is safe on one axis. The rating addresses the likelihood of timely payment, so it speaks to credit risk. It says nothing about what the bond is worth if it is sold early, how easily it can be sold, what the coupons will be reinvested at, what inflation does to the income, or what tax takes from it."
+  - question: "Can a government security lose money?"
+    answer: "It cannot default in rupee terms absent a sovereign restructuring, because the sovereign raises taxes and borrows in its own currency. It can still fall in price if yields rise before maturity, so a holder who sells early can realise a loss even on an instrument with no credit risk."
+  - question: "Why do price risk and reinvestment risk partly cancel?"
+    answer: "When yields rise, the price of an existing bond falls but the coupons and the eventual redemption can be reinvested at higher rates. Over a long horizon the second effect works against the first. For a short horizon there is no time for reinvestment to help, which is why duration should be bounded by when the money is needed."
+  - question: "What is liquidity risk in plain terms?"
+    answer: "It is the gap between the price shown on a valuation and the amount actually realised in a sale. In a thin market the gap can be wide, and it widens when many holders want to sell at once, which is usually the moment an investor most wants to exit."
+  - question: "How does tax fit in?"
+    answer: "Tax is a charge on the income and on any gain, so it determines the difference between the stated yield and what remains. It is also a legislative risk: the rates and treatment can change during the life of a bond, so the post-tax comparison should be made on the terms in force rather than on a remembered rate."
+relatedCalculators:
+  - id: modified-duration
+    label: "Duration Calculator"
+  - id: convexity
+    label: "Convexity Calculator"
+  - id: bond-price-yield
+    label: "Bond Price and Yield"
+  - id: credit-spread
+    label: "Credit Spread Calculator"
+relatedArticles:
+  - dated-gsecs-and-the-coupon-myth
+  - treasury-bills-as-the-risk-free-anchor
+  - state-development-loans-yield-question
+  - corporate-fixed-deposits-and-nbfc-deposit-risk
+glossaryTerms: [modified-duration, convexity, yield-to-maturity, credit-spread, repo]
+sources:
+  - id: rbi-home
+    supports: "The monetary-policy framework and the policy rate that set the short end of the rupee yield curve, together with the regulatory framework for the institutions whose debt carries these risks"
+  - id: rbi-financial-stability
+    supports: "The semi-annual system-level assessment of stress indicators and asset-quality trends, used here to place credit and liquidity risk in the macro-financial setting"
+  - id: rbi-dbie
+    supports: "The published series for inflation and for government-security yields across maturities, which are the inputs to the interest-rate and inflation risks discussed"
+  - id: bcbs-credit-risk
+    supports: "The formal definitions of probability of default, loss given default and expected credit loss used to separate default risk from the other risks in the article"
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "Durations, yield changes, inflation figures and loss amounts in the worked example are illustrative assumptions chosen to show the arithmetic. They are not observations of any market and not forecasts."
+  - "No tax rate, threshold or holding period is stated, because the tax-rule set for this brief does not carry them. Tax is described as a mechanism and as a source of risk, not as a number."
+  - "The specific instruments, indices or portfolios mentioned in the links are covered in their own articles, which is where their mechanics should be verified."
+applicablePeriods: ["FY 2025-26"]
+openQuestions:
+  - "For Indian corporate bonds held by retail investors, what exit cost is actually realised in a sale, as distinct from the valuation shown on a statement?"
+  - "How much of the variation in Indian debt fund returns over a cycle is explained by duration positioning rather than by credit selection?"
+  - "When inflation and policy rates move together over long periods, does the real return on a nominal bond ladder behave more like a real asset or more like a nominal one?"
+  - "How should a short-horizon investor weigh the certainty of a lower locked-in yield against the price risk of a longer position taken to reach a higher one?"
+---
+
+Debt investors are taught to look at credit quality, and credit quality is what a rating measures. That single focus produces a familiar disappointment: a holding rated in the safest category delivers a return that falls short of what was expected, or a portfolio of individually sound instruments loses value at the wrong moment. Nothing in that outcome requires a default. It requires only that one of the other risks in the instrument did what risks do.
+
+This article separates six risks that live in a bond — interest-rate, liquidity, reinvestment, inflation, tax and default — and explains why a high credit rating addresses only the last of them. The separation matters because the risks behave independently, and because two of them pull in opposite directions.
+
+## Explain simply
+
+Lend money to a sound borrower and you have removed one worry: not being repaid. But you have not removed the others. If you need your money back before the loan ends, you must find a buyer, and the price depends on what interest rates are doing at that moment. If the borrower pays you interest along the way, you have to decide what to do with it, and the rate available then is unknown today. If prices in the shops rise faster than your interest accumulates, the income buys less each year. Tax takes a slice of it. And the credit itself can deteriorate after you have lent. A rating helps with the last point. The rest is your own work.
+
+## Why "safe" is not one risk
+
+The word safe bundles together questions that have different answers. A holding can be nearly certain to be repaid and still be worth less than it cost if sold early. It can be easy to buy and hard to sell. And it can pay a fixed income whose purchasing power falls every year.
+
+The practical consequence is that portfolio diversification across issuers does not diversify these risks. A portfolio of twenty government securities, each held directly, concentrates interest-rate risk more than it spreads it, because every position responds to the same yield curve.
+
+## Interest-rate risk
+
+Interest-rate risk is the sensitivity of a bond's price to a change in the yield at which it is valued. Price and yield move in opposite directions: when yields rise, the price of an existing bond with a fixed coupon falls, because a buyer can obtain the new, higher yield elsewhere. The larger the remaining cash flows and the longer the time to them, the larger the price move.
+
+**Modified duration** states the exposure in a compact form. A modified duration of 5 means that a rise of one percentage point in yield costs roughly 5 per cent of value, and the sign reverses for a fall:
+
+$$ \text{Approximate price change} \approx -D_{mod} \times \Delta y $$
+
+The approximation is linear and becomes poorer for large yield moves, where a **convexity** term improves it. Three properties of this risk matter in practice:
+
+- **It is realised only on a sale.** A holder who stays to maturity receives the contractual cash and does not incur the price loss — but gives up the chance to redeploy at the higher yield.
+- **It is bounded by the horizon, not by the yield.** A long-dated position taken because the yield is attractive is a bet on rates, whether or not the holder intended to make one.
+- **It is driven by the policy rate and expectations.** The repo rate is the central bank's principal signal for the short end of the curve, and it propagates along the curve through expectations of future policy and inflation.
+
+## Liquidity risk
+
+Liquidity risk is the cost of getting out. It has two dimensions: the depth of the market in the specific instrument, and the behaviour of that depth when conditions change.
+
+A government security of a benchmark maturity usually trades in a deep market, with a narrow gap between the price at which it can be bought and sold. A corporate bond with a small outstanding amount, held by few investors and rarely traded, may have no observable price at all between deals. In that case the valuation on a statement is an estimate, and the amount realised in a sale can be materially lower. That gap is a cost the holder pays, and it is often larger than the credit spread being argued about.
+
+The second dimension is worse. In a stress, holders tend to want the same exit at the same time, and the market's capacity to absorb selling falls precisely then. The semi-annual assessments of system-level stress and asset-quality trends published by the central bank exist because that dynamic is a system property rather than a property of any one issuer.
+
+Liquidity risk also has a structural form: instruments that permit the issuer to extend, call or defer payments transfer a timing option to the issuer.
+
+## Reinvestment risk
+
+Reinvestment risk is the risk that the coupons received, and the principal returned at maturity, will have to be deployed at rates lower than the rate the instrument was bought on. It is the mirror image of interest-rate risk.
+
+Yield to maturity is defined on an assumption that every coupon is reinvested at the same yield to maturity, and that assumption is not enforceable. When yields fall, the price of an existing bond rises — good news for the holder who sells, and bad news for the holder who planned to reinvest the coupons. When yields rise, the reverse holds: the price falls, but the coupons are reinvested at higher rates.
+
+Two structural responses follow. A **maturity ladder**, which spreads redemption dates across years, avoids concentrating all reinvestment into one moment in the cycle. And a horizon test: over a long horizon, the reinvestment and price effects have time to work against each other; over a short horizon, the price effect dominates because there is no time for reinvestment to accumulate.
+
+## Inflation and tax risk
+
+These two are kept separate in pricing and inseparable in outcome.
+
+**Inflation risk** is the risk that the nominal income loses purchasing power. A real return is approximately the nominal return minus inflation:
+
+$$ r_{real} \approx r_{nominal} - \pi $$
+
+The approximation holds at ordinary rates. The consequence is that an instrument with a fixed nominal coupon has a real return that varies with inflation even though its nominal cash is fixed, and a long nominal bond therefore carries more inflation risk than a short one.
+
+**Tax risk** has two components: the tax taken from the income in any given year, and the risk that the treatment changes before maturity. Interest is generally taxed as it arises, at a rate that depends on the holder, while the tax treatment of any gain or loss depends on the instrument and the holding period. Because rates and holding periods are legislated, they can move during the life of a bond, which makes the post-tax comparison a moving target. No rate is stated in this article; the appropriate figures belong to the current statutory sources and to the site's tax reference.
+
+## Default risk, and where it sits
+
+Default risk is the risk that the issuer fails to pay, and it is the one the rating measures. Expected loss over a period is approximately probability of default multiplied by loss given default:
+
+$$ \text{Expected loss} \approx PD \times LGD $$
+
+Both terms are estimates. Probability of default is a property of the obligor and its circumstances; loss given default is a property of the instrument through security, seniority and the efficiency of the workout, and is equal to one minus the recovery rate. This is the risk that ratings, covenants, security and diversification exist to address — and it is the only one of the six that they address.
+
+## Why a high rating does not address most of these risks
+
+A rating is an opinion about timely servicing of a specified obligation. That scope is narrow by design, and it explains the pattern:
+
+| Risk | In the rating's scope? | Why |
+| --- | --- | --- |
+| Default | Yes | This is what the rating estimates |
+| Interest-rate | No | The rating is silent on price and duration |
+| Liquidity | No | Market depth is a property of the security, not the obligor |
+| Reinvestment | No | It depends on future rates the rating does not forecast |
+| Inflation | No | The rating addresses nominal servicing, not purchasing power |
+| Tax | No | It depends on the holder and on legislation |
+
+The corollary is that two instruments can carry identical ratings and still be very different holdings, because one is longer and less liquid than the other.
+
+## How the risks interact
+
+- **Price and reinvestment risk offset over long horizons.** This is why duration should be matched to the horizon, and why a long bond is not simply a riskier version of a short one — it is a different combination of risks.
+- **Liquidity and credit risk correlate in stress.** Spreads widen and market depth falls together, so an investor who must sell during a credit event pays twice.
+- **Inflation and interest rates move together.** Higher expected inflation typically pushes nominal yields up, which is a price loss for existing holdings and a reinvestment gain for new money.
+
+## Worked example: an illustrative risk decomposition
+
+The following is an illustrative calculation, not a forecast and not an observation of any market.
+
+Assume a ₹10,00,000 position in a bond portfolio with an average modified duration of 5. If yields rise by one percentage point:
+
+$$ \Delta P \approx -5 \times 0.01 = -5\% \approx ₹50,000 $$
+
+There is no default and no credit event; the loss is entirely a price movement, and it is realised only if the position is sold.
+
+Suppose instead yields fall, and the coupons are reinvested at a rate one percentage point lower. If the same portfolio distributes ₹60,000 of interest a year, the reinvestment shortfall on that income is about ₹600 for the year — small relative to the price gain, which is why falling-rate environments flatter bond portfolios.
+
+Finally, take the real return. If the annual yield to maturity is 7 per cent and inflation is 6 per cent, the real return is approximately $7\% - 6\% = 1$ per cent, before tax. At the same nominal yield with inflation at 4 per cent, the real return is approximately 3 per cent. The nominal figure did not change at all, yet the outcome differs by two percentage points a year. All values here are assumptions, printed so they can be challenged.
+
+## Naming the risks in your own holdings
+
+For each position, write down the answers to six questions.
+
+1. **Interest-rate:** what is the modified duration, and when is the money actually needed?
+2. **Liquidity:** who else trades this instrument, and what did the last sale realise relative to valuation?
+3. **Reinvestment:** when do the coupons and principal arrive, and at what rate must they be deployed?
+4. **Inflation:** what real return does the nominal yield imply at a range of inflation outcomes?
+5. **Tax:** what is the post-tax, post-inflation figure, computed on current rules?
+6. **Default:** what is the expected loss, and what security stands behind it?
+
+## The four lanes, in this context
+
+- **Contractual.** Coupons, redemption amounts and interest-rate resets are contractual, and the sum of the promised nominal cash is the one thing that is fixed.
+- **Historical realised.** Past returns of a category describe a period and its rate cycle; they do not transfer.
+- **Model-estimated.** Duration and convexity arithmetic, expected loss, and any projection of reinvestment rates are model estimates from stated assumptions.
+- **Speculative.** The gain or loss from a change in yields or in credit spreads belongs here, and it is the lane the phrase "interest-rate risk" is really about.
+
+## What this does not tell you
+
+- **It does not recommend a duration.** The appropriate exposure follows from the horizon and the obligation, not from a general rule.
+- **It does not state current tax rates.** Tax is described as a mechanism and as a risk; the figures belong to the statutory sources.
+- **It does not value a specific exit.** The realised cost of selling depends on the market at the time.
+- **It does not cover every structure.** Instruments with issuer options, deferral features or equity-linked returns add risks that are not captured by duration and credit spread alone.
+- **It does not forecast inflation or policy rates.** It shows which risk each decision exposes the holder to.
+
+## Open questions
+
+- For Indian corporate bonds held by retail investors, what exit cost is actually realised in a sale, as distinct from the valuation shown on a statement?
+- How much of the variation in Indian debt fund returns across a cycle is explained by duration positioning rather than credit selection?
+- When inflation and policy rates move together over long periods, does a nominal bond ladder behave more like a real asset or more like a nominal one?
+- For a short-horizon investor, how should the certainty of a lower locked-in yield be weighed against the price risk of a longer position taken to reach a higher one?

@@ -1,0 +1,162 @@
+---
+title: 'NPV and IRR: Ranking Investments With Uneven Cash Flows'
+description: 'Net present value and internal rate of return are the standard pair of appraisal tools, and they disagree precisely when the answer matters. This article derives both, shows the reinvestment assumption inside each, and works through a case with two internal rates.'
+shortTitle: 'NPV and Internal Rate of Return'
+category: financial-mathematics
+series: financial-mathematics
+seriesOrder: 6
+topics: ['net present value', 'internal rate of return', 'capital budgeting', 'multiple IRRs']
+tags: ['financial-mathematics', 'arithmetic', 'discounting', 'appraisal']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'Net present value discounts every dated cash flow at a rate that reflects opportunity cost and reports the answer in rupees, which is why it is the primary ranking rule.'
+  - 'The internal rate of return is the discount rate that makes net present value zero; it is a scale-free percentage, which is convenient and also the source of its failures.'
+  - 'IRR implicitly assumes cash flows are reinvested at the IRR, while NPV assumes reinvestment at the discount rate, and the two assumptions diverge exactly when the IRR is high.'
+  - 'Non-conventional cash flows, with more than one change of sign, can produce two or more internal rates, and the number of sign changes bounds the number of positive solutions.'
+  - 'A higher IRR does not always mean a better project: with different scales or timings, the ranking can reverse depending on the discount rate, and the crossover point is computable.'
+  - 'When cash flows are unconventional or the ranking reverses, net present value in rupees settles the question and the percentage does not.'
+faqs:
+  - question: 'Why does net present value rank projects better than the internal rate of return?'
+    answer: 'Because NPV measures value added in rupees at the opportunity cost of capital, so two projects with different scales can be compared directly. IRR measures a percentage that ignores scale, and it can rank a small high-return project above a larger one that adds more value.'
+  - question: 'How can a project have two internal rates of return?'
+    answer: 'When the cash flows change sign more than once, the equation that defines the IRR can have several real roots. Each is a genuine rate at which NPV is zero, and none of them is a defensible measure of return on its own.'
+  - question: 'What does IRR assume about reinvestment?'
+    answer: 'It assumes intermediate cash flows are reinvested at the IRR itself. NPV assumes they are reinvested at the discount rate. When the IRR is far from the discount rate, the first assumption is the less realistic of the two.'
+  - question: 'Is a project acceptable if its IRR exceeds the cost of capital?'
+    answer: 'For a conventional, independent project the two criteria agree and the rule is reliable. For mutually exclusive projects, or for cash flows that change sign repeatedly, the rule can select the wrong project, and NPV should decide.'
+relatedCalculators:
+  - id: xirr
+    label: 'XIRR Calculator'
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: bond-price-yield
+    label: 'Bond Price and Yield'
+  - id: monte-carlo
+    label: 'Monte Carlo Simulator'
+relatedArticles:
+  - present-and-future-value-of-annuities
+  - xirr-for-multi-date-cash-flows
+  - cagr-versus-xirr
+  - compounding-discrete-and-continuous
+  - real-versus-nominal-returns
+glossaryTerms: [net-present-value, irr, discount-factor, compounding]
+sources:
+  - id: markowitz-1952
+    supports: 'The treatment of a discount rate as compensation for risk, which is what makes net present value a risk-adjusted ranking rather than a mere arithmetic'
+  - id: merton-1973
+    supports: 'Continuous-time discounting, the limit of the discrete net present value and internal rate of return expressions as the interval shortens'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Every cash flow, rate and project in the examples is an illustrative construction designed to show the arithmetic; none is a real investment, an offered return or a forecast.'
+openQuestions:
+  - 'When two projects have different lives, what is the least arbitrary way to make the comparison fair?'
+  - 'Should appraisals report a modified internal rate of return alongside the conventional one, given that the modification replaces one reinvestment assumption with another?'
+  - 'How should the discount rate be set for a project whose cash flows are themselves uncertain, rather than merely dated?'
+---
+
+Capital allocation is a sequence of comparisons. Two properties, two machines, two projects, two businesses — each with a pattern of money out and money in. Two tools dominate the comparison, and they are usually quoted together: net present value, expressed in rupees, and internal rate of return, expressed as a percentage. They agree often enough that the disagreement is treated as an anomaly. It is not an anomaly; it is the tools telling you that they answer different questions, and knowing which question you are asking is most of the skill.
+
+## Explain simply
+
+Net present value asks: if I discount all the money coming in and going out at the cost of my capital, how much richer am I in rupees? If the answer is positive, the project adds value at that rate. Internal rate of return asks a narrower question: what discount rate would make the value exactly zero? That percentage is easy to compare with a cost of capital, which is why it is popular. The trouble is that a percentage ignores how much money is involved, and it can come out twice for the same project. When the two disagree, the rupee figure is the one to trust.
+
+## Net present value: value added, in rupees
+
+Let a project have cash flows $C_0, C_1, \ldots, C_n$ at the end of periods $0$ to $n$. Outflows are negative, inflows positive. Let $r$ be the discount rate that reflects the opportunity cost of the capital. Net present value is the sum of each flow multiplied by its discount factor:
+
+$$ NPV = \sum_{t=0}^{n} \frac{C_t}{(1+r)^t} = C_0 + \frac{C_1}{1+r} + \frac{C_2}{(1+r)^2} + \cdots + \frac{C_n}{(1+r)^n} $$
+
+Three properties follow directly from the definition.
+
+- **It is additive in rupees.** The NPVs of independent projects can be summed, which is the arithmetic that a capital budget actually needs.
+- **It is denominated in today's money.** A positive NPV means the project is expected to add that many rupees of value at the stated rate, over and above the return already embedded in the discount rate.
+- **It is monotonically decreasing in $r$ for a conventional project.** Raise the discount rate and the NPV falls, because the future inflows are discounted more heavily. There is exactly one rate at which it crosses zero.
+
+The discount rate is the input the arithmetic cannot supply. Where it comes from decides what the number is. A rate taken from an observable market yield gives a market-consistent valuation. A rate assembled from a model — a risk-free anchor plus a premium for risk — gives a **model-estimated** result, and the estimate travels with it. A rate chosen because the outcome is hoped for is **speculative**, however precise the arithmetic around it. And a rate that has already been earned is a **realised** figure, in which case the exercise is descriptive.
+
+## Internal rate of return: the rate that zeroes the value
+
+The internal rate of return is defined by asking what value of $r$ makes the net present value equal to zero:
+
+$$ 0 = \sum_{t=0}^{n} \frac{C_t}{(1+IRR)^t} $$
+
+There is no closed-form solution in general. The equation is a polynomial in $1/(1+IRR)$ of degree $n$, and it is solved numerically — by iteration, by bisection, or by a Newton-style search that uses the derivative of the NPV expression. That is why different software can report slightly different IRRs for the same cash flows: the stopping rule and the starting guess differ.
+
+The IRR is attractive for a simple reason. It converts any cash-flow pattern into one number, and one number is easy to compare against a hurdle rate. The convenience is real. So are the costs, and they are all consequences of the same act: compressing a rupee-denominated, scale-carrying object into a dimensionless ratio.
+
+## The profile and the crossover
+
+Plotting NPV against the discount rate gives the NPV profile, and the IRR is where the profile crosses the horizontal axis. For a conventional project — one outflow at the start, inflows thereafter — the profile falls smoothly through the axis exactly once, and the project's IRR is unambiguous.
+
+Two projects have two profiles, and the profiles can cross. The rate at which they cross is the crossover rate, and it is found by setting the difference of the two NPV expressions to zero. Below the crossover rate, one project has the higher NPV; above it, the other does. Since the crossover rate may sit anywhere relative to the cost of capital, the ranking of two projects by NPV can depend on the discount rate even when both IRRs are fixed. The IRR, being a single point on each profile, carries none of that information.
+
+## The reinvestment assumption
+
+The most quoted criticism of IRR is also the most easily misunderstood. Both criteria assume something about what happens to cash flows received before the end of the project.
+
+- NPV assumes its intermediate cash flows earn the **discount rate** — the opportunity cost of capital.
+- IRR assumes its intermediate cash flows earn the **IRR**.
+
+Neither assumption is stated in the output, and both are decisions about the real world. The IRR assumption is the more aggressive whenever the IRR exceeds the cost of capital, because it has the cash flows earning a higher rate than the alternative available. A project showing a very high IRR is therefore the one whose quoted percentage leans hardest on the least realistic reinvestment assumption. The modified internal rate of return is sometimes used to repair this, and it does so by assuming reinvestment at the cost of capital instead — replacing one assumption with another, which is an improvement in realism and not a solution in principle.
+
+Note what the assumption does *not* affect: the definition of the IRR, which is simply the rate that reconciles the stated dated flows. The reinvestment story belongs to the interpretation of a rate as a return, and to the comparison of projects.
+
+## Ranking when scale and timing differ
+
+Two projects can have the same IRR and completely different NPVs. That is not a curiosity; it is the normal case when the amounts differ. A project requiring ₹1,00,000 and returning ₹1,25,000 in a year has a 25% IRR. A project requiring ₹2,00,000 and returning ₹2,40,000 in a year has a 20% IRR. At a 10% cost of capital the second adds more value in rupees — about ₹18,000 against about ₹14,000 — despite the lower percentage. Ranking by IRR would select the smaller project.
+
+The crossover rate in this pair is 15%: at a cost of capital below 15% the larger, lower-IRR project dominates; above it, the smaller one does. The lesson generalises. IRR is scale-free, so it can only be used to rank projects of similar size. Whenever scale differs, NPV decides, and the percentage is demoted to a descriptive statistic.
+
+## Non-conventional cash flows and multiple IRRs
+
+The third failure is the least intuitive and the most damaging. The number of positive roots of the IRR equation is bounded by the number of sign changes in the cash-flow sequence. A conventional project has one sign change and at most one IRR. A project whose flows change sign more than once can have more than one.
+
+Consider an illustrative project with flows of −1,00,000, then +2,30,000, then −1,32,000. The sign changes twice. Multiplying the NPV equation through by the square of the discounting factor reduces it to a quadratic whose roots imply $1 + IRR$ equal to 1.10 or 1.20 — that is, two internal rates, 10% and 20%. Between those two rates the NPV is positive; outside them it is negative. A project that adds value at a 15% cost of capital would be rejected by the rule "IRR must exceed the cost of capital", because its IRR would be read as 10%.
+
+Similar patterns appear in mining and extraction projects with abandonment obligations, in property developments with reinstatement costs, in leasing and financing arrangements where the sign flips from borrowing to lending, and in any stream where an outflow occurs after inflows have begun. The repair is not to pick the "right" IRR but to return to NPV, which is a single rupee figure with no multiplicity problem.
+
+## Worked example: two projects, one cost of capital
+
+All figures here are illustrative constructions, not real investments. The cost of capital is assumed to be 10%.
+
+Project A requires ₹1,00,000 at the start and returns ₹30,000 at the end of each of five years. The present value of the five payments is
+
+$$ 30,000 \times \frac{1 - (1.10)^{-5}}{0.10} \approx 30,000 \times 3.791 \approx ₹1,13,700 $$
+
+so the NPV is about +₹13,700. The IRR is the rate at which the annuity factor equals 1,00,000 divided by 30,000, or 3.333. Solving that gives an IRR of approximately 15.2%.
+
+Project B requires the same ₹1,00,000 at the start and returns a single ₹1,50,000 at the end of five years. Its present value at 10% is about ₹93,100, so its NPV is about −₹6,900. Its IRR is
+
+$$ \left( \frac{1,50,000}{1,00,000} \right)^{\frac{1}{5}} - 1 \approx 8.4\% $$
+
+Here the criteria agree: the project with the higher IRR also has the higher NPV, and it is the only one of the two that clears the 10% hurdle. Agreement is the common case for single-outflow projects of similar size. The disagreement arises from scale, timing and non-conventionality, not from ordinary comparisons.
+
+## Where the tools mislead or fail
+
+- **Multiple IRRs.** Any cash-flow pattern with more than one sign change may have several. Reporting one of them as "the" IRR is a choice, and usually an unjustified one.
+- **No IRR at all.** Some patterns have no real rate that zeroes the value, and software may return an error or a spurious number.
+- **Ranking reversal.** With different scales or timings, the IRR ranking can differ from the NPV ranking, and the crossover rate is the only place the switch is visible.
+- **The reinvestment assumption.** A high IRR assumes high-rate reinvestment of interim flows, which may be unavailable. The higher the IRR, the more the quoted figure leans on that assumption.
+- **Sign interpretation.** When the early flow is an inflow, the project is effectively a loan rather than an investment, and the IRR rule inverts: a lower rate becomes the better outcome.
+- **A single point estimate.** Both tools consume a set of cash flows that are, in reality, uncertain. Feeding an expected path into either produces one number where a distribution belongs, and the number carries no information about the spread around it.
+- **The discount rate is the answer.** A small change in the assumed cost of capital moves NPV more than any refinement of the cash-flow estimates. Stating the rate, and its lane, matters more than decimal places.
+
+## What this does not tell you
+
+Neither measure contains information about risk. NPV is a point value at one rate, and IRR is a point value by construction; neither describes the dispersion of outcomes around the central path, and a project with a comfortable NPV can be one whose cash flows are almost entirely uncertain. Neither is comparable across projects with different lives unless the comparison is deliberately constructed. And both are silent on everything outside the cash-flow schedule: the tax treatment of the flows, the funding mix, and the option value of waiting or of expanding later. They answer the question "does this add value at this rate", and they decline every other question.
+
+## Open questions
+
+- When two projects have different lives, what is the least arbitrary way to make the comparison fair?
+- Should appraisals report a modified internal rate of return alongside the conventional one, given that the modification replaces one reinvestment assumption with another?
+- How should the discount rate be set for a project whose cash flows are themselves uncertain, rather than merely dated?
+
+The working rule is short. Compute the net present value. Use the internal rate of return as a description, not as a verdict, and treat a project with more than one change of sign as one where the percentage has nothing useful to say. When the two measures disagree, the rupees are telling the truth and the percentage is rounding.

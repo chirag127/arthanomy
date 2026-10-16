@@ -1,0 +1,167 @@
+---
+title: 'Scam Tokens and Rug Pulls'
+description: 'How fraudulent tokens acquire a price, how a liquidity withdrawal destroys it, which promotional channels manufacture demand, and the screening questions that separate a thin token from an outright fraud.'
+shortTitle: 'Scam Tokens and Rug Pulls'
+category: digital-assets
+series: digital-assets-lab
+seriesOrder: 15
+topics: ['scam tokens', 'rug pulls', 'investor alerts', 'due diligence']
+tags: ['digital-assets', 'fraud-risk', 'detection', 'regulation']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'A rug pull is not a collapse; it is a withdrawal of the only thing that gave the token a market, executed by whoever controlled it.'
+  - 'A guaranteed return and an unregistered collective scheme are the two oldest red flags, and neither requires technical knowledge to detect.'
+  - 'Concentration of supply and of liquidity are the two structural facts that decide whether an exit is even possible for the promoter.'
+  - 'Because a signed transfer is final, detection has to happen before purchase; there is no chargeback, no reversal and usually no recoverable counterparty.'
+  - 'Screening reduces exposure to obvious fraud but cannot prove that a token is legitimate, and no checklist converts an unregulated token into a safe one.'
+faqs:
+  - question: 'Is a rug pull the same thing as a token losing value?'
+    answer: 'No. A token can fall because demand falls, which is an ordinary market outcome. A rug pull is a deliberate, coordinated withdrawal by the people who controlled the supply or the liquidity, which removes the market itself rather than repricing it.'
+  - question: 'Can a promised high return ever be genuine?'
+    answer: 'A promise of a specific high return is itself the warning sign. Any scheme that guarantees a return regardless of what the underlying assets do has to pay earlier participants from later money, and that arithmetic does not survive an end to new money.'
+  - question: 'If I am defrauded, can the money be recovered?'
+    answer: 'Recovery depends on whether a counterparty inside the jurisdiction can be identified and whether the proceeds were traced into assets that can be attached. Where the promoter is anonymous and the assets are self-custodied, recovery is usually theoretical, which is why the loss is designed to be permanent.'
+  - question: 'Does a token being listed on an exchange make it safe?'
+    answer: 'It establishes that a venue was willing to list it, which is a commercial decision rather than an endorsement, and listings can be withdrawn. It says nothing about the issuer, the supply, or whether the market can absorb a sale by its largest holder.'
+relatedCalculators:
+  - id: max-drawdown
+    label: 'Drawdown Analyser'
+  - id: risk-of-ruin
+    label: 'Risk of Ruin'
+  - id: currency-impact
+    label: 'Currency Impact on Foreign Returns'
+  - id: opportunity-cost
+    label: 'Opportunity Cost Calculator'
+relatedArticles:
+  - crypto-assets-in-india-an-orientation
+  - exchanges-kyc-and-custody-basics
+  - wallet-custody-self-versus-custodial
+  - blockchain-basics-for-investors
+  - stablecoins-and-depeg-risk
+  - smart-contracts-and-their-risks
+glossaryTerms: [virtual-digital-asset, private-key, self-custody, stablecoin, tokenisation, proof-of-stake]
+sources:
+  - id: sebi-unsolicited-tips
+    supports: 'Official red-flag lists, alerts on unregistered advisors and guaranteed-return schemes, unauthorised-entity warnings, and the route for reporting a suspected unregistered scheme'
+  - id: iosco-home
+    supports: 'Cross-border retail-investor protection principles and market-conduct standards used to frame what a screening process should be able to assume in a regulated market'
+  - id: sebi-home
+    supports: 'The perimeter within which pooled or collectivised offerings become securities, and the enforcement machinery that applies when an offering falls inside it'
+  - id: pmla-2002
+    supports: 'The reporting-entity and record-keeping obligations, and the attachment mechanism through which traced proceeds of fraud can be restrained'
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'This article describes warning signals and detection. It deliberately contains no method for creating, launching, marketing or operating a fraudulent token, and no procedure that could be followed to carry one out.'
+  - 'All figures appear only inside calculations explicitly labelled illustrative. No token, price, scheme or observed loss is described.'
+  - 'Nothing here is investment advice, and no screening step described converts an unregulated token into a protected product.'
+applicablePeriods: ['2026']
+openQuestions:
+  - 'How much advance warning do on-chain concentration measures genuinely provide, and how many frauds would they have flagged before they failed?'
+  - 'Can cross-border enforcement reach issuers who are anonymous and whose assets are self-custodied, or is the practical remedy always prevention?'
+  - 'Do venue listing standards improve screening outcomes, or do they create a false signal of safety that issuers then exploit?'
+---
+
+A rug pull is often described as a token that collapsed. That description hides the mechanism and makes the loss look like bad luck. The accurate description is narrower and more useful: a token whose market existed only because one party supplied it. When that party withdraws the liquidity it provided, or sells the concentrated supply it retained, there is no market left for anyone else to sell into. The price does not fall so much as disappear. Nothing about the technology caused this, and nothing in the technology can undo it.
+
+This is the fifteenth article in the Digital Assets Laboratory. The series has so far treated digital assets mainly as instruments to be understood. This one is about their most common retail failure mode, and its purpose is detection: what these schemes look like from the outside, which signals carry information, and which reassuring features carry none. It is written to be read before a purchase rather than after, because after a purchase there is usually nothing left to do.
+
+## What a rug pull actually is
+
+Two mechanisms account for most cases, and they are often combined.
+
+The first is a withdrawal of liquidity. A token needs a market in which it can be exchanged for a currency, and that market is created by someone depositing both the token and the currency into it. Whoever supplied that market can, if the design permits, take it back. When they do, holders still hold the token, but nothing can be sold for anything.
+
+The second is the disposal of concentrated supply. If the issuer or an insider group retained most of the tokens, the market's depth is far smaller than the apparent size of the project suggests. A sale by the largest holder cannot be absorbed at anything near the quoted price, so the price falls in a way that reflects a shortage of buyers, not new information.
+
+In both cases the failure is an action rather than an accident. That is what distinguishes a rug pull from an ordinary decline, and it matters because the two call for different lessons: one about position sizing, the other about verification before purchase.
+
+## How a token gets a price at all
+
+Understanding the trap requires understanding the price, and this is the part that a first-time buyer usually skips.
+
+A newly created token has no cash flows, no assets, no earnings and no enforceable claim on anything. It has a price only because someone has placed it in a market alongside a currency and set an initial exchange ratio. The quoted price is the ratio at which the marginal trade is being offered, and the depth behind that ratio is the amount of currency standing ready to buy. On a thin market, a small purchase moves the price up sharply and a small sale moves it down sharply — the movement is arithmetic, not sentiment.
+
+This has two consequences that most fraudulent tokens rely on. First, a rising price can be manufactured cheaply in a thin market, because only a little money is needed to move the quote, and the rise is then presented as evidence of demand. Second, the sustainability of the price depends on a small number of participants choosing to keep providing liquidity. Both facts are visible in advance to anyone who checks how concentrated the supply and the market actually are.
+
+## Warning signals that carry information
+
+The following signals are the ones that historically precede the failure, which is the only property that makes a signal useful. Each is observable before a purchase.
+
+- **A promised return.** A specific guaranteed yield, whatever its size, is the single most reliable marker. Genuine assets vary in outcome; a promise removes the variation and can only be honoured from incoming money.
+- **Unregistered collectivised offerings.** Where money is pooled and managed by a promoter for a return, the offering generally falls inside a securities perimeter if it amounts to a collective investment scheme. A promoter who cannot show registration is asking for trust that the legal framework does not extend.
+- **Supply concentration.** If a small number of holders, and especially the issuer, control most of the tokens, the market cannot absorb their exit. The figure to look at is not the circulating supply but who holds it, and whether the holders are identifiable and subject to any vesting discipline.
+- **Liquidity control.** If the market's liquidity was supplied by the issuer and can be withdrawn at the issuer's discretion, the market exists at the issuer's pleasure. Whether that liquidity is locked, for how long, and by whom is a question with a checkable answer.
+- **A modifiable contract.** Where the issuer can mint new units, freeze transfers or change the token's rules, holders hold a claim on the issuer's continuing goodwill rather than on a fixed supply.
+- **Anonymity with authority.** A public team is not a guarantee, but a promoter who is anonymous while retaining the ability to move the market has removed every avenue of accountability at once.
+- **Manufactured urgency.** Time-limited entry, referral hierarchies and rewards for recruiting others are the signature of a distribution model in which the last cohort funds the earlier ones.
+- **Promotion disproportionate to substance.** When the material available is entirely about the opportunity and never about the mechanism, the mechanism is the part being avoided.
+
+None of these signals is proof of fraud, and their absence is not proof of safety. They are filters: each one removes a class of structure in which the exit is easy for the promoter and impossible for the buyer.
+
+## Explain simply
+
+A fraudulent token is usually a token whose price was created by the same people who can destroy it. Someone sets up a small market, sells the idea loudly, and holds most of the supply or the market's cash — sometimes both. When they take it back or sell it, the price vanishes because no one else was ever really buying. The warning signs are not technical: a guaranteed return, a promoter who is nowhere to be found, pressure to recruit others, all the promotion and none of the mechanism. And because a blockchain transfer cannot be reversed, the decision has to be made before the money moves. Checking is cheap; recovering is almost impossible.
+
+## The promotional channels that manufacture demand
+
+Fraudulent tokens are rarely bought because of research. They are bought because of distribution, and the channels are worth recognising because the channel itself is often the tell.
+
+- **Paid promotion by people with an existing audience.** Compensation is frequently undisclosed, and an audience built on trust in a person is being borrowed for a purpose the audience cannot see.
+- **Closed messaging groups.** A group in which only the promoters speak, in which dissent is removed, and in which the emotion is uniformly positive produces conformity rather than evaluation.
+- **Testimonial cascades.** Early gains are easy to produce in a market the promoter controls, and the testimonials are usually the promoter's own trades being shown to others.
+- **Referral structures.** Where a participant is paid for recruiting participants, the payment can only come from the new money, and the structure is a distribution mechanism rather than an investment.
+- **Fabricated legitimacy.** Borrowed logos, invented audits, invented partnerships and cloned websites that imitate regulated firms are all in common use, because they cost almost nothing and defeat a shallow check.
+
+The common thread is that the promotional machinery pushes the decision earlier than the buyer's own verification. Urgency is the mechanism.
+
+## Why the loss is usually permanent
+
+Three properties of the asset class combine to make recovery the exception.
+
+A transfer signed with a private key is final. There is no intermediary that can be asked to reverse it, and no chargeback exists at the protocol level. If the promoter holds the key, the assets are the promoter's in practice as well as in name.
+
+Self-custody removes the counterparty who could be sued. When a regulated intermediary holds the assets, a court can order a freeze and a supervisor has jurisdiction. When the promoter holds keys directly, the enforcement question becomes one of identifying a person, where that person is, and whether any attachable asset sits in a jurisdiction that will act.
+
+And the tracing problem is real. Proceeds that move quickly across addresses and chains are difficult and expensive to follow, which is why the anti-money-laundering framework imposes record-keeping obligations on the businesses that convert between tokens and currency. Those records are the practical foundation for tracing, and they exist precisely because the on-chain record alone is not enough to identify who benefited.
+
+## Screening an unfamiliar token before buying
+
+A workable sequence, ordered by how much it filters per unit of effort. It assumes the reader intends to verify rather than to be reassured.
+
+1. **Ask what the token is a claim on.** If the answer is that it is a claim on future buyers, stop there. A token representing a revenue stream, a fund unit or a debt obligation raises a different and answerable set of questions.
+2. **Check the regulatory question.** If money is pooled and managed for a return, establish whether the offering is registered or falls within a securities perimeter, and expect a specific answer rather than a general assertion.
+3. **Check who holds the supply.** Look for the largest holders and whether the issuer's holding vests over time. A single holder with most of the supply is an exit gate, not a risk factor among many.
+4. **Check who controls the market.** Establish who supplied the liquidity, whether it is locked, and by whom. If it can be withdrawn by the issuer at will, the market is revocable.
+5. **Check what the issuer can still do.** Minting, freezing and rule-changing powers mean the holder's position depends on the issuer's continuing restraint.
+6. **Check the promotion.** Ask who is being paid, by whom, and whether the payment is disclosed.
+7. **Assume the return does not arrive.** Size the position so that a total loss is survivable, because in this asset class that outcome is a plain possibility rather than a tail event.
+
+Where a suspected unregistered scheme is identified, the securities regulator publishes alerts and provides a reporting route for unauthorised entities and unregistered advisors, and the reporting-entity framework is where a suspicion of laundering or tracing is properly raised.
+
+## Worked example
+
+Two illustrative calculations. The figures are invented to expose the arithmetic and describe no real token, price or scheme.
+
+**The arithmetic of a promised return.** Suppose an offer promises a return of 1% per day. Compounded over 30 days, that is a multiple of 1.01 raised to the power of 30, which is approximately 1.348, or a gain of about 35% in a month. The number is not the point; the arithmetic is. A return of that shape must be funded, and a scheme whose stated return exceeds what any underlying activity generates can only pay earlier participants out of later participants' money. This is why the promise, not the eventual failure, is the signal.
+
+**The arithmetic of a withdrawn market.** Suppose a buyer purchases ₹10,000 of a token in a market whose liquidity is controlled by the issuer. If the price falls 95%, the position is worth ₹500, and the fall is not a repricing of the asset but the removal of the market that gave it a price. A maximum-drawdown view makes the asymmetry visible: recovery from ₹500 to ₹10,000 requires a gain of 1,900%. The drawdown analyser exists to display exactly this asymmetry, and it is the reason position sizing is the only reliable control when the downside is structurally permanent.
+
+## What this does not tell you
+
+This article describes warning signals, promotion patterns and a screening sequence. It contains no method for creating, launching or operating a fraudulent token, and it deliberately omits the operational detail that would make it usable for that purpose. It also does not list specific tokens, schemes or promoters, because naming them would require evidence this article does not present.
+
+Three gaps deserve emphasis. First, screening is a filter and not a proof: a token can pass every check listed here and still fail, because the checks reduce structural risk rather than eliminating it. Second, the signals described are strongest for outright fraud and weakest for the ordinary case of a token whose promoters are honest and whose market is simply too thin to absorb any exit, which produces a similar loss without any intent to deceive. Third, the regulatory perimeter reaches only part of this activity; where an offering is not a security and is not a payment, the buyer's protection is the same as it is for any unregulated transaction, which is to say the buyer's own verification.
+
+## Open questions
+
+- How much genuine advance warning do concentration and liquidity measures provide, and would they have flagged the schemes that failed before the money was gone?
+- Can cross-border enforcement reach an anonymous promoter whose assets are self-custodied, or is prevention the only available remedy?
+- Do exchange listing standards improve screening outcomes, or do they create a signal of safety that issuers then borrow for tokens the venue cannot actually supervise?

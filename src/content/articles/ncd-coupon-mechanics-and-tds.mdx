@@ -1,0 +1,170 @@
+---
+title: "NCD Coupon Mechanics, Record Dates and Tax Deduction at Source"
+description: "How non-convertible debenture interest is computed, credited and taxed at source, why the amount credited is not the amount received, and how to read a coupon term sheet into a net figure without guessing at the rate."
+shortTitle: "NCD Coupon Mechanics and TDS"
+category: debt
+series: debt-encyclopedia
+seriesOrder: 36
+topics: ["non-convertible debentures", "coupon", "record date", "tax deduction at source", "accrued interest"]
+tags: ["debt", "corporate-bonds", "taxation", "fixed-income"]
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - "The coupon on a non-convertible debenture is a rate applied to face value over a stated period, so the rupee amount depends on the face value, the coupon and the day-count convention rather than on the price the investor paid."
+  - "The record date decides who receives a coupon, so buying shortly before it can mean paying accrued interest to the seller and then receiving it back in the same coupon, with nothing gained."
+  - "Tax is deducted at source on the interest as it is paid or credited, and the rate and the threshold at which deduction begins are statutory figures that change; they are not stated here and must be verified."
+  - "Deduction at source is a collection mechanism, not a final tax: the investor's own rate determines the final liability, and any excess deducted is refundable through the return cycle."
+  - "A cumulative debenture and a periodic-payout debenture can carry the same coupon and still deliver different cash and different tax timing, because one rolls the interest into the redemption amount."
+  - "Because a coupon is usually quoted before deduction, the yield an investor compares against a deposit should be computed on the net amount actually received."
+faqs:
+  - question: "Why is the interest credited to my account less than the coupon on the term sheet?"
+    answer: "Because tax is deducted at source on the interest when it is paid or credited, and what reaches the account is the interest net of that deduction. The gross coupon is the amount the issuer owes; the credit is the amount after the statutory deduction."
+  - question: "Is the tax deducted at source the final tax on the interest?"
+    answer: "No. It is a prepayment of tax. The interest is included in the investor's total income and taxed at the rate that applies to that investor, so a mismatch between the deduction rate and the investor's own rate produces either additional tax payable or a refund."
+  - question: "Why did I not receive the coupon I thought I had bought?"
+    answer: "Because entitlement to a coupon is decided by the record date. If the debenture was purchased after the relevant date for that payment, the coupon belongs to the seller, and the buyer's compensation is the accrued interest built into the settlement price."
+  - question: "Do I need to state a rate to compute my net coupon?"
+    answer: "You need the current statutory deduction rate and your own rate of tax, both of which change with the Finance Acts and with your income. This article deliberately does not quote either, because a rate taken from a secondary source and applied to a real holding produces a number that looks precise and is wrong."
+  - question: "Is principal repayment also subject to deduction at source?"
+    answer: "Interest is the payment that attracts deduction at source. Whether any part of a redemption amount is treated as interest rather than principal depends on how the instrument is structured, which is one reason the terms of a discounted or cumulative issue should be read rather than assumed."
+relatedCalculators:
+  - id: bond-price-yield
+    label: "Bond Price and Yield"
+  - id: deposit-comparison
+    label: "Deposit Comparison"
+  - id: modified-duration
+    label: "Duration Calculator"
+relatedArticles:
+  - bank-fixed-deposit-anatomy
+  - corporate-fixed-deposits-and-nbfc-deposit-risk
+  - dated-gsecs-and-the-coupon-myth
+  - treasury-bills-as-the-risk-free-anchor
+glossaryTerms: [coupon-rate, accrued-interest, yield-to-maturity]
+sources:
+  - id: sebi-home
+    supports: "The framework for issuance and listing of non-convertible debentures, including disclosure in the offer document of the coupon, the payout or cumulative option, the record date for interest and the terms of redemption"
+  - id: income-tax-act-1961
+    supports: "The statutory basis for the deduction of tax at source on interest and for the provisions cited for FY 2025-26 and earlier, including the deduction-at-source provisions for interest and the assessment and refund provisions that give credit for tax already deducted"
+dataConfidence: low
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "The tax-rule registry for this brief carries no rate, threshold or holding period for tax deducted at source on debenture interest. No rate is stated anywhere in this article, and none should be inferred from it. The applicable rate and the threshold at which deduction begins must be verified against the current Income-tax Act and Finance Act."
+  - "Where a rule is referred to at all, it is described as a mechanism only. Any tax rule that is not marked verified in the site's registry is provisional, and the position described here is provisional on that basis."
+  - "The coupon, face value and amounts in the worked example are illustrative constructions for a hypothetical instrument. They are not terms of any issue and not an offer."
+  - "If the Finance Act 2025 section renumbering affects any provision referred to, the current numbering is pending verification."
+applicablePeriods: ["FY 2025-26", "AY 2026-27"]
+openQuestions:
+  - "For a cumulative debenture, at what point does the accruing interest become taxable, and does the answer differ between listed and unlisted instruments?"
+  - "How should an investor compare a gross coupon on a debenture with a net-of-deduction deposit rate when both are quoted before tax?"
+  - "For a discounted or premium-redemption debenture, what part of the redemption amount is treated as interest and what part as capital, and how does that division affect both the deduction and the assessment?"
+  - "How much of the recorded coupon on the lowest-rated listed retail debentures has historically been received as cash, after deduction, defaults and the timing of recoveries?"
+---
+
+A debenture coupon is usually the first number an investor sees and the last one that describes what actually arrives in the bank account. Between the rate printed on a term sheet and the amount credited there sit three mechanisms that each change the figure: the way interest is computed over a period, the record date that decides who is entitled to a payment, and the deduction of tax at source on the interest. None of them is hidden, and all three are routinely skipped. This article works through them in order and shows how to turn a coupon term sheet into a net amount without inventing a tax rate to do it.
+
+## Explain simply
+
+A debenture coupon is rent on the amount printed on the debenture, not on the amount you paid for it. If the printed amount is ₹1,000 and the coupon is a stated rate a year, you receive that rate applied to ₹1,000 for as long as you hold the debenture, whatever price you paid. Then two things interrupt the simple story. First, the issuer decides who gets each payment by looking at who owned the debenture on a particular date, so if you buy just before that date you may pay the seller for interest already earned and then receive it back — round trip, no gain. Second, when the interest is paid to you, tax is deducted at source before it reaches your account, and the amount of that deduction is set by law rather than by the issuer. Your take-home is the coupon minus that deduction, and the deduction is settled up later against your own tax.
+
+## What the coupon on an NCD actually is
+
+A non-convertible debenture is a debt instrument that does not convert into equity. Its coupon is the rate stated in the offer document and applied to the face value to compute the periodic interest payment. Four items in the term sheet decide the rupee amount:
+
+- **Face value**, per debenture, which is the base the coupon is applied to. This is not the issue price or the market price.
+- **Coupon rate**, stated as an annual rate, and whether it is fixed or floating.
+- **Payment frequency**, which determines how the annual rate is split across the year and when each payment falls due.
+- **Day-count convention**, which determines how interest is computed for a part of a period, and therefore how accrued interest is calculated between the holder and a seller.
+
+Two consequences follow immediately. A debenture bought at a discount to face still pays interest on face, which is part of where the yield above the coupon comes from. And a coupon quoted as a percentage is not a rupee figure until the face value and the period are known.
+
+## Record date, ex-interest and cum-interest
+
+Entitlement to a coupon is determined by the **record date** set for that payment, which the issuer and the depository use to fix the list of holders entitled to receive it. Trading around that date produces the two conventions that confuse retail buyers:
+
+- **Cum-interest**, where the seller is entitled to the coming coupon and the buyer pays a price that includes the value of it.
+- **Ex-interest**, where the buyer becomes entitled to the coming coupon and the price adjusts accordingly.
+
+The practical warning is simple. Buying a debenture days before a record date does not create a coupon. Either the seller retains it, and the buyer has paid for value already embedded in the price, or the buyer receives it after paying a cum-interest price that already reflected it. Either way there is no free interest, and the buyer who believes otherwise is being charged accrued interest without recognising it. Accrued interest is the interest accumulated since the last payment date, and it changes hands at settlement precisely so neither party gains or loses by the timing of a trade.
+
+## Periodic payout versus cumulative options
+
+The same coupon can be delivered on two very different schedules.
+
+- **Periodic payout.** Interest is paid out on each due date, usually periodically through the life of the instrument. The holder receives cash, and the deduction at source is applied as each payment is made or credited.
+- **Cumulative option.** Interest is not paid out but accumulates and is paid with the redemption amount, or capitalised in a defined way. The holder receives cash later and in a larger lump, and the timing question — whether the accruing interest is taxed as it accrues or on receipt — becomes material.
+
+Whether a given cumulative structure is taxed on accrual or on receipt depends on the instrument and on provisions of the Act, and the answer should be verified for the specific issue rather than assumed. The cash-flow consequence is easier and still matters: two debentures with the same coupon and the same maturity offer different cash timing depending on the payout option, and the periodic option exposes the holder to the reinvestment question that the cumulative one defers.
+
+## Deduction of tax at source: the mechanism
+
+When interest is paid or credited, the payer normally deducts tax at source and remits it to the government, crediting it to the holder's tax account through the prescribed reporting. The mechanism has four parts, and it is worth separating them from the rate, which is not stated here:
+
+1. **The trigger** is the payment or credit of interest. The obligation falls on the payer, not on the investor.
+2. **The base** is the interest, not the principal. Principal repaid at maturity is not, in itself, a payment of interest.
+3. **The rate and threshold** are prescribed by the Act and change with each Finance Act, and can vary with the character of the payer, the payee and the instrument. **These figures are not carried in the tax-rule set for this brief, so no rate is stated anywhere in this article, and none should be inferred from it.**
+4. **The record** of the deduction belongs to the investor, because credit for it is claimed on that basis.
+
+The Act supplies the statutory basis for all of this, and the deduction-at-source provisions for interest sit alongside the assessment and refund provisions. Where the Finance Act 2025 renumbering is relevant to a provision, the current numbering is pending verification.
+
+## Credit for the deduction, and why the final liability differs
+
+Deduction at source is a collection mechanism, not a final tax. The interest still forms part of the investor's total income for the year and is taxed at the rate that applies to that investor. The deduction is credited against the resulting liability through the return cycle:
+
+- If the investor's effective rate on the interest **exceeds** the deduction rate, additional tax is payable on assessment.
+- If it is **below** the deduction rate, the excess is refundable.
+- If the investor is not otherwise required to file, the entitlement to a refund generally requires a return to be filed, which is the step most often missed.
+
+The rate of deduction and the investor's own rate are therefore two different numbers, and neither can be read off the other. This is the reason a computed net coupon is only as good as the rate used, and the reason this article declines to supply one.
+
+## Worked example: an illustrative net coupon
+
+The following is an illustrative calculation for a hypothetical instrument that does not exist, using an assumed coupon. It is not a quotation, not an offer and not a forecast.
+
+Assume a debenture with a face value of ₹1,000 and a stated coupon of 9 per cent a year, paid annually. Annual interest per debenture is:
+
+$$ \text{Interest} = \text{Face value} \times \text{Coupon rate} = 1000 \times 0.09 = 90 $$
+
+Tax is deducted at source on that ₹90 at the statutory rate. Writing that rate as $r$, the amount credited is $90 \times (1 - r)$. Since $r$ is not stated, the net figure is left as an expression rather than a number — which is the honest result when the rate must be verified.
+
+Now separate the two rates. If the investor's own rate on the interest is higher than $r$, a further amount is payable on assessment; if it is lower, part of the deduction comes back as a refund. The cash received during the year is therefore not the tax outcome for the year. On a ₹1,00,000 holding in this hypothetical instrument, interest of ₹9,000 is computed the same way, and the same relationship holds: gross, less deduction at the statutory rate, with the deduction settled against the investor's own liability.
+
+The one figure worth internalising from the example is procedural: the coupon applies to face value, and tax applies to the interest, not to the price paid.
+
+## How to read a coupon term sheet, in order
+
+1. **Face value per debenture** and the number of debentures being allotted.
+2. **Coupon, frequency and whether the payout is periodic or cumulative.**
+3. **Record dates** for each payment and the day-count convention used for part periods.
+4. **Security, seniority and any guarantee**, which decide what happens if the issuer fails rather than what the coupon is.
+5. **Redemption terms**, including any call or put and the price at which it operates.
+6. **The deduction-at-source position**, confirmed from the current statutory source and not from a brochure.
+
+The first three decide the cash. The last three decide whether the cash is likely to arrive.
+
+## The four lanes, in this context
+
+- **Contractual.** The coupon, the record date, the payout option and the redemption amount are contractual promises, and the deduction at source is a statutory overlay on them.
+- **Historical realised.** What a class of debentures previously paid, net of deduction and default, describes a past population.
+- **Model-estimated.** Any yield to maturity computed from the coupon, price and redemption date is a model estimate resting on the reinvestment assumption.
+- **Speculative.** The gain or loss from the secondary-market price moving between purchase and sale is a separate lane from the coupon entirely.
+
+## What this does not tell you
+
+- **It does not give a tax rate.** The rate and threshold for deduction at source are deliberately absent, because the tax-rule set for this brief does not carry them and a remembered figure would be worse than none.
+- **It does not settle accrual timing.** Whether cumulative interest is taxed as it accrues or on receipt depends on the instrument and the Act, and needs verification.
+- **It does not value a discounted or premium-redemption issue.** Where the redemption amount exceeds the issue price, the treatment of that difference needs its own analysis.
+- **It does not handle default.** A coupon is a promise; the recovery analysis belongs with security, seniority and the recovery hierarchy.
+- **It does not price the debenture.** Coupon mechanics describe the cash; price, yield and duration are a separate calculation.
+
+## Open questions
+
+- For a cumulative debenture, at what point does the accruing interest enter taxable income, and is the answer different for listed and unlisted instruments?
+- How should a gross coupon be compared with a net-of-deduction deposit rate when both are quoted before tax and the deduction thresholds differ?
+- For a discounted or premium-redemption debenture, how is the redemption difference divided between interest and capital, and how does that division affect both the deduction and the assessment?
+- Across the lowest-rated listed retail debentures, how much of the recorded coupon has historically been received as cash, net of deduction, defaults and the timing of recoveries?

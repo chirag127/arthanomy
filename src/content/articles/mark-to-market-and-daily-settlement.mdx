@@ -1,0 +1,208 @@
+---
+title: "Mark-to-Market and Daily Settlement"
+description: "How a futures position is revalued every day, why the gain or loss moves in cash rather than accumulating on paper, and why a correct directional view can still exhaust an account before expiry."
+shortTitle: "Mark-to-Market and Daily Settlement"
+category: derivatives
+series: derivatives-lab
+seriesOrder: 4
+topics: ["mark to market", "daily settlement", "futures", "margin call", "cash flow"]
+tags: ["derivatives", "futures", "settlement", "margin"]
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 12
+keyTakeaways:
+  - "A futures position is revalued at the end of every trading day, and the day's gain or loss moves through the margin account in cash rather than accumulating on paper until expiry."
+  - "The sum of the daily settlements over the life of the position equals the final payoff, so marking to market changes the timing of the cash flows and not their total."
+  - "Because losses are debited daily, a position must survive its worst intermediate state and not merely its final state; a correct view that requires more funding than the account has can still be closed out."
+  - "Gains are credited daily too, which is genuinely useful, but the requirement still has to be maintained, so withdrawing the credit can leave the account short."
+  - "Options and futures are marked differently: the option buyer pays the premium in full up front and has no daily obligation on it, while the option writer posts margin and is marked as the position moves."
+  - "Leverage can produce losses larger than intuition suggests, and repeated daily debits are the mechanism by which a leveraged position is closed before its rationale has had time to work."
+  - "The settlement cycle, the method used to determine the settlement price and the timing of pay-in and pay-out are prescribed by the exchange and revised from time to time; they must be read from the current publication."
+faqs:
+  - question: "What exactly is credited or debited each day?"
+    answer: "The difference between today's settlement price and the previous settlement price, multiplied by the lot size, for each open contract. On the first day the comparison is against the traded price rather than a previous settlement price, because the position did not exist before it was opened."
+  - question: "Does marking to market change how much the position eventually earns?"
+    answer: "It does not change the total, in the absence of costs. The sequence of daily gains and losses sums to the final settlement price minus the entry price, multiplied by the lot size. What marking changes is the timing, and therefore the funding the position requires along the way."
+  - question: "Why was a profitable position closed out before expiry?"
+    answer: "Because the daily debits during an adverse stretch reduced the margin balance below the level the framework requires, and the top-up was not made in time. The ending point never became relevant, since the position did not survive to it."
+  - question: "Do option buyers face daily settlement?"
+    answer: "Not on the premium they paid. The buyer's outlay is settled in full up front, and the option's value moves in the market but is not collected from the buyer day by day. The writer of the option posts margin and is exposed to the daily revaluation of the short position."
+  - question: "Is the settlement price the last traded price?"
+    answer: "Not necessarily. The exchange determines the settlement price for each contract by a prescribed methodology, which is published and can differ from the final traded price of the session. The daily debit or credit is computed on the exchange's settlement price, not on the last tick."
+relatedCalculators:
+  - { id: margin-requirement, label: "Futures Margin and Liquidation" }
+  - { id: futures-fair-value, label: "Futures Fair Value and Basis" }
+  - { id: option-payoff, label: "Option Payoff Calculator" }
+relatedArticles:
+  - futures-contracts-from-first-principles
+  - contract-specifications-and-lot-sizes
+  - margins-span-exposure-and-peak-margin
+  - index-futures-versus-index-funds
+  - options-calls-and-puts-payoffs
+glossaryTerms: [futures, settlement, span-margin, option-premium, open-interest]
+sources:
+  - { id: nse-derivatives-cm, supports: "The settlement framework for index and stock derivatives, including the determination of settlement prices, the daily settlement of gains and losses and the final settlement of expiring contracts" }
+  - { id: sebi-derivatives-2024, supports: "The 2024 index-derivatives measures, including the requirement that option premium be collected in full from buyers up front" }
+  - { id: nse-india, supports: "Contract specifications, expiry calendars and the published trade and settlement records against which daily revaluation is computed" }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+hasDiagram: true
+warnings:
+  - "The index level, lot size, deposited margin and daily settlement prices in the worked example are hypothetical constructions for arithmetic. They are not quotations of any listed contract and not the margin any exchange prescribes."
+  - "The settlement cycle and the prescribed method for determining settlement prices are revised from time to time. This article describes the mechanism and states no current parameter."
+applicablePeriods: ["FY 2025-26"]
+openQuestions:
+  - "How much of the retail loss rate in Indian index futures is explained by funding failures along an adverse path rather than by losing positions held to expiry?"
+  - "Does the ability to withdraw daily credits encourage position sizes that would not survive an equally likely adverse path?"
+  - "How should a participant size a position against the distribution of interim drawdowns, given that the ending point is the only quantity most position-sizing discussions use?"
+---
+
+A futures position is not a bet settled once at expiry. It is a claim whose value is recalculated at the end of every trading day, and the change in that value is settled in cash through the margin account on a schedule the exchange prescribes. This is mark-to-market, and it is the mechanism that makes a standardised derivative exchange-tradable at all: no participant has to carry the credit of another across months, because the accumulated difference is paid and received continuously rather than at the end.
+
+The consequence that catches people is not financial theory but cash-flow timing. A position can be opened on a correct view, move against the holder for a stretch, exhaust the collateral available to top it up, and be closed before the view is proved right. Being right at expiry about a position that no longer exists is not a partial benefit; it is a loss plus the cost of being right too slowly.
+
+This article explains how the daily revaluation works, why the sum of the daily settlements equals the final payoff, and how the timing of those cash flows — not their total — decides whether a position survives. It is about mechanics and describes no strategy.
+
+## Explain simply
+
+When you hold a futures position, the exchange recalculates its value every evening. If the market moved in your favour since the previous evening, the gain is credited to your account; if it moved against you, the loss is taken out. This happens every day until you close the position or it expires, and the amounts add up to exactly what you would have made or lost if the whole thing had been settled once at expiry. So why does it matter? Because the money leaves your account along the way rather than only at the end. A position that would have been profitable can drain the account during a bad week, and if the account cannot be topped up, the position is closed. The ending point never arrives.
+
+## Why futures are revalued every day
+
+A forward contract and a futures contract reference the same kind of price difference, but the forward is settled at maturity while the futures is settled continuously. The difference exists for a reason. A forward ties two parties together for its life, and if one of them becomes unable to pay, the other discovers this only when the contract matures. A futures contract avoids that accumulated credit exposure by paying out the change in value as it arises. The clearing corporation guarantees the obligation, and daily settlement keeps the outstanding obligation small enough for that guarantee to be sound.
+
+Daily settlement therefore sits alongside margin as part of the same architecture: margin is the collateral held against the obligation, and marking to market is what keeps the obligation from growing.
+
+## What mark-to-market means, precisely
+
+The revaluation is arithmetic, and it is worth writing out. Let $S_t$ be the settlement price of the underlying on day $t$, $S_{t-1}$ the settlement price on the previous day, and $q$ the lot size in units. For a long position:
+
+$$ \text{Daily credit or debit} = (S_t - S_{t-1}) \times q $$
+
+For a short position the sign reverses. On the day the position is opened, there is no previous settlement price, so the comparison is made against the traded price at which the position was established.
+
+Two properties follow directly from that definition.
+
+- **The sum is the payoff.** Adding the daily terms over the life of the position telescopes to the difference between the final settlement price and the entry price, multiplied by the lot size. Marking to market changes when the money moves, not how much of it moves.
+- **The path is priced in cash, even though it is not priced into the total.** Two positions opened and closed at the same two prices produce the same cumulative settlement. They do not produce the same peak funding requirement, and the funding requirement is what decides survival.
+
+The daily figure is a cash amount, not a notation. A debit reduces the balance in the margin account; a credit increases it. Both are real from the day they are posted.
+
+## The daily settlement cycle
+
+The cycle repeats every trading day in the same order.
+
+1. Trading closes, and the exchange determines the settlement price for each contract by its prescribed methodology.
+2. Every open position is revalued against the previous settlement price, producing a credit or a debit for each participant.
+3. The clearing corporation nets the obligations and establishes what each member must pay in or receive.
+4. Pay-in and pay-out are effected on the schedule the exchange prescribes, with members then settling with their clients under their own arrangements.
+
+Two details matter in practice. First, the daily debit is owed whether or not the position has been closed: an unrealised loss is met with real cash. Second, the obligation is between the member and the clearing corporation, and the client's relationship is with the member, which is why a broker's own top-up thresholds and square-off practices sit between the exchange's numbers and the client's account.
+
+```mermaid
+graph LR
+  A[Session closes] --> B[Exchange fixes settlement price]
+  B --> C[Positions revalued against previous day]
+  C --> D[Gains credited and losses debited]
+  D --> E[Clearing corporation nets obligations]
+  E --> F[Pay-in and pay-out on the prescribed schedule]
+  F --> A
+```
+
+## Settlement price versus last traded price
+
+The debit or credit is computed on the exchange's settlement price, not on the last price printed in the session. The exchange determines the settlement price by a prescribed method, and the method is published. This matters at the margin rather than in the middle of the day: a position that ends the session on a spiky print may be revalued against a settlement price set by a smoother or different calculation, so the cash effect is not always the one the last tick suggests. The exact method, and any revision to it, belongs with the current contract specifications and circulars rather than in a description of the mechanism.
+
+## The cash-flow problem: a right view can exhaust funds
+
+The brief for this article asks why a correct directional view can still exhaust funds. The answer is contained in the worked example below, but the structure is simple enough to state first.
+
+An adverse move produces a daily debit. Debits reduce the collateral in the account, and the framework requires collateral at or above the level it prescribes, measured against the position as it stands — including, under peak-margin monitoring, at the worst point of the session rather than only at the close. If the balance falls short and the top-up is not made, the broker may close the position. The close crystallises a loss that the eventual endpoint might have reversed. Nothing in the mechanics is unusual; it is the ordinary operation of a funded guarantee. The error is in treating a leveraged position as though only its endpoint mattered.
+
+## Gains are cash too, but not free
+
+The revaluation is symmetric, and the credit side is genuinely useful: a profitable position produces cash daily rather than a paper gain, which can be withdrawn subject to the requirement still being met. Two cautions attach.
+
+First, withdrawing the credits does not withdraw the obligation. If the account is drawn down to the minimum while the position is still open, a subsequent adverse stretch produces a shortfall sooner than it otherwise would. Second, frequent cash effects are not free in practice: each settlement interacts with brokerage, exchange charges and the tax computation on a realised basis, all of which are separate, dated matters.
+
+## Options are marked differently
+
+The option buyer and the futures buyer do not face the same daily mechanics, and the difference is structural rather than a technicality.
+
+- The **option buyer** pays the premium in full at the outset, and SEBI's framework requires exchanges to collect it up front. The buyer's outlay is complete at that point; there is no daily obligation on the premium, and the option's value changes in the market without being collected from the buyer day by day. The buyer's loss is bounded by the premium paid, and the whole of it can be lost.
+- The **option writer** receives the premium but carries the obligation, posts margin, and is exposed to the daily revaluation of the short position as the underlying and the premium move. The writer's exposure is not bounded by the premium received; for a written call it has no ceiling at all.
+
+This is why a written option position behaves like a leveraged one in the margin account while a bought option position does not. It also means that the phrase "marked to market" describes the writer's position but not the buyer's premium outlay.
+
+## Worked example: the same endpoint, two paths
+
+An illustrative calculation using hypothetical numbers throughout. Nothing here is a quotation of a listed contract, and the deposited margin is assumed purely for arithmetic.
+
+Suppose a long futures position of one lot is opened at an index level of 20,000 with a lot size of 50 units, so each index point is worth ₹50 and the notional exposure is:
+
+$$ 20000 \times 50 = \text{₹10,00,000} $$
+
+Suppose an illustrative deposit of ₹1,25,000 funds the position.
+
+**Path A, a favourable path with one adverse stretch.**
+
+| Day | Settlement price | Change in points | Daily credit or debit | Deposit after |
+| --- | --- | --- | --- | --- |
+| 1 | 20,100 | +100 | +₹5,000 | ₹1,30,000 |
+| 2 | 19,850 | −250 | −₹12,500 | ₹1,17,500 |
+| 3 | 19,600 | −250 | −₹12,500 | ₹1,05,000 |
+| 4 | 20,400 | +800 | +₹40,000 | ₹1,45,000 |
+| 5, expiry | 20,500 | +100 | +₹5,000 | ₹1,50,000 |
+
+The daily figures sum to ₹25,000, which equals the final payoff:
+
+$$ (20500 - 20000) \times 50 = \text{₹25,000} $$
+
+Whether the dip on days two and three triggers a top-up call depends on the level the framework and the broker prescribe, which this article does not state. The point of the table is that the position carried a funding requirement through that dip that had nothing to do with its ending point.
+
+**Path B, the same two endpoints, a deeper adverse stretch.**
+
+| Day | Settlement price | Change in points | Daily credit or debit | Deposit after |
+| --- | --- | --- | --- | --- |
+| 1 | 19,000 | −1,000 | −₹50,000 | ₹75,000 |
+| 2 | 19,200 | +200 | +₹10,000 | ₹85,000 |
+| 3 | 19,800 | +600 | +₹30,000 | ₹1,15,000 |
+| 4 | 20,300 | +500 | +₹25,000 | ₹1,40,000 |
+| 5, expiry | 20,500 | +200 | +₹10,000 | ₹1,50,000 |
+
+The cumulative settlement is still ₹25,000, and the final deposit is identical. But on day one the account fell to ₹75,000, which under a prescribed requirement above that level is a shortfall. A participant who could not fund it would have been closed out on day one on a view that turned out to be right, and would have watched the remaining four days from outside the position. The two paths are the same trade with different funding demands, and the funding demand is what decides whether the trade is realised.
+
+## Leverage and the shape of the loss
+
+Three statements follow from the mechanics, and they are worth making without qualification.
+
+First, **leverage can produce losses larger than intuition suggests**. The deposit is a small fraction of the notional exposure by design. An adverse move of a few per cent in the underlying is therefore a move of a large fraction of the capital committed, and the daily debit arrives whether or not the eventual outcome reverses it.
+
+Second, **daily settlement turns a view into a sequence of funding events**. The distinction between a good position and a survivable one is the size of the worst intermediate debit relative to the collateral that can be raised, not the strength of the argument for the endpoint.
+
+Third, **the machinery is indifferent to correctness**. A margin shortfall is priced and squared off on the framework's terms. Nothing in the daily settlement process evaluates whether the participant's analysis was sound.
+
+## The four lanes
+
+- **Contractual.** The obligation to settle the daily difference and the mechanism by which the exchange fixes the settlement price and effects pay-in and pay-out.
+- **Model-estimated.** The funding requirement projected forward, which depends on assumed adverse paths and on parameters the exchange prescribes; it is an estimate of a plausible worst case.
+- **Historical realised.** The actual sequence of daily settlements on a position, which is observable from the account statement after the fact and is what the deposit path in the example imitates.
+- **Speculative.** The gain or loss itself, conditional on prices that are unknowable at entry.
+
+## What this does not tell you
+
+- **It states no current parameter.** The settlement cycle, the method for determining settlement prices, the margin levels and the penalty mechanics are prescribed and revised; the current values belong to the exchange publication in force.
+- **It does not model the path.** The example uses two hand-chosen paths to make a point. It does not estimate the distribution of interim drawdowns for any contract.
+- **It does not cover costs or tax.** Brokerage, exchange charges, the securities transaction tax and the treatment of derivatives gains and losses are separate matters, and the tax computation follows the realised results rather than the daily credits.
+- **It is not advice.** Nothing here indicates a suitable size or instrument, and the arithmetic is deliberately about mechanics rather than about any opportunity.
+
+## Open questions
+
+- How much of the retail loss rate in Indian index futures is explained by funding failures along an adverse path, as against losing positions carried to expiry?
+- Does the ability to withdraw daily credits encourage position sizes that would not survive an equally likely adverse path?
+- How should a participant size a position against the distribution of interim drawdowns, given that most position-sizing discussion uses only the ending point?

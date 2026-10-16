@@ -1,0 +1,181 @@
+---
+title: 'Recurring Deposits and Savings Accounts: The Quiet Cost of Idle Cash'
+description: 'What a savings-account rate really pays after inflation, how a recurring deposit actually compounds, and how much money should realistically sit in a transaction account rather than in a deposit.'
+shortTitle: 'Recurring Deposits and Savings Accounts'
+category: debt
+series: debt-encyclopedia
+seriesOrder: 2
+topics: ['savings account', 'recurring deposit', 'average balance', 'compounding', 'idle cash']
+tags: ['banking', 'debt', 'deposits', 'cash-management']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'A savings account is a liquidity service that happens to pay interest, not an investment product that happens to be convenient.'
+  - 'A minimum average balance condition converts an account fee into a return penalty, because the same rupees are held at the lowest rate on the card.'
+  - 'A recurring deposit is not one deposit; it is a series of deposits each earning for its own remaining term, which is why its effective return differs from the headline rate.'
+  - 'The cost of idle cash is the rate gap multiplied by the balance and the time, so the balance usually matters more than the gap.'
+  - 'Realisable real returns on transaction balances are frequently negative when the published price index is used as the deflator.'
+  - 'The size of the working buffer is a decision about payment reliability, not a yield decision, and it should be made deliberately.'
+faqs:
+  - question: 'Why does a savings account pay so little when the bank lends at much more?'
+    answer: 'Because the bank is buying something different. A savings balance is withdrawable on demand, so the bank cannot commit it to a long loan, and it pays for that liquidity and optionality rather than for duration. The spread is the price of the depositor being able to leave at any time.'
+  - question: 'Is a recurring deposit the same as a fixed deposit?'
+    answer: 'No. A fixed deposit places one sum for one term. A recurring deposit places a fixed sum each month, and each instalment earns interest only for the period it stays in the account, so the average tenor is shorter than the nominal term and the effective rate is lower than the quoted one.'
+  - question: 'What happens if an instalment is missed?'
+    answer: 'Banks typically charge a penalty either as a fixed amount or as a percentage of the missed instalment, and the terms are set out in the account schedule. The penalty is not the only cost, because a pattern of missed instalments usually means the plan was sized larger than the cash flow could support.'
+  - question: 'Should an emergency fund be kept in a savings account or a short deposit?'
+    answer: 'The fund has to be available within days, not the same hour. Splitting it so that a small working balance sits in the transaction account and the remainder sits in short deposits or comparable instruments preserves availability while removing most of the yield penalty.'
+  - question: 'Does moving money out of a savings account reduce deposit insurance cover?'
+    answer: 'No, because insurance is applied per depositor per bank rather than per product. Consolidating the same balance into a term deposit at the same institution does not change the insured entitlement, though the terms and the early-exit penalties do change.'
+relatedCalculators:
+  - id: deposit-comparison
+    label: 'Deposit Comparison'
+  - id: opportunity-cost
+    label: 'Opportunity Cost Calculator'
+relatedArticles:
+  - bank-fixed-deposit-anatomy
+  - corporate-fixed-deposits-and-nbfc-deposit-risk
+  - treasury-bills-as-the-risk-free-anchor
+  - deposit-insurance-mechanics-per-depositor
+glossaryTerms: [repo, g-sec]
+sources:
+  - id: rbi-home
+    supports: 'The regulatory framework within which banks set and publish deposit terms, including the treatment of savings and term deposits and the scope of deposit insurance under the DICGC Act'
+  - id: rbi-fd-rates
+    supports: 'Published card rates and deposit-rate statistics, and the spread between term-deposit rates and lending rates against which savings-account pricing sits'
+  - id: rbi-dbie
+    supports: 'The consumer price series used here to convert a nominal savings-account or recurring-deposit return into a real one'
+  - id: rbi-handbook-statistics
+    supports: 'Long-run series on the composition of household financial savings, used to show where transaction balances sit relative to term deposits'
+  - id: sebi-home
+    supports: 'The mutual-fund categorisation framework under which short-duration and liquid schemes are defined, as an alternative home for cash that is not needed at once'
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Every rate and balance used in this article is an illustrative figure chosen to demonstrate arithmetic. No bank offer is described or recommended.'
+  - 'Minimum balances, shortfall charges, instalment penalties and premature-closure rules are set in each bank schedule and change without notice. Confirm them in the schedule for the specific account.'
+  - 'Taxation of deposit and savings-account interest, including any deduction at source, is outside this article. Take it from the dated tax reference on this site.'
+applicablePeriods: ['FY 2025-26']
+openQuestions:
+  - 'How much of the average balance actually held in transaction accounts is working capital rather than idle cash, and how would that be measured without aggregate data?'
+  - 'Do banks price savings-account rates off the policy rate, off competing products, or off a target share of low-cost deposits, and does the answer differ across ownership types?'
+  - 'How far does the effective return on a recurring deposit fall behind the equivalent fixed deposit once missed-instalment incidence is included?'
+---
+
+The savings account is the most used financial product in the country and the least examined. Money arrives in it, money leaves it, and the balance between those events is treated as cash rather than as a holding. That framing hides two separate costs. The first is the cost of holding a balance at the lowest rate on a bank's deposit card, which is small in any single month and large over years. The second is the cost of the minimum-balance condition that most accounts carry, which converts a service charge into a quiet reduction in the return on money the depositor did not intend to invest. The recurring deposit sits between the savings account and the fixed deposit, and it carries a third piece of arithmetic that is routinely misread: it is not one deposit but a series of them.
+
+## Explain simply
+
+A savings account pays interest on money the bank knows can be withdrawn tomorrow, so it pays a low rate. If the account requires a minimum average balance, that amount has to stay there permanently, and the penalty for dipping below it is a charge that is effectively paid out of the interest. A recurring deposit is a standing instruction to add a fixed sum every month, and each monthly addition earns interest only for the time it actually stays in the account, so the average rupee earns for roughly half the term. That is why a recurring deposit at the same rate as a fixed deposit pays less. Both are fine places for money that has to be available soon, and both are expensive places for money that does not.
+
+## The transaction account is a float, not an investment
+
+A savings account exists to settle payments. Its balance is a float: the working stock of money held between the moment income arrives and the moment it is spent, plus the cushion that prevents an overdraft or a return of a payment instruction. Judged as a float, almost every feature of the account makes sense. It pays a low rate because it must be instantly available. It may carry a minimum average balance condition, because the bank is providing a service at a fixed cost and wants a minimum balance to cover it. It may levy a shortfall charge when the average falls below the stated level, calculated on the average over the period rather than on the closing balance, which means a single day of a low balance need not trigger it but a sustained low balance will.
+
+All of the specifics — the minimum average balance, the definition of average, the shortfall charge and any exemption for particular account types — sit in the bank's schedule of charges and change without notice. They are not restated here. What matters for this article is the structure: an account with a minimum average balance holds a fixed sum at the lowest rate on the card, and the charge for breaching the condition is a payment made in order to keep holding that sum. Read that way, a minimum-balance condition is not a fee on the account; it is a fee on a specific holding decision.
+
+## Why the rate on a savings balance is structurally low
+
+Deposit rates are a bank's cost of funds, and the bank pays for the characteristics it needs. A term deposit gives the bank a known sum for a known period, so it can be committed to a loan of similar tenor and can pay more for it. A savings balance gives the bank an unknown sum for an unknown period, which is valuable for liquidity but useless for funding a five-year loan. The price difference between the two is the rent the bank pays for the depositor's option to withdraw at will.
+
+The published deposit-rate statistics show the level around which both rates sit and the spread between what banks pay for deposits and what they earn on lending. That spread has to cover operating cost, credit losses and the return on capital, which is why the savings rate cannot approach the lending rate. And because savings balances are the cheapest funding a bank can get, banks compete for them through service and convenience as much as through the rate. The practical consequence for an account holder is that the rate is set by the bank, published on the bank's card, and rarely negotiated at the individual level.
+
+## The real return on a transaction balance
+
+A nominal rate on a savings balance is not a return unless it is compared with the rate at which the money's purchasing power is falling. The conversion is a subtraction in ratio form:
+
+$$ r_{\text{real}} = \frac{1 + r_{\text{nominal}}}{1 + i} - 1 $$
+
+where $i$ is the inflation rate over the same period. Take an illustrative nominal rate of 3 per cent and an illustrative consumer price inflation of 5 per cent, both chosen to show the arithmetic rather than to describe any current position:
+
+$$ \frac{1.03}{1.05} - 1 = -0.0190 $$
+
+which is minus 1.90 per cent. A balance held at that rate for a year loses purchasing power. That is not a prediction about interest rates or prices; it is what the two illustrative numbers produce. The published consumer price series is the deflator to use, and its base year should be recorded whenever it is quoted, because the series has been rebased over time.
+
+## Recurring deposits: what is actually being compounded
+
+A recurring deposit is a deposit account into which a fixed sum is paid at regular intervals, usually monthly, for a stated term. Its interest mechanics are the reason its return is lower than a casual comparison suggests. Each instalment earns interest only from the date it is credited to the date the account matures. The first instalment earns for the full term; the last earns for about one month. The average rupee therefore earns for roughly half the nominal term, and the balance at any point is well below the sum of all instalments.
+
+That structure is expressed by the future value of an annuity:
+
+$$ FV = P \times \frac{(1 + i)^{n} - 1}{i} $$
+
+where $P$ is the instalment, $i$ is the periodic rate and $n$ is the number of instalments. Whether the instalments are treated as paid at the start or the end of each period changes the result by one period of interest, which is a small but real difference when a bank quotes a maturity value. Banks publish either a maturity factor per instalment or an annual rate with a stated compounding convention, and the two may not be directly comparable unless the convention is identical.
+
+Two terms also need to be read before opening one. A missed instalment usually attracts a penalty, charged either as a fixed amount or as a percentage of the missed amount, and the penalty is defined in the schedule. A premature closure typically pays less than the accrued value, with interest recomputed at a lower applicable rate for the period actually run, in the same way a fixed deposit is recomputed. Neither term is unusual; both change the realised return, and neither appears in the headline rate.
+
+## Worked example: the quiet cost of a small balance
+
+Every figure here is an illustrative calculation. Nothing in it is a bank offer.
+
+Take a recurring deposit of ₹5,000 a month for 24 months at an illustrative 6.5 per cent a year compounded monthly, so the periodic rate is $0.065 / 12$:
+
+- Contributions: 24 instalments of ₹5,000, or ₹1,20,000.
+- Future value on an end-of-period convention, using the annuity formula above:
+
+$$ \text{FV} = 5,000 \times \frac{(1.005417)^{24} - 1}{0.005417} = 1,27,781 $$
+
+so the interest component is ₹7,781.
+- The same 24 payments made into an illustrative savings account at 3 per cent a year compounded monthly would grow to ₹1,23,514, an interest component of ₹3,514.
+
+The whole 3.5 percentage-point difference in rate is worth about ₹4,266 over two years. That small figure is not an error. The average balance in the account was roughly ₹60,000, and most of it was there for only part of the two years, so a large rate difference applied to a small and short-lived balance produces a small sum. This is the first reason recurring deposits disappoint: the arithmetic is working exactly as it should.
+
+The second reason is more consequential. Suppose instead that an illustrative ₹1,00,000 of genuinely idle money sits in a savings account for a year at 3 per cent when it could have been placed at an illustrative 7 per cent with no practical loss of access. The cost is:
+
+$$ 1,00,000 \times (1.07 - 1.03) = ₹4,000 $$
+
+which is roughly the same amount as the entire rate advantage in the recurring-deposit comparison above. The lesson generalises: the cost of idle cash is the rate gap multiplied by the balance multiplied by the time, and across the range of balances people actually hold, the balance and the time dominate the gap. Getting a better rate on a small balance helps less than moving a large balance to a better home.
+
+## Sizing the buffer: the one number worth deciding deliberately
+
+The balance that belongs in a transaction account is a payment-reliability decision, not an investment decision. The account-size question has a natural answer that has nothing to do with yields: enough to cover the ordinary interval between money arriving and money being spent, plus the largest single irregular payment that could fall inside that interval, plus a small margin against timing mismatches. Anything above that is not serving liquidity. It is idle, and idle cash has a cost.
+
+The other side of the same ledger is the cost of getting it wrong. A balance that is too thin produces failed payment instructions, returned mandates and late fees and, if the shortfall is sustained, the minimum-average-balance charge. Those costs are usually larger and more disruptive than a year of foregone interest on a small buffer. The buffer should therefore be sized generously relative to a strict cash-flow projection, and the excess above it moved deliberately. The companion article on emergency-fund sizing treats the reserve as a whole; the point here is narrower, namely the portion of that reserve which must sit in a transaction account rather than merely being available within days.
+
+## Where the excess goes
+
+Once the working balance is set, the remaining cash has three increasingly involved homes, and the right choice depends on when it will be needed rather than on which pays most.
+
+- **A shorter deposit at the same bank.** The simplest move, because it keeps the banking relationship unchanged, and the fixed-deposit article sets out how to compare two offers on effective rather than headline terms. The cost is that a break before maturity is recomputed, so the tenor has to match the intended use of the money.
+- **A sweep or auto-renewal arrangement.** A standing instruction that moves surplus above a threshold into a term deposit keeps the balance low and the access intact, provided the terms of the sweep are read. The threshold itself becomes the working balance, which makes the decision explicit.
+- **A short-duration debt product.** Mutual-fund categories, including the short-duration and liquid categories, are defined by the market regulator's categorisation framework, and each category carries its own duration, credit and exit characteristics rather than a guaranteed rate. These are not deposits and do not carry deposit insurance, so they belong in a different risk conversation.
+
+For any of the three, exit rules and taxation decide the net outcome, and both belong to their own references rather than to this page.
+
+## Return lanes
+
+Four distinct quantities are often conflated in this discussion.
+
+- **Contractual.** The rate printed on the bank's card for the savings account, the recurring deposit and the fixed deposit. This is what the bank has promised, subject to its terms.
+- **Historical realised.** What depositors actually received over a past period, which is visible in the published long-run series on household financial savings and deposit rates, and which reflects conditions that no longer apply.
+- **Model-estimated.** The annuity result in the worked example is a model output from stated assumptions, not an observation.
+- **Speculative.** Any claim about where these rates will be in a year, or about the future path of inflation, is speculation.
+
+## What this does not tell you
+
+- **No current rates.** No rate quoted here is a live offer from any bank.
+- **No account terms.** Minimum balance levels, shortfall charges, instalment penalties and closure rules are set per bank and must be read in the schedule.
+- **No tax position.** Interest taxation and deduction at source are outside this article.
+- **No recommendation between products.** The comparison is presented as arithmetic; the choice depends on the intended use of the money.
+- **No deposit-insurance amount.** The insurance framework is described structurally elsewhere in this series; the operative limit is set by statute and amended from time to time, and should be confirmed from the current disclosure rather than assumed.
+
+## Open questions
+
+- How much of the average balance held in transaction accounts is genuine working capital rather than idle cash, and how could that split be measured without aggregate account-level data?
+- Do banks set savings-account rates off the policy rate, off competing products, or off a target share of low-cost deposits, and does that differ by ownership type?
+- Once the incidence of missed instalments is included, how far behind the equivalent fixed deposit does the realised return on a recurring deposit actually fall?
+
+## The cash-placement checklist
+
+1. **Set the working balance.** Cover the ordinary payment interval, the largest irregular payment inside it, and a margin.
+2. **Read the minimum-balance terms.** Average definition, measurement period, shortfall charge and any exemption.
+3. **Read the recurring-deposit terms.** Compounding convention, instalment date, penalty for a missed instalment and the premature-closure rule.
+4. **Compare on effective terms.** Use the effective annual rate for deposits and the annuity result for instalments, never the headline rate alone.
+5. **Deflate before comparing with the past.** Put the nominal figure against the published price series before claiming it beats an earlier period.
+6. **Move the excess deliberately.** Choose shorter deposits, sweeps or short-duration products by when the money is needed, not by which quotes the highest figure.

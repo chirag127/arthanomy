@@ -11,9 +11,10 @@ difficulty: foundational
 status: published
 kind: explainer
 publishedAt: 2026-10-16
+updatedAt: 2026-10-16
 researchDate: 2026-10-16
 reviewedAt: 2026-10-16
-readingMinutes: 12
+readingMinutes: 9
 keyTakeaways:
   - 'Real return is not nominal minus inflation; it is (1 + nominal) divided by (1 + inflation) minus 1. The shortcut overstates by a small amount that compounds over decades.'
   - 'The correct full sequence is nominal → after costs → after tax → after inflation. Skipping steps, especially tax, turns comfortable numbers into negative real ones.'
@@ -45,6 +46,14 @@ sources:
 dataConfidence: high
 hasPlainEnglish: true
 hasWorkedExample: true
+applicablePeriods:
+  - 'FY 2025-26'
+warnings:
+  - 'Inflation figures and tax rates used in the examples are illustrative constructions chosen to expose the arithmetic; they are not observed data or a forecast.'
+openQuestions:
+  - 'Which index should deflate a mixed household portfolio — headline CPI, a worker-based index, or a personally weighted basket?'
+  - 'How much of the historical gap between urban and rural inflation is a durable feature of Indian household costs rather than a short-run artefact?'
+  - 'For a thirty-year plan, is a single inflation assumption or a stated range more honest?'
 ---
 
 Ask a bank customer what return their fixed deposit gives and you will hear "seven percent". Ask what that buys in five years and the conversation usually stops. Inflation is the quietest tax in finance: it is not deducted from your account, nobody sends you a statement for it, and it takes the largest share from those who feel safest.
@@ -59,7 +68,7 @@ A useful mental calibration: at 5% annual inflation, prices roughly double in 14
 
 ## The exact arithmetic of real return
 
-The most common error in personal finance is subtracting: "7% return, 5% inflation, so 2% real." The exact relationship is multiplicative, because inflation compounds on top of the nominal amount:
+The most common error in personal finance is subtracting: "7% return, 5% inflation, so 2% real." The exact relationship is multiplicative, because inflation is applied to the *grown* sum, not to the original. If a rupee grows by the nominal return while the price level rises, then purchasing power obeys:
 
 $$ 1 + r_{\text{real}} = \frac{1 + r_{\text{nominal}}}{1 + i} $$
 
@@ -69,13 +78,27 @@ $$ r_{\text{real}} = \frac{1.07}{1.05} - 1 \approx 1.90\% $$
 
 The subtraction shortcut said 2%; the exact answer is 1.9%. For a single year the difference looks like trivia. Compounded across 25 years of retirement planning, it silently shifts every projection.
 
+The same identity rearranges to answer the question in the other direction — what a nominal return must be to hit a real target:
+
+$$ 1 + r_{\text{nominal}} = (1 + r_{\text{real}})(1 + i) = 1 + r_{\text{real}} + i + r_{\text{real}}\, i $$
+
+The cross term $r_{\text{real}}\, i$ is why the sum of the two rates is an approximation rather than the rule, and why the approximation drifts further from the truth as either rate rises. It also gives the break-even directly: the real return is exactly zero — purchasing power preserved — whenever $r_{\text{nominal}} = i$.
+
 The order of operations matters even more than the formula. The honest sequence is:
 
 **nominal → after costs → after tax → after inflation**
 
 Each arrow removes something certain (costs, tax at applicable rates — the rates are dated facts, not forecasts). What remains is the *real, post-tax* return: the only number that describes what your money will buy.
 
-### Worked example: the proud 7% deposit
+## Over multiple years the annual rate stays put; the gap does not
+
+One precise point is easy to misread. Under constant rates the *annual* real return is the same in year one and year twenty, because
+
+$$ r_{\text{real}} = \frac{1 + r_{\text{nominal}}}{1 + i} - 1 $$
+
+What widens is the *rupee* gap between the nominal corpus and the purchasing power it represents. ₹1,00,000 at 7% becomes about ₹3,86,968 in twenty years. At 5% inflation, ₹1,00,000 of today's spending becomes about ₹2,65,330 of future spending. The corpus is 3.87 times as large and prices are 2.65 times as high; in today's money the corpus is about ₹1,45,850, and the real return is 1.90% a year — unchanged, because the two growth rates did not change. The illusion widens; the rate does not. (Illustrative arithmetic throughout, not a forecast.)
+
+## Worked example: the proud 7% deposit
 
 A resident individual in the 30% marginal slab puts ₹1,00,000 in a one-year bank deposit paying 7%. The deposit's ₹7,000 of interest is taxed at slab rates, and surcharge where applicable — at the margin this frequently reaches an effective ~31.2% with surcharge and cess. After tax:
 
@@ -85,6 +108,30 @@ A resident individual in the 30% marginal slab puts ₹1,00,000 in a one-year ba
 - With inflation at 5%: real return $= \frac{1.0482}{1.05} - 1 \approx -0.2\%$ for the year.
 
 The customer's money grew by 7% and bought slightly **less** than it would have bought a year earlier. The deposit was not a bad decision — it was a decision, and its honest label is capital preservation in nominal terms with a small real loss, purchased for certainty and liquidity. That is a legitimate purchase. It is not "earning 7%".
+
+### The same deposit over twenty years
+
+Extend it: same ₹1,00,000, same 7% rate, taxed annually at the same illustrative ~31.2%, inflation still 5%.
+
+- After-tax nominal rate: $7.0\% \times (1 - 0.312) \approx 4.816\%$.
+- The corpus grows to $1.04816^{20} \times 1,00,000 \approx$ ₹2,56,190.
+- ₹1,00,000 of today's purchasing power becomes about ₹2,65,330 of future purchasing power at 5%.
+- In today's money the corpus is about ₹96,560.
+- The real return is $(0.9656)^{1/20} - 1 \approx -0.17\%$ a year.
+
+Twenty years of nominal growth, and the money buys slightly less than it did at the start. The tax is what turns the pre-tax real gain of 1.90% into a small real loss; remove the tax and the deposit keeps pace comfortably.
+
+### Inflation sensitivity
+
+A single assumption decides the sign. Hold the after-tax nominal rate at 4.816% and vary inflation:
+
+| Inflation (illustrative) | Real return |
+| --- | --- |
+| 4% | ≈ +0.78% |
+| 5% | ≈ −0.17% |
+| 6% | ≈ −1.12% |
+
+The break-even inflation rate is 4.816% — the rate at which the deposit exactly preserves purchasing power. Above it, the deposit loses real value even though the account balance grows every single year.
 
 ### The double drag at a glance
 
@@ -105,6 +152,25 @@ The ordering is the point: tax bites hardest exactly where returns are contractu
 CPI is a national average basket. Urban households that rent, educate children privately and pay for healthcare out of pocket typically experience inflation well above the headline, because those components — rent, education, medical care — have historically risen faster than the index average. The statistics are published and checkable; what cannot be standardised is your basket.
 
 The practical response is not to abandon CPI — it is the only comparable benchmark — but to build the personal overlay: take the items that are large in *your* budget and track their actual price changes over years, not press headlines. A family whose two largest costs are rent and school fees should plan with a number above headline CPI, and will be right more often than not.
+
+Two cautions about the index itself, independent of your basket. First, the CPI basket and its weights are revised periodically, so the index is a moving measuring rod: long-run comparisons inherit whatever revisions were made along the way. Second, headline CPI includes volatile food and fuel prices, so a single year's reading can be driven by a monsoon or an oil-price swing rather than by anything structural. Neither point makes the index unusable; both make one print a weak basis for a thirty-year plan.
+
+## Where deflating a return misleads
+
+The inflation adjustment is honest arithmetic applied to a convention, and the convention can mislead in several ways.
+
+- **The index measures consumer goods, not the assets you hold.** Using CPI to restate an equity or bond return as a real return is a way of expressing purchasing power; it is not a measurement of the asset. The convention is useful and the distinction is real.
+- **Averaging annual real returns is not the real return of the average.** Deflating each year separately and using a single average inflation rate across the period agree only when inflation is constant. With varying inflation, the order of the operations matters.
+- **Your goal can outrun CPI.** Real return can be positive while a specific commitment — education, healthcare — becomes more expensive faster than the general index, so a positive real return does not by itself mean a goal is funded.
+- **A negative real return is not, on its own, a reason to avoid an asset.** It is a reason to compare it with the alternative. Cash left in a savings account can be more negative.
+- **The adjustment says nothing about risk.** A real return of 5% from a volatile asset and 5% from a deposit are different objects; the risk comparison still has to be made.
+- **Real is not the same as real, post-tax.** A real figure computed from prices alone still ignores the tax on the way through.
+
+## Open questions
+
+- Which index should be used to deflate a mixed household portfolio: headline CPI, a worker-based index, or a personally weighted basket?
+- How much of the historical urban-versus-rural inflation gap is a durable feature of Indian household costs, and how much is short-run?
+- For a long-horizon plan, is a point estimate of inflation or an explicitly stated range more honest?
 
 ## What this builds toward
 

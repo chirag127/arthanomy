@@ -1,0 +1,146 @@
+---
+title: 'OTP Phishing and Account Takeover Paths'
+description: 'How one-time passwords are harvested through calls, fake pages and number takeover, why a one-time code fails as a second factor against a live attacker, the liability question when money moves, and a containment routine for the first hour.'
+shortTitle: 'OTP Phishing and Takeover'
+category: fraud-risk
+series: fraud-investor-protection
+seriesOrder: 11
+topics: ['OTP fraud', 'phishing', 'account takeover', 'digital security']
+tags: ['fraud', 'payments', 'cyber-security', 'consumer-protection']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+updatedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'A one-time password is a shared secret, and any secret that can be read out over a call can be relayed into an attacker''s live session within seconds.'
+  - 'The second factor is only as strong as the channel that carries it; if control of the mobile number can be transferred, every code sent to that number becomes available to whoever holds the number.'
+  - 'Real-time relay is the reason OTP prompts are not proof: the code is genuine, the transaction is genuine, and the person approving it believes they are authenticating their own request.'
+  - 'The liability position after an unauthorised transaction turns on where the deficiency lay and on how quickly the customer reported, so a written complaint with a reference number is the first thing to obtain.'
+  - 'Containment means revoking access, not just blocking a card: credentials, sessions, linked devices and standing instructions all have to be considered, because a takeover is access, not a single payment.'
+  - 'Approaches increasingly arrive as ordinary calls and messages from personal numbers, a direct consequence of traceability rules that made spoofing an institutional sender identifier harder.'
+faqs:
+  - question: 'How can an OTP be a problem if it expires in seconds?'
+    answer: 'Because the attacker does not need the code to stay valid — they need it to be valid now. In a relay attack the victim is on a call while the attacker initiates a transaction; the victim reads out the genuine code and the attacker submits it inside the same seconds. Expiry limits reuse, not live capture.'
+  - question: 'The caller knew my account number and my last transaction. Does that mean the bank is compromised?'
+    answer: 'No. Some of that information leaks through data breaches, receipts, statements and prior calls, and knowing it is the standard way a caller establishes credibility. Familiar details are a sign of preparation by the caller, not evidence that the call is internal to your bank.'
+  - question: 'My phone suddenly lost network coverage and then money moved. What does that suggest?'
+    answer: 'Loss of service with no obvious cause is worth treating as a signal that control of the number itself is being moved, since codes sent to that number then reach whoever holds it. Contact your bank and your operator through channels you source yourself, and treat the credentials attached to that number as exposed.'
+  - question: 'Am I liable if I gave away the code?'
+    answer: 'That depends on where the deficiency lay and on how promptly you reported, which is what the regulator''s customer-protection framework addresses. The practical step available to you is to report in writing as fast as possible and to keep the acknowledgement and reference number, because the quality of that record is what the assessment will rest on.'
+  - question: 'Should I install an app a caller asks me to install to "fix" my account?'
+    answer: 'No. Remote-access and screen-sharing tools exist to let someone else operate your device, and a caller who wants that has no legitimate need for it. When such an app is installed and a screen is shared, no code has to be typed at all: the attacker watches the session and acts inside it.'
+relatedCalculators:
+  - { id: emergency-fund, label: 'Emergency Fund Sizing' }
+relatedArticles:
+  - sebi-registration-checks-before-investing
+  - unregistered-collective-investment-schemes
+  - pyramid-and-mlm-structures
+glossaryTerms: [economic-offences-wing]
+sources:
+  - { id: rbi-home, supports: 'The supervisory framework over banks and payment systems, and the customer-protection framework that governs liability for unauthorised electronic transactions and the escalation route beyond a bank' }
+  - { id: rbi-ombudsman-2026, supports: 'The escalation route named here: the RBI complaint portal at cms.rbi.org.in and the Centralised Receipt and Processing Centre, the Reserve Bank – Integrated Ombudsman Scheme, 2026 in force from 1 July 2026 as the framework, the requirement to approach the entity first, the escalation and appeal timelines, and the compensation limits' }
+  - { id: trai-sms-credentials, supports: 'Bulk-communication traceability and the reason sender-ID spoofing became harder after 2021, which shifted approaches towards personal numbers, messaging apps and voice calls' }
+  - { id: bns-2023, supports: 'The criminal provisions on cheating, forgery and impersonation under which an account takeover can be reported to the police' }
+  - { id: pmla-2002, supports: 'The record-keeping and attachment mechanisms that determine whether transferred funds can be traced and frozen' }
+  - { id: sebi-unsolicited-tips, supports: 'Alerts on the unregistered advisers, tip providers and guaranteed-return schemes that commonly provide the story for a credential-harvesting approach' }
+  - { id: consumer-protection-2019, supports: 'Remedies where a service was mis-sold or a misleading representation induced the disclosure of credentials' }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'This article explains attack patterns so that readers can recognise them. It contains no operational instructions, and interface wording, bank procedures and escalation routes differ and change.'
+  - 'Grievance frameworks, scheme names and portal details are revised from time to time; verify the current escalation route on the RBI complaints page before relying on it.'
+  - 'No institution, product or person is named or accused; the examples are structural.'
+applicablePeriods: ['Reviewed October 2026']
+openQuestions:
+  - 'If codes relayed in real time defeat the factor, which alternatives — passkeys, device binding or transaction signing — will actually be deployed at retail scale in India, and who bears the migration cost?'
+  - 'How much of the loss in a takeover case is decided by the quality of the customer''s first written complaint rather than by the underlying facts?'
+  - 'Can number control be transferred with enough friction to make takeover impractical, without making ordinary porting unusable?'
+---
+
+An account takeover rarely begins with a broken system. It begins with a genuine message, a genuine code and a genuine transaction, approved by someone who believed they were securing their own money. The one-time password — the code sent to a phone to prove that the person acting is the account holder — was designed to fail usefully. It has one structural weakness that attackers have industrialised: the code is a secret that travels through a channel somebody else can hold, and a secret that can be read aloud can be passed on as fast as it is received.
+
+This article describes how codes are harvested, why a live attacker defeats them even though they expire, who bears the loss under the customer-protection framework, and what the first hour should look like when access has been lost.
+
+## Explain simply
+
+Banks add a one-time code to a transaction so that knowing your password is not enough. An attacker gets around this without breaking the code. They contact you while they are in the middle of a transaction: a caller claims to be from the bank, a page asks you to "confirm" something, or an app pretends to be the official one. You then either read the code out or type it into the wrong place, and the attacker uses it inside its short life. Some attacks do not stop at a single payment. If the attacker can also move your mobile number to a device they control, every future code comes to them. The defence is not a better code. It is never disclosing a code, never installing software at a stranger's request, and treating any unexpected loss of phone service as an emergency.
+
+## The second factor is the channel
+
+Authentication in retail banking rests on something you know, something you have, or something you are. A one-time password is a "something you have" factor — but it is not delivered to a device in the abstract. It is delivered as a message to a mobile number, and a mobile number is an asset that can be controlled by someone else.
+
+That framing explains the whole attack surface. If the attacker can read your messages, the factor is theirs. If the attacker can talk you into reading the message aloud, the factor is theirs for the seconds that matter. If the attacker can watch your screen while the message arrives, the factor is theirs. None of these requires breaking cryptography. Each requires moving the delivery channel, or the person holding it, into the attacker's control.
+
+## Why a code that expires still fails
+
+One-time codes are short-lived by design, and the usual intuition is that an expiry window of seconds makes them useless to anyone but the account holder. The intuition fails against an attacker who is present at the moment the code is issued.
+
+Consider the shape of a relay. The attacker begins a transaction in a channel they control. The bank's system does exactly what it should: it sends a code to the registered number. The attacker, already on a call with the account holder, asks for that code — with a reason. The account holder reads a genuine code, generated by a genuine system, for a genuine transaction. The attacker submits it immediately. Every element of the chain behaved as designed; only the identity of the human at the end was wrong.
+
+Expiry limits reuse, not capture. This is why "never share your OTP" is not a cliché but the load-bearing rule, and why the framing "the bank will never ask" matters more than any technical explanation. An institution that legitimately needs to authenticate you will complete the authentication inside its own app or on a page you opened yourself. It will not need you to speak the secret aloud, and there is no scenario in which reading it out helps you.
+
+## Three harvesting routes
+
+**Voice.** A caller claiming to represent the bank, a payment app, a delivery service or an investment platform works through a script designed to make disclosure feel cooperative. The script escalates: a problem, a deadline, an offer to fix it, a request for the code. The caller usually knows enough identifying detail to feel credible; that detail comes from prior leaks, statements, receipts and earlier calls, not from inside the bank.
+
+**Pages and apps.** A link in a message opens something that looks like the real login page, or a downloadable app is presented as the official one. What the page collects is not only the code but the credentials and the device context, which together allow the attacker to operate the session. Investment-shaped versions are the most damaging, because a fake trading or portfolio interface can also display invented balances, which delays discovery by days or weeks and lets the attackers request more money in between.
+
+**Number takeover.** Rather than intercepting one code, the attacker arranges for your number to be served by a device they hold. Code-based protection attached to that number then collapses entirely, because the codes arrive at the wrong place by design. The signal available to the victim is usually indirect: an unexpected and prolonged loss of network service on a number that was working, or a sudden burst of bank messages that is not matched by anything the victim did.
+
+Traceability rules have changed the delivery end of all three. Bulk-communication traceability means institutional sender identifiers are registered and increasingly hard to spoof, and sender-ID spoofing became harder after 2021. The practical effect is that approaches now arrive through ordinary personal numbers, messaging applications and voice calls, where the identifier is uninformative by nature. The absence of a spoofed bank sender ID is therefore not reassurance.
+
+## Screen sharing: the takeover without a code
+
+The most efficient variant needs no code at all. A caller persuades the victim to install a remote-support or screen-sharing application, or to grant accessibility permissions to something already installed. From that point the attacker observes the screen, and when the victim logs in, the attacker sees everything — the credentials, the interface and the codes as they appear. The victim is doing all the authenticating correctly, on behalf of the attacker's session.
+
+The behavioural rule is simple and can be applied without technical knowledge: no legitimate institution needs to see your screen, control your device or have you install software while you are on a call. Support that begins with a request to install something is not support.
+
+A related variant uses remote control to change payees, add beneficiaries or authorise standing instructions while the victim watches and believes they are observing a repair. This is why containment after a takeover must examine everything the login could reach, not only the payment that has already appeared.
+
+## What a legitimate institution will not ask for
+
+Four requests are decisive signals, whatever the reason given for them:
+
+- your one-time code, read aloud or typed into a page you did not open;
+- your full card number with expiry and security code, or your PIN, or your net-banking password;
+- installation of a remote-support, screen-sharing or keyboard-access tool;
+- a transfer to a "safe account", a "settlement account" or an individual's personal account in order to protect your money.
+
+Each of these is either unnecessary for the institution or actively inconsistent with how banking works. A rule that covers all four can be stated in one sentence: no genuine process requires you to take a security-reducing action, and any request that does is the attack.
+
+## The liability question
+
+When an unauthorised transaction occurs, who bears the loss is determined by the customer-protection framework the regulator applies to banks, and its logic is worth understanding because it shapes behaviour after the event. Two variables dominate: where the deficiency lay, and how quickly the customer reported. A system or process failure on the bank's side and a failure caused by the customer's own disclosure of credentials are treated differently. The interval between the transaction and the complaint is itself an input, not merely a formality, because the bank's ability to act on the money declines continuously with time.
+
+The practical consequence is that the record matters as much as the merits. A telephoned complaint that leaves no trace is not the same as a written complaint with a date and a reference number. The specific limits and the treatment of each scenario sit in the regulator's published framework, which is the document to read when an actual dispute arises; this article deliberately does not restate them, because they change and they must be applied to facts.
+
+## Worked example: the first hour after an unauthorised debit
+
+An illustrative containment routine. It assumes the worst case — that credentials, not just a code, may be in the attacker's hands.
+
+- **Minute 0 — freeze.** Using a channel you sourced yourself, ask the bank to block cards, net-banking and payment access on the affected accounts. If the loss of service on your phone was unexplained, say so; it changes the risk assessment.
+- **Minute 5 — secure the credentials from a clean device.** Change the banking password and the PIN, and change the email password too, since the email is usually the reset channel. Do this from a device you believe is unaffected.
+- **Minute 15 — revoke everything the login could reach.** Sign out of all sessions, remove unknown devices, delete unrecognised payees and standing instructions, and check the securities accounts as well as the bank accounts: a trading or demat login reached with the same credentials can be used to place orders, move funds within the account, or test what else is linked.
+- **Minute 20 — report in writing.** Lodge the complaint about the unauthorised transaction and obtain a reference number. Confirm the reference in a form you can keep — email is better than a conversation.
+- **Minute 30 — report to the police.** Cheating, forgery and impersonation are offences under the criminal law in force since July 2024, and state Economic Offences Wings handle financial fraud. Record the beneficiary details, the timestamps and the reference numbers in the complaint.
+- **Minute 45 — preserve and reconstruct.** Take screenshots of every message, call log entry and transaction, and write down what was said. Attackers rely on the victim's memory being the only record; a contemporaneous note is evidence.
+- **Minute 60 — open the escalation path.** If the bank has not given you a route to resolution, note the escalation path: under the Reserve Bank – Integrated Ombudsman Scheme, 2026, in force from 1 July 2026, a complaint may go to the RBI Ombudsman once 30 days pass without a reply or as soon as an unsatisfactory reply arrives, and it requires the matter to have gone to the bank first. If the approach was dressed as an investment, report that aspect to the securities regulator as well, which has published alerts on unregistered advisers and guaranteed-return schemes.
+
+## Where to report
+
+The bank comes first because the money sits on its books and it holds the receiving side's details. The police come in parallel because a takeover is a criminal offence and the beneficiary trail is what the investigation reaches. The **RBI** is the third channel. A complaint against any regulated entity — banks, NBFCs and other system participants — goes through the centralised complaint portal at cms.rbi.org.in; complaints by e-mail or post go to the Centralised Receipt and Processing Centre at crpc@rbi.org.in, and the toll-free number 14448 gives information and status but cannot receive a complaint. The governing framework is the Reserve Bank – Integrated Ombudsman Scheme, 2026, in force from 1 July 2026, which replaces the 2021 scheme; complaints received before that date, appeals arising under the 2021 scheme and execution of its awards continue under the 2021 scheme. Escalation requires the customer to approach the entity first, and that complaint to the entity must itself have been made before the limitation period under the Limitation Act, 1963 expired. It is available if there is no reply within 30 days — or the higher period set by RBI, NPCI or card-network guidelines, whichever is higher — or if the reply is unsatisfactory, and must be filed within 90 days from that deadline or from the last communication, whichever is later. Filing is free, there is no cap on the disputed amount, and compensation may reach Rs 30 lakh for consequential loss and Rs 3 lakh for time, expenses and harassment. An appeal against an Award lies to the Appellate Authority within 30 days, extendable by up to a further 30 days for sufficient cause. So the written complaint to the bank is the precondition for escalation rather than an alternative to it. Where funds have been moved onward through further accounts, the banking system's record-keeping obligations and the legal mechanism for attaching traceable proceeds are what make any recovery possible at all.
+
+What cannot be recovered by any channel is the disclosure that already happened. This is why the containment routine above spends its first fifteen minutes on revoking access rather than on arguing about the transaction.
+
+## What this does not tell you
+
+It does not describe how a particular bank or app implements authentication, because implementations differ and are revised. It does not quantify how often each route is used or what share of losses is recovered; those figures need data that is not cited here. It does not establish that any specific loss will be compensated, because the liability assessment is fact-specific and depends on the framework applied to those facts. And it does not claim that following every rule above makes takeover impossible — an attacker who controls the delivery channel is operating inside the system, and the honest position is that the rules reduce exposure rather than eliminate it.
+
+## Open questions
+
+Three questions remain open. If codes relayed in real time defeat the factor, which replacements — passkeys, device binding, or transaction signing that displays the beneficiary — will actually reach retail scale in India, and who bears the cost of that migration? How much of the outcome in a takeover case is decided by the quality of the customer's first written complaint rather than by the underlying facts, and should the system be less sensitive to that? And can control of a mobile number be transferred with enough friction to make takeover impractical, without making ordinary porting unusable for everyone else? The companion article on [unregistered collective investment schemes](/library/unregistered-collective-investment-schemes) covers the investment-shaped stories these attacks are wrapped in, and why the useful information is almost always in the registration rather than in the pitch.

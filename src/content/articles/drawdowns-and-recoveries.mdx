@@ -1,0 +1,217 @@
+---
+title: "Drawdowns and Recoveries: The Arithmetic of Getting Back to Even"
+description: "A drawdown is measured from a running peak, and the gain needed to undo it is not the loss reversed. This article derives the recovery relationship, separates depth from duration, and sets out the preparation a drawdown demands of a long-horizon investor."
+shortTitle: "Drawdowns and Recoveries"
+category: investment-basics
+series: science-of-returns
+seriesOrder: 6
+topics: ['drawdown', 'recovery', 'time under water', 'sequence of returns']
+tags: ['foundations', 'risk', 'behaviour', 'arithmetic']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - "A drawdown is the fall from a running peak to a later value, expressed as a fraction of that peak, so it is the distance below a high-water mark rather than a fall over a fixed period."
+  - "The gain needed to recover a decline of depth d is g = d / (1 - d), which is always larger than the loss and grows without bound as the loss approaches the whole."
+  - "The relationship follows from one fact only: a percentage gain is applied to the shrunken value, so the base against which recovery is measured is smaller than the base against which the loss was measured."
+  - "Depth is only half the cost. The time spent below the previous peak depends on the depth and on the rate earned after the trough, and it is a separate quantity from the depth."
+  - "Two opposite percentage moves never cancel: a fall of 25 per cent after a rise of 25 per cent leaves the investor down 6.25 per cent, because percentages multiply rather than add."
+  - "A drawdown is a realised path statistic and says nothing about the probability, depth or duration of the next one; preparation therefore has to happen before the decline rather than during it."
+faqs:
+  - question: "Why does a 50 per cent fall require a 100 per cent gain?"
+    answer: "Because the gain is applied to what remains. A fall from one hundred to fifty leaves fifty, and the only way back to one hundred is to double fifty, which is a rise of one hundred per cent. The loss was measured against the peak and the recovery is measured against the trough, so the two percentages refer to different bases."
+  - question: "Is a drawdown the same as a permanent loss?"
+    answer: "No. A drawdown is a decline from a peak and it can be recovered; a permanent loss is capital that does not come back. A diversified holding whose value reflects a broad repricing is usually in the first category, while an impaired business or a defaulted borrower is often in the second."
+  - question: "Does the depth of a drawdown depend on how often I measure it?"
+    answer: "Yes. A finer measurement grid captures troughs that a coarser one smooths away, so a drawdown measured on daily values is generally deeper than the same episode measured at month ends. Two drawdown figures are comparable only if the measurement frequency and the window match."
+  - question: "Does the recovery always happen?"
+    answer: "No. The relationship g = d / (1 - d) says what gain is required, not what gain will be earned. Whether the peak is regained depends on the subsequent return of the asset, on whether the investor adds or withdraws money during the decline, and on whether the decline was temporary repricing or permanent impairment."
+  - question: "What can I do before a drawdown that I cannot do during one?"
+    answer: "Decide the policy in advance. The useful preparation is written: a stated target allocation, a rule for rebalancing, a cash buffer sized for near-term spending, and a record of why each holding is owned. Those decisions are calm to make at a high-water mark and difficult to make at a trough."
+relatedCalculators:
+  - id: cagr
+    label: "CAGR Calculator"
+  - id: xirr
+    label: "XIRR Calculator"
+  - id: real-return
+    label: "Real Return Calculator"
+  - id: rolling-returns
+    label: "Rolling Return Comparator"
+relatedArticles:
+  - volatility-versus-permanent-loss
+  - risk-as-the-price-of-return
+  - time-horizon-and-the-odds-of-loss
+  - compounding-over-decades
+  - what-an-investment-return-actually-is
+glossaryTerms: [geometric-mean, arithmetic-mean, real-return, opportunity-cost]
+sources:
+  - id: shiller-cape
+    supports: "Long-horizon real return and valuation series, used only to frame the difference between short-horizon movement and longer-horizon expectation; no figure from the series is quoted in this article"
+  - id: markowitz-1952
+    supports: "The treatment of risk as a property of the whole portfolio rather than of its individual holdings, which is why a drawdown is described here on combined wealth rather than asset by asset"
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+hasDiagram: true
+warnings:
+  - "Every wealth path, return, decline and recovery time in this article is an illustrative construction that demonstrates arithmetic. No historical market return, index level or fund result is quoted or implied."
+  - "The relationship g = d / (1 - d) is an arithmetic identity. It states what gain would restore a previous peak; it is not a forecast that a decline will be recovered."
+openQuestions:
+  - "How should depth and duration be reported together so that an investor registers the size of a decline without reading it as a probability of the next one?"
+  - "When an investor is contributing to or withdrawing from a portfolio during a decline, what is the right way to express the drawdown on their own money rather than on an untouched index?"
+  - "Does the arithmetic of recovery change materially once taxes on realised gains and the timing of those realisations are folded in alongside the price decline?"
+---
+
+The risk an investor feels is not volatility as a statistic. It is the distance between the highest value the portfolio has ever shown and the value on the screen today. That distance is a drawdown, and it is felt sharply for a reason that is arithmetic before it is psychological: the decline is measured against the peak, while the gain needed to undo it is measured against the smaller remnant that survived. The recovery is therefore always the larger of the two percentages.
+
+A drawdown is a fact about a path already travelled, not a forecast about the next one. What it does demand is a decision, taken at the moment when the arithmetic looks least friendly: whether to hold, to add, or to sell. This article derives the recovery relationship from first principles, shows that a decline costs both depth and duration, and sets out the preparation that has to be done before the decline rather than during it.
+
+## Explain simply
+
+Track the highest value the portfolio has ever reached. A drawdown is how far below that high point it now sits, as a percentage of the high point. The awkward part is the return trip. If a portfolio falls from one hundred to seventy, it is down thirty per cent, and getting back to one hundred needs a gain of about forty-three per cent, because the gain is applied to seventy and not to one hundred. The deeper the fall, the more lopsided the pair becomes. That single piece of arithmetic explains why a fall of half requires a doubling, and why a decline that looks survivable on a chart can be arithmetically demanding to repair.
+
+## What a drawdown is measured from
+
+Start with a wealth value and a series of periodic returns. Wealth after each period is the starting value multiplied by the growth factors accumulated so far:
+
+$$ W_t = W_0 \prod_{i=1}^{t} \left( 1 + r_i \right) $$
+
+The running peak is the highest value reached so far, including the starting point, so it rises with every new high and stays put during a decline:
+
+$$ M_t = \max_{0 \le s \le t} W_s $$
+
+A drawdown is the shortfall from that running peak, expressed as a fraction of it. It is zero at a new high and negative during any fall:
+
+$$ D_t = \frac{W_t}{M_t} - 1 \le 0 $$
+
+Three definitional details carry most of the practical weight. First, the reference point is a running peak, not a fixed all-time high, so a fall that begins from a local high still counts. Second, the shortfall is divided by the peak, which means the same rupee decline is a different percentage depending on the level it started from. Third, the trough of an episode is the lowest point before a new peak is reached, so the episode ends with recovery rather than with the passage of time. A measure that switches the measurement frequency, the window or the reference point is a different measure, not a refinement of the same one.
+
+## The recovery relationship, derived
+
+Suppose a portfolio has fallen by a fraction d of its peak, so it now sits at one minus d of that peak. To return exactly to the peak, the required gain g must satisfy a single equation: the remaining value, grown by g, must equal the original peak.
+
+$$ \left( 1 + g \right) \left( 1 - d \right) = 1 $$
+
+Rearranging gives the whole result:
+
+$$ g = \frac{1}{1 - d} - 1 = \frac{d}{1 - d} $$
+
+Read it in words and the asymmetry is obvious. The numerator is the size of the loss; the denominator is what remains. When the loss is small the denominator is close to one and the required gain is only slightly larger than the loss. As the loss approaches the whole of the peak, the denominator shrinks toward zero and the required gain grows without limit. For a modest fall the shortfall between g and d is roughly d squared, which is why small declines feel almost symmetric. For a deep fall the gap is the whole story.
+
+This is also why the geometric mean matters more than the arithmetic mean when a path is being judged. Two percentages, one down and one up, do not average to zero in wealth terms; they multiply. The geometric mean of a large loss and a large recovery is negative even when the arithmetic average is positive, and it is the geometric measure that describes what happened to the money.
+
+## The recovery table
+
+Table 1 is a labelled illustrative calculation, not observed market data and not a forecast. Each row simply substitutes a chosen depth into the relationship derived above.
+
+| Decline from peak d | Value remaining | Gain required to recover, g = d / (1 - d) |
+| --- | --- | --- |
+| 10% | 90.0% | 11.1% |
+| 20% | 80.0% | 25.0% |
+| 30% | 70.0% | 42.9% |
+| 40% | 60.0% | 66.7% |
+| 50% | 50.0% | 100.0% |
+| 60% | 40.0% | 150.0% |
+| 70% | 30.0% | 233.3% |
+| 80% | 20.0% | 400.0% |
+| 90% | 10.0% | 900.0% |
+
+The pattern in the middle of the table is the one worth memorising. Doubling the depth from twenty-five per cent to fifty per cent does not double the required gain; it raises it from a quarter to a full doubling, an increase of four times. The arithmetic does not reward proportionality, and it is the reason a deep decline deserves a different kind of attention from a shallow one.
+
+## Two percentages never cancel
+
+A related consequence falls out of the same multiplication. A rise and a fall of the same size do not return the investor to the starting point, because the fall is applied to a larger value than the rise was.
+
+| Move | Then | Wealth factor | Outcome |
+| --- | --- | --- | --- |
+| +10% then -10% | 1.10 times 0.90 | 0.990 | -1.0% |
+| +25% then -25% | 1.25 times 0.75 | 0.938 | -6.25% |
+| +50% then -50% | 1.50 times 0.50 | 0.750 | -25.0% |
+| +100% then -50% | 2.00 times 0.50 | 1.000 | 0.0% |
+
+Table 2 is an illustrative arithmetic identity, not a market observation. It gives a second way to see the recovery problem: the deeper the pair of moves, the larger the shortfall that survives them. It also explains why an investor who needs a given amount of money by a fixed date cannot simply wait for the market to "get back to where it was" without regard to the depth of the decline.
+
+## Depth is only half the cost
+
+A decline also costs time. If the portfolio earns a constant rate r per period after the trough, the number of periods needed to regain the peak is the log of the shortfall divided by the log of the growth factor:
+
+$$ T = \frac{-\ln \left( 1 - d \right)}{\ln \left( 1 + r \right)} $$
+
+The numerator is the log of what remains, and the denominator is the log of the periodic growth factor. This is a recovery calculation and not a forecast: it says how long the arithmetic takes if the stated rate is in fact earned. Table 3 applies it at an illustrative eight per cent a year, chosen because it is easy to follow and not because it is expected.
+
+| Decline d | Years to regain the peak at 8% a year |
+| --- | --- |
+| 10% | 1.4 |
+| 20% | 2.9 |
+| 30% | 4.6 |
+| 40% | 6.6 |
+| 50% | 9.0 |
+| 60% | 11.9 |
+| 70% | 15.6 |
+| 80% | 20.9 |
+
+Depth and duration are two different costs, and both are large. A thirty per cent decline costs about forty-three per cent in gain and, at this illustrative rate, roughly four and a half years of waiting. A long-horizon investor can tolerate the first number and still be defeated by the second if the money is needed sooner than the arithmetic allows.
+
+## Worked example: an illustrative path with a 30 per cent drawdown
+
+The following is a constructed example. It contains no historical returns and no expected values; it exists to show the relationship working on a path.
+
+| Period | Return | Wealth | Running peak | Drawdown |
+| --- | --- | --- | --- | --- |
+| 0 | - | 100.00 | 100.00 | 0.0% |
+| 1 | +20% | 120.00 | 120.00 | 0.0% |
+| 2 | -15% | 102.00 | 120.00 | -15.0% |
+| 3 | -17.65% | 84.00 | 120.00 | -30.0% |
+| 4 | +10% | 92.40 | 120.00 | -23.0% |
+| 5 | +10% | 101.64 | 120.00 | -15.3% |
+| 6 | +10% | 111.80 | 120.00 | -6.8% |
+| 7 | +7.33% | 120.00 | 120.00 | 0.0% |
+
+The maximum drawdown is thirty per cent, from a peak of 120 to a trough of 84. Substituting d equals 0.30 into the relationship gives the gain needed to restore the peak:
+
+$$ g = \frac{0.30}{1 - 0.30} = 0.4286 \approx 42.9\% $$
+
+The path reached the peak again in seven periods, but that depended on the returns it happened to earn, which averaged considerably more than the illustrative eight per cent a year used in Table 3. At eight per cent a year the same thirty per cent shortfall would take about four and a half years. The point of the example is not the outcome; it is that the required gain is fixed by the depth, while the time taken is not fixed at all.
+
+## A drawdown is not a permanent loss
+
+The two ideas are commonly blurred and should be kept apart. A drawdown is a decline from a high-water mark. Whether it is recovered depends on what caused it. A broad repricing of a diversified market is, historically, usually a drawdown. The impairment of a single business, the default of a borrower, or the collapse of a structure whose assets were not what they were claimed to be is more often a permanent loss, and no amount of patience repairs it.
+
+This distinction is the reason diversification is discussed as a risk decision rather than a comfort decision. Risk is a property of the whole holding, not of its parts, and a portfolio is not made of one drawdown but of the combined path of everything in it. A decline in one holding that is offset by stability elsewhere produces a shallower personal drawdown than the worst line in the statement suggests, and the reverse is also true.
+
+## Preparing before the decline
+
+The arithmetic of this article cannot be changed, but the decision taken inside it can be prepared. Four items do most of the work.
+
+- **A cash buffer sized for near-term spending.** The investor who must sell to fund a payment during a trough converts a recoverable drawdown into a realised loss. Money needed within a horizon shorter than the recovery time does not belong in the volatile part of the portfolio.
+- **A stated allocation and a written rebalancing rule.** If the target is a split between growth and stability, a decline moves the portfolio below the growth target. An illustrative calculation: a portfolio of one hundred split sixty to equity and forty to bonds becomes eighty-two in total after a thirty per cent equity fall, with equity at about fifty-one per cent. Restoring sixty per cent requires moving roughly seven from bonds into equity. Doing that deliberately is a decision; doing it by accident is a description of drift.
+- **A record of why each holding is owned.** A decline is the moment when a claim is tested. The investor who wrote down, at the high-water mark, what the holding is for and what would falsify the thesis is far better placed than the one who now has to reconstruct it.
+- **A rule that pre-commits the response to a fall.** Deciding in advance that a decline below a stated threshold triggers a rebalancing review, and that no change is made outside that review, removes the decision from the moment of maximum discomfort.
+
+None of these reduces the loss. They change who is making the decision and when, which is the only part of the process the investor controls.
+
+## What this does not tell you
+
+A drawdown number is descriptive, and it is worth listing what it cannot do.
+
+- **It does not give a probability.** A measured depth is one realised outcome from one ordering of returns over one window. The worst ordering that could occur is worse, and no sample guarantees that it has already been seen.
+- **It depends on the measurement grid.** A drawdown measured on daily values captures troughs that month-end data smooths away, so two figures are comparable only when the frequency matches.
+- **It grows with the window.** A longer sample contains more episodes, so a ten-year maximum will usually exceed a three-year maximum for the same asset without anything having changed about its risk.
+- **It is silent about real terms.** A decline measured in nominal rupees understates the ground lost against spending when prices are rising. A restatement using an official price index is a deeper decline, and it is the relevant one for a goal that is denominated in future expenses.
+- **It assumes no cash flows.** An index drawdown presumes the investor neither adds nor withdraws. A personal drawdown on the investor's own money-weighted return can differ sharply in either direction.
+- **It ignores leverage.** A portfolio held with borrowed money loses a multiple of the unlevered percentage and can be forced to sell at the trough, which is how a drawdown becomes permanent.
+- **It says nothing about the whole cycle.** Two portfolios can share a maximum drawdown and end the period with very different amounts of money.
+
+Long-horizon real return and valuation series of the kind maintained for research use are one honest way to see the difference between short-horizon movement and longer-horizon expectation. They describe history, and their conclusions depend on the window, the market and the measure chosen.
+
+## Open questions
+
+- How should depth and duration be reported together so that an investor registers the size of a decline without reading it as a probability of the next one?
+- When an investor is contributing to or withdrawing from a portfolio during a decline, what is the right way to express the drawdown on their own money rather than on an untouched index?
+- Does the arithmetic of recovery change materially once taxes on realised gains, and the timing of those realisations, are folded in alongside the price decline?
+
+A drawdown is worth measuring precisely because it is the risk an investor actually bears: the distance from the high-water mark, and the time spent waiting to get back. Compute it from a running peak, quote the frequency and the window with it, and never read the depth without also reading the duration.

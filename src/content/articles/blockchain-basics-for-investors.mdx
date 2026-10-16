@@ -1,0 +1,157 @@
+---
+title: 'Blockchain Basics for Investors'
+description: 'Distributed ledgers, consensus mechanisms and what a claim of transaction finality actually means — and what the technology does and does not solve for someone who owns tokens rather than runs a node.'
+shortTitle: 'Blockchain Basics for Investors'
+category: digital-assets
+series: digital-assets-lab
+seriesOrder: 4
+topics: ['blockchain', 'distributed ledger', 'consensus', 'settlement finality']
+tags: ['digital-assets', 'first-principles', 'risk', 'technology']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'A blockchain is a method for participants who do not trust each other to agree on one ordered history of entries without a central administrator.'
+  - 'Consensus makes rewriting history expensive rather than impossible, and the cost of an attack is measured against the value the ledger secures.'
+  - 'Finality is a property of a specific protocol configuration; it is not legal finality and it carries no recourse mechanism.'
+  - 'A ledger verifies only the state transitions its own rules define, so it cannot verify anything about the outside world.'
+  - 'Token price, token scarcity and the safety of a custodian are claims layered on top of the ledger, not consequences of it.'
+faqs:
+  - question: 'Does a blockchain make records impossible to change?'
+    answer: 'It makes changing them expensive and detectable rather than impossible. Rewriting history requires controlling enough of the consensus mechanism, and the practical barrier is the cost of that control relative to what the ledger is worth securing.'
+  - question: 'If a transfer is final on the blockchain, can it still be reversed?'
+    answer: 'Not by the protocol, but the assets can still be taken back through the ordinary means: a compromised key, a court order against a custodian that holds the key, or an exchange that freezes the account. Protocol finality says nothing about legal finality.'
+  - question: 'Does the technology remove counterparty risk?'
+    answer: 'Only for transfers between two parties on the same ledger. The moment a custodian, exchange, bridge or lending protocol sits in the path, counterparty risk returns, because a person or a contract now controls the asset at some point.'
+  - question: 'Why does the value of the token matter to the security of the network?'
+    answer: 'In a proof-of-stake network validators lock the token itself as collateral, so the deterrent to misconduct is the value forfeited. A fall in the token price weakens the mechanism that protects the ledger.'
+relatedCalculators:
+  - id: max-drawdown
+    label: 'Drawdown Analyser'
+  - id: risk-of-ruin
+    label: 'Risk of Ruin'
+  - id: currency-impact
+    label: 'Currency Impact on Foreign Returns'
+  - id: opportunity-cost
+    label: 'Opportunity Cost Calculator'
+relatedArticles:
+  - crypto-assets-in-india-an-orientation
+  - exchanges-kyc-and-custody-basics
+  - wallet-custody-self-versus-custodial
+  - smart-contracts-and-their-risks
+  - stablecoins-and-depeg-risk
+  - staking-yields-and-their-sources
+glossaryTerms: [virtual-digital-asset, private-key, self-custody, stablecoin, tokenisation, proof-of-stake]
+sources:
+  - id: rbi-home
+    supports: 'The Reserve Bank of India''s published cautions on private crypto assets, the boundary of the regulated payments and deposit system that these assets sit outside, and the separate work on central-bank digital currency'
+  - id: bis-home
+    supports: 'Research on settlement risk in foreign-exchange transactions, used here to frame what atomic settlement on a single ledger does and does not remove'
+  - id: sebi-home
+    supports: 'The securities-market perimeter within which tokenised offerings may fall when offered to the public, which is the boundary between a ledger claim and a regulated instrument'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'No network, block time, throughput, fee, hash-rate or staking-share figure in this article is observed data; figures appear only inside calculations explicitly labelled illustrative.'
+  - 'Tax content restates the virtual digital asset category only. The Income-tax Act, 2025 renumbers these provisions, and the correspondence between the old and new section numbering is pending verification.'
+applicablePeriods: ['2026']
+openQuestions:
+  - 'How much decentralisation is lost when validation is concentrated in a small number of large operators, and at what point does a public ledger behave like a consortium ledger?'
+  - 'Can settlement finality across two different ledgers be made reliable enough to be trusted for large-value transfers, or does it always reintroduce a trusted intermediary?'
+  - 'Does the security of a proof-of-stake network degrade in a sustained price fall before the participants notice, and how would that be observable?'
+---
+
+A blockchain is a record-keeping method, not a product. It lets a group of participants who do not trust one another agree on a single ordered history of entries without a central administrator dictating what that history is. That is the whole of the technical claim, and it is a genuinely hard problem the design solves. Everything an investor is told about a token — scarce, valuable, backed, safe — is a separate claim layered on top, and most of those claims are not settled by the technology at all.
+
+This is the fourth article in the Digital Assets Laboratory. The first three covered what a crypto asset is, how exchanges and custody work, and the self-custody trade-off. This one goes underneath those practical questions to the ledger and consensus layer, because the properties investors most often attribute to a token — immutability, finality, trustlessness — belong to a specific protocol configuration and carry specific limits.
+
+## What a distributed ledger actually records
+
+A ledger is a state machine. It has a starting state, a set of rules for accepting inputs, and a rule for transforming the state when an input is valid. On a blockchain the inputs are transactions, they are grouped into blocks, and each block carries a reference to the block before it. That chain of references is what makes the history ordered and what makes altering an old entry detectable: change one block and every reference after it no longer matches.
+
+Participants called nodes keep copies of the record and check each new block against the rules; a node that disagrees simply does not accept the block. No administrator decides which copy is authoritative, because the rules decide, and the rule set is public.
+
+The important limitation is what the state machine can contain. It records the movement of the ledger's own units and any data the protocol's rules are written to handle. It does not record whether a shipment arrived, whether a property exists, or whether an issuer holds the reserves it claims. The ledger verifies arithmetic and signatures, not facts about the world.
+
+## Consensus: who decides what the record says
+
+Agreeing on the record needs a mechanism for choosing which block comes next, and that mechanism is where the design earns its reputation.
+
+In proof of work, participants compete to produce a block by spending computation, and the network follows the rule that the longest valid chain wins. In proof of stake, validators lock their own tokens as collateral and forfeit part of the stake if they validate dishonestly. Both approaches make rewriting settled history expensive rather than impossible. The honest measure of a network's security is therefore not a slogan but a ratio: the cost of controlling enough of the mechanism to change history, against the value the ledger secures.
+
+For a staked network that ratio has a feature worth noticing. Because the collateral is the token itself, the strength of the protection depends on the market price of the thing being protected. A sharp fall in price weakens the mechanism that secures the ledger, at exactly the moment the ledger is most stressed. This is a circularity, not a flaw that a design choice removes.
+
+Two further points are usually left out. First, consensus is not the same as decentralisation: if a few large operators control most of the mining capacity or staked tokens, the ledger still functions, but the parties you must trust are few. Second, rules change by a social and political process among developers, validators and large holders — a discretionary act of exactly the kind "no central authority" implies is absent.
+
+## What a transaction finality claim actually means
+
+Finality is the point at which a transaction can no longer be reversed by the protocol. There are two ways to reach it, and the difference matters when the amount is large.
+
+On chains that follow the longest-chain rule, finality is probabilistic: a transaction sits in a block, and confidence in it rises with each block added after it, because reversing it would require outweighing all the work done since. A recipient therefore chooses a number of confirmations at which it will treat the transfer as done — a risk decision, not a constant set by the protocol. On chains that finalise checkpoints explicitly, a transaction reaches a defined protocol state after which reversal would require a coordinated rule violation that most participants would reject.
+
+Neither form of finality is legal finality, and this is the distinction that costs investors money. A bank transfer is governed by payment law, executed inside institutions that are legally persons, and is reversible in defined circumstances by the institution or on the order of a court. An on-chain transfer has no such machinery. Once signed with a valid key, the protocol will move the asset and there is no authority to petition. Reversal happens through the key, not through a dispute process: a court can order a custodian to move a balance, an exchange can freeze an account, and a thief who holds the key simply keeps the asset. Finality here means the absence of an appeal, which is not the same as safety.
+
+## Explain simply
+
+Think of a blockchain as a shared notebook that thousands of people copy by hand and check against a common rulebook. When someone writes a new page, everyone verifies it, and the page is glued to the one before it, so changing an old page would invalidate every page after. Nobody owns the notebook, and the rulebook decides what counts. That is powerful for recording one thing — who moved which unit to whom. But the notebook only knows what the rulebook tells it; it cannot confirm anything about the real world, it has no one in charge to complain to, and if you lose the signing key, it will show your assets moving away and no one can undo it.
+
+## What the technology does solve
+
+The genuine achievements are narrow and worth stating precisely.
+
+- **Double spending.** Before Bitcoin-style ledgers, digital cash required a central party to prevent the same unit being spent twice. Consensus removes that requirement for transfers inside one ledger.
+- **Settlement without a correspondent.** A transfer between two parties on the same ledger settles as one book entry, without a chain of correspondent banks or the settlement windows it imposes.
+- **Verifiable audit.** The full history is public, so the supply of the ledger's units and the movement of its balances can be independently reproduced.
+- **Programmable conditions.** Where the protocol supports it, a transfer can be made conditional on code executing. This is a real capability with real failure modes, and it is the subject of a later article in this series.
+
+## What the technology does not solve
+
+Each of these is a claim investors routinely make and the ledger cannot support.
+
+- **It does not verify outside truth.** Feeding data into a ledger requires a party that asserts the data, and that party is a trust point. This is the oracle problem, and no amount of consensus removes it.
+- **It does not make a token valuable.** Scarcity is a supply rule, not a demand curve. A cap on supply says nothing about whether anyone will want the unit.
+- **It does not remove counterparty risk in practice.** Custodians, exchanges, bridges and lending protocols each control assets somewhere in a chain of transactions. A transfer between two self-custodied wallets is trustless; almost nothing a retail investor does in practice is.
+- **It does not remove governance.** The rule set is changed by people, and where a change is contested the outcome is decided by whoever holds influence — sometimes by a fork that splits the ledger.
+- **It does not create recourse.** There is no ombudsman, no chargeback, no compensation scheme and no supervisor with jurisdiction over a self-executing transfer.
+- **It does not scale freely.** Ledgers that prioritise broad participation pay for it in throughput, and in fee levels that rise when the network is busiest.
+
+## Where the bank-ledger analogy breaks
+
+The comparison with a bank account is useful up to a point and misleading past it. A bank ledger is centralised, so it can be corrected: a mistaken transfer recalled, a fraudulent one reversed, an account frozen on a lawful order. It is name-based, so a court can identify the owner and order a remedy. It sits inside a supervised perimeter with deposit insurance up to a statutory limit per depositor per bank, and there is a legal person answerable for the record.
+
+A public ledger inverts each of those. There is no correction, no name until someone links an address to one, and no responsible legal person for the network itself. Holding assets through a regulated intermediary restores part of the banking analogy — which is why custody choice, not consensus design, is where most investors actually bear their risk.
+
+## Settlement risk and the case for atomic exchange
+
+The clearest way to see what a ledger adds is through settlement risk. The Bank for International Settlements' work on foreign-exchange settlement documents the exposure that arises when the two legs of an exchange do not settle simultaneously: one party delivers, the other fails, and the first is left exposed. Conventional markets manage this with payment-versus-payment mechanisms, collateral and a clearing house that interposes itself between the two sides.
+
+A ledger can remove that specific exposure for two assets on the same ledger, because both legs can be made to execute in one transaction or not at all. That is a real improvement, and it is why tokenised settlement is studied seriously. The limit is the perimeter: two ledgers, or one leg on a ledger and one in a bank, cannot be exchanged atomically without a coordinating mechanism, and that mechanism is a trust point that can fail. Even same-ledger atomicity is settlement finality, not legal finality — it tells you the protocol will not reverse the entry, not that a court will treat it as a conveyance of whatever the token represents.
+
+## The Indian position in one paragraph
+
+For an Indian resident, the ledger's properties are not the operative legal facts. Crypto assets are not legal tender, the rupee remains the only legal tender, and no merchant is obliged to accept a token. There is no general prohibition on holding or transferring them, but they are not a regulated investment product, and the Reserve Bank of India has repeatedly and publicly cautioned against private crypto assets while studying central-bank digital currency and tokenised deposits separately. Tokenised offerings can fall inside the securities regulator's perimeter when they amount to securities offered to the public; outside regulated venues, most such offerings are structured to argue that they do not. On tax, the Finance Act, 2022 created the statutory category of the virtual digital asset, under which income from a transfer is taxed at a flat rate with no set-off of losses against other income; the renumbering of these provisions under the Income-tax Act, 2025 is pending verification.
+
+## Worked example
+
+Two illustrative calculations. The figures are chosen to expose the arithmetic and are not observed market data, network statistics or forecasts.
+
+**Recovering from a drawdown.** Suppose a token falls 80% from a purchase price. Returning to that price requires a 400% gain on the remaining value, because recovery from 20 back to 100 is a fivefold increase; a 90% fall requires a 900% gain. This asymmetry is why maximum drawdown is more informative than average return for a position with fat-tailed downside, and it is what the drawdown analyser displays.
+
+**Concentration and the meaning of decentralised.** Suppose five operators between them hold 60% of a ledger's staked or committed capacity. Then the set of parties whose coordinated defection could rewrite recent history is five, not the thousands the word decentralised brings to mind. The number is invented to make the arithmetic visible; the question it raises — how many operators would have to collude, and whether they share an interest in doing so — is the one to ask of any live network.
+
+## What this does not tell you
+
+This article explains the ledger and consensus layer and takes no view on whether any token is worth holding. Wallets, exchanges, key storage, smart-contract failure modes and staking economics each have a dedicated article in this series.
+
+Three gaps deserve emphasis. First, the description here is price-blind; a token can be technically sound and still be a poor holding, because price is a market claim about demand rather than a protocol property. Second, the security ratio that matters — attack cost against secured value — is not measurable from outside, and the figures networks publish about themselves are produced by interested parties. Third, the absence of recourse is not a temporary gap awaiting regulation; it is the design, and any allocation decision should price it in.
+
+## Open questions
+
+- At what point does concentration of validation mean a public ledger is effectively a consortium ledger, and would users be able to tell before a coordinated reversal happened?
+- Can cross-ledger settlement be made reliable enough for large-value transfers without reintroducing a trusted intermediary, and what does the failure history suggest so far?
+- How quickly does a proof-of-stake network's security degrade in a sustained price fall, and is that degradation observable to holders in time to matter?

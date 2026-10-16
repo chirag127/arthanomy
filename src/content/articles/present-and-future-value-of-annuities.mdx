@@ -1,0 +1,202 @@
+---
+title: 'Present and Future Value of Annuities'
+description: 'A level stream of payments has a closed-form value, and both the present-value and future-value factors fall out of one geometric series. This article derives them, extends them to annuities due, growing annuities and perpetuities, and shows where the tidy formula stops describing the world.'
+shortTitle: 'Present and Future Value of Annuities'
+category: financial-mathematics
+series: financial-mathematics
+seriesOrder: 5
+topics: ['annuity', 'present value', 'future value', 'perpetuity']
+tags: ['financial-mathematics', 'arithmetic', 'discounting']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'The present value of a level annuity is a geometric series in the discount factor, which collapses into a single closed-form factor.'
+  - 'Timing is not a detail: an annuity due is worth more than an ordinary annuity by exactly one period of interest, because each payment arrives one period earlier.'
+  - 'A perpetuity is the limiting case of an annuity as the number of payments grows without bound, and a growing perpetuity is finite only while the discount rate exceeds the growth rate.'
+  - 'The discount rate is the whole answer: the formula is exact arithmetic wrapped around an input that is an estimate, a contract or a hope, and the lane must be stated.'
+  - 'A level nominal payment stream is a model of a pension, a lease or a systematic plan, not a description of one; indexation, credit risk and mortality all lie outside the formula.'
+  - 'Growing annuities and perpetuities have no solution when the growth rate meets or exceeds the discount rate, and the arithmetic silently reports a negative or infinite value.'
+faqs:
+  - question: 'What is the difference between an ordinary annuity and an annuity due?'
+    answer: 'In an ordinary annuity the payment arrives at the end of each period; in an annuity due it arrives at the beginning. The due form is worth one period of interest more, so its present value is the ordinary present value multiplied by one plus the rate.'
+  - question: 'Why is a perpetuity not worth an infinite amount?'
+    answer: 'Because each successive payment is discounted by a larger factor, and the discounted payments form a convergent series. A level perpetuity is worth the payment divided by the rate, provided the rate is positive.'
+  - question: 'When does the growing-perpetuity formula break?'
+    answer: 'When the growth rate is greater than or equal to the discount rate. The series no longer converges, the formula returns a negative or undefined value, and no finite present value exists under those assumptions.'
+  - question: 'Does the annuity formula assume I reinvest the payments?'
+    answer: 'The present value does not; it simply values the stated stream at the stated discount rate. The future value does assume the payments are accumulated at the same rate, which is a strong assumption worth stating whenever a future value is quoted.'
+relatedCalculators:
+  - id: sip
+    label: 'SIP Calculator'
+  - id: emi
+    label: 'EMI Calculator'
+  - id: bond-price-yield
+    label: 'Bond Price and Yield'
+  - id: xirr
+    label: 'XIRR Calculator'
+relatedArticles:
+  - compounding-discrete-and-continuous
+  - cagr-versus-xirr
+  - real-versus-nominal-returns
+  - deflating-returns-with-cpi
+  - npv-and-internal-rate-of-return
+glossaryTerms: [compounding, discount-factor, net-present-value, effective-annual-rate]
+sources:
+  - id: markowitz-1952
+    supports: 'The treatment of the discount rate as compensation for risk, which is the input the annuity formula cannot supply on its own'
+  - id: merton-1973
+    supports: 'Continuous-time discounting, the limiting case of the discrete annuity as the periods become arbitrarily short'
+  - id: mospi-home
+    supports: 'The consumer price index used here only to illustrate converting a fixed nominal payment stream into a real one'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'All rates, amounts and periods in the examples are illustrative constructions chosen to show how the factors behave; they are not promised returns, offered rates or observed cash flows.'
+openQuestions:
+  - 'What discount rate is defensible for valuing a long-dated, contractually fixed payment stream in an economy with variable inflation?'
+  - 'How much should a level life annuity be adjusted for the credit risk of the payer, given that the formula assumes certain payment?'
+  - 'Is a growing annuity a reasonable model for Indian rent or dividend streams, or does the growth itself need to be modelled stochastically?'
+---
+
+Annuity formulas are the plumbing of finance. A bond coupon stream, a pension, a lease, an equated monthly instalment and a systematic investment plan are all the same object: a sequence of level payments at regular intervals. Each is valued by one of two closed-form expressions, and both fall out of a single geometric series. Understanding the derivation matters more than memorising the result, because the derivation is what tells you which assumption you have just made.
+
+## Explain simply
+
+If somebody promises to pay you a fixed amount every year for a set number of years, what is that promise worth today? Not the sum of the payments, because money you receive in year ten is worth less today than money you receive in year one. You discount each payment back and add them up — and when the payments are equal and evenly spaced, that long addition collapses into one tidy factor. The same logic runs forward: if you invest the same amount every year, the future total is another single factor. The formula is easy; the hard part is choosing the rate, and the rate is doing almost all the work.
+
+## The ordinary annuity
+
+An ordinary annuity pays a level amount at the end of each period, for a fixed number of periods. Let each payment be $C$, the rate per period be $r$, and the number of payments be $n$. The present value is the sum of every payment discounted back to today:
+
+$$ PV = \frac{C}{1+r} + \frac{C}{(1+r)^2} + \cdots + \frac{C}{(1+r)^n} $$
+
+Written compactly,
+
+$$ PV = C \sum_{t=1}^{n} \frac{1}{(1+r)^t} $$
+
+Each term is a payment multiplied by its discount factor, the multiplier that converts a cash flow at a given date into today's money. A sequence of discount factors, one per period, is the primitive from which present values are built.
+
+## Deriving the factor from a geometric series
+
+The sum is a geometric series with first term $C/(1+r)$ and ratio $1/(1+r)$. The closed form is obtained by a standard trick: multiply the whole sum by $1+r$ and subtract the original.
+
+$$ (1+r)\, PV = C + \frac{C}{1+r} + \cdots + \frac{C}{(1+r)^{n-1}} $$
+
+Subtracting the first expression from the second leaves only the first term of one and the last term of the other:
+
+$$ r \, PV = C - \frac{C}{(1+r)^n} $$
+
+and therefore
+
+$$ PV = C \cdot \frac{1 - (1+r)^{-n}}{r} $$
+
+The factor multiplying $C$ is the annuity present-value factor. It has an intuitive reading: it is what one rupee paid every period for $n$ periods is worth today. As $n$ grows, the factor approaches $1/r$, which is the perpetuity case below.
+
+## Future value of an ordinary annuity
+
+Accumulating the same stream forward to the final date gives the future value. Each payment is compounded for the number of periods remaining until the end, so the last payment compounds for one period and the first for $n$ periods:
+
+$$ FV = C (1+r)^{n-1} + C (1+r)^{n-2} + \cdots + C = C \cdot \frac{(1+r)^n - 1}{r} $$
+
+The relationship between the two factors is exact and worth remembering:
+
+$$ FV = PV \cdot (1+r)^n $$
+
+That identity is not an approximation; it is what compounding means. It also shows the asymmetry that catches people out. The present value discounts every payment; the future value compounds every payment, and so implicitly assumes each payment is reinvested at the same rate until the end. Whenever a future value is quoted — a maturity value, a corpus projection — that reinvestment assumption is embedded in the number, whether or not it is stated.
+
+## Annuity due
+
+An annuity due pays at the beginning of each period rather than the end. Every payment arrives one period earlier, so each is worth one period of interest more:
+
+$$ PV_{\text{due}} = PV_{\text{ordinary}} \cdot (1+r) \qquad FV_{\text{due}} = FV_{\text{ordinary}} \cdot (1+r) $$
+
+The single factor is the whole difference, and it is the source of a common error. Rent, insurance premiums and many systematic plans are due payments; a valuation that treats them as ordinary understates the present value by one period of interest. The convention must be stated, because the two answers differ by a quantity that grows with the rate.
+
+## Growing annuities and perpetuities
+
+Level payments are the special case. If the payment grows at a constant rate $g$ per period, beginning from $C_1$ at the end of the first period, the series becomes
+
+$$ PV = \frac{C_1}{1+r} + \frac{C_1 (1+g)}{(1+r)^2} + \cdots + \frac{C_1 (1+g)^{n-1}}{(1+r)^n} $$
+
+which is again a geometric series, now with ratio $(1+g)/(1+r)$, giving
+
+$$ PV = \frac{C_1}{r - g} \left[ 1 - \left( \frac{1+g}{1+r} \right)^{n} \right] $$
+
+Letting the number of payments grow without bound produces the perpetuity formulas. A level perpetuity has value
+
+$$ PV = \frac{C}{r} $$
+
+because the discount factors shrink toward zero, and a growing perpetuity has value
+
+$$ PV = \frac{C_1}{r - g} $$
+
+The growing-perpetuity formula is finite only when $r$ exceeds $g$. When the growth rate meets or exceeds the discount rate, the series does not converge and the expression returns a negative or nonsensical number. That is not a rounding issue; it is the algebra reporting that no finite present value exists under those assumptions.
+
+## The continuous limit
+
+If payments arrive continuously rather than at discrete dates, the sum becomes an integral. A level payment stream at rate $C$ per period for $T$ periods has present value
+
+$$ PV = C \int_{0}^{T} e^{-rt}\, dt = C \cdot \frac{1 - e^{-rT}}{r} $$
+
+which is the discrete factor's continuous counterpart, and which tends to $C/r$ as $T$ grows. The discrete and continuous forms converge as the compounding interval shortens, and the difference between them is the same kind of gap that separates a nominal rate from its effective annual equivalent. It is small at modest rates and grows with the rate and the frequency.
+
+## The discount rate is the whole answer
+
+Every formula above is exact arithmetic around one input that is not arithmetic: the rate. Nothing in the derivation determines it. The rate must be supplied from outside, and where it comes from decides what kind of statement the valuation is.
+
+- If the stream is contractual and the payer's credit is not in question, the rate is a market yield and the value is a market price.
+- If the stream is a projection of investment performance, the rate is a **model estimate**, and the valuation inherits every assumption behind it.
+- If the rate was chosen because it is hoped the market will deliver it, the valuation is **speculative**.
+- If the stream has already been paid, the relevant rate is the **realised** return over the period, and the exercise is descriptive rather than prospective.
+
+Keeping those lanes apart is what prevents a projected corpus from being quoted later as though it had happened.
+
+## Worked example: valuing a stream
+
+The numbers here are an illustrative construction, not offered rates or observed cash flows.
+
+An investor can receive ₹1,00,000 at the end of each year for ten years. The discount rate is assumed to be 8% a year. The present-value factor is
+
+$$ \frac{1 - (1.08)^{-10}}{0.08} \approx \frac{1 - 0.4632}{0.08} \approx 6.710 $$
+
+so the present value is approximately
+
+$$ 1,00,000 \times 6.710 \approx ₹6,71,000 $$
+
+The future value of the same stream, if each payment is accumulated at 8% to the end of year ten, is
+
+$$ 1,00,000 \times \frac{(1.08)^{10} - 1}{0.08} \approx 1,00,000 \times 14.487 \approx ₹14,49,000 $$
+
+If the same ten payments were due at the start of each year rather than the end, both figures rise by the factor 1.08, to roughly ₹7,24,000 and ₹15,64,000 respectively. A single timing convention changes the answer by about ₹53,000 in present value.
+
+For contrast, a monthly accumulation of ₹10,000 for ten years at 12% a year compounded monthly uses the same factor with a monthly rate of 1% and 120 periods, giving a future value of roughly ₹23,00,000 against ₹12,00,000 contributed. That split between money contributed and money earned is a model output, and it is an estimate — the 12% is an assumption, not a promise.
+
+## Where this misleads or fails
+
+The formulas are exact, so their failures come from the assumptions they smuggle in.
+
+- **Reinvestment is assumed in every future value.** A quoted corpus assumes each payment is reinvested as it arrives, at the same rate, for the whole term. If the payments will be spent, the future-value figure is the wrong object entirely.
+- **Level nominal payments ignore inflation.** A fixed ₹1,00,000 a year loses purchasing power every year. Converting the stream to a real one means deflating each payment by a price index, after which it is no longer level and no longer values with a single factor.
+- **Timing conventions change the answer.** Due versus ordinary is one period of interest on every payment. Compounding frequency changes the effective rate, and mixing a monthly rate with an annual count is the most common arithmetic error in this area.
+- **The growth rate can break the formula.** In a growing-perpetuity valuation, a growth assumption at or above the discount rate produces a number that looks like an answer and is not one.
+- **Certainty is assumed.** The formula values a stream of payments that arrive in full and on time. A pension backed by a weak sponsor, or a lease from a tenant who may default, is worth less than the same nominal stream from a sound counterparty, and the credit adjustment is not in the formula.
+- **Mortality is outside the model.** The value of a life annuity depends on how long the payments continue, which is a probability distribution rather than a fixed $n$. The annuity factor is the wrong tool for that question.
+- **The rate does the work.** Change the discount rate from 8% to 6% in the example above and the present value rises by roughly a tenth, to about ₹7,36,000. Small changes in a model-estimated input move the answer more than any precision in the arithmetic.
+
+## What this does not tell you
+
+A present value is a price for a stream under a stated rate, and nothing more. It carries no information about the uncertainty of the payments, about the range of rates that might prevail, or about the risk that the payer does not pay. It is silent on tax, which is levied on the payments themselves and changes the after-tax value of the stream. And it is a single number standing in for a distribution: two streams with the same present value can differ completely in how reliably the payments arrive. The formula answers the question "what is this worth at this rate", and it refuses every other question.
+
+## Open questions
+
+- What discount rate is defensible for a long-dated, contractually fixed payment stream in an economy with variable inflation?
+- How much should a level life annuity be reduced for the credit risk of the payer, given that the formula assumes certain payment?
+- Is a growing annuity a reasonable model for Indian rent or dividend streams, or does the growth rate itself need to be modelled as uncertain?
+
+The value of a payment stream is one closed-form factor computed on one chosen rate. Getting the factor right is easy; stating the rate honestly, and saying which of the four lanes it came from, is the part that decides whether the number is worth anything.

@@ -1,0 +1,191 @@
+---
+title: 'The Price-to-Earnings Ratio in Context'
+description: 'What the multiple computes, which earnings are being used, and what it cannot see: earnings quality, cyclicality, one-off items, leverage and the growth expectations already priced in.'
+shortTitle: 'The P/E Ratio in Context'
+category: equity
+series: equity-mastery
+seriesOrder: 22
+topics: ['P/E ratio', 'earnings quality', 'valuation multiples', 'cyclicality']
+tags: ['equity', 'valuation', 'fundamentals']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 12
+keyTakeaways:
+  - 'The price-to-earnings ratio divides price by earnings per share, or market capitalisation by net profit, and expresses what is being paid for each rupee of annual earnings.'
+  - 'A trailing multiple uses reported earnings, while a forward multiple uses estimates, so the second is a forecast with forecast error built into it.'
+  - 'The ratio ignores how the earnings were produced, so it says nothing by itself about accounting quality, leverage, the effect of one-off items or where the business sits in its cycle.'
+  - 'A low multiple often reflects peak earnings in a cyclical business or an expectation of decline, and a high multiple often reflects growth expectations rather than overvaluation.'
+  - 'No level of the ratio is a fair value in general; a multiple is only meaningful against the same company''s history, close peers on the same earnings basis, and the broader interest-rate context.'
+faqs:
+  - question: 'Is a low price-to-earnings ratio a sign of a bargain?'
+    answer: 'Not by itself. A low multiple can reflect a business with declining prospects, earnings at a cyclical peak that will not repeat, or accounting that inflates current profit. The multiple is a starting question, not an answer, and it has to be read alongside earnings quality and the cycle.'
+  - question: 'Should I use trailing or forward earnings?'
+    answer: 'Trailing uses reported earnings and is verifiable but backward-looking; forward uses analyst estimates and reflects expectations but carries forecast error. Comparing a forward multiple for one company with a trailing multiple for another compares a forecast with a fact, which is not a like-for-like comparison.'
+  - question: 'Why does a company with a very high multiple sometimes keep rising?'
+    answer: 'Because a multiple is arithmetic applied to an expectation. If earnings grow faster than the market expected, the denominator catches up and the multiple compresses without the price falling. That does not make every high multiple justified; it means the multiple alone cannot distinguish the two cases.'
+  - question: 'Does the ratio work the same way for a bank or a cyclical manufacturer?'
+    answer: 'No. For a lender, profit is affected by provisioning and by the credit cycle, and capital strength matters more than a single year of earnings. For a cyclical manufacturer, earnings at the peak make the multiple look lowest precisely when the risk is highest, which is why through-cycle earnings are used instead.'
+relatedCalculators:
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: rolling-returns
+    label: 'Rolling Return Comparator'
+  - id: dividend-return
+    label: 'Total Return Decomposition'
+relatedArticles:
+  - reading-a-shareholding-pattern
+  - promoter-pledge-as-a-risk-signal
+  - offer-for-sale-mechanics
+  - primary-market-ipo-process-and-asba
+glossaryTerms: [pe-ratio, eps, roe, roce, market-capitalisation]
+sources:
+  - id: nse-india
+    supports: 'Listed-security price and trade data, and the exchange-published information from which a current price or multiple is taken rather than recalled'
+  - id: shiller-cape
+    supports: 'Long-horizon real return series and the cyclically adjusted price-earnings ratio, used here to frame market-level valuation over long periods'
+  - id: nse-indices-methodology
+    supports: 'Index methodology and fact sheets, which are the basis on which index-level valuation ratios are published and compared over time'
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Nothing here is a fair-value rule of thumb. No specific multiple is presented as a threshold above which a security is expensive or below which it is cheap.'
+  - 'Numerical examples are illustrative constructions for fictional companies and are not the figures of any real listed company.'
+applicablePeriods: ['2026']
+openQuestions:
+  - 'How much of the variation in multiples across companies is explained by differences in accounting policy rather than by differences in economics?'
+  - 'Does a cyclically adjusted multiple improve long-horizon forecasts once structural changes in margins and interest rates are accounted for?'
+  - 'Can earnings quality be scored in a way that measurably improves the information content of a quoted multiple?'
+---
+
+The price-to-earnings ratio is the most quoted valuation measure and the most frequently misread, because it compresses a price and a profit into a single number and then invites a judgement that neither component can support on its own. A multiple is a ratio between what the market will pay and what the accounts report, and everything interesting lies in the second half of that sentence.
+
+This article in the Equity Mastery series explains what the ratio computes, which earnings are being used in any given quotation, what the ratio does and does not capture, and which comparisons are legitimate. It deliberately stops short of offering any threshold at which a multiple becomes cheap or expensive, because no such threshold survives contact with different businesses, cycles and interest rates.
+
+## What the ratio computes
+
+The ratio divides the price of a share by the earnings attributable to that share, which is arithmetically the same as dividing the whole company's market value by its net profit.
+
+$$\text{P/E} = \frac{\text{price per share}}{\text{EPS}} = \frac{\text{market capitalisation}}{\text{net profit}}$$
+
+The most useful way to read the result is as the number of years of current earnings being paid for, or equivalently as the price of one rupee of annual earnings. Inverting it gives the earnings yield, the earnings per rupee of price, which is what makes the multiple comparable with an interest rate.
+
+$$\text{earnings yield} = \frac{1}{\text{P/E}}$$
+
+That inversion is the reason the ratio is sensitive to the interest-rate environment. When the return available on a low-risk instrument rises, the earnings yield demanded from an equity also tends to rise, which at fixed earnings means a lower multiple. The ratio is not a fixed measuring rod; it is one side of a comparison that changes with the alternative.
+
+## Trailing and forward earnings
+
+A **trailing** multiple uses the earnings actually reported for the last twelve months. It is verifiable and audited, and it is backward-looking.
+
+A **forward** multiple uses an estimate of the coming year's earnings, usually a consensus of analysts. It reflects expectations, and it embeds forecast error: the denominator is a prediction, and predictions in a business undergoing change are frequently wrong.
+
+The distinction matters for comparison. Mixing the two — reading a trailing multiple for one company against a forward multiple for another — compares a fact with a forecast, and the resulting gap says more about the mood of the estimates than about the businesses.
+
+## Which earnings, exactly
+
+Before interpreting any quoted multiple, establish three things about the denominator.
+
+- **Consolidated or standalone.** Consolidated figures include subsidiaries and associates, standalone figures cover only the parent. The two can produce very different multiples for the same company, and the basis should be stated.
+- **Basic or diluted.** Earnings per share is computed on the weighted average number of shares outstanding, and a diluted figure additionally assumes the conversion of options and convertible securities. Diluted earnings are the more conservative measure and the more appropriate one where such instruments exist.
+- **Before or after one-off items.** A reported profit that includes an asset sale, an insurance recovery or a tax write-back is not the same as the profit the business earns by trading.
+
+A multiple quoted without any of these three attached is not wrong, but it is incomplete, and it cannot be compared with another multiple quoted on a different basis.
+
+## What the ratio does capture
+
+Used carefully, the multiple captures something real. It summarises the price the market is currently willing to pay for a rupee of reported earnings, and it does so in a form that permits comparison across companies and over time. Read against its own history for the same company, it shows how the market's willingness to pay has changed. Read against close peers computed on the same basis, it shows whether one is being priced differently from the others. And inverted into an earnings yield, it becomes comparable with the returns available elsewhere.
+
+## What the ratio does not capture
+
+Here the useful work begins. The multiple is silent on several things that determine whether a business is worth its price.
+
+**Earnings quality.** Two companies can report the same profit from very different activities. One collects it in cash within the year; the other books it as a receivable from a customer who pays late, or recognises revenue earlier than the work warrants, or capitalises a cost that a peer expenses. The ratio treats these identically, because it takes the reported number at face value.
+
+**Capital structure.** The multiple uses profit after interest, so it reflects the financing of the business without revealing it. A heavily indebted company can trade at a lower multiple than a conservatively financed one, and the difference may be compensation for the extra risk rather than a discount. Return on capital employed, which uses pre-interest operating profit against all capital, is the measure that strips the financing out.
+
+**Cyclicality.** In a cyclical business, earnings at the peak of the cycle make the multiple look lowest. The same company at the trough can show almost no earnings and an apparently enormous multiple. Neither quote tells you what the business earns through an average cycle.
+
+**One-off items.** A single year's profit can be inflated or depressed by a gain, a provision or a write-back. The multiple computed on that year inherits the distortion.
+
+**Growth expectations.** A high multiple is a statement that earnings are expected to rise. Whether it is justified depends on whether earnings actually rise, which is the one thing the ratio cannot tell you in advance.
+
+**Accounting policy.** Depreciation schedules, revenue recognition and provisioning are areas where judgement is permitted within the framework. Differences in policy between two companies produce differences in earnings, and therefore in multiples, that are not differences in economics.
+
+## Earnings quality: the accounting question beneath the number
+
+Because the multiple is only as good as its denominator, the denominator deserves a reading of its own. The comparison that gives the most for the least effort is reported profit against operating cash flow over several years. A business whose profit consistently converts into cash is telling a different story from one whose profit accumulates as receivables and inventory. Revenue recognition policy, the treatment of capitalised costs, the level of provisions against doubtful debts and the frequency of exceptional items are the specific places to look, and the procedure for finding them is set out in the related article on reading an annual report.
+
+## Cyclicality: why a low multiple can be a warning
+
+For a cyclical business, the through-cycle earnings are the appropriate denominator, not the earnings of the current year. A multiple computed at the peak of a cycle flatters the company precisely when the risk of a downturn is highest, and a multiple computed at the trough penalises it precisely when the cycle is most likely to turn.
+
+The practical substitute for a cycle forecast is a normalised figure: an average of earnings across a full cycle, adjusted for inflation or expressed per unit of capacity. That is an estimate and should be labelled as one.
+
+## One-off items and base effects
+
+Two mechanical distortions are worth recognising on sight.
+
+A profit that includes a large non-recurring item produces a multiple that understates what is being paid for the underlying business once the item is removed. Conversely, a year with an exceptional charge overstates it.
+
+A profit close to zero makes the multiple meaningless, and a loss makes it undefined or negative. Screeners that rank companies by the lowest multiple therefore systematically surface companies whose earnings are depressed or negative, which is a property of the arithmetic rather than a discovery about value. This is why serious screens exclude non-positive earnings rather than ranking them.
+
+## What a multiple is pricing in
+
+A multiple can be decomposed into the earnings the business is expected to produce and the return being demanded on them. Written as a rough relationship, the price equals expected earnings divided by the difference between the required return and the expected growth rate — the same logic that appears in any discounted-cash-flow framing, expressed as a compact formula.
+
+$$\text{price} \approx \frac{\text{expected earnings}}{\text{required return} - \text{expected growth}}$$
+
+The formula is a simplification and should be read as an illustration of the direction of the relationships rather than as a valuation tool. Its use here is to make one point legible: a high multiple is not automatically irrational and a low multiple is not automatically attractive, because the multiple is jointly determined by growth expectations and by the return that investors require from that business and that market.
+
+## Comparisons that are legitimate and comparisons that mislead
+
+| A comparison that holds | A comparison that misleads |
+| --- | --- |
+| The same company against its own multi-year range | Two companies in unrelated industries on a single year |
+| Close peers on the same earnings basis and period | A trailing multiple for one against a forward multiple for another |
+| Consolidated with consolidated, or standalone with standalone | A parent-only multiple set against a group multiple |
+| Peers with similar leverage and similar accounting policy | A highly indebted company against a debt-free one |
+| A cyclical company on normalised earnings | A cyclical company on peak-year earnings against a stable one |
+| Alongside returns on capital, growth and cash conversion | A single multiple presented as the whole case |
+
+## Market-level multiples and the long view
+
+At the index level, valuation ratios are published against the pooled earnings of the constituents, and they are usable for exactly the reason company-level multiples are fragile: the aggregation smooths individual distortions. They are still not a timing tool. Index composition changes, sector weights shift, buybacks reduce share counts and margins move, so today's index multiple is not directly comparable with one from a different era of the index.
+
+The cyclically adjusted price-earnings ratio is one response to that problem. It divides price by an average of inflation-adjusted earnings over a long period, so that a single boom or slump in profits does not dominate the denominator. The dataset maintained by Robert Shiller publishes long-horizon real return series alongside the measure, and it is one of the standard references for framing valuation over decades rather than quarters. Its limitations are the subject of continuing debate: it provides no timing signal, and structural changes in margins, interest rates and the composition of the index mean that its historical range may not be a stable benchmark. It is a way of asking a long-horizon question, not a rule that produces an answer.
+
+## Explain simply
+
+The price-to-earnings ratio tells you how many rupees you are paying for each rupee of a company's annual profit. It is a quick way to compare what different companies cost for the profit they make. What it does not tell you is whether that profit is real, whether it will last, whether the company is carrying a lot of debt, or whether the profit included a one-time gain. A low number can mean a bargain or a business that is fading; a high number can mean a company growing quickly or one that is simply expensive. The number starts the investigation; it does not end it.
+
+## Worked example
+
+Illustrative constructions for fictional companies. They are arithmetic demonstrations, not valuations of any real business.
+
+**One-off items.** Suppose a company's share trades at ₹400 and reported earnings per share is ₹20, giving a multiple of 20. Suppose ₹5 of that ₹20 came from a one-off gain on the sale of a property, leaving underlying earnings of ₹15. On the underlying figure, the multiple being paid for the trading business is about 26.7, not 20. The reported number and the underlying number differ by a third, and only the underlying one is repeatable.
+
+**Cyclicality.** Suppose two companies both trade at ₹300. The first is stable and earns ₹15 per share, giving a multiple of 20. The second is cyclical, currently at the peak of its cycle, and earns ₹30 per share, giving a multiple of 10. Suppose its earnings averaged ₹10 per share across the last cycle. On that normalised figure, the multiple is 30.
+
+| Company | Price | Current EPS | Multiple now | Through-cycle EPS | Normalised multiple |
+| --- | --- | --- | --- | --- | --- |
+| Stable | ₹300 | ₹15 | 20 | ₹15 | 20 |
+| Cyclical at peak | ₹300 | ₹30 | 10 | ₹10 | 30 |
+
+The second company appears cheapest on the reported number and most expensive on the normalised one. That single reversal is the strongest argument against using a quoted multiple without asking where the business is in its cycle.
+
+## What this does not tell you
+
+This article explains the ratio and its limits; it does not tell you what multiple any company deserves, and it does not provide a threshold above which a security is expensive or below which it is cheap. Any such threshold would have to depend on the growth expected from that specific business, the durability of its earnings, its financing and the returns available on alternatives — none of which the ratio contains.
+
+Three further limits are worth stating. The components of the ratio are estimates and judgements: even the trailing figure depends on accounting choices made within a permitted framework. The multiple is a relative measure, so it ranks companies against each other rather than establishing what any of them is worth. And a multiple is a snapshot of a moving relationship, which is why the change in the multiple over time usually carries more information than its level at a single date.
+
+## Open questions
+
+- How much of the dispersion in multiples across companies is attributable to differences in accounting policy rather than to differences in underlying economics?
+- Does a cyclically adjusted multiple add forecasting power once structural shifts in margins and interest rates are modelled explicitly?
+- Can earnings quality be scored systematically, and would that score measurably improve the information a quoted multiple carries?

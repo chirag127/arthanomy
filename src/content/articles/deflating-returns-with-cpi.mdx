@@ -1,0 +1,195 @@
+---
+title: 'Deflating Returns With the Consumer Price Index'
+description: 'A real return is only as good as the price index behind it. This article shows how to deflate a return from published index levels, how base-year and basket changes force a link between old and new series, and where the deflator quietly decides the answer.'
+shortTitle: 'Deflating Returns With CPI'
+category: financial-mathematics
+series: financial-mathematics
+seriesOrder: 4
+topics: ['real return', 'consumer price index', 'deflator', 'base year']
+tags: ['financial-mathematics', 'inflation', 'arithmetic', 'index-numbers']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'Deflating is a change of units, not an adjustment: the nominal growth factor is divided by the index growth factor over the same dates.'
+  - 'The exact single-period relationship is multiplicative, and the familiar subtraction overstates the real return by a factor of one plus inflation.'
+  - 'Which index you choose is part of the result, because the consumer index, the wholesale index and any household basket are different measurements of different things.'
+  - 'When a series is re-based or its basket is revised, the old and new series must be linked through an overlap period, or the return computed across the join is arithmetic on two different rulers.'
+  - 'Annualising a real return from a window shorter than a year mostly measures the noise in the index, not the performance of the asset.'
+  - 'A figure that is already real must never be deflated again, and tax is assessed on nominal amounts, so the deduction order has to be stated.'
+faqs:
+  - question: 'Can I just subtract inflation from the nominal return?'
+    answer: 'Only as a rough mental check. The exact real return is one plus the nominal return divided by one plus inflation, minus one. The subtraction overstates the result, and the overstatement compounds over long horizons.'
+  - question: 'Which price index should I use to deflate a household investment?'
+    answer: 'The consumer index, because it is built from a household consumption basket and is the closest published match to the question purchasing power asks. A wholesale index measures prices at a different stage of the supply chain and answers a different question.'
+  - question: 'What do I do when the index series changes its base year mid-way through the period?'
+    answer: 'Link the two series at an overlap period, where both are available, by scaling the new series so that it meets the old one at that date. Then deflate using the linked series and state that you did so, because the link factor is a modelling choice.'
+  - question: 'Why is a real return over three months not meaningful?'
+    answer: 'Because the index over a short window is dominated by seasonal and provisional effects, and annualising it multiplies that noise by roughly four. A short-window real return describes the measurement, not the investment.'
+relatedCalculators:
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: xirr
+    label: 'XIRR Calculator'
+  - id: bond-price-yield
+    label: 'Bond Price and Yield'
+  - id: monte-carlo
+    label: 'Monte Carlo Simulator'
+relatedArticles:
+  - real-versus-nominal-returns
+  - cagr-versus-xirr
+  - compounding-discrete-and-continuous
+  - present-and-future-value-of-annuities
+  - npv-and-internal-rate-of-return
+glossaryTerms: [fisher-equation, compounding, effective-annual-rate, rule-of-72]
+sources:
+  - id: mospi-home
+    supports: 'The producer of the consumer and wholesale price index series that serve as the national deflators, including their base years and basket revisions'
+  - id: rbi-dbie
+    supports: 'The database in which inflation, policy-rate, yield and household-savings time series are held for a consistent long-horizon comparison'
+  - id: markowitz-1952
+    supports: 'The treatment of returns as the input to a portfolio decision, which is why the units of a return — nominal or real — have to be settled before it is used'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Every index level, return and inflation figure in this article is a hypothetical construction chosen to show the arithmetic. None is an official index value, an observed return or a forecast.'
+openQuestions:
+  - 'Which published deflator best represents the purchasing power of a long-horizon Indian saver, given how far household baskets diverge from the national average?'
+  - 'How should a household state a real-return assumption when its largest costs have historically risen faster than the published index?'
+  - 'When an index series is revised after first publication, how much of a measured real return should be treated as provisional?'
+applicablePeriods: ["FY 2025-26"]
+---
+
+An account statement reports a nominal gain because a nominal gain is what the arithmetic of the statement can see. The saver's real question is different: did the money grow faster than the prices of the things the money will be spent on? Answering it requires a second series — a price index — and the moment a second series enters the calculation, choices enter with it. Which index, which base year, which window, and what to do where the published series changes ruler.
+
+## Explain simply
+
+Deflating means expressing a nominal gain in the prices that prevailed at the start, so that only the change in purchasing power is left. You do it by dividing: the growth factor of the money is divided by the growth factor of prices over the same dates. A nominal return of 6.4% a year against a price index rising 4.9% a year is not a real 1.5%; it is about 1.4%, because the price rise applies to an amount that had already grown. The gap looks trivial for one year and compounds over ten, always in the investor's favour. Choosing the index matters almost as much as the arithmetic, because the same nominal gain becomes a different real gain under every different price series.
+
+## Deflating is a change of units
+
+Suppose a hypothetical investment of ₹1,00,000 grows to ₹1,28,000 over four years. That is a nominal growth factor of 1.28. Suppose also that a hypothetical price index rises from 100.0 to 121.0 over exactly the same four years, a price growth factor of 1.21.
+
+Two true statements are now available:
+
+- The investor holds 28% more rupees.
+- A representative basket that cost ₹100.0 at the start costs ₹121.0 at the end.
+
+To obtain the real result, the ending money is expressed in start-period prices — divided by the price growth factor — so that the units on both sides of the comparison are the same:
+
+$$ \text{real growth factor} = \frac{V_T / V_0}{I_T / I_0} = \frac{1.28}{1.21} \approx 1.0579 $$
+
+The purchasing power of the money rose about 5.8% over four years. This is a change of units, in the same sense as converting a distance from kilometres into miles. Nothing has been added to or removed from the investment; the ruler has changed.
+
+## The single-period relationship
+
+Let the nominal rate be $r$ and the inflation rate be $i$. The Fisher relationship states the exact connection, and it is multiplicative rather than additive:
+
+$$ 1 + r_{\text{real}} = \frac{1 + r_{\text{nominal}}}{1 + i} $$
+
+which rearranges to the working form
+
+$$ r_{\text{real}} = \frac{1 + r_{\text{nominal}}}{1 + i} - 1 = \frac{r_{\text{nominal}} - i}{1 + i} $$
+
+The final expression shows why subtracting inflation is not merely imprecise but biased in a specific direction. The difference between the nominal and inflation rates is divided by one plus inflation, so the shortcut always overstates the real return, and overstates it more when inflation is high. The shorthand is taught because it is accurate when inflation is low, which is exactly when the answer matters least.
+
+## Deflating a multi-period return
+
+Over several years the same logic applies to the annualised figures. If the investment grows by a factor $V_T / V_0$ over $T$ years and the index grows by $I_T / I_0$ over the same $T$ years, the annualised real return is
+
+$$ r_{\text{real}} = \left( \frac{V_T / V_0}{I_T / I_0} \right)^{\frac{1}{T}} - 1 $$
+
+The order of operations does not matter — the ratio of totals equals the total of the ratio growth — which is why the calculation can be done either on the endpoints or year by year. What does matter is that the two series cover identical dates. Deflating a return measured to the end of March with an index measured to the end of April introduces a mismatch that has nothing to do with the investment.
+
+The same expression is the honest version of a claim that an asset "beat inflation". Completed properly, the claim reads: this nominal total return, over these dates, divided by this index over the same dates, leaves this real return before or after costs and tax. Left as a slogan, "beat inflation" hides at least four choices.
+
+## Choosing the index
+
+Several price series are published, and they are not interchangeable.
+
+- The **consumer price index** is built from a household consumption basket of goods and services. It is the natural benchmark for purchasing power, because household consumption is what purchasing power is for.
+- The **wholesale price index** measures prices at an earlier stage of the supply chain. It is informative about producer prices and is not a cost of living.
+- **Sub-indices**, such as rural or urban consumer indices, track narrower populations with different baskets, and can diverge from the combined index for extended periods.
+- A **household's own basket** is not published anywhere. It is the only index that exactly matches the question being asked, and it is not auditable against anything.
+
+The practical rule is to use a published consumer index as the common, auditable benchmark, and to treat it as the centre of a range rather than as a precise personal figure. A household with unusually heavy weights in categories whose prices move differently from the average will experience an inflation rate that differs from the published one, sometimes for years.
+
+## Base years, rebasing and the link factor
+
+An index is defined relative to a base period, and it has a basket with weights. Both are revised from time to time. When a new series appears, the index is expressed on a new base and its basket is updated, so the level of the new series is not comparable with the level of the old one without a deliberate bridge.
+
+The bridge is a link factor, computed over a period in which both series overlap. If the old series and the new series both have values at a common date $s$, then new-series values can be placed onto the old base by scaling with the ratio of the two series at that date:
+
+$$ I^{old}_{t} = I^{new}_{t} \times \frac{I^{old}_{s}}{I^{new}_{s}} $$
+
+A return that spans the join must be computed on a linked series. Computing it directly across the break — dividing a new-base level by an old-base level — produces a growth factor that contains the base change, not the price change. The error can be large enough to reverse the sign of a real return, and it is invisible unless the series' base years are written down next to the calculation.
+
+Two further cautions follow. The link factor is a modelling choice: any date inside the overlap gives a slightly different scaling, and the choice should be stated. And a basket revision changes the weights as well as the base, so a linked series is a splice of two different measurements — better than an unlinked series, and still not a single consistent index.
+
+## Worked example: a four-year real return
+
+This is an illustrative construction, not observed data. An investment of ₹1,00,000 grows to ₹1,28,000 over four years, while a hypothetical price index rises from 100.0 to 121.0 over the same period.
+
+The annualised nominal return is
+
+$$ \left( \frac{1.28}{1} \right)^{\frac{1}{4}} - 1 \approx 6.37\% $$
+
+The annualised index growth is
+
+$$ \left( \frac{1.21}{1} \right)^{\frac{1}{4}} - 1 \approx 4.88\% $$
+
+The shortcut would report a real return of about 1.49%. The exact calculation divides the growth factors before annualising:
+
+$$ \left( \frac{1.28}{1.21} \right)^{\frac{1}{4}} - 1 \approx 1.42\% $$
+
+The difference is around seven basis points a year — trivial in one year, and roughly a 0.3% difference in accumulated purchasing power across the four. The direction is fixed: the shortcut always flatters the real return.
+
+Now suppose the index series had been re-based at the three-quarter mark, with the old series reading 118.0 and the new series expressed as 100.0 at the same date, both hypothetical. The true old-base level at the end of the four years is 121.0, which the new series reports as about 102.5. A calculation that divided that ending new-base figure by the starting old-base figure of 100.0 would take the price increase as only about 2.5% across four years and report a real return above 24% — an artefact of the base change rather than a fact about the investment. Scaling the new series by 118.0 divided by 100.0 before use converts it back onto the old base and restores the 1.42% answer.
+
+## Annualising sub-year periods
+
+A real return computed over less than a year is a fragile object. A published index for a short window reflects seasonal patterns, base effects from a year earlier and, often, provisional values that are later revised. Annualising such a figure multiplies all of that by roughly four, or twelve. A real gain of a fraction of a per cent in a quarter becomes a double-digit annual rate that describes the calendar rather than the asset.
+
+The defensible practice is to report the absolute real change over the short window, state the dates, and refuse to annualise. Annualising is appropriate when the window is long enough that seasonality and revisions average out and compounding dominates — in practice, years rather than quarters.
+
+## Where this misleads or fails
+
+Five failure modes are common enough to be recognisable.
+
+**Deflating something that is already real.** An instrument whose payout is itself indexed to prices already carries a real yield. Dividing that payout by inflation again double-counts the adjustment and produces a number that describes nothing. Before deflating any figure, establish whether it is nominal or real.
+
+**Comparing indices that measure different things.** A real return deflated by the consumer index is not comparable with one deflated by the wholesale index. Reporting both under the single heading "real return" hides a change of ruler inside a change of words.
+
+**Using a current index level for a past window.** Deflating a return for a period that ended some years ago using the latest index level measures the return plus everything since. The index must be sampled at the dates the return covers.
+
+**Ignoring provisional values.** Index values are frequently published first and revised later. A real return computed from an early estimate carries that estimate's error, which matters most for the most recent periods.
+
+**Forgetting that tax is nominal.** Tax is levied on nominal amounts, not on inflation-adjusted ones, so a post-tax nominal return must be computed first and deflated second. The order is nominal, then costs, then tax, then inflation. Deflating before tax gives a flattering figure for a taxable holding.
+
+## The four lanes, in real terms
+
+The lane discipline that applies to nominal returns applies unchanged to real ones.
+
+- A **historically realised** real return is computed from index values that were actually published over the period.
+- A **contractual** real return is written into the terms of an instrument, such as a payout explicitly linked to a price index.
+- A **model-estimated** real return is an assumed inflation path run through the same arithmetic.
+- A **speculative** real return is a hope with no figure attached.
+
+The error to avoid is deflating a model estimate with a realised index and then presenting the result as history. Deflating is legitimate on any nominal figure, but the label has to survive the operation: a real return built on an assumed inflation path is still an estimate, and the assumption belongs beside it.
+
+## What this does not tell you
+
+A real return is a description of one path through one period, deflated by one choice of index. It says nothing about risk, dispersion or the range of outcomes that could have occurred, and a modest real return earned smoothly is a different experience from a larger average punctuated by deep losses. It is sensitive to the window, because a period that begins with high inflation and ends with low inflation reports a different real return from a period in the opposite order, for identical nominal performance. And it is personal in a way the national index cannot capture: for a household whose largest costs rise faster than the index, an arithmetically correct real return can still be the wrong answer to the question the household is asking.
+
+## Open questions
+
+- Which published deflator best represents a long-horizon Indian saver's purchasing power, given how far household baskets diverge from the national average?
+- How should a household state a real-return assumption when its own largest costs have historically risen faster than the published index?
+- When index values are revised after first publication, how much of a recently measured real return should be treated as provisional?
+
+Deflating a return is easy arithmetic wrapped around a hard judgement. The arithmetic is one division; the judgement is which ruler to hold against the money, and stating that choice plainly enough that a reader can disagree with it.

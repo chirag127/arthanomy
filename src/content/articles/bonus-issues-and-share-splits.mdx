@@ -1,0 +1,174 @@
+---
+title: 'Bonus Issues and Share Splits: Cosmetic but Consequential'
+description: 'A bonus issue and a split both multiply the share count without adding value. This explains the mechanics, the exchange adjustment conventions, and why every per-share comparison has to be restated afterwards.'
+shortTitle: 'Bonus Issues and Share Splits'
+category: equity
+series: equity-mastery
+seriesOrder: 10
+topics: ['bonus issue', 'share split', 'face value', 'corporate actions']
+tags: ['equity', 'corporate-actions', 'market-mechanics', 'foundations']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'A bonus issue converts part of a company''s reserves into share capital, so the number of shares rises and the recorded price per share falls; no cash changes hands and no value is created.'
+  - 'A share split subdivides the denomination of a share, leaving total share capital in rupees unchanged and multiplying the share count by the split factor.'
+  - 'The value of a holding is unchanged in principle by either action, because market capitalisation is a product of share count and price and only the two factors are rearranged.'
+  - 'What does change is every per-share figure: earnings per share, dividend per share, face value, historical price levels and quoted thresholds must all be restated on the new share base.'
+  - 'A bonus issue is not a dividend and is not a return in itself; it is a bookkeeping reclassification that the market sometimes reads as a statement of confidence.'
+faqs:
+  - question: 'Do I get free money when a company announces a bonus?'
+    answer: 'No. You receive more shares, but the price per share falls in proportion, so the total value of the holding is unchanged in principle. Nothing is distributed to you; reserves are simply reclassified as share capital.'
+  - question: 'Is a share split better than a bonus issue?'
+    answer: 'They are different mechanisms with the same visible effect on the share count. A split changes the face value of the share and leaves share capital in rupees unchanged; a bonus capitalises reserves and so increases share capital. Neither adds value by itself.'
+  - question: 'Why did my holding price drop on the ex-date of a bonus?'
+    answer: 'Because the exchange adjusts the recorded price on the ex-date to reflect the larger number of shares. The fall is arithmetic, not a loss, and it is matched by the additional shares credited to your account.'
+  - question: 'What happens to my average cost per share after a bonus or a split?'
+    answer: 'The total amount you invested does not change, so the recorded cost per share is divided across a larger share count. The tax cost-of-acquisition convention applied to bonus shares is a separate question and should be verified against current tax material.'
+relatedCalculators:
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: dividend-return
+    label: 'Total Return Decomposition'
+  - id: rolling-returns
+    label: 'Rolling Return Comparator'
+relatedArticles:
+  - how-a-share-reaches-your-demat-account
+  - reading-a-shareholding-pattern
+  - t-plus-one-settlement-and-what-changed
+glossaryTerms: [market-capitalisation, eps, pe-ratio]
+sources:
+  - id: bse-india
+    supports: 'Corporate-action announcements, record dates, ex-dates and the adjusted price conventions that exchanges publish for bonus and split events'
+  - id: nsdl-cdsl
+    supports: 'How the additional or re-denominated shares reach a demat account, and how ISIN identification applies to the credited securities'
+  - id: sebi-home
+    supports: 'The framework under which listed companies announce and execute corporate actions, including disclosure obligations towards holders'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'All rupee, share-count and earnings figures in the worked example are illustrative arithmetic, not prices, results or forecasts for any actual company.'
+  - 'The tax cost of acquisition of bonus shares and the treatment of a split for capital-gains purposes are not covered here and should be verified against current tax material.'
+applicablePeriods: ['2026']
+openQuestions:
+  - 'Does the improvement in affordability after a split persist as higher retail participation, or does the effect fade within a few months?'
+  - 'How much information does a bonus announcement actually convey, and is that signal separable from the earnings news released at the same time?'
+  - 'How consistently do data providers apply adjusted prices when building long-horizon return series across bonus and split events?'
+---
+
+A bonus issue and a share split both multiply the number of shares sitting in your demat account. Neither raises money for the company, and neither adds value to your holding at the moment it happens. Both arrive in language that sounds like a reward, and both change the numbers that every per-share comparison depends on. Separating the arithmetic from the announcement is the entire skill.
+
+This article in the Equity Mastery series explains what a bonus issue is, what a share split is, where the two differ, why the recorded price falls even though the value of the holding does not, and which comparisons have to be restated afterwards.
+
+## Two different actions with the same visible effect
+
+A **bonus issue** gives existing shareholders additional shares for no payment. The company moves an amount out of its reserves and into share capital, so the share count rises and reserves fall by the same amount. No cash moves anywhere. The ratio is stated as new shares for each share held: a 1:1 bonus gives one new share for every share held, and a 1:2 bonus gives one new share for every two held.
+
+A **share split** changes the denomination of the share. The company subdivides each share of a stated face value into several shares of a smaller face value. Share capital in rupee terms is unchanged; the share count rises and the face value per share falls. A split is usually stated as a factor such as two-for-one or ten-for-one.
+
+The two are easy to confuse because the effect on a holder looks identical: more shares, lower price. The difference is in the balance sheet and in the wording of the notice.
+
+| Feature | Bonus issue | Share split |
+| --- | --- | --- |
+| What changes | Share count, via capitalising reserves | Face value per share |
+| Share capital in rupees | Rises by the amount capitalised | Unchanged |
+| Cash paid by the holder | None | None |
+| Total value of the holding | Unchanged in principle | Unchanged in principle |
+| Price per share | Falls in proportion | Falls in proportion |
+| Denomination after the event | Unchanged | Reduced |
+
+Note the last row. A split leaves a holder with the same rupee face-value exposure but many more, smaller-denomination shares. A bonus leaves the face value of each share untouched and increases the number of shares.
+
+## Why the price has to fall by the ratio
+
+Market capitalisation is the share count multiplied by the price per share. A bonus or a split changes only the share count. If the business is otherwise unchanged, the price per share must adjust so that the product stays the same.
+
+$$\text{Market capitalisation} = \text{shares outstanding} \times \text{price per share}$$
+
+For a bonus that adds $b$ new shares for every share held, the theoretical adjusted price is:
+
+$$\text{adjusted price} = \frac{\text{price before the event}}{1 + b}$$
+
+For a split with factor $s$ — meaning each share becomes $s$ shares — the theoretical adjusted price is:
+
+$$\text{adjusted price} = \frac{\text{price before the event}}{s}$$
+
+Exchanges publish an adjusted base price for the ex-date so that the reported day-on-day change is not distorted by the action itself, and derivative contracts on the security are adjusted under the same corporate-action framework. The notice issued by the exchange for the specific event is the authority on the ratio, the dates and the adjusted figure.
+
+## What genuinely changes for a holder
+
+Value is not one of the things that changes. A few things do.
+
+- **The number of shares**, which changes the recorded quantity in the demat account and in every subsequent statement.
+- **The price per share**, which changes the scale on which the holding is quoted and every threshold expressed as a rupee price.
+- **The granularity of trading.** More shares at a lower price per share means a smaller minimum outlay, which can widen the set of buyers who can participate at all. That is a change in the market for the share, not in the business behind it.
+- **The face value**, but only in the case of a split.
+
+Nothing about the claim on the company changes. Your proportion of profits, your proportion of votes and your proportion of the net assets are the same before and after, because every other holder receives the same treatment in the same ratio.
+
+## Why per-share comparisons break
+
+Per-share figures are ratios, and a ratio with a rescaled denominator becomes meaningless unless it is restated. After a bonus of 1:1, a historical earnings figure of ₹30 per share becomes ₹15 per share on the new base, and a dividend of ₹6 per share becomes ₹3 per share if the company keeps the total payout the same. The rupee face value in a split case changes too. Any comparison across the ex-date that mixes pre-event and post-event numbers is comparing different units.
+
+The price-to-earnings ratio is a useful test case. It is price per share divided by earnings per share, so both parts of the fraction scale by the same factor and the ratio is unchanged by the action. If a company traded at a multiple of 20 before the event, the arithmetic of the multiple does not move because of the event. That is the cleanest demonstration that the action is value-neutral in itself: nothing about the relationship between price and earnings has changed, only the units in which each is expressed.
+
+Four kinds of comparison commonly go wrong:
+
+1. **Earnings per share** computed across the event on an unadjusted base.
+2. **Dividend per share** headlines, where the total payout is unchanged but the per-share amount falls.
+3. **Historical price levels** — a 52-week high, a purchase price, or a support level quoted in the old unit.
+4. **Screeners and thresholds** keyed to a rupee price rather than to a valuation measure.
+
+## Dates, entitlements and ratio conventions
+
+A corporate-action notice carries several dates, and the one that determines entitlement is the record date: the register of holders as of that date receives the action. The ex-date is the date from which the market price is adjusted, and a purchase on or after the ex-date does not create the entitlement, because that trade settles without it. The additional or re-denominated shares are then credited through the depository, which is why the notice, not your recollection of the announcement, is the document to check.
+
+Two practical cautions. First, different notices express ratios in different conventions, so a bonus stated as 1:1 and a split stated as two-for-one both double the share count but are not the same action; read what the notice says the action is, not merely the ratio. Second, where a ratio produces a fractional entitlement for a particular holding, the treatment of the fraction is specified in the notice, and it is worth knowing before the credit arrives.
+
+## A bonus is not a dividend, and neither is a return
+
+A dividend is a cash distribution out of profit, and the cash reaches your bank account. A bonus is a reclassification inside the balance sheet, and no cash reaches anybody. Describing a bonus as a company "returning value to shareholders" is therefore misleading: nothing has left the company.
+
+The return on an equity holding comes from the cash the business generates over time and from the change in the value of the claim on that business. A bonus or a split does not add to either. What a bonus can do is change the optics — a lower price per share and a larger share count — which is why it sometimes functions as a signal of management's confidence rather than as a transfer of value. That signal is a separate question from the arithmetic, and the two should not be merged.
+
+## Explain simply
+
+A bonus issue gives you extra shares instead of cash, and a split turns each of your shares into several smaller ones. In both cases you hold more shares, and in both cases the price of each share falls by the same ratio, so the total value is the same. It is like exchanging a ₹100 note for two ₹50 notes. The number of notes changed and the value did not. What does change is every figure that is stated per share: earnings per share, dividend per share and any historical price you remember, all of which must be restated before you compare anything.
+
+## Worked example
+
+An illustrative calculation, not a forecast and not a description of any actual company.
+
+Suppose a company has 1,00,00,000 shares outstanding, each of face value ₹10, so issued share capital is ₹10 crore, and accumulated reserves are ₹40 crore. It earns ₹30 crore in a year and the share trades at ₹600.
+
+| Measure | Before the event | After a 1:1 bonus | After a two-for-one split |
+| --- | --- | --- | --- |
+| Shares outstanding | 1,00,00,000 | 2,00,00,000 | 2,00,00,000 |
+| Price per share | ₹600 | ₹300 | ₹300 |
+| Market capitalisation | ₹600 crore | ₹600 crore | ₹600 crore |
+| Issued share capital | ₹10 crore | ₹20 crore | ₹10 crore |
+| Reserves | ₹40 crore | ₹30 crore | ₹40 crore |
+| Face value per share | ₹10 | ₹10 | ₹5 |
+| Earnings per share | ₹30 | ₹15 | ₹15 |
+| Price-to-earnings ratio | 20 | 20 | 20 |
+
+A holder of 100 shares owns ₹60,000 of stock before the event. After the 1:1 bonus the holding is 200 shares at ₹300, which is still ₹60,000. After the two-for-one split it is 200 shares at ₹300, also ₹60,000.
+
+The three columns show the point precisely. The holding value and the market capitalisation are unchanged. The recorded price per share halves. The earnings per share halves. The price-to-earnings ratio is identical, because price and earnings moved together. The only structural difference between the middle and right columns is where the accounting entry landed: the bonus moved ₹10 crore out of reserves into share capital, while the split left both alone and simply re-denominated the share.
+
+## What this does not tell you
+
+This article is about mechanics, not about merit. It does not tell you whether a company is worth owning, whether a bonus announcement signals anything durable about future earnings, or what the shares will trade at on the ex-date — the market can move that day for reasons entirely unrelated to the action.
+
+Two limits are worth stating. First, the theoretical adjusted price is a mathematical restatement, not a prediction; the actual price on the ex-date is whatever buyers and sellers agree, and it will reflect news as well as the ratio. Second, the tax consequences of a bonus or a split, including the cost of acquisition attributed to bonus shares, are governed by tax law rather than by the corporate-action notice, and they should be verified against current tax material rather than inferred from the exchange announcement.
+
+## Open questions
+
+- Does the improved affordability after a split produce a lasting change in the holder base, or is the effect temporary?
+- Can the informational content of a bonus announcement be separated from the earnings news that usually accompanies it?
+- Are long-horizon price series adjusted consistently for bonus and split events by the data sources investors rely on, or do the adjustments differ between providers?

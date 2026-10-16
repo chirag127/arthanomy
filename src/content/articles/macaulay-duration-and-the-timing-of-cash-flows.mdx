@@ -1,0 +1,187 @@
+---
+title: 'Macaulay Duration and the Timing of Cash Flows'
+description: 'Why a bond has a single number that describes when its cash flows arrive on average, how coupon size and maturity change that number, and what the measure can and cannot tell a holder.'
+shortTitle: 'Macaulay Duration'
+category: debt
+series: debt-encyclopedia
+seriesOrder: 19
+topics: ['macaulay duration', 'cash flow timing', 'interest-rate risk', 'bond mathematics']
+tags: ['debt', 'fixed-income', 'financial-mathematics']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'Macaulay duration is the present-value-weighted average time, in years, at which a bond cash flows are received; it is a weighted average of times, not a forecast.'
+  - 'The weights are the shares of the bond price contributed by each cash flow, and they always sum to one, which is what makes the average meaningful.'
+  - 'For a coupon-paying bond duration is always less than maturity because coupons arrive before redemption; for a zero-coupon bond it equals maturity exactly.'
+  - 'A smaller coupon lengthens duration and a longer maturity lengthens it, but not proportionately, so a bond with twice the life is not twice as sensitive to a change in yield.'
+  - 'Duration is the foundation of the price-sensitivity measures and of immunisation, and it is exact only as a first-order, parallel-shift, cash-flow-fixed summary.'
+  - 'Where cash flows change with the level of rates, as with a callable or prepayable bond, Macaulay duration loses its meaning and effective duration computed from shocked prices must be used instead.'
+faqs:
+  - question: 'Is duration the same as maturity?'
+    answer: 'No. Maturity is the date the principal is repaid. Duration is the present-value-weighted average time of all cash flows, so it is the average waiting time for the whole stream. For a coupon-paying bond duration is shorter than maturity, and for a zero-coupon bond the two are identical.'
+  - question: 'Why are the weights present values rather than the cash amounts?'
+    answer: 'Because a rupee received in ten years is worth less today than a rupee received in one year, and the bond price reflects that difference. Weighting by present value makes the average time consistent with the price the holder actually pays.'
+  - question: 'Does a higher coupon shorten or lengthen duration?'
+    answer: 'A higher coupon shortens it. More of the bond value arrives earlier as coupon income, which pulls the weighted average time down. A lower coupon pushes more of the value into the redemption at maturity, which lengthens duration.'
+  - question: 'If maturity doubles, does duration double?'
+    answer: 'No. Duration rises with maturity but less than proportionately for a coupon-paying bond, because the distant principal is discounted heavily and the nearer coupons keep pulling the average time back. The relationship flattens as maturity extends.'
+  - question: 'Does Macaulay duration work for a callable bond?'
+    answer: 'Only as a rough starting point. Macaulay duration assumes the cash flows are fixed. If the issuer can call the bond, the cash flows depend on the level of interest rates, so the correct measure is effective duration, obtained by revaluing the bond under a shift in the curve.'
+relatedCalculators:
+  - id: modified-duration
+    label: 'Duration Calculator'
+  - id: bond-price-yield
+    label: 'Bond Price and Yield'
+  - id: convexity
+    label: 'Convexity Calculator'
+relatedArticles:
+  - dated-gsecs-and-the-coupon-myth
+  - treasury-bills-as-the-risk-free-anchor
+  - state-development-loans-yield-question
+  - bank-fixed-deposit-anatomy
+glossaryTerms: [macaulay-duration, modified-duration, convexity, yield-to-maturity]
+sources:
+  - id: rbi-home
+    supports: 'The monetary policy and interest-rate framework within which the yields used to discount bond cash flows are formed, and the regulatory setting of the securities the measure is applied to'
+  - id: rbi-dbie
+    supports: 'Published interest-rate and yield series that supply realistic market levels if a reader replaces the illustrative inputs in the worked example with observed data'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'All prices, yields and durations in the worked example are constructed illustrative values chosen to show the arithmetic. They are not quotations for any security and no market level is asserted.'
+applicablePeriods: ['FY 2025-26']
+openQuestions:
+  - 'For a retail bond portfolio, is the added precision of a full curve-based duration worth the complexity compared with a single Macaulay figure from a single yield?'
+  - 'How much does the reinvestment assumption inside the present values change the practical usefulness of duration for a holder who consumes the coupons rather than reinvesting them?'
+  - 'In a market where many securities trade infrequently, how reliable is a duration computed from a stale observed price?'
+---
+
+A bond presents a holder with a sequence of payments rather than a single one. There is an interest payment in six months, another in a year, and so on, until the principal and the final coupon arrive at maturity. Springing the obvious question, however, is harder than it looks: when, exactly, does this bond pay? The honest answer is that it pays at several times, and any single date would be a simplification. Macaulay duration is the most useful simplification available. It converts the whole sequence into one number, measured in years, that describes the average time the holder waits for the money, weighted by how much of the bond value each payment represents.
+
+## The problem duration solves
+
+Suppose two bonds both mature in ten years. One pays a large coupon every year; the other pays a small one. A holder comparing them by maturity alone would conclude that they are equally exposed to a change in interest rates. That is false. The high-coupon bond returns most of its value early, through coupons, and the low-coupon bond leaves most of its value in the distant redemption. If yields rise, the second bond suffers far more, because almost all of its value sits in a payment that is many years away and that must now be discounted more heavily.
+
+Maturity cannot capture that difference because it describes a single date. Duration can, because it describes the average date of the whole stream. That is why duration, and not maturity, is the number that analysts reach for when they ask how much a bond price will move.
+
+## The definition
+
+Let a bond have cash flows at times measured in years, discounted at a single yield per period, with the price equal to the sum of the discounted cash flows. Write each cash flow as a present value, and ask what share of the price each one supplies. Those shares are the weights. Macaulay duration is the weighted average of the times, using those shares as weights.
+
+Formally, with cash flow at time $t_k$ discounted at yield $y$:
+
+$$ P = \sum_{k=1}^{n} \frac{C_k}{(1+y)^{t_k}} $$
+
+The weight of the cash flow received at time $t_k$ is its present value divided by the price:
+
+$$ w_k = \frac{C_k \, (1+y)^{-t_k}}{P} $$
+
+Because the price is by definition the sum of the present values of the cash flows, the weights all sit between zero and one and they sum to one:
+
+$$ \sum_{k=1}^{n} w_k = 1 $$
+
+Macaulay duration is then the weighted average of the payment times:
+
+$$ D_{Mac} = \sum_{k=1}^{n} t_k \, w_k = \frac{\sum_{k=1}^{n} t_k \, C_k \, (1+y)^{-t_k}}{\sum_{k=1}^{n} C_k \, (1+y)^{-t_k}} $$
+
+The denominator of the last expression is simply the price, so the definition is the ratio of the time-weighted present value of the cash flows to the price.
+
+## Explain simply
+
+Think of the bond as a set of envelopes that will be delivered to you over the years. Each envelope contains a payment, and each is worth less today than its face amount, because you must wait for it. If you counted every envelope equally, the average delivery date would be misleading — the large final envelope matters more than a small coupon. So instead you weight each delivery date by how much of the bond the payment is worth today. The final redemption is usually the largest share, so the average date lands close to maturity, but the coupons pull it earlier. The answer is a single number of years: the average time you are waiting for your money.
+
+## Why duration is always below maturity
+
+Every cash flow arrives on or before the maturity date, and at least one arrives strictly before it, for any bond that pays a coupon. A weighted average of dates that are all at or before maturity, with at least one date strictly before it and a positive weight attached to that earlier date, must be strictly less than maturity. That is the whole proof.
+
+The corollary is that a zero-coupon bond, which has a single cash flow at maturity, has a duration exactly equal to its maturity. All the weight sits on one date, so the average is that date. This is why zero-coupon instruments are the purest instruments for a known liability, and why duration and maturity coincide for them alone.
+
+## Coupon size and maturity
+
+Two levers move duration, and they move it in the same direction.
+
+A larger coupon shortens duration. Each coupon is a payment before maturity, so a larger coupon increases the weight on earlier dates and decreases the weight on the distant redemption. A smaller coupon lengthens duration, pushing more of the value toward maturity.
+
+A longer maturity lengthens duration, but not proportionately. Doubling the time to maturity does not double duration for a coupon-paying bond, because the distant principal is discounted so heavily that its present-value weight grows more slowly than its time. The duration of a very long-dated coupon bond approaches a finite ceiling rather than rising without limit, which is why the risk of extending maturity flattens out at long tenors.
+
+Together these two facts answer the question in the brief: a long bond is not proportionately riskier than a short one. It is riskier, but the relationship is concave, and the coupon matters as much as the maturity in determining how much.
+
+## Years, periods and the convention
+
+Duration is quoted in years, but the arithmetic is easiest in periods. If a bond pays twice a year and the cash flows are indexed in half-years, the weighted average comes out in half-years and must be divided by two to be expressed in years. The yield used in the discount factors must match the period: an annual quoted yield of 8 per cent becomes 4 per cent per half-year under the semi-annual convention. Mixing a period-based duration with an annual yield is one of the most common errors in hand calculation, and it produces a number that is wrong by roughly a factor of two.
+
+## Worked example
+
+The bond below is a construction for arithmetic only. Assume a ₹1,000 face value, annual coupons, and a yield of 7.00 per cent. Every figure is illustrative and none is a quotation.
+
+| Illustrative bond | Price | Macaulay duration |
+| --- | --- | --- |
+| 3-year, 7 per cent coupon | ₹1,000.00 | 2.81 years |
+| 3-year, 5 per cent coupon | ₹947.51 | 2.86 years |
+| 3-year zero-coupon | ₹816.30 | 3.00 years |
+| 6-year, 7 per cent coupon | ₹1,000.00 | 5.10 years |
+
+Take the first row in full. The cash flows are ₹70 at the end of year one, ₹70 at the end of year two, and ₹1,070 at the end of year three. Discounting each at 7 per cent gives present values of ₹65.42, ₹61.14 and ₹873.44, which sum to ₹1,000.00. Their weights are 0.0654, 0.0611 and 0.8734. The weighted average time is:
+
+$$ D_{Mac} = 1 \times 0.0654 + 2 \times 0.0611 + 3 \times 0.8734 = 2.81 \text{ years} $$
+
+The second row shows the coupon effect: dropping the coupon from 7 to 5 per cent moves value toward the redemption and lengthens duration slightly, to 2.86 years. The third row shows the zero-coupon result: the only cash flow is at year three, so the average time is exactly three years. The fourth row shows the concave maturity effect: doubling the maturity from three years to six raises duration from 2.81 to 5.10 years, an increase of about 1.8 times rather than two times.
+
+## What duration is used for
+
+Duration has three distinct uses, and conflating them causes trouble.
+
+The first is as a summary of cash-flow timing. It tells a holder, in a single number of years, when the average rupee of this bond arrives. That is descriptive and requires no assumption about the future.
+
+The second is as the basis of price sensitivity. Differentiating the price with respect to the yield gives a relationship in which duration appears directly:
+
+$$ \frac{dP}{dy} = -\frac{P \, D_{Mac}}{1+y} $$
+
+Dividing duration by one plus the yield per period produces modified duration, and modified duration converts a change in yield into an approximate proportional change in price. That derivation and its limits are the subject of the companion article on modified duration and price sensitivity.
+
+The third is as the horizon for immunisation. If a holder's liability falls due at a date equal to the duration of the portfolio, the opposing effects of price change and reinvestment offset each other, to a first approximation, and the portfolio value at that horizon is protected against a small parallel shift in yields. This is the original use for which the measure was devised, and it is the reason duration is quoted in years rather than as a bare number.
+
+## Where the linear reading breaks down
+
+Duration gives an exact description of cash-flow timing but only an approximate description of price change, and the approximation has identifiable limits.
+
+The first limit is the size of the yield move. Modified duration is the first term of a series. The second term involves convexity, the curvature of the price-yield relationship. Ignoring it makes the estimate too pessimistic about losses when yields rise and too conservative about gains when yields fall, and the error grows with the square of the yield change. For a parallel move of a few basis points the error is negligible; for a move of a hundred basis points or more it becomes visible, and for several hundred basis points it dominates.
+
+The second limit is the shape of the move. Duration assumes a parallel shift of the yield curve. If the curve twists, with short rates moving more than long rates or the reverse, a single duration number aggregates the change incorrectly, and the estimate can be materially wrong even when the average move is small.
+
+The third limit is the assumption that the cash flows are fixed. Duration is computed from a known schedule of payments. Any bond whose payments depend on the level of interest rates breaks that assumption, and for those instruments Macaulay duration is not merely imprecise but conceptually inapplicable.
+
+## Options-embedded bonds need a different measure
+
+A callable bond gives the issuer the right to repay early if rates fall. As yields fall toward the call level, the price stops rising the way an option-free bond would, because the market assumes the bond will be called. The cash flows are no longer the fixed schedule that duration requires; they shorten exactly when the discounting changes. The result is that the bond behaves as if its duration shortened as rates fall, a pattern known as negative convexity.
+
+The same logic applies to any instrument with an embedded option: a putable bond, a bond with a sinking fund, and a mortgage-backed security whose borrowers may prepay. For all of these the appropriate measure is effective duration, computed by revaluing the instrument under an upward and a downward shift in the curve and observing the percentage change in price. Effective duration uses the actual pricing model rather than the analytic formula, and it can be negative for some structures. Where a holder sees a duration quoted for a bond fund that holds callable or prepayable assets, the honest reading is that the number is an effective duration conditional on a model, not a Macaulay duration observed from a fixed schedule.
+
+## The four lanes
+
+- **Contractual.** The coupon amounts, the coupon dates and the redemption are fixed terms of the instrument.
+- **Historical realised.** Past returns on a bond depended on the entry yield, the realised coupons and the exit price, and a duration computed today says nothing about what past holders earned.
+- **Model-estimated.** The durations in the table are computed from assumed yields and a constructed schedule, and any estimate of a future price change from duration is a model output.
+- **Speculative.** A view that yields will move in a particular direction, and by how much, is a forecast, not a measured risk.
+
+## What this does not tell you
+
+- **Any current yield or price.** Every input in the example is constructed. Take market levels from a published series.
+- **Credit risk.** Duration is silent on whether the coupons and the redemption will actually be paid.
+- **Tax.** The after-tax timing and amount of the cash flows is a separate question that belongs to the tax reference.
+- **Liquidity.** A duration figure says nothing about whether the bond can be sold at the quoted price.
+- **The exact cash flows of a real security.** Day-count conventions, ex-dividend dates and settlement timing all shift the realised timing slightly away from the clean schedule used here.
+
+## Open questions
+
+- For a retail portfolio, is the added precision of curve-based duration worth its complexity compared with a single Macaulay figure computed from one yield?
+- How much does the reinvestment assumption embedded in the discount factors reduce duration's usefulness for a holder who spends the coupons rather than reinvesting them?
+- When a security trades infrequently and the observed price is stale, how reliable is any duration computed from it?
+
+Duration is a single number doing a great deal of work. It answers the question of when a bond pays by averaging the payment times by value rather than by count, and in doing so it converts a scattered schedule into a quantity that can be compared, combined and hedged. Its limitations are not flaws; they are the boundary of the question it was built to answer. Knowing that boundary is what separates using duration from being used by it.

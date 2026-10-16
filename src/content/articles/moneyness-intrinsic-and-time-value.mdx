@@ -1,0 +1,182 @@
+---
+title: "Moneyness, Intrinsic Value and Time Value"
+description: "How options are classified by strike relative to the underlying, why the premium is more than the immediate exercise value, and what the split into intrinsic and time components actually tells you."
+shortTitle: "Moneyness, Intrinsic and Time Value"
+category: derivatives
+series: derivatives-lab
+seriesOrder: 8
+topics: ["moneyness", "intrinsic value", "time value", "in the money", "time decay"]
+tags: ["derivatives", "options", "pricing"]
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - "Moneyness classifies an option by where the strike sits relative to the underlying: in the money, at the money or out of the money, and the classification reverses between calls and puts."
+  - "Intrinsic value is the amount by which the option is in the money — the excess of the underlying over the strike for a call, or the strike over the underlying for a put — and it is never negative."
+  - "Everything in the premium above intrinsic value is time value, reflecting the possibility of further favourable movement before expiry; it is highest for at-the-money options and falls to zero at expiry."
+  - "An out-of-the-money option has no intrinsic value but a positive price, which is the clearest demonstration that the premium is a price for a possibility rather than for a present claim."
+  - "Time decay is not a forecast: theta is a partial derivative of the pricing function, meaningful only while the other inputs are held fixed, and it can be masked by a move in the underlying or in implied volatility."
+  - "For European contracts the theoretical lower bound discounts the strike, so the computed time value of a deeply in-the-money option can be very small or marginally negative; the intrinsic and time split is an accounting convention rather than a guarantee."
+  - "Leverage can produce losses larger than intuition suggests: a premium that looks small relative to the underlying can be lost in full on a move in the underlying that looks ordinary."
+faqs:
+  - question: "Why does an out-of-the-money option cost anything at all?"
+    answer: "Because its value is not the present claim, which is zero, but the possibility that the underlying moves past the strike before expiry. That possibility has a price, and it is the entire premium. It exists because the underlying can still move, not because the option is currently worth exercising."
+  - question: "Is a lower strike always better for a call buyer?"
+    answer: "A lower strike means a larger intrinsic value and a higher premium, so more capital is committed for the same exposure. It changes the mix between intrinsic value, which is already yours, and time value, which has to be earned by the underlying moving further. That trade-off is the substance of the choice."
+  - question: "Why is time value highest at the money?"
+    answer: "Because that is where the option is least certain to finish in the money or out of it, so the possibility of movement has the most value. Deep in the money the outcome is nearly settled; far out of the money, movement is unlikely to be enough. Both extremes carry less time value than the centre."
+  - question: "Can time value be negative?"
+    answer: "For a European option it can be computed as slightly negative, because the theoretical lower bound discounts the strike to its present value and the undiscounted intrinsic value can therefore exceed the price. The effect is small and appears in deep in-the-money contracts; it is a property of the definition of intrinsic value rather than a mispricing."
+  - question: "Does an option's price fall every day?"
+    answer: "Not necessarily. Theta describes the change in price for the passage of a day with all other inputs held fixed. In practice the underlying moves and implied volatility changes, and either can outweigh the decay, so an option can rise in price from one day to the next while its time value erodes."
+relatedCalculators:
+  - { id: option-payoff, label: "Option Payoff Calculator" }
+  - { id: black-scholes, label: "Black-Scholes Option Price" }
+  - { id: implied-volatility, label: "Implied Volatility" }
+  - { id: greeks, label: "Option Greeks" }
+relatedArticles:
+  - options-calls-and-puts-payoffs
+  - implied-volatility-and-the-volatility-surface
+  - futures-contracts-from-first-principles
+  - margins-span-exposure-and-peak-margin
+glossaryTerms: [intrinsic-value, time-value, option-premium, theta, delta, implied-volatility]
+sources:
+  - { id: black-scholes-1973, supports: "The closed-form European option value from which the decomposition into intrinsic and time components, the discounted-strike lower bound and the sensitivity of value to time are read" }
+  - { id: merton-1973, supports: "The treatment of the Greeks as partial derivatives of the pricing function, which is why theta and delta are sensitivities under stated assumptions rather than predictions" }
+  - { id: nse-derivatives-cm, supports: "The contract specifications that determine strikes, strike intervals, expiry conventions and settlement, and therefore which contracts exist to be classified" }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "The underlying level, strikes, premiums and decay figures in the worked example are hypothetical constructions for arithmetic. They are not quotations of any listed contract and no model was used to produce them."
+  - "This article describes the anatomy of a premium. It does not describe which options to buy or write and makes no suitability assessment."
+applicablePeriods: ["FY 2025-26"]
+openQuestions:
+  - "How much of the observed pricing of at-the-money options near expiry is explained by genuine uncertainty about the underlying rather than by liquidity and positioning in the contract itself?"
+  - "Does the conventional accounting split into intrinsic and time value mislead more than it clarifies for deeply in-the-money European contracts, where the split can turn negative?"
+  - "How stable is the relationship between delta and the probability of finishing in the money for Indian index options, given the volatility smile?"
+---
+
+An option's price is larger than the value of exercising it, and that gap is the subject of this article. A call struck below the current price can be exercised at a profit today, yet it trades for more than that profit; a call struck above the current price cannot be exercised at a profit at all, yet it still trades for something. Both facts follow from one idea: the premium buys a claim on a range of possible future outcomes, not a claim on the present difference between two prices. Splitting a premium into the part that already exists and the part that is hoped for is the first useful discipline in reading an option chain.
+
+What follows sets out the moneyness vocabulary, defines intrinsic and time value precisely, explains what determines how much of each an option carries, and states where the familiar split misleads. It describes anatomy and arithmetic. It does not say which options to hold, and it presents no structure as a plan.
+
+## Explain simply
+
+An option's price has two pieces. The first is what you would get if you exercised it right now: for a call, the amount by which the market price is above the strike, and for a put, the amount by which the strike is above the market price. That is the intrinsic value, and for an option that cannot be profitably exercised it is zero. The second piece is everything else, and it exists because the underlying can still move before expiry and make the option more valuable. That is the time value, and it is largest when the outcome is most uncertain, which is when the strike is close to the current price. As expiry approaches, the second piece shrinks towards zero, because there is less time for the movement to happen. An option costs more than its immediate exercise value because you are paying for movement that has not happened yet.
+
+## The three states of moneyness
+
+Moneyness is a classification, not a valuation. It describes where the strike sits relative to the price of the underlying, and it uses three terms.
+
+| State | Call | Put |
+| --- | --- | --- |
+| In the money | Underlying above the strike | Underlying below the strike |
+| At the money | Strike at or nearest the underlying | Strike at or nearest the underlying |
+| Out of the money | Underlying below the strike | Underlying above the strike |
+
+The definition reverses between calls and puts because the two rights are opposites: a call is the right to buy, so a low strike helps, while a put is the right to sell, so a high strike helps.
+
+"At the money" is used loosely. Some conventions treat it as the strike exactly equal to the underlying, which is often not a listed strike; others treat it as the listed strike nearest to the underlying. Either way, an at-the-money option has almost no intrinsic value and the largest time value, so the vocabulary is a shorthand rather than a category with sharp edges. Which strikes exist at all is fixed by the contract's strike scheme, which the exchange sets and revises.
+
+## Intrinsic value, precisely
+
+Intrinsic value is the amount by which an option is in the money. Writing $S$ for the price of the underlying and $K$ for the strike:
+
+$$ \text{Call intrinsic value} = \max(S - K, 0) $$
+
+$$ \text{Put intrinsic value} = \max(K - S, 0) $$
+
+Three properties follow. It is **never negative**: the maximum with zero does the work, so an out-of-the-money option has zero intrinsic value rather than a negative one. It is an **exercise value, not a market value** — what the option would produce if exercised now, which for a European contract is not an available action before expiry. And it **moves one for one with the underlying** once in the money.
+
+## Time value, and why the premium exceeds exercise value
+
+Time value is the remainder:
+
+$$ \text{Premium} = \text{intrinsic value} + \text{time value} $$
+
+For an out-of-the-money option the whole premium is time value, which is the cleanest demonstration of what an option is: nothing about the contract is worth anything today, and the price is entirely for the possibility that it will be. An at-the-money option has no intrinsic value either, and its premium is also entirely time value, but it is the largest time value the chain offers for that expiry, because the outcome is least determined. An in-the-money option's premium splits: the in-the-money portion is a present claim, and the rest is the same possibility the other contracts carry against a favourable strike.
+
+A caution attaches to the split, and it follows from the pricing formula rather than from any market irregularity. For European contracts the theoretical lower bound of a call is not the intrinsic value but:
+
+$$ \text{Lower bound} = \max(S - K e^{-rT}, 0) $$
+
+where $r$ is the rate and $T$ the time remaining. The strike is discounted, because a European call cannot be converted into cash before expiry. Deep in the money, the difference between the discounted and undiscounted strike can exceed the remaining time value, so a premium minus an undiscounted intrinsic value can come out small or even marginally negative. That is a property of defining intrinsic value as an exercise value for a contract that cannot be exercised early, not evidence of a mispricing.
+
+## What decides how much time value there is
+
+- **Time to expiry.** More time means more opportunity to move past the strike, so time value is larger for a longer-dated contract at the same strike. It does not grow in proportion to time, nor shrink linearly as expiry approaches.
+- **Distance from the strike.** Time value is largest near the money and falls away in both directions: far out of the money, movement of the required size is unlikely, and deep in the money the outcome is nearly settled.
+- **Implied volatility.** Higher implied volatility widens the range of outcomes the market expects, which raises the value of the possibility. This is why an option can rise in price on a day when the underlying has not moved.
+
+## Time decay: theta
+
+As expiry approaches the time component shrinks, and the rate at which it shrinks is measured by theta: the change in the premium for the passage of one day, with every other input held fixed. For a long option position it is typically negative, which is the statement that time is a cost to the holder and income to the writer. Two qualifications keep that honest.
+
+First, theta is a partial derivative, not a forecast. Holding the other inputs fixed is an assumption made to isolate one effect. In the market the underlying moves and implied volatility changes every day, and either can outweigh the decay, so a premium can rise while its time component erodes. Reading a model output as a prediction of tomorrow's price misuses it.
+
+Second, the decay is not uniform. It accelerates as expiry nears for options near the money, because the remaining time in which the possibility can be realised is short and decisive. Time value does not decline smoothly and then fall off a cliff; the profile is a curve, and its shape is one of the practical facts about short-dated contracts.
+
+## Moneyness, delta and the probability intuition
+
+Delta measures how much the premium changes when the underlying changes by one unit, and it is also read as a rough indication of the chance that an option finishes in the money. Call deltas run from zero to one and put deltas from minus one to zero; at the money the magnitude is near one half, deep in the money it approaches one, and far out of the money it approaches zero. Those magnitudes are the same geometry as the decomposition: at one extreme intrinsic value dominates, and at the other the possibility is negligible.
+
+Moneyness, intrinsic value, time value and delta are four descriptions of one shape. Delta and the other sensitivities are partial derivatives of a pricing function under stated assumptions; treating them as measurements of what will happen is a category error.
+
+## Worked example: splitting a premium
+
+An illustrative calculation using hypothetical numbers. Nothing here is a quotation of a listed contract, and no model produced the premiums.
+
+Suppose the underlying is at 20,000 and the following contracts are listed. The premiums are chosen to expose the arithmetic.
+
+| Contract | Premium | Intrinsic value | Time value | Time as a share of premium |
+| --- | --- | --- | --- | --- |
+| 19,000 call | 1,050 | 1,000 | 50 | about 5% |
+| 20,000 call | 120 | 0 | 120 | 100% |
+| 21,000 call | 40 | 0 | 40 | 100% |
+| 20,000 put | 100 | 0 | 100 | 100% |
+| 19,000 put | 30 | 0 | 30 | 100% |
+
+The 19,000 call is deep in the money and almost all of its price is intrinsic value, with only a small time component. The 20,000 call and the 20,000 put carry no intrinsic value and are entirely time value, and the call, whose strike is exactly at the underlying, carries more of it than the 21,000 call. The 19,000 put is worth the least of the five: distance from the strike, not direction, has made it cheap.
+
+Now hold the 20,000 call and the underlying fixed and let time pass. A hypothetical decay profile for a premium that is entirely time value:
+
+| Days to expiry | Premium | Time value remaining |
+| --- | --- | --- |
+| 30 | 120 | 120 |
+| 14 | 90 | 90 |
+| 7 | 65 | 65 |
+| 1 | 25 | 25 |
+| expiry | 0 | 0 |
+
+At expiry the option is worth its intrinsic value and nothing more, and with the underlying unchanged at the strike that value is zero. The premium of 120 was, on this illustrative path, a payment for a possibility that did not arrive.
+
+## Leverage, and losses larger than intuition
+
+Options embed leverage, and its arithmetic is easy to underestimate. One lot of the 20,000 call at 50 units costs ₹6,000 and references a notional exposure of ₹10,00,000, so the premium is 0.6% of the notional. A 1% move in the underlying against the position is 200 points, more than the 120-point premium, so a move any participant would call ordinary is enough to wipe out the entire premium paid. The position does not lose a percentage of the premium; it loses all of it.
+
+On the other side, a written call has no ceiling on its loss, because the underlying can rise without limit, and a written put's loss is bounded by the strike, which is a very large number relative to a premium that may be a fraction of a per cent of the underlying. Buying an option caps the loss at the premium, but the premium is often lost in full, which in cash terms is a total loss of the amount committed. Leverage can produce losses larger than intuition suggests on both sides, and the payoff shape does not convey how quickly the cash can go.
+
+## The four lanes
+
+- **Contractual.** The strike, strike interval, lot size and expiry convention that define which contracts exist; moneyness only makes sense against a contract that does.
+- **Model-estimated.** Intrinsic value is arithmetic and unambiguous; time value is whatever the model or the market says remains, inheriting every assumption the pricing function makes.
+- **Historical realised.** The decay an option's premium has displayed over a past window, alongside moves in the underlying and in implied volatility.
+- **Speculative.** The gain or loss from the underlying moving, or from volatility expectations changing, before expiry; the premium paid for time value is itself a bet on that lane.
+
+## What this does not tell you
+
+- **It does not price an option.** The premiums in the example were chosen to expose the arithmetic and were not produced by a model. Valuing a contract needs the underlying, the strike, the time remaining, rates and a volatility input.
+- **It states no strike scheme or expiry convention.** Strikes, expiries and settlement arrangements are specification facts, revised from time to time, and belong to the current exchange publication.
+- **It does not select a position.** Nothing here indicates which strike, expiry or side of the market suits any participant.
+- **It does not capture the smile.** Real chains do not price every strike at the same implied volatility, so time values in a live chain are not the smooth function of distance from the strike that the vocabulary suggests.
+
+## Open questions
+
+- How much of the pricing of at-the-money options near expiry reflects genuine uncertainty about the underlying, and how much reflects liquidity and positioning in the contract itself?
+- Does the conventional split into intrinsic and time value mislead more than it clarifies for deeply in-the-money European contracts, where the computed time component can be marginally negative?
+- How stable is the relationship between delta and the probability of finishing in the money for Indian index options, given the shape of the volatility smile?

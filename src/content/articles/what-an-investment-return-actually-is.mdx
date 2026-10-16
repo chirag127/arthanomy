@@ -11,9 +11,10 @@ difficulty: foundational
 status: published
 kind: explainer
 publishedAt: 2026-10-16
+updatedAt: 2026-10-16
 researchDate: 2026-10-16
 reviewedAt: 2026-10-16
-readingMinutes: 14
+readingMinutes: 12
 featured: true
 keyTakeaways:
   - '"Return" is not one quantity: historical realised, contractual, model-estimated and speculative returns are different things with different risk profiles, and blending them is the root of most bad investment decisions.'
@@ -43,9 +44,18 @@ sources:
   - { id: rbi-handbook-statistics, supports: 'Institutional context for how Indian financial returns are reported across asset classes' }
   - { id: sebi-investor-education, supports: 'Regulator guidance on interpreting investment returns and advertisements' }
   - { id: sharpe-1966, supports: 'The original published basis for risk-adjusting return comparisons' }
+  - { id: markowitz-1952, supports: 'The mean-variance argument that return and risk must be chosen together' }
+  - { id: fama-french-1992, supports: 'Evidence that a single return is a summary of several return-generating exposures, not one' }
 dataConfidence: high
 hasPlainEnglish: true
 hasWorkedExample: true
+warnings:
+  - 'The return paths in the worked examples are illustrative constructions chosen to expose arithmetic, not observations of any market, fund or product.'
+  - 'This article explains how returns are measured. It is not advice and does not recommend any investment.'
+openQuestions:
+  - 'How much of the historical equity risk premium is compensation for bearing risk, and how much reflects the repricing of cash flows as discount rates fell?'
+  - 'When a fund reports a return as "net", net of which costs exactly, and can the fee schedule be reconstructed from its disclosures?'
+  - 'How should a household aggregate returns across accounts held in different tax wrappers?'
 ---
 
 Every investment discussion — in a bank branch, on a fund factsheet, in a WhatsApp forward — reduces to one number: "the return". Nine percent. Fifteen percent. "It doubled in two years." The number feels like a fact. It is almost always a blend of at least four different quantities, each with its own risk profile, and the blending is where the trouble starts.
@@ -54,7 +64,11 @@ This first article in the Science of Returns series establishes the vocabulary t
 
 ## Return is a change in wealth, over a stated period
 
-Formally, an investment's return over a period is the change in its total value — income received plus change in price, reinvested — divided by what you put in.
+Formally, an investment's return over a period is the change in its total value — income received plus change in price, reinvested — divided by what you put in. Written as an equation, starting from a value $V_0$, ending at $V_T$, with income $D$ paid during the period:
+
+$$ R = \frac{(V_T + D) - V_0}{V_0} $$
+
+There are three moving parts, and almost every argument about a reported return is an argument about one of them. The **starting value** must include everything you actually committed — the purchase, the brokerage, the stamp duty. The **ending value** must include everything still yours, including a position in a second account you had forgotten about. The **income** must include every distribution, whether it was paid out or reinvested.
 
 If you buy units at ₹100, receive ₹4 in distributions, and the units end at ₹106, your total return is **10%** for that period. Skip the distribution — it "went to your bank account" — and the price change alone says 6%. Both numbers get printed; only the first is true to what happened to your wealth.
 
@@ -62,6 +76,12 @@ Two immediate consequences:
 
 - **A return without a period is not a return.** "10%" means nothing until it is 10% per year, or 10% in three months. Annualisation is not decoration; it changes a mediocre number into an excellent one and vice versa.
 - **A return without income is a price-change story.** This is why dividend-paying and accumulating investments of identical economic substance can show different published "returns". The gap between a generous dividend payer and a low-yield compounder is often purely accounting.
+
+Annualising is a second place where the honest figure is optional. To turn a multi-year total return into a per-year rate you compound; you do not divide:
+
+$$ R_{\text{annual}} = (1 + R)^{1/T} - 1 $$
+
+A 21% total gain over two years is $(1.21)^{0.5} - 1 = 10.0\%$ a year, not 10.5%. A 44% gain over three years is $(1.44)^{1/3} - 1 = 12.9\%$ a year, not 14.7%. Simple division always flatters, and the longer the period, the more it flatters.
 
 ## Four quantities, one word
 
@@ -76,6 +96,17 @@ Here is the failure mode this site is built around. The word "return" is used fo
 **4. Speculative upside.** The possible-but-unsupported: what a token, an early-stage company or a lottery-ticket strategy *might* deliver. Honest researchers label this lane clearly. The entire "100x in 3 years" genre lives here and pretends not to.
 
 Most bad investment decisions are a category error between these lanes. A model estimate is read as a contractual promise; a historical window is read as a forecast; a speculative hope is priced as if it were the first two. Keep the lanes separate and most pitches collapse on their own.
+
+The lanes are not separated by how confident the speaker sounds. They are separated by what would have to be true for the number to hold, and by the test that would falsify it:
+
+| Lane | What it claims | The test that matters | Typical failure |
+| --- | --- | --- | --- |
+| Historical realised | This is what happened to a defined population over a defined window | The window, survivorship and net-of-cost basis are stated | Read as a forecast |
+| Contractual | A binding agreement pays this | The credit of the counterparty and the enforceability of the contract | Default and delay treated as impossible |
+| Model-estimated | These assumptions produce this outcome | The assumptions are printed beside the number | Assumptions hidden |
+| Speculative | This is possible | A base rate for how often it has occurred | Priced as though it were contractual |
+
+A return figure is incomplete in a second way too: it says nothing about the risk taken to produce it. Portfolio theory makes that concrete — return and variance are chosen together, because a higher expected return is compensation for bearing something. The reward-to-variability ratio that Sharpe introduced in 1966 was built to put return on a per-unit-of-risk footing so that portfolios could be compared rather than merely ranked. And the cross-sectional evidence of Fama and French showed that market beta alone does not explain equity returns — which is another way of saying that one percentage is a summary of several exposures at once. Compare two investments on return alone and the comparison has quietly discarded the variable that sets the price.
 
 ## Arithmetic averages lie; compounding doesn't
 
@@ -103,7 +134,7 @@ Two standard measures are constantly confused:
 
 The difference is material precisely when it matters most. A monthly SIP into a falling-then-recovering market can show a CAGR that looks modest while the XIRR — computed on actual money at actual dates — is excellent, because later instalments bought deeply discounted units. An investor who judges themselves by CAGR in that situation misreads their own results. The calculators linked at the end of this article do both, and the worked example below shows the mechanics once.
 
-### Worked example: the same portfolio, two honest measures
+## Worked example: the same portfolio, two honest measures
 
 An investor puts ₹10,000 at the start of each year for four years into an index fund that returns −10%, +5%, +25%, +15% in those years, and values the holding at the end.
 
@@ -111,6 +142,15 @@ An investor puts ₹10,000 at the start of each year for four years into an inde
 - **XIRR of the investor** depends on how ₹40,000 was deployed: the first ₹10,000 rode the −10% year, the last rode only +15%. Depending on weighting, the investor's rupee-weighted outcome can sit above or below the fund's time-weighted CAGR — which is exactly why funds report *time-weighted* returns (a CAGR-like number stripped of your cash-flow timing) and you should report *money-weighted* ones (XIRR) to yourself.
 
 Neither number is wrong. They answer different questions, and the industry rarely says which one it is showing.
+
+### A second example: the same asset, two windows
+
+An illustrative price path — a 20% fall, then a 30% rise, then a 10% rise (a construction to make the arithmetic clear, not the record of any actual index):
+
+- Over all three years the cumulative factor is $0.80 \times 1.30 \times 1.10 = 1.144$, a CAGR of $(1.144)^{1/3} - 1 \approx 4.6\%$ a year.
+- Over the last two years only, the factor is $1.30 \times 1.10 = 1.43$, a CAGR of $(1.43)^{0.5} - 1 \approx 19.6\%$ a year.
+
+The same asset, ending at the same price, is a mediocre performer or an excellent one depending on where the window opens. Nobody has to lie for this to happen; they only have to choose a start date.
 
 ## From gross to real: the three deductions
 
@@ -121,6 +161,33 @@ The number a product advertises is gross, nominal and pre-tax. Three deductions 
 3. **Inflation.** The purchasing power of the rupee. A 7% nominal return with 5% inflation is not 2% real — it is $(1.07/1.05) - 1 \approx 1.9\%$ real, and tax makes it worse.
 
 > **The floor problem.** For a resident investor in the 30% slab with surcharge and cess, a fully-taxed nominal 7% with 5% inflation can produce a *negative* real, post-tax return. This is not hypothetical pessimism; it is the arithmetic that makes asset allocation a first-order question rather than a detail. The next article in this series works through inflation mechanics; the tax series does the same for the tax side.
+
+## Where each measure misleads
+
+Each measure above is correct, and each is misused in a predictable way. The failure is rarely fabrication; it is a measure answering a question nobody asked.
+
+| Measure | Question it answers | Where it misleads |
+| --- | --- | --- |
+| Arithmetic mean | The average of the yearly numbers | Overstates compounding whenever returns vary |
+| Geometric mean / CAGR | The constant rate from start to end | Silent on path, cash flows and window choice |
+| XIRR (money-weighted) | The rate on your actual dated cash flows | Confounded by your own deposit timing |
+| Time-weighted | The growth of the asset between flows | Ignores the timing that produced your outcome |
+| Nominal, gross | The change in value before costs, tax and inflation | Overstates what you keep |
+
+## What a return number cannot tell you
+
+Even a correctly labelled return leaves questions open, and it is worth being explicit about them:
+
+- It is not a forecast. It is a fact about a window that has closed.
+- It does not describe risk. Past volatility is a floor on future volatility, not a ceiling.
+- It does not identify the source of the gain. Leverage, concentration, illiquidity and credit exposure all raise expected return by raising risk.
+- It says nothing about position size. A 100% return on ₹1,000 and a 6% return on ₹10,00,000 are not comparable decisions, and neither is comparable to another investor's until costs, tax and currency are matched.
+
+## Open questions
+
+- How much of the historical equity premium is compensation for bearing risk, and how much is the repricing of a stream of cash flows as discount rates fell?
+- When a fund reports a return as "net", net of which costs exactly, and can the fee schedule be reconstructed from its disclosures?
+- How should a household average returns across accounts held in different tax wrappers?
 
 ## Reading the next return claim you meet
 

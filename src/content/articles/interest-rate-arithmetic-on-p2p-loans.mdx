@@ -1,0 +1,156 @@
+---
+title: "Interest Arithmetic on P2P Loans: Reducing Balance Explained"
+description: "How interest on a peer-to-peer loan is computed on a reducing balance, why the quoted rate is the borrower's contractual number rather than the lender's return, and where platform fees enter the arithmetic."
+shortTitle: "Interest Arithmetic on P2P Loans"
+category: p2p-lending
+series: p2p-first-principles
+seriesOrder: 6
+topics: ["P2P lending", "interest calculation", "reducing balance", "platform fees", "effective rate"]
+tags: ["p2p", "credit", "interest", "returns"]
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 9
+keyTakeaways:
+  - "The interest rate printed on a peer-to-peer loan is the borrower's contractual rate, computed on the outstanding principal under a stated convention; it is not a promised return to the lender."
+  - "Reducing-balance interest is charged on the balance still outstanding, so the interest share of each instalment falls over the life of the loan while the principal share rises."
+  - "The same headline number means very different things under a flat-rate convention and a reducing-balance convention, which is why the basis of quotation has to be read before any rate is compared."
+  - "A lender's outcome depends on the cash actually received and the timing of that cash, so fees paid at the outset or deducted from each instalment reduce the money-weighted return below the quoted rate."
+  - "This article cites no realised peer-to-peer return figure, because none of the sources for this brief publishes platform-level realised lender returns; the realised lane has to come from the platform's own cohort disclosures and should be verified."
+  - "Where a figure is needed to make the arithmetic concrete, it is computed here and labelled as an illustration, not presented as observed performance."
+faqs:
+  - question: "If the borrower pays 14 per cent, do I receive 14 per cent?"
+    answer: "No. Fourteen per cent is the rate the borrower owes under the loan contract, computed on the reducing balance. What the lender receives is the scheduled instalments, and their value depends on whether they are paid on time, what the platform deducts, when the cash arrives and what it earns after it arrives."
+  - question: "Why does the effective rate differ from the nominal rate on a monthly loan?"
+    answer: "Because interest is applied monthly to the outstanding balance and the balance is repaid through the year, so interest is charged more often than once a year. The annual equivalent of a monthly nominal rate is slightly higher than the nominal number, and the reduction in the balance means the interest collected over the year is smaller than a naive multiplication would suggest."
+  - question: "Does a flat rate and a reducing-balance rate with the same number mean the same thing?"
+    answer: "No. A flat rate is applied to the full original principal for the whole term, while a reducing-balance rate is applied only to the balance still outstanding. The flat convention therefore produces a materially higher effective cost for the same headline number."
+  - question: "How do platform fees change the arithmetic?"
+    answer: "Fees are deducted from the cash the lender puts in or takes out, so they act on the cash-flow series rather than on the stated rate. The honest way to compare a fee-bearing offer with a fee-free one is to compute the money-weighted return on the net cash flows rather than to adjust the headline rate by eye."
+  - question: "Where can I find the realised return on a peer-to-peer portfolio?"
+    answer: "Not from this article. No source in this brief publishes platform-level realised lender returns. The relevant evidence is cohort-level performance disclosed by the platform, measured by vintage, and it should be read directly and verified rather than summarised from any secondary description."
+relatedCalculators:
+  - id: p2p-return
+    label: "P2P Realised Return"
+  - id: p2p-stress
+    label: "P2P Stress Test"
+  - id: xirr
+    label: "XIRR Calculator"
+  - id: default-recovery
+    label: "Expected Credit Loss"
+relatedArticles:
+  - rbi-p2p-licensing-framework
+  - platform-as-intermediary-not-lender
+  - escrow-account-mechanics-in-p2p-lending
+  - no-guarantee-rule-and-credit-enhancement-ban
+  - amortisation-schedules-and-monthly-cash-flow
+  - how-p2p-loans-are-underwritten-in-india
+glossaryTerms: [nbfc-p2p, lender, borrower, escrow-account, default, cash-flow-irr, risk-grade]
+sources:
+  - id: rbi-p2p-md
+    supports: "The structure in which the platform intermediates and the loan contract sits between lender and borrower, the prohibition on guarantees and credit enhancement, and the disclosure obligations that govern what a platform must tell a lender about a loan's terms"
+  - id: rbi-home
+    supports: "The wider regulatory setting in which the NBFC-P2P framework sits, and the frame that peer-to-peer loans are not deposits and carry no deposit-insurance protection"
+  - id: bcbs-credit-risk
+    supports: "The definitions of probability of default, loss given default and exposure at default used when the quoted rate is tested against expected credit loss rather than treated as a return"
+  - id: rbi-financial-stability
+    supports: "The regulator's own system-level assessment of credit conditions, which is where aggregate asset-quality stress is published rather than any platform-level lender return"
+  - id: dicgc
+    supports: "The contrast case: deposit insurance attaches to bank deposits, so nothing in this arithmetic can be read as a guarantee of a peer-to-peer loan"
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - "All rates, amounts and returns in this article are illustrative constructions for arithmetic, not offers, observed performance or forecasts. No platform's pricing is described or assessed here."
+  - "The operative rules on how a platform documents, prices and reports a loan live in the RBI master direction and in the loan documents, and they are amended from time to time. Verify the current text before relying on any description of the mechanism."
+  - "Peer-to-peer lending carries credit risk with no statutory compensation scheme, and nothing here is advice to lend."
+applicablePeriods: ["RBI NBFC-P2P Master Direction as in force on 16 October 2026"]
+openQuestions:
+  - "Do Indian platforms disclose their day-count and compounding conventions prominently enough for a lender to reproduce a quoted rate independently?"
+  - "Should the basis of quotation, reducing balance or flat, be a mandatory disclosure on every peer-to-peer loan listing?"
+  - "How much of the gap between a platform's headline yield and a lender's cash-flow IRR is explained by fees, and how much by idle cash and losses?"
+---
+
+A peer-to-peer loan arrives with a number attached: a rate, sometimes a projected yield, occasionally a range. Almost all of the arithmetic that matters to a lender sits between that number and the cash that eventually lands in a bank account, and much of it is ordinary interest mathematics that applies to any loan. This article sets out how interest is charged on a peer-to-peer loan, what the quoted rate is a rate *of*, and where platform fees enter. Its aim is reproducibility: a reader should be able to rebuild the numbers on a loan listing rather than accept them.
+
+## The rate in the document is the borrower's rate
+
+The legal structure comes first, because it decides what the rate means. In an RBI-regulated peer-to-peer arrangement the platform is an intermediary running a marketplace; the loan is a contract between the lender and the borrower, and the platform is not the party that owes repayment. The rate stated in that contract is therefore the borrower's contractual obligation, expressed as an annual rate applied to the outstanding principal under a stated convention.
+
+That is a precise statement and a narrow one. It tells a lender what the borrower must pay if the borrower performs. It says nothing about whether the borrower will perform, nothing about collection delays, and nothing about what the platform will deduct. The RBI framework reinforces the distinction: a platform may not guarantee returns, provide credit enhancement, or promise liquidity, so the only rate that exists contractually for the lender is the rate on somebody else's obligation. Everything downstream of that is arithmetic on an uncertain cash flow.
+
+## Reducing balance, and why the convention matters
+
+Under a reducing-balance convention, interest for a period is charged on the principal still outstanding at the start of that period:
+
+$$ I_t = P_{t-1} \times \frac{r}{n} $$
+
+where $r$ is the stated annual rate and $n$ is the number of charging periods in a year — commonly twelve. The amount that repays principal is whatever remains of the instalment after interest is taken:
+
+$$ \Delta P_t = \text{Instalment}_t - I_t $$
+
+Two consequences follow immediately. First, interest is charged on a balance that shrinks, so the interest component of a level instalment is largest in the first month and smallest in the last. Second, the lender's *interest income* declines month by month even though the instalment itself is constant, because the balance it is charged on declines.
+
+A flat-rate convention works differently: interest is computed once on the full original principal for the whole term, and the total is divided across the instalments. The two conventions are not two ways of writing the same cost. A rate quoted on a flat basis over a year implies a materially higher reducing-balance rate, and a lender comparing listings that use different conventions without noticing is comparing nothing. Which convention a platform applies is a matter of the loan documents and the platform's disclosures, and it should be read there rather than assumed.
+
+## What the lender actually receives
+
+A performing peer-to-peer loan delivers a schedule, not a rate: a series of dated instalments, each containing interest and principal in a shifting proportion. Three practical features of that schedule matter more than the headline rate.
+
+- **Interest is front-loaded while cash is level.** The interest share is high in the early months, so a loan terminated early has already delivered most of its interest — and a loan that defaults in month three has delivered very little principal back.
+- **Principal returns continuously.** An amortising loan gives capital back through the term rather than at the end, so the lender faces a reinvestment decision every month. Money waiting to be matched into a new loan earns nothing.
+- **The annual equivalent exceeds the nominal monthly rate.** Interest applied monthly compounds. The effective annual rate is:
+
+$$ \text{Effective annual rate} = (1 + \frac{r}{n})^{n} - 1 $$
+
+None of this is unusual; it is the arithmetic of any instalment loan. It matters here because peer-to-peer marketing often quotes a single annual number, and that number describes the borrower's obligation rather than the lender's outcome.
+
+## The four lanes a return figure can come from
+
+Any honest discussion of peer-to-peer returns has to keep four kinds of number apart, because they are produced by different things and mean different things.
+
+1. **Contractual.** The rate on the loan document — the borrower's obligation. It is knowable in advance and it is not a return to the lender. This article's examples use it only as an input.
+2. **Published or realised.** What a portfolio actually produced in cash. A realised figure can only come from a record of dated cash flows, and it must be sourced. **No source in this brief publishes platform-level realised lender returns on NBFC-P2P portfolios**, so no realised figure is quoted anywhere in this article. The RBI's published assessment material covers system-level credit conditions and bank asset quality; platform-level cohort performance is disclosed by platforms themselves and should be read and verified directly.
+3. **Model-estimated.** A figure computed from stated assumptions about defaults, recoveries, fees and timing. Every number below belongs to this lane and is labelled as an illustration.
+4. **Speculative.** What a lender might earn if a favourable condition holds — for instance if returned principal were reinvested at the same rate without a gap, or if recoveries ran ahead of expectation. Speculative figures are not estimates, because nothing supports them; they are the upside case, and they should be named as such when they appear at all.
+
+Blending these lanes is the most common defect in peer-to-peer commentary. A platform's advertised yield is usually a contractual or model figure applied to a perfect book; a lender's experience is a realised cash-flow figure; and the difference between them is precisely the subject of the rest of this series.
+
+## Where fees enter the arithmetic
+
+Platform fees do not change the borrower's rate. They change the cash flows on the lender's side of the transaction, in one of two broad forms: a fee on the amount committed, taken at the outset, or a servicing fee deducted from each instalment received. Both act on the cash-flow series, and both therefore reduce the money-weighted return even though the contractual rate on the loan is untouched.
+
+The practical implication is that fees cannot be compared against a rate by subtraction. A one percentage point fee taken at the outset on a twelve-month loan is not a one percentage point reduction in return, because the lender has lost the use of that money for the whole term. The correct comparison is between net cash-flow series, which is what a money-weighted return — an XIRR — computes. The amortisation article in this series works through the mechanics of that schedule in detail.
+
+## Explain simply
+
+The interest rate on a peer-to-peer loan is what the borrower has promised to pay, calculated on whatever they still owe. Because they pay down the loan every month, the interest gets smaller as the loan runs, and part of every instalment is your own money coming back rather than income. The platform takes its cut either when you put money in or when money comes back to you, which lowers what you keep without changing the rate the borrower pays. So the rate on the listing is the starting point of the arithmetic, not the answer to it. To know what you earned you need the dated list of money in and money out, and that is a different calculation.
+
+## Worked example
+
+The following is an illustrative calculation, not a forecast and not any platform's pricing or performance. Take a single loan of ₹10,000 at a stated annual rate of 14 per cent on a reducing balance with twelve monthly instalments. The monthly rate is 14 per cent divided by twelve.
+
+- Interest in the first month: $10,000 \times 0.14 / 12 = ₹116.67$.
+- Level instalment that repays the loan in twelve months: **₹897.87**.
+- Total paid over the year: ₹10,774.45, of which **₹774.45** is interest and ₹10,000 is the lender's own principal returned.
+- Effective annual rate on the monthly rests: $1.0116\overline{6}^{12} - 1 \approx 14.93\%$.
+- If the same 14 per cent were quoted on a *flat* basis, the instalment would be ₹950.00, which corresponds to an implied reducing-balance annual rate of about **24.9 per cent** — the same headline number describing a very different loan.
+
+Now put a fee on it. Suppose, illustratively, the lender pays a 1 per cent fee at the outset, so ₹10,100 is committed to fund ₹10,000 of principal, and receives the twelve instalments. The money-weighted return falls from about 14.93 per cent to about **12.80 per cent** a year. That figure is model-estimated from the assumptions stated here and nothing else; the fee level is chosen for arithmetic, not because any platform charges it. The point is structural: on an amortising loan, fees taken early cost more than their face value, because the money they consume would otherwise have been working for the whole term.
+
+## What this does not tell you
+
+- **Nothing about a particular platform.** No platform's rate, fee or convention is described or evaluated.
+- **Nothing about default.** The worked example assumes every instalment is paid on time, in full. Default, delay and recovery are separate mechanisms and are handled later in the series.
+- **No realised return.** As stated above, no source for this brief carries platform-level realised lender returns, so none is quoted.
+- **Nothing settled about conventions in practice.** Which convention a given platform applies, and how it discloses it, is a question for the loan documents and the master direction.
+- **Nothing that turns a rate into a promise.** A rate is an input to a calculation. It is not a guarantee, and the framework denies platforms the ability to make it one.
+
+## Open questions
+
+- Do platforms disclose their day-count and compounding conventions prominently enough for a lender to rebuild a quoted rate independently?
+- Should the basis of quotation — reducing balance or flat — be a mandatory field on every peer-to-peer loan listing?
+- How much of the gap between a headline yield and a lender's cash-flow IRR is explained by fees, and how much by idle cash and credit losses?

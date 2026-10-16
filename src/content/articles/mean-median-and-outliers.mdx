@@ -1,0 +1,167 @@
+---
+title: 'Mean, Median and the Outlier Problem in Return Data'
+description: 'A single extreme observation can move an arithmetic average return by several percentage points while leaving the median untouched. This article derives both measures, explains the gap between the average and the compound return, and shows how to interrogate a returns table before trusting it.'
+shortTitle: 'Mean, Median and Outliers'
+category: financial-mathematics
+series: financial-mathematics
+seriesOrder: 9
+topics: ['averages', 'outliers', 'skewness', 'return measurement']
+tags: ['financial-mathematics', 'statistics', 'return-measurement']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'The arithmetic mean is a sum divided by a count, so one extreme observation moves it by roughly the size of that observation divided by the number of periods.'
+  - 'The median depends only on the rank order of the observations, so the magnitude of an outlier cannot move it at all.'
+  - 'The average return you compute is not the return you earn: the compound return is the geometric mean, and it sits below the arithmetic mean whenever there is dispersion.'
+  - 'The distance between the mean and the median is a signal about skew and outliers, not a rounding error.'
+  - 'Trimmed and winsorised averages discard or cap the extremes and often describe a typical period more honestly than either the mean or the median alone.'
+  - 'None of these measures is a forecast; they describe the sample in hand, and a small sample describes it imprecisely.'
+relatedCalculators:
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: xirr
+    label: 'XIRR Calculator'
+  - id: monte-carlo
+    label: 'Monte Carlo Simulator'
+relatedArticles:
+  - compounding-discrete-and-continuous
+  - cagr-versus-xirr
+  - logarithmic-returns-in-practice
+  - present-and-future-value-of-annuities
+glossaryTerms: [compounding, rule-of-72, effective-annual-rate]
+sources:
+  - id: markowitz-1952
+    supports: 'The mean-variance framework, which takes the arithmetic mean of returns as an input to portfolio construction and therefore inherits its sensitivity to extreme observations'
+  - id: sharpe-1966
+    supports: 'The reward-to-variability ratio, whose numerator is an arithmetic mean excess return and which therefore inherits the same outlier sensitivity'
+  - id: fama-french-1992
+    supports: 'Cross-sectional tests that pool long samples and many securities, illustrating how difficult and sample-hungry the empirical estimation of an average return is'
+  - id: bis-home
+    supports: 'Research on the statistical properties of asset returns, which are not well summarised by a single symmetric shape'
+  - id: mospi-home
+    supports: 'Official index series such as the Consumer Price Index, which are constructed aggregates whose averages must be read alongside the method used to build them'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+faqs:
+  - question: 'Should I use the mean or the median return?'
+    answer: 'Use the mean when you need a total or a building block for further arithmetic, and the median when you want to describe a typical period. Report both when a series contains extremes; the gap between them is the finding.'
+  - question: 'Why is the average return higher than the return I actually earned?'
+    answer: 'Because averages add, but wealth multiplies. The arithmetic mean of periodic returns answers what the sum of the period returns was; the compound return, which is the geometric mean, answers what the money actually grew by, and it is lower whenever the returns vary.'
+  - question: 'Does a large gap between mean and median always mean the fund is unreliable?'
+    answer: 'No. It means the return distribution is lopsided or contains extremes. That may be a genuine feature of the strategy rather than a data problem, but it does mean a single average badly describes the experience.'
+  - question: 'How many observations are enough for a trustworthy average?'
+    answer: 'The estimate gets better as the count rises, and the precision improves with the square root of the count, not in proportion to it. A two-year monthly record is a small sample, and its average should be treated as fragile.'
+warnings:
+  - 'Every return series and every average in this article is an illustrative construction used to demonstrate the arithmetic; none is observed market data and none is attributed to a scheme or index.'
+openQuestions:
+  - 'Which summary best communicates a fund experience to an ordinary investor when the return distribution is lopsided — the median, a trimmed mean, or a distribution of percentiles?'
+  - 'For Indian equity and hybrid funds, how much of the observed mean-median gap reflects genuine skewness rather than a few clustered crisis months?'
+  - 'How should an average return be quoted when the sample is short enough that its own estimation error exceeds the difference being claimed?'
+---
+
+Every returns table is summarised before it is read, and the most common summary is the arithmetic average. Fund factsheets report average annual returns, ranking tables order funds by them, and portfolio reviews quote them as if they described the typical year. The average is easy to compute and easy to misuse, because one extreme observation can move it by several percentage points while changing nothing about the ordinary period. The median and the trimmed average exist for precisely this reason. Knowing which measure answers which question is the difference between reading a returns table and believing it.
+
+## Explain simply
+
+An average adds everything up and divides by how many numbers there are, so one very large or very small number pulls the whole result. The median instead lines the observations up in order and takes the middle one, so the size of the extremes does not matter at all — only their rank does. If ten months return roughly one per cent and one month returns twenty-five per cent, the average is flattered by that single month, while the median still reports that the typical month returned about one per cent. Neither measure is wrong; they answer different questions. The average estimates a total, the median describes a typical observation. When a series contains outliers or is lopsided, the two diverge, and the size of that gap is often the most informative thing on the page.
+
+## The arithmetic mean and what it is for
+
+For a series of periodic returns, the arithmetic mean is the simple average:
+
+$$ \bar{r} = \frac{1}{n} \sum_{t=1}^{n} r_t $$
+
+It has one property that makes it indispensable and one that makes it dangerous. The indispensable property is additivity: the mean multiplied by the number of periods equals the total of the period returns, and the mean is the input that portfolio theory takes as the expected return of an asset. The mean-variance framework that underlies modern portfolio construction is built on an arithmetic mean and a variance, which is why the sensitivity of the mean to extremes propagates directly into the portfolios those tools recommend. The dangerous property is that every observation enters with the same weight of one over n, regardless of how far it sits from the others. A single observation counting for a fraction of the total is negligible in a long sample and decisive in a short one.
+
+## How one observation moves an average
+
+The influence of a new observation on an average can be written exactly. If the current mean of n observations is the current average, then after adding one more value the new mean is
+
+$$ \bar{r}_{n+1} = \frac{n \bar{r}_n + x_{n+1}}{n + 1} $$
+
+so the change in the average is the distance of the new value from the old average, divided by one more than the sample size:
+
+$$ \bar{r}_{n+1} - \bar{r}_n = \frac{x_{n+1} - \bar{r}_n}{n + 1} $$
+
+The arithmetic is unforgiving in two directions. First, the effect depends on the distance of the observation from the average, not on its sign alone, so a hugely positive month and a hugely negative month move the mean by the same magnitude in opposite directions. Second, the effect shrinks only as the sample grows; it does not vanish. In a twelve-observation sample, one value a long way from the mean still shifts the average by roughly a twelfth of that distance.
+
+## The median and why rank beats magnitude
+
+The median is an order statistic. Sort the observations from smallest to largest. For an odd number of observations it is the middle one; for an even number it is the average of the two central values:
+
+$$ \tilde{r} = r_{((n+1)/2)} \quad \text{for odd } n, \qquad \tilde{r} = \frac{r_{(n/2)} + r_{(n/2+1)}}{2} \quad \text{for even } n $$
+
+where the parenthesised subscript denotes the position in the sorted list. Because only position is used, the median is completely insulated from the magnitude of the extremes. Take the largest observation and multiply it by ten, or make it negative instead of positive: as long as its rank does not change, the median does not move. This is why the median is called robust and the mean is not. It is also why the median discards information: a series whose largest value is enormous and a series whose largest value is merely large have the same median, and the median cannot tell them apart.
+
+## The mean is not the return you earn
+
+The most damaging confusion in return data is treating the average period return as the rate at which money grew. Wealth multiplies. After n periods, one rupee grows by the product of the growth factors:
+
+$$ \frac{V_n}{V_0} = \prod_{t=1}^{n} \left( 1 + r_t \right) $$
+
+The constant per-period rate that reproduces that same terminal wealth is the geometric mean, defined implicitly by
+
+$$ (1 + g)^n = \prod_{t=1}^{n} \left( 1 + r_t \right) $$
+
+and the arithmetic mean exceeds the geometric mean whenever the returns are not all identical. To first order, for small returns, the gap is governed by the variance of the series:
+
+$$ g \approx \bar{r} - \frac{\sigma^2}{2} $$
+
+This is a first-order approximation shown to make the mechanism visible, not an exact identity. Its message is durable: dispersion is a drag on compound growth even when it is symmetric and even when the average return is unchanged. An asset that returns plus ten per cent and minus ten per cent in successive periods has an arithmetic mean of zero and a compound return of about minus half a per cent a year, because the money fell to ninety and then had to climb back from a smaller base. Quoting the arithmetic average as the return earned overstates the outcome by roughly half the variance, and a series with extreme observations has a large variance.
+
+## Skewness: when the two measures diverge systematically
+
+Outliers are one source of divergence between mean and median; skew is another, and it can be measured. The standardised third moment is
+
+$$ \text{skew} = \frac{1}{n} \sum_{t=1}^{n} \left( \frac{r_t - \bar{r}}{s} \right)^{3} $$
+
+where s is the sample standard deviation. A series with a long left tail — occasional large losses and mostly small positive periods — has a negative third moment and a mean below its median. A series with a long right tail has a mean above its median. Which pattern a particular series displays is an empirical question for that series, not something to be assumed. The point for practice is directional and simple: whenever the mean and the median are far apart, the shape is asymmetric, and any statistic built on the mean is being influenced by that asymmetry.
+
+## Trimmed and winsorised averages
+
+Two compromises fall between the mean and the median. A trimmed mean discards a fixed number of observations from each end before averaging:
+
+$$ \bar{r}^{\text{trim}}_k = \frac{1}{n - 2k} \sum_{t = k+1}^{n-k} r_{(t)} $$
+
+A winsorised mean keeps every observation but caps the extremes at a chosen percentile before averaging. Both keep more of the sample than the median does while refusing to let a single observation dominate, and both require a documented choice of how much to trim or cap. That choice is a judgement, and it should be stated, because trimming changes the answer. Trimming shares the median's virtue — robustness — without the median's total indifference to the size of extremes.
+
+## Worked example: one outlier, two signs
+
+This is an illustrative construction, not observed data. Suppose a series has eleven monthly returns: ten of them are +1% and one is +25%. The sum is 35, so the arithmetic mean is about **+3.18% a month**. Sorted, the sixth of eleven values is 1%, so the median is **+1.00% a month**. Trimming one observation from each end removes the +25% and one +1%, leaving nine values of +1% and a trimmed mean of **+1.00% a month**.
+
+Now change only the sign of the single extreme, to −25%. The sum becomes −15, so the arithmetic mean falls to about **−1.36% a month**. The median is still **+1.00% a month**, and the trimmed mean is still **+1.00% a month**.
+
+| Measure | Ten months at +1%, one at +25% | Ten months at +1%, one at −25% |
+| --- | --- | --- |
+| Arithmetic mean | +3.18% | −1.36% |
+| Median | +1.00% | +1.00% |
+| Trimmed mean | +1.00% | +1.00% |
+
+A swing of more than four percentage points a month in the average, produced by changing the sign of one value out of eleven, with no change whatever in the median. The compound return is a further step away from the arithmetic mean. In the positive-outlier case the growth factors are ten copies of 1.01 and one 1.25, whose product is about 1.3808; the eleventh root of that is approximately **+2.98% a month**, below the arithmetic mean of +3.18% and below even the median, because the geometric mean penalises the dispersion the median ignores.
+
+## Reading a returns table before you trust it
+
+- **What is averaged?** A simple average of monthly returns, an annualised compound return, or a money-weighted return answer three different questions.
+- **How many observations?** An average over twelve months is a small sample; its precision improves with the square root of the count, not in proportion to it.
+- **How far apart are the mean and the median?** A large gap flags skew or an outlier that is driving the headline.
+- **What is the best and worst period?** These two numbers, not the average, usually decide how the asset is experienced.
+- **Is the average net or gross?** Fees and taxes change the series being averaged and are frequently left out of it.
+- **Was the window chosen after the fact?** A start and end date that flatter the average is the commonest form of selection in retail performance reporting.
+
+## What this does not tell you
+
+None of these measures forecasts anything. They describe the sample, and the sample is not the process that generated it. The mean is sensitive to extremes; the median is robust but blind to their size; the trimmed mean requires an arbitrary choice. All three are silent about the shape of the tails beyond the observations seen, about the probability of a future loss, and about whether the past distribution will persist. A series with a perfectly respectable average and median can still be one observation away from a very different picture the following year. The honest use of these statistics is descriptive: they tell you what happened, imprecisely, and they warn you when a single number is hiding a lopsided reality.
+
+## Open questions
+
+- Which summary most honestly communicates a fund experience to an ordinary investor when the distribution is lopsided — the median, a trimmed mean, or a spread of percentiles?
+- For Indian equity and hybrid funds, how much of the observed mean-median gap reflects genuine skewness rather than a handful of clustered crisis months?
+- How should an average return be quoted when the sample is short enough that its own estimation error exceeds the difference a manager is claiming?
+
+A returns table is a compression, and compression always loses information. The mean, the median and the trimmed mean are three different compressions of the same numbers, and the practice that matters is to look at more than one of them before drawing a conclusion.

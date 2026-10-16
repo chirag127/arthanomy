@@ -1,0 +1,168 @@
+---
+title: 'Reading a Shareholding Pattern'
+description: 'How to read the quarterly shareholding disclosure: promoter holding and pledges, institutional flows, public float and the questions each number answers and does not answer.'
+shortTitle: 'Reading a Shareholding Pattern'
+category: equity
+series: equity-mastery
+seriesOrder: 4
+topics: ['shareholding pattern', 'promoter holding', 'pledged shares', 'institutional flows']
+tags: ['equity', 'disclosure', 'governance', 'foundations']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 12
+keyTakeaways:
+  - 'The quarterly shareholding pattern is a registrar-and-exchange disclosure, so it is more reliable evidence of who owns a company than any statement the company makes about itself.'
+  - 'Promoter holding answers a question about control and alignment; it does not answer whether the promoters are competent or honest.'
+  - 'Pledged promoter shares are an encumbrance, so they are relevant as a measure of financing dependence rather than as a directional signal on their own.'
+  - 'Institutional movement is most informative as a change in composition — foreign against domestic, active against passive — rather than as a headline increase or decrease.'
+  - 'A minimum public shareholding floor keeps a proportion of the equity outside promoter hands, and the gap to that floor constrains what a promoter can do next.'
+faqs:
+  - question: 'Where does the shareholding pattern come from?'
+    answer: 'It is filed by the listed company with the exchanges through the depository and registrar system each quarter, and it is published by the exchanges. Because it derives from the register rather than from a press statement, it is the version of ownership that can be relied on.'
+  - question: 'Does falling promoter holding mean the promoters are losing confidence?'
+    answer: 'Not necessarily. Promoter holding can fall through a sale, through a stake dilution in a fundraise, through a merger, through an inheritance or through a pledge invocation, and the pattern alone does not distinguish among them. The correct response is to find the event that explains the change.'
+  - question: 'Is a higher institutional holding always better?'
+    answer: 'No. Institutional presence can indicate that professional investors have done work, and it can equally indicate crowding or a position that is being unwound slowly. What the disclosure gives you is who holds the shares, not a verdict on the price.'
+  - question: 'How is pledged promoter holding different from a promoter sale?'
+    answer: 'A pledge is an encumbrance: the promoter retains the shares and the voting rights but has used them as security, so the economic exposure has been borrowed against. A sale transfers ownership. Both reduce the promoter''s unencumbered stake, but for different reasons.'
+relatedCalculators:
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: rolling-returns
+    label: 'Rolling Return Comparator'
+  - id: opportunity-cost
+    label: 'Opportunity Cost Calculator'
+relatedArticles:
+  - how-a-share-reaches-your-demat-account
+  - order-types-and-execution-on-indian-exchanges
+  - t-plus-one-settlement-and-what-changed
+  - promoter-pledge-as-a-risk-signal
+  - primary-market-ipo-process-and-asba
+  - offer-for-sale-mechanics
+glossaryTerms: [promoter-holding, free-float, market-capitalisation, eps, pe-ratio]
+sources:
+  - id: bse-india
+    supports: 'Published shareholding patterns, listed-company announcements and the corporate-action disclosures that explain quarter-on-quarter changes in ownership'
+  - id: nse-india
+    supports: 'Exchange-published shareholding disclosures, index-constituent composition and the trading data against which a change in ownership can be checked'
+  - id: sebi-home
+    supports: 'The listing obligations and disclosure requirements that mandate the quarterly shareholding pattern, and the minimum public shareholding framework that constrains promoter holding'
+  - id: mca-home
+    supports: 'Statutory company filings, charge registrations and director details used to corroborate what an ownership disclosure implies about control and encumbrance'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'The minimum public shareholding percentage, the quarterly filing deadline and the threshold above which individual public holders are named are not carried by the source packet for this article and are flagged as requiring verification against the listing regulations.'
+  - 'All figures appear only inside calculations explicitly labelled illustrative. No company, holding or flow is described.'
+  - 'Reading an ownership disclosure is not a valuation method, and nothing here is a recommendation about any security.'
+applicablePeriods: ['2026']
+openQuestions:
+  - 'How much of quarter-on-quarter institutional movement is genuine change of view rather than index rebalancing and passive flows that rebalance mechanically?'
+  - 'Is rising pledge disclosure a leading indicator of promoter stress, or does it mostly reflect the financing market available to promoters at that time?'
+  - 'Does the disclosure format capture the real concentration of control, given that control can sit in agreements and board structures that the ownership table does not show?'
+---
+
+Every quarter a listed company tells the market who owns it. The disclosure is filed with the exchanges and is built from the register of shares rather than from a press statement, which is what makes it worth reading: it is one of the few documents about a company that the company does not get to characterise. It will not tell you whether the business is good or the price is right, and it answers a narrower question than most readers expect. But for tracking control, encumbrance and the movement of large holders, it is the primary source.
+
+This is the fourth article in the Equity Mastery series, following the articles on dematerialisation and the settlement cycle. Ownership is the natural next layer: settlement puts shares in a demat account, and the shareholding pattern is the aggregate picture of where those accounts sit. The point of this article is to teach the reading, including what each number cannot tell you, because an ownership table rewards precision and punishes inference.
+
+## What the quarterly disclosure actually contains
+
+The pattern is a table of proportions of total equity, broken into categories, with the figures for the current quarter and the previous one stated side by side so that movement is visible. The broad structure is consistent.
+
+- **Promoter and promoter group.** The holding attributed to the promoters, split between individuals and entities, with sub-lines for the shares that are encumbered and for any shares under lock-in.
+- **Public shareholders, split into institutions and others.** Institutions include foreign portfolio investors and domestic institutions such as mutual funds, insurers, banks and other regulated investors. Non-institutional public holders include resident individuals, bodies corporate, trusts and non-resident individuals.
+- **Named larger holders.** Public shareholders above a prescribed threshold are identified individually, which is what allows a reader to see whether a reduction is broad or concentrated in one holder.
+- **Technical lines.** Encumbered or pledged shares, partly paid shares, depository receipts, employee benefit trust holdings and similar items that affect the interpretation of the totals.
+
+Because the disclosure is expressed against total equity, the first thing a reader should establish is whether the share count changed during the quarter. A fundraise, a bonus issue, a split or an employee share issue changes the denominator, and a percentage can fall while the absolute number of shares held is unchanged. Comparing percentages without checking the share count is the most common error made with this document.
+
+## Promoter holding: what the number answers
+
+Promoter holding is the proportion of the company's shares held by the promoter group. It is a measure of control and of alignment, and both readings are legitimate.
+
+A high promoter holding concentrates control. It can mean the promoter's wealth is committed alongside other shareholders, and it can equally mean that minority holders cannot meaningfully influence decisions, that related-party dealings will be hard to resist and that a takeover is impossible without the promoter's consent. Neither reading is implied by the number alone; the number tells you the concentration and invites you to ask the governance questions that follow from it.
+
+A low promoter holding raises a different set of questions. It can indicate that the founders have monetised, that control is diffuse, or that a floor is about to be breached. Where the holding is low, the next consideration is the minimum public shareholding floor: company law and listing rules prescribe a minimum proportion of shares that promoters must leave outside their own holding, and the distance between the actual holding and that floor constrains what the promoter can do without further dilution. The exact percentage depends on the framework applicable to the company and should be verified rather than assumed.
+
+What promoter holding cannot tell you is whether the promoters are competent, honest or solvent. It is a structural fact about ownership, not an assessment of the people. Two companies can show identical promoter holdings and be entirely different propositions, because the number says nothing about capital allocation or treatment of minorities.
+
+## The pledge line: encumbrance, not confidence
+
+Pledged shares are promoter shares that have been given as security for a borrowing. The promoter retains ownership and voting rights but has encumbered the shares, which means the economic exposure has been borrowed against.
+
+Three points make this line more informative than it first appears.
+
+First, it measures financing dependence. A promoter group with a large encumbered proportion has, in effect, monetised part of its stake without selling it, and the maintenance of the arrangement depends on the value of the pledged security. If the price falls far enough, the lender can invoke the pledge, and the shares can be transferred to the lender.
+
+Second, the disclosure distinguishes encumbrance from sale, and the distinction matters because the two produce different consequences. A sale reduces ownership and ends the promoter's exposure to those shares. A pledge preserves the exposure while introducing a mechanism through which ownership can change without the promoter deciding to sell.
+
+Third, the disclosure is a point-in-time figure. A pledge can be created, released or invoked between filings, and the pattern captures only the position on the reporting date. Where the company has separately announced a creation or release of encumbrance, that announcement is the more current evidence, and the security has an article of its own in this series for that reason.
+
+What the pledge line cannot tell you is the purpose of the borrowing or the lender's terms. A pledge for a promoter's own liquidity needs and a pledge supporting an acquisition or a group company are different situations that can produce the same number.
+
+## Institutional holdings: reading composition, not direction
+
+The institutional lines record foreign portfolio investors and domestic institutions, and the disclosure is published with the previous quarter alongside, which makes change the interesting quantity.
+
+A rise or fall in the institutional total is the least informative way to read the section, because the total is a net of movements that mean different things. Four distinctions make the change readable.
+
+- **Foreign against domestic.** A reduction by foreign investors accompanied by an increase from domestic institutions is a change of composition, and the two groups respond to different constraints, including country-level allocation decisions and currency considerations.
+- **Active against passive.** Index funds and exchange-traded funds buy and sell because constituents change or because money enters and leaves the fund. A change that coincides with an index rebalancing is mechanical rather than a view, and the index methodology is published by the index provider.
+- **Concentrated against broad.** Because larger public holders are named individually above a threshold, a fall can often be attributed to one holder rather than to a group, and that attribution changes the interpretation entirely.
+- **One quarter against a trend.** A single quarter's movement is noise more often than it is signal. A direction sustained over several filings is a statement; one quarter is a data point.
+
+What institutional holding cannot tell you is whether the investors are right. Professional investors hold positions that are being built, trimmed, hedged or mandated, and their presence is evidence that someone with research capacity has looked, not evidence about value. It is also worth remembering that the disclosure does not show derivative or short positions, so institutional holdings visible in the table are only part of the exposure those investors may hold.
+
+## Public float and the minimum shareholding floor
+
+The public portion of the table is what the index provider calls free float when weighting a security in an index: the shares available for trading, excluding promoter holdings and other strategic stakes. Free float is a measure of investable supply rather than of company size, and it explains why two companies with similar market capitalisation can behave very differently in the market. A low free float means a small traded supply relative to the company's size, so ordinary flows move the price more sharply, and a large buyer or seller cannot transact without disturbing it.
+
+The minimum public shareholding floor is the regulatory counterpart of free float. It requires a minimum proportion of equity to sit outside promoter hands, and the requirement is designed to keep a tradable supply in the market. Two practical consequences follow. A promoter whose holding is close to the ceiling that the floor implies is close to a limit: further acquisitions of shares or buybacks that reduce the public holding may require action to restore compliance. And a company that is materially above the required public float has room to move in the other direction, which is relevant when reading offers for sale, buybacks and delisting proposals.
+
+What the free-float and floor framework cannot tell you is what will happen next. Free float changes because holdings change, and holdings change for reasons that the table records only as an arithmetic difference.
+
+## Explain simply
+
+Four times a year, a listed company publishes a table showing who owns it, taken from the register rather than written by its marketing department. The table shows how much the promoters hold, how much of that is pledged as security for borrowing, how much is held by foreign and domestic institutions, and how much sits with the public. Reading it well means looking at changes rather than levels: a promoter holding that fell because the company issued new shares is a different fact from one that fell because the promoter sold, and a fall in foreign holding offset by a rise in domestic holding is a change of ownership mix rather than an exit. The table tells you where the shares sit and how that changed. It does not tell you whether the business is good, and it is not a buy or sell signal.
+
+## Reading the change, not the level
+
+A practical sequence for each filing, in order.
+
+1. **Check the share count.** Establish whether the denominator changed, and if it did, restate the comparison on a consistent basis.
+2. **Establish what explains the promoter movement.** Look for an issue, an offer for sale, an inheritance, a pledge invocation or a release of encumbrance in the company's announcements for the quarter.
+3. **Look at the pledge line separately from ownership.** A stable holding with a rising encumbrance is a different situation from a falling holding with no encumbrance.
+4. **Decompose the institutional change.** Identify whether the movement is foreign or domestic, concentrated in one named holder or broad, and whether it coincides with an index event.
+5. **Check the distance to the public float floor.** This constrains the company's next capital action, and it is visible from the same table.
+6. **Compare with the trading record.** The exchange publishes trade data and price history, so an ownership shift can be checked against what the market actually did over the quarter.
+7. **Write down the interpretation before the next filing.** The value of a quarterly series is realised only by comparing an expectation with the outcome, and the habit is what makes the disclosure useful over years rather than one quarter.
+
+## Worked example
+
+Illustrative arithmetic only, using invented figures. No company is described.
+
+Suppose a company has 1,00,00,000 shares in issue and the promoter group holds 62% of them, or 62,00,000 shares. The public holding is therefore 38%, or 38,00,000 shares, before allowing for any strategic non-promoter stake.
+
+Now suppose the pledge line shows that 18% of the promoter group's holding is encumbered. As a proportion of total equity, that is 0.18 multiplied by 62%, which is 11.16%. In share terms it is 11,16,000 shares, and the promoter's unencumbered holding is 62% less 11.16%, or 50.84% of the company.
+
+Two readings follow from the same table. First, the free float available for trading excludes the promoter holding, so it is at most 38% of the equity, subject to any illiquid non-promoter blocks. Second, if the share price were to halve, the value of the pledged security would halve with it, which is why the lender's margin terms matter and why a rising pledge line is tracked rather than a level. The percentages here are invented to make the arithmetic visible; the method of combining them is the part to keep.
+
+A second illustration on composition. If foreign portfolio investors reduce from 12% to 10% and domestic institutions increase from 9% to 11%, the institutional total is unchanged, and the table would show no movement in the combined line at all. The composition changed by two percentage points on each side, and only a decomposed reading of the table reveals it.
+
+## What this does not tell you
+
+This article teaches how to read the ownership disclosure and does not assess any company. It does not cover the pledge mechanics in depth, which are treated in the dedicated article on promoter pledge as a risk signal, and it does not cover the primary-market mechanics through which shareholding changes when new shares are issued.
+
+Three gaps deserve emphasis. First, the disclosure is a snapshot on a reporting date and cannot capture positions taken and closed within the quarter, so the visible series understates activity. Second, the table records ownership and not control: agreements, board composition, veto rights and group structures can confer control that the percentage lines do not show, and the statutory filings with the corporate-affairs registry are where those arrangements appear. Third, ownership is an input to an investment case rather than the case itself, and the same holding structure is consistent with a good business and a poor one. The table should inform the questions asked of the accounts, not replace them.
+
+## Open questions
+
+- How much quarterly institutional movement reflects a genuine change of view, as against index rebalancing and mechanical fund flows?
+- Is a rising pledge disclosure a leading indicator of promoter stress, or mainly a reflection of the financing available to promoters at the time?
+- Does the disclosure format capture the real concentration of control, when control can sit in agreements and board structures that the ownership table does not show?

@@ -11,6 +11,7 @@ difficulty: foundational
 status: published
 kind: explainer
 publishedAt: 2026-10-16
+updatedAt: 2026-10-16
 researchDate: 2026-10-16
 reviewedAt: 2026-10-16
 readingMinutes: 11
@@ -40,13 +41,21 @@ relatedArticles:
 glossaryTerms: [nbfc-p2p, escrow-account, probability-of-default, loss-given-default, exposure-at-default, accrued-interest-p2p]
 sources:
   - { id: rbi-p2p-md, supports: 'The master direction defining NBFC-P2P licensing, escrow mechanics, exposure caps and the prohibition on guarantees' }
+  - { id: rbi-home, supports: 'The RBI as the publication point for the register of registered NBFC-P2P entities and the framework in which the master direction sits' }
   - { id: rbi-financial-stability, supports: 'Regulator''s financial-stability assessments, relevant to how household credit risk is monitored' }
+  - { id: bcbs-credit-risk, supports: 'Formal definitions of probability of default, loss given default and exposure at default used in the expected-loss expression' }
   - { id: dicgc, supports: 'Contrast: deposit insurance covers bank deposits — P2P loans are not deposits and are not covered' }
 dataConfidence: high
 hasPlainEnglish: true
 warnings:
   - 'This article describes the regulatory framework, not any specific platform. Licensing status and product terms change; verify both against the RBI''s published registers and the current master direction before acting.'
   - 'P2P lending carries credit risk with no statutory compensation scheme. Nothing here is advice to lend.'
+applicablePeriods:
+  - 'RBI NBFC-P2P Master Direction as in force on 16 October 2026'
+openQuestions:
+  - 'How much of the difference in realised loss rates between platforms reflects underwriting skill, and how much reflects differences in borrower-segment mix?'
+  - 'Should cohort-level realised loss rates be a standardised mandatory disclosure, and in what form?'
+  - 'For a lender comparing a P2P loan with a corporate bond of similar credit quality, which costs — collection, tax and idle cash — are most often left out?'
 ---
 
 Peer-to-peer lending has an unusual position in Indian retail finance: it is one of the few border areas where ordinary investors are formally invited into a credit activity that was historically a bank and NBFC preserve, with a regulator that has built a specific fence around it. The fence is the most informative document in the field. Learn what the RBI framework requires and prohibits, and most platform marketing becomes easy to audit.
@@ -61,6 +70,14 @@ In a bank relationship there are two parties: you lend to the bank, and the bank
 
 The platform is a marketplace operator, not a principal. Your loan contract is with the named borrower. This is not a technicality: when a borrower defaults, your claim — legally and practically — runs against that borrower under the loan documents, not against the platform's balance sheet. The framework's structure flows from there.
 
+## The licensing route: what registration requires
+
+Peer-to-peer lending in India is not an activity a company may simply adopt. A platform must be a company registered with the RBI as an NBFC-P2P — a distinct category of non-banking financial company created for this activity and governed by the master direction. Registration is not a formality: the framework prescribes a minimum net-owned-funds requirement, fit-and-proper criteria for promoters and management, systems and technology standards, reporting and audit obligations, and fair-practice requirements.
+
+The operative capital figure, like the exposure limits discussed below, is stated in the direction and has been revised over time. It is not restated here, deliberately: a stale number in an article is worse than a pointer to the source, because a reader cannot tell how old it is. Where a figure matters to a decision, read it from the current direction.
+
+Two consequences follow from the licensing structure. First, the business may lawfully be carried on only by a registered entity, and the RBI publishes the register — so "are you registered?" has a verifiable answer that does not depend on the platform's own marketing. Second, the licence belongs to the operator, not to the product: its existence tells you about the company running the marketplace, and nothing at all about the loans on it.
+
 ## What the licence actually means — and doesn't
 
 Registration as an NBFC-P2P means the platform has met the RBI's conditions for operating the marketplace: legal form, capital and governance requirements, technology and risk standards, reporting and audit obligations. All of that is real and valuable — you are dealing with an entity the regulator supervises, and it must operate within stated rules.
@@ -74,27 +91,84 @@ The most practically useful part of the RBI framework for a lender is what it fo
 - **No guarantee of returns.** Assured or fixed returns are not a permissible P2P product feature for a platform to offer.
 - **No credit enhancement or risk-sharing** of the kind that would effectively turn the platform into an insurer of loans; preserving the marketplace-not-principal structure is deliberate.
 - **No deposit-taking.** P2P platforms are not banks and cannot accept deposits; there is no deposit-insurance protection anywhere in the chain (insurance covers bank deposits, a different product category entirely).
-- **No cross-skinning or balance-sheet lending** of their own capital is the design intent; the platform intermediates, it does not fund.
+- **No balance-sheet lending.** The design intent is that the platform intermediates rather than funds: it does not put its own capital at risk as the lender to the borrower, which is what keeps its role that of a marketplace.
 
 Escrow arrangements complete the architecture: funds move through designated escrow accounts rather than the platform's own bank accounts, so the platform cannot use lender money for its own purposes while loans are being disbursed or repaid. The mechanical details are set out in the master direction and are worth understanding before funding an account: how disbursements flow, how repayments are routed, and what happens to money in transit.
 
 Taken together, the prohibitions say plainly what the product is: an unsecured or lightly secured loan to a borrower you will usually never meet, with a regulated marketplace in the middle and no one holding a promise for the borrower's behaviour.
 
+## Where the credit risk sits: the arithmetic of the gap
+
+Licensing settles who may run a marketplace. It says nothing about whether the loans repay, and the formal way to see that gap is expected loss — the product of three quantities:
+
+$$ \text{Expected loss} = PD \times LGD \times EAD $$
+
+probability of default (PD), loss given default (LGD) and exposure at default (EAD). The definitions are the same ones banks use for retail credit; the difference is who carries the result.
+
+The borrower's interest rate is a contractual number *for the borrower* — it is what the loan document requires them to pay. It is not a contractual number for you, because your receipt is contingent on repayment, collection and recovery time. Your expected return is therefore model-estimated, and your realised return is whatever the dated cash flows actually produce. That is the whole reason a platform's advertised gross yield and a lender's realised return diverge:
+
+- A loan that stops paying does not stop having been *quoted* at a rate.
+- Accrued but unpaid interest is still reported as interest until it is written off.
+- Money waiting to be matched, or sitting between a repayment and its reinvestment, earns nothing but still occupies the denominator of the yield you were shown.
+
+This is the lane separation the Science of Returns series sets up: contractual for the borrower, model-estimated for the lender, and realised only in the cash-flow record.
+
+## Worked example: from headline rate to money kept
+
+The following is illustrative arithmetic — not a forecast, and not any platform's track record. A lender commits ₹5,00,000 across 100 loans of ₹5,000 each, at a 14% borrower rate.
+
+- Gross interest for the year: ₹70,000 (14% of ₹5,00,000).
+- Suppose 4% of principal by value defaults: ₹20,000. Recoveries return an assumed 25% of that, ₹5,000, so the net credit loss is ₹15,000.
+- Platform fees at an illustrative 1%: ₹5,000.
+- Net before tax: ₹70,000 − ₹15,000 − ₹5,000 = ₹50,000, or 10.0% on ₹5,00,000.
+- With inflation at 5%, the real return on that pre-tax 10% is $(1.10/1.05) - 1 \approx 4.8\%$.
+
+Interest is taxable in the lender's hands at the lender's own marginal rate — the subject of the tax articles rather than this one — so the figure actually kept is lower than 10%, often materially so.
+
+Every step is a place where the headline and the outcome separate, and there are two further effects the yearly arithmetic hides. First, a recovery that takes eighteen months to arrive reduces the money-weighted return below the simple yearly figure, because the recovered rupee has been idle for a year and a half. Second, if the ₹20,000 of defaulted principal is never recovered at all, the interest that accrued before the default may still have created a tax liability even though the cash never arrived. None of this is a licence defect; it is the ordinary mechanics of lending, and the framework's design is to make the mechanics visible rather than to insure the result.
+
 ## Exposure caps: the framework forces diversification
 
-The RBI's directions impose limits on both sides of the marketplace — what a borrower may raise in aggregate across platforms of this type, and what a lender may have outstanding in aggregate. The purpose of the lender-side cap is unambiguous: to force exactly the behaviour that credit analysis demands — thousands of small exposures rather than a few large ones, so that the law of large numbers can do its work.
+The RBI's directions impose limits on both sides of the marketplace — what a borrower may raise in aggregate across platforms of this type, and what a lender may have outstanding in aggregate. The purpose of the lender-side cap is unambiguous: to force exactly the behaviour that credit analysis demands — many small exposures rather than a few large ones, so that the law of large numbers can do its work.
 
-This is also why P2P marketing that presents concentrated, high-yield "portfolios" brushes against the framework's spirit: the structure is designed for diffuse exposure, and deliberately caps how concentrated anyone can be. The specific current limits live in the direction — verify them there, because they have changed over time (the articles later in this series deal with the numbers, portfolio mechanics and the arithmetic of net returns after defaults and fees).
+This is also why P2P marketing that presents concentrated, high-yield "portfolios" brushes against the framework's spirit: the structure is designed for diffuse exposure, and deliberately caps how concentrated anyone can be. The specific current limits live in the direction — verify them there, because they have changed over time. The articles later in this series deal with the numbers, portfolio mechanics and the arithmetic of net returns after defaults and fees.
+
+## Deposits, deposit insurance and the honest contrast
+
+The sharpest way to see what a licence does not buy is to set it beside a bank deposit.
+
+| Question | Bank fixed deposit | P2P loan through an NBFC-P2P |
+| --- | --- | --- |
+| Who owes you the money | The bank | The individual borrower |
+| What regulation covers | The bank's conduct, capital and solvency | The platform's conduct and marketplace |
+| Who bears credit risk | The bank | You |
+| Deposit insurance | Statutory cover up to the limit set for banks | None — a P2P loan is not a deposit |
+| If the counterparty fails | Covered to the insurance limit; above it, an unsecured creditor | You recover through the loan contract and collections |
+| Recourse | The bank's balance sheet | The borrower, under the loan documents |
+
+The deposit-insurance line is the one that surprises lenders most. Deposit insurance is a statutory scheme for bank deposits; it has never covered a peer-to-peer loan, because a P2P loan is not a deposit and the platform is not a bank. The platform's registration does not extend, even partially, to the credit quality of the loans on it. A lender who reads "regulated" as "protected" has read the licence as a guarantee — which is precisely the inference the framework's no-guarantee rule forbids the platform itself from encouraging.
 
 ## What a prudent lender verifies before funding
 
 The framework hands you a due-diligence checklist:
 
-1. **Registration.** Check the platform against the RBI's published register, not its own marketing. The source link below takes you to the official material.
+1. **Registration.** Check the platform against the RBI's published register, not its own marketing.
 2. **Who the borrower is, and what the loan document says.** The framework erects transparency obligations because the loan is a legal instrument; read the instrument.
 3. **Historical cohort performance, honestly framed.** Ask what happened to loans issued two or three years ago — completed cohorts, not recent ones — and ask how recoveries of defaulted loans progressed in practice.
-4. **Escrow mechanics.** Where does your money sit between disbursement and loan, and between repayment and you?
+4. **Escrow mechanics.** Where does your money sit between disbursement and loan, and between repayment and you? Which bank holds the escrow, and what happens if settlement is delayed?
 5. **The platform's own economics.** A platform whose fee model depends only on origination volume has incentives worth understanding; so does one that also services recoveries.
+6. **Whether risk grades map to realised losses.** A grade is the platform's opinion, not a regulated rating; the test is the loss rate actually experienced by grade, measured by vintage.
+
+## What licensing does not tell you
+
+The register answers one question and leaves several open. It is worth being explicit about which:
+
+- **Underwriting quality.** Two registered platforms can run very different credit books. Registration measures conduct, not judgement.
+- **Cohort age.** A young book looks clean because its loans have not aged; defaults and recoveries emerge over time, so a recent performance figure on a young book is not evidence of a durable loss rate.
+- **Recovery infrastructure.** Registration does not describe the collections arrangements, the legal panel, or how long a recovery takes.
+- **Escrow resilience.** The direction requires an escrow structure; it does not tell you how robust the settlement design is in practice.
+- **Platform viability.** The conduct licence is not a promise of continuity. What happens to servicing if the platform stops operating is a real question.
+- **Grade integrity.** Whether the advertised expectation for each risk grade matches realised losses is a question only the cohort data can answer.
 
 ## The honest summary
 
@@ -105,3 +179,9 @@ P2P's appeal is that it prices credit legally and transparently — the rate the
 - It is **lending**, and every feature of lending — default, delay, recovery, collection cost, tax at slab rates on interest — applies to the rupee you lend.
 
 What remains is the same question every credit investor answers: is the interest on offer, measured over cohorts of real borrowers and net of everything, adequate compensation for the losses, the delays, the tax and the effort? The rest of this series builds the arithmetic to answer it — starting with the mechanics that turn quoted borrower rates into a lender's actual cash flow.
+
+## Open questions
+
+- How much of the difference in realised loss rates between platforms reflects underwriting skill, and how much reflects the borrower-segment mix each platform has chosen?
+- Should cohort-level realised loss rates be a standardised, mandatory disclosure, and if so in what form?
+- When a lender compares a P2P loan with a corporate bond of similar credit quality, which costs — collection, tax and idle cash — are most often left out of the comparison?

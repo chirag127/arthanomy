@@ -1,0 +1,171 @@
+---
+title: 'XIRR for Real-World Multi-Date Cash Flows'
+description: 'XIRR generalises the internal rate of return to cash flows that arrive on arbitrary dates. This article derives the equation, explains why it has no closed form, works through an irregular ledger, and catalogues the mistakes that quietly corrupt the answer.'
+shortTitle: 'XIRR for Multi-Date Cash Flows'
+category: financial-mathematics
+series: financial-mathematics
+seriesOrder: 7
+topics: ['XIRR', 'money-weighted return', 'cash flows', 'day count']
+tags: ['financial-mathematics', 'arithmetic', 'returns', 'spreadsheets']
+difficulty: intermediate
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 12
+keyTakeaways:
+  - 'XIRR is the internal rate of return with each cash flow discounted by its own elapsed time, measured in days and expressed in years under a stated day-count convention.'
+  - 'The equation has no closed-form solution, so the rate is found numerically, and the starting guess and stopping rule decide what the software returns.'
+  - 'Every cash flow needs a sign and a date; a missing final value, a reversed sign or a text-formatted date is enough to change or destroy the answer.'
+  - 'Multiple sign changes can produce multiple roots, and an annualised XIRR over a period shorter than a year magnifies noise into an implausible figure.'
+  - 'XIRR is a money-weighted measure: it describes what the investor actually earned, given when the money arrived, and says nothing about the portfolio or about risk.'
+  - 'It is nominal and gross unless stated otherwise; costs, tax and inflation must be layered on afterwards, and the four lanes kept apart.'
+faqs:
+  - question: 'Why does my spreadsheet show a different XIRR from my fund platform?'
+    answer: 'Usually a difference of inputs rather than of arithmetic. A missing final value, a reversed sign, a date stored as text, a day-count of 365 against 365.25, or in-kind transfers left out will each change the answer. The solver also stops at a different point.'
+  - question: 'Does XIRR assume I reinvest my returns at the XIRR rate?'
+    answer: 'Not in its definition. XIRR is simply the rate that makes the dated cash flows discount to zero. The reinvestment story belongs to the interpretation of a rate as a return, and it becomes relevant only when comparing two streams.'
+  - question: 'Why is my XIRR so high after only a few months?'
+    answer: 'Because a small gain over a short period annualises into a large rate. If the money grew 4% in two months, the arithmetic reports roughly 26% for the year, which describes the calendar rather than the investment.'
+  - question: 'What if my cash flows change sign several times?'
+    answer: 'Then the equation may have more than one root, and the reported rate depends on where the solver started. Net present value, expressed in rupees, does not have this problem and is the safer comparison in that situation.'
+relatedCalculators:
+  - id: xirr
+    label: 'XIRR Calculator'
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: sip
+    label: 'SIP Calculator'
+  - id: emi
+    label: 'EMI Calculator'
+relatedArticles:
+  - npv-and-internal-rate-of-return
+  - cagr-versus-xirr
+  - present-and-future-value-of-annuities
+  - compounding-discrete-and-continuous
+  - real-versus-nominal-returns
+glossaryTerms: [irr, net-present-value, discount-factor, compounding]
+sources:
+  - id: markowitz-1952
+    supports: 'The framing of a money-weighted return as an input to a portfolio decision, which is why the cash-flow history behind the figure has to be complete and dated'
+  - id: merton-1973
+    supports: 'Continuous-time discounting, the limiting case of the dated discount factors that XIRR sums over discrete dates'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Every date, amount and rate in the examples is an illustrative construction designed to show the arithmetic; none is observed performance of any fund, scheme or portfolio.'
+openQuestions:
+  - 'What day-count convention should be treated as the standard for Indian retail XIRR, given that 365 and 365.25 both appear in tools?'
+  - 'How should in-kind transfers and reinvested distributions be recorded so that XIRR double-counts nothing?'
+  - 'What is the least misleading way to present a money-weighted return observed over a window shorter than a year?'
+---
+
+A statement does not arrive as a neat series of equal annual payments. Money goes in when it is available, comes out when it is needed, and the balance moves in between. The internal rate of return was designed for evenly spaced periods; the moment the dates become irregular it needs a generalisation. That generalisation is XIRR — the extended internal rate of return — and it answers a narrow, useful question: what single annual rate, applied continuously across the actual calendar, reconciles this set of dated cash flows?
+
+## Explain simply
+
+Suppose you put money in on several different dates and took money out on others, and today the account is worth something. XIRR is the one annual rate that would have produced exactly that outcome, given when each rupee went in and came out. It discounts every payment by the time between its date and the first date, then finds the rate that makes all of them cancel. Because money that was invested for longer counts for more, XIRR is a money-weighted measure — it describes your experience, not the market's. It is a good description of what happened and it contains no information about risk.
+
+## From IRR to XIRR
+
+The internal rate of return discounts cash flows at whole periods: the first flow by one period, the second by two, and so on. Its exponent is the count of periods. XIRR keeps the definition and changes one thing: the exponent becomes the elapsed time between each flow and the first flow, measured in days and converted to years. Let $C_i$ be the amount of flow $i$, $d_i$ its date, and $d_0$ the date of the first flow. The rate $r$ that solves
+
+$$ \sum_{i} \frac{C_i}{\left( 1 + r \right)^{\frac{d_i - d_0}{365}} } = 0 $$
+
+is the XIRR. Outflows — contributions — are negative, and inflows — withdrawals, plus the closing value — are positive. The equation has a meaningful root only when the flows change sign at least once, because a sum of same-signed discounted amounts can never be zero.
+
+The structure is worth pausing on. Each flow is multiplied by a discount factor that depends only on the rate and on the time to that flow. Discounting is not a separate topic bolted onto XIRR; it is the entirety of XIRR. In the limit where the dates become continuous rather than discrete, the same relationship is written with an exponential, and the discrete sum is the sampled version of that continuous expression.
+
+Two properties follow immediately. First, with exactly one contribution and one closing value, XIRR collapses to the compound annual growth rate implied by those two points; XIRR is what CAGR becomes once the flows are allowed to be uneven and dated. Second, XIRR is a *rupee-weighted* statement: a portfolio can show a high XIRR simply because most of the money arrived shortly before a rise, and a low one because most of it arrived shortly before a fall. That is honest about the investor's outcome and says nothing about the quality of the investment.
+
+## Why there is no closed form
+
+The XIRR equation is a sum of terms with fractional and uneven exponents. It cannot be rearranged into an expression for $r$; the rate has to be found numerically. Typical tools use an iterative search: guess a rate, compute the sum, examine how the sum changes as the guess moves — the derivative of the expression — and step toward zero. The process repeats until the sum is small enough, or until a fixed iteration ceiling is reached.
+
+Three consequences follow from the numerical nature of the answer.
+
+- **The starting guess matters when the function is not well behaved.** A conventional ledger with one sign change has one root and almost any sensible guess finds it. A ledger with several sign changes may have several roots, and the solver returns the one nearest its starting point.
+- **Different software can disagree.** Spreadsheet functions, portfolio platforms and calculator apps may use different starting points, tolerances, iteration limits and day-count conventions. A difference of a few basis points between two XIRRs is usually a difference of rules, not a mistake by either.
+- **A near-zero result is not evidence of convergence to the right root.** When the expression has more than one root, a very small residual only confirms that the solver found *a* root.
+
+## The day-count convention
+
+The exponent divides elapsed days by 365. That divisor is a convention, and it is not the only one. Some implementations use 365.25 to absorb leap years; the difference over a long period is small and over a very short one can be visible. What matters is less which convention is used than that it is stated, and that two figures being compared were produced under the same one. Comparing a 365-day XIRR with a 365.25-day XIRR and calling the gap a difference in performance is a units error.
+
+A related trap is the treatment of the closing value. The final positive flow must be dated on the date the value was struck. If a closing value is dated a month late, the extra month is discounted away, and the reported rate changes even though nothing about the investment did.
+
+## Sign convention and the ledger
+
+XIRR is only as good as the ledger beneath it. The conventions that generate a defensible figure are simple and unforgiving.
+
+- Every flow has a date and an amount, and outflows are negative while inflows and the closing value are positive.
+- The ledger covers one continuous period, with the closing value dated last.
+- Distributions that were received and retained are inflows at their date; if they were reinvested and are also reflected in the closing value, they must not be counted twice.
+- In-kind transfers, switches with no cash movement, and mergers that changed the security without a cash flow must be represented in units consistently, or explicitly excluded with a note.
+- Fees and charges are outflows at the date they were charged if the objective is a net figure, and excluded if the objective is a gross figure — but the objective has to be chosen before the ledger is built.
+
+## Solving behaviour and multiple roots
+
+For a ledger whose flows change sign once — contributions first, closing value last — the XIRR equation has a single economically meaningful root, and the numerical search finds it reliably. For a ledger that changes sign repeatedly — contributions, a large withdrawal, more contributions, a closing value — the polynomial can have several real roots, and the reported figure becomes a function of the solver's starting point rather than of the investment.
+
+The frequency of this in retail portfolios is under-appreciated. A systematic investor who also withdraws, or who holds two products in one account and switches between them, can build a ledger with three or more sign changes without doing anything unusual. When that happens, the honest response is to report net present value at a stated discount rate instead of a rate, because the sum of discounted rupees is single-valued regardless of how many times the flows change sign. There is also a bound worth knowing: the number of positive roots cannot exceed the number of sign changes in the sequence, so a ledger with two sign changes can have at most two.
+
+## Worked example: an irregular ledger
+
+This is an illustrative construction, not observed performance. Dates are shown as elapsed days from the first flow for clarity. The first flow is a contribution, outflows are negative, and the closing value is the final inflow.
+
+| Day | Flow (₹) | Sign |
+| --- | --- | --- |
+| 0 | 1,00,000 | outflow |
+| 180 | 50,000 | outflow |
+| 365 | 30,000 | inflow |
+| 730 | 25,000 | outflow |
+| 1095 | 1,90,000 | closing value, inflow |
+
+The equation to solve is
+
+$$ -1,00,000 - \frac{50,000}{(1+r)^{180/365}} + \frac{30,000}{1+r} - \frac{25,000}{(1+r)^{2}} + \frac{1,90,000}{(1+r)^{3}} = 0 $$
+
+Testing rates directly: at 10% the left-hand side is positive by roughly ₹1,700, and at 11% it is negative by roughly ₹1,800. The root therefore lies just above 10%, and an iterative search settles at approximately 10.5%.
+
+The headline is worth computing as a sanity check. Total outflows are ₹1,75,000 and total inflows are ₹2,20,000, so the absolute gain is ₹45,000 on money that was, on average, invested for less than the full three years. The annualised money-weighted figure of about 10.5% is the reconciliation of that rupee gain with the timing of the flows. Note that a simple compound annual growth rate could not have produced it: there is no single start value and end value, because money entered and left at four different dates.
+
+## Common spreadsheet mistakes
+
+Most bad XIRRs are produced by the ledger, not the solver. These are the recurring errors.
+
+- **A wrong or missing sign.** If all flows share a sign, the equation cannot be zeroed, and the function returns an error or a meaningless number. If the closing value is entered as an outflow, the result is nonsense.
+- **The closing value omitted.** Without the final positive flow, the ledger describes a stream of pure outflows and has no root at all.
+- **Dates stored as text.** A date that the tool reads as a string is either rejected or silently coerced, either of which changes the answer. Dates must be genuine date values.
+- **A day-count mismatch.** Comparing a figure computed on a 365-day basis with one computed on 365.25 is a units error, not a performance gap.
+- **Double-counted distributions.** Recording a dividend as an inflow and also letting it lift the closing value counts the same rupee twice.
+- **In-kind events ignored.** Switches and bonus issues that change units without changing rupees will corrupt the closing value unless they are handled deliberately.
+- **Annualising a short period.** A ledger spanning a few weeks produces a rate that extrapolates noise. The absolute return and the dates are the honest output at that horizon.
+- **Comparing XIRR with a published fund return.** A fund's published figure is usually time-weighted, because the manager does not control investor flows. The investor's XIRR answers a different question, and the gap between them is information rather than inconsistency.
+
+## Where XIRR misleads or fails
+
+- **Multiple roots.** With more than one sign change, several rates can satisfy the equation, and the reported one depends on the solver. Net present value in rupees is single-valued and is the safer tool there.
+- **Short periods.** Annualising a return observed over weeks or months multiplies a small move into an implausible rate. A 4% gain in five weeks annualises to roughly 50%, which describes nothing except the arithmetic.
+- **Cash flows the investor controls.** Deliberately or accidentally adding money shortly before a rise lifts XIRR without any change in the portfolio. A high XIRR can be timing luck rather than skill.
+- **Missing or reconstructed dates.** The measure depends entirely on its dates. Unrecorded switches, estimated purchase dates and in-kind transfers silently corrupt the result.
+- **Nominal and gross.** XIRR as usually computed takes no account of costs, taxes or inflation. A real XIRR requires each flow to be deflated to a common price level first, and a post-tax XIRR requires the tax on each realised gain to be entered as its own dated outflow.
+- **No risk content.** XIRR is a single realised number on one path. It carries no information about the dispersion of outcomes and cannot be used to compare two investments of different risk.
+
+## The four lanes, restated
+
+XIRR is most easily abused by moving a figure between lanes without changing its arithmetic. A **historically realised** XIRR is computed from a complete, dated ledger of what actually occurred. A **contractual** XIRR is the rate implied by a schedule that a contract fixes in advance — a loan, a lease, an annuity that is genuinely certain. A **model-estimated** XIRR is the rate implied by a projected set of dates and amounts, and it is an assumption dressed as a measurement. A **speculative** XIRR is a hoped-for rate with no ledger behind it. The number looks identical in all four cases, which is precisely why the label has to be attached at the moment it is computed.
+
+## What this does not tell you
+
+A money-weighted rate describes one investor's experience through one sequence of dates, and it is backward-looking by construction. It says nothing about the portfolio's own performance, which is a time-weighted question, and nothing about risk, drawdown or the range of outcomes that might have occurred. It is also sensitive to exactly the things a statement records imperfectly: the dates of switches, the treatment of distributions, and the value struck at the end. And because it depends on when the investor's own money arrived, two people in the same fund over the same period can have honest XIRRs several percentage points apart, with neither figure wrong.
+
+## Open questions
+
+- What day-count convention should be treated as the standard for Indian retail XIRR, given that both 365 and 365.25 appear in commonly used tools?
+- How should in-kind transfers and reinvested distributions be recorded so that XIRR double-counts nothing and omits nothing?
+- What is the least misleading way to present a money-weighted return observed over a window shorter than a year?
+
+XIRR is one equation, solved numerically, over a ledger that the investor supplies. The equation is not the risk; the ledger is. Get the dates, the signs and the closing value exactly right, compute the rate, and then say plainly whether the figure is realised, contractual, estimated or speculative — because the arithmetic cannot tell you which.
