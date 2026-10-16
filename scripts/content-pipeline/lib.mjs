@@ -100,13 +100,21 @@ export function buildPacket(brief, ctx) {
     brief.category,
     ...(seriesMeta ? [seriesMeta.category] : []),
   ]);
+  const bibliographyIds = new Set(seriesMeta?.bibliography ?? []);
+  /* A writer may cite any source the article's own series treats as core
+     reading, plus sources whose declared topic covers this article's subject.
+     Bibliography sources come first because they are the series' chosen canon. */
   const optional = sources
+    .filter((s) => !requiredIds.has(s.id))
     .filter(
       (s) =>
-        !requiredIds.has(s.id) && (s.topic ?? []).some((t) => topicTags.has(t)),
+        bibliographyIds.has(s.id) ||
+        (s.topic ?? []).some((t) => topicTags.has(t)),
     )
-    .filter((s) => (seriesMeta ? seriesMeta.bibliography.includes(s.id) : true))
-    .slice(0, 12)
+    .sort(
+      (a, b) => Number(bibliographyIds.has(b.id)) - Number(bibliographyIds.has(a.id)),
+    )
+    .slice(0, 14)
     .map((s) => ({
       id: s.id,
       title: s.title,
@@ -132,18 +140,28 @@ export function buildPacket(brief, ctx) {
   });
 
   const rules =
-    brief.category === "taxation"
-      ? taxRules
-          .filter((r) => (r.assetClass ?? "").length > 0)
-          .slice(0, 40)
-          .map((r) => ({
-            id: r.id,
-            title: r.title,
-            provision: r.provision,
-            assessmentYear: r.assessmentYear,
-            taxRate: r.taxRate,
-            reviewStatus: r.reviewStatus,
-          }))
+    brief.category === "taxation" || brief.series === "taxation-of-investments"
+      ? taxRules.map((r) => ({
+          id: r.id,
+          title: r.title,
+          assetClass: r.assetClass,
+          incomeType: r.incomeType,
+          provision: r.provision,
+          assessmentYear: r.assessmentYear,
+          financialYear: r.financialYear,
+          taxRate: r.taxRate,
+          exemptionLimit: r.exemptionLimit ?? null,
+          holdingPeriodRule: r.holdingPeriodRule,
+          surchargeRule: r.surchargeRule,
+          cessRule: r.cessRule,
+          setOffRule: r.setOffRule,
+          conditions: r.conditions ?? [],
+          workedExampleSummary: r.workedExampleSummary ?? null,
+          sourceIds: r.sourceIds,
+          reviewStatus: r.reviewStatus,
+          effectiveFrom: r.effectiveFrom,
+          notes: r.notes ?? null,
+        }))
       : [];
 
   const relatedBriefs = briefs

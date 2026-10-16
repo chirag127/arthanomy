@@ -34,9 +34,19 @@ import { href } from '../../lib/url';
         </thead>
         <tbody>
           <tr>
-            <td class="px-4 py-4 text-[var(--color-ink-muted)]" colspan="3">
-              No corrections have been necessary so far. The site is new, the log is empty, and that is a statement
-              of fact rather than an achievement — the first entry will appear here the day an error is found.
+            <td class="whitespace-nowrap px-4 py-4 align-top text-[var(--color-ink-muted)]">2026-10-16</td>
+            <td class="px-4 py-4 align-top text-[var(--color-ink-muted)]">
+              <a href={href('/sources')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">Source registry</a>, and ten briefs
+            </td>
+            <td class="px-4 py-4 align-top">
+              The source id <code class="font-mono text-xs">bis-home</code> was doing two jobs: it pointed at the Bank for International
+              Settlements, which is correct for the financial-mathematics and digital-assets briefs that cite it, and it was also
+              attached to ten Indian gold, jewellery, diamond and construction-quality briefs, where "BIS" means the Bureau of
+              Indian Standards. A separate <code class="font-mono text-xs">bis-india</code> source has been added (hallmarking
+              regulation, Mandatory Hallmarking Order, jeweller registration, Quality Control Orders, National Building Code) and
+              those ten briefs now require it. No reader-facing claim was affected — the affected article was written at
+              mechanism level precisely because the source did not support it, and is being revised against the correct source.
+              Found by an automated cross-check of brief source ids against source scope.
             </td>
           </tr>
         </tbody>

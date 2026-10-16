@@ -6144,7 +6144,7 @@
     "brief": "Covers what a professional inspection examines, the defects that recur in Indian projects and the timing of snag complaints. Answers how to assess build quality before handover. Readers can commission and use an inspection properly.",
     "requiredSources": [
       "nhaa",
-      "bis-home"
+      "bis-india"
     ],
     "dependencies": [],
     "qualityStatus": "not-reviewed"
@@ -6325,7 +6325,7 @@
     "status": "planned",
     "brief": "Covers purity standards, premiums over spot, storage and resale mechanics for bars and coins in India. Answers what physical holding actually costs to own and exit. Readers can compare a purchase against spot-referenced alternatives.",
     "requiredSources": [
-      "bis-home",
+      "bis-india",
       "nsdl-sgb"
     ],
     "dependencies": [],
@@ -6342,7 +6342,7 @@
     "status": "planned",
     "brief": "Covers the gap between jewellery purchase price and resale value created by making charges, stone weights and purity differences. Answers why ornaments rarely recover their cost. Readers can separate the ornamental and investment decisions.",
     "requiredSources": [
-      "bis-home"
+      "bis-india"
     ],
     "dependencies": [
       "physical-bars-and-coins-economics"
@@ -6360,7 +6360,7 @@
     "status": "planned",
     "brief": "Covers the hallmarking regime, purity grades and what a hallmark does and does not certify. Answers how to verify what is being sold. Readers can buy with proportionate guarantees rather than salesperson assurance.",
     "requiredSources": [
-      "bis-home"
+      "bis-india"
     ],
     "dependencies": [],
     "qualityStatus": "not-reviewed"
@@ -6433,7 +6433,7 @@
     "status": "planned",
     "brief": "Covers how digital gold products are structured, the custody claims behind balances and the absence of a dedicated regulatory framework. Answers what a vendor balance really is. Readers can size the counterparty risk before buying.",
     "requiredSources": [
-      "bis-home",
+      "bis-india",
       "sebi-unsolicited-tips"
     ],
     "dependencies": [],
@@ -6467,7 +6467,7 @@
     "brief": "Covers the design of gold deposit schemes, the interest paid in metal and the practical considerations that limited their uptake. Answers who benefits from depositing idle ornaments. Readers can weigh participation against alternatives.",
     "requiredSources": [
       "rbi-home",
-      "bis-home"
+      "bis-india"
     ],
     "dependencies": [
       "gold-loans-against-ornaments"
@@ -6576,7 +6576,7 @@
     "brief": "Covers locker facilities, vault services, insurance and the documentation needed to prove ownership. Answers where metal should physically sit. Readers can arrange custody that matches the scale of their holding.",
     "requiredSources": [
       "rbi-home",
-      "bis-home"
+      "bis-india"
     ],
     "dependencies": [
       "physical-bars-and-coins-economics"
@@ -6630,7 +6630,7 @@
     "status": "planned",
     "brief": "Covers grading systems, the gap between retail and resale prices and why gemstones are weak investment vehicles for most buyers. Answers what a certificate actually guarantees. Readers can avoid treating ornament purchases as investments.",
     "requiredSources": [
-      "bis-home"
+      "bis-india"
     ],
     "dependencies": [],
     "qualityStatus": "not-reviewed"
@@ -6646,7 +6646,7 @@
     "status": "planned",
     "brief": "Covers buyback terms, melting-based valuation and the deductions applied by jewellers, and how to compare offers. Answers what an ornament truly fetches. Readers can negotiate a resale with knowledge of the deductions.",
     "requiredSources": [
-      "bis-home"
+      "bis-india"
     ],
     "dependencies": [
       "jewellery-as-an-investment"
@@ -6665,7 +6665,7 @@
     "brief": "Covers the verification steps for online bullion and jewellery sellers, including hallmark checks, delivery terms and refund routes. Answers how to spot a fraudulent storefront. Readers can order gold online with safeguards in place.",
     "requiredSources": [
       "sebi-unsolicited-tips",
-      "bis-home"
+      "bis-india"
     ],
     "dependencies": [],
     "qualityStatus": "not-reviewed"

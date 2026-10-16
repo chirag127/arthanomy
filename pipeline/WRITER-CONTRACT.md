@@ -30,7 +30,11 @@ Write **exactly one** file:
 4. **Separate the four lanes** where a return is discussed: historical realised /
    contractual / model-estimated / speculative. Never blend them silently.
 5. **Tax content** may restate only what `packet.taxRules` (and the cited
-   official sources) state. If the Finance Act 2025 section renumbering is
+   official sources) state. The packet carries the site's full dated tax-rule
+   registry for taxation briefs — take every rate, slab, rebate, threshold and
+   holding period from it, never from memory. If the packet does not carry a
+   figure you need, describe the mechanism and flag it as needing verification
+   rather than supplying a number. If the Finance Act 2025 section renumbering is
    relevant, say it is pending verification. Mark tax rules whose
    `reviewStatus` is not `verified` as provisional.
 6. **No operational wrongdoing.** In fraud/illegal-finance articles, explain
