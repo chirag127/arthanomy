@@ -1,0 +1,98 @@
+---
+/**
+ * SourceList — renders an article's cited sources from the central registry.
+ *
+ * A citation whose id is missing from the registry is shown as a failure, not
+ * hidden: the build-time audit and this component must never disagree about
+ * what has been verified.
+ */
+import { getCollection } from 'astro:content';
+import { formatDate } from '../lib/format';
+
+interface SourceRef {
+  id: string;
+  supports?: string;
+}
+interface Props {
+  sources: SourceRef[];
+  heading?: string;
+}
+
+const { sources, heading = 'Sources' } = Astro.props;
+if (sources.length === 0) throw new Error('SourceList rendered with no sources');
+
+const all = await getCollection('sources');
+const byId = new Map(all.map((entry) => [entry.id, entry.data]));
+
+const tierLabels: Record<string, string> = {
+  'primary-official': 'Primary — official',
+  'official-database': 'Official database',
+  multilateral: 'Multilateral body',
+  academic: 'Academic',
+  'industry-standard': 'Industry standard',
+  regulator: 'Regulator',
+  secondary: 'Secondary',
+};
+
+const resolved = sources.map((ref) => {
+  const source = byId.get(ref.id);
+  return { ref, source };
+});
+---
+
+<section class="not-prose" aria-labelledby="sources-heading">
+  <h2 id="sources-heading" class="font-serif text-xl font-semibold">{heading}</h2>
+  <p class="mt-1 text-sm text-[var(--color-ink-muted)]">
+    Every claim in this article that depends on an external fact is traced to a source below. Sources are
+    classified by quality; secondary sources never carry a load-bearing claim on their own.
+  </p>
+  <ol class="mt-4 space-y-3">
+    {
+      resolved.map(({ ref, source }, index) => (
+        <li class="card p-3.5 text-sm">
+          <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <span class="font-mono text-xs text-[var(--color-ink-faint)]">[{index + 1}]</span>
+            {source ? (
+              <>
+                <span class="font-medium text-[var(--color-ink-body)]">{source.title}</span>
+                <span class="text-[var(--color-ink-muted)]">· {source.publisher}</span>
+                <span class="badge badge-brass">{tierLabels[source.tier] ?? source.tier}</span>
+                {source.documentDate && (
+                  <span class="text-xs text-[var(--color-ink-faint)]">document dated {formatDate(source.documentDate)}</span>
+                )}
+                <span class="text-xs text-[var(--color-ink-faint)]">accessed {formatDate(source.accessedAt)}</span>
+                {source.url ? (
+                  <a href={source.url} rel="noopener noreferrer" class="text-xs text-[var(--color-link)] underline decoration-1 underline-offset-2">
+                    Open source ↗
+                  </a>
+                ) : (
+                  <span class="badge badge-caution">no public URL</span>
+                )}
+              </>
+            ) : (
+              <>
+                <span class="font-medium text-[var(--color-loss-700)]">Missing source record: <code>{ref.id}</code></span>
+                <span class="badge badge-loss">citation unresolved</span>
+                <span class="text-xs text-[var(--color-ink-muted)]">
+                  This citation does not exist in the source registry. It must be added or the claim removed before publication.
+                </span>
+              </>
+            )}
+          </div>
+          {ref.supports && <p class="mt-1.5 text-[var(--color-ink-muted)]">Used for: {ref.supports}</p>}
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<script>
+  (() => {
+    // Surface unresolved citations during local development without breaking the page.
+    document.querySelectorAll('.badge-loss').forEach((badge) => {
+      if (badge.textContent?.includes('citation unresolved')) {
+        console.warn('[arthanomy] unresolved citation on', window.location.pathname);
+      }
+    });
+  })();
+</script>

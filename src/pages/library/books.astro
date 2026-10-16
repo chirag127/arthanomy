@@ -1,0 +1,103 @@
+---
+/**
+ * /library/books — the curated reading library: books, papers, reports,
+ * official documents and datasets, each with an honest assessment.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import DifficultyBadge from '../../components/DifficultyBadge.astro';
+import { href } from '../../lib/url';
+
+const items = await getCollection('libraryItems');
+
+const typeLabels: Record<string, string> = {
+  book: 'Books',
+  paper: 'Research papers',
+  report: 'Industry & multilateral reports',
+  'official-document': 'Official documents & regulations',
+  dataset: 'Datasets',
+};
+
+const order = ['book', 'official-document', 'paper', 'report', 'dataset'] as const;
+const groups = order
+  .map((type) => ({ type, items: items.filter((i) => i.data.type === type).sort((a, b) => a.data.title.localeCompare(b.data.title)) }))
+  .filter((group) => group.items.length > 0);
+
+const seriesEntries = await getCollection('series');
+const seriesName = new Map(seriesEntries.map((s) => [s.id, s.data.title]));
+---
+
+<BaseLayout
+  title="Reading library"
+  description={`${items.length} books, papers, official documents and datasets worth reading — with what each is good for and where it falls short.`}
+  path="/library/books"
+>
+  <header class="shell pt-10">
+    <Breadcrumbs crumbs={[{ label: 'Home', path: '/' }, { label: 'Library', path: '/library' }, { label: 'Reading library' }]} />
+    <p class="eyebrow mt-6">The reading library</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">What to read, and what each book is actually for</h1>
+    <p class="mt-4 max-w-2xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      {items.length} entries — from Harry Markowitz's 1952 paper to current RBI regulations. Each entry states why it
+      matters, what it does well and where it falls short. Nothing is listed to fill a shelf.
+    </p>
+  </header>
+
+  <div class="shell mt-12 space-y-14 pb-16">
+    {
+      groups.map((group) => (
+        <section aria-labelledby={`type-${group.type}`}>
+          <div class="flex items-baseline justify-between gap-3 border-b border-[var(--color-border)] pb-3">
+            <h2 id={`type-${group.type}`} class="font-serif text-2xl font-semibold">
+              {typeLabels[group.type]}
+            </h2>
+            <span class="text-sm text-[var(--color-ink-faint)]">{group.items.length}</span>
+          </div>
+          <div class="mt-5 grid gap-4 lg:grid-cols-2">
+            {group.items.map((item) => (
+              <article class="card p-5">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="badge badge-neutral">{item.data.region}</span>
+                  <DifficultyBadge difficulty={item.data.difficulty} size="sm" />
+                  {item.data.year && <span class="text-xs text-[var(--color-ink-faint)]">{item.data.year}</span>}
+                </div>
+                <h3 class="mt-2.5 font-serif text-lg font-semibold leading-snug">{item.data.title}</h3>
+                <p class="mt-1 text-sm text-[var(--color-ink-muted)]">
+                  {item.data.authors.join(', ')}
+                  {item.data.publisher ? ` · ${item.data.publisher}` : ''}
+                </p>
+                <p class="mt-3 text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">{item.data.whyItMatters}</p>
+                <div class="mt-4 grid gap-3 text-xs sm:grid-cols-2">
+                  <div>
+                    <p class="font-semibold uppercase tracking-[0.06em] text-[var(--color-gain-700)]">Strengths</p>
+                    <ul class="mt-1.5 space-y-1 leading-5 text-[var(--color-ink-muted)]" role="list">
+                      {item.data.strengths.map((s) => (<li>{s}</li>))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="font-semibold uppercase tracking-[0.06em] text-[var(--color-ink-faint)]">Limitations</p>
+                    <ul class="mt-1.5 space-y-1 leading-5 text-[var(--color-ink-muted)]" role="list">
+                      {item.data.limitations.map((l) => (<li>{l}</li>))}
+                    </ul>
+                  </div>
+                </div>
+                <div class="mt-4 flex flex-wrap items-center gap-2">
+                  {item.data.referenceUrl && (
+                    <a href={item.data.referenceUrl} rel="noopener noreferrer" class="badge badge-brass no-underline">
+                      Open reference ↗
+                    </a>
+                  )}
+                  {item.data.seriesIds.slice(0, 2).map((sid) => (
+                    <a href={href(`/series/${sid}`)} class="badge badge-neutral no-underline">
+                      {seriesName.get(sid) ?? sid}
+                    </a>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

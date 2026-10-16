@@ -1,0 +1,24 @@
+---
+/**
+ * DifficultyBadge — the single documented difficulty convention.
+ *   Foundational — no prior knowledge assumed
+ *   Intermediate — assumes the foundational series
+ *   Advanced     — quantitative or domain-specific
+ *   Expert       — research grade; assumptions stated in the text
+ */
+interface Props {
+  difficulty: string;
+  size?: 'sm' | 'md';
+}
+const { difficulty, size = 'md' } = Astro.props;
+
+const map: Record<string, { label: string; cls: string }> = {
+  foundational: { label: 'Foundational', cls: 'badge-info' },
+  intermediate: { label: 'Intermediate', cls: 'badge-neutral' },
+  advanced: { label: 'Advanced', cls: 'badge-brass' },
+  expert: { label: 'Expert', cls: 'badge-caution' },
+};
+const entry = map[difficulty] ?? { label: difficulty, cls: 'badge-neutral' };
+---
+
+<span class:list={['badge', entry.cls, size === 'sm' && 'text-2xs']}>{entry.label}</span>

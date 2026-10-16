@@ -1,0 +1,140 @@
+---
+title: What an Investment Return Actually Is
+description: 'The single number marketed as "return" is at least four different quantities — realised, contractual, estimated and hoped-for. Learning to tell them apart is the most valuable skill in personal finance.'
+shortTitle: What a Return Actually Is
+category: investment-basics
+series: science-of-returns
+seriesOrder: 1
+topics: ['return measurement', 'CAGR', 'XIRR', 'real return']
+tags: ['foundations', 'arithmetic', 'reading-claims']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 14
+featured: true
+keyTakeaways:
+  - '"Return" is not one quantity: historical realised, contractual, model-estimated and speculative returns are different things with different risk profiles, and blending them is the root of most bad investment decisions.'
+  - 'Total return is income plus price change, measured over a stated period — any return quoted without its period and without income is incomplete by construction.'
+  - 'Arithmetic averages overstate typical outcomes because of volatility drag; the geometric (compound) return is the only figure that corresponds to wealth actually accumulated.'
+  - 'CAGR answers "what constant rate would have produced this endpoint?"; XIRR answers "what rate did my actual dated cash flows earn?" — they are not interchangeable.'
+  - 'A return becomes meaningful only after tax, fees and inflation. A taxable 7% with costs can be a negative real number.'
+faqs:
+  - question: Should I use CAGR or XIRR to judge my own portfolio?
+    answer: 'Use XIRR for any portfolio with contributions or withdrawals at different dates, because it accounts for the timing and size of each cash flow. Use CAGR only to compare two endpoints with no intermediate flows, or when someone else quotes a CAGR and you want to know what it is hiding.'
+  - question: Why do two funds quoting the same 12% return feel so different?
+    answer: 'Because the path differs. The same compound 12% delivered with 8% annual volatility and with 30% annual volatility are different experiences — the second will spend long stretches far below its trend, and most investors sell at exactly those moments.'
+  - question: Is a "guaranteed 9%" bank-like product good if FD rates are 6%?
+    answer: 'Not automatically. The comparison must be like-for-like: credit risk, liquidity, lock-in, tax treatment and the legal strength of the guarantee all differ. A higher rate from a weaker obligor is not the same product with a better price.'
+  - question: What period should historical returns be quoted over?
+    answer: 'Long enough to include at least one severe drawdown, and stated explicitly. A five-year window that happened to end in a bull market tells you more about its end date than about the asset.'
+relatedCalculators:
+  - { id: cagr, label: CAGR Calculator }
+  - { id: xirr, label: XIRR Calculator }
+  - { id: nominal-vs-real, label: Nominal vs Real Return }
+  - { id: real-return, label: Real Return Calculator }
+relatedArticles:
+  - nominal-returns-and-the-inflation-toll
+  - rbi-p2p-licensing-framework
+glossaryTerms: [cagr, xirr, real-return, compounding, volatility, inflation]
+sources:
+  - { id: rbi-handbook-statistics, supports: 'Institutional context for how Indian financial returns are reported across asset classes' }
+  - { id: sebi-investor-education, supports: 'Regulator guidance on interpreting investment returns and advertisements' }
+  - { id: sharpe-1966, supports: 'The original published basis for risk-adjusting return comparisons' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+---
+
+Every investment discussion — in a bank branch, on a fund factsheet, in a WhatsApp forward — reduces to one number: "the return". Nine percent. Fifteen percent. "It doubled in two years." The number feels like a fact. It is almost always a blend of at least four different quantities, each with its own risk profile, and the blending is where the trouble starts.
+
+This first article in the Science of Returns series establishes the vocabulary the rest of the site will use. Nothing here is about picking an investment. It is about what you are reading when someone shows you a number.
+
+## Return is a change in wealth, over a stated period
+
+Formally, an investment's return over a period is the change in its total value — income received plus change in price, reinvested — divided by what you put in.
+
+If you buy units at ₹100, receive ₹4 in distributions, and the units end at ₹106, your total return is **10%** for that period. Skip the distribution — it "went to your bank account" — and the price change alone says 6%. Both numbers get printed; only the first is true to what happened to your wealth.
+
+Two immediate consequences:
+
+- **A return without a period is not a return.** "10%" means nothing until it is 10% per year, or 10% in three months. Annualisation is not decoration; it changes a mediocre number into an excellent one and vice versa.
+- **A return without income is a price-change story.** This is why dividend-paying and accumulating investments of identical economic substance can show different published "returns". The gap between a generous dividend payer and a low-yield compounder is often purely accounting.
+
+## Four quantities, one word
+
+Here is the failure mode this site is built around. The word "return" is used for at least four distinct things:
+
+**1. Historical realised return.** What actually happened to a defined population over a defined window — an index, a fund, a category. Its credibility depends on what it includes (survivorship drags it upward) and where the window begins and ends (which is chosen, consciously or not, by whoever shows you the chart).
+
+**2. Contractual yield.** What a binding agreement pays — deposit interest, bond coupons, promised distributions. This is the strongest form of claim, because the law stands behind it, but it is only as good as the credit of the counterparty. A 14% coupon from a risky borrower is a 14% promise *priced for a reason*: the market's estimate of default and delay.
+
+**3. Model-estimated expected return.** What arithmetic produces from assumptions: growth rates, margins, rates of reinvestment. These are projections, not promises, and their accuracy is limited by their assumptions — which are inspectable and should always be printed next to the number.
+
+**4. Speculative upside.** The possible-but-unsupported: what a token, an early-stage company or a lottery-ticket strategy *might* deliver. Honest researchers label this lane clearly. The entire "100x in 3 years" genre lives here and pretends not to.
+
+Most bad investment decisions are a category error between these lanes. A model estimate is read as a contractual promise; a historical window is read as a forecast; a speculative hope is priced as if it were the first two. Keep the lanes separate and most pitches collapse on their own.
+
+## Arithmetic averages lie; compounding doesn't
+
+Return averages have a subtle trap that deserves the arithmetic, because it costs people real money. Suppose a fund returns +50% one year and −50% the next. The *arithmetic* average of the two annual returns is 0%. But your wealth: ₹100 → ₹150 → ₹75. You lost 25%.
+
+The average that describes wealth is the **geometric mean**, the compound rate that takes the starting value to the ending value:
+
+$$ \text{CAGR} = \left(\frac{V_T}{V_0}\right)^{1/T} - 1 $$
+
+For the fund above: $(75/100)^{1/2} - 1 = -13.4\%$ per year. The gap between the arithmetic 0% and the compound −13.4% is called *volatility drag*, and it grows with the square of volatility. A useful approximation for annualised figures:
+
+$$ g \approx a - \frac{\sigma^2}{2} $$
+
+where $a$ is the arithmetic average, $\sigma$ the volatility and $g$ the growth rate of your actual wealth. This is why a mathematically "average" market can underperform its own average for decades — and why two investments with the same stated average return are not equivalent if one takes a smoother path.
+
+> **The practical test.** When anyone quotes an average return, ask: *of what — the yearly numbers, or the wealth that resulted?* If they don't know the difference, you now know more about the arithmetic than they do.
+
+## CAGR and XIRR are different questions
+
+Two standard measures are constantly confused:
+
+**CAGR** answers: *what constant annual rate takes my starting value to my ending value?* It requires only two points. It is the right tool for comparing endpoints with no cash flows in between.
+
+**XIRR** answers: *given my actual dated cash flows — SIP instalments in, withdrawals out — what annual rate did my money earn?* It solves an equation across the whole timeline. This is the only honest way to measure a portfolio you have actually been investing in, because your contributions bought different prices along the way.
+
+The difference is material precisely when it matters most. A monthly SIP into a falling-then-recovering market can show a CAGR that looks modest while the XIRR — computed on actual money at actual dates — is excellent, because later instalments bought deeply discounted units. An investor who judges themselves by CAGR in that situation misreads their own results. The calculators linked at the end of this article do both, and the worked example below shows the mechanics once.
+
+### Worked example: the same portfolio, two honest measures
+
+An investor puts ₹10,000 at the start of each year for four years into an index fund that returns −10%, +5%, +25%, +15% in those years, and values the holding at the end.
+
+- **CAGR of the fund itself** (₹100 → after four years of those returns): $0.9 \times 1.05 \times 1.25 \times 1.15 = 1.358$, so $\text{CAGR} = 1.358^{0.25} - 1 = 7.95\%$ per year. That describes the market, not the investor.
+- **XIRR of the investor** depends on how ₹40,000 was deployed: the first ₹10,000 rode the −10% year, the last rode only +15%. Depending on weighting, the investor's rupee-weighted outcome can sit above or below the fund's time-weighted CAGR — which is exactly why funds report *time-weighted* returns (a CAGR-like number stripped of your cash-flow timing) and you should report *money-weighted* ones (XIRR) to yourself.
+
+Neither number is wrong. They answer different questions, and the industry rarely says which one it is showing.
+
+## From gross to real: the three deductions
+
+The number a product advertises is gross, nominal and pre-tax. Three deductions stand between it and your life:
+
+1. **Costs.** Expense ratios, brokerage, platform fees, stamp duty, exit loads, advisory fees. Costs are certain, returns are not; a 1.5% annual cost on a 7% gross return consumes over a fifth of the eventual wealth gain, and the effect compounds.
+2. **Tax.** Taxed at your marginal rate or at special capital-gains rates, with surcharge and cess stacked on top. The tax reference on this site carries the dated rules; the post-tax calculator applies them.
+3. **Inflation.** The purchasing power of the rupee. A 7% nominal return with 5% inflation is not 2% real — it is $(1.07/1.05) - 1 \approx 1.9\%$ real, and tax makes it worse.
+
+> **The floor problem.** For a resident investor in the 30% slab with surcharge and cess, a fully-taxed nominal 7% with 5% inflation can produce a *negative* real, post-tax return. This is not hypothetical pessimism; it is the arithmetic that makes asset allocation a first-order question rather than a detail. The next article in this series works through inflation mechanics; the tax series does the same for the tax side.
+
+## Reading the next return claim you meet
+
+A checklist that fits on an index card — apply it to any pitch, factsheet or forward:
+
+1. **Which quantity is this?** Historical, contractual, model or speculation. If the answer is "all of the above", stop.
+2. **Over what period, and why that period?** Windows that end at peaks flatter; windows chosen after the fact are marketing.
+3. **Gross or net of what?** Costs, taxes and inflation — ask for each.
+4. **What happens in the bad path?** Anyone can quote the average; ask how far below the trend the asset travelled, and what that did to investors who bought at the top.
+5. **Who is the counterparty?** For contractual yields this is the whole question: a promise is only as strong as the party promising.
+6. **What is the base rate?** Not the best case, not a screenshot — the distribution: how did most participants in this strategy actually do?
+
+## What the rest of this series does
+
+With these tools the remaining articles take each lane in turn: nominal versus real returns and the inflation toll; compounding over decades and what 20 years of taxes and fees actually subtract; risk as the price of return, and the difference between volatility and permanent loss; drawdowns and the recoveries that follow — or don't. Each ends where this one does: with arithmetic you can hold in your head and a calculator that shows its work.
+
+The number is never one number. That is the whole lesson.

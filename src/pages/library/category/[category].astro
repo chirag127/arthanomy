@@ -1,0 +1,81 @@
+---
+/**
+ * /library/category/<id> — one taxonomy category.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { categories, categoryMeta } from '../../../config/site';
+import { href } from '../../../lib/url';
+
+export async function getStaticPaths() {
+  return categories.map((cat) => ({
+    params: { category: cat.id },
+    props: { cat },
+  }));
+}
+
+const { cat } = Astro.props;
+const meta = categoryMeta(cat.id);
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft))
+  .filter((a) => a.data.category === cat.id)
+  .sort((a, b) => (b.data.publishedAt as Date).getTime() - (a.data.publishedAt as Date).getTime());
+
+const series = (await getCollection('series')).filter((s) => s.data.category === cat.id);
+---
+
+<BaseLayout title={meta.name} description={`${meta.description} ${articles.length} researched articles in the ${meta.name} category.`} path={`/library/category/${cat.id}`}>
+  <header class="shell pt-10">
+    <Breadcrumbs crumbs={[{ label: 'Home', path: '/' }, { label: 'Library', path: '/library' }, { label: meta.shortName }]} />
+    <p class="eyebrow mt-6">Category</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">{meta.name}</h1>
+    <p class="mt-4 max-w-2xl text-lg leading-8 text-[var(--color-ink-muted)]">{meta.blurb}</p>
+  </header>
+
+  <div class="shell mt-12 pb-16">
+    {series.length > 0 && (
+      <section aria-labelledby="series-heading" class="mb-12">
+        <h2 id="series-heading" class="eyebrow">Learning paths in this category</h2>
+        <div class="mt-4 grid gap-3 md:grid-cols-2">
+          {series.map((s) => (
+            <a href={href(`/series/${s.id}`)} class="card card-hover block p-4 no-underline">
+              <span class="font-serif text-lg font-semibold text-[var(--color-ink-950)] dark:text-[var(--color-ink-50)]">{s.data.title}</span>
+              <span class="mt-1.5 block text-sm leading-6 text-[var(--color-ink-muted)]">{s.data.question}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {articles.length > 0 ? (
+      <section aria-labelledby="articles-heading">
+        <h2 id="articles-heading" class="eyebrow">Published articles</h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {articles.map((article) => (
+            <ArticleCard
+              id={article.id}
+              title={article.data.title}
+              description={article.data.description}
+              category={article.data.category}
+              difficulty={article.data.difficulty}
+              readingMinutes={article.data.readingMinutes}
+              kind={article.data.kind}
+            />
+          ))}
+        </div>
+      </section>
+    ) : (
+      <div class="card p-6">
+        <p class="font-serif text-xl">No published articles in this category yet.</p>
+        <p class="mt-2 text-sm text-[var(--color-ink-muted)]">
+          The research queue for this category is tracked on the roadmap. Meanwhile, the
+          <a href={href('/assets')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">investment universe</a>
+          covers every avenue in this space on a common grid.
+        </p>
+      </div>
+    )}
+
+  </div>
+</BaseLayout>

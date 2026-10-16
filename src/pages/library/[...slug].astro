@@ -1,0 +1,104 @@
+---
+/**
+ * /library/<slug> — every published article.
+ *
+ * The route resolves each article's frontmatter references (series, glossary
+ * terms, calculators, related articles, previous/next in series) against the
+ * registries, so the layout receives only resolved, renderable data.
+ */
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import calculators from '../../data/calculators/definitions.json';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => !data.draft);
+  return articles.map((entry) => ({
+    params: { slug: entry.id.replace(/\/index$/, '') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const data = entry.data;
+
+const [seriesEntries, glossary, allArticles] = await Promise.all([
+  getCollection('series'),
+  getCollection('glossary'),
+  getCollection('articles', ({ data: d }) => !d.draft),
+]);
+
+const seriesEntry = data.series ? seriesEntries.find((s) => s.id === data.series) : undefined;
+const glossaryById = new Map(glossary.map((t) => [t.id, t.data.term]));
+const calcById = new Map(calculators.map((c) => [c.id, c.name]));
+
+/* Estimated reading time from the raw body when frontmatter omits it. */
+const wordCount = entry.body ? entry.body.split(/\s+/).length : 0;
+const estimatedMinutes = Math.max(1, Math.round(wordCount / 220));
+
+const relatedArticles = data.relatedArticles
+  .map((id) => allArticles.find((a) => a.id === id))
+  .filter((a): a is NonNullable<typeof a> => a !== undefined)
+  .map((a) => ({
+    id: a.id,
+    title: a.data.title,
+    description: a.data.description,
+    category: a.data.category,
+    difficulty: a.data.difficulty,
+    readingMinutes: a.data.readingMinutes,
+  }));
+
+/* Previous and next within the same series, ordered by seriesOrder. */
+let prev: { id: string; title: string } | null = null;
+let next: { id: string; title: string } | null = null;
+if (data.series) {
+  const inSeries = allArticles
+    .filter((a) => a.data.series === data.series)
+    .sort((a, b) => (a.data.seriesOrder ?? 999) - (b.data.seriesOrder ?? 999));
+  const index = inSeries.findIndex((a) => a.id === entry.id);
+  if (index > 0) {
+    const item = inSeries[index - 1];
+    if (item) prev = { id: item.id, title: item.data.shortTitle ?? item.data.title };
+  }
+  if (index >= 0 && index < inSeries.length - 1) {
+    const item = inSeries[index + 1];
+    if (item) next = { id: item.id, title: item.data.shortTitle ?? item.data.title };
+  }
+}
+---
+
+<ArticleLayout
+  id={entry.id}
+  title={data.title}
+  description={data.description}
+  category={data.category}
+  series={data.series}
+  seriesTitle={seriesEntry?.data.title}
+  seriesOrder={data.seriesOrder}
+  difficulty={data.difficulty}
+  kind={data.kind}
+  status={data.status}
+  author={data.author}
+  publishedAt={data.publishedAt}
+  updatedAt={data.updatedAt}
+  researchDate={data.researchDate}
+  reviewedAt={data.reviewedAt}
+  readingMinutes={data.readingMinutes ?? estimatedMinutes}
+  keyTakeaways={data.keyTakeaways}
+  faqs={data.faqs}
+  headings={headings}
+  sources={data.sources}
+  glossaryTerms={data.glossaryTerms.map((id) => ({ id, term: glossaryById.get(id) ?? id }))}
+  relatedCalculators={data.relatedCalculators.map((ref) => ({ id: ref.id, label: ref.label ?? calcById.get(ref.id) ?? ref.id }))}
+  relatedArticles={relatedArticles}
+  prev={prev}
+  next={next}
+  warnings={data.warnings}
+  openQuestions={data.openQuestions}
+  applicablePeriods={data.applicablePeriods}
+  productStatus={data.productStatus}
+  dataConfidence={data.dataConfidence}
+  draft={data.draft}
+>
+  <Content />
+</ArticleLayout>

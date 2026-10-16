@@ -1,0 +1,82 @@
+---
+/**
+ * /about/editorial-policy — the commitments that keep this site honest.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../config/site';
+import { href } from '../../lib/url';
+---
+
+<BaseLayout
+  title="Editorial policy"
+  description="Arthanomy's editorial commitments: independence from advertisers and issuers, no affiliate links, corrections in public, and the boundary between research and advice."
+  path="/about/editorial-policy"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">Editorial policy</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">What this site owes its readers</h1>
+  </header>
+
+  <div class="shell article-body mt-8 max-w-3xl pb-16">
+    <h2>Independence</h2>
+    <p>
+      Arthanomy accepts no advertising, sponsorship, placement fees or affiliate commissions. No broker, fund house,
+      distributor, platform or issuer pays for coverage, favourable treatment or silence. There are no affiliate links
+      on the site; where a link leaves Arthanomy it goes to the primary source or the official product page, not to
+      a referral destination.
+    </p>
+
+    <h2>Funding</h2>
+    <p>
+      The site is funded by its readers through the voluntary support link in the footer
+      (<a href={site.author.support} rel="noopener">Buy me a coffee</a>). Supporters receive no influence over content,
+      no special coverage, and no advance access of any kind.
+    </p>
+
+    <h2>The advice boundary</h2>
+    <p>
+      The author is not a SEBI-registered investment adviser, research analyst or portfolio manager, and this site
+      provides no personalised advice. Content is general research intended to inform the reader's own decisions or
+      their conversations with a registered professional. Nothing here is an offer or solicitation to buy or sell any
+      security.
+    </p>
+
+    <h2>Accuracy and corrections</h2>
+    <p>
+      Every factual claim carries a source; every tax or regulatory claim carries an effective date and a verification
+      date. Errors, when found, are corrected on the page itself, with the change logged on the
+      <a href={href('/about/corrections')}>corrections</a> page and the article's updated date revised. There is no
+      quiet-edit policy: a figure that changes without notice is indistinguishable from a figure that was wrong.
+    </p>
+
+    <h2>Product availability vs product history</h2>
+    <p>
+      Where a product existed historically but is currently closed, suspended or unavailable — small-savings tranches,
+      sovereign gold bonds, discontinued schemes — the site distinguishes the history from current availability and
+      does not require you to guess which it is describing.
+    </p>
+
+    <h2>High-return claims</h2>
+    <p>
+      Claims of returns above market norms are handled under the <a href={href('/research/high-return')}>four-lane
+      framework</a>. A number is never presented without stating which lane it belongs to, and no blended “expected
+      return” is manufactured by averaging quantities that are not comparable.
+    </p>
+
+    <h2>AI assistance</h2>
+    <p>
+      Drafting uses AI assistance under human direction. Every published piece is the responsibility of the named
+      author, and verification statements are limited to what has actually been verified. This disclosure exists
+      because a reader deciding how much to trust a page deserves to know how it was made — see the
+      <a href={href('/about/methodology')}>methodology</a> for the full process.
+    </p>
+
+    <h2>Comments, email and privacy</h2>
+    <p>
+      Correspondence is read and corrections are welcomed. Email addresses and identities of correspondents are never
+      published without consent and never shared with third parties. The <a href={href('/privacy')}>privacy page</a>
+      states exactly what the site does and does not collect. There are no comment sections to moderate because there
+      are no comment sections.
+    </p>
+  </div>
+</BaseLayout>

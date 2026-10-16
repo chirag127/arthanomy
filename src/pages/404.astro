@@ -1,0 +1,31 @@
+---
+/**
+ * 404 — not found.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { href } from '../lib/url';
+---
+
+<BaseLayout
+  title="Page not found"
+  description="This page does not exist. Try the search, the library index, or the roadmap of everything planned."
+  path="/404"
+  noindex
+>
+  <div class="shell flex min-h-[60vh] flex-col justify-center py-20">
+    <p class="eyebrow">404</p>
+    <h1 class="mt-2 max-w-2xl font-serif text-4xl font-semibold tracking-tight">The page is not here</h1>
+    <p class="mt-4 max-w-xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      The link may be old, or the page may never have existed. Search everything with
+      <kbd class="rounded border border-[var(--color-border)] bg-[var(--color-surface-2)] px-1.5 py-0.5 font-mono text-sm">Ctrl K</kbd>,
+      or start from one of these:
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2.5">
+      <a href={href('/library')} class="badge badge-brass px-3.5 py-2 text-sm no-underline">Library</a>
+      <a href={href('/calculators')} class="badge badge-neutral px-3.5 py-2 text-sm no-underline">Calculators</a>
+      <a href={href('/glossary')} class="badge badge-neutral px-3.5 py-2 text-sm no-underline">Glossary</a>
+      <a href={href('/roadmap')} class="badge badge-neutral px-3.5 py-2 text-sm no-underline">Coverage roadmap</a>
+      <a href={href('/')} class="badge badge-neutral px-3.5 py-2 text-sm no-underline">Home</a>
+    </div>
+  </div>
+</BaseLayout>

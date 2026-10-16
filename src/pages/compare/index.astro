@@ -1,0 +1,89 @@
+---
+/**
+ * /compare — the comparison engine. Facts side by side; no invented scores.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ComparePanel, { type CompareItem } from '../../components/ComparePanel';
+import { href } from '../../lib/url';
+
+const assets = await getCollection('assets');
+
+const items: CompareItem[] = assets
+  .map((entry) => {
+    const d = entry.data;
+    return {
+      id: entry.id,
+      name: d.name,
+      group: d.group,
+      oneLiner: d.oneLiner,
+      returnMechanism: d.returnMechanism,
+      expectedReturn: d.expectedReturn,
+      volatility: d.volatility,
+      liquidity: d.liquidity,
+      lockIn: d.lockIn,
+      minimumInvestment: d.minimumInvestment,
+      taxTreatment: d.taxTreatment,
+      fees: d.fees,
+      inflationProtection: d.inflationProtection,
+      currencyExposure: d.currencyExposure,
+      counterpartyRisk: d.counterpartyRisk,
+      creditRisk: d.creditRisk,
+      regulatoryProtection: d.regulatoryProtection,
+      leverageEmbedded: d.leverageEmbedded,
+      complexity: d.complexity,
+      diversification: d.diversification,
+      evidenceQuality: d.evidenceQuality,
+      dataConfidence: d.dataConfidence,
+      relatedCalculators: d.relatedCalculators,
+    };
+  })
+  .sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<BaseLayout
+  title="Compare avenues"
+  description="Put two to four Indian investment avenues side by side — return basis, risk, liquidity, tax and evidence — with explicit warnings where a comparison is illegitimate."
+  path="/compare"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">Comparison engine</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">Compare what can be compared</h1>
+    <p class="mt-4 max-w-3xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      Most comparison tools produce a winner by averaging numbers that are not the same quantity. This one refuses.
+      Pick two to four avenues and the engine shows the facts, then states — in plain language — the places where
+      ranking them would be meaningless.
+    </p>
+  </header>
+
+  <section class="shell mt-10 pb-16">
+    <ComparePanel items={items} client:load />
+
+    <div class="mt-12 grid gap-5 lg:grid-cols-3">
+      <div class="card p-5">
+        <h2 class="eyebrow">Why there is no score</h2>
+        <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+          A 7% fixed deposit and a 7% expected-return equity fund are not equivalent outcomes of the same calculation.
+          The first is a promise measured in years; the second is an estimate whose yearly outcomes range from deep
+          negative to large positive. Averaging them produces a number that is true for neither.
+        </p>
+      </div>
+      <div class="card p-5">
+        <h2 class="eyebrow">Return basis, stated</h2>
+        <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+          Every avenue declares what its return number actually <em>is</em>: a contractual rate, a market price change,
+          an appraisal, or a discretionary cash flow. The <a href={href('/research/high-return')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">reality-check framework</a>
+          explains why the four are never interchangeable.
+        </p>
+      </div>
+      <div class="card p-5">
+        <h2 class="eyebrow">Run the arithmetic</h2>
+        <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+          For after-tax comparisons on identical terms, use the
+          <a href={href('/calculators/post-tax-return')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">post-tax return calculator</a> and the
+          <a href={href('/calculators/deposit-comparison')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">deposit comparison</a> — both apply the current tax rules with dated sources.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

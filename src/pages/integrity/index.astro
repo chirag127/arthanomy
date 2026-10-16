@@ -1,0 +1,115 @@
+---
+/**
+ * /integrity — fraud mechanics and investor protection.
+ *
+ * Educational analysis only: how fraudulent schemes work, why the arithmetic
+ * of their promises cannot hold, what regulators have actually said and done,
+ * and where to escalate. Deliberately contains no operational instructions.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { href } from '../../lib/url';
+import { getCollection } from 'astro:content';
+
+const sources = await getCollection('sources');
+const enforcement = sources.filter((s) =>
+  ['sebi-enforcement-orders', 'sebi-unsolicited-tips', 'bns-2023', 'pmla-2002', 'consumer-protection-2019', 'nclt-judgments'].includes(s.id),
+);
+---
+
+<BaseLayout
+  title="Fraud & investor protection"
+  description="How Indian investment frauds actually work — the arithmetic that makes guaranteed-return promises impossible, the scheme structures regulators have acted against, and where to escalate a complaint."
+  path="/integrity"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">Integrity & protection</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">The fraud half of investing</h1>
+    <p class="mt-4 max-w-3xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      Fraud is not an edge case in Indian retail finance — it is a recurring product category with recognisable
+      mechanics. This section documents those mechanics from public enforcement records so they can be recognised in
+      the wild. Everything here is educational analysis; nothing is a tactic.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      <a href={href('/research/high-return')} class="badge badge-brass no-underline">The four-lane reality check</a>
+      <a href={href('/library/category/fraud-risk')} class="badge badge-neutral no-underline">Fraud & risk articles</a>
+    </div>
+  </header>
+
+  <div class="shell mt-12 grid gap-6 pb-16 lg:grid-cols-2">
+    {
+      [
+        {
+          title: 'The arithmetic that makes "guaranteed" impossible',
+          body: 'A promise of fixed high returns requires the promiser to earn more than the promise after all costs, forever, in every market. Compound a guarantee and it becomes absurd: 18% guaranteed for 20 years requires almost ×27. No regulated Indian instrument offers an unqualified guarantee of that shape — the products that did carry legal guarantees (older small-savings framing, some insurance) pay far less, and for good reason. When a pitch contains both "guaranteed" and "high", the guarantee is either unfunded or illegal.',
+          markers: ['Guarantee + high return in one sentence', 'Returns described as fixed but sourced from "trading" or "business"'],
+        },
+        {
+          title: 'Ponzi mechanics: why collapse is scheduled, not possible',
+          body: 'A scheme paying returns from new money rather than earnings needs recruitment to double every period at the promised rate. Recruitment growth is bounded by population; promised compounding is not. The gap between the two curves is the collapse date. Enforcement orders in India repeatedly describe variants: unregistered collective investment schemes, "trading academies" with profit-sharing, and app-based lending to affiliated entities.',
+          markers: ['Payouts depend on recruiting new depositors', 'Earlier investors paid from later investors\' funds'],
+        },
+        {
+          title: 'Unregistered collective schemes',
+          body: 'If a scheme pools money from many investors into an enterprise it operates, Indian law generally requires registration (SEBI CIS regulations), whatever name the structure carries — farm plots, tree lots, resorts, crypto mining, hotels. The legal test looks at the substance: pooled funds, common management, returns from the promoter\'s efforts. "Not a CIS" disclaimers do not change the substance; regulators have consistently acted on it.',
+          markers: ['Money pooled into an enterprise you do not control', 'Time-share, plot, tree or mining "investments"'],
+        },
+        {
+          title: 'The distribution layer: who is licensed, and for what',
+          body: 'Most losses start with an unlicensed intermediary. SEBI registrations cover specific activities — a research analyst or investment adviser registration does not authorise managing your money, and a mutual-fund distributor is not an adviser. Look up the registration number on the regulator\'s own site, never on the seller\'s brochure. Whatsapp tip groups are the modern front end of the oldest problem in markets.',
+          markers: ['Registration claimed but not checkable on the regulator site', 'Tips on Whatsapp or Telegram with "assured" outcomes'],
+        },
+      ].map((section) => (
+        <section class="card p-5">
+          <h2 class="font-serif text-xl font-semibold">{section.title}</h2>
+          <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">{section.body}</p>
+          <p class="eyebrow mt-4">Pattern markers</p>
+          <ul class="mt-1.5 list-disc space-y-1 pl-4 text-xs leading-5 text-[var(--color-ink-muted)]">
+            {section.markers.map((m) => <li>{m}</li>)}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+
+  <section class="shell pb-16" aria-labelledby="escalation">
+    <h2 id="escalation" class="eyebrow">If it has already happened — the escalation ladder</h2>
+    <div class="mt-4 grid gap-4 lg:grid-cols-2">
+      <div class="card p-5">
+        <h3 class="text-sm font-semibold text-[var(--color-ink-body)]">1 · Regulated entities</h3>
+        <p class="mt-1.5 text-sm leading-6 text-[var(--color-ink-muted)]">
+          For brokers, advisers, funds and listed-company issues: SEBI's SCORES complaint system is the first formal
+          step, preceded by a written complaint to the entity itself. For banks and NBFCs: the RBI Ombudsman framework.
+          For insurers: the IRDAI grievance route and then the Insurance Ombudsman. Keep timestamps and documents.
+        </p>
+      </div>
+      <div class="card p-5">
+        <h3 class="text-sm font-semibold text-[var(--color-ink-body)]">2 · Unregulated schemes and outright fraud</h3>
+        <p class="mt-1.5 text-sm leading-6 text-[var(--color-ink-muted)]">
+          Where money was collected under false pretences: a police complaint (Economic Offences Wing where available),
+          which can support freezing of accounts. For cyber fraud specifically, the national cybercrime reporting
+          portal is designed for speed — the earlier the report, the higher the chance of intercepting funds. Civil
+          recovery of a collapsed scheme typically runs through insolvency or winding-up proceedings.
+        </p>
+      </div>
+    </div>
+    <div class="mt-4 flex flex-wrap gap-2">
+      {
+        enforcement.map((s) => (
+          <a href={s.data.url ?? href('/sources')} rel="noopener noreferrer" class="badge badge-neutral no-underline">
+            {s.data.publisher}
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="shell pb-16">
+    <div class="callout callout-caution max-w-3xl">
+      <p class="callout-title">What this page will never contain</p>
+      <p class="m-0 text-sm leading-6">
+        No instructions for conducting, facilitating or profiting from fraud, and no naming of individuals beyond what
+        regulators and courts have already published. The purpose is recognition and escalation, nothing else.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

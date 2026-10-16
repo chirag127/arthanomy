@@ -1,0 +1,63 @@
+---
+/**
+ * /disclaimer — the full disclaimer, including the site's limits.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, disclaimer } from '../config/site';
+import { href } from '../lib/url';
+---
+
+<BaseLayout
+  title="Disclaimer"
+  description="The full disclaimer for Arthanomy: research not advice, no recommendations, estimates labelled, sources open for verification."
+  path="/disclaimer"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">Disclaimer</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">Read this before acting on anything here</h1>
+  </header>
+
+  <div class="shell article-body mt-8 max-w-3xl pb-16">
+    <p>{disclaimer.long}</p>
+
+    <h2>No recommendations, no personalised advice</h2>
+    <p>
+      The author is not a SEBI-registered investment adviser, research analyst, portfolio manager or broker. Nothing
+      on this site — including comparisons, calculator outputs, worked examples or research on specific avenues — is a
+      recommendation to buy, sell or hold any security or product, or advice for your circumstances. Content is
+      educational research and general information.
+    </p>
+
+    <h2>Estimates are estimates</h2>
+    <p>
+      Any future return, probability, drawdown or tax outcome shown on this site is a model output: a function of
+      assumptions that are printed alongside it. Model outputs are wrong by construction — the question is only how
+      wrong and in which direction. Historical figures are labelled with their period and source; where data was
+      unavailable, the site says so rather than supplying a number.
+    </p>
+
+    <h2>Verify before acting</h2>
+    <p>
+      Tax and regulatory positions change; scheme terms change; product availability changes. Before acting on anything
+      read here, verify it against the primary source cited — the registry at
+      <a href={href('/sources')}>/sources</a> links to the official documents — or consult a registered professional.
+    </p>
+
+    <h2>External links</h2>
+    <p>
+      Links to external sites are provided for verification and are not endorsements. Arthanomy is not responsible for
+      the content, accuracy or practices of external sites.
+    </p>
+
+    <h2>Limitation of liability</h2>
+    <p>
+      To the maximum extent permitted by law, the author accepts no liability for any loss or damage arising from
+      use of this site or reliance on its content. If that is not acceptable, the correct decision is not to use the
+      site for investment decisions.
+    </p>
+
+    <p class="text-xs text-[var(--color-ink-faint)]">
+      Contact for questions about this disclaimer: <a href={`mailto:${site.author.email}`}>{site.author.email}</a>.
+    </p>
+  </div>
+</BaseLayout>

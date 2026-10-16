@@ -1,0 +1,91 @@
+---
+/**
+ * /about/methodology — how research on this site is actually produced.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { href } from '../../lib/url';
+import { getCollection } from 'astro:content';
+
+const sources = await getCollection('sources');
+const tierCount = (tier: string) => sources.filter((s) => s.data.tier === tier).length;
+---
+
+<BaseLayout
+  title="Methodology"
+  description="How Arthanomy researches, dates, classifies and verifies every claim — the source-tier system, the four-lane return framework, the calculator test suite and the review cycle."
+  path="/about/methodology"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">Methodology</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">How the research is made</h1>
+    <p class="mt-4 max-w-3xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      Not everything can be verified equally. The method here is to say, for every claim, what kind of evidence
+      supports it, when that evidence was published, and when it was last checked.
+    </p>
+  </header>
+
+  <div class="shell article-body mt-10 max-w-3xl pb-16">
+    <h2>1 · Sources, tiered</h2>
+    <p>
+      All {sources.length} sources live in a public <a href={href('/sources')}>registry</a>, classified by what they can
+      establish: <strong>primary-official</strong> ({tierCount('primary-official')}) for statutes, regulators and
+      government statistics; <strong>audited-disclosure</strong> ({tierCount('audited-disclosure')}) for filed
+      financials and scheme documents; <strong>academic</strong> ({tierCount('academic')}) for peer-reviewed theory;
+      <strong> reputable-secondary</strong> ({tierCount('reputable-secondary')}) for context; and further tiers down to
+      <strong>market-commentary</strong> and <strong>unverified</strong> — the last used only to mark a gap, never to
+      certify a number.
+    </p>
+
+    <h2>2 · Dates are part of every fact</h2>
+    <p>
+      Indian tax and regulatory facts expire. Each rule records when it took effect, which Act governs which period,
+      and when it was last verified. A fact without a date is treated as a claim, not a fact.
+    </p>
+
+    <h2>3 · Four lanes, never blended</h2>
+    <p>
+      For anything with a return number, the site identifies which of four quantities it is: <em>historical realised</em>
+      (what happened, to whom, over what period), <em>contractual</em> (what a binding agreement pays, and the credit
+      standing of the payer), <em>model-estimated</em> (what arithmetic derives from inspectable assumptions), or
+      <em>speculative upside</em> (possible, unsupported, labelled). The <a href={href('/research/high-return')}>high-return
+      research</a> applies this to every avenue where the distinction matters most.
+    </p>
+
+    <h2>4 · No fabricated data — ever</h2>
+    <p>
+      Where a number is unavailable, the page says so. Where an example is constructed to show a mechanism, it is
+      labelled illustrative and uses round, obviously synthetic figures. No market level, fund return, rate or statistic
+      appears here that cannot be traced to a registry source.
+    </p>
+
+    <h2>5 · Calculators are code, and code is tested</h2>
+    <p>
+      The numerical library behind the {`calculators`} — SIP and XIRR solvers, bond pricing, duration and convexity,
+      tax engine, Monte Carlo with a fixed seed — is covered by a test suite that runs on every build. Tests include
+      hand-computed known values (a bond must price at par when coupon equals yield; the SIP formula against a
+      hand-worked projection) and invariants across all calculators. Functions return “not available” when a quantity
+      is undefined, so a fabricated zero can never appear in an output.
+    </p>
+
+    <h2>6 · AI assistance, disclosed</h2>
+    <p>
+      Drafting is performed with AI assistance under human direction: source retrieval, structure and first drafts are
+      machine-produced, then reduced to what the sources actually support. Verification claims are limited to what is
+      true — figures are checked against the cited documents, and the review status of every tax rule is published.
+      Where review has not happened, the page says so rather than implying it has.
+    </p>
+
+    <h2>7 · Corrections</h2>
+    <p>
+      Errors are corrected on the page, logged on the <a href={href('/about/corrections')}>corrections page</a>, and
+      the article's updated date changes. A correction is treated as an improvement to the archive, not an embarrassment;
+      the alternative — quietly editing — is what destroys trust in financial writing.
+    </p>
+
+    <h2>8 · What the method cannot do</h2>
+    <p>
+      It cannot know your circumstances, cannot evaluate an unlisted product you are being shown, and cannot replace
+      the primary documents it cites. It is a map with the legend printed on it; the territory is the official sources.
+    </p>
+  </div>
+</BaseLayout>

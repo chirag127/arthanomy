@@ -1,0 +1,117 @@
+---
+title: Nominal Returns and the Inflation Toll
+description: 'A return that ignores inflation and tax is a half-truth. This article builds the arithmetic of real returns — the only figure that describes what your money will actually buy — with worked Indian examples.'
+shortTitle: The Inflation Toll
+category: investment-basics
+series: science-of-returns
+seriesOrder: 2
+topics: ['inflation', 'real return', 'purchasing power', 'CPI']
+tags: ['foundations', 'arithmetic', 'inflation']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 12
+keyTakeaways:
+  - 'Real return is not nominal minus inflation; it is (1 + nominal) divided by (1 + inflation) minus 1. The shortcut overstates by a small amount that compounds over decades.'
+  - 'The correct full sequence is nominal → after costs → after tax → after inflation. Skipping steps, especially tax, turns comfortable numbers into negative real ones.'
+  - 'CPI is a national average basket; your personal inflation on rent, education and healthcare may run well above headline CPI — plan with your basket, not the average.'
+  - 'For fixed-income investors in the 30% slab, a nominally safe 7% deposit with ~5% inflation can deliver a real, post-tax return at or below zero.'
+  - 'Inflation is the reason idle "safe" cash is a position, not the absence of one — it is a position that steadily loses purchasing power.'
+faqs:
+  - question: Should I use the exact formula or the simple subtraction for real return?
+    answer: 'Use the exact formula, (1 + nominal) / (1 + inflation) − 1, whenever you are compounding over multiple years or comparing alternatives precisely. Subtraction is a fast mental approximation that understates the real return when inflation is high.'
+  - question: Which inflation number should an investor track?
+    answer: 'Track both headline CPI and your own basket. Headline CPI from the statistics ministry is the comparable national benchmark; your personal rate depends on the weights of rent, food, education, healthcare and transport in your life, which in urban India typically make personal inflation run higher than the headline.'
+  - question: If my FD gives 7% and inflation is 5%, am I really only making 2%?
+    answer: 'Less than that — about 1.9% before tax under the exact formula. And once the interest is taxed at your marginal slab rate, a 30%-bracket investor typically nets a real return at or below zero. The number the bank advertises is the first line of the analysis, not the last.'
+  - question: Does gold protect against inflation?
+    answer: 'Over very long periods gold has roughly tracked general price levels in the currencies studied, with long stretches in either direction relative to that trend — it has not reliably outrun inflation in any single decade. It cannot be treated as a guaranteed inflation hedge; its role is diversification of exposure, not an inflation formula.'
+relatedCalculators:
+  - { id: real-return, label: Real Return Calculator }
+  - { id: inflation-erosion, label: Inflation Erosion Calculator }
+  - { id: nominal-vs-real, label: Nominal vs Real Return }
+  - { id: post-tax-return, label: Post-Tax Return Calculator }
+relatedArticles:
+  - what-an-investment-return-actually-is
+  - equity-long-term-capital-gains-and-section-112a
+glossaryTerms: [inflation, real-return, compounding, capital-gains]
+sources:
+  - { id: mospi-home, supports: 'Producer of India''s consumer and wholesale price indices — the national inflation benchmarks used here' }
+  - { id: rbi-handbook-statistics, supports: 'Historical context on interest rates and inflation used to illustrate real-rate ranges' }
+  - { id: rbi-home, supports: 'Monetary policy framework and the inflation target under which CPI is the nominal anchor' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+---
+
+Ask a bank customer what return their fixed deposit gives and you will hear "seven percent". Ask what that buys in five years and the conversation usually stops. Inflation is the quietest tax in finance: it is not deducted from your account, nobody sends you a statement for it, and it takes the largest share from those who feel safest.
+
+This article builds the arithmetic in the other direction — from the advertised number down to the only one that matters, purchasing power — and shows the arithmetic on ordinary Indian figures.
+
+## What inflation is, measured properly
+
+Inflation is the rate at which the general price level changes, measured from an index that tracks a (very large) basket of goods and services. India's consumer price index is produced by the statistics ministry and is the anchor of the monetary policy target; wholesale prices are tracked separately. The details of how the indices are built are in the sources at the end — the point for an investor is humbler and stronger: **the rupee is a measuring rod that shrinks**.
+
+A useful mental calibration: at 5% annual inflation, prices roughly double in 14–15 years, and ₹1 in twenty years buys what about 37 paise buys today. That single sentence — compounding works against you too — organises everything that follows.
+
+## The exact arithmetic of real return
+
+The most common error in personal finance is subtracting: "7% return, 5% inflation, so 2% real." The exact relationship is multiplicative, because inflation compounds on top of the nominal amount:
+
+$$ 1 + r_{\text{real}} = \frac{1 + r_{\text{nominal}}}{1 + i} $$
+
+So for 7% nominal and 5% inflation:
+
+$$ r_{\text{real}} = \frac{1.07}{1.05} - 1 \approx 1.90\% $$
+
+The subtraction shortcut said 2%; the exact answer is 1.9%. For a single year the difference looks like trivia. Compounded across 25 years of retirement planning, it silently shifts every projection.
+
+The order of operations matters even more than the formula. The honest sequence is:
+
+**nominal → after costs → after tax → after inflation**
+
+Each arrow removes something certain (costs, tax at applicable rates — the rates are dated facts, not forecasts). What remains is the *real, post-tax* return: the only number that describes what your money will buy.
+
+### Worked example: the proud 7% deposit
+
+A resident individual in the 30% marginal slab puts ₹1,00,000 in a one-year bank deposit paying 7%. The deposit's ₹7,000 of interest is taxed at slab rates, and surcharge where applicable — at the margin this frequently reaches an effective ~31.2% with surcharge and cess. After tax:
+
+- Interest received: ₹7,000
+- Tax at ~31.2%: −₹2,184
+- Net interest: ≈ ₹4,816, i.e. ≈ 4.8% on the original ₹1,00,000
+- With inflation at 5%: real return $= \frac{1.0482}{1.05} - 1 \approx -0.2\%$ for the year.
+
+The customer's money grew by 7% and bought slightly **less** than it would have bought a year earlier. The deposit was not a bad decision — it was a decision, and its honest label is capital preservation in nominal terms with a small real loss, purchased for certainty and liquidity. That is a legitimate purchase. It is not "earning 7%".
+
+### The double drag at a glance
+
+The same ₹1,00,000, three canvases, one year, inflation 5%:
+
+| Instrument (illustrative) | Nominal | After tax (~31.2% marginal) | After inflation |
+| --- | --- | --- | --- |
+| Bank deposit | 7.0% | ≈ 4.8% | ≈ −0.2% |
+| Debt mutual fund (held over 3 years, taxed at slab in this illustration) | 7.5% | ≈ 5.2% | ≈ +0.2% |
+| Listed equity, long-term via s.112A, 12.5% above exemption | 12.0% | ≈ 10.7% (before surcharge nuances) | ≈ +5.4% |
+
+*Illustrative arithmetic to show the shape of the stack, not a forecast of any instrument; tax rates shown are the dated rates in the tax reference, and the equity row assumes a gain above the annual exemption with STT paid.*
+
+The ordering is the point: tax bites hardest exactly where returns are contractual and predictable. Indian tax law, deliberately, gives its concession to equity — which carries the risk that fixed income does not. There is no free trade.
+
+## Your inflation is not the average inflation
+
+CPI is a national average basket. Urban households that rent, educate children privately and pay for healthcare out of pocket typically experience inflation well above the headline, because those components — rent, education, medical care — have historically risen faster than the index average. The statistics are published and checkable; what cannot be standardised is your basket.
+
+The practical response is not to abandon CPI — it is the only comparable benchmark — but to build the personal overlay: take the items that are large in *your* budget and track their actual price changes over years, not press headlines. A family whose two largest costs are rent and school fees should plan with a number above headline CPI, and will be right more often than not.
+
+## What this builds toward
+
+Three conclusions will recur throughout this site:
+
+1. **Every return claim should state the inflation assumption it survives.** A plan that works only if inflation stays benign is a plan with a hidden dependency.
+2. **"Safe" is a currency.** Bank deposits, small-savings and cash are safe *in rupees*, and the rupee is what is depreciating. Safety in purchasing power requires accepting volatility somewhere in the portfolio — there is no route around the trade.
+3. **The real rate is what the economy pays you for waiting.** When real rates across safe assets are near zero or negative, the market is telling long-term savers something uncomfortable, and every extra percent of return has to be earned through risk, skill, time or expense reduction. Nobody sells that framing, because it does not sell.
+
+The next article takes the compounding half of the story: what actually happens to money over twenty and thirty years once returns, taxes and inflation all compound at once — and why the order of the multiplications never matters but the missed steps always do.

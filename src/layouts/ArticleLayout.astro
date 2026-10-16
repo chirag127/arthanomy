@@ -1,0 +1,399 @@
+---
+/**
+ * ArticleLayout — the reading surface for every library article.
+ *
+ * Structure: breadcrumb trail, editorial masthead, optional product-status and
+ * warning bands, body with a sticky table of contents, then the required
+ * appendices (FAQs, glossary terms, calculators, related reading, sources,
+ * open questions) and series navigation.
+ */
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import DifficultyBadge from '../components/DifficultyBadge.astro';
+import SourceList from '../components/SourceList.astro';
+import Toc from '../components/Toc.astro';
+import ReadingProgress from '../components/ReadingProgress.astro';
+import { categoryMeta } from '../config/site';
+import { href, absoluteUrl } from '../lib/url';
+import { formatDate } from '../lib/format';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  series?: string | undefined;
+  seriesTitle?: string | undefined;
+  seriesOrder?: number | undefined;
+  difficulty: string;
+  kind: string;
+  status: string;
+  author: string;
+  publishedAt: Date;
+  updatedAt?: Date | undefined;
+  researchDate?: Date | undefined;
+  reviewedAt?: Date | undefined;
+  readingMinutes?: number | undefined;
+  keyTakeaways: string[];
+  faqs: { question: string; answer: string }[];
+  headings: Heading[];
+  sources: { id: string; supports?: string | undefined }[];
+  glossaryTerms: { id: string; term: string }[];
+  relatedCalculators: { id: string; label: string }[];
+  relatedArticles: {
+    id: string;
+    title: string;
+    description: string;
+    category?: string | undefined;
+    difficulty?: string | undefined;
+    readingMinutes?: number | undefined;
+  }[];
+  prev?: { id: string; title: string } | null | undefined;
+  next?: { id: string; title: string } | null | undefined;
+  warnings?: string[];
+  openQuestions?: string[];
+  applicablePeriods?: string[];
+  productStatus?: string | undefined;
+  dataConfidence?: string | undefined;
+  draft?: boolean;
+}
+
+const {
+  id,
+  title,
+  description,
+  category,
+  series,
+  seriesTitle,
+  seriesOrder,
+  difficulty,
+  kind,
+  status,
+  author,
+  publishedAt,
+  updatedAt,
+  researchDate,
+  reviewedAt,
+  readingMinutes,
+  keyTakeaways,
+  faqs,
+  headings,
+  sources,
+  glossaryTerms,
+  relatedCalculators,
+  relatedArticles,
+  prev,
+  next,
+  warnings = [],
+  openQuestions = [],
+  applicablePeriods = [],
+  productStatus,
+  dataConfidence,
+  draft = false,
+} = Astro.props;
+
+const cat = categoryMeta(category);
+const path = `/library/${id.replace(/\/index$/, '')}`;
+
+const crumbs = [
+  { label: 'Home', path: '/' },
+  { label: 'Library', path: '/library' },
+  { label: cat.shortName, path: `/library/category/${category}` },
+  ...(series && seriesTitle ? [{ label: seriesTitle, path: `/series/${series}` }] : []),
+  { label: title },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  datePublished: publishedAt.toISOString(),
+  ...(updatedAt ? { dateModified: updatedAt.toISOString() } : {}),
+  author: { '@type': 'Person', name: author, url: 'https://www.facebook.com/singhal127' },
+  publisher: { '@type': 'Organization', name: 'Arthanomy' },
+  mainEntityOfPage: absoluteUrl(path, Astro.site),
+  ...(cat ? { about: cat.name } : {}),
+};
+
+const confidenceLabel: Record<string, string> = {
+  high: 'High confidence — primary sources with dated evidence',
+  medium: 'Medium confidence — some figures are estimates or from secondary sources',
+  low: 'Low confidence — the evidence base is thin; treat figures as indicative',
+  unavailable: 'No reliable data available — figures are marked accordingly',
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  type="article"
+  publishedTime={publishedAt.toISOString()}
+  noindex={draft}
+  jsonLd={jsonLd}
+>
+  <ReadingProgress />
+
+  {
+    warnings.length > 0 && (
+      <div class="border-b border-[var(--color-caution-200)] bg-[var(--color-caution-50)] dark:border-[var(--color-caution-900)] dark:bg-[color-mix(in_srgb,var(--color-caution-950)_40%,transparent)]">
+        <div class="shell flex flex-col gap-1.5 py-3">
+          {warnings.map((warning) => (
+            <p class="m-0 flex items-start gap-2 text-sm leading-6 text-[var(--color-caution-900)] dark:text-[var(--color-caution-200)]">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mt-0.5 shrink-0" aria-hidden="true">
+                <path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span>{warning}</span>
+            </p>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  <header class="shell pt-8">
+    <Breadcrumbs crumbs={crumbs} />
+
+    <div class="mt-6 max-w-3xl">
+      <div class="flex flex-wrap items-center gap-2">
+        {seriesTitle && (
+          <a href={href(`/series/${series}`)} class="eyebrow no-underline hover:underline">
+            {seriesTitle}{seriesOrder ? ` · Part ${seriesOrder}` : ''}
+          </a>
+        )}
+        <DifficultyBadge difficulty={difficulty} />
+        {kind !== 'research' && <span class="badge badge-info">{kind.replace('-', ' ')}</span>}
+        {status !== 'published' && <span class="badge badge-caution">{status.replace('-', ' ')}</span>}
+      </div>
+
+      <h1 class="mt-3 font-serif text-[2.1rem] font-semibold leading-[1.15] tracking-tight text-[var(--color-ink-950)] sm:text-[2.5rem] dark:text-[var(--color-ink-50)]">
+        {title}
+      </h1>
+      <p class="mt-4 text-lg leading-8 text-[var(--color-ink-muted)]">{description}</p>
+
+      <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-[var(--color-ink-faint)]">
+        <span>By <span class="font-medium text-[var(--color-ink-muted)]">{author}</span></span>
+        <span>Published {formatDate(publishedAt)}</span>
+        {updatedAt && <span>Updated {formatDate(updatedAt)}</span>}
+        {researchDate && <span class="badge badge-neutral">Research {formatDate(researchDate)}</span>}
+        {reviewedAt && <span>Reviewed {formatDate(reviewedAt)}</span>}
+        {readingMinutes && <span>{readingMinutes} min read</span>}
+      </div>
+    </div>
+  </header>
+
+  {
+    productStatus && (
+      <div class="shell mt-6">
+        <p class="callout callout-note m-0">
+          <span class="callout-title">Product status</span>
+          {productStatus}
+        </p>
+      </div>
+    )
+  }
+
+  {
+    dataConfidence && (
+      <div class="shell mt-4">
+        <p class="m-0 text-xs text-[var(--color-ink-faint)]">
+          Data confidence: {confidenceLabel[dataConfidence] ?? dataConfidence}
+        </p>
+      </div>
+    )
+  }
+
+  <div class="shell mt-8 grid gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-10">
+    <div class="min-w-0 max-w-3xl">
+      {
+        keyTakeaways.length > 0 && (
+          <section class="card not-prose mb-8 border-l-4 border-l-[var(--color-brass-500)] p-5" aria-labelledby="takeaways-heading">
+            <h2 id="takeaways-heading" class="eyebrow m-0">
+              What this article establishes
+            </h2>
+            <ul class="mt-3 space-y-2 pl-0" role="list">
+              {keyTakeaways.map((point) => (
+                <li class="flex items-start gap-2.5 text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">
+                  <span class="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-brass-500)]" aria-hidden="true" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      <article class="article-body" data-article-body>
+        <slot />
+      </article>
+
+      {
+        faqs.length > 0 && (
+          <section class="not-prose mt-14" aria-labelledby="faq-heading">
+            <h2 id="faq-heading" class="font-serif text-2xl font-semibold">
+              Questions readers ask
+            </h2>
+            <div class="mt-4 divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+              {faqs.map((faq) => (
+                <details class="group py-3.5">
+                  <summary class="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                    <span class="font-sans text-[0.95rem] font-medium text-[var(--color-ink-body)]">{faq.question}</span>
+                    <span class="mt-0.5 shrink-0 text-[var(--color-ink-faint)] transition-transform group-open:rotate-45" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <p class="mt-2.5 max-w-2xl font-sans text-sm leading-6 text-[var(--color-ink-muted)]">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        glossaryTerms.length > 0 && (
+          <section class="not-prose mt-12" aria-labelledby="terms-heading">
+            <h2 id="terms-heading" class="eyebrow">
+              Terms used in this article
+            </h2>
+            <ul class="mt-3 flex flex-wrap gap-2" role="list">
+              {glossaryTerms.map((term) => (
+                <li>
+                  <a href={href(`/glossary#${term.id}`)} class="badge badge-neutral no-underline hover:border-[var(--color-brass-400)]">
+                    {term.term}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        relatedCalculators.length > 0 && (
+          <section class="not-prose mt-12" aria-labelledby="calculators-heading">
+            <h2 id="calculators-heading" class="eyebrow">
+              Run the numbers
+            </h2>
+            <div class="mt-3 grid gap-3 sm:grid-cols-2">
+              {relatedCalculators.map((calc) => (
+                <a href={href(`/calculators/${calc.id}`)} class="card card-hover flex items-center justify-between gap-3 p-3.5 no-underline">
+                  <span class="text-sm font-medium text-[var(--color-ink-body)]">{calc.label}</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shrink-0 text-[var(--color-brass-600)]" aria-hidden="true">
+                    <path d="M5 12h14m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        relatedArticles.length > 0 && (
+          <section class="not-prose mt-12" aria-labelledby="related-heading">
+            <h2 id="related-heading" class="eyebrow">
+              Continue reading
+            </h2>
+            <div class="mt-3 grid gap-3 sm:grid-cols-2">
+              {relatedArticles.map((article) => (
+                <a href={href(`/library/${article.id}`)} class="card card-hover block p-4 no-underline">
+                  <span class="font-serif text-[0.95rem] font-semibold leading-snug text-[var(--color-ink-950)] dark:text-[var(--color-ink-50)]">
+                    {article.title}
+                  </span>
+                  <span class="mt-1.5 block text-xs leading-5 text-[var(--color-ink-muted)] line-clamp-2">{article.description}</span>
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      <div class="mt-14">
+        <SourceList sources={sources} />
+      </div>
+
+      {
+        openQuestions.length > 0 && (
+          <section class="callout callout-note mt-12 not-prose" aria-labelledby="open-questions">
+            <h2 id="open-questions" class="callout-title">
+              Open questions
+            </h2>
+            <p class="m-0 text-sm">
+              This article does not resolve everything. The following questions remain open and are tracked in
+              the research queue:
+            </p>
+            <ul class="mt-2 space-y-1.5 text-sm">
+              {openQuestions.map((question) => (
+                <li class="m-0">{question}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        (prev || next) && (
+          <nav class="not-prose mt-12 grid gap-3 border-t border-[var(--color-border)] pt-6 sm:grid-cols-2" aria-label="Series navigation">
+            {prev ? (
+              <a href={href(`/library/${prev.id}`)} class="card card-hover block p-4 no-underline">
+                <span class="eyebrow">← Previous</span>
+                <span class="mt-1 block text-sm font-medium text-[var(--color-ink-body)]">{prev.title}</span>
+              </a>
+            ) : (
+              <span />
+            )}
+            {next && (
+              <a href={href(`/library/${next.id}`)} class="card card-hover block p-4 no-underline sm:text-right">
+                <span class="eyebrow">Next →</span>
+                <span class="mt-1 block text-sm font-medium text-[var(--color-ink-body)]">{next.title}</span>
+              </a>
+            )}
+          </nav>
+        )
+      }
+
+      <footer class="mt-12 border-t border-[var(--color-border)] pt-5 text-xs leading-5 text-[var(--color-ink-faint)]">
+        <p class="m-0">
+          Written by {author}. Found an error or an outdated figure?
+          <a href={href('/contact')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">Report a correction</a>
+          — corrections are logged publicly and the article's updated date is revised.
+        </p>
+      </footer>
+    </div>
+
+    <aside class="hidden lg:block">
+      <div class="sticky top-24 space-y-7">
+        <Toc headings={headings} />
+        {
+          applicablePeriods.length > 0 && (
+            <div>
+              <p class="eyebrow">Applies to</p>
+              <ul class="mt-2 space-y-1.5 text-xs leading-5 text-[var(--color-ink-muted)]" role="list">
+                {applicablePeriods.map((period) => (
+                  <li>{period}</li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        <div>
+          <p class="eyebrow">On this page</p>
+          <ul class="mt-2 space-y-1.5 text-xs leading-5" role="list">
+            <li><a href="#sources-heading" class="text-[var(--color-ink-muted)] no-underline hover:text-[var(--color-link)]">{sources.length} cited sources</a></li>
+            {faqs.length > 0 && <li><a href="#faq-heading" class="text-[var(--color-ink-muted)] no-underline hover:text-[var(--color-link)]">{faqs.length} reader questions</a></li>}
+            {relatedCalculators.length > 0 && <li><a href="#calculators-heading" class="text-[var(--color-ink-muted)] no-underline hover:text-[var(--color-link)]">{relatedCalculators.length} calculators</a></li>}
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+</BaseLayout>

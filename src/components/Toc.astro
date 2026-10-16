@@ -1,0 +1,77 @@
+---
+/**
+ * Toc — table of contents with scroll-spy.
+ *
+ * Headings come from Astro's render() result, so the list is generated from
+ * the real document rather than maintained by hand. Levels 2 and 3 are shown;
+ * level 4 stays in the document but out of the rail.
+ */
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+interface Props {
+  headings: Heading[];
+  label?: string;
+}
+const { headings, label = 'On this page' } = Astro.props;
+const shown = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{
+  shown.length >= 3 && (
+    <nav class="toc" aria-label={label}>
+      <p class="eyebrow">{label}</p>
+      <ul class="mt-2.5 space-y-1 border-l border-[var(--color-border)] text-sm" role="list">
+        {shown.map((heading) => (
+          <li>
+            <a
+              href={`#${heading.slug}`}
+              data-toc-link={heading.slug}
+              class:list={[
+                'block border-l-2 border-transparent py-1 no-underline leading-5 text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-link)]',
+                heading.depth === 2 ? '-ml-px pl-3' : '-ml-px pl-6 text-[0.82rem]',
+              ]}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<script>
+  (() => {
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
+    if (links.length === 0) return;
+    const byId = new Map(links.map((link) => [link.dataset.tocLink ?? '', link]));
+    const headings = links
+      .map((link) => document.getElementById(link.dataset.tocLink ?? ''))
+      .filter((el): el is HTMLElement => el !== null);
+    if (headings.length === 0) return;
+
+    const setActive = (id: string) => {
+      links.forEach((link) => {
+        const active = link.dataset.tocLink === id;
+        link.classList.toggle('border-[var(--color-accent)]', active);
+        link.classList.toggle('text-[var(--color-accent-strong)]', active);
+        link.classList.toggle('font-medium', active);
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        const first = visible[0];
+        if (first?.target.id && byId.has(first.target.id)) setActive(first.target.id);
+      },
+      { rootMargin: '-72px 0px -70% 0px', threshold: 0 },
+    );
+    headings.forEach((heading) => observer.observe(heading));
+  })();
+</script>

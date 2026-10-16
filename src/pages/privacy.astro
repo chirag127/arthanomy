@@ -1,0 +1,63 @@
+---
+/**
+ * /privacy — what the site does and does not collect.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+---
+
+<BaseLayout
+  title="Privacy"
+  description="Arthanomy collects no analytics, sets no tracking cookies and has no accounts. What is stored in your browser, and what the hosting layer sees."
+  path="/privacy"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">Privacy</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">Nothing about you is collected</h1>
+    <p class="mt-4 max-w-2xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      This is a static website. There is no backend, no database, no accounts and no analytics service. The list below
+      is exhaustive because the surface is small enough to be exhaustive.
+    </p>
+  </header>
+
+  <div class="shell article-body mt-8 max-w-3xl pb-16">
+    <h2>What is stored on your device</h2>
+    <ul>
+      <li><strong>Theme preference</strong> — one value (<code>light</code> or <code>dark</code>) in <code>localStorage</code> under the key <code>arthanomy-theme</code>, so the site opens in your chosen theme. Delete it any time; the site defaults to your system preference without it.</li>
+      <li><strong>Calculator inputs</strong> — reflected in the page URL so results can be shared. They never leave your browser.</li>
+    </ul>
+
+    <h2>What is not collected</h2>
+    <ul>
+      <li>No analytics, telemetry, pixels or session recording.</li>
+      <li>No cookies for tracking or advertising. No advertising at all.</li>
+      <li>No accounts, emails or forms — contact is by email, at your initiative.</li>
+      <li>No third-party fonts or scripts loaded from external servers; fonts are self-hosted.</li>
+    </ul>
+
+    <h2>Search</h2>
+    <p>
+      Site search runs on a locally-loaded index (Pagefind); queries are processed in your browser and are not sent
+      anywhere or stored.
+    </p>
+
+    <h2>What the hosting layer sees</h2>
+    <p>
+      The site is served by GitHub Pages. As with any web host, GitHub's servers process the request — IP address,
+      user agent, requested URL — as part of serving the page and under GitHub's own privacy statement. Arthanomy
+      operates no server logs of its own and receives no visitor-level data from GitHub.
+    </p>
+
+    <h2>Email</h2>
+    <p>
+      If you email <a href={`mailto:${site.author.email}`}>{site.author.email}</a>, the message and address are held in
+      order to reply, never published without consent, and never shared with third parties.
+    </p>
+
+    <h2>Children</h2>
+    <p>
+      The site is general research for adults making financial decisions and is not directed at children; no data is
+      collected from anyone of any age.
+    </p>
+  </div>
+</BaseLayout>

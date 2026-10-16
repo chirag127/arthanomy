@@ -1,0 +1,109 @@
+---
+/**
+ * /assets — the complete investment universe on one comparable grid.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AssetExplorer, { type AssetRow } from '../../components/AssetExplorer';
+import { assetGroups } from '../../config/site';
+import { href } from '../../lib/url';
+
+const assets = await getCollection('assets');
+
+const rows: AssetRow[] = assets.map((entry) => {
+  const d = entry.data;
+  return {
+    id: entry.id,
+    name: d.name,
+    group: d.group,
+    category: d.category,
+    oneLiner: d.oneLiner,
+    returnMechanism: d.returnMechanism,
+    expectedReturn: d.expectedReturn,
+    historicalReturnNote: d.historicalReturnNote,
+    volatility: d.volatility,
+    liquidity: d.liquidity,
+    lockIn: d.lockIn,
+    minimumInvestment: d.minimumInvestment,
+    taxTreatment: d.taxTreatment,
+    fees: d.fees,
+    inflationProtection: d.inflationProtection,
+    currencyExposure: d.currencyExposure,
+    counterpartyRisk: d.counterpartyRisk,
+    creditRisk: d.creditRisk,
+    regulatoryProtection: d.regulatoryProtection,
+    investorEligibility: d.investorEligibility,
+    operationalWorkload: d.operationalWorkload,
+    leverageEmbedded: d.leverageEmbedded,
+    complexity: d.complexity,
+    diversification: d.diversification,
+    evidenceQuality: d.evidenceQuality,
+    dataConfidence: d.dataConfidence,
+    risks: d.risks,
+    suitability: d.suitability,
+    commonMistakes: d.commonMistakes,
+    relatedCalculators: d.relatedCalculators,
+    illustrativeMetrics: d.illustrativeMetrics,
+  };
+});
+
+const byGroup = new Map(assetGroups.map((g) => [g.id, assets.filter((a) => a.data.group === g.id).length]));
+---
+
+<BaseLayout
+  title="Investment universe"
+  description={`${assets.length} legally accessible Indian investment avenues across ${assetGroups.length} groups — return mechanism, volatility, liquidity, protection, tax, fees and evidence quality on one grid.`}
+  path="/assets"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">The investment universe</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">Every avenue, on one comparable grid</h1>
+    <p class="mt-4 max-w-3xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      {assets.length} avenues — from savings deposits to venture funds — described with the same vocabulary:
+      how the return is produced, what can go wrong, who protects it, how it is taxed, and how strong the
+      evidence is. Expand any row for the full record.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      {
+        assetGroups.map((group) => (
+          <span class="badge badge-neutral">
+            {group.name} <span class="ml-1 font-mono text-2xs text-[var(--color-ink-faint)]">{byGroup.get(group.id) ?? 0}</span>
+          </span>
+        ))
+      }
+    </div>
+  </header>
+
+  <section class="shell mt-10 pb-16">
+    <AssetExplorer assets={rows} groups={[...assetGroups]} client:load />
+
+    <div class="mt-12 grid gap-5 lg:grid-cols-3">
+      <div class="card p-5">
+        <h2 class="eyebrow">How to read the columns</h2>
+        <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+          <strong class="font-medium text-[var(--color-ink-body)]">Volatility</strong> is the typical size of yearly
+          swings, not the chance of loss. <strong class="font-medium text-[var(--color-ink-body)]">Liquidity</strong>
+          is how quickly you can exit at a fair price. <strong class="font-medium text-[var(--color-ink-body)]">Protection</strong>
+          describes the legal regime — from statutory (deposit insurance, consumer protections) to unregulated-relative
+          (nothing specific applies).
+        </p>
+      </div>
+      <div class="card p-5">
+        <h2 class="eyebrow">Evidence quality</h2>
+        <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+          Avenues with a long public record and official statistics are rated <em>strong</em>. Avenues whose
+          economics rest on short histories, promoter projections or unverifiable claims are rated <em>limited</em> or
+          <em>weak</em> — those ratings are the most important column on this page.
+        </p>
+      </div>
+      <div class="card p-5">
+        <h2 class="eyebrow">No winners, by design</h2>
+        <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+          A fixed deposit and an early-stage venture fund are not comparable on a single score. This page informs
+          a decision; it does not make it. For structured comparisons of *returns* on a common basis, use the
+          <a href={href('/compare')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2"> comparison engine</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

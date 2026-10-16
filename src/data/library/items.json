@@ -1,0 +1,2483 @@
+[
+  {
+    "id": "graham-intelligent-investor",
+    "title": "The Intelligent Investor",
+    "authors": [
+      "Benjamin Graham"
+    ],
+    "year": 1949,
+    "publisher": "HarperBusiness (revised editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "value investing",
+      "margin of safety",
+      "Mr Market",
+      "defensive investor"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "The origin of the distinction between investment and speculation, and of the margin-of-safety principle. The chapters on Mr Market and on the defensive investor remain the clearest statement of why a private investor’s greatest advantage is the freedom not to act.",
+    "strengths": [
+      "Distinguishes price from value without requiring a forecast.",
+      "Argues for a mechanical, disciplined allocation between equity and bonds rather than market timing.",
+      "Chapter 8 on market fluctuations is the most useful thirty pages written for a retail investor."
+    ],
+    "limitations": [
+      "Written for a United States market and tax framework; the security-analysis examples are dated and the accounting practices discussed have changed.",
+      "The commentary in later editions is written by other authors and should be read as commentary, not as Graham.",
+      "The defensive-investor criteria as originally stated are now difficult to satisfy in most developed markets."
+    ],
+    "seriesIds": [
+      "equity-mastery",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "graham-dodd-security-analysis",
+    "title": "Security Analysis",
+    "authors": [
+      "Benjamin Graham",
+      "David L. Dodd"
+    ],
+    "year": 1934,
+    "publisher": "McGraw-Hill (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "fundamental analysis",
+      "financial statements",
+      "bond analysis",
+      "valuation"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The systematic treatment of how to analyse a security from its financial statements, including the parts of the analysis that have not changed: the treatment of non-recurring items, the meaning of book value, and the priority structure of a capital stack.",
+    "strengths": [
+      "Rigorous treatment of the difference between reported earnings and distributable earnings.",
+      "Extensive discussion of bond and preferred-stock analysis, which most modern equity-focused readers never encounter."
+    ],
+    "limitations": [
+      "The pre-1970 accounting conventions discussed differ materially from Indian Ind AS and IFRS practice.",
+      "Far longer than necessary for a reader seeking a working framework; the later essays and the Graham–Dodd summaries are more efficient entry points."
+    ],
+    "seriesIds": [
+      "equity-mastery",
+      "debt-encyclopedia"
+    ]
+  },
+  {
+    "id": "bogle-common-sense",
+    "title": "Common Sense on Mutual Funds",
+    "authors": [
+      "John C. Bogle"
+    ],
+    "year": 1999,
+    "publisher": "Wiley (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "index funds",
+      "costs",
+      "fund selection",
+      "market returns"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "The most complete argument that the arithmetic of active management is a zero-sum game before costs and a losing game after them. The chapters on cost are directly applicable to the Indian market, where expense-ratio dispersion between direct and regular plans is wide.",
+    "strengths": [
+      "Derives the cost drag from first principles rather than from a single study.",
+      "Treats fund selection empirically, including the weak persistence of past performance."
+    ],
+    "limitations": [
+      "Written for a market dominated by United States index funds; the Indian index-fund market is younger and its tracking records shorter.",
+      "Some structural arguments assume a level of investor protection and disclosure that varies by jurisdiction."
+    ],
+    "seriesIds": [
+      "mutual-fund-atlas",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "malkiel-random-walk",
+    "title": "A Random Walk Down Wall Street",
+    "authors": [
+      "Burton G. Malkiel"
+    ],
+    "year": 1973,
+    "publisher": "W. W. Norton (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "efficient markets",
+      "behavioural finance",
+      "asset allocation",
+      "index investing"
+    ],
+    "difficulty": "foundational",
+    "whyItMatters": "The accessible introduction to why price changes are close to unforecastable, together with a candid account of the historical bubbles that make the point. Successive editions contain data through their publication year, so the version matters.",
+    "strengths": [
+      "Bridges academic evidence and practical allocation advice.",
+      "The bubble histories are instructive without being moralistic."
+    ],
+    "limitations": [
+      "The efficient-market claim is stated more strongly than the evidence requires; the author later moderated it, and the edition used affects the argument.",
+      "United States-centric asset allocation advice."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "science-of-returns"
+    ]
+  },
+  {
+    "id": "ellis-winning-losers-game",
+    "title": "Winning the Loser’s Game",
+    "authors": [
+      "Charles D. Ellis"
+    ],
+    "year": 1985,
+    "publisher": "McGraw-Hill (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "active versus passive",
+      "time horizon",
+      "behaviour",
+      "investment policy"
+    ],
+    "difficulty": "foundational",
+    "whyItMatters": "The clearest short statement of why individual investors should define their game, write down a policy, and stop trying to win against professionals on their terms. Directly applicable to the Indian retail context, where turnover is high and holding periods short.",
+    "strengths": [
+      "Argues that the investor’s real problem is behaviour, not information.",
+      "Short enough to be read twice."
+    ],
+    "limitations": [
+      "Prescriptive in places about allocation percentages without deriving them.",
+      "Does not address the specific structural features of Indian investment products, such as the treatment of debt fund taxation."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "operating-a-portfolio"
+    ]
+  },
+  {
+    "id": "siegel-stocks-long-run",
+    "title": "Stocks for the Long Run",
+    "authors": [
+      "Jeremy J. Siegel"
+    ],
+    "year": 1994,
+    "publisher": "McGraw-Hill (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "long-run returns",
+      "equity premium",
+      "asset returns",
+      "inflation"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "Assembles long-run real returns across asset classes and makes the quantitative case for long-horizon equity ownership. The data appendixes are as valuable as the argument.",
+    "strengths": [
+      "Treats inflation and real returns explicitly rather than discussing nominal returns.",
+      "Documents the historical magnitude of drawdowns alongside the long-run averages."
+    ],
+    "limitations": [
+      "The long-run return figures come from a small number of independent, overlapping observations; the sample is far smaller than it appears.",
+      "The argument is sensitive to the starting valuation. Markets beginning at high multiples have historically delivered much lower subsequent returns."
+    ],
+    "seriesIds": [
+      "science-of-returns",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "dimson-marsh-staunton-triumph",
+    "title": "Triumph of the Optimists: 101 Years of Global Investment Returns",
+    "authors": [
+      "Elroy Dimson",
+      "Paul Marsh",
+      "Mike Staunton"
+    ],
+    "year": 2002,
+    "publisher": "Princeton University Press",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "long-run returns",
+      "survivorship bias",
+      "international markets",
+      "historical data"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The reference work on long-run asset returns across sixteen countries, constructed with explicit attention to the survivorship and selection problems that inflate naive historical return figures. Essential reading for anyone quoting a “long-run equity return”.",
+    "strengths": [
+      "Explicitly addresses the fact that surviving markets are a biased sample.",
+      "Provides real, inflation-adjusted return series rather than nominal ones."
+    ],
+    "limitations": [
+      "India is not among the covered markets, so the figures cannot be applied directly to Indian portfolios.",
+      "Ends in 2000; subsequent editions and the annual Global Investment Returns Yearbook extend the series."
+    ],
+    "seriesIds": [
+      "science-of-returns",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "ilmanen-expected-returns",
+    "title": "Expected Returns: An Investor’s Guide to Harvesting Market Rewards",
+    "authors": [
+      "Antti Ilmanen"
+    ],
+    "year": 2011,
+    "publisher": "Wiley",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "risk premia",
+      "asset allocation",
+      "value",
+      "momentum",
+      "carry",
+      "liquidity"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Organises every source of return into a taxonomy — risk premia, illiquidity premia, and the returns from rebalancing — and treats each with its evidence base. The most useful single volume for thinking about where a return must be coming from.",
+    "strengths": [
+      "Explicitly links each return source to the reason it exists and who is paying it.",
+      "Treats the practical obstacles (costs, capacity, behavioural failure) as part of the return."
+    ],
+    "limitations": [
+      "Dense and assumes quantitative comfort.",
+      "Most of the empirical work is on developed markets; the Indian evidence base is thinner and the premia may differ."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "high-return-alternatives"
+    ]
+  },
+  {
+    "id": "bernstein-four-pillars",
+    "title": "The Four Pillars of Investing",
+    "authors": [
+      "William J. Bernstein"
+    ],
+    "year": 2002,
+    "publisher": "McGraw-Hill",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "portfolio theory",
+      "market history",
+      "psychology",
+      "investment industry"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "Covers, in one volume, the four things an investor has to understand: theory, history, psychology and the business of finance. The fourth pillar — the structural conflict between what is good for the industry and what is good for the investor — is the one most often missing from other books.",
+    "strengths": [
+      "Treats the financial industry as a commercial enterprise with its own economics.",
+      "Explains the mathematics of diversification without requiring calculus."
+    ],
+    "limitations": [
+      "The psychology section is a summary rather than an original treatment.",
+      "United States tax and product landscape throughout."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "mutual-fund-atlas"
+    ]
+  },
+  {
+    "id": "bernstein-intelligent-asset-allocator",
+    "title": "The Intelligent Asset Allocator",
+    "authors": [
+      "William J. Bernstein"
+    ],
+    "year": 2000,
+    "publisher": "McGraw-Hill",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "asset allocation",
+      "rebalancing",
+      "efficient frontier",
+      "portfolio construction"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "A practical construction manual for multi-asset portfolios, including the arguments for rebalancing and the honest observation that optimisation on historical inputs is fragile.",
+    "strengths": [
+      "Shows the arithmetic of rebalancing and its limits.",
+      "Candid about the reliability of the inputs."
+    ],
+    "limitations": [
+      "Predates the widespread availability of low-cost index funds in many markets, so the instrument recommendations are dated."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "operating-a-portfolio"
+    ]
+  },
+  {
+    "id": "swensen-unconventional-success",
+    "title": "Unconventional Success: A Fundamental Approach to Personal Investment",
+    "authors": [
+      "David F. Swensen"
+    ],
+    "year": 2005,
+    "publisher": "Free Press",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "asset allocation",
+      "mutual fund fees",
+      "non-profit governance",
+      "market efficiency"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "Written by an endowment manager who argues that individual investors should do almost nothing of what his own institution does, because they lack his institution’s access, scale and time horizon. An unusually honest book about the limits of the author’s own method.",
+    "strengths": [
+      "Makes the case for broad diversification and against the products sold to retail investors, from inside the industry.",
+      "Treats fees as a first-order rather than second-order problem."
+    ],
+    "limitations": [
+      "The recommended allocation is calibrated to United States instruments.",
+      "The critique of active management is aimed at a specific market structure."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "mutual-fund-atlas"
+    ]
+  },
+  {
+    "id": "marks-most-important-thing",
+    "title": "The Most Important Thing: Uncommon Sense for the Thoughtful Investor",
+    "authors": [
+      "Howard Marks"
+    ],
+    "year": 2011,
+    "publisher": "Columbia University Press",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "cycle awareness",
+      "risk",
+      "second-level thinking",
+      "contrarianism"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "The best available treatment of risk as the probability of permanent loss rather than as volatility, and of the market cycle as a psychological rather than a mechanical phenomenon.",
+    "strengths": [
+      "Defines risk in terms of outcomes rather than price fluctuations.",
+      "The memos collected in the book reward re-reading at different points in a cycle."
+    ],
+    "limitations": [
+      "Prescriptive about temperament and light on method. It tells you what to think about, not what to do.",
+      "Distilling credit-investing wisdom into equity practice requires translation the book does not always provide."
+    ],
+    "seriesIds": [
+      "equity-mastery",
+      "high-return-alternatives"
+    ]
+  },
+  {
+    "id": "kahneman-thinking-fast-slow",
+    "title": "Thinking, Fast and Slow",
+    "authors": [
+      "Daniel Kahneman"
+    ],
+    "year": 2011,
+    "publisher": "Farrar, Straus and Giroux",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "behavioural economics",
+      "loss aversion",
+      "framing",
+      "decision-making"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "The authoritative account of the cognitive biases that produce poor financial decisions, written by the researcher who established most of them. Loss aversion, anchoring and the planning fallacy are not curiosities — they explain specific, repeated investor behaviour.",
+    "strengths": [
+      "Written by the primary researcher rather than a populariser.",
+      "Distinguishes between demonstrated effects and speculative extensions."
+    ],
+    "limitations": [
+      "Contains effects from the replication-crisis era that have since been revised or weakened; the book itself predates the full reckoning and in places relies on priming studies that did not replicate well.",
+      "Not about investing; the application has to be made by the reader."
+    ],
+    "seriesIds": [
+      "fraud-investor-protection",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "taleb-black-swan",
+    "title": "The Black Swan: The Impact of the Highly Improbable",
+    "authors": [
+      "Nassim Nicholas Taleb"
+    ],
+    "year": 2007,
+    "publisher": "Random House (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "tail risk",
+      "fat tails",
+      "model risk",
+      "uncertainty"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "A sustained argument that the distribution of financial outcomes has fatter tails than the models used to manage it, and that model-based risk measures systematically understate the probability of ruin.",
+    "strengths": [
+      "Makes the fat-tail argument accessible without mathematics.",
+      "Forceful about the difference between the risk that can be measured and the uncertainty that cannot."
+    ],
+    "limitations": [
+      "Repetitive, and the tone obscures the analytical content for some readers.",
+      "Offers a strong critique of statistical modelling and comparatively little constructive method for an investor who must still allocate capital."
+    ],
+    "seriesIds": [
+      "high-return-alternatives",
+      "derivatives-lab"
+    ]
+  },
+  {
+    "id": "malkiel-ellis-elements",
+    "title": "The Elements of Investing",
+    "authors": [
+      "Burton G. Malkiel",
+      "Charles D. Ellis"
+    ],
+    "year": 2010,
+    "publisher": "Wiley",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "saving",
+      "indexing",
+      "diversification",
+      "behaviour"
+    ],
+    "difficulty": "foundational",
+    "whyItMatters": "Short enough to give to someone who will not read anything longer, and it contains the whole argument: save, index, diversify, ignore the noise, and start early.",
+    "strengths": [
+      "Exceptional ratio of useful content to length.",
+      "The chapter on saving rates as the dominant variable early in a career is genuinely useful."
+    ],
+    "limitations": [
+      "Too brief to serve as a reference.",
+      "Assumes access to low-cost index funds, which in India requires knowing which products those are."
+    ],
+    "seriesIds": [
+      "science-of-returns",
+      "mutual-fund-atlas"
+    ]
+  },
+  {
+    "id": "housel-psychology-of-money",
+    "title": "The Psychology of Money",
+    "authors": [
+      "Morgan Housel"
+    ],
+    "year": 2020,
+    "publisher": "Harriman House",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "behaviour",
+      "reasonable over rational",
+      "saving",
+      "long horizons"
+    ],
+    "difficulty": "foundational",
+    "whyItMatters": "The clearest contemporary statement that financial outcomes are driven by behaviour over decades rather than by analytical skill, and that doing nothing is a strategy.",
+    "strengths": [
+      "The argument for “reasonable” behaviour over mathematically optimal behaviour is directly actionable.",
+      "Case histories are used to illustrate mechanisms rather than to prove claims."
+    ],
+    "limitations": [
+      "Anecdotal in structure. It persuades and does not substantiate, and should be read alongside quantitative material.",
+      "Little guidance on the specific instruments an Indian investor has available."
+    ],
+    "seriesIds": [
+      "science-of-returns",
+      "operating-a-portfolio"
+    ]
+  },
+  {
+    "id": "greenblatt-stock-market-genius",
+    "title": "You Can Be a Stock Market Genius",
+    "authors": [
+      "Joel Greenblatt"
+    ],
+    "year": 1997,
+    "publisher": "Touchstone",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "special situations",
+      "spin-offs",
+      "mergers",
+      "restructurings",
+      "rights issues"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The standard text on special situations: spin-offs, rights offerings, mergers and recapitalisations. These are the corner of the market where structural selling pressure is most likely to create a genuine mispricing — and the closest analogue to the demerger and rights-issue situations in India.",
+    "strengths": [
+      "Explains the mechanism of why forced sellers create opportunity, which is the generalisable insight.",
+      "Includes the arithmetic of rights-issue participation."
+    ],
+    "limitations": [
+      "Deal structures and disclosure requirements are United States-specific; Indian corporate actions work differently in several material respects.",
+      "The strategies require position sizes and holding periods that may not suit a small portfolio."
+    ],
+    "seriesIds": [
+      "high-return-alternatives",
+      "equity-mastery"
+    ]
+  },
+  {
+    "id": "schilit-financial-shenanigans",
+    "title": "Financial Shenanigans: How to Detect Accounting Gimmicks and Fraud in Financial Reports",
+    "authors": [
+      "Howard M. Schilit",
+      "Jeremy Perler"
+    ],
+    "year": 1993,
+    "publisher": "McGraw-Hill (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "forensic accounting",
+      "earnings management",
+      "cash flow analysis",
+      "red flags"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "A taxonomy of the specific techniques by which financial statements misrepresent performance, organised by the cash-flow statement, the income statement and the balance sheet. Directly applicable to pre-IPO and promoter-driven Indian listed companies.",
+    "strengths": [
+      "Organised as detection, not just description: each technique is paired with the check that exposes it.",
+      "Uses real enforcement cases rather than hypothetical examples."
+    ],
+    "limitations": [
+      "Built around United States disclosure and enforcement; Indian reporting standards and enforcement patterns differ in form but not in the underlying incentives.",
+      "Case studies predate Indian Ind AS adoption, so the specific line items referenced differ."
+    ],
+    "seriesIds": [
+      "equity-mastery",
+      "fraud-investor-protection"
+    ]
+  },
+  {
+    "id": "hull-options-futures",
+    "title": "Options, Futures and Other Derivatives",
+    "authors": [
+      "John C. Hull"
+    ],
+    "year": 1988,
+    "publisher": "Pearson (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "derivatives pricing",
+      "no-arbitrage",
+      "greeks",
+      "risk management",
+      "credit risk"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "The standard graduate reference for derivative pricing. The chapters on binomial trees, Black-Scholes mechanics, the Greeks and margin are the source material for everything on this site about options.",
+    "strengths": [
+      "Derives rather than asserts; the assumptions behind each model are stated explicitly.",
+      "Covers the practical mechanics — margin, settlement, clearing — alongside the theory."
+    ],
+    "limitations": [
+      "Priced and pitched as a textbook; the mathematics is not avoidable in the later chapters.",
+      "Index and stock option conventions described are those of the Chicago markets; Indian contract specifications differ in exercise style, lot size and settlement."
+    ],
+    "seriesIds": [
+      "derivatives-lab",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "natenberg-option-volatility",
+    "title": "Option Volatility and Pricing",
+    "authors": [
+      "Sheldon Natenberg"
+    ],
+    "year": 1988,
+    "publisher": "McGraw-Hill (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "volatility",
+      "option strategies",
+      "spreads",
+      "market making",
+      "risk"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "The practitioner’s counterpart to Hull: how volatility is actually traded, how a market maker thinks about inventory and skew, and why a strategy with a high win rate can carry an unbounded loss.",
+    "strengths": [
+      "Takes the trader’s view of volatility as the tradable quantity.",
+      "Explains spread and skew behaviour without requiring a stochastic-calculus background."
+    ],
+    "limitations": [
+      "Assumes access to a professional market-making context; the execution conditions described are not available to a retail participant.",
+      "United States options conventions dominate the examples."
+    ],
+    "seriesIds": [
+      "derivatives-lab"
+    ]
+  },
+  {
+    "id": "fabozzi-bond-markets",
+    "title": "Bond Markets, Analysis and Strategies",
+    "authors": [
+      "Frank J. Fabozzi"
+    ],
+    "year": 1989,
+    "publisher": "Pearson (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "bond valuation",
+      "duration",
+      "convexity",
+      "securitisation",
+      "credit analysis"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The comprehensive treatment of fixed-income analytics: pricing, yield measures, the term structure, embedded options, credit analysis and securitisation. The chapters on duration and convexity are the reference for this site’s bond calculators.",
+    "strengths": [
+      "Careful about conventions: day counts, accrued interest and yield measures are distinguished rather than conflated.",
+      "Covers instruments — securitised debt, structured notes, credit derivatives — that generalist investors encounter and usually misprice."
+    ],
+    "limitations": [
+      "Institutional orientation; a retail investor cannot execute most of the strategies discussed.",
+      "Market conventions and instrument availability for Indian credit are not covered."
+    ],
+    "seriesIds": [
+      "debt-encyclopedia",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "grinold-kahn-active-portfolio",
+    "title": "Active Portfolio Management: A Quantitative Approach for Producing Superior Returns and Controlling Risk",
+    "authors": [
+      "Richard C. Grinold",
+      "Ronald N. Kahn"
+    ],
+    "year": 1994,
+    "publisher": "McGraw-Hill (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "active management",
+      "information ratio",
+      "factor models",
+      "portfolio construction",
+      "transaction costs"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "The quantitative framework of active management: the fundamental law of active management, the trade-off between skill and breadth, and the treatment of transaction costs as an intrinsic part of portfolio construction rather than an afterthought.",
+    "strengths": [
+      "Makes the conditions under which skill can overcome cost explicit and testable.",
+      "The treatment of transaction costs and capacity is unusually honest for a book on active management."
+    ],
+    "limitations": [
+      "Requires regression and optimisation familiarity.",
+      "Framework assumes an institutional opportunity set; a retail investor’s feasible active positions are far fewer, which weakens the breadth term on which everything depends."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "operating-a-portfolio"
+    ]
+  },
+  {
+    "id": "damodaran-investment-valuation",
+    "title": "Investment Valuation: Tools and Techniques for Determining the Value of Any Asset",
+    "authors": [
+      "Aswath Damodaran"
+    ],
+    "year": 1996,
+    "publisher": "Wiley (later editions)",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "valuation",
+      "discounted cash flow",
+      "relative valuation",
+      "cost of capital"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "The most complete practical treatment of valuation. Its central argument — that valuation is a set of stories disciplined by numbers, and that every multiple implies a set of forecasts — is the discipline behind this site’s refusal to present valuation as a formula.",
+    "strengths": [
+      "Derives multiples rather than quoting them, so their assumptions become visible.",
+      "Explicitly addresses emerging-market inputs, including country risk premia."
+    ],
+    "limitations": [
+      "Very long; the later editions are reference volumes rather than reading material.",
+      "Emerging-market data inputs for India are aggregated and may understate the dispersion between Indian sectors."
+    ],
+    "seriesIds": [
+      "equity-mastery",
+      "private-markets-playbook"
+    ]
+  },
+  {
+    "id": "aswath-damodaran-little-book-valuation",
+    "title": "The Little Book of Valuation",
+    "authors": [
+      "Aswath Damodaran"
+    ],
+    "year": 2011,
+    "publisher": "Wiley",
+    "type": "book",
+    "region": "international",
+    "subjects": [
+      "valuation",
+      "earnings multiples",
+      "intrinsic value"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "The condensed form of the same framework, suitable for an investor who wants to reason about intrinsic value without a three-year research programme.",
+    "strengths": [
+      "Short, and preserves the discipline of making assumptions explicit.",
+      "Worked examples across sectors."
+    ],
+    "limitations": [
+      "Inevitably omits the treatment of complex capital structures, financial companies and companies with negative earnings."
+    ],
+    "seriesIds": [
+      "equity-mastery"
+    ]
+  },
+  {
+    "id": "mukherjea-unusual-billionaires",
+    "title": "The Unusual Billionaires",
+    "authors": [
+      "Saurabh Mukherjea"
+    ],
+    "year": 2016,
+    "publisher": "Penguin India",
+    "type": "book",
+    "region": "india",
+    "subjects": [
+      "Indian equity",
+      "quality companies",
+      "return on capital",
+      "company case studies"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "Indian company case studies organised around return on capital and revenue growth, rather than around price momentum. Useful as a set of worked examples of what an Indian high-quality compounder looks like on the financial statements.",
+    "strengths": [
+      "Indian companies, Indian accounting, Indian competitive structures.",
+      "The selection criteria are stated explicitly and can be applied by the reader."
+    ],
+    "limitations": [
+      "The framework was derived by looking at companies that succeeded, which makes it partly a description of the past rather than a test of a hypothesis.",
+      "Several featured companies subsequently experienced slower growth or governance questions — worth tracking, and a reason to treat case studies as illustrations rather than templates."
+    ],
+    "seriesIds": [
+      "equity-mastery"
+    ]
+  },
+  {
+    "id": "mukherjea-coffee-can-investing",
+    "title": "Coffee Can Investing: The Low Risk Route to Stupendous Wealth",
+    "authors": [
+      "Saurabh Mukherjea",
+      "Rakshit Ranjan",
+      "Pranab Uniyal"
+    ],
+    "year": 2018,
+    "publisher": "Penguin India",
+    "type": "book",
+    "region": "india",
+    "subjects": [
+      "Indian equity",
+      "long-term holding",
+      "portfolio rules",
+      "backtesting"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "States a simple, mechanical Indian equity screening rule and reports its backtest. Valuable less for the conclusion than for the exercise: the reader can see exactly what a backtest assumes and where the survivorship and look-ahead questions arise.",
+    "strengths": [
+      "Explicit, reproducible screening criteria.",
+      "Indian data throughout, including the demonstration that a mechanical rule would have avoided several well-known failures."
+    ],
+    "limitations": [
+      "Backtests over a period when Indian mid-caps as a group re-rated upwards, so part of the reported outperformance reflects multiple expansion that may not repeat.",
+      "The screening criteria are applied to data that was not available in the form used at the time."
+    ],
+    "seriesIds": [
+      "equity-mastery",
+      "high-return-alternatives"
+    ]
+  },
+  {
+    "id": "nair-bulls-bears-beasts",
+    "title": "Bulls, Bears and Other Beasts: A Story of the Indian Stock Market",
+    "authors": [
+      "Santosh Nair"
+    ],
+    "year": 2014,
+    "publisher": "Pan Macmillan India",
+    "type": "book",
+    "region": "india",
+    "subjects": [
+      "Indian market history",
+      "Harshad Mehta scandal",
+      "Ketan Parekh scandal",
+      "market microstructure"
+    ],
+    "difficulty": "foundational",
+    "whyItMatters": "An accessible history of the Indian equity market from the 1980s, told through the scandals that shaped its regulation. Necessary background for understanding why the Indian market’s structures — the broker model, the settlement system, the role of the regulator — developed as they did.",
+    "strengths": [
+      "Connects specific episodes to specific regulatory changes.",
+      "Explains the pre-reform market mechanics that most contemporary investors have never encountered."
+    ],
+    "limitations": [
+      "Journalistic rather than documentary; it should be read alongside the enforcement orders and committee reports themselves."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "fraud-investor-protection"
+    ]
+  },
+  {
+    "id": "dalal-basu-the-scam",
+    "title": "The Scam: Who Won, Who Lost, Who Got Away",
+    "authors": [
+      "Sucheta Dalal",
+      "Debashis Basu"
+    ],
+    "year": 1993,
+    "publisher": "UBS Publishers (later editions)",
+    "type": "book",
+    "region": "india",
+    "subjects": [
+      "securities fraud",
+      "market regulation",
+      "Harshad Mehta scandal",
+      "bank receipts"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "The original account of the 1992 securities scam, written by the journalists who exposed it. The mechanism — the misuse of bank receipts in the government securities market — is a case study in how a settlement system used by legitimate participants can be turned into a fraud engine.",
+    "strengths": [
+      "Documentary and specific about mechanism rather than personality.",
+      "Explains the bank-receipt mechanics that made the fraud possible."
+    ],
+    "limitations": [
+      "Witness-account journalism; the definitive legal record is in the subsequent judicial proceedings.",
+      "The institutional landscape has changed substantially, though the underlying failure mode has not."
+    ],
+    "seriesIds": [
+      "fraud-investor-protection",
+      "indian-financial-system"
+    ]
+  },
+  {
+    "id": "kaul-bad-money",
+    "title": "Bad Money: Inside the NPA Mess and How It Threatens the Indian Banking System",
+    "authors": [
+      "Vivek Kaul"
+    ],
+    "year": 2018,
+    "publisher": "HarperCollins India",
+    "type": "book",
+    "region": "india",
+    "subjects": [
+      "banking",
+      "non-performing assets",
+      "credit cycle",
+      "corporate lending"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "An account of how Indian bank lending between 2004 and 2014 produced the non-performing asset problem, and how the resolution framework (IBC, asset reconstruction, write-offs) actually worked in practice.",
+    "strengths": [
+      "Uses public disclosures — annual reports, RBI data, parliamentary answers — rather than impressions.",
+      "Explains the difference between restructuring, provisioning and write-off, which are frequently confused."
+    ],
+    "limitations": [
+      "Some analysis of specific corporate groups is journalistic and has been contested in litigation; use it as a starting point for primary documents rather than a final verdict."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "debt-encyclopedia"
+    ]
+  },
+  {
+    "id": "shah-thomas-gorham-indian-financial-markets",
+    "title": "India’s Financial Markets: An Insider’s Guide to How the Markets Work",
+    "authors": [
+      "Ajay Shah",
+      "Susan Thomas",
+      "Michael Gorham"
+    ],
+    "year": 2008,
+    "publisher": "Elsevier",
+    "type": "book",
+    "region": "india",
+    "subjects": [
+      "market microstructure",
+      "Indian equity market",
+      "derivatives",
+      "bond market",
+      "regulatory architecture"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The most rigorous available description of how Indian financial markets are actually structured — clearing, settlement, the role of exchanges, and the institutional design choices that determine liquidity and cost.",
+    "strengths": [
+      "Conceptual rather than descriptive: it explains why the market is structured as it is.",
+      "Covers the derivative and currency markets in addition to equity."
+    ],
+    "limitations": [
+      "Published in 2008; the payment, settlement and regulatory infrastructure has changed substantially since. Read it for the frameworks and verify current specifics."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "operating-a-portfolio"
+    ]
+  },
+  {
+    "id": "paper-markowitz-1952",
+    "title": "Portfolio Selection",
+    "authors": [
+      "Harry M. Markowitz"
+    ],
+    "year": 1952,
+    "publisher": "The Journal of Finance, Vol. 7, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "portfolio theory",
+      "diversification",
+      "mean-variance",
+      "covariance"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The founding paper of modern portfolio theory. It establishes that the risk of a portfolio depends on the covariances between its assets and not only on their individual variances — the single most consequential idea in portfolio construction, and the reason diversification is not merely prudence.",
+    "strengths": [
+      "Formalises the return-and-variance trade-off that every allocation decision implicitly makes.",
+      "Introduces the efficient frontier."
+    ],
+    "limitations": [
+      "Assumes returns can be described by mean and variance alone, which requires either normality or a quadratic utility function.",
+      "Requires covariance inputs that are estimated with substantial error — a problem the paper does not address and that later work shows dominates the optimiser’s output."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "paper-sharpe-1964-capm",
+    "title": "Capital Asset Prices: A Theory of Market Equilibrium under Conditions of Risk",
+    "authors": [
+      "William F. Sharpe"
+    ],
+    "year": 1964,
+    "publisher": "The Journal of Finance, Vol. 19, No. 3",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "CAPM",
+      "beta",
+      "market equilibrium",
+      "risk premium"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "Establishes that in equilibrium only systematic risk should be compensated, giving beta its central role in finance. Everything on this site that discusses beta, alpha or the equity risk premium descends from this framework.",
+    "strengths": [
+      "Provides a testable prediction about the relationship between expected return and market exposure.",
+      "Introduces the security market line."
+    ],
+    "limitations": [
+      "Empirical tests have found the relationship between beta and realised return to be flatter than predicted, and the model fails to explain the size and value effects documented later.",
+      "Assumes frictionless borrowing at the risk-free rate."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "science-of-returns"
+    ]
+  },
+  {
+    "id": "paper-sharpe-1966",
+    "title": "Mutual Fund Performance",
+    "authors": [
+      "William F. Sharpe"
+    ],
+    "year": 1966,
+    "publisher": "The Journal of Business, Vol. 39, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "fund performance",
+      "risk-adjusted return",
+      "Sharpe ratio"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "Introduces the reward-to-variability ratio now known as the Sharpe ratio, and applies it to mutual fund returns — establishing the analytical convention that a return must be judged against the risk taken.",
+    "strengths": [
+      "Makes risk adjustment operational with a simple, transparent statistic.",
+      "Provides one of the earliest systematic fund performance studies."
+    ],
+    "limitations": [
+      "Uses total volatility, penalising upside and downside equally.",
+      "Fund performance evaluation on small samples is statistically weak, a point later work (notably by Fama and French) made far more forcefully."
+    ],
+    "seriesIds": [
+      "science-of-returns",
+      "mutual-fund-atlas"
+    ]
+  },
+  {
+    "id": "paper-jensen-1968",
+    "title": "The Performance of Mutual Funds in the Period 1945–1964",
+    "authors": [
+      "Michael C. Jensen"
+    ],
+    "year": 1968,
+    "publisher": "The Journal of Finance, Vol. 23, No. 2",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "fund performance",
+      "alpha",
+      "CAPM",
+      "active management"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "Introduces alpha as the intercept of a regression of excess fund returns on market excess returns, and reports that the funds studied did not outperform after adjusting for risk and expenses.",
+    "strengths": [
+      "Defines alpha in a way that remains standard.",
+      "Provides an early, clear negative result on active management."
+    ],
+    "limitations": [
+      "The sample period and universe predate the modern Indian fund industry entirely.",
+      "Alpha estimates are sensitive to the benchmark chosen and to the sample length."
+    ],
+    "seriesIds": [
+      "mutual-fund-atlas",
+      "science-of-returns"
+    ]
+  },
+  {
+    "id": "paper-fama-french-1992",
+    "title": "The Cross-Section of Expected Stock Returns",
+    "authors": [
+      "Eugene F. Fama",
+      "Kenneth R. French"
+    ],
+    "year": 1992,
+    "publisher": "The Journal of Finance, Vol. 47, No. 2",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "value premium",
+      "size effect",
+      "factor models",
+      "cross-section"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Documents that market beta does not explain the cross-section of returns and that firm size and book-to-market equity do. The paper that made factor investing the dominant frame for how returns are attributed.",
+    "strengths": [
+      "Robust across a long sample and multiple specifications.",
+      "Directly challenges the CAPM’s central prediction."
+    ],
+    "limitations": [
+      "The underlying economic explanation for the value premium remains contested — risk compensation, mispricing and a distressed-firm artefact all have evidence.",
+      "Coefficients are estimated on United States data; the size and value premium in India has a shorter and noisier record."
+    ],
+    "seriesIds": [
+      "equity-mastery",
+      "portfolio-theory",
+      "science-of-returns"
+    ]
+  },
+  {
+    "id": "paper-fama-french-1993",
+    "title": "Common Risk Factors in the Returns on Stocks and Bonds",
+    "authors": [
+      "Eugene F. Fama",
+      "Kenneth R. French"
+    ],
+    "year": 1993,
+    "publisher": "Journal of Financial Economics, Vol. 33, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "three-factor model",
+      "SMB",
+      "HML",
+      "factor regressions"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Builds the three-factor model — market, size and value — that became the standard attribution benchmark. Any claim that a strategy earned a return above the market must be tested against size and value before it can be called skill.",
+    "strengths": [
+      "Turns the earlier cross-sectional result into a usable regression model.",
+      "Provides the standard benchmark for judging fund performance."
+    ],
+    "limitations": [
+      "Leaves the underlying economic rationale for the factors open.",
+      "Systematic re-specification risk: the model was extended to five factors in 2015, demonstrating the fragility of the approach."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "mutual-fund-atlas"
+    ]
+  },
+  {
+    "id": "paper-fama-french-2004",
+    "title": "The Capital Asset Pricing Model: Theory and Evidence",
+    "authors": [
+      "Eugene F. Fama",
+      "Kenneth R. French"
+    ],
+    "year": 2004,
+    "publisher": "Journal of Economic Perspectives, Vol. 18, No. 3",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "CAPM",
+      "empirical tests",
+      "anomalies"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The cleanest sustained critique of the CAPM by two authors who had spent their careers testing it. Essential for any Indian reader who is told, without qualification, that beta measures investment risk.",
+    "strengths": [
+      "Reviews the empirical anomalies systematically.",
+      "Distinguishes the model’s theoretical appeal from its empirical failure."
+    ],
+    "limitations": [
+      "Proposes the three-factor model as the alternative without resolving its economic foundation.",
+      "Does not address emerging-market evidence."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "paper-black-1972",
+    "title": "Capital Market Equilibrium with Restricted Borrowing",
+    "authors": [
+      "Fischer Black"
+    ],
+    "year": 1972,
+    "publisher": "The Journal of Business, Vol. 45, No. 3",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "CAPM",
+      "leverage constraints",
+      "two-fund separation"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Shows how the CAPM changes when investors cannot borrow at the risk-free rate, producing the zero-beta variant of the model and demonstrating that the model’s conclusions depend on its market-structure assumptions rather than on its logic alone.",
+    "strengths": [
+      "Makes the role of the borrowing assumption explicit.",
+      "A model of how to investigate a theory’s assumptions rather than its conclusions."
+    ],
+    "limitations": [
+      "Highly technical.",
+      "The empirical differences it predicts are difficult to separate from estimation error."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "paper-banz-1981",
+    "title": "The Relationship Between Return and Market Value of Common Stocks",
+    "authors": [
+      "Rolf W. Banz"
+    ],
+    "year": 1981,
+    "publisher": "Journal of Financial Economics, Vol. 9, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "size effect",
+      "small-cap",
+      "cross-section"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "The first documented size effect: small-capitalisation stocks earned higher risk-adjusted returns than large ones over the sample period. The origin of every subsequent claim about a small-cap premium — and of the argument about whether that premium survives costs and measurement.",
+    "strengths": [
+      "Simple, transparent methodology.",
+      "Sparked a substantial literature on whether the effect is real, persistent or an artefact."
+    ],
+    "limitations": [
+      "The small-cap premium has weakened or disappeared in later samples, particularly after accounting for illiquidity and transaction costs.",
+      "Small, illiquid stocks are difficult to trade without impacting the price, which is precisely what makes the documented premium difficult to capture."
+    ],
+    "seriesIds": [
+      "equity-mastery",
+      "high-return-alternatives"
+    ]
+  },
+  {
+    "id": "paper-jegadeesh-titman-1993",
+    "title": "Returns to Buying Winners and Selling Losers: Implications for Stock Market Efficiency",
+    "authors": [
+      "Narasimhan Jegadeesh",
+      "Sheridan Titman"
+    ],
+    "year": 1993,
+    "publisher": "The Journal of Finance, Vol. 48, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "momentum",
+      "cross-section",
+      "behavioural finance"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Documents the momentum effect: stocks that performed well over three to twelve months continued to outperform over the following months. The most robust cross-sectional anomaly, and the one most hostile to the efficient-market account.",
+    "strengths": [
+      "Large effect that has survived out-of-sample testing in many markets.",
+      "Distinct from the value effect and not explained by it."
+    ],
+    "limitations": [
+      "Momentum experiences severe crashes at market turning points — the risk is concentrated in recoveries from bear markets.",
+      "High turnover makes the strategy cost-sensitive, and the effect is substantially reduced in tradable form."
+    ],
+    "seriesIds": [
+      "high-return-alternatives",
+      "equity-mastery"
+    ]
+  },
+  {
+    "id": "paper-carhart-1997",
+    "title": "On Persistence in Mutual Fund Performance",
+    "authors": [
+      "Mark M. Carhart"
+    ],
+    "year": 1997,
+    "publisher": "The Journal of Finance, Vol. 52, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "momentum factor",
+      "fund persistence",
+      "four-factor model"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Adds momentum as the fourth factor and shows that apparent fund outperformance is largely explained by exposure to the size, value and momentum factors, with the remainder tending to be negative after costs.",
+    "strengths": [
+      "Demonstrates that apparent skill is often factor exposure.",
+      "Introduces the four-factor model still used as a standard benchmark."
+    ],
+    "limitations": [
+      "The conclusion about persistence is sensitive to the benchmark used.",
+      "The “hot hands” question that originally motivated the research has not been fully settled."
+    ],
+    "seriesIds": [
+      "mutual-fund-atlas",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "paper-merton-1974",
+    "title": "On the Pricing of Corporate Debt: The Risk Structure of Interest Rates",
+    "authors": [
+      "Robert C. Merton"
+    ],
+    "year": 1974,
+    "publisher": "The Journal of Finance, Vol. 29, No. 2",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "credit risk",
+      "structural models",
+      "default",
+      "corporate debt"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Reformulates corporate debt as a put option on the firm’s assets, relating credit spread to leverage and asset volatility. The structural foundation of credit pricing and the link between the equity and credit markets.",
+    "strengths": [
+      "Provides an economic mechanism for default rather than assuming it.",
+      "Explains why credit spread should depend on leverage and volatility."
+    ],
+    "limitations": [
+      "Assumes the firm defaults only at debt maturity and that asset value is observable and continuous.",
+      "The contemporaneous dying-letter alternative — reduced-form models — fits observed spreads better, and the two have been reconciled only partly."
+    ],
+    "seriesIds": [
+      "debt-encyclopedia",
+      "derivatives-lab"
+    ]
+  },
+  {
+    "id": "paper-black-cox-1976",
+    "title": "Valuing Corporate Securities: Some Effects of Bond Indenture Provisions",
+    "authors": [
+      "Fischer Black",
+      "John C. Cox"
+    ],
+    "year": 1976,
+    "publisher": "The Journal of Finance, Vol. 31, No. 2",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "default barrier",
+      "bond covenants",
+      "credit risk"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Extends the structural approach by allowing default to occur when the firm’s value falls below a barrier at any time rather than only at maturity, and shows that safety covenants act as a partial guarantee.",
+    "strengths": [
+      "Realistically models default as a boundary-crossing event.",
+      "Explains the value of covenant protection."
+    ],
+    "limitations": [
+      "Still assumes continuous observability of firm value and no jump risk.",
+      "Parameter calibration on real firms is difficult."
+    ],
+    "seriesIds": [
+      "debt-encyclopedia"
+    ]
+  },
+  {
+    "id": "paper-longstaff-schwartz-1995",
+    "title": "A Simple Approach to Valuing Risky Fixed and Floating Rate Debt",
+    "authors": [
+      "Francis A. Longstaff",
+      "Eduardo S. Schwartz"
+    ],
+    "year": 1995,
+    "publisher": "The Journal of Finance, Vol. 50, No. 3",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "credit spread",
+      "reduced-form models",
+      "floating rate debt"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "A tractable closed-form credit model that produces a term structure of credit spreads. Useful for understanding why a five-year bond and a one-year bond of the same issuer can trade at very different spreads.",
+    "strengths": [
+      "Closed-form solution makes the relationship between spread, recovery and maturity transparent.",
+      "Handles floating-rate debt, which structural models handle awkwardly."
+    ],
+    "limitations": [
+      "Assumes exogenous default intensity and independence between the default process and interest rates, both of which are empirically false."
+    ],
+    "seriesIds": [
+      "debt-encyclopedia"
+    ]
+  },
+  {
+    "id": "paper-duffie-singleton-1999",
+    "title": "Modeling Term Structures of Defaultable Bonds",
+    "authors": [
+      "Darrell Duffie",
+      "Kenneth J. Singleton"
+    ],
+    "year": 1999,
+    "publisher": "The Review of Financial Studies, Vol. 12, No. 4",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "credit risk",
+      "default intensity",
+      "rating transitions"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Reconciles the reduced-form credit approach with rating transitions and recovery, providing the framework underlying how spread and recovery assumptions are jointly estimated in practice.",
+    "strengths": [
+      "Jointly models default intensity and recovery, showing that the two cannot be identified independently from price data alone.",
+      "Explains why observed spreads embed a risk premium above expected loss."
+    ],
+    "limitations": [
+      "Assumes that recovery and default timing can be treated with the conventions it specifies, which is an approximation.",
+      "Requires significant data and estimation machinery for a practical application."
+    ],
+    "seriesIds": [
+      "debt-encyclopedia"
+    ]
+  },
+  {
+    "id": "paper-vasicek-1977",
+    "title": "An Equilibrium Characterization of the Term Structure",
+    "authors": [
+      "Oldrich Vasicek"
+    ],
+    "year": 1977,
+    "publisher": "Journal of Financial Economics, Vol. 5, No. 2",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "yield curve",
+      "mean reversion",
+      "interest rate models"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "The first tractable model of the term structure with mean reversion in the short rate, producing closed-form bond prices. The baseline against which all later interest-rate models are described.",
+    "strengths": [
+      "Analytically convenient and economically intuitive, with mean reversion and an explicit market price of risk.",
+      "Explains why long rates move less than short rates."
+    ],
+    "limitations": [
+      "Permits negative interest rates, which the author regarded as a defect but which modern markets have made empirically relevant.",
+      "Assumes a single factor explains the entire curve, contradicting the observed behaviour of level, slope and curvature."
+    ],
+    "seriesIds": [
+      "debt-encyclopedia",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "paper-cox-ingersoll-ross-1985",
+    "title": "A Theory of the Term Structure of Interest Rates",
+    "authors": [
+      "John C. Cox",
+      "Jonathan E. Ingersoll",
+      "Stephen A. Ross"
+    ],
+    "year": 1985,
+    "publisher": "Econometrica, Vol. 53, No. 2",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "yield curve",
+      "general equilibrium",
+      "interest rate models"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Derives the term structure from underlying economic assumptions rather than positing a process, and produces a square-root diffusion that prevents negative rates.",
+    "strengths": [
+      "General-equilibrium derivation provides an economic interpretation of the market price of risk.",
+      "The non-negativity property was regarded as essential for decades."
+    ],
+    "limitations": [
+      "Produces a downward-sloping real term structure in its baseline calibration.",
+      "Single-factor structure has the same limitations as Vasicek."
+    ],
+    "seriesIds": [
+      "debt-encyclopedia",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "paper-black-litterman-1992",
+    "title": "Global Portfolio Optimization",
+    "authors": [
+      "Fischer Black",
+      "Robert Litterman"
+    ],
+    "year": 1992,
+    "publisher": "Financial Analysts Journal, Vol. 48, No. 5",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "asset allocation",
+      "Bayesian methods",
+      "estimation error"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Addresses the central practical problem of portfolio optimisation: that mean-variance optimisation on estimated returns produces extreme, unstable weights. Combines equilibrium returns with investor views in a Bayesian framework to stabilise the output.",
+    "strengths": [
+      "Directly confronts the estimation-error problem rather than ignoring it.",
+      "Produces allocations that are recognisably reasonable when the inputs are weakly held views."
+    ],
+    "limitations": [
+      "Simply relocates the judgment problem into the choice of views and the confidence assigned to them.",
+      "The equilibrium starting point relies on market capitalisation weights and a reverse-optimised risk premium, both of which require assumptions."
+    ],
+    "seriesIds": [
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "paper-michaud-1989",
+    "title": "The Markowitz Optimization Enigma: Is Optimized Optimal?",
+    "authors": [
+      "Richard O. Michaud"
+    ],
+    "year": 1989,
+    "publisher": "Financial Analysts Journal, Vol. 45, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "optimisation",
+      "estimation error",
+      "portfolio construction"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The clearest statement of why optimisers fail in practice: they maximise the effect of estimation error, and the resulting weights are systematically biased toward assets with favourable estimation noise, most of which does not persist.",
+    "strengths": [
+      "Demonstrates the problem with resampling rather than argument.",
+      "Introduces the concept of the error-maximisation property."
+    ],
+    "limitations": [
+      "Provides a diagnosis more compelling than the remedies it suggests.",
+      "Does not quantify how much of the practical failure is estimation error as opposed to non-stationarity."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "high-return-alternatives"
+    ]
+  },
+  {
+    "id": "paper-demiguel-garlappi-uppal-2009",
+    "title": "Optimal Versus Naive Diversification: How Inefficient is the 1/N Portfolio Strategy?",
+    "authors": [
+      "Victor DeMiguel",
+      "Lorenzo Garlappi",
+      "Raman Uppal"
+    ],
+    "year": 2009,
+    "publisher": "The Review of Financial Studies, Vol. 22, No. 5",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "optimisation",
+      "equal weight",
+      "estimation error",
+      "out-of-sample testing"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Shows that across many datasets and settings, the naive equally-weighted portfolio frequently outperforms fourteen optimised alternatives out of sample. A sobering and widely replicated result.",
+    "strengths": [
+      "Out-of-sample methodology rather than in-sample fit.",
+      "Directly comparable across many models."
+    ],
+    "limitations": [
+      "Equal weighting is a benchmark, not a recommendation; it ignores differences in risk and in the investor’s circumstances.",
+      "Transaction costs are modelled but not exhaustively."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "operating-a-portfolio"
+    ]
+  },
+  {
+    "id": "paper-shleifer-vishny-1997",
+    "title": "The Limits of Arbitrage",
+    "authors": [
+      "Andrei Shleifer",
+      "Robert W. Vishny"
+    ],
+    "year": 1997,
+    "publisher": "The Journal of Finance, Vol. 52, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "arbitrage",
+      "market efficiency",
+      "agency",
+      "mispricing"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Explains why mispricings can persist: arbitrage requires capital, capital is supplied by agents who are evaluated over short horizons, and a mispricing that worsens temporarily can force the arbitrageur to liquidate at the worst time. The theory that makes “the market is wrong” a coherent claim without requiring irrationality.",
+    "strengths": [
+      "Provides a mechanism for persistent mispricing without abandoning rationality.",
+      "Explains the behaviour of professional arbitrageurs in crises."
+    ],
+    "limitations": [
+      "The framework is better at explaining persistence than at identifying which mispricings will correct and when."
+    ],
+    "seriesIds": [
+      "high-return-alternatives",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "paper-grossman-stiglitz-1980",
+    "title": "On the Impossibility of Informationally Efficient Markets",
+    "authors": [
+      "Sanford J. Grossman",
+      "Joseph E. Stiglitz"
+    ],
+    "year": 1980,
+    "publisher": "The American Economic Review, Vol. 70, No. 3",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "market efficiency",
+      "information",
+      "equilibrium"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Establishes that markets cannot be perfectly efficient, because if prices revealed all information nobody would be paid to gather it. The paradox at the heart of the efficient-markets debate, and the reason efficiency and profitable research can coexist.",
+    "strengths": [
+      "Resolves an apparent contradiction in the efficient-market hypothesis.",
+      "Provides a theoretical basis for the existence of a return to research."
+    ],
+    "limitations": [
+      "Implication is that markets must be inefficient to some degree, not that a particular investor can exploit the inefficiency profitably."
+    ],
+    "seriesIds": [
+      "portfolio-theory",
+      "equity-mastery"
+    ]
+  },
+  {
+    "id": "paper-kyle-1985",
+    "title": "Continuous Auctions and Insider Trading",
+    "authors": [
+      "Albert S. Kyle"
+    ],
+    "year": 1985,
+    "publisher": "Econometrica, Vol. 53, No. 6",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "market microstructure",
+      "liquidity",
+      "price impact",
+      "informed trading"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "The foundational model of how private information is gradually incorporated into prices through trading, and of how market makers set prices to recover losses to informed traders. The basis for understanding liquidity and price impact.",
+    "strengths": [
+      "Derives the linear price-impact relationship empirically observed in markets.",
+      "Provides the theoretical basis for why liquidity is a priced risk."
+    ],
+    "limitations": [
+      "Assumes continuous trading and a specific information structure.",
+      "Real markets have discrete auctions, order-type heterogeneity and circuit breakers not represented in the model."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "paper-modigliani-miller-1958",
+    "title": "The Cost of Capital, Corporation Finance and the Theory of Investment",
+    "authors": [
+      "Franco Modigliani",
+      "Merton H. Miller"
+    ],
+    "year": 1958,
+    "publisher": "The American Economic Review, Vol. 48, No. 3",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "capital structure",
+      "cost of capital",
+      "corporate finance"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Shows that in the absence of taxes, bankruptcy costs and other frictions, the value of a firm is independent of how it is financed. The result matters because it identifies precisely which frictions — above all, the tax deduction for interest — make capital structure consequential.",
+    "strengths": [
+      "Establishes that a seemingly important decision is irrelevant under stated assumptions, which forces attention onto the frictions that matter.",
+      "Provides the framework for analysing leverage."
+    ],
+    "limitations": [
+      "The tax deduction for interest means the irrelevance result does not describe actual corporate behaviour.",
+      "Financial distress costs and information asymmetries are substantial in the small and mid-cap segment where Indian investors are active."
+    ],
+    "seriesIds": [
+      "financial-mathematics",
+      "equity-mastery"
+    ]
+  },
+  {
+    "id": "paper-asness-moskowitz-pedersen-2013",
+    "title": "Value and Momentum Everywhere",
+    "authors": [
+      "Clifford S. Asness",
+      "Tobias J. Moskowitz",
+      "Lasse H. Pedersen"
+    ],
+    "year": 2013,
+    "publisher": "The Journal of Finance, Vol. 68, No. 3",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "value",
+      "momentum",
+      "international evidence",
+      "factors"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Documents value and momentum premia across eight markets and multiple asset classes, establishing that these are not artefacts of the United States equity market. The strongest available evidence that the two are pervasive.",
+    "strengths": [
+      "Multi-market, multi-asset evidence is far stronger than single-market results.",
+      "Shows value and momentum are negatively correlated, which makes combining them attractive."
+    ],
+    "limitations": [
+      "Emerging markets are included but India’s presence in the sample and its weight are limited.",
+      "Implementation requires shorting in many of the reported strategies, which most Indian retail investors cannot do."
+    ],
+    "seriesIds": [
+      "high-return-alternatives",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "paper-frazzini-pedersen-2014",
+    "title": "Betting Against Beta",
+    "authors": [
+      "Andrea Frazzini",
+      "Lasse H. Pedersen"
+    ],
+    "year": 2014,
+    "publisher": "Journal of Financial Economics, Vol. 111, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "low-volatility anomaly",
+      "leverage constraints",
+      "beta"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Documents that high-beta assets have delivered lower risk-adjusted returns than low-beta assets, and attributes the anomaly to constraints on leverage: investors who want more risk cannot borrow cheaply, so they bid up high-beta assets instead.",
+    "strengths": [
+      "Offers an equilibrium explanation rather than a behavioural one.",
+      "Documented across many markets and asset classes."
+    ],
+    "limitations": [
+      "The leveraged long-short portfolios used in the paper are not accessible to most retail investors.",
+      "Low-volatility strategies have underperformed in rising markets and can be sensitive to rate regimes."
+    ],
+    "seriesIds": [
+      "high-return-alternatives",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "paper-novy-marx-2013",
+    "title": "The Other Side of Value: The Gross Profitability Premium",
+    "authors": [
+      "Robert Novy-Marx"
+    ],
+    "year": 2013,
+    "publisher": "Journal of Financial Economics, Vol. 108, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "profitability",
+      "quality",
+      "value",
+      "factors"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Shows that gross profits scaled by assets predicts returns and explains much of what was attributed to the value premium, establishing profitability as a distinct factor. The research basis for quality and profitability screens.",
+    "strengths": [
+      "Simple, transparent measure of profitability.",
+      "Helped resolve part of the value premium’s empirical instability."
+    ],
+    "limitations": [
+      "Gross profitability ignores capital structure and is not a measure of value creation for equity holders.",
+      "Profitability measures derived from accounting data are vulnerable to accounting quality problems, which are material in smaller Indian companies."
+    ],
+    "seriesIds": [
+      "equity-mastery",
+      "high-return-alternatives"
+    ]
+  },
+  {
+    "id": "paper-harvey-liu-zhu-2016",
+    "title": "… and the Cross-Section of Expected Returns",
+    "authors": [
+      "Campbell R. Harvey",
+      "Yan Liu",
+      "He Zhu"
+    ],
+    "year": 2016,
+    "publisher": "The Review of Financial Studies, Vol. 29, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "multiple testing",
+      "p-hacking",
+      "factor zoo",
+      "research methodology"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Demonstrates that the hundreds of published return predictors cannot all be genuine, because the multiple-testing problem means a conventional significance threshold is far too lenient. Essential context for evaluating any factor-based product sold to retail investors.",
+    "strengths": [
+      "Quantifies the multiple-testing problem in finance specifically.",
+      "Proposes a higher hurdle for statistical significance."
+    ],
+    "limitations": [
+      "The corrected thresholds imply that very few published factors qualify, including some with substantial out-of-sample support — the method may itself be too strict."
+    ],
+    "seriesIds": [
+      "high-return-alternatives",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "paper-mclean-pontiff-2016",
+    "title": "Does Academic Research Destroy Stock Return Predictability?",
+    "authors": [
+      "R. David McLean",
+      "Jeffrey Pontiff"
+    ],
+    "year": 2016,
+    "publisher": "The Journal of Finance, Vol. 71, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "factor decay",
+      "publication bias",
+      "market efficiency"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Finds that published anomalies have smaller returns after publication than before, with a decline of roughly a third out of sample. The quantitative version of the observation that a widely known strategy stops working.",
+    "strengths": [
+      "Directly measures post-publication decay across many predictors.",
+      "Relevant to any investor considering a rules-based strategy that is publicly documented."
+    ],
+    "limitations": [
+      "Post-publication decay has several possible causes, including the correction of statistical errors rather than arbitrage.",
+      "Does not imply all anomalies vanish; some persist."
+    ],
+    "seriesIds": [
+      "high-return-alternatives"
+    ]
+  },
+  {
+    "id": "paper-hou-xue-zhang-2020",
+    "title": "Replicating Anomalies",
+    "authors": [
+      "Kewei Hou",
+      "Chen Xue",
+      "Lu Zhang"
+    ],
+    "year": 2020,
+    "publisher": "The Review of Financial Studies, Vol. 33, No. 5",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "replication",
+      "anomalies",
+      "microcaps",
+      "methodology"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Attempts to replicate 452 published anomalies and finds that the large majority are not robust once microcaps are excluded and value-weighting is used. The most important caution available on the fragility of the documented factor literature.",
+    "strengths": [
+      "Systematic replication at scale.",
+      "Identifies the specific methodological choices that produce most of the apparent effects."
+    ],
+    "limitations": [
+      "Microcap-inclusive results are not necessarily wrong for all investors; they are wrong for investors who cannot trade microcaps at scale.",
+      "Replication failure in one specification does not prove a predictor is not real."
+    ],
+    "seriesIds": [
+      "high-return-alternatives",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "paper-barber-odean-2000",
+    "title": "Trading Is Hazardous to Your Wealth: The Common Stock Investment Performance of Individual Investors",
+    "authors": [
+      "Brad M. Barber",
+      "Terrance Odean"
+    ],
+    "year": 2000,
+    "publisher": "The Journal of Finance, Vol. 55, No. 2",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "retail behaviour",
+      "turnover",
+      "overconfidence",
+      "performance"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "Studies a large brokerage sample and finds that the households trading the most earned substantially lower net returns than those trading least, with the difference larger than the transaction costs alone can explain. The empirical basis for the claim that retail trading destroys value.",
+    "strengths": [
+      "Large, direct sample of actual retail accounts rather than survey responses.",
+      "Separates gross and net performance to isolate the cost of trading."
+    ],
+    "limitations": [
+      "United States sample from the 1990s, now dated.",
+      "Findings on overconfidence have been partly re-examined in the replication literature, although the core result on turnover is robust."
+    ],
+    "seriesIds": [
+      "operating-a-portfolio",
+      "high-return-alternatives"
+    ]
+  },
+  {
+    "id": "paper-barberis-thaler-2003",
+    "title": "A Survey of Behavioral Finance",
+    "authors": [
+      "Nicholas Barberis",
+      "Richard Thaler"
+    ],
+    "year": 2003,
+    "publisher": "Handbook of the Economics of Finance, Elsevier",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "behavioural finance",
+      "prospect theory",
+      "limits to arbitrage",
+      "mispricing"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "The systematic survey connecting cognitive biases to asset pricing: which biases have been documented, how they might aggregate into prices rather than cancelling out, and what the limits to arbitrage are.",
+    "strengths": [
+      "Organises the field rather than presenting a single result.",
+      "Explicit about which findings rest on strong evidence and which do not."
+    ],
+    "limitations": [
+      "Predates the replication crisis in behavioural research; some of the underlying findings have since been weakened.",
+      "Weak on how an investor should act on the framework."
+    ],
+    "seriesIds": [
+      "fraud-investor-protection",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "paper-shiller-1981",
+    "title": "Do Stock Prices Move Too Much to be Justified by Subsequent Changes in Dividends?",
+    "authors": [
+      "Robert J. Shiller"
+    ],
+    "year": 1981,
+    "publisher": "The American Economic Review, Vol. 71, No. 3",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "volatility",
+      "excess volatility",
+      "market efficiency",
+      "valuation"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Shows that aggregate stock price volatility substantially exceeds the volatility of subsequently realised dividends, which is difficult to reconcile with a constant-discount-rate present-value model. The origin of the excess-volatility literature and of CAPE-based valuation analysis.",
+    "strengths": [
+      "A testable implication derived from a standard valuation identity.",
+      "The result survives with more recent data, although the interpretation is contested."
+    ],
+    "limitations": [
+      "Can be reconciled with rational pricing by allowing time-varying expected returns or discount rates, which is the mainstream resolution.",
+      "Does not by itself establish that a mispricing can be exploited."
+    ],
+    "seriesIds": [
+      "science-of-returns",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "paper-merton-1973",
+    "title": "Theory of Rational Option Pricing",
+    "authors": [
+      "Robert C. Merton"
+    ],
+    "year": 1973,
+    "publisher": "The Bell Journal of Economics and Management Science, Vol. 4, No. 1",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "option pricing",
+      "no-arbitrage",
+      "continuous hedging",
+      "dividends"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Establishes that option pricing follows from no-arbitrage alone, without requiring assumptions about investor preferences, and extends the framework to dividends, American exercise and other contract features.",
+    "strengths": [
+      "Makes the arbitrage argument explicit and preference-free.",
+      "Provides the extension to the cases that the original Black-Scholes formulation did not cover."
+    ],
+    "limitations": [
+      "Requires continuous hedging and frictionless markets.",
+      "The dividend and early-exercise extensions still require substantial assumptions about the process."
+    ],
+    "seriesIds": [
+      "derivatives-lab",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "paper-black-scholes-1973",
+    "title": "The Pricing of Options and Corporate Liabilities",
+    "authors": [
+      "Fischer Black",
+      "Myron S. Scholes"
+    ],
+    "year": 1973,
+    "publisher": "The Journal of Political Economy, Vol. 81, No. 3",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "option pricing",
+      "continuous hedging",
+      "volatility"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Derives the option pricing formula that made organised option markets viable, and shows that the option price depends on the volatility of the underlying rather than on its expected return — which is why implied volatility rather than expected direction is the trading quantity.",
+    "strengths": [
+      "Provides a replicating portfolio whose cost must equal the option price.",
+      "Made the modern options market possible."
+    ],
+    "limitations": [
+      "Assumes constant volatility, which the volatility smile falsifies empirically.",
+      "Assumes frictionless continuous hedging."
+    ],
+    "seriesIds": [
+      "derivatives-lab",
+      "financial-mathematics"
+    ]
+  },
+  {
+    "id": "paper-kahneman-tversky-1979",
+    "title": "Prospect Theory: An Analysis of Decision under Risk",
+    "authors": [
+      "Daniel Kahneman",
+      "Amos Tversky"
+    ],
+    "year": 1979,
+    "publisher": "Econometrica, Vol. 47, No. 2",
+    "type": "paper",
+    "region": "international",
+    "subjects": [
+      "loss aversion",
+      "reference dependence",
+      "decision theory",
+      "behavioural finance"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "Replaces expected-utility theory with a descriptive account of how people actually decide: relative to a reference point, asymmetrically between gains and losses, and with distorted probability weights. The foundation of every behavioural explanation of investor error in this library.",
+    "strengths": [
+      "Fits experimental behaviour far better than expected utility.",
+      "The loss-aversion and reference-dependence components have extensive subsequent support."
+    ],
+    "limitations": [
+      "Probability weighting — particularly the overweighting of small probabilities — is the component most affected by later replication questions.",
+      "Experimental findings have been challenged for using small, non-representative samples."
+    ],
+    "seriesIds": [
+      "fraud-investor-protection",
+      "science-of-returns"
+    ]
+  },
+  {
+    "id": "paper-badarinza-campbell-ramadorai-2016",
+    "title": "International Comparative Household Finance",
+    "authors": [
+      "Cristian Badarinza",
+      "John Y. Campbell",
+      "Tarun Ramadorai"
+    ],
+    "year": 2016,
+    "publisher": "Annual Review of Economics, Vol. 8",
+    "type": "paper",
+    "region": "both",
+    "subjects": [
+      "household finance",
+      "India",
+      "participation",
+      "asset allocation"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "One of the few rigorous comparative studies that places Indian household financial behaviour in an international frame, examining participation rates, portfolio composition and the role of real estate, gold and informal credit. Directly relevant to any argument about the Indian investor’s allocation.",
+    "strengths": [
+      "Comparable measures across countries rather than single-country impressions.",
+      "Treats gold and informal arrangements as part of the portfolio rather than as anomalies."
+    ],
+    "limitations": [
+      "Aggregate survey data masks the enormous variation between Indian states and income groups.",
+      "Publication date limits coverage of post-2016 developments, including demonetisation effects, the growth of mutual fund participation and account aggregation."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "doc-rbi-annual-report",
+    "title": "Reserve Bank of India Annual Report",
+    "authors": [
+      "Reserve Bank of India"
+    ],
+    "publisher": "Reserve Bank of India",
+    "type": "official-document",
+    "region": "india",
+    "subjects": [
+      "monetary policy",
+      "banking",
+      "financial stability",
+      "regulation"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The central bank’s own account of the year, including its assessment of credit growth, asset quality, and the state of each regulated sector. The primary source for most claims about the Indian credit cycle.",
+    "strengths": [
+      "Primary source with detailed annexures of statistical tables.",
+      "Covers regulated entities comprehensively."
+    ],
+    "limitations": [
+      "Published with a lag and written for a specialist audience.",
+      "Some supervisory detail is disclosed only in aggregate."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "debt-encyclopedia"
+    ]
+  },
+  {
+    "id": "doc-rbi-fsr",
+    "title": "Reserve Bank of India Financial Stability Report",
+    "authors": [
+      "Reserve Bank of India"
+    ],
+    "publisher": "Reserve Bank of India (published periodically)",
+    "type": "official-document",
+    "region": "india",
+    "subjects": [
+      "systemic risk",
+      "bank capital",
+      "stress testing",
+      "non-bank finance"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "Publishes the central bank’s own stress-test results for banks and non-bank financial companies, including assumed shock scenarios. The most direct published evidence on how the Indian financial system would behave under stress.",
+    "strengths": [
+      "Includes the assumed shocks, so the scenarios can be evaluated.",
+      "Covers non-banking financial companies and mutual funds in addition to banks."
+    ],
+    "limitations": [
+      "Stress tests are only as good as their scenarios, and published tests have historically been less severe than actual downturns.",
+      "Findings are presented in aggregate, which conceals the distribution across individual entities."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "p2p-first-principles"
+    ]
+  },
+  {
+    "id": "doc-sebi-annual-report",
+    "title": "SEBI Annual Report",
+    "authors": [
+      "Securities and Exchange Board of India"
+    ],
+    "publisher": "Securities and Exchange Board of India",
+    "type": "official-document",
+    "region": "india",
+    "subjects": [
+      "securities regulation",
+      "enforcement",
+      "market development",
+      "investor protection"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The regulator’s account of market activity, enforcement actions and regulatory changes. Enforcement statistics in particular are the evidence base for any assessment of how actively prohibited conduct is prosecuted.",
+    "strengths": [
+      "Primary source for regulatory changes and their stated rationale.",
+      "Enforcement data is otherwise scattered across individual orders."
+    ],
+    "limitations": [
+      "Aggregate enforcement figures conflate trivial and serious violations.",
+      "The report describes the regulator’s own activity and is not an independent assessment of it."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "fraud-investor-protection"
+    ]
+  },
+  {
+    "id": "doc-economic-survey",
+    "title": "Economic Survey",
+    "authors": [
+      "Ministry of Finance, Government of India"
+    ],
+    "publisher": "Department of Economic Affairs",
+    "type": "official-document",
+    "region": "india",
+    "subjects": [
+      "macroeconomics",
+      "growth",
+      "fiscal policy",
+      "household savings",
+      "financial inclusion"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "The annual review of the Indian economy with the statistical appendixes that many later analyses rely on. The chapters on savings, investment and the financial sector provide the aggregate context for household portfolio data.",
+    "strengths": [
+      "Broad statistical coverage with methodology notes.",
+      "Often includes focused analytical chapters with primary survey work."
+    ],
+    "limitations": [
+      "A government document that presents the government’s account of its own record; read alongside independent forecasts and central bank publications.",
+      "Some chapters are advocacy rather than analysis and can be identified as such from their internal evidence."
+    ],
+    "seriesIds": [
+      "indian-financial-system"
+    ]
+  },
+  {
+    "id": "doc-irdai-annual-report",
+    "title": "IRDAI Annual Report",
+    "authors": [
+      "Insurance Regulatory and Development Authority of India"
+    ],
+    "publisher": "Insurance Regulatory and Development Authority of India",
+    "type": "official-document",
+    "region": "india",
+    "subjects": [
+      "life insurance",
+      "general insurance",
+      "claims",
+      "distribution"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The primary source on the Indian insurance industry: premium volumes by segment, claim settlement ratios, expense ratios and the composition of the distribution channel. Necessary for evaluating claims about whether insurance products deliver value.",
+    "strengths": [
+      "Entity-level and segment-level data rather than industry averages alone.",
+      "Claim ratios by insurer permit a direct comparison."
+    ],
+    "limitations": [
+      "Disclosure of product-level returns and charges is limited; the internal rate of return on a traditional policy is not published.",
+      "Claim settlement ratios can be presented in ways that flatter insurers, and the definition matters."
+    ],
+    "seriesIds": [
+      "insurance-pensions-decoded"
+    ]
+  },
+  {
+    "id": "doc-imf-gfsr",
+    "title": "Global Financial Stability Report",
+    "authors": [
+      "International Monetary Fund"
+    ],
+    "publisher": "International Monetary Fund (published periodically)",
+    "type": "official-document",
+    "region": "international",
+    "subjects": [
+      "systemic risk",
+      "global credit",
+      "emerging markets",
+      "capital flows"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The international comparator for financial-stability assessment, with analytical chapters on credit risk pricing, non-bank intermediation and emerging-market vulnerabilities.",
+    "strengths": [
+      "Cross-country comparable framework.",
+      "Analytical chapters often introduce methodology with data beyond the headline assessment."
+    ],
+    "limitations": [
+      "Global aggregate perspective; India-specific conclusions are limited.",
+      "Forecast and risk assessments are institutional positions rather than neutral findings."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "global-investing"
+    ]
+  },
+  {
+    "id": "doc-bis-annual-report",
+    "title": "BIS Annual Economic Report",
+    "authors": [
+      "Bank for International Settlements"
+    ],
+    "publisher": "Bank for International Settlements",
+    "type": "official-document",
+    "region": "international",
+    "subjects": [
+      "monetary policy",
+      "financial cycles",
+      "credit",
+      "international banking"
+    ],
+    "difficulty": "expert",
+    "whyItMatters": "The most consistently sceptical official voice on the financial cycle, warning in specific terms about credit booms before several of them ended badly. The framework focuses on the interaction between credit growth, asset prices and monetary conditions.",
+    "strengths": [
+      "Analytically independent of any single national authority’s perspective.",
+      "Documented the build-up of vulnerabilities before 2008 with unusual precision."
+    ],
+    "limitations": [
+      "The financial-cycle framework has at times signalled vulnerability years before any adjustment occurred, which is costly if acted upon without patience.",
+      "Strong institutional view; contrary evidence is presented less prominently."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "portfolio-theory"
+    ]
+  },
+  {
+    "id": "doc-oecd-pensions-glance",
+    "title": "Pensions at a Glance",
+    "authors": [
+      "OECD"
+    ],
+    "publisher": "OECD Publishing (biennial)",
+    "type": "official-document",
+    "region": "international",
+    "subjects": [
+      "pension systems",
+      "retirement income",
+      "replacement rates",
+      "comparative policy"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "A comparable international accounting of what public and private pension systems actually deliver, expressed as replacement rates at different earnings levels. Useful for evaluating the Indian system against others, with the caveat that India’s coverage is far less complete.",
+    "strengths": [
+      "Consistent methodology across countries.",
+      "Presents net replacement rates, which account for taxes and contributions."
+    ],
+    "limitations": [
+      "India is not covered in the same detail as OECD members.",
+      "Coverage-based analysis of formal-sector schemes says little about a country where most employment is informal."
+    ],
+    "seriesIds": [
+      "insurance-pensions-decoded"
+    ]
+  },
+  {
+    "id": "doc-dicgc-annual-report",
+    "title": "DICGC Annual Report",
+    "authors": [
+      "Deposit Insurance and Credit Guarantee Corporation"
+    ],
+    "publisher": "DICGC",
+    "type": "official-document",
+    "region": "india",
+    "subjects": [
+      "deposit insurance",
+      "bank failure",
+      "depositor protection"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "The authority responsible for deposit insurance publishes the coverage limit, the premium structure and its own financial position. This is the document that establishes what a depositor is actually protected against — and the aggregate sums insured make clear how much of the deposit base exceeds the limit.",
+    "strengths": [
+      "Definitive on the coverage rules and the process for claims.",
+      "Publishes the fund’s size relative to insured deposits."
+    ],
+    "limitations": [
+      "The coverage limit is set by statute and revised periodically; the amount changes and must be verified as at the relevant date.",
+      "Coverage applies per depositor per bank, so a depositor with accounts at several banks has coverage at each — a point frequently misunderstood in both directions."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "debt-encyclopedia"
+    ]
+  },
+  {
+    "id": "doc-ibbi-annual-report",
+    "title": "Insolvency and Bankruptcy Board of India Annual Report",
+    "authors": [
+      "Insolvency and Bankruptcy Board of India"
+    ],
+    "publisher": "IBBI",
+    "type": "official-document",
+    "region": "india",
+    "subjects": [
+      "insolvency",
+      "resolution",
+      "liquidation",
+      "recovery"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "Publishes case-level and aggregate data on how corporate insolvency resolutions proceed, including recovery rates by creditor class and the time taken. The primary evidence on what actually happens to a creditor’s claim in an Indian insolvency.",
+    "strengths": [
+      "Case-level data rather than illustrative examples.",
+      "Distinguishes resolution from liquidation outcomes."
+    ],
+    "limitations": [
+      "Recovery figures are sensitive to how realisation value and claim amounts are defined.",
+      "The published time taken to resolve is measured against the statutory timeline and systematically exceeds it, which the reports document but do not fully explain."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "debt-encyclopedia"
+    ]
+  },
+  {
+    "id": "doc-worldbank-findex",
+    "title": "Global Findex Database",
+    "authors": [
+      "World Bank"
+    ],
+    "publisher": "World Bank (published periodically)",
+    "type": "dataset",
+    "region": "international",
+    "subjects": [
+      "financial inclusion",
+      "account ownership",
+      "savings",
+      "credit access"
+    ],
+    "difficulty": "intermediate",
+    "whyItMatters": "Survey-based measures of account ownership, savings and borrowing behaviour comparable across countries, including India. The only consistent source for questions about who actually has access to formal finance.",
+    "strengths": [
+      "Consistently defined across countries and waves.",
+      "Disaggregated by gender, income and rural-urban status."
+    ],
+    "limitations": [
+      "Self-reported and infrequently updated.",
+      "Account ownership is a low bar — it establishes that an account exists, not that it is used for saving or investing."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "global-investing"
+    ]
+  },
+  {
+    "id": "doc-ubs-global-returns",
+    "title": "Global Investment Returns Yearbook",
+    "authors": [
+      "Elroy Dimson",
+      "Paul Marsh",
+      "Mike Staunton"
+    ],
+    "publisher": "UBS (annual, formerly Credit Suisse)",
+    "type": "report",
+    "region": "international",
+    "subjects": [
+      "long-run returns",
+      "asset returns",
+      "inflation",
+      "risk premia"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The annually updated long-run return series for major asset classes across countries, with methodology notes. The standard citation for statements about long-run equity and bond returns.",
+    "strengths": [
+      "Long, consistently constructed series.",
+      "Discusses the data limitations explicitly, including survivorship."
+    ],
+    "limitations": [
+      "India is included in some editions but with a shorter series than the developed markets.",
+      "The publication is sponsored by a financial institution, which does not invalidate the data but is relevant context."
+    ],
+    "seriesIds": [
+      "science-of-returns",
+      "global-investing"
+    ]
+  },
+  {
+    "id": "doc-rbi-household-finance",
+    "title": "Household Finance and Saving Behaviour of Indian Households (RBI surveys)",
+    "authors": [
+      "Reserve Bank of India"
+    ],
+    "publisher": "Reserve Bank of India",
+    "type": "report",
+    "region": "india",
+    "subjects": [
+      "household savings",
+      "asset allocation",
+      "debt",
+      "financial inclusion"
+    ],
+    "difficulty": "advanced",
+    "whyItMatters": "The central bank’s survey work on how Indian households actually hold wealth — the physical-versus-financial split, the dominant role of real estate and gold, and the composition of household debt. The empirical basis for any claim about the Indian investor’s portfolio.",
+    "strengths": [
+      "Survey-based rather than derived from aggregate flows.",
+      "Covers rural and urban households and different income strata."
+    ],
+    "limitations": [
+      "Survey methodology changes between rounds, limiting direct comparability over time.",
+      "Self-reported asset values are subject to reporting error, particularly for property and gold."
+    ],
+    "seriesIds": [
+      "indian-financial-system",
+      "portfolio-theory"
+    ]
+  }
+]

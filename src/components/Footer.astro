@@ -1,0 +1,94 @@
+---
+/**
+ * Footer — identity, navigation, author channels and the standing disclaimer.
+ */
+import { site, footerNav, categories, disclaimer } from '../config/site';
+import { href } from '../lib/url';
+
+const year = new Date().getFullYear();
+const libraryLinks = footerNav.slice(0, 4);
+const siteLinks = footerNav.slice(4);
+const topics = categories.slice(0, 10);
+---
+
+<footer class="mt-20 border-t border-[var(--color-border)] bg-[var(--color-surface-2)]">
+  <div class="shell grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <div>
+      <a href={href('/')} class="font-serif text-lg font-semibold tracking-tight no-underline text-[var(--color-ink-950)] dark:text-[var(--color-ink-50)]">
+        {site.wordmark}
+      </a>
+      <p class="mt-2 max-w-sm text-sm leading-6 text-[var(--color-ink-muted)]">{site.description}</p>
+      <p class="mt-4 text-sm text-[var(--color-ink-faint)]">
+        Written and maintained by <a href={href('/about')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">{site.author.name}</a>.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <a href={`mailto:${site.author.email}`} class="badge badge-neutral no-underline">{site.author.email}</a>
+        <a href={site.author.facebook} rel="me noopener" class="badge badge-neutral no-underline">Facebook</a>
+        <a href={site.author.support} rel="noopener" class="badge badge-brass no-underline">Buy me a coffee</a>
+      </div>
+    </div>
+
+    <nav aria-label="Library">
+      <h2 class="font-sans text-2xs font-semibold uppercase tracking-[0.1em] text-[var(--color-ink-faint)]">Library</h2>
+      <ul class="mt-3 space-y-2 text-sm">
+        {
+          libraryLinks.map((item) => (
+            <li>
+              <a href={href(item.href)} class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a href={href('/library')} class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]">All articles</a>
+        </li>
+        <li>
+          <a href={href('/series')} class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]">Learning paths</a>
+        </li>
+      </ul>
+    </nav>
+
+    <nav aria-label="Topics">
+      <h2 class="font-sans text-2xs font-semibold uppercase tracking-[0.1em] text-[var(--color-ink-faint)]">Topics</h2>
+      <ul class="mt-3 space-y-2 text-sm">
+        {
+          topics.map((c) => (
+            <li>
+              <a href={href(`/library/category/${c.id}`)} class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]">
+                {c.shortName}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <nav aria-label="About">
+      <h2 class="font-sans text-2xs font-semibold uppercase tracking-[0.1em] text-[var(--color-ink-faint)]">This project</h2>
+      <ul class="mt-3 space-y-2 text-sm">
+        {
+          siteLinks.map((item) => (
+            <li>
+              <a href={href(item.href)} class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li><a href={href('/rss.xml')} class="no-underline text-[var(--color-ink-muted)] hover:text-[var(--color-link)]">RSS feed</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="border-t border-[var(--color-border)]">
+    <div class="shell flex flex-col gap-3 py-5 md:flex-row md:items-center md:justify-between">
+      <p class="max-w-3xl text-xs leading-5 text-[var(--color-ink-faint)]">
+        {disclaimer.short} {disclaimer.long}
+      </p>
+      <p class="shrink-0 text-xs text-[var(--color-ink-faint)]">
+        © {year} {site.author.name} · Code {site.license.code} · Content {site.license.content}
+      </p>
+    </div>
+  </div>
+</footer>

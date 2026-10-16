@@ -1,0 +1,47 @@
+---
+/**
+ * Breadcrumbs — visible trail plus a matching JSON-LD BreadcrumbList.
+ */
+import { href } from '../lib/url';
+
+interface Crumb {
+  label: string;
+  path?: string;
+}
+interface Props {
+  crumbs: Crumb[];
+}
+const { crumbs } = Astro.props;
+const site = Astro.site;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((crumb, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: crumb.label,
+    ...(crumb.path ? { item: site ? new URL(href(crumb.path), site).href : href(crumb.path) } : {}),
+  })),
+};
+---
+
+<nav aria-label="Breadcrumb" class="text-xs">
+  <ol class="flex flex-wrap items-center gap-1.5" role="list">
+    {
+      crumbs.map((crumb, index) => (
+        <li class="flex items-center gap-1.5">
+          {crumb.path && index < crumbs.length - 1 ? (
+            <a href={href(crumb.path)} class="no-underline text-[var(--color-ink-faint)] hover:text-[var(--color-link)]">
+              {crumb.label}
+            </a>
+          ) : (
+            <span class="text-[var(--color-ink-muted)]" aria-current="page">{crumb.label}</span>
+          )}
+          {index < crumbs.length - 1 && <span aria-hidden="true" class="text-[var(--color-ink-faint)]">/</span>}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

@@ -1,0 +1,74 @@
+---
+/**
+ * /contact — how to reach the site, and what happens next.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+import { href } from '../lib/url';
+---
+
+<BaseLayout
+  title="Contact & corrections"
+  description="Contact Arthanomy for corrections, questions, press or support. Email, Facebook, and how reports are handled."
+  path="/contact"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">Contact</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">Say something useful and you will get a reply</h1>
+    <p class="mt-4 max-w-2xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      One author reads everything. The fastest path to an improvement on this site is a specific correction with a
+      primary source attached.
+    </p>
+  </header>
+
+  <div class="shell mt-10 grid gap-6 pb-16 md:grid-cols-2">
+    <div class="card p-6">
+      <h2 class="font-serif text-xl font-semibold">Corrections</h2>
+      <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+        Found an error, a broken source link, or a rule that has changed? Email with the page and the correct
+        information. Reported errors are checked against the primary source and, when confirmed, corrected on the page
+        and logged on the <a href={href('/about/corrections')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">corrections log</a>.
+      </p>
+      <a href={`mailto:${site.author.email}?subject=Correction`} class="badge badge-brass mt-4 inline-flex no-underline">
+        {site.author.email}
+      </a>
+    </div>
+
+    <div class="card p-6">
+      <h2 class="font-serif text-xl font-semibold">Questions & requests</h2>
+      <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+        Topic requests, methodology questions and “explain this” suggestions are welcome. Individual investment
+        queries cannot be answered — there is no advice relationship here, and a personal answer without your full
+        circumstances would be worse than no answer. Ask about the framework instead and the answer can be published.
+      </p>
+      <a href={`mailto:${site.author.email}?subject=Question`} class="badge badge-neutral mt-4 inline-flex no-underline">
+        {site.author.email}
+      </a>
+    </div>
+
+    <div class="card p-6">
+      <h2 class="font-serif text-xl font-semibold">Press & reuse</h2>
+      <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+        Figures from this site may be reused with attribution and a link to the page they came from; the underlying
+        sources matter more than this site, so cite them where possible. For interviews or extended excerpts, email
+        first.
+      </p>
+      <a href={`mailto:${site.author.email}?subject=Press`} class="badge badge-neutral mt-4 inline-flex no-underline">
+        Press enquiry
+      </a>
+    </div>
+
+    <div class="card p-6">
+      <h2 class="font-serif text-xl font-semibold">Support the site</h2>
+      <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+        Arthanomy carries no advertising and no sponsorships. If the research saves you money or time, a contribution
+        keeps it independent — with no editorial influence, as the
+        <a href={href('/about/editorial-policy')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">editorial policy</a> commits.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <a href={site.author.support} rel="noopener" class="badge badge-brass no-underline">Buy me a coffee</a>
+        <a href={site.author.facebook} rel="me noopener" class="badge badge-neutral no-underline">Facebook</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

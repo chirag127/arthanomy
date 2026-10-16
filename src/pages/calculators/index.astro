@@ -1,0 +1,91 @@
+---
+/**
+ * /calculators — the complete instrument index.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { href } from '../../lib/url';
+import definitions from '../../data/calculators/definitions.json';
+
+const categoryOrder = ['returns', 'planning', 'fixed-income', 'tax', 'portfolio', 'risk', 'debt', 'real-estate', 'alternatives', 'derivatives'] as const;
+const categoryLabels: Record<string, string> = {
+  returns: 'Returns & growth',
+  planning: 'Planning & goals',
+  'fixed-income': 'Fixed income & credit',
+  tax: 'Taxation',
+  portfolio: 'Portfolio construction',
+  risk: 'Risk & drawdowns',
+  debt: 'Loans & debt',
+  'real-estate': 'Real estate',
+  alternatives: 'Alternatives & business',
+  derivatives: 'Derivatives',
+};
+
+const groups = categoryOrder
+  .map((category) => ({
+    category,
+    label: categoryLabels[category],
+    items: definitions.filter((d) => d.category === category).sort((a, b) => a.name.localeCompare(b.name)),
+  }))
+  .filter((group) => group.items.length > 0);
+
+const featured = ['sip', 'xirr', 'post-tax-return', 'monte-carlo', 'emi', 'bond-price-yield']
+  .map((id) => definitions.find((d) => d.id === id))
+  .filter((d): d is (typeof definitions)[number] => d !== undefined);
+---
+
+<BaseLayout
+  title="Calculators"
+  description={`${definitions.length} Indian investment calculators — returns, tax, credit, loans, drawdowns and derivatives. Every calculator states its assumptions and is tested against known values.`}
+  path="/calculators"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">Instruments</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">Calculators that show their work</h1>
+    <p class="mt-4 max-w-2xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      {definitions.length} calculators covering every stage of the investment question — from “what will this SIP
+      become” to the convexity of a bond and the margin arithmetic of a futures position. Each states its formulas,
+      lists its assumptions in the output, and returns “not meaningful” instead of a fabricated number when a
+      quantity is undefined.
+    </p>
+  </header>
+
+  <section class="shell mt-10" aria-labelledby="popular-heading">
+    <h2 id="popular-heading" class="eyebrow">Most used</h2>
+    <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        featured.map((calc) => (
+          <a href={href(`/calculators/${calc.id}`)} class="card card-hover flex flex-col p-4 no-underline">
+            <span class="text-sm font-semibold text-[var(--color-ink-body)]">{calc.name}</span>
+            <span class="mt-1 line-clamp-2 text-xs leading-5 text-[var(--color-ink-muted)]">{calc.shortDescription}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <div class="shell mt-12 space-y-12 pb-16">
+    {
+      groups.map((group) => (
+        <section aria-labelledby={`calc-${group.category}`}>
+          <div class="flex items-baseline justify-between gap-3 border-b border-[var(--color-border)] pb-3">
+            <h2 id={`calc-${group.category}`} class="font-serif text-2xl font-semibold">
+              {group.label}
+            </h2>
+            <span class="text-sm text-[var(--color-ink-faint)]">{group.items.length}</span>
+          </div>
+          <ul class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list">
+            {group.items.map((calc) => (
+              <li>
+                <a href={href(`/calculators/${calc.id}`)} class="card card-hover block h-full p-4 no-underline">
+                  <span class="text-sm font-semibold text-[var(--color-ink-body)]">{calc.name}</span>
+                  <span class="mt-1 block text-xs leading-5 text-[var(--color-ink-muted)]">{calc.shortDescription}</span>
+                  <span class="mt-2.5 block font-mono text-2xs uppercase tracking-[0.06em] text-[var(--color-ink-faint)]">{calc.difficulty}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

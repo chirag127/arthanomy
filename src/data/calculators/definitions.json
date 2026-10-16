@@ -1,0 +1,5992 @@
+[
+  {
+    "id": "cagr",
+    "name": "CAGR Calculator",
+    "shortDescription": "Compound annual growth rate between two values over a stated period — the only form of a return that is comparable across different horizons.",
+    "category": "returns",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "CAGR = \\left(\\frac{V_T}{V_0}\\right)^{1/T} - 1",
+        "label": "Compound annual growth rate",
+        "assumption": "Requires a positive beginning value and a positive ending value; a total loss has no finite CAGR."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "beginValue",
+        "label": "Value at the start",
+        "kind": "currency",
+        "default": 100000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "endValue",
+        "label": "Value at the end",
+        "kind": "currency",
+        "default": 250000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "years",
+        "label": "Holding period",
+        "kind": "years",
+        "default": 5,
+        "unit": "years",
+        "min": 0.08,
+        "max": 60
+      }
+    ],
+    "workedExample": "₹1,00,000 growing to ₹2,50,000 over five years is a CAGR of 20.11%. The cumulative return is 150% — the same facts, and a very different impression.",
+    "limitations": [
+      "A CAGR is a smoothed average. The actual path may have included a 40% drawdown in the middle, which the single figure conceals entirely.",
+      "It assumes a single beginning value, so it cannot describe an investment built up through periodic contributions — use XIRR for that."
+    ],
+    "relatedCalculators": [
+      "xirr",
+      "sip",
+      "rolling-returns"
+    ],
+    "engine": "cagr"
+  },
+  {
+    "id": "xirr",
+    "name": "XIRR Calculator",
+    "shortDescription": "The money-weighted annualised return on a set of dated cash flows — the correct return figure for an investment made in instalments.",
+    "category": "returns",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\sum_{i=0}^{n} \\frac{CF_i}{(1+r)^{(d_i - d_0)/365}} = 0",
+        "label": "XIRR solves for r",
+        "assumption": "Cash flows must be dated and must include at least one negative (contribution) and one positive (receipt)."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "amount1",
+        "label": "Cash flow 1 (negative = you paid out)",
+        "kind": "number",
+        "default": "currency"
+      },
+      {
+        "id": "date1",
+        "label": "Date of cash flow 1",
+        "kind": "date",
+        "default": "2021-04-01"
+      },
+      {
+        "id": "amount2",
+        "label": "Cash flow 2",
+        "kind": "number",
+        "default": "currency"
+      },
+      {
+        "id": "date2",
+        "label": "Date of cash flow 2",
+        "kind": "date",
+        "default": "2022-04-01"
+      },
+      {
+        "id": "amount3",
+        "label": "Cash flow 3",
+        "kind": "number",
+        "default": "currency"
+      },
+      {
+        "id": "date3",
+        "label": "Date of cash flow 3",
+        "kind": "date",
+        "default": "2024-04-01"
+      },
+      {
+        "id": "amount4",
+        "label": "Cash flow 4 (final value or 0)",
+        "kind": "number",
+        "default": "currency"
+      },
+      {
+        "id": "date4",
+        "label": "Date of cash flow 4",
+        "kind": "date",
+        "default": "2026-04-01",
+        "help": "Enter the current or terminal value as the last positive flow."
+      }
+    ],
+    "workedExample": "Two ₹1,00,000 contributions a year apart, followed by a ₹1,50,000 receipt and a ₹1,20,000 terminal value, produces an XIRR that differs from the simple CAGR of the same amounts — because the money was not invested for the whole period.",
+    "limitations": [
+      "If the cash-flow pattern changes sign more than once, more than one rate can satisfy the equation. The calculator reports this rather than hiding it.",
+      "XIRR is a per-annum rate and becomes misleading over horizons shorter than about a year, where it can imply absurd annualised figures."
+    ],
+    "relatedCalculators": [
+      "cagr",
+      "sip",
+      "p2p-return"
+    ],
+    "engine": "xirr"
+  },
+  {
+    "id": "sip",
+    "name": "SIP Calculator",
+    "shortDescription": "Future value of a monthly systematic investment plan at a stated rate, showing the split between money invested and money earned.",
+    "category": "returns",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "FV = P \\times \\frac{(1+i)^n - 1}{i} \\times (1+i)",
+        "label": "SIP future value, contribution at the start of each month",
+        "assumption": "A constant rate of return with no volatility. Real SIP returns arrive unevenly, and the order matters."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "monthly",
+        "label": "Monthly investment",
+        "kind": "currency",
+        "default": 10000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "rate",
+        "label": "Assumed annual return",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": -50,
+        "max": 60
+      },
+      {
+        "id": "years",
+        "label": "Investment period",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 0.25,
+        "max": 50
+      },
+      {
+        "id": "timing",
+        "label": "Contribution timing",
+        "kind": "select",
+        "default": "begin",
+        "options": [
+          {
+            "value": "begin",
+            "label": "Start of each month"
+          },
+          {
+            "value": "end",
+            "label": "End of each month"
+          }
+        ]
+      }
+    ],
+    "workedExample": "₹10,000 a month for ten years at 12% a year accumulates about ₹23.2 lakh, of which ₹12 lakh is your own money. The ₹11.2 lakh difference is the assumption, not a promise.",
+    "limitations": [
+      "The rate is an assumption supplied by you. Changing it from 12% to 9% removes roughly a quarter of the final corpus.",
+      "Taxes and exit loads are not deducted. For an equity fund held over ten years, the tax on the terminal gain can be 12.5% of a large number.",
+      "A constant return understates the probability of undershooting a goal, because real sequences include long flat and falling stretches."
+    ],
+    "relatedCalculators": [
+      "step-up-sip",
+      "xirr",
+      "monte-carlo",
+      "post-tax-return"
+    ],
+    "engine": "sip"
+  },
+  {
+    "id": "step-up-sip",
+    "name": "Step-Up SIP Calculator",
+    "shortDescription": "SIP with an annual increase in the instalment, which is how most salaried investors actually behave as income rises.",
+    "category": "returns",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "P_{y+1} = P_y \\times (1 + s)",
+        "label": "Instalment steps up by s each year",
+        "assumption": "The step-up is applied once a year, on the anniversary of the first instalment."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "monthly",
+        "label": "Starting monthly investment",
+        "kind": "currency",
+        "default": 10000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "stepUp",
+        "label": "Annual step-up",
+        "kind": "percent",
+        "default": 10,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      },
+      {
+        "id": "rate",
+        "label": "Assumed annual return",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": -50,
+        "max": 60
+      },
+      {
+        "id": "years",
+        "label": "Investment period",
+        "kind": "years",
+        "default": 15,
+        "unit": "years",
+        "min": 0.25,
+        "max": 50
+      }
+    ],
+    "workedExample": "A ₹10,000 instalment rising 10% a year for fifteen years, at 12%, invests about ₹38 lakh in total and ends near ₹1.2 crore — a much larger outcome than a flat SIP, but only because a great deal more money was contributed.",
+    "limitations": [
+      "The comparison with a flat SIP is not like-for-like. Compare the internal rate of return instead of the final corpus.",
+      "Stepping up assumes income rises every year. A career interruption breaks the assumption and the projection with it."
+    ],
+    "relatedCalculators": [
+      "sip",
+      "goal-planning",
+      "monte-carlo"
+    ],
+    "engine": "step-up-sip"
+  },
+  {
+    "id": "lumpsum",
+    "name": "Lump Sum Calculator",
+    "shortDescription": "Future value of a single investment at a compounded rate, with the multiple and the gain shown separately.",
+    "category": "returns",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "FV = PV \\left(1 + \\frac{r}{m}\\right)^{mT}",
+        "label": "Future value with m compounding periods a year"
+      },
+      {
+        "latex": "\\text{Rule of 72: } T_{double} \\approx \\frac{72}{100r}",
+        "label": "Doubling time, an approximation",
+        "assumption": "Accurate to within a few percent for rates between about 4% and 15%."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "principal",
+        "label": "Amount invested",
+        "kind": "currency",
+        "default": 500000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "rate",
+        "label": "Assumed annual return",
+        "kind": "percent",
+        "default": 10,
+        "unit": "%",
+        "min": -50,
+        "max": 60
+      },
+      {
+        "id": "years",
+        "label": "Investment period",
+        "kind": "years",
+        "default": 20,
+        "unit": "years",
+        "min": 0.08,
+        "max": 60
+      },
+      {
+        "id": "frequency",
+        "label": "Compounding",
+        "kind": "select",
+        "default": "1",
+        "options": [
+          {
+            "value": "1",
+            "label": "Annual (1)"
+          },
+          {
+            "value": "2",
+            "label": "Half-yearly (2)"
+          },
+          {
+            "value": "4",
+            "label": "Quarterly (4)"
+          },
+          {
+            "value": "12",
+            "label": "Monthly (12)"
+          }
+        ]
+      }
+    ],
+    "workedExample": "₹5,00,000 at 10% for twenty years becomes about ₹33.6 lakh with annual compounding. The same nominal rate compounded monthly produces a visibly higher figure — the difference is the effective annual rate, not extra return.",
+    "limitations": [
+      "Compounding frequency is a convention, not a benefit. Compare effective annual rates, never nominal rates with different frequencies.",
+      "At 10%, money doubles roughly every 7.2 years. At 15%, every 4.8 years. Doubling times are highly sensitive to the rate you assume."
+    ],
+    "relatedCalculators": [
+      "cagr",
+      "real-return",
+      "expense-ratio-impact"
+    ],
+    "engine": "lumpsum"
+  },
+  {
+    "id": "swp",
+    "name": "SWP Calculator",
+    "shortDescription": "Systematic withdrawal plan: how long a corpus lasts at a given withdrawal rate and return, and what the terminal balance looks like.",
+    "category": "planning",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "B_t = (B_{t-1} - W_t)(1 + r)",
+        "label": "Annual withdrawal then growth",
+        "assumption": "Withdrawals are taken at the start of the year, which is the conservative ordering."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "corpus",
+        "label": "Starting corpus",
+        "kind": "currency",
+        "default": 5000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "withdrawalRate",
+        "label": "Annual withdrawal rate",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0.5,
+        "max": 30
+      },
+      {
+        "id": "returnRate",
+        "label": "Assumed annual return",
+        "kind": "percent",
+        "default": 9,
+        "unit": "%",
+        "min": -20,
+        "max": 30
+      },
+      {
+        "id": "years",
+        "label": "Years to project",
+        "kind": "years",
+        "default": 30,
+        "unit": "years",
+        "min": 1,
+        "max": 60
+      },
+      {
+        "id": "escalation",
+        "label": "Annual increase in withdrawal",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      }
+    ],
+    "workedExample": "₹50,00,000 with a 6% initial withdrawal (₹3,00,000 a year, rising 5% annually) and a 9% return lasts beyond thirty years in this model. At a 9% withdrawal rate with the same return, the corpus runs dry in the late teens.",
+    "limitations": [
+      "A constant return makes any withdrawal plan look safe. The dominant real-world risk is a poor sequence of returns in the first years of withdrawal.",
+      "Taxes on withdrawals are excluded, and for a debt-heavy corpus they are charged at slab rates every year."
+    ],
+    "relatedCalculators": [
+      "sequence-risk",
+      "annuity-vs-swp",
+      "retirement-corpus"
+    ],
+    "engine": "swp"
+  },
+  {
+    "id": "real-return",
+    "name": "Real Return Calculator",
+    "shortDescription": "The inflation-adjusted return — what actually happened to your purchasing power, as distinct from what your account statement says.",
+    "category": "returns",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "r_{real} = \\frac{1 + r_{nominal}}{1 + \\pi} - 1",
+        "label": "Exact real return"
+      },
+      {
+        "latex": "r_{real} \\approx r_{nominal} - \\pi",
+        "label": "The approximation most people use",
+        "assumption": "Drifts materially from the exact figure as rates or inflation rise; at 12% nominal and 6% inflation the error is about 0.34 percentage points a year."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "nominal",
+        "label": "Nominal return",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": -50,
+        "max": 60
+      },
+      {
+        "id": "inflation",
+        "label": "Inflation rate",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": -10,
+        "max": 30
+      },
+      {
+        "id": "years",
+        "label": "Holding period",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 0.5,
+        "max": 60
+      }
+    ],
+    "workedExample": "At 12% nominal and 6% inflation, the exact real return is 5.66% a year. Over ten years that is a 73% gain in purchasing power — not the 79% the approximation suggests.",
+    "limitations": [
+      "The inflation figure you use is a national average. Your personal inflation depends on your consumption basket and is often much higher for education, healthcare and rent.",
+      "Taxes are ignored here. A fixed deposit at 7% with 6% inflation and a 30% slab rate has a negative real return."
+    ],
+    "relatedCalculators": [
+      "nominal-vs-real",
+      "post-tax-return",
+      "purchasing-power"
+    ],
+    "engine": "real-return"
+  },
+  {
+    "id": "nominal-vs-real",
+    "name": "Nominal vs Real Wealth",
+    "shortDescription": "Shows the growing gap between the rupee value of a corpus and what that corpus can buy, year by year.",
+    "category": "returns",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "\\text{Real value}_T = \\frac{V_T (1+r)^T}{(1+\\pi)^T}",
+        "label": "Purchasing power of the terminal corpus"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "amount",
+        "label": "Amount today",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "nominal",
+        "label": "Assumed nominal return",
+        "kind": "percent",
+        "default": 8,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "inflation",
+        "label": "Assumed inflation",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0,
+        "max": 30
+      },
+      {
+        "id": "years",
+        "label": "Horizon",
+        "kind": "years",
+        "default": 20,
+        "unit": "years",
+        "min": 1,
+        "max": 60
+      }
+    ],
+    "workedExample": "₹10,00,000 at 8% for twenty years becomes ₹46.6 lakh. At 6% inflation, that ₹46.6 lakh buys what ₹14.5 lakh buys today — a real gain, but nothing like the nominal figure implies.",
+    "limitations": [
+      "Nominal wealth is the number printed in your statement; real wealth is what you can spend. Goals stated in today’s prices need the real figure, not the nominal one."
+    ],
+    "relatedCalculators": [
+      "real-return",
+      "purchasing-power",
+      "goal-planning"
+    ],
+    "engine": "nominal-vs-real"
+  },
+  {
+    "id": "post-tax-return",
+    "name": "Post-Tax Return Calculator",
+    "shortDescription": "The after-tax outcome for a given asset type and holding period, distinguishing tax charged every year from tax charged once at the end.",
+    "category": "tax",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "V_T^{post} = 1 + (V_T - 1)(1 - \\tau_{terminal})",
+        "label": "Terminal capital-gains tax"
+      },
+      {
+        "latex": "V_T^{post} = \\left[1 + r(1 - \\tau_{annual})\\right]^{T}",
+        "label": "Annual tax on income",
+        "assumption": "The tax paid each year is capital you no longer have, so it compounds against you."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "taxClass",
+        "label": "Asset and income type",
+        "kind": "select",
+        "default": "equity-listed",
+        "options": [
+          {
+            "value": "equity-listed",
+            "label": "Listed equity / equity mutual fund"
+          },
+          {
+            "value": "equity-unlisted",
+            "label": "Unlisted shares / pre-IPO"
+          },
+          {
+            "value": "debt-specified-mf",
+            "label": "Specified debt mutual fund (post 1 April 2023)"
+          },
+          {
+            "value": "interest-income",
+            "label": "Bank or corporate deposit interest"
+          },
+          {
+            "value": "dividend",
+            "label": "Dividend"
+          },
+          {
+            "value": "gold-etf",
+            "label": "Gold ETF or gold fund"
+          },
+          {
+            "value": "property-long-term",
+            "label": "Property (long-term)"
+          },
+          {
+            "value": "vda",
+            "label": "Virtual digital assets"
+          },
+          {
+            "value": "ppf-exempt",
+            "label": "PPF or other exempt-exempt-exempt"
+          },
+          {
+            "value": "sgb-redemption",
+            "label": "Sovereign gold bond"
+          },
+          {
+            "value": "reit-invit-unit",
+            "label": "REIT or InvIT units"
+          }
+        ]
+      },
+      {
+        "id": "grossReturn",
+        "label": "Assumed gross annual return",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": -40,
+        "max": 60
+      },
+      {
+        "id": "holdingYears",
+        "label": "Holding period",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 0.08,
+        "max": 50
+      },
+      {
+        "id": "marginalSlabRate",
+        "label": "Your marginal slab rate",
+        "kind": "percent",
+        "default": 30,
+        "unit": "%",
+        "min": 0,
+        "max": 45
+      },
+      {
+        "id": "totalIncome",
+        "label": "Total annual income (for surcharge)",
+        "kind": "currency",
+        "default": 2000000,
+        "unit": "₹",
+        "min": 0,
+        "help": "Surcharge begins above ₹50 lakh of total income and is capped at 15% for capital gains and dividend."
+      }
+    ],
+    "workedExample": "The same 12% a year, held ten years: listed equity is taxed once at 12.5% (plus cess) on the gain, while deposit interest at a 30% slab rate is taxed every year. The difference in the final post-tax corpus is larger than the difference in the headline rates suggests.",
+    "limitations": [
+      "This is a planning estimate, not a return computation. Cost inflation indexation, set-off of brought-forward losses and the property indexation option for pre-July-2024 acquisitions are not modelled here in full.",
+      "Rules change. Every figure carries the financial year it applies to."
+    ],
+    "relatedCalculators": [
+      "taxable-equivalent-yield",
+      "tax-loss-harvesting",
+      "deposit-comparison"
+    ],
+    "engine": "post-tax-return"
+  },
+  {
+    "id": "taxable-equivalent-yield",
+    "name": "Taxable Equivalent Yield",
+    "shortDescription": "The pre-tax return a taxable investment would need in order to match a tax-free one, at your marginal rate.",
+    "category": "tax",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "r_{taxable} = \\frac{r_{tax\\ free}}{1 - \\tau}",
+        "label": "Taxable-equivalent yield",
+        "assumption": "Compares income taxed annually; not appropriate for comparing a tax-free instrument with one taxed only on capital gains."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "taxFreeYield",
+        "label": "Tax-free or exempt return",
+        "kind": "percent",
+        "default": 7.1,
+        "unit": "%",
+        "min": 0,
+        "max": 30
+      },
+      {
+        "id": "marginalRate",
+        "label": "Your marginal tax rate including surcharge and cess",
+        "kind": "percent",
+        "default": 31.2,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      }
+    ],
+    "workedExample": "A PPF rate of 7.1%, for an investor on a 31.2% all-in marginal rate, is worth as much as a taxable instrument at 10.32%. An investor on a 0% marginal rate gains nothing from the exemption at all.",
+    "limitations": [
+      "The exemption’s value depends entirely on the slab rate, so it is worth most to high earners — a distributional fact worth noticing when such products are marketed as universally advantageous.",
+      "Lock-in and contribution limits are not captured. PPF’s annual contribution ceiling means the tax advantage cannot be scaled."
+    ],
+    "relatedCalculators": [
+      "post-tax-return",
+      "ppf-calculator",
+      "deposit-comparison"
+    ],
+    "engine": "taxable-equivalent-yield"
+  },
+  {
+    "id": "expense-ratio-impact",
+    "name": "Expense Ratio Impact",
+    "shortDescription": "What a fund’s annual expense ratio costs over a holding period, expressed both in rupees and as a share of the final corpus.",
+    "category": "returns",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "V_T = P(1 + r - e)^T",
+        "label": "Growth net of an annual expense ratio e"
+      },
+      {
+        "latex": "\\text{Cost} = P(1+r)^T - P(1+r-e)^T",
+        "label": "The rupee cost of the fee"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "amount",
+        "label": "Amount invested",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "grossReturn",
+        "label": "Gross return before expenses",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "expenseRatio",
+        "label": "Expense ratio",
+        "kind": "percent",
+        "default": 1.8,
+        "unit": "%",
+        "min": 0,
+        "max": 4
+      },
+      {
+        "id": "years",
+        "label": "Holding period",
+        "kind": "years",
+        "default": 25,
+        "unit": "years",
+        "min": 1,
+        "max": 50
+      },
+      {
+        "id": "directExpenseRatio",
+        "label": "Comparison expense ratio (e.g. direct plan)",
+        "kind": "percent",
+        "default": 0.6,
+        "unit": "%",
+        "min": 0,
+        "max": 4
+      }
+    ],
+    "workedExample": "On ₹10,00,000 at 12% gross, an expense ratio of 1.8% instead of 0.6% leaves roughly ₹5.6 lakh less after twenty-five years. The fee is charged once a year on a balance that grows, which is why the cumulative figure is not the annual figure multiplied by the number of years.",
+    "limitations": [
+      "Expense ratios vary over time and are not the only cost. Brokerage, impact cost and the fund’s own transaction costs sit outside the published ratio.",
+      "A cheaper fund is not automatically the better fund, but the fee is the one return component that is known in advance."
+    ],
+    "relatedCalculators": [
+      "tracking-error",
+      "lumpsum",
+      "post-tax-return"
+    ],
+    "engine": "expense-ratio-impact"
+  },
+  {
+    "id": "tracking-error",
+    "name": "Tracking Difference Calculator",
+    "shortDescription": "Decomposes the gap between an index fund’s return and its benchmark into the expense ratio and the residual tracking error.",
+    "category": "returns",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Tracking difference} = r_{fund} - r_{index}",
+        "label": "Realised gap over a period"
+      },
+      {
+        "latex": "\\text{Tracking error} = \\sigma(r_{fund} - r_{index})",
+        "label": "Volatility of the gap",
+        "assumption": "Both figures need a stated measurement frequency — daily and monthly tracking error differ by roughly the square root of time."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "fundReturn",
+        "label": "Fund return over the period",
+        "kind": "percent",
+        "default": 12.4,
+        "unit": "%",
+        "min": -50,
+        "max": 80
+      },
+      {
+        "id": "indexReturn",
+        "label": "Index (TRI) return over the period",
+        "kind": "percent",
+        "default": 12.9,
+        "unit": "%",
+        "min": -50,
+        "max": 80
+      },
+      {
+        "id": "expenseRatio",
+        "label": "Fund expense ratio",
+        "kind": "percent",
+        "default": 0.2,
+        "unit": "%",
+        "min": 0,
+        "max": 3
+      },
+      {
+        "id": "trackingErrorDaily",
+        "label": "Daily tracking error (if known)",
+        "kind": "number",
+        "default": 0.06,
+        "min": 0,
+        "max": 5,
+        "help": "Leave as reported by the fund; the annualised figure is this value multiplied by the square root of 252."
+      }
+    ],
+    "workedExample": "A fund returning 12.4% against an index at 12.9% has a tracking difference of −0.5 percentage points. If the expense ratio is 0.2%, then 0.3 points came from something else: cash drag, transaction costs or sampling.",
+    "limitations": [
+      "Tracking difference and tracking error are different numbers and are routinely confused. A fund can have a small error and a large difference.",
+      "Compare total-return index values, not price indices. An index without dividends cannot be tracked by a fund that receives them."
+    ],
+    "relatedCalculators": [
+      "expense-ratio-impact",
+      "cagr"
+    ],
+    "engine": "tracking-error"
+  },
+  {
+    "id": "opportunity-cost",
+    "name": "Opportunity Cost Calculator",
+    "shortDescription": "What money left idle in cash would have become if invested — the invisible cost of holding too much liquidity.",
+    "category": "planning",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "\\text{Foregone} = C(1+r)^T - C",
+        "label": "Value forgone by holding cash",
+        "assumption": "Compares a certain alternative return with the actual holding; the alternative might not have materialised."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "amount",
+        "label": "Amount held idle",
+        "kind": "currency",
+        "default": 500000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "alternativeReturn",
+        "label": "Return on the alternative investment",
+        "kind": "percent",
+        "default": 11,
+        "unit": "%",
+        "min": -30,
+        "max": 50
+      },
+      {
+        "id": "years",
+        "label": "Period",
+        "kind": "years",
+        "default": 5,
+        "unit": "years",
+        "min": 0.08,
+        "max": 40
+      }
+    ],
+    "workedExample": "₹5,00,000 left in a savings account for five years instead of an investment returning 11% forgoes about ₹3.4 lakh of value. The savings account did pay interest; the calculation nets it off only if you enter the difference as the return.",
+    "limitations": [
+      "The alternative is hypothetical and would have carried risk. The calculation is a discipline for thinking about idle cash, not evidence that the alternative was certain.",
+      "Emergency liquidity has genuine value that this calculator cannot price. The relevant question is how much cash is enough, not whether any is."
+    ],
+    "relatedCalculators": [
+      "emergency-fund",
+      "real-return",
+      "lumpsum"
+    ],
+    "engine": "opportunity-cost"
+  },
+  {
+    "id": "break-even-inflation",
+    "name": "Break-Even Inflation",
+    "shortDescription": "The inflation rate that exactly erases a given nominal return, and the nominal return needed to beat inflation by a chosen margin.",
+    "category": "returns",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "\\pi_{break\\ even} = r_{nominal}",
+        "label": "Inflation at which the real return is exactly zero"
+      },
+      {
+        "latex": "r_{required} = (1 + r_{real\\ target})(1 + \\pi) - 1",
+        "label": "Nominal return required for a real target"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "nominal",
+        "label": "Nominal return available",
+        "kind": "percent",
+        "default": 7,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "inflation",
+        "label": "Assumed inflation",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0,
+        "max": 30
+      },
+      {
+        "id": "realTarget",
+        "label": "Real return you want",
+        "kind": "percent",
+        "default": 3,
+        "unit": "%",
+        "min": -10,
+        "max": 20
+      }
+    ],
+    "workedExample": "A 7% deposit breaks even at 7% inflation — not at 0% inflation, which is how the 7% minus 7% = 0% approximation is sometimes misread. To earn a 3% real return with inflation at 6%, the nominal return must be 9.18%.",
+    "limitations": [
+      "Taxes are ignored. For a taxpayer on a 31.2% all-in marginal rate, a 7% deposit nets 4.82% and therefore requires inflation below that to preserve purchasing power."
+    ],
+    "relatedCalculators": [
+      "real-return",
+      "deposit-comparison",
+      "post-tax-return"
+    ],
+    "engine": "break-even-inflation"
+  },
+  {
+    "id": "purchasing-power",
+    "name": "Purchasing Power Calculator",
+    "shortDescription": "What a future sum will actually be worth, and how much you need in the future to afford something that costs a known amount today.",
+    "category": "planning",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "\\text{Cost}_T = C_0 (1+\\pi)^T",
+        "label": "Future cost of today’s expense"
+      },
+      {
+        "latex": "\\text{Real value}_T = \\frac{V}{(1+\\pi)^T}",
+        "label": "Today’s-money value of a future sum"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "amount",
+        "label": "Amount today",
+        "kind": "currency",
+        "default": 2000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "inflation",
+        "label": "Assumed inflation",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0,
+        "max": 30
+      },
+      {
+        "id": "years",
+        "label": "Years ahead",
+        "kind": "years",
+        "default": 20,
+        "unit": "years",
+        "min": 1,
+        "max": 60
+      }
+    ],
+    "workedExample": "An education that costs ₹20,00,000 today, inflating at 8% a year, costs about ₹93 lakh in twenty years. Planning for ₹20 lakh is planning for less than a quarter of the bill.",
+    "limitations": [
+      "Education, healthcare and rent inflate faster than the general index in India. Use a category-specific rate where one is available rather than the headline consumer price inflation."
+    ],
+    "relatedCalculators": [
+      "nominal-vs-real",
+      "goal-planning",
+      "real-return"
+    ],
+    "engine": "purchasing-power"
+  },
+  {
+    "id": "dividend-return",
+    "name": "Total Return Decomposition",
+    "shortDescription": "Splits an equity holding’s return into price appreciation and dividends, with dividends reinvested, and shows the tax on each.",
+    "category": "returns",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Total return} = \\frac{P_T + \\sum D_t (1+r)^{T-t}}{P_0} - 1",
+        "label": "With dividends reinvested at rate r",
+        "assumption": "Reinvestment is assumed to be available at the stated rate, which is generous."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "initialPrice",
+        "label": "Purchase price per share",
+        "kind": "currency",
+        "default": 500,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "finalPrice",
+        "label": "Price at the end",
+        "kind": "currency",
+        "default": 1200,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "dividendYield",
+        "label": "Initial dividend yield",
+        "kind": "percent",
+        "default": 1.5,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      },
+      {
+        "id": "dividendGrowth",
+        "label": "Annual dividend growth",
+        "kind": "percent",
+        "default": 8,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "years",
+        "label": "Holding period",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 0.5,
+        "max": 40
+      }
+    ],
+    "workedExample": "A share bought at ₹500 and sold at ₹1,200 ten years later returned 9.15% a year on price alone. Adding dividends that started at 1.5% and grew 8% a year raises the total to roughly 11%.",
+    "limitations": [
+      "Dividend reinvestment is taxed in the year received, so the post-tax compounding rate is below the gross rate used here.",
+      "Dividend yield is not a return. A company paying out 6% and growing earnings at 2% is not the same asset as one paying 2% and growing at 8%, even if the total return matched historically."
+    ],
+    "relatedCalculators": [
+      "cagr",
+      "post-tax-return",
+      "reit-distribution"
+    ],
+    "engine": "dividend-return"
+  },
+  {
+    "id": "deposit-comparison",
+    "name": "Deposit Comparison",
+    "shortDescription": "Compares fixed deposits, corporate deposits and small-savings schemes on a post-tax, post-inflation basis rather than on headline rates.",
+    "category": "fixed-income",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "r_{net} = r(1-\\tau) - \\pi",
+        "label": "Approximate post-tax real return"
+      },
+      {
+        "latex": "r_{net} = \\frac{1 + r(1-\\tau)}{1+\\pi} - 1",
+        "label": "Exact form used here"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "amount",
+        "label": "Amount deposited",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "rateA",
+        "label": "Rate on option A",
+        "kind": "percent",
+        "default": 7.25,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "rateB",
+        "label": "Rate on option B",
+        "kind": "percent",
+        "default": 8.5,
+        "unit": "%",
+        "min": 0,
+        "max": 25
+      },
+      {
+        "id": "marginalRate",
+        "label": "Your marginal tax rate including cess",
+        "kind": "percent",
+        "default": 31.2,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      },
+      {
+        "id": "inflation",
+        "label": "Assumed inflation",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0,
+        "max": 25
+      },
+      {
+        "id": "years",
+        "label": "Holding period",
+        "kind": "years",
+        "default": 5,
+        "unit": "years",
+        "min": 1,
+        "max": 30
+      }
+    ],
+    "workedExample": "A 7.25% bank deposit and an 8.50% corporate deposit differ by 1.25 points before tax. At a 31.2% marginal rate the gap narrows to 0.86 points, and at 6% inflation both are only marginally positive in real terms — while the corporate deposit carries credit risk the bank deposit does not.",
+    "limitations": [
+      "A higher rate on a corporate deposit is payment for credit risk. The comparison is incomplete unless the default risk is priced; one default in five years can erode more than the entire spread.",
+      "Interest on deposits is taxed every year on accrual, even if the deposit pays at maturity. The tax drag therefore compounds."
+    ],
+    "relatedCalculators": [
+      "post-tax-return",
+      "break-even-inflation",
+      "default-recovery"
+    ],
+    "engine": "deposit-comparison"
+  },
+  {
+    "id": "bond-price-yield",
+    "name": "Bond Price and Yield",
+    "shortDescription": "Prices a bond from its yield, or backs out the yield from an observed price, using the standard present-value relationship.",
+    "category": "fixed-income",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "P = \\sum_{k=1}^{n} \\frac{C/f}{(1+y/f)^{k}} + \\frac{F}{(1+y/f)^{n}}",
+        "label": "Price from yield, per 100 of face value"
+      },
+      {
+        "latex": "\\text{Gain} = -D_{mod}\\,\\Delta y\\,P + \\tfrac{1}{2}C_{v}(\\Delta y)^2 P",
+        "label": "Price change from a yield move, with convexity"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "faceValue",
+        "label": "Face value",
+        "kind": "currency",
+        "default": 1000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "couponRate",
+        "label": "Coupon rate",
+        "kind": "percent",
+        "default": 7.18,
+        "unit": "%",
+        "min": 0,
+        "max": 25
+      },
+      {
+        "id": "yearsToMaturity",
+        "label": "Years to maturity",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 0.08,
+        "max": 40
+      },
+      {
+        "id": "frequency",
+        "label": "Coupon frequency per year",
+        "kind": "select",
+        "default": "2",
+        "options": [
+          {
+            "value": "1",
+            "label": "Annual (1)"
+          },
+          {
+            "value": "2",
+            "label": "Half-yearly (2)"
+          },
+          {
+            "value": "4",
+            "label": "Quarterly (4)"
+          },
+          {
+            "value": "12",
+            "label": "Monthly (12)"
+          }
+        ]
+      },
+      {
+        "id": "yieldRequired",
+        "label": "Yield to maturity",
+        "kind": "percent",
+        "default": 7,
+        "unit": "%",
+        "min": 0.1,
+        "max": 40
+      },
+      {
+        "id": "observedPrice",
+        "label": "Observed price per ₹100 face (optional)",
+        "kind": "currency",
+        "default": 100,
+        "unit": "₹",
+        "min": 0,
+        "help": "Enter a price to solve for the yield it implies. Leave at 100 to ignore."
+      }
+    ],
+    "workedExample": "A 10-year bond with a 7.18% coupon priced to yield 7.00% trades around ₹101.3 per ₹100 of face value. Raise the required yield to 8% and the same bond falls to about ₹94.4 — a 6.8% price loss from a one-percentage-point move in yields.",
+    "limitations": [
+      "This assumes settlement on a coupon date or a stated accrued fraction, par redemption, and no embedded options. For callable, puttable or amortising bonds, use the effective duration from repricing at shifted yields.",
+      "Indian bond quotes vary between clean and dirty price, and conventions differ between G-secs, corporate bonds and money-market instruments. Confirm the convention before comparing."
+    ],
+    "relatedCalculators": [
+      "modified-duration",
+      "convexity",
+      "interest-rate-risk",
+      "credit-spread"
+    ],
+    "engine": "bond-price-yield"
+  },
+  {
+    "id": "bond-ladder",
+    "name": "Bond Ladder Planner",
+    "shortDescription": "Builds a maturity ladder so that a known amount of principal returns each year, reducing reinvestment timing risk.",
+    "category": "fixed-income",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "A_{rung} = \\frac{\\text{Total}}{n}",
+        "label": "Equal rung size for n rungs"
+      },
+      {
+        "latex": "B_t = B_{t-1}(1+y) - W",
+        "label": "Ladder balance with withdrawals"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "total",
+        "label": "Total amount to invest",
+        "kind": "currency",
+        "default": 3000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "rungs",
+        "label": "Number of rungs (years)",
+        "kind": "number",
+        "default": 5,
+        "min": 1,
+        "max": 20
+      },
+      {
+        "id": "yieldRate",
+        "label": "Assumed yield across the ladder",
+        "kind": "percent",
+        "default": 7.2,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "annualWithdrawal",
+        "label": "Annual withdrawal from maturing rung",
+        "kind": "currency",
+        "default": 0,
+        "unit": "₹",
+        "min": 0,
+        "help": "Enter 0 to reinvest each maturity."
+      }
+    ],
+    "workedExample": "₹30,00,000 split across five annual rungs puts ₹6,00,000 into each. Every year one rung matures and is reinvested at the then-prevailing rate, which caps the damage from investing the whole amount at a single, possibly inopportune, time.",
+    "limitations": [
+      "A ladder does not remove interest-rate risk; it spreads it across time. If rates fall permanently, the later rungs are reinvested at lower yields.",
+      "Indian bonds are not always available in every maturity for every credit quality. A practical ladder in corporate bonds may have to accept uneven rungs or a higher concentration in G-secs."
+    ],
+    "relatedCalculators": [
+      "bond-price-yield",
+      "modified-duration",
+      "rebalancing"
+    ],
+    "engine": "bond-ladder"
+  },
+  {
+    "id": "modified-duration",
+    "name": "Duration Calculator",
+    "shortDescription": "Macaulay, modified and effective duration for a bond, plus the price value of a basis point.",
+    "category": "fixed-income",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "D_{Mac} = \\frac{\\sum t_k \\cdot PV_k}{P}",
+        "label": "Macaulay duration, in years"
+      },
+      {
+        "latex": "D_{mod} = \\frac{D_{Mac}}{1 + y/f}",
+        "label": "Modified duration"
+      },
+      {
+        "latex": "DV01 = D_{mod} \\times P \\times 0.0001",
+        "label": "Price value of one basis point"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "couponRate",
+        "label": "Coupon rate",
+        "kind": "percent",
+        "default": 7.18,
+        "unit": "%",
+        "min": 0,
+        "max": 25
+      },
+      {
+        "id": "yearsToMaturity",
+        "label": "Years to maturity",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 0.25,
+        "max": 40
+      },
+      {
+        "id": "frequency",
+        "label": "Coupon frequency per year",
+        "kind": "select",
+        "default": "2",
+        "options": [
+          {
+            "value": "1",
+            "label": "Annual (1)"
+          },
+          {
+            "value": "2",
+            "label": "Half-yearly (2)"
+          },
+          {
+            "value": "4",
+            "label": "Quarterly (4)"
+          },
+          {
+            "value": "12",
+            "label": "Monthly (12)"
+          }
+        ]
+      },
+      {
+        "id": "yieldRequired",
+        "label": "Yield to maturity",
+        "kind": "percent",
+        "default": 7,
+        "unit": "%",
+        "min": 0.1,
+        "max": 40
+      },
+      {
+        "id": "faceValue",
+        "label": "Face value",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 1
+      }
+    ],
+    "workedExample": "A ten-year 7.18% semi-annual bond at a 7% yield has a Macaulay duration near 7.4 years and a modified duration near 7.15. A one-basis-point fall in yield therefore raises its price by roughly 0.0715%, or ₹715 on ₹10,00,000 of face value.",
+    "limitations": [
+      "Duration is a linear approximation. For yield moves beyond about 50 basis points, convexity matters and the linear estimate understates the gain and overstates the loss.",
+      "For bonds with embedded options or floating rates, modified duration is the wrong measure. Use effective duration computed by repricing."
+    ],
+    "relatedCalculators": [
+      "convexity",
+      "interest-rate-risk",
+      "bond-price-yield"
+    ],
+    "engine": "modified-duration"
+  },
+  {
+    "id": "convexity",
+    "name": "Convexity Calculator",
+    "shortDescription": "Second-order interest-rate sensitivity, and how much the convexity term improves the estimate of a price change.",
+    "category": "fixed-income",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "C_v = \\frac{P_{+} + P_{-} - 2P_0}{P_0 (\\Delta y)^2}",
+        "label": "Convexity from repricing at ±Δy"
+      },
+      {
+        "latex": "\\frac{\\Delta P}{P} \\approx -D_{mod}\\Delta y + \\tfrac{1}{2}C_v (\\Delta y)^2",
+        "label": "Duration plus convexity"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "couponRate",
+        "label": "Coupon rate",
+        "kind": "percent",
+        "default": 7.18,
+        "unit": "%",
+        "min": 0,
+        "max": 25
+      },
+      {
+        "id": "yearsToMaturity",
+        "label": "Years to maturity",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 0.25,
+        "max": 40
+      },
+      {
+        "id": "frequency",
+        "label": "Coupon frequency per year",
+        "kind": "select",
+        "default": "2",
+        "options": [
+          {
+            "value": "1",
+            "label": "Annual (1)"
+          },
+          {
+            "value": "2",
+            "label": "Half-yearly (2)"
+          },
+          {
+            "value": "4",
+            "label": "Quarterly (4)"
+          },
+          {
+            "value": "12",
+            "label": "Monthly (12)"
+          }
+        ]
+      },
+      {
+        "id": "yieldRequired",
+        "label": "Yield to maturity",
+        "kind": "percent",
+        "default": 7,
+        "unit": "%",
+        "min": 0.1,
+        "max": 40
+      },
+      {
+        "id": "shockBps",
+        "label": "Yield shock in basis points",
+        "kind": "number",
+        "default": 200,
+        "min": -500,
+        "max": 500,
+        "help": "Positive means yields rise."
+      }
+    ],
+    "workedExample": "For a ten-year 7.18% bond at a 7% yield, a 200-basis-point rise in yields produces a loss of roughly 13.2% by duration alone, but about 12.1% once convexity is included. The difference is why long-dated bonds recover faster than the linear estimate implies.",
+    "limitations": [
+      "Convexity is valuable, and it is paid for. A bond with higher convexity usually offers a lower yield — the benefit is priced, not free.",
+      "A single convexity number is inadequate across a large yield shock or across many maturities. Key-rate durations are required for a portfolio spread across the curve."
+    ],
+    "relatedCalculators": [
+      "modified-duration",
+      "interest-rate-risk"
+    ],
+    "engine": "convexity"
+  },
+  {
+    "id": "credit-spread",
+    "name": "Credit Spread Calculator",
+    "shortDescription": "The spread over a benchmark yield, the default probability it implies, and the compensation it provides for expected loss.",
+    "category": "fixed-income",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "s = y_{risky} - y_{benchmark}",
+        "label": "Spread to benchmark"
+      },
+      {
+        "latex": "s \\approx PD \\times LGD",
+        "label": "Break-even spread, a first approximation",
+        "assumption": "Exact only for small probabilities and short horizons; the exact form is computed by discounting survival and default legs."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "riskyYield",
+        "label": "Corporate bond yield",
+        "kind": "percent",
+        "default": 9.5,
+        "unit": "%",
+        "min": 0,
+        "max": 40
+      },
+      {
+        "id": "benchmarkYield",
+        "label": "Matching government yield",
+        "kind": "percent",
+        "default": 7,
+        "unit": "%",
+        "min": 0,
+        "max": 30
+      },
+      {
+        "id": "yearsToMaturity",
+        "label": "Years to maturity",
+        "kind": "years",
+        "default": 5,
+        "unit": "years",
+        "min": 0.25,
+        "max": 30
+      },
+      {
+        "id": "recoveryRate",
+        "label": "Assumed recovery rate",
+        "kind": "percent",
+        "default": 40,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "investment",
+        "label": "Investment amount",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 1
+      }
+    ],
+    "workedExample": "A 9.5% corporate bond against a 7.0% government yield carries a 250-basis-point spread. With a 40% recovery assumption, that spread compensates roughly 4.2% annual probability of default — the spread is not a margin of safety beyond that point.",
+    "limitations": [
+      "The recovery assumption drives the result. Indian retail investors rarely have independent evidence of recovery rates and should not assume 40% is conservative for unsecured or subordinated debt.",
+      "Spread also compensates illiquidity and risk premia, not only expected default. Some of the spread is payment for the difficulty of selling."
+    ],
+    "relatedCalculators": [
+      "default-recovery",
+      "bond-price-yield",
+      "deposit-comparison"
+    ],
+    "engine": "credit-spread"
+  },
+  {
+    "id": "default-recovery",
+    "name": "Expected Credit Loss",
+    "shortDescription": "Expected loss as probability of default times loss given default, and the yield required to be compensated for it.",
+    "category": "fixed-income",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "ECL = PD \\times LGD \\times EAD",
+        "label": "Expected credit loss"
+      },
+      {
+        "latex": "r_{required} = \\frac{1 + r_f}{1 - PD \\times LGD} - 1",
+        "label": "Yield required to break even after expected loss"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "exposure",
+        "label": "Exposure at default",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "probabilityOfDefault",
+        "label": "Annual probability of default",
+        "kind": "percent",
+        "default": 3,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "recoveryRate",
+        "label": "Recovery rate",
+        "kind": "percent",
+        "default": 40,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "years",
+        "label": "Horizon",
+        "kind": "years",
+        "default": 5,
+        "unit": "years",
+        "min": 0.25,
+        "max": 30
+      },
+      {
+        "id": "riskFreeRate",
+        "label": "Benchmark risk-free rate",
+        "kind": "percent",
+        "default": 7,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      }
+    ],
+    "workedExample": "A ₹10,00,000 unsecured loan with a 3% annual default probability and 40% recovery has an expected loss of ₹18,000 in the first year. To break even against a 7% risk-free rate, the required yield is about 7.3% — a figure that looks modest only because the expected loss is spread across years with survival.",
+    "limitations": [
+      "Expected loss is a mean. The realised loss is either a fraction of principal or nothing on each loan, so a portfolio of expected losses behaves very differently from a portfolio of realised ones.",
+      "PD and recovery estimates supplied by a lender or a platform are the platform’s own assumptions and are not independently audited in most Indian retail contexts."
+    ],
+    "relatedCalculators": [
+      "p2p-stress",
+      "credit-spread",
+      "p2p-diversification"
+    ],
+    "engine": "default-recovery"
+  },
+  {
+    "id": "callable-bond-price",
+    "name": "Callable and Perpetual Bond Price",
+    "shortDescription": "Prices a bond to its call date and values a perpetual instrument, while stating the features that the formula cannot capture.",
+    "category": "fixed-income",
+    "difficulty": "expert",
+    "formulas": [
+      {
+        "latex": "P_{perpetual} = \\frac{C}{y}",
+        "label": "Perpetuity: coupon divided by required yield"
+      },
+      {
+        "latex": "YTC = \\text{yield solving } P = \\sum \\frac{C}{(1+y)^k} + \\frac{Call\\ price}{(1+y)^{n}}",
+        "label": "Yield to call"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "faceValue",
+        "label": "Face value",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "couponRate",
+        "label": "Coupon rate",
+        "kind": "percent",
+        "default": 8.5,
+        "unit": "%",
+        "min": 0,
+        "max": 25
+      },
+      {
+        "id": "yearsToCall",
+        "label": "Years to first call date",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 0.25,
+        "max": 40
+      },
+      {
+        "id": "yieldRequired",
+        "label": "Required yield",
+        "kind": "percent",
+        "default": 9,
+        "unit": "%",
+        "min": 0.1,
+        "max": 40
+      },
+      {
+        "id": "callPrice",
+        "label": "Call price as % of face",
+        "kind": "percent",
+        "default": 100,
+        "unit": "%",
+        "min": 50,
+        "max": 120
+      },
+      {
+        "id": "isPerpetual",
+        "label": "Treat as perpetual (no maturity)",
+        "kind": "toggle",
+        "default": false
+      }
+    ],
+    "workedExample": "An 8.5% instrument callable in ten years, priced at a 9% required yield, is worth about ₹96.7 per ₹100 of face — below par, so a call is unlikely and the investor holds a below-market coupon. A perpetual instrument with the same coupon and yield prices near ₹94.4, and that price assumes coupons are never skipped.",
+    "limitations": [
+      "The price assumes the issuer acts rationally at the call date and that coupons are never deferred. Indian AT1 instruments permit coupon skips and principal write-down, so a formula price can materially overstate what will be received.",
+      "Callable bonds are negatively convex near the call date: your gain is capped precisely when rates fall, while your loss is not capped when rates rise."
+    ],
+    "relatedCalculators": [
+      "bond-price-yield",
+      "credit-spread",
+      "modified-duration"
+    ],
+    "engine": "callable-bond-price"
+  },
+  {
+    "id": "interest-rate-risk",
+    "name": "Interest Rate Risk",
+    "shortDescription": "The price impact of a yield shock on a bond or a bond portfolio, with and without convexity.",
+    "category": "risk",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "\\Delta P = P\\left(-D_{mod}\\Delta y + \\tfrac{1}{2}C_v (\\Delta y)^2\\right)",
+        "label": "Price impact of a yield move"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "portfolioValue",
+        "label": "Portfolio market value",
+        "kind": "currency",
+        "default": 2500000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "modifiedDuration",
+        "label": "Modified duration (years)",
+        "kind": "number",
+        "default": 5.5,
+        "min": 0,
+        "max": 30
+      },
+      {
+        "id": "convexity",
+        "label": "Convexity",
+        "kind": "number",
+        "default": 40,
+        "min": 0,
+        "max": 500
+      },
+      {
+        "id": "shockBps",
+        "label": "Yield shock (basis points)",
+        "kind": "number",
+        "default": 100,
+        "min": -500,
+        "max": 500
+      }
+    ],
+    "workedExample": "A ₹25,00,000 portfolio with a modified duration of 5.5 loses about ₹1,37,500 on a 100-basis-point rise in yields, reduced to roughly ₹1,32,500 once convexity is included. The same portfolio gains about ₹1,42,500 if yields fall by the same amount — the asymmetry is convexity.",
+    "limitations": [
+      "Modified duration assumes a parallel shift in the yield curve. Real curve moves are rarely parallel, and a portfolio concentrated in one maturity behaves differently from its duration figure suggests.",
+      "Credit spread changes are not yield-curve changes. A credit portfolio can lose value while government yields are flat, and duration will not capture that at all."
+    ],
+    "relatedCalculators": [
+      "modified-duration",
+      "convexity",
+      "bond-ladder"
+    ],
+    "engine": "interest-rate-risk"
+  },
+  {
+    "id": "yield-on-cost",
+    "name": "Yield on Cost",
+    "shortDescription": "Income yield measured against the original purchase price rather than today’s price — the metric that reveals whether income has actually grown.",
+    "category": "fixed-income",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Yield on cost} = \\frac{\\text{Current annual income}}{\\text{Original cost}}",
+        "label": "Yield on cost"
+      },
+      {
+        "latex": "\\text{Current yield} = \\frac{\\text{Current annual income}}{\\text{Current market value}}",
+        "label": "Current yield against yield on cost"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "originalCost",
+        "label": "Original cost of the position",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "currentValue",
+        "label": "Current market value",
+        "kind": "currency",
+        "default": 1800000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "currentIncome",
+        "label": "Income received over the last year",
+        "kind": "currency",
+        "default": 90000,
+        "unit": "₹",
+        "min": 0
+      }
+    ],
+    "workedExample": "A property or bond bought for ₹10,00,000, now worth ₹18,00,000 and producing ₹90,000 a year, has a yield on cost of 9.0% and a current yield of 5.0%. Both are true; only the first describes the investor’s experience, and only the second describes what a buyer today would get.",
+    "limitations": [
+      "Yield on cost is a backward-looking comfort metric and is frequently used to justify holding an asset that no longer offers an attractive forward return.",
+      "It ignores whether the original purchase was a good decision in the first place. A high yield on a bad purchase is still a bad purchase."
+    ],
+    "relatedCalculators": [
+      "dividend-return",
+      "reit-distribution",
+      "rental-yield"
+    ],
+    "engine": "yield-on-cost"
+  },
+  {
+    "id": "p2p-return",
+    "name": "P2P Realised Return",
+    "shortDescription": "The return a peer-to-peer portfolio has actually produced in cash, separated from interest that has been booked but not received.",
+    "category": "alternatives",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "\\text{Reported} = \\text{interest received} + \\text{interest accrued unpaid}",
+        "label": "What platforms usually show"
+      },
+      {
+        "latex": "\\text{Realised} = \\text{interest received} + \\text{recoveries} - \\text{fees}",
+        "label": "Cash actually returned"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "totalLent",
+        "label": "Total principal lent",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "interestReceived",
+        "label": "Interest actually received in cash",
+        "kind": "currency",
+        "default": 120000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "interestAccrued",
+        "label": "Interest accrued but not received",
+        "kind": "currency",
+        "default": 40000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "feesPaid",
+        "label": "Platform and servicing fees",
+        "kind": "currency",
+        "default": 15000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "defaultedPrincipal",
+        "label": "Principal in defaulted loans",
+        "kind": "currency",
+        "default": 80000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "recoveries",
+        "label": "Cash recovered from defaults",
+        "kind": "currency",
+        "default": 15000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "months",
+        "label": "Months elapsed since first investment",
+        "kind": "number",
+        "default": 24,
+        "min": 1,
+        "max": 240
+      },
+      {
+        "id": "marginalRate",
+        "label": "Your marginal tax rate",
+        "kind": "percent",
+        "default": 31.2,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      }
+    ],
+    "workedExample": "₹10,00,000 lent, with ₹1,20,000 interest received, ₹40,000 accrued, ₹80,000 in defaults and ₹15,000 recovered, has a reported return near 14.5% and a realised return closer to 10.5% before tax — and 7.2% after tax at a 31.2% marginal rate.",
+    "limitations": [
+      "The realised figure uses cash actually received, which is the only defensible basis, but it understates returns if the outstanding loans continue to pay.",
+      "Interest is taxed at slab rates in the year it is credited, whether or not it has been received. Tax on interest that later defaults is a real and common outcome.",
+      "Recovery assumptions in Indian unsecured retail lending are uncertain, slow and platform-dependent."
+    ],
+    "relatedCalculators": [
+      "p2p-stress",
+      "p2p-diversification",
+      "post-tax-return",
+      "default-recovery"
+    ],
+    "engine": "p2p-return"
+  },
+  {
+    "id": "p2p-stress",
+    "name": "P2P Stress Test",
+    "shortDescription": "Scenarios in which the platform’s reported default rate is wrong, showing what happens to the realised return under each.",
+    "category": "alternatives",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "\\text{Loss} = \\text{PD}_{scenario} \\times (1 - R) \\times \\text{exposure}",
+        "label": "Scenario credit loss"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "performingPrincipal",
+        "label": "Performing principal outstanding",
+        "kind": "currency",
+        "default": 700000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "totalLent",
+        "label": "Total principal ever lent",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "interestReceived",
+        "label": "Interest received to date",
+        "kind": "currency",
+        "default": 120000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "interestAccrued",
+        "label": "Interest accrued but unreceived",
+        "kind": "currency",
+        "default": 40000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "reportedDefaultRate",
+        "label": "Platform’s reported annual default rate",
+        "kind": "percent",
+        "default": 4,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      },
+      {
+        "id": "horizonYears",
+        "label": "Remaining weighted-average life in years",
+        "kind": "number",
+        "default": 2,
+        "min": 0.25,
+        "max": 20
+      }
+    ],
+    "workedExample": "At a 4% reported default rate and 15% recovery, a ₹10,00,000 portfolio loses about ₹13,600 to defaults. If the true rate is three times as high with weak recoveries, the loss rises above ₹1,00,000 — enough to convert a 12% gross return into roughly 6%, or less.",
+    "limitations": [
+      "The scenarios are arithmetic, not forecasts. Their purpose is to reveal how sensitive the outcome is to an assumption that the investor cannot independently verify.",
+      "Recoveries in Indian unsecured retail credit arrive over years and are frequently written off. Assuming any particular recovery rate without evidence is speculation."
+    ],
+    "relatedCalculators": [
+      "p2p-return",
+      "p2p-diversification",
+      "risk-of-ruin"
+    ],
+    "engine": "p2p-stress"
+  },
+  {
+    "id": "p2p-diversification",
+    "name": "P2P Diversification Curve",
+    "shortDescription": "How the probability of a material portfolio loss falls as the number of independent loans rises — and where the benefit flattens.",
+    "category": "alternatives",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "P(\\text{loss} > L) = \\sum_{k > L \\cdot n / LGD}^{n} \\binom{n}{k} p^k (1-p)^{n-k}",
+        "label": "Binomial tail probability"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "defaultProbability",
+        "label": "Assumed probability of default per loan",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": 0.1,
+        "max": 60
+      },
+      {
+        "id": "lossGivenDefault",
+        "label": "Loss given default",
+        "kind": "percent",
+        "default": 85,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "lossThreshold",
+        "label": "Loss level treated as material",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": 0.5,
+        "max": 50
+      },
+      {
+        "id": "maxLoans",
+        "label": "Largest portfolio to display",
+        "kind": "number",
+        "default": 300,
+        "min": 10,
+        "max": 2000
+      }
+    ],
+    "workedExample": "With a 5% default probability and 85% loss given default, ten loans carry a substantial chance of losing more than 5% of capital. At a hundred loans the chance is small, and by three hundred it is negligible — but the total loss *rate* never falls below the expected loss of 4.25%.",
+    "limitations": [
+      "The binomial model assumes defaults are independent. In a credit cycle they are not: defaults cluster by borrower quality, by employer, by region and by macro conditions, so the real tail is fatter than the model implies.",
+      "Diversification reduces the risk of a bad outcome; it does not improve the expected return. If the expected loss exceeds the spread, more loans simply make the loss more certain."
+    ],
+    "relatedCalculators": [
+      "p2p-stress",
+      "p2p-return",
+      "default-recovery"
+    ],
+    "engine": "p2p-diversification"
+  },
+  {
+    "id": "portfolio-allocation",
+    "name": "Portfolio Allocation Analyser",
+    "shortDescription": "Expected return, volatility and diversification benefit for a three-asset allocation, including the effect of correlation.",
+    "category": "portfolio",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "E[R_p] = \\sum w_i E[R_i]",
+        "label": "Portfolio expected return"
+      },
+      {
+        "latex": "\\sigma_p^2 = \\sum_i \\sum_j w_i w_j \\rho_{ij} \\sigma_i \\sigma_j",
+        "label": "Portfolio variance"
+      },
+      {
+        "latex": "\\text{Diversification ratio} = \\frac{\\sum w_i \\sigma_i}{\\sigma_p}",
+        "label": "Diversification ratio"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "w1",
+        "label": "Weight: asset 1",
+        "kind": "percent",
+        "default": 50,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "r1",
+        "label": "Expected return: asset 1",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "v1",
+        "label": "Volatility: asset 1",
+        "kind": "percent",
+        "default": 16,
+        "unit": "%",
+        "min": 0,
+        "max": 80
+      },
+      {
+        "id": "w2",
+        "label": "Weight: asset 2",
+        "kind": "percent",
+        "default": 30,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "r2",
+        "label": "Expected return: asset 2",
+        "kind": "percent",
+        "default": 7,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "v2",
+        "label": "Volatility: asset 2",
+        "kind": "percent",
+        "default": 4,
+        "unit": "%",
+        "min": 0,
+        "max": 80
+      },
+      {
+        "id": "w3",
+        "label": "Weight: asset 3",
+        "kind": "percent",
+        "default": 20,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "r3",
+        "label": "Expected return: asset 3",
+        "kind": "percent",
+        "default": 9,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "v3",
+        "label": "Volatility: asset 3",
+        "kind": "percent",
+        "default": 14,
+        "unit": "%",
+        "min": 0,
+        "max": 80
+      },
+      {
+        "id": "c12",
+        "label": "Correlation 1–2",
+        "kind": "number",
+        "default": 0.05,
+        "min": -1,
+        "max": 1,
+        "help": "Equity and high-grade debt in India have historically shown low but unstable correlation."
+      },
+      {
+        "id": "c13",
+        "label": "Correlation 1–3",
+        "kind": "number",
+        "default": 0.7,
+        "min": -1,
+        "max": 1
+      },
+      {
+        "id": "c23",
+        "label": "Correlation 2–3",
+        "kind": "number",
+        "default": 0.1,
+        "min": -1,
+        "max": 1
+      }
+    ],
+    "workedExample": "A 50/30/20 split with the inputs above has an expected return near 9.9% and a volatility near 9.8% — far below the weighted-average volatility of 12.5%, because the low correlation between components cancels some of the risk. That reduction is the only genuine free lunch in finance, and it is smaller than most people expect.",
+    "limitations": [
+      "Correlation estimates are unstable and rise toward 1 in every crisis, exactly when diversification is needed most. The historical estimate is a starting point, not a constant.",
+      "Expected returns are assumptions. This calculator propagates whatever you enter and cannot detect whether the inputs are sensible."
+    ],
+    "relatedCalculators": [
+      "multi-asset",
+      "allocation-optimiser",
+      "sharpe",
+      "rebalancing"
+    ],
+    "engine": "portfolio-allocation"
+  },
+  {
+    "id": "multi-asset",
+    "name": "Multi-Asset Portfolio",
+    "shortDescription": "A five-sleeve allocation with correlation inputs, showing return, volatility, Sharpe ratio and concentration.",
+    "category": "portfolio",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "\\text{HHI} = \\sum w_i^2",
+        "label": "Herfindahl concentration index"
+      },
+      {
+        "latex": "\\text{Effective positions} = 1/\\text{HHI}",
+        "label": "Effective number of holdings"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "wEquity",
+        "label": "Indian equity",
+        "kind": "percent",
+        "default": 45,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "wDebt",
+        "label": "Indian high-grade debt",
+        "kind": "percent",
+        "default": 30,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "wGold",
+        "label": "Gold",
+        "kind": "percent",
+        "default": 10,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "wGlobal",
+        "label": "Global equity",
+        "kind": "percent",
+        "default": 10,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "wCash",
+        "label": "Cash and liquid",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "rEquity",
+        "label": "Expected equity return",
+        "kind": "percent",
+        "default": 11,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "rDebt",
+        "label": "Expected debt return",
+        "kind": "percent",
+        "default": 7,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "rGold",
+        "label": "Expected gold return",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "rGlobal",
+        "label": "Expected global equity return (INR)",
+        "kind": "percent",
+        "default": 9,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "rCash",
+        "label": "Expected cash return",
+        "kind": "percent",
+        "default": 4,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "riskFree",
+        "label": "Risk-free rate",
+        "kind": "percent",
+        "default": 6.5,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      }
+    ],
+    "workedExample": "The allocation above, with the stated assumptions and typical Indian correlations, produces a portfolio expected return near 8.9% and volatility near 7.5%. The gold and global sleeves contribute little to return and a great deal to the reduction in volatility — which is their purpose.",
+    "limitations": [
+      "The correlation assumptions are embedded in the model and cannot be edited here; use the allocation analyser to test alternative correlation regimes.",
+      "Rebalancing costs and the tax on realising gains are excluded. In a taxable account, frequent rebalancing of the equity sleeve has a real cost."
+    ],
+    "relatedCalculators": [
+      "portfolio-allocation",
+      "allocation-optimiser",
+      "currency-impact",
+      "rebalancing"
+    ],
+    "engine": "multi-asset"
+  },
+  {
+    "id": "allocation-optimiser",
+    "name": "Allocation Optimiser",
+    "shortDescription": "Minimum-variance, risk-parity and equal-weight allocations computed side by side, with the input sensitivity stated.",
+    "category": "portfolio",
+    "difficulty": "expert",
+    "formulas": [
+      {
+        "latex": "\\min_w w^T \\Sigma w \\quad \\text{s.t.} \\quad \\sum w_i = 1, \\; w_i \\ge 0",
+        "label": "Minimum-variance problem"
+      },
+      {
+        "latex": "w_i (\\Sigma w)_i = w_j (\\Sigma w)_j \\;\\forall i,j",
+        "label": "Risk-parity condition: equal risk contributions"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "r1",
+        "label": "Expected return: asset 1",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "v1",
+        "label": "Volatility: asset 1",
+        "kind": "percent",
+        "default": 18,
+        "unit": "%",
+        "min": 0,
+        "max": 80
+      },
+      {
+        "id": "r2",
+        "label": "Expected return: asset 2",
+        "kind": "percent",
+        "default": 7,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "v2",
+        "label": "Volatility: asset 2",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": 0,
+        "max": 80
+      },
+      {
+        "id": "r3",
+        "label": "Expected return: asset 3",
+        "kind": "percent",
+        "default": 9,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "v3",
+        "label": "Volatility: asset 3",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": 0,
+        "max": 80
+      },
+      {
+        "id": "c12",
+        "label": "Correlation 1–2",
+        "kind": "number",
+        "default": 0.1,
+        "min": -1,
+        "max": 1
+      },
+      {
+        "id": "c13",
+        "label": "Correlation 1–3",
+        "kind": "number",
+        "default": 0.6,
+        "min": -1,
+        "max": 1
+      },
+      {
+        "id": "c23",
+        "label": "Correlation 2–3",
+        "kind": "number",
+        "default": 0.15,
+        "min": -1,
+        "max": 1
+      },
+      {
+        "id": "riskFree",
+        "label": "Risk-free rate",
+        "kind": "percent",
+        "default": 6.5,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      }
+    ],
+    "workedExample": "With one volatile asset and two calmer ones, minimum variance concentrates in the least volatile, risk parity spreads risk contributions more evenly, and equal weight ignores the differences entirely. Testing all three is the point: when a robust conclusion exists, all three agree.",
+    "limitations": [
+      "Optimisers maximise the influence of estimation error. Changing one expected return by a percentage point can move the recommended allocation by twenty points.",
+      "The output is not a recommendation. A minimum-variance portfolio assembled from past data is fitted to the past, and correlations in the next crisis will be higher than the inputs."
+    ],
+    "relatedCalculators": [
+      "portfolio-allocation",
+      "multi-asset",
+      "monte-carlo"
+    ],
+    "engine": "allocation-optimiser"
+  },
+  {
+    "id": "sharpe",
+    "name": "Sharpe Ratio Calculator",
+    "shortDescription": "Excess return per unit of total volatility, with the sample size needed for the figure to be statistically meaningful.",
+    "category": "risk",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Sharpe} = \\frac{r_p - r_f}{\\sigma_p}",
+        "label": "Annualised Sharpe ratio"
+      },
+      {
+        "latex": "T \\approx \\left(\\frac{1.96}{\\text{Sharpe}}\\right)^2",
+        "label": "Years of data needed to distinguish it from luck"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "portfolioReturn",
+        "label": "Annualised portfolio return",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": -50,
+        "max": 80
+      },
+      {
+        "id": "volatility",
+        "label": "Annualised volatility",
+        "kind": "percent",
+        "default": 16,
+        "unit": "%",
+        "min": 0.1,
+        "max": 80
+      },
+      {
+        "id": "riskFree",
+        "label": "Risk-free rate",
+        "kind": "percent",
+        "default": 6.5,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "years",
+        "label": "Length of the record",
+        "kind": "years",
+        "default": 3,
+        "unit": "years",
+        "min": 0.25,
+        "max": 40
+      }
+    ],
+    "workedExample": "A 12% return with 16% volatility and a 6.5% risk-free rate gives a Sharpe ratio of 0.34. Distinguishing that from luck at 95% confidence requires about thirty-three years of data — which is why short track records say almost nothing.",
+    "limitations": [
+      "Sharpe penalises upside volatility identically to downside. Use Sortino when the asymmetry matters.",
+      "It assumes returns are normally distributed. Strategies that sell options or hold illiquid assets show attractive Sharpe ratios that ignore their tail risk."
+    ],
+    "relatedCalculators": [
+      "sortino",
+      "max-drawdown",
+      "rolling-returns"
+    ],
+    "engine": "sharpe"
+  },
+  {
+    "id": "sortino",
+    "name": "Sortino Ratio Calculator",
+    "shortDescription": "Excess return per unit of downside deviation only, ignoring upside volatility.",
+    "category": "risk",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Sortino} = \\frac{r_p - r_{target}}{\\sigma_{downside}}",
+        "label": "Sortino ratio"
+      },
+      {
+        "latex": "\\sigma_{downside} = \\sqrt{\\frac{1}{n}\\sum \\min(0, r_t - r_{target})^2}",
+        "label": "Downside deviation, with the divisor over all periods"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "portfolioReturn",
+        "label": "Annualised return",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": -50,
+        "max": 80
+      },
+      {
+        "id": "volatility",
+        "label": "Annualised total volatility",
+        "kind": "percent",
+        "default": 16,
+        "unit": "%",
+        "min": 0.1,
+        "max": 80
+      },
+      {
+        "id": "targetReturn",
+        "label": "Minimum acceptable return",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": -20,
+        "max": 30
+      },
+      {
+        "id": "negativeShare",
+        "label": "Share of periods with negative returns",
+        "kind": "percent",
+        "default": 35,
+        "unit": "%",
+        "min": 1,
+        "max": 90,
+        "help": "Used to approximate downside deviation from total volatility."
+      }
+    ],
+    "workedExample": "A strategy returning 12% with 16% volatility, where only a third of periods are negative, has a materially better Sortino than Sharpe ratio — as it should, if the volatility is concentrated on the upside.",
+    "limitations": [
+      "Downside deviation cannot be recovered exactly from annual volatility alone; the negative-period share is an approximation and the result should be read as indicative.",
+      "The target return is a choice. Setting it high makes almost everything look bad, which is a common way of rigging the metric."
+    ],
+    "relatedCalculators": [
+      "sharpe",
+      "max-drawdown",
+      "risk-of-ruin"
+    ],
+    "engine": "sortino"
+  },
+  {
+    "id": "max-drawdown",
+    "name": "Drawdown Analyser",
+    "shortDescription": "The largest peak-to-trough decline, how long it took to recover, and the total time spent underwater.",
+    "category": "risk",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "DD_t = \\frac{V_t}{\\max_{s \\le t} V_s} - 1",
+        "label": "Drawdown at time t"
+      },
+      {
+        "latex": "\\text{Max DD} = \\min_t DD_t",
+        "label": "Maximum drawdown"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "peakValue",
+        "label": "Peak value of the investment",
+        "kind": "currency",
+        "default": 1500000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "troughValue",
+        "label": "Lowest value after the peak",
+        "kind": "currency",
+        "default": 900000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "recoveredValue",
+        "label": "Value when it recovered (or current value)",
+        "kind": "currency",
+        "default": 1600000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "monthsPeakToTrough",
+        "label": "Months from peak to trough",
+        "kind": "number",
+        "default": 11,
+        "min": 0,
+        "max": 240
+      },
+      {
+        "id": "monthsToRecover",
+        "label": "Months from trough to recovery",
+        "kind": "number",
+        "default": 26,
+        "min": 0,
+        "max": 300,
+        "help": "Enter the number of months until the earlier peak was regained, or 0 if it has not been regained."
+      }
+    ],
+    "workedExample": "₹15,00,000 falling to ₹9,00,000 is a 40% drawdown, and recovering to ₹16,00,000 means it took two years and two months to get back to the previous peak. A 40% loss requires a 67% gain to repair — a fact worth remembering before deciding that a drawdown can be tolerated.",
+    "limitations": [
+      "Only one drawdown is analysed here. A series can contain several severe drawdowns, and the deepest is not necessarily the most damaging to a withdrawal plan.",
+      "The recovery requirement rises non-linearly: a 50% loss needs a 100% gain, and a 75% loss needs a 300% gain."
+    ],
+    "relatedCalculators": [
+      "risk-of-ruin",
+      "sharpe",
+      "sequence-risk"
+    ],
+    "engine": "max-drawdown"
+  },
+  {
+    "id": "rolling-returns",
+    "name": "Rolling Return Comparator",
+    "shortDescription": "The same investment measured over different windows, showing how dramatically the reported annualised return depends on the period chosen.",
+    "category": "returns",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "r_{window} = \\left(\\frac{V_{now}}{V_{now-w}}\\right)^{1/w} - 1",
+        "label": "Annualised return over window w"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "current",
+        "label": "Current value",
+        "kind": "currency",
+        "default": 2500000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "value1y",
+        "label": "Value one year ago",
+        "kind": "currency",
+        "default": 2100000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "value3y",
+        "label": "Value three years ago",
+        "kind": "currency",
+        "default": 1650000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "value5y",
+        "label": "Value five years ago",
+        "kind": "currency",
+        "default": 1150000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "value7y",
+        "label": "Value seven years ago",
+        "kind": "currency",
+        "default": 700000,
+        "unit": "₹",
+        "min": 0
+      }
+    ],
+    "workedExample": "The same holding shows about 19% a year over one year, 15% over three, 16.8% over five and 20% over seven. Any of those numbers could be quoted in a marketing document — which is exactly why a single window is not evidence of anything.",
+    "limitations": [
+      "Point-to-point returns are dominated by the values at the two endpoints. Changing the start date by a month can change the reported annual figure by several percentage points.",
+      "Return figures for periods under a year should not be annualised. An unusually good quarter annualises to a number that has no predictive content."
+    ],
+    "relatedCalculators": [
+      "cagr",
+      "xirr",
+      "max-drawdown"
+    ],
+    "engine": "rolling-returns"
+  },
+  {
+    "id": "monte-carlo",
+    "name": "Monte Carlo Simulator",
+    "shortDescription": "A distribution of possible outcomes from a stated return and volatility, reported as percentiles rather than a single projection.",
+    "category": "risk",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "V_{t+1} = V_t (1 + \\mu + \\sigma z), \\quad z \\sim N(0,1)",
+        "label": "Annual return draw from a normal distribution"
+      },
+      {
+        "latex": "P(\\text{success}) = \\frac{1}{N}\\sum 1\\{V_T \\ge \\text{target}\\}",
+        "label": "Probability of reaching the target"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "initialValue",
+        "label": "Starting value",
+        "kind": "currency",
+        "default": 2000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "annualContribution",
+        "label": "Annual contribution",
+        "kind": "currency",
+        "default": 300000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "annualReturn",
+        "label": "Expected annual return",
+        "kind": "percent",
+        "default": 11,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "annualVolatility",
+        "label": "Annual volatility",
+        "kind": "percent",
+        "default": 16,
+        "unit": "%",
+        "min": 0,
+        "max": 80
+      },
+      {
+        "id": "years",
+        "label": "Horizon",
+        "kind": "years",
+        "default": 20,
+        "unit": "years",
+        "min": 1,
+        "max": 50
+      },
+      {
+        "id": "targetValue",
+        "label": "Target value",
+        "kind": "currency",
+        "default": 20000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "simulations",
+        "label": "Number of simulations",
+        "kind": "number",
+        "default": 5000,
+        "min": 100,
+        "max": 50000,
+        "help": "A fixed seed is used so the same inputs always produce the same figure."
+      },
+      {
+        "id": "method",
+        "label": "Return distribution",
+        "kind": "select",
+        "default": "normal",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal (symmetric, thin tails)"
+          },
+          {
+            "value": "student-t",
+            "label": "Student-t (fat tails)"
+          }
+        ]
+      }
+    ],
+    "workedExample": "₹20,00,000 plus ₹3,00,000 a year at 11% with 16% volatility produces a median outcome well above ₹2 crore, but the fifth percentile sits far below it. The gap between the median and the fifth percentile is the real answer to “is this plan safe?”",
+    "limitations": [
+      "Normal draws understate the frequency of extreme years. The Student-t option fattens the tails, but no distribution fitted to the past can generate a crisis that has not yet happened.",
+      "Volatility is constant in this model, so it cannot reproduce the clustering of turbulent periods that makes real drawdowns long.",
+      "The output is a property of the model, not of the world."
+    ],
+    "relatedCalculators": [
+      "sequence-risk",
+      "risk-of-ruin",
+      "goal-planning",
+      "swp"
+    ],
+    "engine": "monte-carlo"
+  },
+  {
+    "id": "sequence-risk",
+    "name": "Sequence-of-Returns Risk",
+    "shortDescription": "Compares an identical average return delivered in a favourable order with the same return delivered in an unfavourable one.",
+    "category": "risk",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "V_T = \\left(\\left(V_0 - W\\right)(1+r_1) - W\\right)(1+r_2) \\ldots",
+        "label": "Order affects the terminal value when withdrawals occur"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "corpus",
+        "label": "Starting corpus",
+        "kind": "currency",
+        "default": 5000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "annualWithdrawal",
+        "label": "Annual withdrawal",
+        "kind": "currency",
+        "default": 320000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "averageReturn",
+        "label": "Average annual return",
+        "kind": "percent",
+        "default": 9,
+        "unit": "%",
+        "min": -20,
+        "max": 30
+      },
+      {
+        "id": "earlyShock",
+        "label": "Return in the first three years",
+        "kind": "percent",
+        "default": -10,
+        "unit": "%",
+        "min": -60,
+        "max": 40
+      },
+      {
+        "id": "years",
+        "label": "Horizon",
+        "kind": "years",
+        "default": 25,
+        "unit": "years",
+        "min": 5,
+        "max": 45
+      }
+    ],
+    "workedExample": "₹50,00,000 with ₹3,20,000 withdrawn annually at a 9% average return survives twenty-five years if the early years are average or good. If the first three years deliver −10% instead, the same average return leaves a materially smaller — sometimes exhausted — corpus.",
+    "limitations": [
+      "Two paths are not a distribution. The purpose is to demonstrate the mechanism; use the Monte Carlo simulator to see the distribution of outcomes.",
+      "This is a deterministic stress, not a worst case. Worse sequences than the one entered are possible."
+    ],
+    "relatedCalculators": [
+      "monte-carlo",
+      "swp",
+      "risk-of-ruin"
+    ],
+    "engine": "sequence-risk"
+  },
+  {
+    "id": "risk-of-ruin",
+    "name": "Risk of Ruin",
+    "shortDescription": "The probability that a withdrawal plan exhausts the corpus, using resampled historical returns rather than a normal distribution.",
+    "category": "risk",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "P(\\text{ruin}) = \\frac{1}{N}\\sum 1\\{\\min_t V_t \\le 0\\}",
+        "label": "Fraction of simulated paths that hit zero"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "initialValue",
+        "label": "Starting corpus",
+        "kind": "currency",
+        "default": 5000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "annualWithdrawal",
+        "label": "First-year withdrawal",
+        "kind": "currency",
+        "default": 300000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "returnRate",
+        "label": "Average annual return",
+        "kind": "percent",
+        "default": 9,
+        "unit": "%",
+        "min": -10,
+        "max": 25
+      },
+      {
+        "id": "volatility",
+        "label": "Annual volatility",
+        "kind": "percent",
+        "default": 14,
+        "unit": "%",
+        "min": 0,
+        "max": 60
+      },
+      {
+        "id": "years",
+        "label": "Horizon",
+        "kind": "years",
+        "default": 30,
+        "unit": "years",
+        "min": 5,
+        "max": 60
+      },
+      {
+        "id": "escalation",
+        "label": "Annual increase in withdrawal",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      },
+      {
+        "id": "simulations",
+        "label": "Simulations",
+        "kind": "number",
+        "default": 3000,
+        "min": 200,
+        "max": 20000
+      }
+    ],
+    "workedExample": "A ₹50,00,000 corpus withdrawing ₹3,00,000 in the first year and escalating 5% annually, against 9% average returns with 14% volatility, has a ruin probability well above zero over thirty years. A plan with a 10% failure probability is not safe — it is a plan that fails for one household in ten.",
+    "limitations": [
+      "The simulation assumes the stated average return and volatility are correct. If the next thirty years have lower returns than the last, the true failure rate is higher than shown.",
+      "Sequence matters, and this model captures that by construction — but it cannot capture a structural break, such as a permanent change in the tax treatment of withdrawals."
+    ],
+    "relatedCalculators": [
+      "sequence-risk",
+      "swp",
+      "monte-carlo",
+      "retirement-corpus"
+    ],
+    "engine": "risk-of-ruin"
+  },
+  {
+    "id": "emergency-fund",
+    "name": "Emergency Fund Sizing",
+    "shortDescription": "How many months of expenses your liquid assets cover, and what that implies for forced selling in a downturn.",
+    "category": "planning",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "\\text{Coverage} = \\frac{\\text{Liquid assets}}{\\text{Monthly essential expenses}}",
+        "label": "Coverage in months"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "monthlyExpenses",
+        "label": "Monthly essential expenses",
+        "kind": "currency",
+        "default": 75000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "liquidAssets",
+        "label": "Same-day accessible assets",
+        "kind": "currency",
+        "default": 400000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "nearLiquidAssets",
+        "label": "Accessible within a week",
+        "kind": "currency",
+        "default": 200000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "monthlyObligations",
+        "label": "Monthly loan repayments",
+        "kind": "currency",
+        "default": 35000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "incomeStability",
+        "label": "Months to find comparable work if income stopped",
+        "kind": "number",
+        "default": 4,
+        "min": 1,
+        "max": 36
+      }
+    ],
+    "workedExample": "₹75,000 of monthly expenses plus ₹35,000 of loan repayments needs ₹1,10,000 a month. ₹4,00,000 in same-day assets covers under four months; adding the near-liquid bucket extends it to five and a half. A salaried borrower with a large home loan needs a larger buffer than a two-income household with no debt.",
+    "limitations": [
+      "A credit card is not an emergency fund. It converts a cash-flow problem into a debt problem at a much higher interest cost.",
+      "Equity mutual funds are accessible within days but may be sold at a loss in exactly the circumstances that create an emergency."
+    ],
+    "relatedCalculators": [
+      "liquidity-coverage",
+      "opportunity-cost",
+      "emi"
+    ],
+    "engine": "emergency-fund"
+  },
+  {
+    "id": "liquidity-coverage",
+    "name": "Liquidity Coverage",
+    "shortDescription": "Time to convert each holding into spendable cash, and the portfolio’s overall liquidity profile.",
+    "category": "portfolio",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Weighted liquidity} = \\sum w_i \\times \\text{days}_i",
+        "label": "Weighted average days to cash"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "cash",
+        "label": "Cash and liquid funds",
+        "kind": "currency",
+        "default": 500000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "listedEquity",
+        "label": "Listed equity and equity funds",
+        "kind": "currency",
+        "default": 3000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "bonds",
+        "label": "Bonds and debt funds",
+        "kind": "currency",
+        "default": 1500000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "property",
+        "label": "Property and illiquid assets",
+        "kind": "currency",
+        "default": 5000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "alternatives",
+        "label": "P2P, AIF, unlisted and other locked assets",
+        "kind": "currency",
+        "default": 800000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "monthlyNeeds",
+        "label": "Monthly cash requirement",
+        "kind": "currency",
+        "default": 100000,
+        "unit": "₹",
+        "min": 1
+      }
+    ],
+    "workedExample": "A portfolio of ₹1.08 crore with ₹5,00,000 in cash and ₹50,00,000 in property is not a liquid portfolio, however large it looks. The property cannot fund an expense; the ₹5,00,000 covers five months and no more.",
+    "limitations": [
+      "Days to cash assume normal market conditions. Indian small-caps and unlisted positions can become untradeable at times when cash is most needed.",
+      "Selling to raise cash may realise gains and trigger tax, so the effective cost of liquidity can exceed the market impact alone."
+    ],
+    "relatedCalculators": [
+      "emergency-fund",
+      "opportunity-cost",
+      "max-drawdown"
+    ],
+    "engine": "liquidity-coverage"
+  },
+  {
+    "id": "goal-planning",
+    "name": "Goal Planning Calculator",
+    "shortDescription": "The monthly investment required to reach a goal at a stated return, including an annual step-up.",
+    "category": "planning",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "\\text{Solve } PV(1+r)^T + P \\frac{(1+i)^{n}-1}{i}(1+i) = \\text{Target}",
+        "label": "Required instalment, solved numerically"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "targetAmount",
+        "label": "Goal amount (in today’s prices)",
+        "kind": "currency",
+        "default": 10000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "currentSavings",
+        "label": "Already saved for this goal",
+        "kind": "currency",
+        "default": 500000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "inflation",
+        "label": "Assumed inflation",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "returnRate",
+        "label": "Assumed nominal return",
+        "kind": "percent",
+        "default": 11,
+        "unit": "%",
+        "min": -10,
+        "max": 30
+      },
+      {
+        "id": "years",
+        "label": "Years to the goal",
+        "kind": "years",
+        "default": 15,
+        "unit": "years",
+        "min": 0.5,
+        "max": 45
+      },
+      {
+        "id": "stepUp",
+        "label": "Annual step-up in contribution",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": 0,
+        "max": 30
+      }
+    ],
+    "workedExample": "A goal that costs ₹1 crore today, fifteen years away with 6% inflation, is a ₹2.4 crore future bill. Saving ₹5,00,000 already and investing monthly at 11% with a 5% annual step-up requires about ₹33,000 a month to start.",
+    "limitations": [
+      "Goals stated in today’s prices must be inflated. A goal calculator that ignores inflation understates the requirement by more than a third over fifteen years.",
+      "The whole calculation rests on two assumptions, and both will be wrong. Review the plan annually against actual progress rather than trusting the projection."
+    ],
+    "relatedCalculators": [
+      "sip",
+      "step-up-sip",
+      "monte-carlo",
+      "purchasing-power"
+    ],
+    "engine": "goal-planning"
+  },
+  {
+    "id": "retirement-corpus",
+    "name": "Retirement Corpus Calculator",
+    "shortDescription": "How large a corpus you need at retirement, given current spending, inflation and the years the corpus must last.",
+    "category": "planning",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "C = \\text{Spend}_{retire} \\times \\sum_{t=1}^{L} \\left(\\frac{1+\\pi}{1+r_{post}}\\right)^{t}",
+        "label": "Present value of an inflation-linked spending stream"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "currentAge",
+        "label": "Current age",
+        "kind": "number",
+        "default": 35,
+        "min": 18,
+        "max": 80,
+        "unit": "years"
+      },
+      {
+        "id": "retirementAge",
+        "label": "Retirement age",
+        "kind": "number",
+        "default": 60,
+        "min": 30,
+        "max": 85,
+        "unit": "years"
+      },
+      {
+        "id": "monthlyExpenses",
+        "label": "Monthly expenses today",
+        "kind": "currency",
+        "default": 80000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "inflation",
+        "label": "Inflation",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "preRetirementReturn",
+        "label": "Return before retirement",
+        "kind": "percent",
+        "default": 11,
+        "unit": "%",
+        "min": -10,
+        "max": 30
+      },
+      {
+        "id": "postRetirementReturn",
+        "label": "Return after retirement",
+        "kind": "percent",
+        "default": 7.5,
+        "unit": "%",
+        "min": -10,
+        "max": 25
+      },
+      {
+        "id": "lifeExpectancy",
+        "label": "Plan to age",
+        "kind": "number",
+        "default": 85,
+        "min": 60,
+        "max": 105
+      },
+      {
+        "id": "existingCorpus",
+        "label": "Existing retirement savings",
+        "kind": "currency",
+        "default": 1500000,
+        "unit": "₹",
+        "min": 0
+      }
+    ],
+    "workedExample": "A 35-year-old spending ₹80,000 a month who retires at 60 and plans to age 85 needs a corpus of roughly ₹8 to ₹9 crore, because the expenses grow with inflation for fifty years while the corpus must fund twenty-five of them without new contributions.",
+    "limitations": [
+      "The number produced assumes expenses grow at general inflation. Healthcare costs in retirement typically grow faster.",
+      "It excludes taxes on withdrawals, which for a debt-heavy post-retirement corpus are charged at slab rates every year.",
+      "Spending rarely stays flat in real terms: it typically falls in the early retirement years and rises again for healthcare."
+    ],
+    "relatedCalculators": [
+      "swp",
+      "risk-of-ruin",
+      "nps-calculator",
+      "purchasing-power"
+    ],
+    "engine": "retirement-corpus"
+  },
+  {
+    "id": "rebalancing",
+    "name": "Rebalancing Planner",
+    "shortDescription": "Current drift from target weights for four sleeves, the trades needed to restore them, and the estimated cost and tax of doing so.",
+    "category": "portfolio",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Drift}_i = w_i^{current} - w_i^{target}",
+        "label": "Drift in percentage points"
+      },
+      {
+        "latex": "\\text{Trade}_i = w_i^{target} \\times V - V_i",
+        "label": "Value to buy or sell"
+      },
+      {
+        "latex": "\\text{Cost} = \\sum |\\text{Trade}_i| \\times c",
+        "label": "Round-trip transaction cost"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "value1",
+        "label": "Current value: Indian equity",
+        "kind": "currency",
+        "default": 3200000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "value2",
+        "label": "Current value: debt and deposits",
+        "kind": "currency",
+        "default": 1500000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "value3",
+        "label": "Current value: gold",
+        "kind": "currency",
+        "default": 700000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "value4",
+        "label": "Current value: global equity",
+        "kind": "currency",
+        "default": 600000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "target1",
+        "label": "Target: Indian equity",
+        "kind": "percent",
+        "default": 45,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "target2",
+        "label": "Target: debt and deposits",
+        "kind": "percent",
+        "default": 35,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "target3",
+        "label": "Target: gold",
+        "kind": "percent",
+        "default": 10,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "target4",
+        "label": "Target: global equity",
+        "kind": "percent",
+        "default": 10,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "band",
+        "label": "Tolerance band in percentage points",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": 0.5,
+        "max": 20
+      },
+      {
+        "id": "costRate",
+        "label": "Transaction cost on traded value",
+        "kind": "percent",
+        "default": 0.3,
+        "unit": "%",
+        "min": 0,
+        "max": 3
+      },
+      {
+        "id": "capitalGainsTaxRate",
+        "label": "Capital gains tax rate on sales",
+        "kind": "percent",
+        "default": 12.5,
+        "unit": "%",
+        "min": 0,
+        "max": 40
+      }
+    ],
+    "workedExample": "Equity that has run up to 53% of a portfolio targeting 45% breaches a 5-point band and requires selling about 8% of the portfolio. Where that sale happens inside a retirement account there is no tax cost; in a taxable account at 12.5% it may be cheaper to rebalance with new contributions for a year.",
+    "limitations": [
+      "Rebalancing trades are estimated from the rates entered, not from your actual tax position. Harvesting losses elsewhere in the portfolio can offset gains from rebalancing.",
+      "Rebalancing more often increases cost without reliably improving returns. The band, not the calendar, is the better trigger — and wider bands are cheaper than narrower ones."
+    ],
+    "relatedCalculators": [
+      "portfolio-allocation",
+      "multi-asset",
+      "tax-loss-harvesting"
+    ],
+    "engine": "rebalancing"
+  },
+  {
+    "id": "inflation-adjusted-return",
+    "name": "Required Return After Inflation and Tax",
+    "shortDescription": "The nominal pre-tax return an investment must produce to deliver a chosen real post-tax return — the honest target for a portfolio.",
+    "category": "returns",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "r_{nominal} = \\frac{(1 + r_{real})(1 + \\pi)}{1 - \\tau} - 1",
+        "label": "Required nominal return given a real target, inflation and the tax rate",
+        "assumption": "Assumes income is taxed annually at the marginal rate. A holding taxed only on capital gains requires a lower nominal return."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "realTarget",
+        "label": "Real return you want",
+        "kind": "percent",
+        "default": 4,
+        "unit": "%",
+        "min": -5,
+        "max": 20
+      },
+      {
+        "id": "inflation",
+        "label": "Assumed inflation",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "marginalRate",
+        "label": "Your marginal tax rate",
+        "kind": "percent",
+        "default": 31.2,
+        "unit": "%",
+        "min": 0,
+        "max": 55
+      },
+      {
+        "id": "availableReturn",
+        "label": "Return currently available",
+        "kind": "percent",
+        "default": 8,
+        "unit": "%",
+        "min": -20,
+        "max": 40
+      },
+      {
+        "id": "years",
+        "label": "Horizon",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 1,
+        "max": 50
+      }
+    ],
+    "workedExample": "To earn 4% real with 6% inflation and a 31.2% marginal rate, a fully taxed investment must return about 11.05% nominal. A 7.2% fixed deposit delivers roughly 1.1% real after tax — less than a third of the target, and the gap is the reason an all-deposit portfolio cannot fund a long retirement.",
+    "limitations": [
+      "The required return is a constraint on what you need, not a statement about what the market will provide. If the market cannot deliver it at acceptable risk, the goal has to change rather than the assumed return.",
+      "Capital-gains-based investments require a lower pre-tax return than income-based ones, because the tax is deferred — a point the annual-tax assumption here understates."
+    ],
+    "relatedCalculators": [
+      "real-return",
+      "post-tax-return",
+      "retirement-corpus",
+      "break-even-inflation"
+    ],
+    "engine": "inflation-adjusted-return"
+  },
+  {
+    "id": "advance-tax-schedule",
+    "name": "Advance Tax Schedule",
+    "shortDescription": "The quarterly instalments due on estimated annual tax, and the interest exposure if the schedule is missed.",
+    "category": "tax",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Cumulative due} = \\{15\\%, 45\\%, 75\\%, 100\\%\\} \\text{ of estimated liability}",
+        "label": "Instalment percentages at 15 June, 15 September, 15 December and 15 March",
+        "assumption": "For a taxpayer whose income is not entirely from business, only the first three dates fall due before the year ends."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "estimatedTax",
+        "label": "Estimated total tax for the year",
+        "kind": "currency",
+        "default": 400000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "tdsDeducted",
+        "label": "TDS already deducted",
+        "kind": "currency",
+        "default": 120000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "interestRate",
+        "label": "Interest on shortfall",
+        "kind": "percent",
+        "default": 1,
+        "unit": "%",
+        "min": 0,
+        "max": 3,
+        "help": "Interest is charged at 1% per month on the shortfall against each instalment."
+      }
+    ],
+    "workedExample": "With an estimated liability of ₹4,00,000 and ₹1,20,000 of TDS, the balance of ₹2,80,000 is payable as 15%, 45%, 75% and 100% cumulative instalments. Paying nothing until March triggers interest on each missed instalment.",
+    "limitations": [
+      "Interest under s.234C is charged for three months on each shortfall instalment, and the computation is mechanical rather than discretionary.",
+      "A taxpayer with presumptive business income has a single instalment on 15 March. The schedule here assumes income that is not entirely business income."
+    ],
+    "relatedCalculators": [
+      "post-tax-return",
+      "tax-loss-harvesting"
+    ],
+    "engine": "advance-tax-schedule"
+  },
+  {
+    "id": "tax-loss-harvesting",
+    "name": "Tax-Loss Harvesting Planner",
+    "shortDescription": "The tax saved by realising losses against gains in the same year, and how much loss can be carried forward.",
+    "category": "tax",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "\\text{Short-term loss} \\rightarrow \\text{STCG then LTCG}",
+        "label": "Set-off order for short-term losses"
+      },
+      {
+        "latex": "\\text{Long-term loss} \\rightarrow \\text{LTCG only}",
+        "label": "Long-term losses cannot offset short-term gains"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "shortTermGains",
+        "label": "Realised short-term gains",
+        "kind": "currency",
+        "default": 200000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "longTermGains",
+        "label": "Realised long-term gains",
+        "kind": "currency",
+        "default": 500000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "shortTermLosses",
+        "label": "Available short-term losses",
+        "kind": "currency",
+        "default": 150000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "longTermLosses",
+        "label": "Available long-term losses",
+        "kind": "currency",
+        "default": 80000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "stcgRate",
+        "label": "Rate on short-term gains",
+        "kind": "percent",
+        "default": 20,
+        "unit": "%",
+        "min": 0,
+        "max": 45
+      },
+      {
+        "id": "ltcgRate",
+        "label": "Rate on long-term gains",
+        "kind": "percent",
+        "default": 12.5,
+        "unit": "%",
+        "min": 0,
+        "max": 45
+      },
+      {
+        "id": "exemptionAvailable",
+        "label": "LTCG exemption still unused",
+        "kind": "currency",
+        "default": 0,
+        "unit": "₹",
+        "min": 0,
+        "help": "The ₹1,25,000 annual exemption on listed equity long-term gains is applied first."
+      }
+    ],
+    "workedExample": "₹2,00,000 of short-term gains set against ₹1,50,000 of short-term losses leaves ₹50,000 taxed at 20%. The ₹80,000 long-term loss can only be set against long-term gains, saving 12.5% of what it offsets — which is why a short-term loss is the more valuable loss to hold.",
+    "limitations": [
+      "A loss on a listed equity position can be harvested and the position re-established, but the buy-back must respect the two-day settlement cycle and not be an attempt to manufacture a loss without changing economic exposure.",
+      "Carry-forward requires the return to be filed by the due date under s.139(1). A belated return forfeits the carry-forward of losses entirely.",
+      "Wash-sale rules do not exist in India in the form they take in the United States, but a transaction without economic substance can still be challenged."
+    ],
+    "relatedCalculators": [
+      "post-tax-return",
+      "advance-tax-schedule"
+    ],
+    "engine": "tax-loss-harvesting"
+  },
+  {
+    "id": "ppf-calculator",
+    "name": "PPF Calculator",
+    "shortDescription": "Maturity value of a Public Provident Fund account with the statutory deposit pattern and rate resets.",
+    "category": "planning",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "FV = \\sum_{t=0}^{14} D\\,(1+r)^{15-t}",
+        "label": "Annual deposits compounded to maturity",
+        "assumption": "The rate is declared each quarter and is not fixed for the term. The calculator uses one rate throughout."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "annualDeposit",
+        "label": "Annual deposit",
+        "kind": "currency",
+        "default": 150000,
+        "unit": "₹",
+        "min": 500,
+        "max": 150000,
+        "help": "There is a statutory annual ceiling on deposits."
+      },
+      {
+        "id": "rate",
+        "label": "Assumed rate of interest",
+        "kind": "percent",
+        "default": 7.1,
+        "unit": "%",
+        "min": 1,
+        "max": 15
+      },
+      {
+        "id": "years",
+        "label": "Term in years",
+        "kind": "years",
+        "default": 15,
+        "unit": "years",
+        "min": 15,
+        "max": 50
+      }
+    ],
+    "workedExample": "₹1,50,000 deposited each year for fifteen years at 7.1% matures at approximately ₹40.7 lakh. Because deposits and interest are both exempt, the entire amount is received without tax.",
+    "limitations": [
+      "The interest rate changes quarterly. It has fallen over long stretches and is not guaranteed for the full term.",
+      "Deposits are capped, so the tax advantage cannot be scaled. Above the cap, investors need a taxable alternative, and the comparison must be made after tax."
+    ],
+    "relatedCalculators": [
+      "taxable-equivalent-yield",
+      "post-tax-return",
+      "retirement-corpus"
+    ],
+    "engine": "ppf-calculator"
+  },
+  {
+    "id": "epf-calculator",
+    "name": "EPF Corpus Projection",
+    "shortDescription": "Projection of the Employees’ Provident Fund balance to retirement from employee and employer contributions.",
+    "category": "planning",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "B_{t+1} = B_t (1 + r/12) + (E + R)\\ \\text{monthly}",
+        "label": "Monthly accrual of contributions and interest"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "monthlyBasic",
+        "label": "Monthly basic salary plus dearness allowance",
+        "kind": "currency",
+        "default": 60000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "employeeRate",
+        "label": "Employee contribution",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": 0,
+        "max": 30
+      },
+      {
+        "id": "employerRate",
+        "label": "Employer contribution to EPF",
+        "kind": "percent",
+        "default": 3.67,
+        "unit": "%",
+        "min": 0,
+        "max": 15,
+        "help": "Of the employer’s 12%, 8.33% of wages up to the statutory ceiling is diverted to the pension scheme."
+      },
+      {
+        "id": "currentBalance",
+        "label": "Current EPF balance",
+        "kind": "currency",
+        "default": 800000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "returnRate",
+        "label": "Assumed EPF interest rate",
+        "kind": "percent",
+        "default": 8.25,
+        "unit": "%",
+        "min": 5,
+        "max": 12
+      },
+      {
+        "id": "yearsToRetirement",
+        "label": "Years to retirement",
+        "kind": "number",
+        "default": 25,
+        "min": 1,
+        "max": 45
+      },
+      {
+        "id": "salaryGrowth",
+        "label": "Annual salary growth",
+        "kind": "percent",
+        "default": 7,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      }
+    ],
+    "workedExample": "A ₹60,000 monthly basic with 12% employee and 3.67% employer contributions, growing 7% a year, accumulates several crore over twenty-five years at 8.25% — but the entire amount is received at the age of retirement or after, and premature withdrawal has tax consequences.",
+    "limitations": [
+      "The EPF rate is declared annually by the Employees’ Provident Fund Organisation and is not contractual. The figure here is an assumption.",
+      "The pension component of the employer’s contribution is not represented in this balance. It builds a separate, often small, pension entitlement.",
+      "Salary growth assumptions dominate the result for long horizons. Treat the projection as an illustration of mechanics, not a forecast."
+    ],
+    "relatedCalculators": [
+      "retirement-corpus",
+      "nps-calculator",
+      "ppf-calculator"
+    ],
+    "engine": "epf-calculator"
+  },
+  {
+    "id": "nps-calculator",
+    "name": "NPS Calculator",
+    "shortDescription": "National Pension System corpus at retirement, the portion that must be annuitised, and the pension it buys.",
+    "category": "planning",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Corpus} = \\sum D\\,(1+r)^{n-t} \\quad\\text{then}\\quad 40\\% \\text{ to annuity}",
+        "label": "Accumulation, then the statutory annuitisation requirement"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "monthlyContribution",
+        "label": "Monthly contribution",
+        "kind": "currency",
+        "default": 20000,
+        "unit": "₹",
+        "min": 500
+      },
+      {
+        "id": "returnRate",
+        "label": "Assumed return before retirement",
+        "kind": "percent",
+        "default": 10,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "yearsToRetirement",
+        "label": "Years to retirement",
+        "kind": "number",
+        "default": 25,
+        "min": 1,
+        "max": 45
+      },
+      {
+        "id": "currentCorpus",
+        "label": "Existing NPS corpus",
+        "kind": "currency",
+        "default": 500000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "annuityShare",
+        "label": "Share annuitised at retirement",
+        "kind": "percent",
+        "default": 40,
+        "unit": "%",
+        "min": 40,
+        "max": 100
+      },
+      {
+        "id": "annuityRate",
+        "label": "Annuity rate available",
+        "kind": "percent",
+        "default": 6.5,
+        "unit": "%",
+        "min": 2,
+        "max": 12
+      }
+    ],
+    "workedExample": "₹20,000 a month for twenty-five years at 10% builds several crore. If 40% goes into an annuity returning 6.5%, the resulting pension is modest relative to the corpus — the annuitisation requirement is the most consequential design feature of the scheme and is frequently understated.",
+    "limitations": [
+      "Annuity rates available at retirement are unknowable today. A one-percentage-point difference in the annuity rate changes the pension materially.",
+      "The investment choice within NPS (equity, corporate debt, government securities and the alternative asset scheme) determines the return. The default lifecycle option automatically reduces equity exposure as retirement approaches, which lowers both risk and expected return.",
+      "Tax treatment depends on the regime and on the share withdrawn as a lump sum, which has changed repeatedly. Check the rule in force for the year of withdrawal."
+    ],
+    "relatedCalculators": [
+      "annuity-vs-swp",
+      "retirement-corpus",
+      "epf-calculator"
+    ],
+    "engine": "nps-calculator"
+  },
+  {
+    "id": "annuity-vs-swp",
+    "name": "Annuity vs SWP",
+    "shortDescription": "Compares the certainty of an annuity with the flexibility and residual value of a withdrawal plan, over a stated horizon.",
+    "category": "planning",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Annuity income} = \\text{Corpus} \\times \\text{annuity rate on the annuitised share}",
+        "label": "Annuity income"
+      },
+      {
+        "latex": "B_t = (B_{t-1} - W)(1+r)",
+        "label": "Withdrawal plan balance"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "corpus",
+        "label": "Corpus available",
+        "kind": "currency",
+        "default": 10000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "annuityShare",
+        "label": "Share annuitised",
+        "kind": "percent",
+        "default": 100,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "annuityRate",
+        "label": "Annuity rate",
+        "kind": "percent",
+        "default": 6.5,
+        "unit": "%",
+        "min": 2,
+        "max": 12
+      },
+      {
+        "id": "withdrawalRate",
+        "label": "Withdrawal rate in the alternative",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 1,
+        "max": 20
+      },
+      {
+        "id": "returnRate",
+        "label": "Expected return on the invested corpus",
+        "kind": "percent",
+        "default": 8.5,
+        "unit": "%",
+        "min": -10,
+        "max": 20
+      },
+      {
+        "id": "years",
+        "label": "Comparison horizon",
+        "kind": "years",
+        "default": 25,
+        "unit": "years",
+        "min": 5,
+        "max": 45
+      },
+      {
+        "id": "escalation",
+        "label": "Annual increase in withdrawal",
+        "kind": "percent",
+        "default": 0,
+        "unit": "%",
+        "min": 0,
+        "max": 10
+      }
+    ],
+    "workedExample": "₹1,00,00,000 annuitised at 6.5% pays ₹6,50,000 a year for life, with nothing left to heirs unless a return-of-purchase-price option is chosen at a lower rate. A 6% withdrawal from a corpus returning 8.5% pays similar income, rises with the corpus, and leaves a balance in most paths — at the cost of carrying the risk of a bad sequence of returns.",
+    "limitations": [
+      "An annuity transfers longevity and investment risk for a cost that is embedded in the rate rather than disclosed. Comparing the rate with a bond yield understates the cost.",
+      "Indian annuity markets are thin. Rates available to an individual vary by provider, by option and by timing.",
+      "The withdrawal plan figures assume a constant return; the annuity figures assume the insurer remains solvent for decades."
+    ],
+    "relatedCalculators": [
+      "swp",
+      "risk-of-ruin",
+      "nps-calculator",
+      "retirement-corpus"
+    ],
+    "engine": "annuity-vs-swp"
+  },
+  {
+    "id": "sukanya-samriddhi",
+    "name": "Sukanya Samriddhi Calculator",
+    "shortDescription": "Maturity value of a Sukanya Samriddhi account given the deposit pattern and the declared rate.",
+    "category": "planning",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "FV = \\sum_{t=0}^{14} D\\,(1+r)^{21-t}",
+        "label": "Deposits for fifteen years, maturity at twenty-one years from opening"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "annualDeposit",
+        "label": "Annual deposit",
+        "kind": "currency",
+        "default": 150000,
+        "unit": "₹",
+        "min": 250,
+        "max": 150000
+      },
+      {
+        "id": "rate",
+        "label": "Assumed rate of interest",
+        "kind": "percent",
+        "default": 8.2,
+        "unit": "%",
+        "min": 1,
+        "max": 15
+      },
+      {
+        "id": "irregular",
+        "label": "Deposits continue for fifteen years",
+        "kind": "toggle",
+        "default": true
+      }
+    ],
+    "workedExample": "₹1,50,000 deposited each year for the first fifteen years at 8.2% matures around twenty-one years later at approximately ₹69 lakh, entirely exempt from tax.",
+    "limitations": [
+      "The rate is set quarterly by the government and is not contractual for the life of the account.",
+      "Withdrawal is permitted only for specific purposes, and the account is tied to a girl child as prescribed.",
+      "The exemption is worth most to a high-slab parent, since a taxable alternative at the same rate would net less."
+    ],
+    "relatedCalculators": [
+      "ppf-calculator",
+      "taxable-equivalent-yield",
+      "goal-planning"
+    ],
+    "engine": "sukanya-samriddhi"
+  },
+  {
+    "id": "term-insurance-need",
+    "name": "Term Insurance Need",
+    "shortDescription": "The cover required to replace income, clear liabilities and fund future obligations, less what already exists.",
+    "category": "planning",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "\\text{Cover} = \\left(\\text{Income} \\times Y\\right) + \\text{Liabilities} + \\text{Future goals} - \\text{Liquid assets} - \\text{Existing cover}",
+        "label": "Human-life-value approach"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "annualIncome",
+        "label": "Annual income to replace",
+        "kind": "currency",
+        "default": 2400000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "yearsToReplace",
+        "label": "Years of income replacement",
+        "kind": "number",
+        "default": 15,
+        "min": 1,
+        "max": 40
+      },
+      {
+        "id": "outstandingLoans",
+        "label": "Outstanding loans",
+        "kind": "currency",
+        "default": 6000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "futureGoals",
+        "label": "Future obligations (education, care)",
+        "kind": "currency",
+        "default": 3000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "liquidAssets",
+        "label": "Liquid assets and existing investments",
+        "kind": "currency",
+        "default": 2500000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "existingCover",
+        "label": "Existing life cover",
+        "kind": "currency",
+        "default": 10000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "inflation",
+        "label": "Inflation assumption for income replacement",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      }
+    ],
+    "workedExample": "The calculation typically shows a requirement far above the employer’s group cover, which ends with the job. Term cover is the cheapest component of a financial plan and the one most often under-bought, because it produces no visible benefit while alive.",
+    "limitations": [
+      "Income replacement should be discounted, not simply multiplied: the family needs ₹X a year for Y years, and the corpus can earn a return in the meantime. This calculator uses a simpler undiscounted approach and therefore overstates the requirement slightly, which is a conservative error.",
+      "Term insurance is not an investment. It has no surrender value and pays nothing if the term ends without a claim — and that is the product working as designed."
+    ],
+    "relatedCalculators": [
+      "emergency-fund",
+      "retirement-corpus",
+      "opportunity-cost"
+    ],
+    "engine": "term-insurance-need"
+  },
+  {
+    "id": "rental-yield",
+    "name": "Rental Yield Calculator",
+    "shortDescription": "Gross and net rental yield after vacancy, maintenance, property tax and the tax on rent — the two figures are usually two percentage points apart.",
+    "category": "real-estate",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Gross yield} = \\frac{\\text{Annual rent}}{\\text{Price}}",
+        "label": "Gross rental yield"
+      },
+      {
+        "latex": "\\text{Net yield} = \\frac{\\text{Rent} - \\text{costs} - \\text{tax}}{\\text{Total cost}}",
+        "label": "Measured against all-in acquisition cost, not headline price"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "price",
+        "label": "Property price",
+        "kind": "currency",
+        "default": 8000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "monthlyRent",
+        "label": "Monthly rent",
+        "kind": "currency",
+        "default": 25000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "vacancyMonths",
+        "label": "Expected vacancy per year",
+        "kind": "number",
+        "default": 1,
+        "min": 0,
+        "max": 12
+      },
+      {
+        "id": "annualMaintenance",
+        "label": "Annual maintenance and repairs",
+        "kind": "currency",
+        "default": 60000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "annualPropertyTax",
+        "label": "Annual property tax",
+        "kind": "currency",
+        "default": 15000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "societyCharges",
+        "label": "Annual society charges borne by owner",
+        "kind": "currency",
+        "default": 36000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "marginalRate",
+        "label": "Your marginal tax rate",
+        "kind": "percent",
+        "default": 31.2,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      },
+      {
+        "id": "stampDuty",
+        "label": "Stamp duty and registration",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      }
+    ],
+    "workedExample": "A ₹80,00,000 flat let for ₹25,000 a month has a gross yield of 3.75%. After one month of vacancy, maintenance, society charges, property tax and the tax on rental income, the net yield on the all-in cost is close to 1.9% — before any capital appreciation and before the property is ever sold.",
+    "limitations": [
+      "Interiors, furnishing and capital replacements are excluded unless entered as maintenance. They are frequently substantial in the first year.",
+      "The 30% statutory deduction from net annual value is a tax provision, not an economic cost, and the calculator applies the real cash costs separately."
+    ],
+    "relatedCalculators": [
+      "property-xirr",
+      "property-leverage",
+      "yield-on-cost",
+      "opportunity-cost"
+    ],
+    "engine": "rental-yield"
+  },
+  {
+    "id": "property-xirr",
+    "name": "Property Return (XIRR)",
+    "shortDescription": "The money-weighted return on a property purchase, including stamp duty, leverage, rent, costs and the tax on exit.",
+    "category": "real-estate",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "\\sum \\frac{CF_t}{(1+r)^{t}} = 0",
+        "label": "XIRR on the investor’s own equity"
+      },
+      {
+        "latex": "\\Delta C = \\text{Stamp duty} + \\text{Registration} + \\text{Brokerage} + \\text{Interiors}",
+        "label": "Incidental acquisition cost, typically 7–12% of price"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "price",
+        "label": "Property price",
+        "kind": "currency",
+        "default": 8000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "stampDuty",
+        "label": "Stamp duty and registration",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      },
+      {
+        "id": "brokerage",
+        "label": "Purchase brokerage",
+        "kind": "percent",
+        "default": 1,
+        "unit": "%",
+        "min": 0,
+        "max": 3
+      },
+      {
+        "id": "interiors",
+        "label": "Interior and fit-out spend",
+        "kind": "currency",
+        "default": 600000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "loanAmount",
+        "label": "Home loan amount",
+        "kind": "currency",
+        "default": 6400000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "loanRate",
+        "label": "Home loan interest rate",
+        "kind": "percent",
+        "default": 8.6,
+        "unit": "%",
+        "min": 5,
+        "max": 18
+      },
+      {
+        "id": "loanTenureMonths",
+        "label": "Loan tenure in months",
+        "kind": "number",
+        "default": 240,
+        "min": 12,
+        "max": 360
+      },
+      {
+        "id": "monthlyRent",
+        "label": "Monthly rent received",
+        "kind": "currency",
+        "default": 25000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "rentGrowth",
+        "label": "Annual rent growth",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "vacancyMonths",
+        "label": "Vacancy months per year",
+        "kind": "number",
+        "default": 1,
+        "min": 0,
+        "max": 12
+      },
+      {
+        "id": "appreciation",
+        "label": "Assumed annual price appreciation",
+        "kind": "percent",
+        "default": 7,
+        "unit": "%",
+        "min": -10,
+        "max": 25
+      },
+      {
+        "id": "holdingYears",
+        "label": "Holding period",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 1,
+        "max": 35
+      },
+      {
+        "id": "marginalRate",
+        "label": "Marginal tax rate on rent",
+        "kind": "percent",
+        "default": 31.2,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      },
+      {
+        "id": "capitalGainsRate",
+        "label": "Capital gains tax rate on sale",
+        "kind": "percent",
+        "default": 12.5,
+        "unit": "%",
+        "min": 0,
+        "max": 30
+      }
+    ],
+    "workedExample": "A ₹80,00,000 flat with a 6% stamp duty bill, ₹6,00,000 of interiors and 80% leverage, held ten years with rent growing 5% and prices appreciating 7%, produces an equity XIRR that is frequently lower than the appreciation rate — leverage and transaction costs work in both directions.",
+    "limitations": [
+      "Appreciation is the dominant input and the least knowable. Property has no continuous price series in India, so the assumed rate is a belief rather than an observation.",
+      "The model assumes the property is sold in a single year and the gains taxed in that year. It excludes the indexation option available for property acquired before 23 July 2024 and any capital-gains exemption on reinvestment.",
+      "It excludes the interest deduction available against rental income under the old regime, which improves the after-tax result for itemising taxpayers."
+    ],
+    "relatedCalculators": [
+      "rental-yield",
+      "property-leverage",
+      "emi",
+      "loan-amortisation"
+    ],
+    "engine": "property-xirr"
+  },
+  {
+    "id": "property-leverage",
+    "name": "Leverage Effect on Returns",
+    "shortDescription": "How borrowing amplifies the return on equity — in both directions — and the asset return at which the equity return is zero.",
+    "category": "real-estate",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "r_{equity} = \\frac{r_{asset} - LTV \\times r_{debt}}{1 - LTV}",
+        "label": "Return on equity with a mortgage"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "assetReturn",
+        "label": "Asset return (appreciation plus net yield)",
+        "kind": "percent",
+        "default": 8,
+        "unit": "%",
+        "min": -20,
+        "max": 30
+      },
+      {
+        "id": "loanToValue",
+        "label": "Loan to value",
+        "kind": "percent",
+        "default": 80,
+        "unit": "%",
+        "min": 0,
+        "max": 95
+      },
+      {
+        "id": "debtCost",
+        "label": "Interest rate on the loan",
+        "kind": "percent",
+        "default": 8.6,
+        "unit": "%",
+        "min": 3,
+        "max": 20
+      }
+    ],
+    "workedExample": "With an 80% loan at 8.6% and an 8% asset return, the equity return is 5.6% — leverage costs money when the asset return is below the borrowing cost. At a 12% asset return, the same loan turns it into a 25.6% equity return, which is the mechanism behind every story of property making people rich.",
+    "limitations": [
+      "Leverage is symmetric in mathematics and asymmetric in life: a 20% price fall with 80% leverage wipes out the entire equity while the loan remains fully repayable.",
+      "The loan-to-value figure here is the effective one at sale; costs of borrowing, insurance and the requirement to pledge the property are excluded.",
+      "Real estate leverage is not callable in the way a margin loan is, which makes it more survivable — but only if the cash flow servicing it also survives."
+    ],
+    "relatedCalculators": [
+      "property-xirr",
+      "emi",
+      "margin-requirement",
+      "max-drawdown"
+    ],
+    "engine": "property-leverage"
+  },
+  {
+    "id": "emi",
+    "name": "EMI Calculator",
+    "shortDescription": "Equated monthly instalment, total interest and the amortisation profile of a reducing-balance loan.",
+    "category": "real-estate",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "EMI = \\frac{P \\, r \\, (1+r)^n}{(1+r)^n - 1}, \\quad r = \\frac{\\text{annual rate}}{12}",
+        "label": "Reducing-balance instalment"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "principal",
+        "label": "Loan amount",
+        "kind": "currency",
+        "default": 5000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "annualRate",
+        "label": "Annual interest rate",
+        "kind": "percent",
+        "default": 8.6,
+        "unit": "%",
+        "min": 0.5,
+        "max": 30
+      },
+      {
+        "id": "months",
+        "label": "Tenure in months",
+        "kind": "number",
+        "default": 240,
+        "min": 1,
+        "max": 480
+      }
+    ],
+    "workedExample": "₹50,00,000 at 8.6% over 240 months is an EMI of about ₹43,750 and total interest of roughly ₹55 lakh. Extending the tenure to 360 months lowers the EMI to about ₹38,800 but raises total interest above ₹89 lakh.",
+    "limitations": [
+      "A longer tenure reduces the monthly burden and increases the total cost. Lenders quote the first figure; the second is what you pay.",
+      "Most Indian home loans charge interest monthly on the outstanding balance with no prepayment penalty on floating-rate loans, so partial prepayments early in the tenure have an outsized effect."
+    ],
+    "relatedCalculators": [
+      "loan-amortisation",
+      "property-leverage",
+      "emergency-fund"
+    ],
+    "engine": "emi"
+  },
+  {
+    "id": "loan-amortisation",
+    "name": "Loan Amortisation and Prepayment",
+    "shortDescription": "The full year-by-year schedule, and how much interest a regular prepayment saves over the life of the loan.",
+    "category": "debt",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Interest}_t = B_{t-1} \\times \\frac{r}{12}",
+        "label": "Interest for the month"
+      },
+      {
+        "latex": "\\text{Principal}_t = \\text{EMI} - \\text{Interest}_t",
+        "label": "Principal component"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "principal",
+        "label": "Loan amount",
+        "kind": "currency",
+        "default": 5000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "annualRate",
+        "label": "Annual interest rate",
+        "kind": "percent",
+        "default": 8.6,
+        "unit": "%",
+        "min": 0.5,
+        "max": 30
+      },
+      {
+        "id": "months",
+        "label": "Original tenure in months",
+        "kind": "number",
+        "default": 240,
+        "min": 1,
+        "max": 480
+      },
+      {
+        "id": "extraMonthly",
+        "label": "Extra monthly payment",
+        "kind": "currency",
+        "default": 5000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "prepaymentYear",
+        "label": "One-time prepayment year (0 for none)",
+        "kind": "percent",
+        "default": 0,
+        "unit": "%",
+        "min": 0,
+        "max": 30
+      },
+      {
+        "id": "prepaymentAmount",
+        "label": "One-time prepayment amount",
+        "kind": "currency",
+        "default": 0,
+        "unit": "₹",
+        "min": 0
+      }
+    ],
+    "workedExample": "On a ₹50,00,000 loan at 8.6% for 240 months, an extra ₹5,000 a month closes the loan several years early and saves interest in the tens of lakhs, because every extra rupee is applied to principal and removes all future interest on that principal.",
+    "limitations": [
+      "Prepaying a home loan competes with investing the same money. At an 8.6% cost of debt and an assumed 11% equity return, investing wins on average — but prepayment is a certain 8.6% return and investing is not certain at all.",
+      "Tax benefits on home-loan interest (in the old regime) reduce the effective cost of the loan and therefore reduce the benefit of prepaying."
+    ],
+    "relatedCalculators": [
+      "emi",
+      "opportunity-cost",
+      "property-xirr"
+    ],
+    "engine": "loan-amortisation"
+  },
+  {
+    "id": "business-investment",
+    "name": "Business Investment Return",
+    "shortDescription": "Return on capital invested in an operating business, with payback period and the sensitivity to the assumptions.",
+    "category": "alternatives",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "CF_t = \\text{Revenue}_t (1 - \\text{COGS}) - \\text{Operating costs}_t",
+        "label": "Annual cash flow"
+      },
+      {
+        "latex": "IRR: \\sum \\frac{CF_t}{(1+r)^t} - \\text{Initial} = 0",
+        "label": "Internal rate of return on the invested capital"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "initialCapital",
+        "label": "Initial capital invested",
+        "kind": "currency",
+        "default": 5000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "annualRevenue",
+        "label": "Annual revenue at full capacity",
+        "kind": "currency",
+        "default": 12000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "cogsPercent",
+        "label": "Cost of goods and services",
+        "kind": "percent",
+        "default": 55,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "annualOperatingCosts",
+        "label": "Annual fixed operating costs",
+        "kind": "currency",
+        "default": 2400000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "rampUpYears",
+        "label": "Years to reach full revenue",
+        "kind": "years",
+        "default": 1,
+        "unit": "years",
+        "min": 0,
+        "max": 5
+      },
+      {
+        "id": "years",
+        "label": "Evaluation horizon",
+        "kind": "years",
+        "default": 7,
+        "unit": "years",
+        "min": 1,
+        "max": 25
+      },
+      {
+        "id": "terminalValue",
+        "label": "Terminal value at the end (sale or salvage)",
+        "kind": "currency",
+        "default": 5000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "taxRate",
+        "label": "Effective tax rate on profits",
+        "kind": "percent",
+        "default": 25,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      }
+    ],
+    "workedExample": "A ₹50,00,000 investment producing ₹1.2 crore of revenue at a 45% gross margin and ₹24,00,000 of fixed costs generates about ₹30,00,000 of pre-tax operating cash flow at full capacity. After tax, the capital is returned in roughly three years, and the IRR over seven years with a ₹50,00,000 terminal value exceeds 30% — if the revenue assumption holds.",
+    "limitations": [
+      "Revenue is the assumption that matters most and the one with no market price to check against. A 20% revenue shortfall can eliminate the entire return.",
+      "It excludes the owner’s own labour. If the owner manages the business full time, that cost should be deducted before computing a return on capital.",
+      "It excludes working-capital requirements, which are the most common cause of failure in otherwise profitable small businesses."
+    ],
+    "relatedCalculators": [
+      "private-cashflow",
+      "franchise-return",
+      "opportunity-cost",
+      "risk-of-ruin"
+    ],
+    "engine": "business-investment"
+  },
+  {
+    "id": "private-cashflow",
+    "name": "Private Investment Cash Flow",
+    "shortDescription": "XIRR and multiples for an illiquid investment with staged capital calls and a single exit.",
+    "category": "alternatives",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "\\text{DPI} = \\frac{\\text{Distributions}}{\\text{Paid-in capital}}",
+        "label": "Distributions to paid-in capital: cash actually returned"
+      },
+      {
+        "latex": "\\text{TVPI} = \\frac{\\text{Distributions} + \\text{Residual value}}{\\text{Paid-in capital}}",
+        "label": "Total value to paid-in capital: includes marks, not cash"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "call1",
+        "label": "Capital call 1",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "date1",
+        "label": "Date of call 1",
+        "kind": "date",
+        "default": "2020-01-01"
+      },
+      {
+        "id": "call2",
+        "label": "Capital call 2",
+        "kind": "currency",
+        "default": 1000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "date2",
+        "label": "Date of call 2",
+        "kind": "date",
+        "default": "2022-01-01"
+      },
+      {
+        "id": "distribution",
+        "label": "Total distributions received",
+        "kind": "currency",
+        "default": 500000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "dateDistribution",
+        "label": "Date of distributions",
+        "kind": "date",
+        "default": "2026-01-01"
+      },
+      {
+        "id": "residualValue",
+        "label": "Current estimated residual value",
+        "kind": "currency",
+        "default": 3000000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "dateValuation",
+        "label": "Valuation date",
+        "kind": "date",
+        "default": "2026-10-01"
+      }
+    ],
+    "workedExample": "₹20,00,000 called over two years, ₹5,00,000 distributed and a ₹30,00,000 stated residual value gives a TVPI of 1.75× and a DPI of 0.25×. The second number is the one that has been realised; the first depends on a valuation nobody has tested with a sale.",
+    "limitations": [
+      "Residual values in Indian private markets are marks, not prices. They are set by the manager’s valuer and may not be realisable.",
+      "The J-curve means early-year IRRs are meaningless: fees are paid and no value is returned. Judge private investments by vintage year, not by reporting date.",
+      "No secondary market exists for most Indian fund interests, so the position cannot be exited at the stated value."
+    ],
+    "relatedCalculators": [
+      "business-investment",
+      "xirr",
+      "risk-of-ruin"
+    ],
+    "engine": "private-cashflow"
+  },
+  {
+    "id": "franchise-return",
+    "name": "Franchise Economics",
+    "shortDescription": "Payback period and return on capital for a franchised outlet, including the fee and royalty that make franchise economics distinctive.",
+    "category": "alternatives",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "\\text{Payback} = \\frac{\\text{Total capital}}{\\text{Annual net cash flow}}",
+        "label": "Simple payback period"
+      },
+      {
+        "latex": "\\text{Net cash flow} = \\text{Revenue}(1 - \\text{COGS} - \\text{royalty}) - \\text{fixed costs}",
+        "label": "Cash flow after the royalty"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "franchiseFee",
+        "label": "One-time franchise fee",
+        "kind": "currency",
+        "default": 1500000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "capex",
+        "label": "Fit-out and equipment",
+        "kind": "currency",
+        "default": 3500000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "monthlyRevenue",
+        "label": "Monthly revenue",
+        "kind": "currency",
+        "default": 1800000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "grossMargin",
+        "label": "Gross margin before royalty",
+        "kind": "percent",
+        "default": 60,
+        "unit": "%",
+        "min": 0,
+        "max": 95
+      },
+      {
+        "id": "royaltyPercent",
+        "label": "Royalty on revenue",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "monthlyFixedCosts",
+        "label": "Monthly fixed costs (rent, staff, utilities)",
+        "kind": "currency",
+        "default": 700000,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "years",
+        "label": "Evaluation horizon",
+        "kind": "years",
+        "default": 5,
+        "unit": "years",
+        "min": 1,
+        "max": 15
+      },
+      {
+        "id": "terminalMultiple",
+        "label": "Resale value as multiple of annual cash flow",
+        "kind": "percent",
+        "default": 2,
+        "unit": "%",
+        "min": 0,
+        "max": 6
+      }
+    ],
+    "workedExample": "₹15,00,000 of franchise fee plus ₹35,00,000 of fit-out, against ₹18,00,000 monthly revenue at a 60% gross margin less a 6% royalty and ₹7,00,000 of fixed monthly costs, produces roughly ₹21,00,000 of annual pre-tax cash flow — a payback of under three years before tax. The royalty is charged on revenue, not profit, so it hurts most in the months revenue is weak.",
+    "limitations": [
+      "Revenue assumptions come from the franchisor’s projection, which is usually an optimistic case and is not a warranty.",
+      "The agreement typically restricts the territory, the pricing and the suppliers, and provides no protection if the brand declines. Franchise renewal terms and exit clauses deserve as much attention as the projections.",
+      "Owner-operated franchise outlets frequently understate the value of the owner’s time in the cash-flow estimates."
+    ],
+    "relatedCalculators": [
+      "business-investment",
+      "private-cashflow",
+      "opportunity-cost"
+    ],
+    "engine": "franchise-return"
+  },
+  {
+    "id": "reit-distribution",
+    "name": "REIT / InvIT Post-Tax Yield",
+    "shortDescription": "The after-tax yield on a trust unit once the distribution is separated into interest, dividend and capital repayment — three components taxed in three different ways.",
+    "category": "real-estate",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "\\text{Interest} \\rightarrow \\text{slab}, \\quad \\text{Dividend} \\rightarrow \\text{slab or exempt}, \\quad \\text{Capital repayment} \\rightarrow \\text{not income}",
+        "label": "Tax treatment by component",
+        "assumption": "The split between components is disclosed with each distribution and changes from quarter to quarter."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "unitPrice",
+        "label": "Price per unit",
+        "kind": "currency",
+        "default": 140,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "distributionPerUnit",
+        "label": "Annual distribution per unit",
+        "kind": "currency",
+        "default": 9.5,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "interestShare",
+        "label": "Interest share of distribution",
+        "kind": "percent",
+        "default": 55,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "dividendShare",
+        "label": "Dividend share of distribution",
+        "kind": "percent",
+        "default": 30,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "marginalRate",
+        "label": "Your marginal tax rate",
+        "kind": "percent",
+        "default": 31.2,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      },
+      {
+        "id": "units",
+        "label": "Number of units held",
+        "kind": "number",
+        "default": 7000,
+        "min": 1
+      }
+    ],
+    "workedExample": "A ₹140 unit distributing ₹9.50 a year has a nominal yield of 6.8%. If 55% is interest taxed at a 31.2% marginal rate, 30% is dividend taxed at the same rate and 15% is capital repayment that is not taxed at all but reduces the cost basis, the immediate cash tax is about 1.6 points of the yield — and the deferred tax appears as a larger capital gain at sale.",
+    "limitations": [
+      "Capital repayment reduces the cost of acquisition, so it increases the capital gain when the units are eventually sold. It is deferred tax, not exempt income.",
+      "The component split varies each quarter and is disclosed in the distribution announcement, not in advance. The shares entered here are an assumption.",
+      "REIT unit prices can fall. A distribution yield on a falling unit price is not a return."
+    ],
+    "relatedCalculators": [
+      "post-tax-return",
+      "yield-on-cost",
+      "gold-comparison"
+    ],
+    "engine": "reit-distribution"
+  },
+  {
+    "id": "gold-comparison",
+    "name": "Gold Vehicle Comparison",
+    "shortDescription": "The same gold exposure through physical, ETF, fund of funds and sovereign gold bonds, compared after all costs and taxes.",
+    "category": "alternatives",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Net} = \\text{Price growth} + \\text{Coupon} - \\text{Expense} - \\text{Making charges} - \\text{Tax}",
+        "label": "Net outcome by vehicle"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "amount",
+        "label": "Amount to invest",
+        "kind": "currency",
+        "default": 500000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "goldGrowth",
+        "label": "Assumed annual gold price growth",
+        "kind": "percent",
+        "default": 9,
+        "unit": "%",
+        "min": -20,
+        "max": 30
+      },
+      {
+        "id": "years",
+        "label": "Holding period",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 1,
+        "max": 25
+      },
+      {
+        "id": "makingCharges",
+        "label": "Making charges and wastage on physical gold",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": 0,
+        "max": 35
+      },
+      {
+        "id": "buybackDiscount",
+        "label": "Buyback discount on physical gold",
+        "kind": "percent",
+        "default": 3,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      },
+      {
+        "id": "etfExpense",
+        "label": "Gold ETF expense ratio",
+        "kind": "percent",
+        "default": 0.5,
+        "unit": "%",
+        "min": 0,
+        "max": 2
+      },
+      {
+        "id": "sgbCoupon",
+        "label": "Sovereign gold bond coupon",
+        "kind": "percent",
+        "default": 2.5,
+        "unit": "%",
+        "min": 0,
+        "max": 5
+      },
+      {
+        "id": "marginalRate",
+        "label": "Your marginal tax rate",
+        "kind": "percent",
+        "default": 31.2,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      },
+      {
+        "id": "ltcgRate",
+        "label": "Capital gains rate on gold funds",
+        "kind": "percent",
+        "default": 12.5,
+        "unit": "%",
+        "min": 0,
+        "max": 40
+      }
+    ],
+    "workedExample": "On ₹5,00,000 of gold over ten years with 9% price growth, physical gold loses 12% to making charges and 3% to the buyback discount, while a gold ETF pays around 0.5% a year and is taxed at 12.5% on the gain. The sovereign gold bond pays a 2.50% coupon that is taxable and exempts the redemption gain — the coupon taxation often goes unmentioned.",
+    "limitations": [
+      "New sovereign gold bond tranches are not always open; the secondary market price may be materially above net asset value, which is a cost of entry.",
+      "Physical gold is the only version with no counterparty; every paper claim on gold depends on a custodian and a legal structure.",
+      "Gold produces no cash flow. Over long horizons its return has depended on the valuation at which the holding period began."
+    ],
+    "relatedCalculators": [
+      "post-tax-return",
+      "real-return",
+      "portfolio-allocation"
+    ],
+    "engine": "gold-comparison"
+  },
+  {
+    "id": "currency-impact",
+    "name": "Currency Impact on Foreign Returns",
+    "shortDescription": "How rupee depreciation or appreciation changes the return on an overseas investment, and how much of that return was currency.",
+    "category": "returns",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "1 + r_{INR} = (1 + r_{foreign})(1 + \\Delta_{INR/USD})",
+        "label": "Rupee return on a foreign asset"
+      },
+      {
+        "latex": "\\text{Currency contribution} \\approx \\Delta_{INR/USD}",
+        "label": "The part of the return that came from the exchange rate"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "foreignReturn",
+        "label": "Return in the foreign currency",
+        "kind": "percent",
+        "default": 10,
+        "unit": "%",
+        "min": -40,
+        "max": 60
+      },
+      {
+        "id": "inrDepreciation",
+        "label": "Rupee depreciation against the foreign currency",
+        "kind": "percent",
+        "default": 3,
+        "unit": "%",
+        "min": -20,
+        "max": 25,
+        "help": "A positive number means the rupee weakened."
+      },
+      {
+        "id": "years",
+        "label": "Holding period",
+        "kind": "years",
+        "default": 10,
+        "unit": "years",
+        "min": 0.5,
+        "max": 40
+      },
+      {
+        "id": "fundExpense",
+        "label": "Additional cost of the Indian route (fund expenses, if any)",
+        "kind": "percent",
+        "default": 0.5,
+        "unit": "%",
+        "min": 0,
+        "max": 3
+      },
+      {
+        "id": "taxRate",
+        "label": "Tax rate on the gain in India",
+        "kind": "percent",
+        "default": 12.5,
+        "unit": "%",
+        "min": 0,
+        "max": 40
+      }
+    ],
+    "workedExample": "A 10% foreign-currency return with 3% annual rupee depreciation produces roughly 13.3% a year in rupees. Over ten years the currency contributes about half of the cumulative gain — which is why an Indian investor’s experience of foreign equity is often better than the foreign index.",
+    "limitations": [
+      "Currency movements are not a reliable return component. Depreciation has helped Indian investors on average over long periods, but it can reverse over any individual holding period.",
+      "The tax rate on foreign equity and funds depends on the asset type, the holding period and whether the fund is India-domiciled. Verify the applicable treatment for the specific route used."
+    ],
+    "relatedCalculators": [
+      "post-tax-return",
+      "multi-asset",
+      "real-return"
+    ],
+    "engine": "currency-impact"
+  },
+  {
+    "id": "option-payoff",
+    "name": "Option Payoff Calculator",
+    "shortDescription": "The payoff and profit of a single option position at expiry, with the break-even and the maximum loss stated plainly.",
+    "category": "derivatives",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Call payoff} = \\max(S_T - K, 0), \\quad \\text{Put payoff} = \\max(K - S_T, 0)",
+        "label": "Intrinsic value at expiry"
+      },
+      {
+        "latex": "\\text{Profit} = \\text{Payoff} - \\text{Premium}",
+        "label": "For a long position",
+        "assumption": "Ignores transaction costs, STT and the bid-ask spread, all of which are material for short-dated options."
+      }
+    ],
+    "inputs": [
+      {
+        "id": "optionType",
+        "label": "Option type",
+        "kind": "select",
+        "default": "call",
+        "options": [
+          {
+            "value": "call",
+            "label": "Call"
+          },
+          {
+            "value": "put",
+            "label": "Put"
+          }
+        ]
+      },
+      {
+        "id": "direction",
+        "label": "Position",
+        "kind": "select",
+        "default": "long",
+        "options": [
+          {
+            "value": "long",
+            "label": "Long"
+          },
+          {
+            "value": "short",
+            "label": "Short"
+          }
+        ]
+      },
+      {
+        "id": "spot",
+        "label": "Underlying price today",
+        "kind": "currency",
+        "default": 25000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "strike",
+        "label": "Strike price",
+        "kind": "currency",
+        "default": 25500,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "premium",
+        "label": "Premium paid or received per unit",
+        "kind": "currency",
+        "default": 180,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "quantity",
+        "label": "Number of units (lot × lots)",
+        "kind": "number",
+        "default": 75,
+        "min": 1
+      },
+      {
+        "id": "movePercent",
+        "label": "Move in the underlying at expiry",
+        "kind": "number",
+        "default": -5,
+        "min": -50,
+        "max": 50,
+        "help": "Used to compute the outcome at expiry for a chosen price path."
+      }
+    ],
+    "workedExample": "Buying a 25,500 call for ₹180 on a 25,000 index breaks even at 25,680 at expiry. A 5% fall to 23,750 produces a total loss of the ₹13,500 premium (75 units × ₹180) — the loss is complete even though the index fell only 5%.",
+    "limitations": [
+      "Payoff at expiry is only one point in the life of the position. Before expiry, the option has time value that decays, and the path matters.",
+      "Costs are excluded. On short-dated index options, the spread and statutory charges are a large fraction of a small premium.",
+      "Buying options is a negative-expectation bet in most Indian retail configurations: the premium paid consistently exceeds the realised value of the option."
+    ],
+    "relatedCalculators": [
+      "option-strategy-builder",
+      "black-scholes",
+      "greeks",
+      "margin-requirement"
+    ],
+    "engine": "option-payoff"
+  },
+  {
+    "id": "option-strategy-builder",
+    "name": "Option Strategy Builder",
+    "shortDescription": "Builds a two-leg option structure, computes the payoff diagram, both break-evens and the maximum gain and loss.",
+    "category": "derivatives",
+    "difficulty": "expert",
+    "formulas": [
+      {
+        "latex": "\\text{Profit} = \\sum_i s_i \\left(\\max(\\pm(S_T - K_i), 0) - P_i\\right)",
+        "label": "Net payoff of a multi-leg position"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "leg1Type",
+        "label": "Leg 1 type",
+        "kind": "select",
+        "default": "call",
+        "options": [
+          {
+            "value": "call",
+            "label": "Call"
+          },
+          {
+            "value": "put",
+            "label": "Put"
+          }
+        ]
+      },
+      {
+        "id": "leg1Direction",
+        "label": "Leg 1 direction",
+        "kind": "select",
+        "default": "short",
+        "options": [
+          {
+            "value": "long",
+            "label": "Long"
+          },
+          {
+            "value": "short",
+            "label": "Short"
+          }
+        ]
+      },
+      {
+        "id": "leg1Strike",
+        "label": "Leg 1 strike",
+        "kind": "currency",
+        "default": 25500,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "leg1Premium",
+        "label": "Leg 1 premium",
+        "kind": "currency",
+        "default": 180,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "leg2Type",
+        "label": "Leg 2 type",
+        "kind": "select",
+        "default": "call",
+        "options": [
+          {
+            "value": "call",
+            "label": "Call"
+          },
+          {
+            "value": "put",
+            "label": "Put"
+          }
+        ]
+      },
+      {
+        "id": "leg2Direction",
+        "label": "Leg 2 direction",
+        "kind": "select",
+        "default": "long",
+        "options": [
+          {
+            "value": "long",
+            "label": "Long"
+          },
+          {
+            "value": "short",
+            "label": "Short"
+          }
+        ]
+      },
+      {
+        "id": "leg2Strike",
+        "label": "Leg 2 strike",
+        "kind": "currency",
+        "default": 26000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "leg2Premium",
+        "label": "Leg 2 premium",
+        "kind": "currency",
+        "default": 95,
+        "unit": "₹",
+        "min": 0
+      },
+      {
+        "id": "quantity",
+        "label": "Lots × lot size",
+        "kind": "number",
+        "default": 75,
+        "min": 1
+      },
+      {
+        "id": "spot",
+        "label": "Current underlying price",
+        "kind": "currency",
+        "default": 25000,
+        "unit": "₹",
+        "min": 1
+      }
+    ],
+    "workedExample": "Selling the 25,500 call for ₹180 and buying the 26,000 call for ₹95 collects ₹85 net. Maximum gain is ₹6,375 if the index finishes at or below 25,500; maximum loss is ₹31,125 above 26,000; the upper break-even is 25,585. The structure profits most of the time and loses heavily in the tail — which is precisely why it is sold.",
+    "limitations": [
+      "Two legs mean two spreads, twice the statutory charges and a margin requirement on the short leg that can change intraday.",
+      "Maximum loss assumes the position is held to expiry. An adverse move before expiry can trigger a margin call that forces an exit at a worse price than the expiry payoff implies.",
+      "A high probability of a small gain is not the same as a low-risk position. The expected loss conditional on a loss is many times the expected gain."
+    ],
+    "relatedCalculators": [
+      "option-payoff",
+      "greeks",
+      "margin-requirement",
+      "risk-of-ruin"
+    ],
+    "engine": "option-strategy-builder"
+  },
+  {
+    "id": "black-scholes",
+    "name": "Black-Scholes Option Price",
+    "shortDescription": "Theoretical European option value with d1, d2, intrinsic value and time value, and the model’s assumptions stated with the result.",
+    "category": "derivatives",
+    "difficulty": "expert",
+    "formulas": [
+      {
+        "latex": "C = S e^{-qT} N(d_1) - K e^{-rT} N(d_2)",
+        "label": "Call value"
+      },
+      {
+        "latex": "P = K e^{-rT} N(-d_2) - S e^{-qT} N(-d_1)",
+        "label": "Put value"
+      },
+      {
+        "latex": "d_1 = \\frac{\\ln(S/K) + (r - q + \\sigma^2/2)T}{\\sigma\\sqrt{T}}",
+        "label": "d1"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "spot",
+        "label": "Spot price of the underlying",
+        "kind": "currency",
+        "default": 25000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "strike",
+        "label": "Strike price",
+        "kind": "currency",
+        "default": 25500,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "days",
+        "label": "Days to expiry",
+        "kind": "number",
+        "default": 30,
+        "min": 1,
+        "max": 1095
+      },
+      {
+        "id": "riskFreeRate",
+        "label": "Risk-free rate",
+        "kind": "percent",
+        "default": 6.5,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "volatility",
+        "label": "Volatility",
+        "kind": "percent",
+        "default": 18,
+        "unit": "%",
+        "min": 0.5,
+        "max": 200
+      },
+      {
+        "id": "dividendYield",
+        "label": "Dividend or carry yield",
+        "kind": "percent",
+        "default": 1.2,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      },
+      {
+        "id": "optionType",
+        "label": "Option type",
+        "kind": "select",
+        "default": "call",
+        "options": [
+          {
+            "value": "call",
+            "label": "Call"
+          },
+          {
+            "value": "put",
+            "label": "Put"
+          }
+        ]
+      }
+    ],
+    "workedExample": "A 30-day option on a 25,000 index with a 25,500 strike, 18% volatility and a 6.5% rate is worth roughly ₹180, of which the entire amount is time value because the option is out of the money. With five days to expiry the same option is worth a small fraction of that.",
+    "limitations": [
+      "The model assumes constant volatility and continuous costless hedging. Indian option prices display a pronounced volatility smile, so a single input volatility cannot reproduce the market.",
+      "Indian index options are European and cash-settled, which suits the model; stock options are physically settled with American-style exercise, which the model does not handle. Use the binomial method for those.",
+      "The output is a price under assumptions, not a prediction of where the option will trade."
+    ],
+    "relatedCalculators": [
+      "implied-volatility",
+      "greeks",
+      "option-payoff"
+    ],
+    "engine": "black-scholes"
+  },
+  {
+    "id": "implied-volatility",
+    "name": "Implied Volatility",
+    "shortDescription": "The volatility that, fed into the model, exactly reproduces an observed market price.",
+    "category": "derivatives",
+    "difficulty": "expert",
+    "formulas": [
+      {
+        "latex": "\\text{Solve } BS(S, K, T, r, \\sigma) = \\text{Market price for } \\sigma",
+        "label": "Implied volatility by bisection"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "marketPrice",
+        "label": "Observed option price",
+        "kind": "currency",
+        "default": 180,
+        "unit": "₹",
+        "min": 0.01
+      },
+      {
+        "id": "spot",
+        "label": "Spot price",
+        "kind": "currency",
+        "default": 25000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "strike",
+        "label": "Strike price",
+        "kind": "currency",
+        "default": 25500,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "days",
+        "label": "Days to expiry",
+        "kind": "number",
+        "default": 30,
+        "min": 1,
+        "max": 1095
+      },
+      {
+        "id": "riskFreeRate",
+        "label": "Risk-free rate",
+        "kind": "percent",
+        "default": 6.5,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "optionType",
+        "label": "Option type",
+        "kind": "select",
+        "default": "call",
+        "options": [
+          {
+            "value": "call",
+            "label": "Call"
+          },
+          {
+            "value": "put",
+            "label": "Put"
+          }
+        ]
+      }
+    ],
+    "workedExample": "A ₹180 premium on a 30-day 25,500 call with the index at 25,000 implies roughly 19% volatility. Ten points away on the same expiry, the implied volatility is typically several points different — that spread is the smile, and it is not an inefficiency as much as a market view about tail risk.",
+    "limitations": [
+      "Implied volatility is an output of a model, not a directly observable quantity. Change the model and the implied number changes.",
+      "A price below intrinsic value has no solution; the calculator says so rather than returning a number. This usually signals a stale quote or a data error.",
+      "Deep out-of-the-money options have very low vega, so a small price error translates into a large implied-volatility error. Compare implied volatilities only across strikes with meaningful premium."
+    ],
+    "relatedCalculators": [
+      "black-scholes",
+      "greeks",
+      "option-strategy-builder"
+    ],
+    "engine": "implied-volatility"
+  },
+  {
+    "id": "greeks",
+    "name": "Option Greeks",
+    "shortDescription": "Delta, gamma, theta, vega and rho for a single option, expressed per one percentage point where that is the useful unit.",
+    "category": "derivatives",
+    "difficulty": "expert",
+    "formulas": [
+      {
+        "latex": "\\Delta_c = N(d_1), \\quad \\Gamma = \\frac{\\phi(d_1)}{S\\sigma\\sqrt{T}}",
+        "label": "Delta and gamma"
+      },
+      {
+        "latex": "\\Theta = -\\frac{S\\phi(d_1)\\sigma}{2\\sqrt{T}} - rKe^{-rT}N(d_2)",
+        "label": "Theta: value lost per unit of time"
+      },
+      {
+        "latex": "\\nu = S\\phi(d_1)\\sqrt{T}",
+        "label": "Vega per unit of volatility"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "spot",
+        "label": "Spot price",
+        "kind": "currency",
+        "default": 25000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "strike",
+        "label": "Strike price",
+        "kind": "currency",
+        "default": 25500,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "days",
+        "label": "Days to expiry",
+        "kind": "number",
+        "default": 30,
+        "min": 1,
+        "max": 1095
+      },
+      {
+        "id": "riskFreeRate",
+        "label": "Risk-free rate",
+        "kind": "percent",
+        "default": 6.5,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "volatility",
+        "label": "Volatility",
+        "kind": "percent",
+        "default": 18,
+        "unit": "%",
+        "min": 0.5,
+        "max": 200
+      },
+      {
+        "id": "dividendYield",
+        "label": "Dividend or carry yield",
+        "kind": "percent",
+        "default": 1.2,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      },
+      {
+        "id": "optionType",
+        "label": "Option type",
+        "kind": "select",
+        "default": "call",
+        "options": [
+          {
+            "value": "call",
+            "label": "Call"
+          },
+          {
+            "value": "put",
+            "label": "Put"
+          }
+        ]
+      }
+    ],
+    "workedExample": "This 30-day out-of-the-money call has a delta near 0.38, so it gains about ₹9.5 for every ₹25 move in the index. It loses roughly ₹5 a day to time decay, which rises sharply in the final week — the reason an out-of-the-money option can be correct on direction and still lose money.",
+    "limitations": [
+      "Greeks are local derivatives. They describe what happens for an infinitesimal change, and they change as the underlying moves. Gamma is the rate at which delta itself changes.",
+      "Theta assumes implied volatility is unchanged, which is rarely true. A fall in implied volatility can cost more than the time decay gains.",
+      "The numbers here come from the Black-Scholes model and inherit its assumptions, including a constant volatility surface."
+    ],
+    "relatedCalculators": [
+      "black-scholes",
+      "implied-volatility",
+      "option-strategy-builder"
+    ],
+    "engine": "greeks"
+  },
+  {
+    "id": "margin-requirement",
+    "name": "Futures Margin and Liquidation",
+    "shortDescription": "How a margin requirement translates into leverage, and the adverse move that consumes the posted margin.",
+    "category": "derivatives",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Leverage} = \\frac{1}{\\text{margin rate}}",
+        "label": "Implied leverage"
+      },
+      {
+        "latex": "\\text{Loss} = \\text{Notional} \\times \\Delta\\%",
+        "label": "Loss on an adverse move"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "notional",
+        "label": "Notional exposure",
+        "kind": "currency",
+        "default": 5000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "marginRate",
+        "label": "Margin requirement",
+        "kind": "percent",
+        "default": 12,
+        "unit": "%",
+        "min": 1,
+        "max": 100
+      },
+      {
+        "id": "adverseMove",
+        "label": "Adverse move in the underlying",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": 0,
+        "max": 40
+      },
+      {
+        "id": "maintenanceMargin",
+        "label": "Maintenance margin requirement",
+        "kind": "percent",
+        "default": 10,
+        "unit": "%",
+        "min": 0.5,
+        "max": 100
+      }
+    ],
+    "workedExample": "A 12% margin on ₹50,00,000 of notional exposure requires ₹6,00,000 and implies leverage of about 8.3 times. A 5% adverse move loses ₹2,50,000 — over 40% of the posted margin. A 12% move eliminates it entirely and triggers a demand for more money at the worst possible moment.",
+    "limitations": [
+      "Exchange margin requirements are computed from volatility and can rise sharply with no notice. The margin posted today may be insufficient next week on an unchanged position.",
+      "Losses are realised by the exchange or broker acting on the position, not by the investor choosing the moment. Forced exit at the low is the standard mechanism by which leverage converts a temporary drawdown into a permanent loss."
+    ],
+    "relatedCalculators": [
+      "max-drawdown",
+      "risk-of-ruin",
+      "option-strategy-builder"
+    ],
+    "engine": "margin-requirement"
+  },
+  {
+    "id": "futures-fair-value",
+    "name": "Futures Fair Value and Basis",
+    "shortDescription": "The no-arbitrage futures price, the basis, and the annualised cost of carry implied by an observed futures price.",
+    "category": "derivatives",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "F = S e^{(r - q)T}",
+        "label": "Fair futures price with continuous carry"
+      },
+      {
+        "latex": "\\text{Basis} = F - S, \\quad \\text{Annualised basis} = \\frac{F - S}{S}\\cdot\\frac{365}{\\text{days}}",
+        "label": "Basis and its annualised form"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "spot",
+        "label": "Spot index or asset price",
+        "kind": "currency",
+        "default": 25000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "days",
+        "label": "Days to contract expiry",
+        "kind": "number",
+        "default": 30,
+        "min": 1,
+        "max": 365
+      },
+      {
+        "id": "riskFreeRate",
+        "label": "Risk-free rate",
+        "kind": "percent",
+        "default": 6.5,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "dividendYield",
+        "label": "Dividend yield of the underlying",
+        "kind": "percent",
+        "default": 1.2,
+        "unit": "%",
+        "min": 0,
+        "max": 15
+      },
+      {
+        "id": "observedFutures",
+        "label": "Observed futures price",
+        "kind": "currency",
+        "default": 25120,
+        "unit": "₹",
+        "min": 1
+      }
+    ],
+    "workedExample": "With a 6.5% rate, a 1.2% dividend yield and 30 days to expiry, the fair futures price is about 25,109 — a basis of 109 points. If the futures trades at 25,120, the annualised basis is roughly 5.8% a year, which is close to the cost of carry and therefore offers no arbitrage to a retail participant who cannot borrow at the risk-free rate.",
+    "limitations": [
+      "The replication requires financing at the risk-free rate, which an individual cannot obtain. A basis that looks exploitable is usually outside the reach of anyone who cannot fund the cash leg on wholesale terms.",
+      "Indian index futures are cash-settled at expiry and stock futures are physically settled, which changes roll cost and risk materially.",
+      "The fair-value relationship holds approximately and within transaction costs. Persistent deviations mostly reflect funding costs and market frictions, not free money."
+    ],
+    "relatedCalculators": [
+      "margin-requirement",
+      "bond-price-yield",
+      "option-payoff"
+    ],
+    "engine": "futures-fair-value"
+  },
+  {
+    "id": "deposit-reinvestment-risk",
+    "name": "Deposit Reinvestment Risk",
+    "shortDescription": "The effect of a rate change on a portfolio of deposits being rolled over — the reinvestment risk that price-based measures ignore.",
+    "category": "fixed-income",
+    "difficulty": "intermediate",
+    "formulas": [
+      {
+        "latex": "\\text{Income}_t = \\sum_i B_i \\times r_t",
+        "label": "Interest income at the prevailing rate"
+      },
+      {
+        "latex": "\\Delta\\text{Income} = \\text{Reinvested balance} \\times \\Delta r",
+        "label": "Change in annual income"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "totalDeposits",
+        "label": "Total deposits",
+        "kind": "currency",
+        "default": 3000000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "currentRate",
+        "label": "Current rate on the portfolio",
+        "kind": "percent",
+        "default": 7.2,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "rateChange",
+        "label": "Change in rates at renewal",
+        "kind": "percent",
+        "default": -0.5,
+        "unit": "%",
+        "min": -6,
+        "max": 6
+      },
+      {
+        "id": "shareRenewing",
+        "label": "Share of the portfolio renewing this year",
+        "kind": "percent",
+        "default": 40,
+        "unit": "%",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "marginalRate",
+        "label": "Marginal tax rate",
+        "kind": "percent",
+        "default": 31.2,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      }
+    ],
+    "workedExample": "₹30,00,000 at 7.2% earns ₹2,16,000 a year. If 40% renews at a rate 0.5 points lower, annual income falls by about ₹6,000, and post-tax by roughly ₹4,100. A laddering strategy deliberately spreads this exposure rather than accepting it all at once.",
+    "limitations": [
+      "Deposits have no price risk in the conventional sense; their risk is reinvestment risk, which this calculator addresses directly.",
+      "The tax on interest is charged as it accrues or is credited, regardless of whether the income has been received in cash."
+    ],
+    "relatedCalculators": [
+      "bond-ladder",
+      "deposit-comparison",
+      "interest-rate-risk"
+    ],
+    "engine": "deposit-reinvestment-risk"
+  },
+  {
+    "id": "real-estate-fractional",
+    "name": "Fractional Ownership Return",
+    "shortDescription": "Net return from a fractional real-estate platform unit after fees, the tax on distributions and the exit, with the platform risks stated.",
+    "category": "alternatives",
+    "difficulty": "advanced",
+    "formulas": [
+      {
+        "latex": "\\text{Net yield} = \\frac{\\text{Rent} - \\text{platform fee} - \\text{asset costs}}{\\text{Invested amount}}",
+        "label": "Net distribution yield"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "investment",
+        "label": "Amount invested",
+        "kind": "currency",
+        "default": 500000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "grossRentalYield",
+        "label": "Gross rental yield on the asset",
+        "kind": "percent",
+        "default": 7.5,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "vacancyRate",
+        "label": "Vacancy and collection loss",
+        "kind": "percent",
+        "default": 8,
+        "unit": "%",
+        "min": 0,
+        "max": 40
+      },
+      {
+        "id": "platformFee",
+        "label": "Annual platform and management fee",
+        "kind": "percent",
+        "default": 2,
+        "unit": "%",
+        "min": 0,
+        "max": 6
+      },
+      {
+        "id": "assetCosts",
+        "label": "Property tax, insurance and maintenance",
+        "kind": "percent",
+        "default": 8,
+        "unit": "%",
+        "min": 0,
+        "max": 30,
+        "help": "As a percentage of gross rent."
+      },
+      {
+        "id": "appreciation",
+        "label": "Assumed capital appreciation",
+        "kind": "percent",
+        "default": 5,
+        "unit": "%",
+        "min": -10,
+        "max": 20
+      },
+      {
+        "id": "years",
+        "label": "Holding period",
+        "kind": "number",
+        "default": 5,
+        "min": 1,
+        "max": 15
+      },
+      {
+        "id": "marginalRate",
+        "label": "Your marginal tax rate",
+        "kind": "percent",
+        "default": 31.2,
+        "unit": "%",
+        "min": 0,
+        "max": 50
+      },
+      {
+        "id": "exitFee",
+        "label": "Exit or transfer fee",
+        "kind": "percent",
+        "default": 1,
+        "unit": "%",
+        "min": 0,
+        "max": 5
+      }
+    ],
+    "workedExample": "A 7.5% gross yield reduced by 8% vacancy, 2% of investment as platform fees and 8% of gross rent as asset costs leaves a net distribution yield close to 5.3% before tax. Slab taxation of the distribution and an exit fee reduce the realised outcome further, and the platform usually has no obligation to buy the units back.",
+    "limitations": [
+      "Fractional ownership platforms differ widely in legal structure. Where the platform is not registered as a small and medium REIT, the investor may hold a contractual claim rather than a registered interest in the property — a materially weaker position.",
+      "There is no exchange, so the units may not be sellable at the stated valuation. The return is only real when the exit happens.",
+      "Valuation is set by a valuer appointed by the platform. An unlisted, untraded asset has no independent price."
+    ],
+    "relatedCalculators": [
+      "rental-yield",
+      "private-cashflow",
+      "property-xirr",
+      "risk-of-ruin"
+    ],
+    "engine": "real-estate-fractional"
+  },
+  {
+    "id": "inflation-erosion",
+    "name": "Inflation Erosion of a Fixed Pension",
+    "shortDescription": "How a fixed nominal income loses purchasing power, and what escalation would be required to preserve it.",
+    "category": "planning",
+    "difficulty": "foundational",
+    "formulas": [
+      {
+        "latex": "\\text{Real value}_T = \\frac{\\text{Fixed income}}{(1+\\pi)^T}",
+        "label": "Purchasing power of a fixed nominal stream"
+      },
+      {
+        "latex": "\\text{Required growth} = \\pi",
+        "label": "Escalation needed to hold real income constant"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "monthlyIncome",
+        "label": "Fixed monthly income",
+        "kind": "currency",
+        "default": 50000,
+        "unit": "₹",
+        "min": 1
+      },
+      {
+        "id": "inflation",
+        "label": "Inflation",
+        "kind": "percent",
+        "default": 6,
+        "unit": "%",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "id": "years",
+        "label": "Years",
+        "kind": "number",
+        "default": 20,
+        "min": 1,
+        "max": 50
+      }
+    ],
+    "workedExample": "₹50,000 a month with no escalation buys what ₹15,590 buys after twenty years at 6% inflation — a loss of nearly seven-tenths of its purchasing power. This is the central argument against relying on a fixed pension or a fixed deposit interest stream for a long retirement.",
+    "limitations": [
+      "Personal inflation for retirees tends to be driven by healthcare, which has historically risen faster than the general index, so the erosion is often worse than shown."
+    ],
+    "relatedCalculators": [
+      "nominal-vs-real",
+      "real-return",
+      "annuity-vs-swp",
+      "purchasing-power"
+    ],
+    "engine": "inflation-erosion"
+  }
+]

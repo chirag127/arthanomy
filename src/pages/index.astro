@@ -1,0 +1,344 @@
+---
+/**
+ * Homepage — the front door.
+ *
+ * Every number on this page is computed from the registries at build time.
+ * Nothing is a marketing claim: coverage counts are real counts, and the
+ * coverage gap (briefs planned vs articles published) is stated openly.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { site, categories, assetGroups } from '../config/site';
+import { href } from '../lib/url';
+import { formatNumber } from '../lib/format';
+import calculators from '../data/calculators/definitions.json';
+
+const [articles, glossary, sources, assets, series, roadmap, libraryItems] = await Promise.all([
+  getCollection('articles', ({ data }) => !data.draft),
+  getCollection('glossary'),
+  getCollection('sources'),
+  getCollection('assets'),
+  getCollection('series'),
+  getCollection('roadmap'),
+  getCollection('libraryItems'),
+]);
+
+const published = [...articles].sort((a, b) => (b.data.publishedAt as Date).getTime() - (a.data.publishedAt as Date).getTime());
+const latest = published.slice(0, 3);
+const featured = published.filter((a) => a.data.featured).slice(0, 3);
+const showcase = featured.length >= 3 ? featured : [...featured, ...latest.filter((a) => !a.data.featured)].slice(0, 3);
+
+const seriesStats = series
+  .map((s) => ({
+    id: s.id,
+    title: s.data.title,
+    question: s.data.question,
+    difficulty: s.data.difficulty,
+    planned: roadmap.filter((b) => b.data.series === s.id).length,
+    written: published.filter((a) => a.data.series === s.id).length,
+  }))
+  .sort((a, b) => a.title.localeCompare(b.title));
+
+const popularCalculators = ['sip', 'cagr', 'xirr', 'post-tax-return', 'monte-carlo', 'emi']
+  .map((id) => calculators.find((c) => c.id === id))
+  .filter((c): c is (typeof calculators)[number] => c !== undefined);
+
+const plannedTotal = roadmap.length;
+const writtenTotal = published.length;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  alternateName: site.tagline,
+  url: 'https://chirag127.github.io/arthanomy/',
+  description: site.description,
+  author: { '@type': 'Person', name: site.author.name, email: site.author.email, url: site.author.facebook },
+};
+---
+
+<BaseLayout title={site.name} description={site.description} path="/" jsonLd={jsonLd}>
+  <!-- 1 · Hero -->
+  <section class="relative overflow-hidden border-b border-[var(--color-border)]">
+    <div class="shell grid gap-10 py-14 lg:grid-cols-[1.5fr_1fr] lg:py-20">
+      <div>
+        <p class="eyebrow">A source-driven Indian wealth library</p>
+        <h1 class="mt-3 max-w-2xl font-serif text-[2.6rem] font-semibold leading-[1.08] tracking-tight text-[var(--color-ink-950)] sm:text-[3.2rem] dark:text-[var(--color-ink-50)]">
+          The Science of Wealth.<br /><span class="text-[var(--color-accent-strong)]">The Reality of Risk.</span>
+        </h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-[var(--color-ink-muted)]">
+          Every legally accessible Indian investment avenue — from treasury bills to venture capital — documented
+          against primary sources, priced after tax, fees and inflation, with the arithmetic shown. Where the
+          evidence is thin, the site says so.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-2.5">
+          <a href={href('/series')} class="badge badge-brass px-3.5 py-2 text-sm no-underline">Start a learning path</a>
+          <a href={href('/research/high-return')} class="badge badge-loss px-3.5 py-2 text-sm no-underline">High-return reality checks</a>
+          <a href={href('/assets')} class="badge badge-neutral px-3.5 py-2 text-sm no-underline">Compare every avenue</a>
+        </div>
+        <p class="mt-5 text-xs text-[var(--color-ink-faint)]">
+          Press <kbd class="rounded border border-[var(--color-border)] bg-[var(--color-surface-2)] px-1.5 py-0.5 font-mono">Ctrl K</kbd>
+          to search everything, or <kbd class="rounded border border-[var(--color-border)] bg-[var(--color-surface-2)] px-1.5 py-0.5 font-mono">/</kbd> from any page.
+        </p>
+      </div>
+
+      <dl class="grid grid-cols-2 gap-3 self-center">
+        {
+          [
+            { dt: 'Research briefs', dd: plannedTotal, note: `${writtenTotal} published so far — the gap is public` },
+            { dt: 'Calculators', dd: calculators.length, note: 'Each one unit-tested with known values' },
+            { dt: 'Glossary terms', dd: glossary.length, note: 'Definitions, formulas, plain-English twins' },
+            { dt: 'Sources', dd: sources.length, note: 'RBI, SEBI, CBDT, exchanges, statutes' },
+            { dt: 'Investment avenues', dd: assets.length, note: `Across ${assetGroups.length} asset groups` },
+            { dt: 'Reading library', dd: libraryItems.length, note: 'Books, papers and official documents' },
+          ].map((stat) => (
+            <div class="card p-4">
+              <dt class="text-2xs font-semibold uppercase tracking-[0.08em] text-[var(--color-ink-faint)]">{stat.dt}</dt>
+              <dd class="mt-1 font-serif text-3xl font-semibold text-[var(--color-ink-950)] dark:text-[var(--color-ink-50)]">
+                {formatNumber(stat.dd, 0)}
+              </dd>
+              <p class="mt-1 text-2xs leading-4 text-[var(--color-ink-muted)]">{stat.note}</p>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- 2 · The four-lane discipline -->
+  <section class="border-b border-[var(--color-border)] bg-[var(--color-surface-2)]">
+    <div class="shell py-12">
+      <div class="grid gap-8 lg:grid-cols-[1fr_1.6fr]">
+        <div>
+          <p class="eyebrow">The core discipline</p>
+          <h2 class="mt-2 font-serif text-3xl font-semibold tracking-tight">Four kinds of “return”, never blurred together</h2>
+          <p class="mt-3 text-sm leading-6 text-[var(--color-ink-muted)]">
+            Most investment writing fails at one thing: it merges what <em>happened</em>, what a contract
+            <em>promises</em>, what a model <em>estimates</em>, and what a salesman <em>hopes</em> into a single
+            seductive number. Arthanomy keeps them apart on every page that discusses a high-return claim.
+          </p>
+          <a href={href('/research/high-return')} class="mt-4 inline-block text-sm text-[var(--color-link)] no-underline hover:underline">
+            See the reality-check index →
+          </a>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div class="card p-4">
+            <p class="font-mono text-xs uppercase tracking-[0.08em] text-[var(--color-ink-faint)]">01 · Historical realised</p>
+            <p class="mt-2 text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">
+              What actually happened, over a stated period, with survivorship bias and index changes acknowledged.
+            </p>
+          </div>
+          <div class="card p-4">
+            <p class="font-mono text-xs uppercase tracking-[0.08em] text-[var(--color-ink-faint)]">02 · Contractual yield</p>
+            <p class="mt-2 text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">
+              What a legal agreement pays — and the credit standing of the party that owes it.
+            </p>
+          </div>
+          <div class="card p-4">
+            <p class="font-mono text-xs uppercase tracking-[0.08em] text-[var(--color-ink-faint)]">03 · Model-estimated</p>
+            <p class="mt-2 text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">
+              What the arithmetic derives from assumptions you can inspect, change and stress.
+            </p>
+          </div>
+          <div class="card p-4">
+            <p class="font-mono text-xs uppercase tracking-[0.08em] text-[var(--color-ink-faint)]">04 · Speculative upside</p>
+            <p class="mt-2 text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">
+              The possible-but-unsupported — labelled as exactly that, never sold as a plan.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Featured research -->
+  {
+    showcase.length > 0 && (
+      <section class="shell border-b border-[var(--color-border)] py-12">
+        <div class="flex flex-wrap items-baseline justify-between gap-3">
+          <h2 class="font-serif text-3xl font-semibold tracking-tight">Where to start reading</h2>
+          <a href={href('/library')} class="text-sm text-[var(--color-link)] no-underline hover:underline">All {published.length} articles →</a>
+        </div>
+        <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {showcase.map((article) => (
+            <ArticleCard
+              id={article.id}
+              title={article.data.title}
+              description={article.data.description}
+              category={article.data.category}
+              difficulty={article.data.difficulty}
+              readingMinutes={article.data.readingMinutes}
+              kind={article.data.kind}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- 4 · Learning paths -->
+  <section class="shell border-b border-[var(--color-border)] py-12">
+    <div class="flex flex-wrap items-baseline justify-between gap-3">
+      <div>
+        <p class="eyebrow">Structured learning</p>
+        <h2 class="mt-2 font-serif text-3xl font-semibold tracking-tight">{series.length} series, ordered by prerequisites</h2>
+      </div>
+      <a href={href('/series')} class="text-sm text-[var(--color-link)] no-underline hover:underline">All learning paths →</a>
+    </div>
+    <div class="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+      {
+        seriesStats.slice(0, 6).map((s) => (
+          <a href={href(`/series/${s.id}`)} class="card card-hover block p-4 no-underline">
+            <span class="font-serif text-lg font-semibold text-[var(--color-ink-950)] dark:text-[var(--color-ink-50)]">{s.title}</span>
+            <span class="mt-1.5 block text-sm leading-6 text-[var(--color-ink-muted)]">{s.question}</span>
+            <span class="mt-3 block font-mono text-xs text-[var(--color-ink-faint)]">
+              {s.written}/{s.planned} written · {s.difficulty}
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- 5 · Calculators strip -->
+  <section class="border-b border-[var(--color-border)] bg-[var(--color-surface-2)]">
+    <div class="shell py-12">
+      <div class="flex flex-wrap items-baseline justify-between gap-3">
+        <div>
+          <p class="eyebrow">Instruments</p>
+          <h2 class="mt-2 font-serif text-3xl font-semibold tracking-tight">{calculators.length} calculators that show their work</h2>
+          <p class="mt-2 max-w-2xl text-sm leading-6 text-[var(--color-ink-muted)]">
+            Every calculator states its assumptions, warns when an input is outside its valid range, and returns “not
+            available” rather than a fabricated zero when a quantity is undefined. Known-value tests run on every build.
+          </p>
+        </div>
+        <a href={href('/calculators')} class="text-sm text-[var(--color-link)] no-underline hover:underline">Full index →</a>
+      </div>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          popularCalculators.map((calc) => (
+            <a href={href(`/calculators/${calc.id}`)} class="card card-hover flex flex-col p-4 no-underline">
+              <span class="text-sm font-semibold text-[var(--color-ink-body)]">{calc.name}</span>
+              <span class="mt-1 block text-xs leading-5 text-[var(--color-ink-muted)]">{calc.shortDescription}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · Fraud protection -->
+  <section class="shell border-b border-[var(--color-border)] py-12">
+    <div class="grid gap-8 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">Protection</p>
+        <h2 class="mt-2 font-serif text-3xl font-semibold tracking-tight">The fraud half of the subject</h2>
+        <p class="mt-3 text-sm leading-6 text-[var(--color-ink-muted)]">
+          The Indian investment landscape includes schemes designed to fail. Arthanomy documents their mechanics
+          as evidence-based education — how promises violate the mathematics of compound interest, what the
+          regulators have actually said, and where to take a complaint. No operational instructions, ever.
+        </p>
+        <a href={href('/integrity')} class="badge badge-brass mt-5 inline-flex px-3.5 py-2 text-sm no-underline">
+          Fraud mechanics & investor protection →
+        </a>
+      </div>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <div class="card p-4">
+          <p class="text-sm font-semibold text-[var(--color-ink-body)]">Guaranteed-return traps</p>
+          <p class="mt-1.5 text-xs leading-5 text-[var(--color-ink-muted)]">Why “12% fixed, fully safe” is an actuarial impossibility, and the legal ceilings that make it one.</p>
+        </div>
+        <div class="card p-4">
+          <p class="text-sm font-semibold text-[var(--color-ink-body)]">Ponzi arithmetic</p>
+          <p class="mt-1.5 text-xs leading-5 text-[var(--color-ink-muted)]">The exponential recruitment maths that guarantees collapse, shown with the curve.</p>
+        </div>
+        <div class="card p-4">
+          <p class="text-sm font-semibold text-[var(--color-ink-body)]">Regulator boundaries</p>
+          <p class="mt-1.5 text-xs leading-5 text-[var(--color-ink-muted)]">What SEBI, RBI and IRDAI each actually regulate — and what falls outside every perimeter.</p>
+        </div>
+        <div class="card p-4">
+          <p class="text-sm font-semibold text-[var(--color-ink-body)]">Where to complain</p>
+          <p class="mt-1.5 text-xs leading-5 text-[var(--color-ink-muted)]">SCORES, the RBI ombudsman, EOW complaints — the escalation ladder, documented.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · Categories & universe -->
+  <section class="border-b border-[var(--color-border)] bg-[var(--color-surface-2)]">
+    <div class="shell py-12">
+      <p class="eyebrow">The complete map</p>
+      <h2 class="mt-2 font-serif text-3xl font-semibold tracking-tight">{categories.length} topics · {assets.length} avenues · {assetGroups.length} groups</h2>
+      <div class="mt-6 flex flex-wrap gap-2">
+        {
+          categories.map((cat) => (
+            <a href={href(`/library/category/${cat.id}`)} class="badge badge-neutral no-underline hover:border-[var(--color-brass-400)]">
+              {cat.shortName}
+            </a>
+          ))
+        }
+      </div>
+      <div class="mt-6 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          assetGroups.map((group) => (
+            <a href={href('/assets')} class="card card-hover flex items-center justify-between px-3.5 py-2.5 no-underline">
+              <span class="text-sm text-[var(--color-ink-body)]">{group.name}</span>
+              <span class="font-mono text-xs text-[var(--color-ink-faint)]">{assets.filter((a) => a.data.group === group.id).length}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · Sources & methodology -->
+  <section class="shell border-b border-[var(--color-border)] py-12">
+    <div class="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
+      <div>
+        <p class="eyebrow">Method</p>
+        <h2 class="mt-2 font-serif text-3xl font-semibold tracking-tight">{sources.length} sources, classified by quality</h2>
+        <p class="mt-3 text-sm leading-6 text-[var(--color-ink-muted)]">
+          Primary government and regulator publications are preferred; secondary sources are used only for context and
+          are labelled. Every tax figure carries an effective date and a verification date, because Indian tax law
+          changes every February. When a figure cannot be verified, the site says “unavailable” — it does not guess.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <a href={href('/sources')} class="badge badge-brass no-underline">Browse the source registry</a>
+          <a href={href('/integrity')} class="badge badge-neutral no-underline">Editorial standards</a>
+        </div>
+      </div>
+      <div class="card p-5">
+        <p class="eyebrow">Coverage, stated honestly</p>
+        <p class="mt-3 text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">
+          {plannedTotal} detailed briefs define the complete library. <strong>{writtenTotal}</strong> are published
+          today; the rest are queued with their required sources and dependencies. Nothing is stubbed with
+          placeholder text — an article either exists in full or appears only on the roadmap.
+        </p>
+        <a href={href('/roadmap')} class="mt-4 inline-block text-sm text-[var(--color-link)] no-underline hover:underline">
+          See what is written and what is planned →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · Author -->
+  <section class="shell py-14">
+    <div class="card mx-auto max-w-3xl p-7 text-center">
+      <p class="eyebrow">Written and maintained by</p>
+      <p class="mt-3 font-serif text-2xl font-semibold">{site.author.name}</p>
+      <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+        One author, named, accountable, with the sources for every claim published alongside it.
+        Independent research, funded by readers — no brokerage, no distributor, no sponsored placements.
+      </p>
+      <div class="mt-5 flex flex-wrap justify-center gap-2.5">
+        <a href={href('/about')} class="badge badge-neutral no-underline">About & methodology</a>
+        <a href={site.author.facebook} rel="me noopener" class="badge badge-neutral no-underline">Facebook</a>
+        <a href={site.author.support} rel="noopener" class="badge badge-brass no-underline">Buy me a coffee</a>
+        <a href={`mailto:${site.author.email}`} class="badge badge-neutral no-underline">{site.author.email}</a>
+      </div>
+      <p class="mt-5 text-xs leading-5 text-[var(--color-ink-faint)]">
+        {site.description}
+      </p>
+    </div>
+  </section>
+</BaseLayout>

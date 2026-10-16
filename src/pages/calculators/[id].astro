@@ -1,0 +1,160 @@
+---
+/**
+ * /calculators/<id> — one calculator.
+ *
+ * The formulas are rendered with KaTeX at build time (no client JS), while the
+ * arithmetic itself runs in the browser through the tested compute registry.
+ */
+import katex from 'katex';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Calculator from '../../components/Calculator';
+import { href } from '../../lib/url';
+import definitions from '../../data/calculators/definitions.json';
+
+export async function getStaticPaths() {
+  return definitions.map((definition) => ({
+    params: { id: definition.id },
+    props: { definition },
+  }));
+}
+
+const { definition } = Astro.props;
+
+const articles = await getCollection('articles', ({ data }) => !data.draft);
+const relatedArticles = articles
+  .filter((a) => a.data.relatedCalculators.some((ref) => ref.id === definition.id))
+  .slice(0, 3);
+const relatedCalcs = definition.relatedCalculators
+  .map((id) => definitions.find((d) => d.id === id))
+  .filter((d): d is (typeof definitions)[number] => d !== undefined);
+
+const formulaHtml = definition.formulas.map((formula) => ({
+  ...formula,
+  html: katex.renderToString(formula.latex, { throwOnError: false, displayMode: true }),
+}));
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: definition.name,
+  description: definition.shortDescription,
+  applicationCategory: 'FinanceApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+  author: { '@type': 'Person', name: 'Chirag Singhal' },
+};
+---
+
+<BaseLayout
+  title={definition.name}
+  description={`${definition.shortDescription} Assumptions, formulas and limitations are shown alongside the result.`}
+  path={`/calculators/${definition.id}`}
+  jsonLd={jsonLd}
+>
+  <header class="shell pt-10">
+    <Breadcrumbs
+      crumbs={[
+        { label: 'Home', path: '/' },
+        { label: 'Calculators', path: '/calculators' },
+        { label: definition.name },
+      ]}
+    />
+    <div class="mt-6 max-w-3xl">
+      <p class="eyebrow">{definition.category.replace('-', ' ')} · {definition.difficulty}</p>
+      <h1 class="mt-2 font-serif text-4xl font-semibold tracking-tight">{definition.name}</h1>
+      <p class="mt-4 text-lg leading-8 text-[var(--color-ink-muted)]">{definition.shortDescription}</p>
+    </div>
+  </header>
+
+  <section class="shell mt-10">
+    <Calculator definition={definition} client:load />
+  </section>
+
+  <div class="shell mt-14 grid gap-10 pb-16 lg:grid-cols-[minmax(0,1fr)_18rem]">
+    <div class="min-w-0 space-y-10">
+      {
+        formulaHtml.length > 0 && (
+          <section aria-labelledby="formulas-heading">
+            <h2 id="formulas-heading" class="eyebrow">What the arithmetic is</h2>
+            <div class="mt-4 space-y-4">
+              {formulaHtml.map((formula) => (
+                <div class="card overflow-x-auto p-4">
+                  <p class="m-0 text-xs font-semibold uppercase tracking-[0.06em] text-[var(--color-ink-faint)]">{formula.label}</p>
+                  <div class="mt-2 text-[0.95rem]" set:html={formula.html} />
+                  {formula.assumption && <p class="mt-2 text-xs leading-5 text-[var(--color-ink-muted)]">Assumption: {formula.assumption}</p>}
+                </div>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        definition.workedExample && (
+          <section aria-labelledby="example-heading">
+            <h2 id="example-heading" class="eyebrow">A worked example</h2>
+            <p class="mt-3 text-sm leading-7 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">{definition.workedExample}</p>
+          </section>
+        )
+      }
+
+      {
+        definition.limitations.length > 0 && (
+          <section class="callout callout-caution" aria-labelledby="limitations-heading">
+            <h2 id="limitations-heading" class="callout-title">What this calculator cannot tell you</h2>
+            <ul class="m-0 space-y-2 text-sm">
+              {definition.limitations.map((limitation) => (
+                <li>{limitation}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      <section aria-labelledby="testing-heading" class="card p-5">
+        <h2 id="testing-heading" class="eyebrow m-0">How this calculator is tested</h2>
+        <p class="mt-3 text-sm leading-6 text-[var(--color-ink-muted)]">
+          The arithmetic behind every calculator on this site is part of a library with known-value tests — for example,
+          the SIP formula is checked against a hand-computed ten-year projection, and the bond pricer must return par
+          when coupon equals yield. The suite runs on every build. Where the model is an approximation rather than a
+          closed-form result, the output says so in its assumptions.
+        </p>
+      </section>
+    </div>
+
+    <aside class="space-y-8">
+      {
+        relatedCalcs.length > 0 && (
+          <section aria-labelledby="related-calcs">
+            <h2 id="related-calcs" class="eyebrow">Related calculators</h2>
+            <ul class="mt-3 space-y-2" role="list">
+              {relatedCalcs.map((calc) => (
+                <li>
+                  <a href={href(`/calculators/${calc.id}`)} class="text-sm text-[var(--color-link)] no-underline hover:underline">
+                    {calc.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+      <section aria-labelledby="calc-help">
+        <h2 id="calc-help" class="eyebrow">Reading the result</h2>
+        <p class="mt-3 text-xs leading-5 text-[var(--color-ink-muted)]">
+          “Not meaningful with these inputs” is a deliberate result: it means the quantity is undefined for the
+          numbers entered, not that it is zero. Rates are entered as percentages per year; monthly figures are
+          derived inside the model.
+        </p>
+      </section>
+      <section class="card p-4">
+        <p class="eyebrow">Share a result</p>
+        <p class="mt-2 text-xs leading-5 text-[var(--color-ink-muted)]">
+          Change any input and the address bar updates with your values. Copy the link to share the exact scenario.
+        </p>
+      </section>
+    </aside>
+  </div>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+/**
+ * ArticleCard — a single library entry in list contexts.
+ */
+import { categoryMeta } from '../config/site';
+import { href } from '../lib/url';
+import DifficultyBadge from './DifficultyBadge.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  category?: string;
+  difficulty?: string;
+  readingMinutes?: number;
+  kind?: string;
+  eyebrow?: string;
+}
+const { id, title, description, category, difficulty, readingMinutes, kind, eyebrow } = Astro.props;
+const cat = category ? categoryMeta(category) : null;
+const url = href(`/library/${id.replace(/\/index$/, '')}`);
+---
+
+<article class="card card-hover h-full">
+  <a href={url} class="flex h-full flex-col p-5 no-underline">
+    <div class="flex flex-wrap items-center gap-2">
+      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      {cat && <span class="badge badge-neutral">{cat.shortName}</span>}
+      {kind && kind !== 'research' && <span class="badge badge-info">{kind}</span>}
+    </div>
+    <h3 class="mt-2.5 font-serif text-lg font-semibold leading-snug text-[var(--color-ink-950)] dark:text-[var(--color-ink-50)]">
+      {title}
+    </h3>
+    <p class="mt-2 line-clamp-3 flex-1 text-sm leading-6 text-[var(--color-ink-muted)]">{description}</p>
+    <div class="mt-4 flex items-center gap-2 text-xs text-[var(--color-ink-faint)]">
+      {difficulty && <DifficultyBadge difficulty={difficulty} size="sm" />}
+      {readingMinutes && <span>{readingMinutes} min read</span>}
+    </div>
+  </a>
+</article>

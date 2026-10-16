@@ -1,0 +1,98 @@
+---
+/**
+ * /about — who writes this, why, and what it refuses to be.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site, disclaimer } from '../../config/site';
+import { href } from '../../lib/url';
+import { getCollection } from 'astro:content';
+
+const [sources, articles, glossary, briefs] = await Promise.all([
+  getCollection('sources'),
+  getCollection('articles', ({ data }) => !data.draft),
+  getCollection('glossary'),
+  getCollection('roadmap'),
+]);
+---
+
+<BaseLayout
+  title="About"
+  description={`Arthanomy is written and maintained by ${site.author.name} — an independent, source-driven library covering every Indian investment avenue.`}
+  path="/about"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">About</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">One author, named, with the sources attached</h1>
+    <p class="mt-4 max-w-3xl text-lg leading-8 text-[var(--color-ink-muted)]">{site.description}</p>
+  </header>
+
+  <div class="shell mt-10 grid gap-10 pb-16 lg:grid-cols-[minmax(0,1fr)_20rem]">
+    <div class="article-body min-w-0 max-w-3xl">
+      <h2>Why this exists</h2>
+      <p>
+        Indian retail investing has two extremes: marketing material that treats every risky product as an opportunity,
+        and vague caution that refuses to do the arithmetic. Arthanomy takes the position that the arithmetic is the
+        answer. Every avenue — from a savings account to a venture fund — can be described with the same vocabulary:
+        what produces the return, who owes you, what can go wrong, how it is taxed, and how strong the evidence is.
+        When those questions have honest answers, most investment decisions become clearer.
+      </p>
+
+      <h2>What this site is</h2>
+      <ul>
+        <li><strong>A research library.</strong> {briefs.length} planned articles; {articles.length} published in full; {glossary.length} defined terms; {sources.length} classified sources. The complete plan is public on the <a href={href('/roadmap')}>roadmap</a>.</li>
+        <li><strong>A calculator suite.</strong> Every calculator on this site is part of a tested numerical library — the same code runs in the browser and in the test suite.</li>
+        <li><strong>A reference for tax and regulation.</strong> Dated, sourced and re-verifiable, because these change with every budget and every circular.</li>
+      </ul>
+
+      <h2>What this site is not</h2>
+      <ul>
+        <li><strong>Not an adviser.</strong> There is no personalised advice here, no portfolio management, and no registration under which advice could be given. Nothing on this site is a recommendation to buy or sell.</li>
+        <li><strong>Not sponsored.</strong> No brokerage pays for placement, no affiliate links exist, no product is promoted. The funding links on this page are reader contributions with no product attached.</li>
+        <li><strong>Not a performance-marketing site.</strong> It publishes no return claims, no screenshots of trades, and no testimonials. Where a product's historical performance matters, the number is stated with its period, its source, and its limits.</li>
+      </ul>
+
+      <h2>The author</h2>
+      <p>
+        Written and maintained by <strong>{site.author.name}</strong>. Contact and corrections: <a href={`mailto:${site.author.email}`}>{site.author.email}</a>.
+        No credentials are claimed beyond what can be verified: this is independent research, and its only asset is
+        the accuracy of its sources and its willingness to be corrected. The full research process is documented in
+        the <a href={href('/about/methodology')}>methodology</a>, including the honest use of tooling: articles are
+        drafted with AI assistance under human review, and their sources are the same official documents any reader
+        can open and check.
+      </p>
+
+      <h2>Editorial independence</h2>
+      <p>
+        The <a href={href('/about/editorial-policy')}>editorial policy</a> commits to independence from advertisers,
+        distributors and issuers; to publishing corrections with the same prominence as the original claim; and to
+        recording every figure's source and date so that disagreement can be conducted against the evidence rather
+        than against the author's confidence.
+      </p>
+    </div>
+
+    <aside class="space-y-6">
+      <div class="card p-5">
+        <p class="eyebrow">At a glance</p>
+        <ul class="mt-3 space-y-2 text-sm text-[var(--color-ink-muted)]" role="list">
+          <li>{briefs.length} briefs planned</li>
+          <li>{articles.length} articles published</li>
+          <li>{glossary.length} glossary terms</li>
+          <li>{sources.length} sources catalogued</li>
+        </ul>
+      </div>
+      <div class="card p-5">
+        <p class="eyebrow">Reach & support</p>
+        <ul class="mt-3 space-y-2 text-sm" role="list">
+          <li><a href={`mailto:${site.author.email}`} class="text-[var(--color-link)] no-underline hover:underline">Email</a></li>
+          <li><a href={site.author.facebook} rel="me noopener" class="text-[var(--color-link)] no-underline hover:underline">Facebook</a></li>
+          <li><a href={site.author.support} rel="noopener" class="text-[var(--color-link)] no-underline hover:underline">Buy me a coffee</a></li>
+          <li><a href={href('/contact')} class="text-[var(--color-link)] no-underline hover:underline">Contact & corrections</a></li>
+        </ul>
+      </div>
+      <div class="callout callout-note">
+        <p class="callout-title">Standing disclaimer</p>
+        <p class="m-0 text-xs leading-5">{disclaimer.short}</p>
+      </div>
+    </aside>
+  </div>
+</BaseLayout>

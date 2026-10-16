@@ -1,0 +1,931 @@
+[
+  {
+    "id": "science-of-returns",
+    "title": "The Science of Returns",
+    "question": "What is a return, where does it come from, and how do we know whether a number is real?",
+    "summary": "Most investment mistakes are errors of measurement rather than errors of judgement. This series establishes the vocabulary of return — arithmetic versus geometric mean, money-weighted versus time-weighted, nominal versus real, gross versus post-tax — and shows why a single reported percentage can be simultaneously true and useless. Read it first.",
+    "difficulty": "foundational",
+    "category": "investment-basics",
+    "order": 1,
+    "prerequisites": [],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "cagr",
+      "xirr",
+      "real-return",
+      "nominal-vs-real",
+      "post-tax-return",
+      "rolling-returns"
+    ],
+    "conceptMap": "graph TD\n  A[Cash flows] --> B[Money-weighted: XIRR]\n  A --> C[Time-weighted: TWR]\n  B --> D[Depends on timing of your own flows]\n  C --> E[Depends only on the asset]\n  F[Reported return] --> G{Which return?}\n  G --> B\n  G --> C\n  H[Inflation] --> I[Real return]\n  J[Tax and fees] --> K[Net return]\n  I --> L[The number that matters for goals]\n  K --> L",
+    "glossaryTerms": [
+      "cagr",
+      "xirr",
+      "time-weighted-return",
+      "geometric-mean",
+      "arithmetic-mean",
+      "real-return",
+      "opportunity-cost"
+    ],
+    "bibliography": [
+      "sharpe-1966",
+      "markowitz-1952",
+      "fama-french-1992",
+      "rbi-handbook-statistics"
+    ],
+    "openQuestions": [
+      "How much of the observed Indian equity risk premium is compensation for risk and how much reflects repricing of a market that began with a very low starting valuation?",
+      "What is the correct Indian inflation series to use for long-horizon real-return calculations when the consumption basket has changed materially since 1990?"
+    ],
+    "plannedCount": 22
+  },
+  {
+    "id": "financial-mathematics",
+    "title": "Financial Mathematics",
+    "question": "What are the actual formulas behind every financial number, and when do the shortcuts break?",
+    "summary": "A complete, honest treatment of the mathematics used elsewhere on the site: compounding, discounting, annuities, present value, internal rates of return, log returns, continuous compounding, and the moment-based statistics of a return distribution. Each article derives the formula, states its assumptions, exhibits a case where it fails, and links to a calculator.",
+    "difficulty": "intermediate",
+    "category": "financial-mathematics",
+    "order": 2,
+    "prerequisites": [
+      "science-of-returns"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "cagr",
+      "xirr",
+      "sip",
+      "emi",
+      "bond-price-yield",
+      "monte-carlo"
+    ],
+    "conceptMap": "graph LR\n  A[Simple interest] --> B[Compound interest]\n  B --> C[Continuous compounding]\n  C --> D[Discount factors]\n  D --> E[NPV]\n  E --> F[IRR]\n  F --> G[XIRR with dates]\n  B --> H[Annuity formulas]\n  H --> I[SIP and SWP]\n  B --> J[Log returns]\n  J --> K[Additive over time]\n  J --> L[Volatility scaling]",
+    "glossaryTerms": [
+      "compounding",
+      "discount-factor",
+      "net-present-value",
+      "irr",
+      "effective-annual-rate",
+      "fisher-equation",
+      "rule-of-72"
+    ],
+    "bibliography": [
+      "markowitz-1952",
+      "black-scholes-1973",
+      "merton-1973"
+    ],
+    "openQuestions": [
+      "For Indian retail reporting, should short-horizon annualised figures below one year be published at all, given the distortion they produce?"
+    ],
+    "plannedCount": 30
+  },
+  {
+    "id": "indian-financial-system",
+    "title": "The Indian Financial System",
+    "question": "Who writes the rules, who enforces them, and what happens when a financial firm fails?",
+    "summary": "The institutional architecture: the Reserve Bank of India, SEBI, IRDAI, PFRDA, IBBI and the insolvency framework; the deposit-insurance and investor-protection regimes; payment and settlement systems; credit bureaus; and the grey areas where a product sits outside every regulator. This series explains what protection actually exists — a question whose answer is usually less comforting than assumed.",
+    "difficulty": "foundational",
+    "category": "financial-system",
+    "order": 3,
+    "prerequisites": [],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "emergency-fund",
+      "deposit-comparison"
+    ],
+    "glossaryTerms": [
+      "deposit-insurance",
+      "crar",
+      "investor-protection-fund",
+      "ombudsman",
+      "nclt",
+      "insolvency"
+    ],
+    "bibliography": [
+      "rbi-home",
+      "sebi-home",
+      "irdai-home",
+      "pfrda-home",
+      "ibbi-home",
+      "dicgc",
+      "rbi-financial-stability",
+      "iosco-home"
+    ],
+    "openQuestions": [
+      "How has the effective recovery rate on resolved cases under the Insolvency and Bankruptcy Code varied by creditor class and by sector, and how much of the variation reflects asset quality rather than process?",
+      "What proportion of retail complaints to each financial-sector ombudsman result in relief, and what does the distribution of outcomes look like?"
+    ],
+    "plannedCount": 25
+  },
+  {
+    "id": "equity-mastery",
+    "title": "Equity Mastery",
+    "question": "How does equity ownership actually create wealth, at every capitalisation and in every market segment?",
+    "summary": "From the mechanics of the primary market through fundamental analysis, valuation, corporate actions, promoter behaviour and the specific pathologies of small-caps, micro-caps and SME listings. Written for a reader who intends to own businesses rather than trade tickers, and who understands the difference between the two.",
+    "difficulty": "intermediate",
+    "category": "equity",
+    "order": 4,
+    "prerequisites": [
+      "science-of-returns"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "cagr",
+      "dividend-return",
+      "opportunity-cost",
+      "rolling-returns"
+    ],
+    "conceptMap": "graph TD\n  A[Primary market: IPO, FPO, OFS, rights] --> B[Listed company]\n  B --> C[Secondary market]\n  C --> D[Price = expectations discounted]\n  D --> E[Earnings growth]\n  D --> F[Multiple expansion or contraction]\n  D --> G[Dividends and buybacks]\n  E --> H[Fundamental analysis]\n  F --> I[Sentiment and flows]\n  B --> J[Corporate actions]\n  J --> K[Bonus, split, demerger, buyback]\n  C --> L[Market segments]\n  L --> M[Large, mid, small, micro, SME]",
+    "glossaryTerms": [
+      "market-capitalisation",
+      "free-float",
+      "pe-ratio",
+      "roe",
+      "roce",
+      "eps",
+      "promoter-holding"
+    ],
+    "bibliography": [
+      "sebi-home",
+      "nse-india",
+      "bse-india",
+      "mca-home",
+      "fama-french-1992"
+    ],
+    "openQuestions": [
+      "Do Indian small-caps and micro-caps carry a return premium after adjusting for transaction costs, illiquidity, and the survivorship of the index itself?",
+      "How much of the returns of Indian 'quality' companies over the past two decades came from the multiple re-rating rather than from earnings growth, and is that re-rating repeatable?"
+    ],
+    "plannedCount": 40
+  },
+  {
+    "id": "mutual-fund-atlas",
+    "title": "The Mutual Fund Atlas",
+    "question": "What exactly is inside every SEBI mutual fund category, and what is each category for?",
+    "summary": "A systematic account of all mutual fund categories defined by the SEBI categorisation circular — equity, hybrid, debt and solution-oriented — plus the structural apparatus of a fund: trustees, custodians, RTAs, expense ratios, direct and regular plans, benchmark selection and index-tracking quality. Includes ETFs, index funds, fund of funds and arbitrage funds.",
+    "difficulty": "foundational",
+    "category": "mutual-funds",
+    "order": 5,
+    "prerequisites": [
+      "science-of-returns"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "expense-ratio-impact",
+      "tracking-error",
+      "sip",
+      "swp",
+      "post-tax-return"
+    ],
+    "conceptMap": "graph TD\n  A[Mutual fund] --> B[Open-ended]\n  A --> C[Close-ended]\n  A --> D[Interval]\n  B --> E[Equity schemes]\n  B --> F[Debt schemes]\n  B --> G[Hybrid schemes]\n  B --> H[Solution-oriented]\n  E --> I[Large, mid, small, flexi, focused, value, contra, dividend-yield, sectoral, ELSS, index, ETF]\n  F --> J[Overnight, liquid, ultra-short, low-duration, money-market, short, corporate-bond, credit-risk, banking-PSU, gilt, dynamic, floater, target-maturity]\n  G --> K[Conservative, balanced, aggressive, BAF, multi-asset, arbitrage, equity-savings]\n  A --> L[Plans: direct vs regular]\n  A --> M[Options: growth vs IDCW]",
+    "glossaryTerms": [
+      "nav",
+      "aum",
+      "expense-ratio",
+      "total-expense-ratio",
+      "exit-load",
+      "sip",
+      "stp",
+      "swp",
+      "direct-plan",
+      "regular-plan",
+      "tracking-error",
+      "portfolio-turnover-ratio"
+    ],
+    "bibliography": [
+      "sebi-mf-categorisation",
+      "amfi-home",
+      "sebi-mf-ter-disclosure",
+      "amfi-nav-file"
+    ],
+    "openQuestions": [
+      "Does the Indian fund industry's distribution structure mean that the return gap between direct and regular plans is the largest single determinant of retail outcomes?",
+      "How persistent is small-cap fund outperformance once fund size and the capacity of the underlying segment are accounted for?"
+    ],
+    "plannedCount": 45
+  },
+  {
+    "id": "debt-encyclopedia",
+    "title": "The Debt Encyclopedia",
+    "question": "What is every debt instrument in India, how is it priced, and who actually bears its risk?",
+    "summary": "The largest series on the site. It covers the full yield curve from overnight money through sovereign debt, corporate bonds, AT1 and perpetual instruments, market-linked debentures, securitisation and private credit, with the mathematics of price, yield, duration, convexity, credit spread, default and recovery treated rigorously and in plain language.",
+    "difficulty": "advanced",
+    "category": "debt",
+    "order": 6,
+    "prerequisites": [
+      "science-of-returns",
+      "financial-mathematics"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "bond-price-yield",
+      "modified-duration",
+      "convexity",
+      "credit-spread",
+      "default-recovery",
+      "bond-ladder",
+      "deposit-comparison"
+    ],
+    "conceptMap": "graph TD\n  A[Debt] --> B[Sovereign: G-sec, T-bill, SDL, cash management bill]\n  A --> C[Bank and corporate deposits]\n  A --> D[Corporate bonds]\n  A --> E[Money market: CP, CD, repo, TREPS]\n  A --> F[Securitised: PTC, ABS, MBS]\n  A --> G[Structured: MLD, AT1, perpetual, subordinated]\n  A --> H[Private credit and direct lending]\n  D --> I[Pricing: PV of cash flows]\n  I --> J[Yield to maturity]\n  I --> K[Duration]\n  I --> L[Convexity]\n  D --> M[Credit: spread, PD, LGD, recovery]\n  M --> N[Rating and migration]\n  D --> O[Covenants and security]",
+    "glossaryTerms": [
+      "yield-to-maturity",
+      "coupon-rate",
+      "accrued-interest",
+      "macaulay-duration",
+      "modified-duration",
+      "convexity",
+      "credit-spread",
+      "probability-of-default",
+      "loss-given-default",
+      "securitisation",
+      "repo",
+      "g-sec",
+      "perpetual-bond",
+      "z-spread"
+    ],
+    "bibliography": [
+      "rbi-home",
+      "rbi-dbie",
+      "sebi-home",
+      "nse-india",
+      "bcbs-credit-risk",
+      "rbi-handbook-statistics"
+    ],
+    "openQuestions": [
+      "What is the realised recovery rate on Indian corporate defaults across rating categories and sectors, and how does it compare with the recovery assumptions embedded in rating-agency default studies?",
+      "How liquid is the Indian corporate bond market in practice for retail-sized orders, and what does the effective bid-ask spread do to realised returns?"
+    ],
+    "plannedCount": 60
+  },
+  {
+    "id": "portfolio-theory",
+    "title": "Portfolio Theory and Asset Allocation",
+    "question": "How should a portfolio be assembled, and how much of the theory survives contact with real data?",
+    "summary": "Diversification, risk and correlation, the mean-variance framework and its severe practical limitations, factor models, risk parity, the permanent portfolio family, glide paths, and the empirical evidence on what actually determines long-run outcomes. Optimisers are presented with their failure modes rather than as answers.",
+    "difficulty": "advanced",
+    "category": "asset-allocation",
+    "order": 7,
+    "prerequisites": [
+      "science-of-returns",
+      "financial-mathematics"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "portfolio-allocation",
+      "allocation-optimiser",
+      "multi-asset",
+      "rebalancing",
+      "sharpe",
+      "monte-carlo"
+    ],
+    "conceptMap": "graph TD\n  A[Single asset] --> B[Risk and return]\n  B --> C[Two assets: correlation]\n  C --> D[Diversification benefit]\n  D --> E[Efficient frontier]\n  E --> F[Optimiser]\n  F --> G[Input sensitivity]\n  G --> H[Errors maximised]\n  H --> I[Alternatives: equal weight, risk parity, CAPE-based]\n  I --> J[Glide path]\n  J --> K[Rebalancing policy]\n  K --> L[Risks: sequence, liquidity, behaviour]",
+    "glossaryTerms": [
+      "asset-allocation",
+      "efficient-frontier",
+      "mean-variance-optimisation",
+      "risk-parity",
+      "rebalancing",
+      "correlation",
+      "sequence-of-returns-risk",
+      "safe-withdrawal-rate",
+      "home-bias"
+    ],
+    "bibliography": [
+      "markowitz-1952",
+      "sharpe-1966",
+      "fama-french-1992",
+      "shiller-cape",
+      "kahneman-tversky-1979",
+      "worldbank-data"
+    ],
+    "openQuestions": [
+      "Are Indian equity and Indian debt returns sufficiently uncorrelated out-of-sample to justify the allocation weights derived from their historical covariance?",
+      "How much of the practical failure of mean-variance optimisation in Indian portfolios is due to estimation error as opposed to genuine regime change?"
+    ],
+    "plannedCount": 25
+  },
+  {
+    "id": "operating-a-portfolio",
+    "title": "Operating a Portfolio",
+    "question": "What does the day-to-day and year-to-year administration of a portfolio actually involve?",
+    "summary": "The unglamorous half of investing that determines outcomes: record-keeping and cost basis, brokerage and operational mechanics, nomination and transmission, insurance of holdings, automating contributions, withdrawal sequencing, rebalancing discipline, drift monitoring, and a written investment policy statement. Includes checklists and templates.",
+    "difficulty": "foundational",
+    "category": "portfolio-operations",
+    "order": 8,
+    "prerequisites": [
+      "science-of-returns"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "rebalancing",
+      "emergency-fund",
+      "tax-loss-harvesting",
+      "swp",
+      "opportunity-cost"
+    ],
+    "conceptMap": "graph TD\n  A[Investment policy statement] --> B[Asset allocation]\n  B --> C[Implementation: instruments]\n  C --> D[Automation]\n  D --> E[Record keeping]\n  E --> F[Cost basis tracking]\n  B --> G[Monitoring]\n  G --> H[Drift measurement]\n  H --> I[Rebalance decision]\n  G --> J[Tax-loss harvesting window]\n  A --> K[Contingencies]\n  K --> L[Nomination and transmission]\n  K --> M[Liquidity buffer]\n  K --> N[Insurance of holdings]",
+    "glossaryTerms": [
+      "rebalancing",
+      "drift",
+      "investment-policy-statement",
+      "nomination",
+      "transmission",
+      "tax-loss-harvesting",
+      "liquidity-coverage"
+    ],
+    "bibliography": [
+      "nsdl-cdsl",
+      "sebi-investor-education",
+      "itd-efiling-ay2026-27",
+      "npci-home"
+    ],
+    "openQuestions": [
+      "What is the median time actually taken for transmission of holdings without nomination in India, and how much of the delay is procedural versus legal?",
+      "How reliable are consolidated account statements in practice for reconstructing cost basis on older holdings?"
+    ],
+    "plannedCount": 25
+  },
+  {
+    "id": "taxation-of-investments",
+    "title": "Taxation of Investments",
+    "question": "How is every investment return taxed in India, and what governs the answer?",
+    "summary": "A versioned, sourced account of Indian investment taxation: slab income, capital gains by asset and holding period, the post-July-2024 framework, indexation's partial withdrawal, set-off and carry-forward, residence, foreign assets, TDS, GST on financial services, and the transition from the Income-tax Act, 1961 to the Income-tax Act, 2025. Every rule carries its effective date and its source.",
+    "difficulty": "advanced",
+    "category": "taxation",
+    "order": 9,
+    "prerequisites": [
+      "science-of-returns"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "post-tax-return",
+      "tax-loss-harvesting",
+      "advance-tax-schedule",
+      "taxable-equivalent-yield"
+    ],
+    "conceptMap": "graph TD\n  A[Income] --> B[Slab rate]\n  A --> C[Special rate]\n  B --> D[Interest, rent, dividend]\n  C --> E[Capital gains]\n  E --> F[111A STCG equity]\n  E --> G[112A LTCG equity]\n  E --> H[112 other LTCG]\n  E --> I[115BBH virtual digital assets]\n  E --> J[50AA specified mutual funds]\n  F --> K[Surcharge and cess]\n  G --> K\n  H --> K\n  A --> L[Residence and DTAA]\n  A --> M[Set-off and carry-forward]\n  A --> N[TDS and advance tax]",
+    "glossaryTerms": [
+      "capital-gains",
+      "short-term-capital-gains",
+      "long-term-capital-gains",
+      "indexation",
+      "cost-inflation-index",
+      "set-off-and-carry-forward",
+      "surcharge",
+      "health-and-education-cess",
+      "rebate"
+    ],
+    "bibliography": [
+      "itd-efiling-ay2026-27",
+      "income-tax-act-1961",
+      "income-tax-act-2025",
+      "clear-tax-slabs",
+      "clear-tax-capital-gains",
+      "clear-tax-it-act-2025",
+      "egazette"
+    ],
+    "openQuestions": [
+      "How will the Income-tax Act, 2025's renumbering be reflected in pre-2026 case law references, and which judicial precedents will need re-indexing?",
+      "For a resident individual who sold property between 23 July 2024 and the date of the enabling proviso, what is the correct treatment where the 20%-with-indexation option is more favourable?"
+    ],
+    "plannedCount": 40
+  },
+  {
+    "id": "p2p-first-principles",
+    "title": "P2P Lending From First Principles",
+    "question": "What is the real expected return on an Indian P2P lending portfolio, after credit losses, fees and tax?",
+    "summary": "A rigorous treatment of the RBI-regulated NBFC-P2P structure: the lending mechanism, platform economics, risk grading, delinquency and recovery, the difference between reported and realised returns, diversification mathematics, tax treatment, and the platform risk that sits on top of borrower credit risk. Stress-tested rather than promoted.",
+    "difficulty": "advanced",
+    "category": "p2p-lending",
+    "order": 10,
+    "prerequisites": [
+      "science-of-returns",
+      "indian-financial-system"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "p2p-return",
+      "p2p-stress",
+      "p2p-diversification",
+      "xirr",
+      "default-recovery"
+    ],
+    "conceptMap": "graph TD\n  A[Lender] --> B[NBFC-P2P platform]\n  B --> C[Borrower]\n  B --> D[Escrow account]\n  A --> E[Diversification]\n  E --> F[Many small exposures]\n  F --> G[Default distribution]\n  G --> H[Expected loss = PD x LGD]\n  H --> I[Net return]\n  B --> J[Fees]\n  J --> I\n  I --> K[Tax at slab]\n  K --> L[Realised return]\n  B --> M[Platform risk: separate]\n  M --> N[Servicing, collections, continuity]",
+    "glossaryTerms": [
+      "nbfc-p2p",
+      "lender",
+      "borrower",
+      "risk-grade",
+      "vintage",
+      "delinquency",
+      "dpd",
+      "default",
+      "recovery",
+      "write-off",
+      "escrow-account",
+      "cash-flow-irr"
+    ],
+    "bibliography": [
+      "rbi-p2p-md",
+      "rbi-home",
+      "rbi-dbie",
+      "cibil-credit-bureau",
+      "rbi-financial-stability"
+    ],
+    "openQuestions": [
+      "What is the true realised recovery rate on defaulted Indian P2P loans, and how does it vary by vintage and by platform?",
+      "Do platform risk grades have genuine predictive power for default outcomes, or do they primarily reflect the pricing the platform has chosen?"
+    ],
+    "plannedCount": 30
+  },
+  {
+    "id": "gold-precious-metals",
+    "title": "Gold and Precious Metals",
+    "question": "What is gold in a portfolio, and which vehicle captures it most efficiently?",
+    "summary": "The monetary history, the Indian import and duty structure, the full vehicle set from physical through ETFs and funds to sovereign gold bonds in the secondary market, the taxation of each, and the portfolio case for gold as inflation and crisis insurance rather than as a compounding asset. Includes silver and the gold-silver ratio.",
+    "difficulty": "foundational",
+    "category": "gold-silver",
+    "order": 11,
+    "prerequisites": [
+      "science-of-returns"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "gold-comparison",
+      "real-return",
+      "portfolio-allocation",
+      "opportunity-cost"
+    ],
+    "conceptMap": "graph TD\n  A[Gold exposure] --> B[Physical]\n  A --> C[Gold ETF]\n  A --> D[Gold fund of funds]\n  A --> E[Sovereign gold bond]\n  A --> F[Digital gold]\n  A --> G[Futures]\n  B --> H[Making charges]\n  B --> I[Purity and buyback discount]\n  E --> J[2.50% coupon taxable]\n  E --> K[Redemption gain exempt]\n  E --> L[Secondary market price]\n  C --> M[Expense ratio]\n  C --> N[Tracking]\n  A --> O[Portfolio role]\n  O --> P[Inflation hedge]\n  O --> Q[Crisis hedge]\n  O --> R[No cash flow]",
+    "glossaryTerms": [
+      "making-charges",
+      "sovereign-gold-bond-scheme",
+      "gold-etf",
+      "troy-ounce",
+      "import-duty-bullion"
+    ],
+    "bibliography": [
+      "nsdl-sgb",
+      "rbi-home",
+      "rbi-handbook-statistics",
+      "worldbank-data",
+      "shiller-cape"
+    ],
+    "openQuestions": [
+      "Does gold provide a reliable real-return hedge in India over the horizons that matter to investors, or is its apparent hedging property concentrated in particular regimes?",
+      "What is the effective all-in cost of physical gold, including making charges and the buyback discount, as a percentage of the investment?"
+    ],
+    "plannedCount": 25
+  },
+  {
+    "id": "real-estate-property",
+    "title": "Real Estate and Property",
+    "question": "What is the actual after-cost, after-tax return on Indian property, and where does it come from?",
+    "summary": "Property evaluated as an investment rather than a life decision: acquisition costs that vary by state, rental yield net of vacancy and maintenance, leverage and its amplification of returns, capital gains and the post-2024 indexation change, development and joint-development structures, agricultural land, and the market-microstructure problems of resale and valuation.",
+    "difficulty": "intermediate",
+    "category": "real-estate",
+    "order": 12,
+    "prerequisites": [
+      "science-of-returns",
+      "operating-a-portfolio"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "rental-yield",
+      "property-xirr",
+      "property-leverage",
+      "emi",
+      "loan-amortisation",
+      "opportunity-cost"
+    ],
+    "conceptMap": "graph TD\n  A[Property] --> B[Acquisition cost]\n  B --> C[Price]\n  B --> D[Stamp duty]\n  B --> E[Registration]\n  B --> F[Brokerage, legal, interiors]\n  A --> G[Holding]\n  G --> H[Rent net of vacancy]\n  G --> I[Maintenance, tax, society]\n  G --> J[Loan interest and principal]\n  G --> K[Tax on rent]\n  A --> L[Exit]\n  L --> M[Brokerage]\n  L --> N[Capital gains tax]\n  L --> O[Settlement of loan]\n  A --> P[Leverage]\n  P --> Q[Amplifies both directions]\n  A --> R[Alternatives]\n  R --> S[REIT, SM REIT, InvIT, fractional]",
+    "glossaryTerms": [
+      "stamp-duty",
+      "circle-rate",
+      "capitalisation-rate",
+      "rental-yield",
+      "redevelopment",
+      "occupancy-certificate",
+      "rera"
+    ],
+    "bibliography": [
+      "rbi-home",
+      "sebi-reit-invit",
+      "sebi-sm-reit-2024",
+      "rbi-handbook-statistics",
+      "mospi-home"
+    ],
+    "openQuestions": [
+      "What is the realised appreciation rate on Indian residential property net of the transaction costs, by city and by decade, once the selection bias of asking prices is removed?",
+      "How much of the reported appreciation in Indian property between 2004 and 2015 was a one-time repricing from a suppressed base rather than a repeatable return?"
+    ],
+    "plannedCount": 35
+  },
+  {
+    "id": "reits-invits-explained",
+    "title": "REITs, InvITs and Fractional Ownership",
+    "question": "How do Indian yield-producing real assets work, and how are their distributions taxed?",
+    "summary": "The trust structures regulated by SEBI: Real Estate Investment Trusts, Infrastructure Investment Trusts and Small and Medium REITs. Covers the underlying assets, distribution mechanics, the split between interest, dividend and capital repayment in each distribution, the unusual taxation of each component, leverage limits, and the valuation problem when the assets rarely trade.",
+    "difficulty": "advanced",
+    "category": "reits-invits",
+    "order": 13,
+    "prerequisites": [
+      "equity-mastery",
+      "real-estate-property"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "reit-distribution",
+      "post-tax-return",
+      "yield-on-cost",
+      "portfolio-allocation"
+    ],
+    "conceptMap": "graph TD\n  A[Trust structure] --> B[REIT]\n  A --> C[InvIT]\n  A --> D[SM REIT]\n  B --> E[Office, retail, industrial assets]\n  B --> F[Rental income]\n  C --> G[Roads, power transmission, gas pipelines]\n  C --> H[Toll and tariff income]\n  D --> I[Smaller commercial assets]\n  D --> J[Fractional units]\n  F --> K[Distribution]\n  H --> K\n  K --> L[Interest component: slab]\n  K --> M[Dividend component: slab or exempt]\n  K --> N[Principal repayment: not income, reduces cost]\n  K --> O[Tax is per component, not per unit]",
+    "glossaryTerms": [
+      "reit",
+      "invit",
+      "sm-reit",
+      "ndcf",
+      "dpu",
+      "nav",
+      "sponsor",
+      "reit-manager"
+    ],
+    "bibliography": [
+      "sebi-reit-invit",
+      "sebi-sm-reit-2024",
+      "sebi-home",
+      "nse-india",
+      "bse-india"
+    ],
+    "openQuestions": [
+      "What is the realised return of Indian REITs since listing, decomposed into distributions and price movement, and how does it compare with the promised yield at launch?",
+      "Are SM REIT valuations reliable when the underlying assets rarely transact and the valuer is appointed by the manager?"
+    ],
+    "plannedCount": 22
+  },
+  {
+    "id": "derivatives-lab",
+    "title": "The Derivatives Laboratory",
+    "question": "How are Indian derivative contracts priced, and why do most retail participants lose money on them?",
+    "summary": "Futures and options on Indian exchanges, pricing and no-arbitrage relationships, the Greeks as sensitivities rather than predictions, volatility and its surface, strategy construction with explicit payoff and risk envelopes, margin mechanics, and the empirical evidence on retail outcomes in Indian F&O. Written to teach the mathematics and to discourage its casual use.",
+    "difficulty": "advanced",
+    "category": "derivatives",
+    "order": 14,
+    "prerequisites": [
+      "financial-mathematics",
+      "equity-mastery"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "option-payoff",
+      "black-scholes",
+      "greeks",
+      "implied-volatility",
+      "option-strategy-builder",
+      "margin-requirement",
+      "futures-fair-value"
+    ],
+    "conceptMap": "graph TD\n  A[Derivative] --> B[Futures]\n  A --> C[Options]\n  B --> D[Cost of carry]\n  C --> E[Call and put]\n  E --> F[Payoff at expiry]\n  E --> G[Pricing before expiry]\n  G --> H[Black-Scholes under assumptions]\n  G --> I[Binomial with early exercise]\n  G --> J[Greeks]\n  J --> K[Delta, gamma]\n  J --> L[Theta, vega, rho]\n  C --> M[Volatility]\n  M --> N[Realised vs implied]\n  M --> O[Smile and term structure]\n  A --> P[Margin and MTM]\n  P --> Q[Leverage and forced action]",
+    "glossaryTerms": [
+      "futures",
+      "option-premium",
+      "intrinsic-value",
+      "time-value",
+      "delta",
+      "gamma",
+      "theta",
+      "vega",
+      "implied-volatility",
+      "open-interest",
+      "span-margin",
+      "settlement"
+    ],
+    "bibliography": [
+      "nse-derivatives-cm",
+      "sebi-derivatives-2024",
+      "sebi-home",
+      "black-scholes-1973",
+      "merton-1973",
+      "sebi-enforcement-orders"
+    ],
+    "openQuestions": [
+      "What is the after-cost median outcome for Indian retail F&O participants, decomposed by strategy type and by whether they sold or bought premium?",
+      "How much of the losses incurred by retail index-option buyers is attributable to the bid-ask spread and to the systematic volatility premium rather than to directional error?"
+    ],
+    "plannedCount": 30
+  },
+  {
+    "id": "private-markets-playbook",
+    "title": "The Private Markets Playbook",
+    "question": "What does it take to earn a return in unlisted businesses, and who actually captures the value?",
+    "summary": "Angel investing, venture capital, private equity, venture debt, search funds, SME acquisitions and direct operating ownership. The specific mechanics that differ from public markets: illiquidity, capital calls, J-curve, valuation without prices, the distribution of outcomes, and the legal and regulatory framework under which each structure operates.",
+    "difficulty": "expert",
+    "category": "private-markets",
+    "order": 15,
+    "prerequisites": [
+      "equity-mastery",
+      "taxation-of-investments"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "private-cashflow",
+      "business-investment",
+      "franchise-return",
+      "xirr",
+      "risk-of-ruin"
+    ],
+    "conceptMap": "graph TD\n  A[Private markets] --> B[Early-stage equity]\n  B --> C[Angel]\n  B --> D[Venture capital fund]\n  A --> E[Growth and buyout]\n  E --> F[PE fund]\n  E --> G[SME acquisition]\n  A --> H[Private credit]\n  H --> I[Venture debt]\n  H --> J[Direct lending]\n  A --> K[Mechanics]\n  K --> L[Capital calls]\n  K --> M[J-curve]\n  K --> N[No market price]\n  K --> O[Power-law outcomes]\n  K --> P[Illiquidity and lock-up]",
+    "glossaryTerms": [
+      "aif",
+      "capital-call",
+      "j-curve",
+      "carried-interest",
+      "power-law-returns",
+      "dpi",
+      "tvpi",
+      "vintage",
+      "spv"
+    ],
+    "bibliography": [
+      "sebi-aif",
+      "sebi-pms",
+      "sebi-home",
+      "mca-home",
+      "rbi-fema-lrs",
+      "msme-udyam"
+    ],
+    "openQuestions": [
+      "What is the realised multiple (DPI rather than TVPI) on Indian venture capital vintages from 2010 onwards, by vintage year?",
+      "For Indian SME acquisitions, what proportion of the value created comes from operational improvement versus multiple expansion at exit?"
+    ],
+    "plannedCount": 30
+  },
+  {
+    "id": "insurance-pensions-decoded",
+    "title": "Insurance and Pensions Decoded",
+    "question": "Which insurance and pension products are investments, which are protections, and what do they actually cost?",
+    "summary": "The distinction between risk transfer and investment that Indian insurance products habitually blur. Covers term insurance, endowment and money-back policies, ULIPs, annuities, riders, claim processes, and the pension system — National Pension System, Atal Pension Yojana, Employees' Provident Fund, Public Provident Fund, Sukanya Samriddhi and the Senior Citizens' Savings Scheme — with the tax treatment of each.",
+    "difficulty": "intermediate",
+    "category": "insurance-pensions",
+    "order": 16,
+    "prerequisites": [
+      "science-of-returns"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "term-insurance-need",
+      "annuity-vs-swp",
+      "nps-calculator",
+      "epf-calculator",
+      "ppf-calculator",
+      "sukanya-samriddhi",
+      "retirement-corpus"
+    ],
+    "conceptMap": "graph TD\n  A[Insurance] --> B[Pure protection]\n  B --> C[Term insurance]\n  B --> D[Health insurance]\n  A --> E[Investment-linked]\n  E --> F[ULIP]\n  E --> G[Endowment, money-back]\n  A --> H[Annuity]\n  H --> I[Immediate]\n  H --> J[Deferred]\n  A --> K[Pensions]\n  K --> L[NPS]\n  K --> M[EPF and EPS]\n  K --> N[PPF]\n  K --> O[SSY]\n  K --> P[SCSS]\n  L --> Q[Annuity requirement]\n  M --> R[Corpus and withdrawal rules]",
+    "glossaryTerms": [
+      "term-insurance",
+      "ulip",
+      "endowment-plan",
+      "annuity",
+      "surrender-value",
+      "mortality-charge",
+      "eps",
+      "nps-tier-ii",
+      "ppf"
+    ],
+    "bibliography": [
+      "irdai-home",
+      "irdai-linked-products",
+      "pfrda-home",
+      "nps-trust",
+      "epfindia",
+      "pmjdy-ssy-schemes",
+      "itd-efiling-ay2026-27"
+    ],
+    "openQuestions": [
+      "What is the realised internal rate of return on Indian traditional endowment policies actually paid out, as distinct from the sum assured promised, and how does it compare with a small-savings scheme over the same period?",
+      "How does the effective cost of insurance-cum-investment products compare with buying term cover and investing the difference, across the actual distribution of outcomes?"
+    ],
+    "plannedCount": 28
+  },
+  {
+    "id": "global-investing",
+    "title": "Global Investing from India",
+    "question": "How can an Indian resident own the world, and what does that actually cost and risk?",
+    "summary": "International exposure through Indian mutual funds and fund of funds, direct overseas shares and ETFs under the Liberalised Remittance Scheme, and the regulatory limits that periodically constrain each route. Covers currency as an asset and a risk, the taxation of foreign assets and the foreign tax credit, reporting obligations, and the historical evidence on home bias.",
+    "difficulty": "intermediate",
+    "category": "international",
+    "order": 17,
+    "prerequisites": [
+      "science-of-returns",
+      "taxation-of-investments"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "currency-impact",
+      "post-tax-return",
+      "portfolio-allocation",
+      "multi-asset"
+    ],
+    "conceptMap": "graph TD\n  A[Global exposure] --> B[India-domiciled feeder funds]\n  A --> C[Direct shares via LRS]\n  A --> D[Overseas ETFs]\n  A --> E[Indian companies with global revenue]\n  B --> F[Industry limits on overseas investment]\n  C --> G[USD 250,000 annual LRS limit]\n  C --> H[TCS on remittance]\n  A --> I[Currency]\n  I --> J[INR depreciation as tailwind]\n  I --> K[Adds volatility]\n  A --> L[Taxation]\n  L --> M[Foreign asset disclosure]\n  L --> N[Foreign tax credit]\n  L --> O[Form for foreign income]",
+    "glossaryTerms": [
+      "lrs",
+      "tcs",
+      "schedule-fa",
+      "foreign-tax-credit",
+      "dtaa",
+      "home-bias",
+      "currency-hedging"
+    ],
+    "bibliography": [
+      "rbi-fema-lrs",
+      "rbi-home",
+      "itd-efiling-ay2026-27",
+      "imf-home",
+      "oecd-home",
+      "worldbank-data",
+      "shiller-cape"
+    ],
+    "openQuestions": [
+      "For an Indian resident, how much of the diversification benefit of global equity is offset by INR deprecation and by the higher cost of access?",
+      "How have the periodic RBI overseas-investment limits affected the ability of Indian mutual funds to maintain stated tracking, and how should that risk be disclosed?"
+    ],
+    "plannedCount": 22
+  },
+  {
+    "id": "digital-assets-lab",
+    "title": "Digital Assets Laboratory",
+    "question": "What are crypto assets as financial instruments, and what does Indian law and tax actually say about them?",
+    "summary": "A neutral, technically precise account: what blockchains do, what a token represents, why valuation frameworks borrowed from equities fail, the specific Indian position on legality, taxation under the virtual digital asset regime, custody and key-management risk, the empirical evidence on stablecoin and yield-bearing protocol risk, and the rational reasons a portfolio might or might not include an allocation.",
+    "difficulty": "expert",
+    "category": "digital-assets",
+    "order": 18,
+    "prerequisites": [
+      "financial-mathematics",
+      "fraud-investor-protection"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "max-drawdown",
+      "risk-of-ruin",
+      "currency-impact",
+      "opportunity-cost"
+    ],
+    "conceptMap": "graph TD\n  A[Digital asset] --> B[Store of value claim]\n  A --> C[Utility or access token]\n  A --> D[Stablecoin]\n  A --> E[Tokenised real asset]\n  B --> F[No cash flow]\n  C --> G[Cash flow depends on protocol]\n  D --> H[Reserve and redemption risk]\n  E --> I[Legal and custody]\n  A --> J[Indian position]\n  J --> K[Not legal tender]\n  J --> L[Taxed under 115BBH at 30%]\n  J --> M[No loss set-off]\n  J --> N[Reporting under PMLA for intermediaries]\n  A --> O[Custody]\n  O --> P[Self-custody key risk]\n  O --> Q[Exchange counterparty risk]",
+    "glossaryTerms": [
+      "virtual-digital-asset",
+      "private-key",
+      "self-custody",
+      "stablecoin",
+      "tokenisation",
+      "proof-of-stake"
+    ],
+    "bibliography": [
+      "itd-efiling-ay2026-27",
+      "rbi-home",
+      "sebi-home",
+      "iosco-home",
+      "pmla-2002",
+      "bis-home"
+    ],
+    "openQuestions": [
+      "What is the correct valuation framework for an asset with no cash flows, no legal claim and no terminal value, if its price is determined by the marginal buyer?",
+      "How much of the volatility of stablecoin yields reflects genuine credit risk in the reserves versus a subsidised incentive scheme?"
+    ],
+    "plannedCount": 22
+  },
+  {
+    "id": "agriculture-natural-assets",
+    "title": "Agriculture and Natural Assets",
+    "question": "What returns are actually available from land, trees and biological assets, and what are the failure modes?",
+    "summary": "Agriculture and natural assets as investments: farmland ownership and leasing, agroforestry and timber, horticulture, dairy, aquaculture and agri-warehousing. Covers the state-specific legal restrictions on agricultural land, the biology-driven time frames, water and climate risk, the absence of reliable price discovery, and the structures through which non-farmers can and cannot participate.",
+    "difficulty": "expert",
+    "category": "agriculture",
+    "order": 19,
+    "prerequisites": [
+      "real-estate-property",
+      "private-markets-playbook"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "business-investment",
+      "private-cashflow",
+      "property-xirr",
+      "opportunity-cost"
+    ],
+    "conceptMap": "graph TD\n  A[Natural assets] --> B[Farmland]\n  B --> C[Own and lease]\n  B --> D[Own and operate]\n  A --> E[Plantation]\n  E --> F[Agroforestry and timber]\n  E --> G[Horticulture and orchard]\n  A --> H[Livestock and fisheries]\n  H --> I[Dairy]\n  H --> J[Aquaculture]\n  A --> K[Infrastructure]\n  K --> L[Cold storage]\n  K --> M[Warehouse receipt finance]\n  A --> O[Risk]\n  O --> P[Weather and disease]\n  O --> Q[Water and soil]\n  O --> R[Price discovery]\n  O --> S[Legal restrictions on land holding]",
+    "glossaryTerms": [
+      "agroforestry",
+      "warehouse-receipt",
+      "pradhan-mantri-fasal-bima-yojana",
+      "land-ceiling",
+      "tenancy-law"
+    ],
+    "bibliography": [
+      "fao-fra",
+      "icar-agri-economics",
+      "mospi-home",
+      "rbi-home",
+      "sebi-sm-reit-2024"
+    ],
+    "openQuestions": [
+      "What are the realised returns on Indian agroforestry and timber plantations, measured from actual harvest proceeds rather than from projected growth curves?",
+      "How much of the variation in Indian farmland lease returns is explained by irrigation access and distance to market as opposed to soil quality?"
+    ],
+    "plannedCount": 25
+  },
+  {
+    "id": "high-return-alternatives",
+    "title": "High-Return Alternatives: A Rigorous Investigation",
+    "question": "Which investment avenues in India have actually produced returns above 20% per annum, under what conditions, and at what risk?",
+    "summary": "A forensic examination of every avenue claimed to deliver more than 20% per annum: micro-cap and small-cap equity, momentum and factor concentration, special situations and arbitrage, distressed debt, private credit, venture capital, SME listings, leveraged property, options-selling strategies and business ownership. Each avenue is separated into contractual yield, model-expected return, historical realised return and speculative upside — and each is presented with its tail risk rather than its average.",
+    "difficulty": "expert",
+    "category": "asset-allocation",
+    "order": 20,
+    "prerequisites": [
+      "science-of-returns",
+      "portfolio-theory",
+      "fraud-investor-protection"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "cagr",
+      "max-drawdown",
+      "risk-of-ruin",
+      "monte-carlo",
+      "option-strategy-builder",
+      "private-cashflow",
+      "xirr"
+    ],
+    "conceptMap": "graph TD\n  A[Claim of over 20% p.a.] --> B{Where does the return come from?}\n  B --> C[Risk premium: paid for bearing real risk]\n  B --> D[Illiquidity premium]\n  B --> E[Concentration premium]\n  B --> F[Skill: rare and hard to verify]\n  B --> G[Leverage: borrowed certainty]\n  B --> H[Return of capital misread as return on capital]\n  B --> I[Fraud]\n  C --> J[Verify with long, survivorship-free data]\n  D --> K[Verify realisable exit]\n  E --> L[Verify drawdown tolerance]\n  F --> M[Verify persistence, not track record]\n  G --> N[Verify liquidation terms]\n  H --> O[Verify cash was received]\n  I --> P[Verify the asset exists and is in your name]",
+    "glossaryTerms": [
+      "risk-premium",
+      "illiquidity-premium",
+      "survivorship-bias",
+      "maximum-drawdown",
+      "drawdown-duration",
+      "tail-risk",
+      "leverage",
+      "roce"
+    ],
+    "bibliography": [
+      "sebi-home",
+      "sebi-enforcement-orders",
+      "rbi-financial-stability",
+      "sebi-investor-education",
+      "fama-french-1992",
+      "kahneman-tversky-1979",
+      "sebi-unsolicited-tips"
+    ],
+    "openQuestions": [
+      "Which of the avenues examined here would have delivered above 20% per annum across a full cycle including a severe drawdown, when survivorship bias and transaction costs are removed?",
+      "How much of the reported outperformance of Indian micro-cap strategies is attributable to illiquidity that cannot be realised at the reported price?"
+    ],
+    "plannedCount": 45
+  },
+  {
+    "id": "fraud-investor-protection",
+    "title": "Fraud and Investor Protection",
+    "question": "How do investment frauds work, and what structures and habits actually protect capital?",
+    "summary": "An evidence-based treatment of financial fraud in India: unauthorised collective investment schemes, unregistered advisers and tip providers, ponzi mechanics and why they are mathematically guaranteed to fail, deepfake and social-engineering attacks, misleading advertising, and the specific warning signs that precede almost every case. Plus the legal remedies available and why recovery is rare. Educational analysis only.",
+    "difficulty": "intermediate",
+    "category": "fraud-risk",
+    "order": 21,
+    "prerequisites": [
+      "indian-financial-system"
+    ],
+    "readingOrder": [],
+    "relatedCalculators": [
+      "risk-of-ruin",
+      "emergency-fund",
+      "opportunity-cost"
+    ],
+    "conceptMap": "graph TD\n  A[Fraud types] --> B[Unauthorised scheme]\n  A --> C[Unregistered adviser]\n  A --> D[Ponzi and pyramid]\n  A --> E[Advance-fee and lottery]\n  A --> F[Social engineering and impersonation]\n  A --> G[Pump and dump]\n  A --> H[Insurance mis-selling]\n  A --> I[Unregulated 'guaranteed' products]\n  D --> J[Mechanics: new money pays old]\n  J --> K[Mathematically certain failure]\n  J --> L[Collapse when inflows slow]\n  A --> M[Detection]\n  M --> N[Returns too stable]\n  M --> O[Cannot explain the mechanism]\n  M --> P[Pressure and urgency]\n  M --> Q[Obscure custody]\n  M --> R[Unverifiable registration]\n  A --> S[Remedy]\n  S --> T[Regulatory complaint]\n  S --> U[Police and economic offences]\n  S --> V[Recovery is rare]",
+    "glossaryTerms": [
+      "ponzi-scheme",
+      "unauthorised-collective-investment-scheme",
+      "chit-fund",
+      "money-multiplier",
+      "economic-offences-wing",
+      "insider-trading"
+    ],
+    "bibliography": [
+      "sebi-unsolicited-tips",
+      "sebi-enforcement-orders",
+      "sebi-home",
+      "rbi-home",
+      "bns-2023",
+      "pmla-2002",
+      "consumer-protection-2019",
+      "trai-sms-credentials",
+      "nclt-judgments",
+      "irdai-home"
+    ],
+    "openQuestions": [
+      "What proportion of money lost to unauthorised collective investment schemes in India is ever recovered, and what distinguishes the cases where recovery is substantial?",
+      "How effective are the standard warning-sign checklists at distinguishing fraud from legitimate high-risk ventures before the event rather than after?"
+    ],
+    "plannedCount": 30
+  }
+]

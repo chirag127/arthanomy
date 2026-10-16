@@ -1,0 +1,206 @@
+---
+/**
+ * /series/<id> — one learning path: what exists, what is planned, and in what order.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import DifficultyBadge from '../../components/DifficultyBadge.astro';
+import Mermaid from '../../components/Mermaid.astro';
+import { href } from '../../lib/url';
+import { categoryMeta } from '../../config/site';
+
+export async function getStaticPaths() {
+  const series = await getCollection('series');
+  return series.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+
+const [articles, roadmap, glossary, sources, seriesAll] = await Promise.all([
+  getCollection('articles', ({ data: d }) => !d.draft),
+  getCollection('roadmap'),
+  getCollection('glossary'),
+  getCollection('sources'),
+  getCollection('series'),
+]);
+
+const published = articles
+  .filter((a) => a.data.series === entry.id)
+  .sort((a, b) => (a.data.seriesOrder ?? 999) - (b.data.seriesOrder ?? 999));
+const publishedIds = new Set(published.map((a) => a.id));
+
+const planned = roadmap
+  .filter((b) => b.data.series === entry.id && !publishedIds.has(b.id))
+  .sort((a, b) => (a.data.seriesOrder ?? 999) - (b.data.seriesOrder ?? 999));
+
+const glossaryTerms = data.glossaryTerms
+  .map((id) => glossary.find((t) => t.id === id))
+  .filter((t): t is NonNullable<typeof t> => t !== undefined);
+
+const bibliography = data.bibliography
+  .map((id) => sources.find((s) => s.id === id))
+  .filter((s): s is NonNullable<typeof s> => s !== undefined);
+
+const prerequisites = data.prerequisites
+  .map((id) => seriesAll.find((s) => s.id === id))
+  .filter((s): s is NonNullable<typeof s> => s !== undefined);
+---
+
+<BaseLayout
+  title={data.title}
+  description={`${data.question} A ${data.difficulty} learning path: ${published.length} articles published, ${planned.length} more planned.`}
+  path={`/series/${entry.id}`}
+>
+  <header class="shell pt-10">
+    <Breadcrumbs crumbs={[{ label: 'Home', path: '/' }, { label: 'Learning paths', path: '/series' }, { label: data.title }]} />
+    <div class="mt-6 max-w-3xl">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="badge badge-brass">{categoryMeta(data.category).name}</span>
+        <DifficultyBadge difficulty={data.difficulty} />
+        <span class="badge badge-neutral">{published.length} of {published.length + planned.length} written</span>
+      </div>
+      <h1 class="mt-3 font-serif text-4xl font-semibold tracking-tight">{data.title}</h1>
+      <p class="mt-4 text-xl leading-8 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">{data.question}</p>
+      <p class="mt-4 text-sm leading-7 text-[var(--color-ink-muted)]">{data.summary}</p>
+      {
+        prerequisites.length > 0 && (
+          <p class="mt-4 text-sm text-[var(--color-ink-muted)]">
+            Prerequisites:{' '}
+            {prerequisites.map((p, index) => (
+              <>
+                <a href={href(`/series/${p.id}`)} class="text-[var(--color-link)] no-underline hover:underline">{p.data.title}</a>
+                {index < prerequisites.length - 1 ? ', ' : ''}
+              </>
+            ))}
+          </p>
+        )
+      }
+    </div>
+  </header>
+
+  {
+    data.conceptMap && (
+      <section class="shell mt-10 max-w-4xl">
+        <Mermaid source={data.conceptMap} caption="Concept map for this series." />
+      </section>
+    )
+  }
+
+  <div class="shell mt-10 grid gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_17rem]">
+    <div class="min-w-0">
+      {
+        published.length > 0 && (
+          <section aria-labelledby="published-heading">
+            <h2 id="published-heading" class="eyebrow">Published in this series</h2>
+            <ol class="mt-4 space-y-3" role="list">
+              {published.map((article, index) => (
+                <li>
+                  <a href={href(`/library/${article.id}`)} class="card card-hover flex gap-4 p-4 no-underline">
+                    <span class="font-mono text-lg font-semibold text-[var(--color-brass-600)]">{index + 1}</span>
+                    <span class="min-w-0">
+                      <span class="block font-serif text-base font-semibold text-[var(--color-ink-950)] dark:text-[var(--color-ink-50)]">
+                        {article.data.title}
+                      </span>
+                      <span class="mt-1 block text-sm leading-6 text-[var(--color-ink-muted)]">{article.data.description}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )
+      }
+
+      {
+        planned.length > 0 && (
+          <section class="mt-12" aria-labelledby="planned-heading">
+            <h2 id="planned-heading" class="eyebrow">Planned — the complete series plan</h2>
+            <p class="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">
+              These briefs are written and queued; each states what it will cover. Nothing here is a stub with
+              placeholder content — articles appear in the library only when they are complete.
+            </p>
+            <ol class="mt-4 divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]" role="list">
+              {planned.map((brief) => (
+                <li class="grid gap-1 py-3.5 sm:grid-cols-[3rem_minmax(0,1fr)]">
+                  <span class="font-mono text-sm text-[var(--color-ink-faint)]">P{brief.data.priority}</span>
+                  <span>
+                    <span class="block font-sans text-sm font-medium text-[var(--color-ink-body)]">{brief.data.title}</span>
+                    <span class="mt-1 block text-xs leading-5 text-[var(--color-ink-muted)]">{brief.data.brief}</span>
+                    {brief.data.requiredSources.length > 0 && (
+                      <span class="mt-1 block font-mono text-2xs uppercase tracking-[0.05em] text-[var(--color-ink-faint)]">
+                        requires {brief.data.requiredSources.length} sources · {brief.data.difficulty}
+                      </span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )
+      }
+    </div>
+
+    <aside class="space-y-8">
+      {
+        data.relatedCalculators.length > 0 && (
+          <section class="card p-4">
+            <h2 class="eyebrow">Calculators for this series</h2>
+            <ul class="mt-3 space-y-2" role="list">
+              {data.relatedCalculators.map((id) => (
+                <li>
+                  <a href={href(`/calculators/${id}`)} class="text-sm text-[var(--color-link)] no-underline hover:underline">{id.replaceAll('-', ' ')}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        glossaryTerms.length > 0 && (
+          <section class="card p-4">
+            <h2 class="eyebrow">Key terms</h2>
+            <ul class="mt-3 flex flex-wrap gap-2" role="list">
+              {glossaryTerms.map((term) => (
+                <li>
+                  <a href={href(`/glossary#${term.id}`)} class="badge badge-neutral no-underline">{term.data.term}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        bibliography.length > 0 && (
+          <section class="card p-4">
+            <h2 class="eyebrow">Core bibliography</h2>
+            <ul class="mt-3 space-y-2.5" role="list">
+              {bibliography.map((source) => (
+                <li class="text-xs leading-5">
+                  <span class="block font-medium text-[var(--color-ink-body)]">{source.data.title}</span>
+                  <span class="text-[var(--color-ink-faint)]">{source.data.publisher}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        data.openQuestions.length > 0 && (
+          <section class="callout callout-note">
+            <h2 class="callout-title">Open questions</h2>
+            <ul class="m-0 space-y-1.5 text-xs leading-5">
+              {data.openQuestions.map((question) => (
+                <li>{question}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+    </aside>
+  </div>
+</BaseLayout>

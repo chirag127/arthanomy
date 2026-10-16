@@ -1,0 +1,65 @@
+---
+/**
+ * ReturnRealityCheck — the four-lane discipline for every high-return claim.
+ *
+ * The single most common failure in Indian investment writing is blurring four
+ * different things into one number. This panel keeps them apart on every page
+ * that discusses a high-return avenue:
+ *
+ *   historical     what actually happened, over a named period
+ *   contractual    what a contract promises, with the credit standing behind it
+ *   modelExpected  what a model derives from stated assumptions
+ *   speculative    upside that is possible but unsupported by evidence
+ */
+interface Props {
+  title?: string;
+  historical: string;
+  contractual: string;
+  modelExpected: string;
+  speculative: string;
+  verdict: string;
+  sources?: string[];
+}
+
+const { title = 'Return Reality Check', historical, contractual, modelExpected, speculative, verdict, sources = [] } = Astro.props;
+
+const rows = [
+  { label: 'Historical realised', value: historical, tone: 'neutral' as const },
+  { label: 'Contractual yield', value: contractual, tone: 'neutral' as const },
+  { label: 'Model-estimated', value: modelExpected, tone: 'neutral' as const },
+  { label: 'Speculative upside', value: speculative, tone: 'caution' as const },
+];
+---
+
+<section class="not-prose my-8 overflow-hidden rounded-lg border border-[var(--color-brass-300)] bg-[var(--color-brass-50)] dark:border-[var(--color-brass-700)] dark:bg-[color-mix(in_srgb,var(--color-brass-950)_45%,transparent)]">
+  <header class="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--color-brass-200)] px-4 py-2.5 dark:border-[var(--color-brass-800)]">
+    <h2 class="font-sans text-xs font-bold uppercase tracking-[0.09em] text-[var(--color-brass-800)] dark:text-[var(--color-brass-200)]">
+      {title}
+    </h2>
+    <span class="badge badge-brass">Four kinds of return, kept apart</span>
+  </header>
+  <dl class="divide-y divide-[var(--color-brass-200)] dark:divide-[var(--color-brass-800)]">
+    {
+      rows.map((row) => (
+        <div class="grid gap-1 px-4 py-3 sm:grid-cols-[11rem_1fr] sm:gap-4">
+          <dt class="font-sans text-xs font-semibold uppercase tracking-[0.06em] text-[var(--color-brass-800)] dark:text-[var(--color-brass-300)]">
+            {row.label}
+          </dt>
+          <dd class="m-0 font-sans text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">
+            {row.value}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+  <footer class="border-t border-[var(--color-brass-200)] bg-[color-mix(in_srgb,var(--color-brass-100)_60%,transparent)] px-4 py-3 dark:border-[var(--color-brass-800)] dark:bg-[color-mix(in_srgb,var(--color-brass-950)_65%,transparent)]">
+    <p class="font-sans text-sm leading-6 text-[var(--color-brass-900)] dark:text-[var(--color-brass-100)]">
+      <strong class="font-semibold">Assessment.</strong> {verdict}
+    </p>
+    {sources.length > 0 && (
+      <p class="mt-2 text-xs text-[var(--color-brass-800)] dark:text-[var(--color-brass-300)]">
+        Evidence base: {sources.join(' · ')} — full records in the source registry.
+      </p>
+    )}
+  </footer>
+</section>

@@ -1,0 +1,170 @@
+---
+/**
+ * /glossary — every term, filterable client-side, with anchors.
+ *
+ * Formulas are rendered with KaTeX at build time; the filter is a small
+ * inline script so that the whole page works without a framework runtime.
+ */
+import katex from 'katex';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { categories, categoryMeta } from '../../config/site';
+import { href } from '../../lib/url';
+
+const terms = (await getCollection('glossary')).sort((a, b) => a.data.term.localeCompare(b.data.term));
+
+const rendered = terms.map((entry) => ({
+  id: entry.id,
+  term: entry.data.term,
+  fullName: entry.data.fullName,
+  definition: entry.data.definition,
+  plainEnglish: entry.data.plainEnglish,
+  category: entry.data.category,
+  seeAlso: entry.data.seeAlso,
+  formulaHtml: entry.data.formula
+    ? katex.renderToString(entry.data.formula, { throwOnError: false, displayMode: true })
+    : undefined,
+  example: entry.data.example,
+  sourceIds: entry.data.sourceIds,
+}));
+
+const termName = new Map(terms.map((t) => [t.id, t.data.term]));
+
+const byCategory = categories
+  .map((cat) => ({ cat, count: rendered.filter((t) => t.category === cat.id).length }))
+  .filter((group) => group.count > 0);
+---
+
+<BaseLayout
+  title="Glossary"
+  description={`${terms.length} Indian investment terms defined precisely — each with a plain-English twin, formulas where relevant, and source references.`}
+  path="/glossary"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">Glossary</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">{terms.length} terms, defined precisely</h1>
+    <p class="mt-4 max-w-2xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      Every term carries its precise definition, a plain-English restatement, and — where the term is quantitative —
+      the formula it stands for. Filter below, or jump by category.
+    </p>
+
+    <div class="mt-6 flex flex-wrap gap-2">
+      {
+        byCategory.map(({ cat, count }) => (
+          <a href={`#cat-${cat.id}`} class="badge badge-neutral no-underline">
+            {cat.shortName} <span class="ml-1 font-mono text-2xs text-[var(--color-ink-faint)]">{count}</span>
+          </a>
+        ))
+      }
+    </div>
+  </header>
+
+  <div class="shell mt-8 sticky top-14 z-10 border-y border-[var(--color-border)] bg-[var(--color-surface)] py-3">
+    <div class="flex flex-wrap items-center gap-3">
+      <label for="glossary-filter" class="eyebrow m-0">Filter</label>
+      <input
+        id="glossary-filter"
+        type="search"
+        placeholder="Type a term — e.g. XIRR, expense, convexity"
+        class="w-full max-w-md rounded-md border border-[var(--color-border)] bg-[var(--color-surface-2)] px-3 py-2 text-sm"
+      />
+      <p id="glossary-count" class="font-mono text-xs text-[var(--color-ink-faint)]" aria-live="polite">
+        {terms.length} terms
+      </p>
+    </div>
+  </div>
+
+  <div class="shell mt-10 pb-16">
+    {
+      byCategory.map(({ cat }) => (
+        <section id={`cat-${cat.id}`} class="mb-12 scroll-mt-32" data-glossary-section>
+          <h2 class="border-b border-[var(--color-border)] pb-3 font-serif text-2xl font-semibold">{cat.name}</h2>
+          <dl class="mt-5 grid gap-5 lg:grid-cols-2">
+            {rendered
+              .filter((t) => t.category === cat.id)
+              .map((t) => (
+                <div id={t.id} class="card scroll-mt-32 p-5" data-glossary-item={t.term.toLowerCase()}>
+                  <dt class="font-serif text-lg font-semibold text-[var(--color-ink-950)] dark:text-[var(--color-ink-50)]">
+                    {t.term}
+                    {t.fullName && <span class="block text-xs font-normal italic text-[var(--color-ink-faint)]">{t.fullName}</span>}
+                  </dt>
+                  <dd class="mt-2 space-y-2 text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">
+                    <p class="m-0">{t.definition}</p>
+                    {t.plainEnglish && (
+                      <p class="m-0 border-l-2 border-[var(--color-brass-400)] pl-3 text-[var(--color-ink-muted)]">
+                        <span class="eyebrow">In plain English · </span>
+                        {t.plainEnglish}
+                      </p>
+                    )}
+                    {t.formulaHtml && <div class="overflow-x-auto py-1 text-[0.9rem]" set:html={t.formulaHtml} />}
+                    {t.example && <p class="m-0 text-xs text-[var(--color-ink-muted)]"><span class="font-medium">Example:</span> {t.example}</p>}
+                    {t.seeAlso.length > 0 && (
+                      <p class="m-0 flex flex-wrap gap-1.5 pt-1 text-xs">
+                        <span class="text-[var(--color-ink-faint)]">See also:</span>
+                        {t.seeAlso.slice(0, 5).map((id) => (
+                          <a href={`#${id}`} class="text-[var(--color-link)] no-underline hover:underline">
+                            {termName.get(id) ?? id}
+                          </a>
+                        ))}
+                      </p>
+                    )}
+                  </dd>
+                </div>
+              ))}
+          </dl>
+        </section>
+      ))
+    }
+    {
+      rendered.filter((t) => !t.category).length > 0 && (
+        <section class="mb-12" data-glossary-section>
+          <h2 class="border-b border-[var(--color-border)] pb-3 font-serif text-2xl font-semibold">General terms</h2>
+          <dl class="mt-5 grid gap-5 lg:grid-cols-2">
+            {rendered
+              .filter((t) => !t.category)
+              .map((t) => (
+                <div id={t.id} class="card scroll-mt-32 p-5" data-glossary-item={t.term.toLowerCase()}>
+                  <dt class="font-serif text-lg font-semibold">{t.term}</dt>
+                  <dd class="mt-2 text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">
+                    <p class="m-0">{t.definition}</p>
+                    {t.plainEnglish && <p class="m-0 mt-2 text-[var(--color-ink-muted)]">{t.plainEnglish}</p>}
+                  </dd>
+                </div>
+              ))}
+          </dl>
+        </section>
+      )
+    }
+  </div>
+
+  <p class="shell pb-16 text-xs leading-5 text-[var(--color-ink-faint)]">
+    Definitions on this page are written for this site and reviewed against the cited official sources where the term
+    is defined in law or regulation — see the <a href={href('/sources')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">source registry</a>.
+  </p>
+
+  <script>
+    (() => {
+      const input = document.getElementById('glossary-filter') as HTMLInputElement | null;
+      const count = document.getElementById('glossary-count');
+      const items = Array.from(document.querySelectorAll<HTMLElement>('[data-glossary-item]'));
+      const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-glossary-section]'));
+      if (!input) return;
+      const apply = () => {
+        const q = input.value.trim().toLowerCase();
+        let visible = 0;
+        for (const item of items) {
+          const haystack = `${item.dataset.glossaryItem ?? ''} ${item.textContent ?? ''}`.toLowerCase();
+          const show = q === '' || haystack.includes(q);
+          item.hidden = !show;
+          if (show) visible += 1;
+        }
+        for (const section of sections) {
+          const anyVisible = Array.from(section.querySelectorAll<HTMLElement>('[data-glossary-item]')).some((i) => !i.hidden);
+          section.hidden = !anyVisible;
+        }
+        if (count) count.textContent = q === '' ? `${items.length} terms` : `${visible} of ${items.length} terms`;
+      };
+      input.addEventListener('input', apply);
+    })();
+  </script>
+</BaseLayout>

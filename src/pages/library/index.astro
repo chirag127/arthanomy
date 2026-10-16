@@ -1,0 +1,117 @@
+---
+/**
+ * /library — the complete index of published research.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { categories, categoryMeta } from '../../config/site';
+import { href } from '../../lib/url';
+import { formatCount } from '../../lib/format';
+
+const articles = await getCollection('articles', ({ data }) => !data.draft);
+const featured = articles.filter((a) => a.data.featured);
+const series = await getCollection('series');
+
+const byCategory = categories
+  .map((cat) => ({
+    cat,
+    items: articles
+      .filter((a) => a.data.category === cat.id)
+      .sort((a, b) => (b.data.publishedAt as Date).getTime() - (a.data.publishedAt as Date).getTime()),
+  }))
+  .filter((group) => group.items.length > 0);
+
+const totalWords = articles.reduce((acc, a) => acc + (a.body ? a.body.split(/\s+/).length : 0), 0);
+---
+
+<BaseLayout
+  title="Library"
+  description={`Every researched article in Arthanomy — ${articles.length} published pieces across ${byCategory.length} categories, plus ${series.length} structured learning series.`}
+  path="/library"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">The library</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">Every researched article, in one place</h1>
+    <p class="mt-4 max-w-2xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      {formatCount(articles.length, 'published article')} across {byCategory.length} categories —
+      roughly {Math.round(totalWords / 1000)} thousand words of source-backed research. Every figure traces to
+      the <a href={href('/sources')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">source registry</a>, and
+      every article that is planned but not yet written is listed in the
+      <a href={href('/roadmap')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">coverage roadmap</a>.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2.5">
+      <a href={href('/series')} class="badge badge-brass no-underline">Start with a learning path →</a>
+      <a href={href('/library/books')} class="badge badge-neutral no-underline">Reading library</a>
+      <a href={href('/glossary')} class="badge badge-neutral no-underline">Glossary</a>
+    </div>
+  </header>
+
+  {
+    featured.length > 0 && (
+      <section class="shell mt-12" aria-labelledby="featured-heading">
+        <h2 id="featured-heading" class="eyebrow">
+          Start here
+        </h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {featured.map((article) => (
+            <ArticleCard
+              id={article.id}
+              title={article.data.title}
+              description={article.data.description}
+              category={article.data.category}
+              difficulty={article.data.difficulty}
+              readingMinutes={article.data.readingMinutes}
+              kind={article.data.kind}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <div class="shell mt-14 space-y-14 pb-16">
+    {
+      byCategory.map(({ cat, items }) => (
+        <section aria-labelledby={`cat-${cat.id}`}>
+          <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-[var(--color-border)] pb-3">
+            <div>
+              <h2 id={`cat-${cat.id}`} class="font-serif text-2xl font-semibold">
+                {cat.name}
+              </h2>
+              <p class="mt-1 text-sm text-[var(--color-ink-muted)]">{cat.blurb}</p>
+            </div>
+            <a href={href(`/library/category/${cat.id}`)} class="text-sm text-[var(--color-link)] no-underline hover:underline">
+              {items.length} {items.length === 1 ? 'article' : 'articles'} →
+            </a>
+          </div>
+          <div class="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {items.slice(0, 6).map((article) => (
+              <ArticleCard
+                id={article.id}
+                title={article.data.title}
+                description={article.data.description}
+                category={article.data.category}
+                difficulty={article.data.difficulty}
+                readingMinutes={article.data.readingMinutes}
+                kind={article.data.kind}
+              />
+            ))}
+          </div>
+        </section>
+      ))
+    }
+
+    {
+      byCategory.length === 0 && (
+        <div class="card p-8 text-center">
+          <p class="font-serif text-xl">The first articles are being written now.</p>
+          <p class="mt-2 text-sm text-[var(--color-ink-muted)]">
+            The complete plan — {series.length} series, hundreds of briefs — is on the roadmap.
+          </p>
+          <a href={href('/roadmap')} class="badge badge-brass mt-4 inline-flex no-underline">See the roadmap →</a>
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>

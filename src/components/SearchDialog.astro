@@ -1,0 +1,148 @@
+---
+/**
+ * SearchDialog — the command palette.
+ *
+ * One surface for two jobs: full-text search (Pagefind, built at deploy time)
+ * and quick navigation to the site's instruments. In `astro dev` the Pagefind
+ * bundle does not exist yet, so the dialog detects the missing index and falls
+ * back to the curated quick links rather than failing.
+ */
+import { href } from '../lib/url';
+
+const quickLinks = [
+  { label: 'Calculators — 74 unit-tested tools', path: '/calculators' },
+  { label: 'Glossary — every term, formula and plain-English meaning', path: '/glossary' },
+  { label: 'Investment universe — every avenue compared on one grid', path: '/assets' },
+  { label: 'Tax hub — versioned rules with primary sources', path: '/tax' },
+  { label: 'High-return research — forensic reality checks', path: '/research/high-return' },
+  { label: 'Learning paths — 21 ordered series', path: '/series' },
+  { label: 'Reading library — books, papers, official documents', path: '/library/books' },
+  { label: 'Sources — the registry behind every claim', path: '/sources' },
+  { label: 'Integrity — fraud mechanics and protection', path: '/integrity' },
+  { label: 'Coverage roadmap — what is written and what is planned', path: '/roadmap' },
+];
+---
+
+<dialog
+  id="search-dialog"
+  class="m-auto w-[min(44rem,calc(100vw-2rem))] rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-0 shadow-[var(--shadow-lifted)] backdrop:bg-ink-950/40 backdrop:backdrop-blur-sm"
+  aria-label="Search and navigation"
+>
+  <div class="flex items-center gap-2 border-b border-[var(--color-border)] px-4 py-3">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shrink-0 text-[var(--color-ink-faint)]" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" stroke-linecap="round" />
+    </svg>
+    <input
+      id="search-input"
+      type="search"
+      placeholder="Search research, calculators, glossary…"
+      autocomplete="off"
+      spellcheck="false"
+      class="w-full bg-transparent text-base text-[var(--color-ink-body)] outline-none placeholder:text-[var(--color-ink-faint)]"
+      aria-label="Search query"
+    />
+    <button type="button" id="search-close" class="badge badge-neutral cursor-pointer" aria-label="Close search">Esc</button>
+  </div>
+
+  <div class="max-h-[65vh] overflow-y-auto scrollbar-thin px-4 py-3">
+    <div id="search-results"></div>
+
+    <div id="search-fallback">
+      <p class="eyebrow">Jump to</p>
+      <ul class="mt-2 grid gap-1 sm:grid-cols-2" role="list">
+        {
+          quickLinks.map((link) => (
+            <li>
+              <a href={href(link.path)} class="block rounded-md px-3 py-2 text-sm no-underline text-[var(--color-ink-body)] hover:bg-[var(--color-surface-2)]">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p id="search-index-note" class="mt-3 hidden text-xs text-[var(--color-ink-faint)]">
+        Full-text search is generated when the site is built for production. In local development the palette navigates instead.
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  (() => {
+    const dialog = document.getElementById('search-dialog') as HTMLDialogElement | null;
+    const trigger = document.getElementById('search-trigger');
+    const close = document.getElementById('search-close');
+    const input = document.getElementById('search-input') as HTMLInputElement | null;
+    const results = document.getElementById('search-results');
+    const fallback = document.getElementById('search-fallback');
+    const note = document.getElementById('search-index-note');
+    if (!dialog || !input || !results || !fallback) return;
+
+    const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+    let pagefindReady = false;
+    let pagefindAttempted = false;
+
+    async function loadPagefind(): Promise<boolean> {
+      if (pagefindReady) return true;
+      if (pagefindAttempted) return false;
+      pagefindAttempted = true;
+      try {
+        await new Promise<void>((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = `${base}/pagefind/pagefind-ui.js`;
+          script.onload = () => resolve();
+          script.onerror = () => reject(new Error('pagefind bundle missing'));
+          document.head.appendChild(script);
+        });
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = `${base}/pagefind/pagefind-ui.css`;
+        document.head.appendChild(link);
+        const PagefindUI = (window as unknown as { PagefindUI?: new (opts: Record<string, unknown>) => unknown }).PagefindUI;
+        if (!PagefindUI) return false;
+        new PagefindUI({
+          element: '#search-results',
+          showSubResults: true,
+          showImages: false,
+          resetStyles: false,
+          bundlePath: `${base}/pagefind/`,
+        });
+        pagefindReady = true;
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    async function open(): Promise<void> {
+      if (!dialog.open) dialog.showModal();
+      input.focus();
+      const ok = await loadPagefind();
+      fallback.classList.toggle('hidden', ok);
+      note?.classList.toggle('hidden', ok);
+    }
+
+    trigger?.addEventListener('click', () => void open());
+    close?.addEventListener('click', () => dialog.close());
+
+    document.addEventListener('keydown', (event) => {
+      const target = event.target as HTMLElement | null;
+      const typing = target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable);
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        if (dialog.open) dialog.close();
+        else void open();
+      } else if (event.key === '/' && !typing && !dialog.open) {
+        event.preventDefault();
+        void open();
+      } else if (event.key === 'Escape' && dialog.open && document.activeElement === input) {
+        dialog.close();
+      }
+    });
+
+    // Click on the backdrop closes the dialog.
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  })();
+</script>

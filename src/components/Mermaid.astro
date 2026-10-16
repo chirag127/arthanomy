@@ -1,0 +1,47 @@
+---
+/**
+ * Mermaid — renders `graph TD` style sources.
+ *
+ * The library is loaded only when a diagram exists on the page, so articles
+ * without diagrams pay nothing. Diagrams degrade to their source text when
+ * JavaScript is unavailable, which keeps the information present for
+ * search engines and text browsers.
+ */
+interface Props {
+  source: string;
+  caption?: string;
+}
+const { source, caption } = Astro.props;
+---
+
+<figure class="not-prose my-6">
+  <pre class="mermaid card overflow-x-auto p-4 text-sm">{source}</pre>
+  {caption && <figcaption class="mt-2 text-xs text-[var(--color-ink-faint)]">{caption}</figcaption>}
+</figure>
+
+<script>
+  (() => {
+    const diagrams = document.querySelectorAll('.mermaid');
+    if (diagrams.length === 0) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    void (async () => {
+      try {
+        const mermaid = (await import('mermaid')).default;
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: document.documentElement.classList.contains('dark') ? 'dark' : 'neutral',
+          securityLevel: 'loose',
+          fontFamily: 'Inter Variable, Inter, sans-serif',
+        });
+        await mermaid.run({ querySelector: '.mermaid' });
+        if (reduced) {
+          document.querySelectorAll('.mermaid svg').forEach((svg) => {
+            svg.setAttribute('style', 'animation:none');
+          });
+        }
+      } catch {
+        // Keep the source text visible if the library cannot load.
+      }
+    })();
+  })();
+</script>

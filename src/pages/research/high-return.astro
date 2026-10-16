@@ -1,0 +1,203 @@
+---
+/**
+ * /research/high-return — the flagship research surface.
+ *
+ * Avenues claiming (or popularly associated with) 20%+ annual returns, each
+ * dissected across four lanes that must never be blended: historical realised
+ * return, contractual yield, model-estimated expected return, and speculative
+ * upside. Verdicts are stated per lane; no blended "expected" figure is ever
+ * produced by averaging them.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { href } from '../../lib/url';
+import { getCollection } from 'astro:content';
+import research from '../../data/research/high-return.json';
+
+type Lane = { verdict: string; statement: string };
+interface Avenue {
+  id: string;
+  name: string;
+  group: string;
+  claim: string;
+  summary: string;
+  lanes: { historical: Lane; contractual: Lane; model: Lane; speculative: Lane };
+  requiredConditions: string[];
+  failureModes: string[];
+  taxNote: string;
+  liquidityNote: string;
+  effortNote: string;
+  evidenceQuality: string;
+  bottomLine: string;
+  sourceIds: string[];
+  relatedCalculators: string[];
+}
+
+const avenues = research as Avenue[];
+const sources = await getCollection('sources');
+const sourceById = new Map(sources.map((s) => [s.id, s.data]));
+
+const verdictBadge: Record<string, string> = {
+  established: 'badge badge-gain',
+  conditional: 'badge badge-brass',
+  implausible: 'badge badge-loss',
+  'not-established': 'badge badge-caution',
+  'limited evidence': 'badge badge-caution',
+  'not-applicable': 'badge badge-neutral',
+};
+
+const lanes = [
+  { key: 'historical', label: '01 · Historical realised', hint: 'What actually happened, over what period, to which population.' },
+  { key: 'contractual', label: '02 · Contractual yield', hint: 'What a binding agreement pays — and who owes it.' },
+  { key: 'model', label: '03 · Model-estimated', hint: 'What arithmetic derives from inspectable assumptions.' },
+  { key: 'speculative', label: '04 · Speculative upside', hint: 'The possible-but-unsupported, labelled as such.' },
+] as const;
+
+const compound20 = Math.pow(1.2, 20);
+const compound12 = Math.pow(1.12, 20);
+---
+
+<BaseLayout
+  title="High-return reality checks"
+  description={`${avenues.length} investment avenues popularly associated with 20%+ returns, examined across four separated lanes: historical, contractual, model-estimated and speculative.`}
+  path="/research/high-return"
+>
+  <header class="shell pt-10">
+    <Breadcrumbs crumbs={[{ label: 'Home', path: '/' }, { label: 'Research', path: '/research/high-return' }, { label: 'High-return reality checks' }]} />
+    <p class="eyebrow mt-6">Flagship research</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">The 20% claim, examined honestly</h1>
+    <p class="mt-4 max-w-3xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      {avenues.length} avenues that carry high-return claims, promises or folklore. Each is separated into four lanes
+      that ordinary investment writing blends — and the blend is where the deception lives. A contractual 12% and an
+      estimated 12% and a realised 12% are three different quantities with three different risk profiles; averaging
+      them is not simplification, it is error.
+    </p>
+  </header>
+
+  <section class="shell mt-10" aria-labelledby="discipline">
+    <h2 id="discipline" class="eyebrow">The discipline</h2>
+    <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      {
+        lanes.map((lane) => (
+          <div class="card p-4">
+            <p class="font-mono text-xs uppercase tracking-[0.08em] text-[var(--color-ink-faint)]">{lane.label}</p>
+            <p class="mt-2 text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">{lane.hint}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="mt-4 grid gap-4 lg:grid-cols-3">
+      <div class="card p-4">
+        <p class="text-sm font-semibold text-[var(--color-ink-body)]">The arithmetic of sustained 20%</p>
+        <p class="mt-1.5 text-sm leading-6 text-[var(--color-ink-muted)]">
+          ₹1 lakh at 20% for 20 years becomes ₹{Math.round(compound20 * 100) / 100} lakh (×{compound20.toFixed(1)}); at 12%
+          it becomes ×{compound12.toFixed(1)}. Sustained 20% is not a stretch goal — it is a claim that must be
+          reconciled with the fact that very few institutional pools have done it for that long.
+        </p>
+      </div>
+      <div class="card p-4">
+        <p class="text-sm font-semibold text-[var(--color-ink-body)]">Survivorship</p>
+        <p class="mt-1.5 text-sm leading-6 text-[var(--color-ink-muted)]">
+          Every headline number answers the question "what happened to those who survived?" The relevant distribution
+          includes the failed funds, delisted companies, abandoned schemes and blown-up positions that no longer
+          appear in any track record.
+        </p>
+      </div>
+      <div class="card p-4">
+        <p class="text-sm font-semibold text-[var(--color-ink-body)]">Tax and cost drag</p>
+        <p class="mt-1.5 text-sm leading-6 text-[var(--color-ink-muted)]">
+          20% gross is not 20% net. At a 30% marginal rate, ₹10 lakh of extra income can carry a 39% marginal burden
+          with surcharge and cess. Churn, fees and TDS turn many gross high-return stories into ordinary net numbers —
+          or losses.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="shell mt-12 space-y-10 pb-16">
+    {
+      avenues.map((avenue) => (
+        <article class="card p-0" id={avenue.id}>
+          <div class="border-b border-[var(--color-border)] px-5 py-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <h2 class="m-0 font-serif text-2xl font-semibold">{avenue.name}</h2>
+              <span class="badge badge-neutral">{avenue.group.replaceAll('-', ' ')}</span>
+              <span class={`badge ${avenue.evidenceQuality === 'strong' ? 'badge-gain' : avenue.evidenceQuality === 'weak' ? 'badge-loss' : 'badge-caution'}`}>
+                evidence: {avenue.evidenceQuality}
+              </span>
+            </div>
+            <p class="mt-2 text-sm font-medium text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">
+              <span class="eyebrow">The claim under review · </span>
+              “{avenue.claim}”
+            </p>
+            <p class="mt-2 max-w-3xl text-sm leading-6 text-[var(--color-ink-muted)]">{avenue.summary}</p>
+          </div>
+
+          <div class="grid gap-3 px-5 py-4 md:grid-cols-2">
+            {lanes.map((lane) => {
+              const entry = avenue.lanes[lane.key];
+              return (
+                <div class="rounded-lg border border-[var(--color-border)] p-3.5">
+                  <div class="flex items-center justify-between gap-2">
+                    <p class="m-0 font-mono text-2xs uppercase tracking-[0.08em] text-[var(--color-ink-faint)]">{lane.label}</p>
+                    <span class={verdictBadge[entry.verdict] ?? 'badge badge-neutral'}>{entry.verdict.replaceAll('-', ' ')}</span>
+                  </div>
+                  <p class="mt-2 text-xs leading-5 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">{entry.statement}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div class="grid gap-4 border-t border-[var(--color-border)] px-5 py-4 md:grid-cols-3">
+            <div>
+              <p class="eyebrow">Required conditions</p>
+              <ul class="mt-2 list-disc space-y-1 pl-4 text-xs leading-5 text-[var(--color-ink-muted)]">
+                {avenue.requiredConditions.map((c) => <li>{c}</li>)}
+              </ul>
+            </div>
+            <div>
+              <p class="eyebrow">How it fails</p>
+              <ul class="mt-2 list-disc space-y-1 pl-4 text-xs leading-5 text-[var(--color-ink-muted)]">
+                {avenue.failureModes.map((f) => <li>{f}</li>)}
+              </ul>
+            </div>
+            <div class="space-y-1.5 text-xs leading-5 text-[var(--color-ink-muted)]">
+              <p class="eyebrow">Practicalities</p>
+              <p class="m-0"><strong class="font-medium">Tax:</strong> {avenue.taxNote}</p>
+              <p class="m-0"><strong class="font-medium">Liquidity:</strong> {avenue.liquidityNote}</p>
+              <p class="m-0"><strong class="font-medium">Effort:</strong> {avenue.effortNote}</p>
+            </div>
+          </div>
+
+          <div class="border-t border-[var(--color-border)] px-5 py-4">
+            <p class="m-0 border-l-4 border-[var(--color-brass-500)] pl-3 text-sm leading-6 text-[var(--color-ink-body)] dark:text-[var(--color-ink-200)]">
+              <span class="eyebrow">Bottom line · </span>
+              {avenue.bottomLine}
+            </p>
+            <div class="mt-3 flex flex-wrap items-center gap-2">
+              {avenue.sourceIds.map((id) => (
+                <a href={sourceById.get(id)?.url ?? href('/sources')} rel="noopener noreferrer" class="badge badge-neutral no-underline">
+                  {sourceById.get(id)?.publisher ?? id}
+                </a>
+              ))}
+              {avenue.relatedCalculators.map((calc) => (
+                <a href={href(`/calculators/${calc}`)} class="badge badge-brass no-underline">{calc.replaceAll('-', ' ')}</a>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <section class="shell pb-16">
+    <div class="callout callout-note max-w-3xl">
+      <p class="callout-title">What this page is not</p>
+      <p class="m-0 text-sm leading-6">
+        Not investment advice, and not a verdict on any specific product. It is a framework for reading the next
+        high-return claim you encounter — including claims about this site. The four lanes apply to everything: if a
+        pitch cannot tell you which lane its number lives in, that is the finding.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

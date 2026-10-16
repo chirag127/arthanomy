@@ -1,0 +1,68 @@
+---
+/**
+ * /series — all learning paths, ordered.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { href } from '../../lib/url';
+import { categoryMeta } from '../../config/site';
+
+const series = await getCollection('series');
+const articles = await getCollection('articles', ({ data }) => !data.draft);
+const roadmap = await getCollection('roadmap');
+
+const rows = [...series]
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((s) => ({
+    ...s,
+    planned: roadmap.filter((b) => b.data.series === s.id).length,
+    written: articles.filter((a) => a.data.series === s.id).length,
+  }));
+
+const totalBriefs = roadmap.filter((b) => b.data.series).length;
+const totalWritten = articles.filter((a) => a.data.series).length;
+---
+
+<BaseLayout
+  title="Learning paths"
+  description={`${series.length} ordered learning paths covering Indian personal finance from first principles to derivatives and private markets, with prerequisites stated.`}
+  path="/series"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">Learning paths</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">Structured series, ordered by prerequisites</h1>
+    <p class="mt-4 max-w-2xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      {series.length} series, each answering one large question through a sequence of articles. The full library is
+      {totalBriefs} briefs; <strong>{totalWritten}</strong> series articles are published today, and each series page shows
+      its complete plan whether or not every article is written yet.
+    </p>
+  </header>
+
+  <div class="shell mt-10 pb-16">
+    <ol class="space-y-3" role="list">
+      {
+        rows.map((s) => (
+          <li>
+            <a href={href(`/series/${s.id}`)} class="card card-hover grid gap-2 p-5 no-underline sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:items-center sm:gap-5">
+              <span class="font-mono text-2xl font-semibold text-[var(--color-brass-600)]">{String(s.data.order).padStart(2, '0')}</span>
+              <span class="min-w-0">
+                <span class="block font-serif text-lg font-semibold text-[var(--color-ink-950)] dark:text-[var(--color-ink-50)]">{s.data.title}</span>
+                <span class="mt-1 block text-sm leading-6 text-[var(--color-ink-muted)]">{s.data.question}</span>
+                <span class="mt-2 flex flex-wrap gap-2">
+                  <span class="badge badge-neutral">{categoryMeta(s.data.category).shortName}</span>
+                  <span class="badge badge-neutral">{s.data.difficulty}</span>
+                  {s.data.prerequisites.length > 0 && (
+                    <span class="badge badge-caution">after {s.data.prerequisites.map((p) => series.find((x) => x.id === p)?.data.title ?? p).join(', ')}</span>
+                  )}
+                </span>
+              </span>
+              <span class="font-mono text-xs text-[var(--color-ink-faint)]">
+                {s.written}/{s.planned}<br />written
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</BaseLayout>

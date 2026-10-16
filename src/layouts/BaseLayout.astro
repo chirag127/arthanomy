@@ -1,0 +1,50 @@
+---
+/**
+ * BaseLayout — page shell shared by every route.
+ */
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SearchDialog from '../components/SearchDialog.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, path, type, publishedTime, noindex, jsonLd } = Astro.props;
+const canonicalPath = path ?? (Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/');
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      path={canonicalPath}
+      type={type}
+      publishedTime={publishedTime}
+      noindex={noindex}
+      jsonLd={jsonLd}
+    />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-md focus:bg-[var(--color-surface)] focus:px-4 focus:py-2 focus:text-sm focus:shadow-[var(--shadow-lifted)]"
+      >Skip to content</a
+    >
+    <Header />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <SearchDialog />
+  </body>
+</html>

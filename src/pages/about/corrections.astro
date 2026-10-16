@@ -1,0 +1,66 @@
+---
+/**
+ * /about/corrections — the public corrections log.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../config/site';
+import { href } from '../../lib/url';
+---
+
+<BaseLayout
+  title="Corrections"
+  description="The public corrections log for Arthanomy — every material correction, when it was made, and why. How to report an error."
+  path="/about/corrections"
+>
+  <header class="shell pt-10">
+    <p class="eyebrow">Corrections</p>
+    <h1 class="mt-2 max-w-3xl font-serif text-4xl font-semibold tracking-tight">The corrections log</h1>
+    <p class="mt-4 max-w-2xl text-lg leading-8 text-[var(--color-ink-muted)]">
+      Every material correction is logged here — what was wrong, what changed, and when. Corrections are made on the
+      page itself and reflected in the article's updated date; this log is the record.
+    </p>
+  </header>
+
+  <div class="shell mt-10 max-w-3xl pb-16">
+    <div class="card overflow-hidden">
+      <table class="w-full border-collapse text-left text-sm">
+        <caption class="sr-only">Log of published corrections</caption>
+        <thead>
+          <tr class="bg-[var(--color-surface-2)]">
+            <th scope="col" class="border-b border-[var(--color-border)] px-4 py-3 text-xs font-semibold uppercase tracking-[0.05em] text-[var(--color-ink-muted)]">Date</th>
+            <th scope="col" class="border-b border-[var(--color-border)] px-4 py-3 text-xs font-semibold uppercase tracking-[0.05em] text-[var(--color-ink-muted)]">Where</th>
+            <th scope="col" class="border-b border-[var(--color-border)] px-4 py-3 text-xs font-semibold uppercase tracking-[0.05em] text-[var(--color-ink-muted)]">Correction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="px-4 py-4 text-[var(--color-ink-muted)]" colspan="3">
+              No corrections have been necessary so far. The site is new, the log is empty, and that is a statement
+              of fact rather than an achievement — the first entry will appear here the day an error is found.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="mt-10 font-serif text-2xl font-semibold">How to report an error</h2>
+    <p class="mt-3 text-sm leading-7 text-[var(--color-ink-muted)]">
+      Email <a href={`mailto:${site.author.email}?subject=Correction`} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">{site.author.email}</a>
+      with the page, the sentence or figure in question, and — if you have one — the primary source you believe is
+      correct. Reports citing official documents are actioned fastest. Every report gets a reply, whether or not it
+      results in a change, and the reasoning is explained either way.
+    </p>
+
+    <h2 class="mt-8 font-serif text-2xl font-semibold">What counts as a correction</h2>
+    <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-[var(--color-ink-muted)]">
+      <li>Factual errors in figures, dates, provisions or product mechanics — always corrected and logged.</li>
+      <li>Changed external facts (a tax rule superseded, a product closed) — updated with the change noted, not treated as an error.</li>
+      <li>Disagreements about emphasis, prediction or opinion — discussed by email; not logged as corrections.</li>
+    </ul>
+
+    <p class="mt-8 text-xs leading-5 text-[var(--color-ink-faint)]">
+      See also the <a href={href('/about/editorial-policy')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">editorial policy</a>
+      and <a href={href('/about/methodology')} class="text-[var(--color-link)] underline decoration-1 underline-offset-2">methodology</a>.
+    </p>
+  </div>
+</BaseLayout>
