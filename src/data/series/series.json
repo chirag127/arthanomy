@@ -54,7 +54,9 @@
       "sharpe-1966",
       "markowitz-1952",
       "fama-french-1992",
-      "rbi-handbook-statistics"
+      "rbi-handbook-statistics",
+      "rbi-home",
+      "sebi-investor-education"
     ],
     "openQuestions": [
       "How much of the observed Indian equity risk premium is compensation for risk and how much reflects repricing of a market that began with a very low starting valuation?",
@@ -70,9 +72,7 @@
     "difficulty": "intermediate",
     "category": "financial-mathematics",
     "order": 2,
-    "prerequisites": [
-      "science-of-returns"
-    ],
+    "prerequisites": ["science-of-returns"],
     "readingOrder": [
       "compounding-discrete-and-continuous",
       "cagr-versus-xirr",
@@ -123,11 +123,7 @@
       "fisher-equation",
       "rule-of-72"
     ],
-    "bibliography": [
-      "markowitz-1952",
-      "black-scholes-1973",
-      "merton-1973"
-    ],
+    "bibliography": ["markowitz-1952", "black-scholes-1973", "merton-1973"],
     "openQuestions": [
       "For Indian retail reporting, should short-horizon annualised figures below one year be published at all, given the distortion they produce?"
     ],
@@ -169,10 +165,7 @@
       "financial-stability-monitoring",
       "corporate-bond-market-development"
     ],
-    "relatedCalculators": [
-      "emergency-fund",
-      "deposit-comparison"
-    ],
+    "relatedCalculators": ["emergency-fund", "deposit-comparison"],
     "glossaryTerms": [
       "deposit-insurance",
       "crar",
@@ -205,9 +198,7 @@
     "difficulty": "intermediate",
     "category": "equity",
     "order": 4,
-    "prerequisites": [
-      "science-of-returns"
-    ],
+    "prerequisites": ["science-of-returns"],
     "readingOrder": [
       "how-a-share-reaches-your-demat-account",
       "order-types-and-execution-on-indian-exchanges",
@@ -287,9 +278,7 @@
     "difficulty": "foundational",
     "category": "mutual-funds",
     "order": 5,
-    "prerequisites": [
-      "science-of-returns"
-    ],
+    "prerequisites": ["science-of-returns"],
     "readingOrder": [
       "how-sebi-categorises-mutual-funds",
       "multicap-funds-and-minimum-equity-rules",
@@ -379,10 +368,7 @@
     "difficulty": "advanced",
     "category": "debt",
     "order": 6,
-    "prerequisites": [
-      "science-of-returns",
-      "financial-mathematics"
-    ],
+    "prerequisites": ["science-of-returns", "financial-mathematics"],
     "readingOrder": [
       "bank-fixed-deposit-anatomy",
       "recurring-deposit-and-savings-account-economics",
@@ -493,10 +479,7 @@
     "difficulty": "advanced",
     "category": "asset-allocation",
     "order": 7,
-    "prerequisites": [
-      "science-of-returns",
-      "financial-mathematics"
-    ],
+    "prerequisites": ["science-of-returns", "financial-mathematics"],
     "readingOrder": [
       "risk-and-return-definitions",
       "diversification-and-its-mathematics",
@@ -566,9 +549,7 @@
     "difficulty": "foundational",
     "category": "portfolio-operations",
     "order": 8,
-    "prerequisites": [
-      "science-of-returns"
-    ],
+    "prerequisites": ["science-of-returns"],
     "readingOrder": [
       "writing-an-investment-policy-statement",
       "defining-goals-and-horizons",
@@ -633,9 +614,7 @@
     "difficulty": "advanced",
     "category": "taxation",
     "order": 9,
-    "prerequisites": [
-      "science-of-returns"
-    ],
+    "prerequisites": ["science-of-returns"],
     "readingOrder": [
       "tax-regimes-and-the-investor-choice",
       "interest-income-taxation-and-section-80tta",
@@ -719,10 +698,7 @@
     "difficulty": "advanced",
     "category": "p2p-lending",
     "order": 10,
-    "prerequisites": [
-      "science-of-returns",
-      "indian-financial-system"
-    ],
+    "prerequisites": ["science-of-returns", "indian-financial-system"],
     "readingOrder": [
       "rbi-p2p-licensing-framework",
       "platform-as-intermediary-not-lender",
@@ -782,7 +758,8 @@
       "rbi-home",
       "rbi-dbie",
       "cibil-credit-bureau",
-      "rbi-financial-stability"
+      "rbi-financial-stability",
+      "dicgc"
     ],
     "openQuestions": [
       "What is the true realised recovery rate on defaulted Indian P2P loans, and how does it vary by vintage and by platform?",
@@ -798,9 +775,7 @@
     "difficulty": "foundational",
     "category": "gold-silver",
     "order": 11,
-    "prerequisites": [
-      "science-of-returns"
-    ],
+    "prerequisites": ["science-of-returns"],
     "readingOrder": [
       "gold-as-a-portfolio-asset",
       "what-drives-gold-prices",
@@ -863,10 +838,7 @@
     "difficulty": "intermediate",
     "category": "real-estate",
     "order": 12,
-    "prerequisites": [
-      "science-of-returns",
-      "operating-a-portfolio"
-    ],
+    "prerequisites": ["science-of-returns", "operating-a-portfolio"],
     "readingOrder": [
       "buying-a-home-end-to-end",
       "rera-registration-and-builder-obligations",
@@ -943,10 +915,7 @@
     "difficulty": "advanced",
     "category": "reits-invits",
     "order": 13,
-    "prerequisites": [
-      "equity-mastery",
-      "real-estate-property"
-    ],
+    "prerequisites": ["equity-mastery", "real-estate-property"],
     "readingOrder": [
       "reit-structure-explained",
       "reit-unit-economics-and-distributions",
@@ -1009,10 +978,7 @@
     "difficulty": "advanced",
     "category": "derivatives",
     "order": 14,
-    "prerequisites": [
-      "financial-mathematics",
-      "equity-mastery"
-    ],
+    "prerequisites": ["financial-mathematics", "equity-mastery"],
     "readingOrder": [
       "futures-contracts-from-first-principles",
       "contract-specifications-and-lot-sizes",
@@ -1091,10 +1057,7 @@
     "difficulty": "expert",
     "category": "private-markets",
     "order": 15,
-    "prerequisites": [
-      "equity-mastery",
-      "taxation-of-investments"
-    ],
+    "prerequisites": ["equity-mastery", "taxation-of-investments"],
     "readingOrder": [
       "aif-categories-explained",
       "venture-capital-funds-and-their-mandate",
@@ -1168,9 +1131,7 @@
     "difficulty": "intermediate",
     "category": "insurance-pensions",
     "order": 16,
-    "prerequisites": [
-      "science-of-returns"
-    ],
+    "prerequisites": ["science-of-returns"],
     "readingOrder": [
       "term-insurance-as-the-foundation",
       "endowment-policies-and-return-reality",
@@ -1245,10 +1206,7 @@
     "difficulty": "intermediate",
     "category": "international",
     "order": 17,
-    "prerequisites": [
-      "science-of-returns",
-      "taxation-of-investments"
-    ],
+    "prerequisites": ["science-of-returns", "taxation-of-investments"],
     "readingOrder": [
       "lrs-basics-and-annual-limits",
       "tcs-on-foreign-investment-remittances",
@@ -1312,10 +1270,7 @@
     "difficulty": "expert",
     "category": "digital-assets",
     "order": 18,
-    "prerequisites": [
-      "financial-mathematics",
-      "fraud-investor-protection"
-    ],
+    "prerequisites": ["financial-mathematics", "fraud-investor-protection"],
     "readingOrder": [
       "crypto-assets-in-india-an-orientation",
       "exchanges-kyc-and-custody-basics",
@@ -1377,10 +1332,7 @@
     "difficulty": "expert",
     "category": "agriculture",
     "order": 19,
-    "prerequisites": [
-      "real-estate-property",
-      "private-markets-playbook"
-    ],
+    "prerequisites": ["real-estate-property", "private-markets-playbook"],
     "readingOrder": [
       "farmland-as-a-financial-asset",
       "land-leasing-laws-and-practicalities",
@@ -1538,9 +1490,7 @@
     "difficulty": "intermediate",
     "category": "fraud-risk",
     "order": 21,
-    "prerequisites": [
-      "indian-financial-system"
-    ],
+    "prerequisites": ["indian-financial-system"],
     "readingOrder": [
       "ponzi-scheme-mechanics",
       "pyramid-and-mlm-structures",

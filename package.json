@@ -30,6 +30,7 @@
     "content:plan": "node scripts/content-pipeline/build-reading-order.mjs",
     "content:packets": "node scripts/content-pipeline/export-packets.mjs",
     "content:batches": "node scripts/content-pipeline/batches.mjs",
+    "content:audit": "node scripts/content-pipeline/audit-articles.mjs",
     "content:links": "node scripts/content-pipeline/link-queued.mjs"
   },
   "dependencies": {

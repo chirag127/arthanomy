@@ -39,6 +39,8 @@ jobs:
         run: npm run content:plan -- --check
       - name: No links to unpublished briefs in article bodies
         run: npm run content:links -- --check
+      - name: Article audit (frontmatter, packet scope, MDX safety)
+        run: npm run content:audit
 
   build:
     name: Build & verify
