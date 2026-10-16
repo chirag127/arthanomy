@@ -1,0 +1,181 @@
+---
+title: 'CAGR Versus XIRR: Which Return Measure Answers Which Question'
+description: 'CAGR and XIRR are both called "return", but they answer different questions — one describes an endpoint, the other describes what a set of dated cash flows actually earned. Using the wrong one flatters or damns the same portfolio.'
+shortTitle: 'CAGR Versus XIRR'
+category: financial-mathematics
+series: financial-mathematics
+seriesOrder: 2
+topics: ['return measurement', 'CAGR', 'XIRR', 'money-weighted return']
+tags: ['financial-mathematics', 'arithmetic', 'returns']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'CAGR is a two-point measure: it needs a starting value, an ending value and a period, and it ignores everything that happened in between.'
+  - 'XIRR is the rate that makes a list of dated contributions and withdrawals discount to zero; it weighs each rupee by how long it was actually invested.'
+  - 'The two coincide when there is a single investment and no intermediate cash flow, and diverge as soon as money enters or leaves at different dates.'
+  - 'A portfolio value that grows partly because of fresh contributions has a CAGR that describes arithmetic, not investment performance — a contribution-led rise can show a double-digit CAGR on a zero return.'
+  - 'XIRR is not a risk measure and can be distorted by very short periods or by cash flows you control; use it for timing, use a distribution for risk.'
+  - 'Both figures are nominal and gross unless stated otherwise; a return only becomes meaningful after costs, tax and inflation.'
+faqs:
+  - question: 'Which should I use to judge my own portfolio?'
+    answer: 'Use XIRR whenever money went in or out on more than one date, which for a systematic investor is almost always. Reserve CAGR for comparing two endpoints with no intermediate flows, or for interrogating a figure somebody else has quoted.'
+  - question: 'Why does my fund report a CAGR when my experience is an XIRR?'
+    answer: 'A fund must report a time-weighted figure, because the manager does not control when investors arrive or leave and the number should reflect the portfolio, not the cash-flow luck of a particular client. Your XIRR includes that timing, so it answers a different and more personal question.'
+  - question: 'Does XIRR assume I reinvest at the XIRR rate?'
+    answer: 'That assumption belongs to comparing projects by IRR, not to the definition of XIRR itself. XIRR is simply the single annual rate that reconciles the observed, dated cash flows; it does not require you to have reinvested anything at that rate.'
+  - question: 'Can either measure come out misleadingly large?'
+    answer: 'Yes. Annualising a very short holding period magnifies any XIRR, and a CAGR computed on a portfolio value that was topped up by contributions credits the market for money the investor added. Both need the period and the cash-flow history stated alongside them.'
+relatedCalculators:
+  - { id: cagr, label: 'CAGR Calculator' }
+  - { id: xirr, label: 'XIRR Calculator' }
+  - { id: sip, label: 'SIP Calculator' }
+relatedArticles:
+  - compounding-discrete-and-continuous
+  - real-versus-nominal-returns
+  - xirr-for-multi-date-cash-flows
+  - npv-and-internal-rate-of-return
+glossaryTerms: [compounding, irr, net-present-value, discount-factor]
+sources:
+  - { id: markowitz-1952, supports: 'The mean-variance treatment of returns, in which alternatives are compared by the whole distribution rather than by a single annualised figure' }
+  - { id: merton-1973, supports: 'Continuous-time formulation of rates and discounting, the limiting case of the discrete dated-cash-flow equation solved by XIRR' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+openQuestions:
+  - 'Should Indian fund factsheets be required to show a money-weighted figure alongside the time-weighted one, and how would that be standardised?'
+  - 'What is the least misleading way to annualise a return observed over a period shorter than a year?'
+warnings:
+  - 'All rates and rupee amounts used here are illustrative constructions that show how each formula behaves; they are not observed performance of any fund, scheme or portfolio.'
+---
+
+Two investors, one fund, one statement — and two answers several percentage points apart. Neither has made an error. CAGR and XIRR are both printed by Indian financial software and both are called "the return", but they answer strictly different questions: CAGR describes an endpoint, and XIRR describes a set of dated cash flows. Learning which question is being asked of you is most of the skill.
+
+## Explain simply
+
+CAGR is the steady annual rate that would carry one starting value to one ending value, counting nothing in between. XIRR is the annual rate that makes a list of dated deposits and withdrawals cancel out once each is discounted back to its own date, so it weighs every rupee by how long it stayed invested. If you put in a single lump sum and never touched it, the two numbers are effectively the same. If you invest month by month, take money out, or switch funds, they can differ by several percentage points a year — and XIRR is the one that describes what your money did, because it knows when your money arrived.
+
+## Two questions wearing one word
+
+The distinction that matters is between a **time-weighted** and a **money-weighted** return.
+
+A time-weighted return asks: how did the portfolio behave, regardless of who owned it and when? It strips out the effect of cash flows, so a fund manager who received a large subscription the day before a fall is not punished for the client's timing. This is why collective vehicles report it.
+
+A money-weighted return asks: what did my actual money earn, given when I put it in and took it out? It is fully sensitive to that timing. Two people in the same fund over the same years, contributing on different dates, can have honest money-weighted returns that differ.
+
+CAGR is usually presented as a time-weighted figure, and XIRR is always a money-weighted one. When someone compares a fund's CAGR with their own experience, they are comparing the first question with the second, and the gap they find is not a discrepancy to be explained away — it is information.
+
+## CAGR: one start, one end
+
+Compound annual growth is the constant yearly rate that would take a value from its start to its end:
+
+$$ \text{CAGR} = \left( \frac{V_T}{V_0} \right)^{\frac{1}{T}} - 1 $$
+
+It is just the rearrangement of the compounding relationship $V_T = V_0 (1 + r)^T$, solved for $r$. It is also the geometric mean of the annual returns, which is why it describes accumulated wealth rather than the average of a set of yearly numbers.
+
+Its assumptions are strict and worth stating plainly:
+
+- There are exactly two relevant observations: the start value and the end value.
+- No money enters or leaves during the period, or the values used already exclude such flows.
+- A single constant rate is assumed to describe the whole stretch, even if the actual path wandered.
+
+Where those assumptions hold — comparing an index level at two dates, or a closed investment held untouched — CAGR is the cleanest possible summary, and it is the only annualised figure comparable across periods of different length.
+
+## XIRR: every cash flow gets a date
+
+XIRR generalises the internal rate of return to cash flows that fall on arbitrary dates. Each flow is discounted by its own time from the first date, and the rate that makes the whole expression zero is the answer:
+
+$$ \sum_{i} \frac{C_i}{\left( 1 + r \right)^{\frac{d_i - d_0}{365}}} = 0 $$
+
+The dated cash flows — contributions counted as negative, withdrawals and the final value counted as positive — each carry their own exponent, equal to the number of days between that flow and the first one, divided by a 365-day convention. Outflows enter the sum with a negative sign, so the equation has a meaningful root only when the flows change sign at least once.
+
+There is no closed-form solution; the rate is found numerically, which is why every spreadsheet functions slightly differently and why the number can be sensitive to your starting guess when flows are unusual. Note the shape of the equation: it is built from discount factors, one per flow, depending only on the rate and the time. Discounting is not a separate topic from XIRR — it is the whole of it. In the limiting case where the dates are continuous rather than discrete, the same relationship is written with an exponential, which is the continuous-time formulation of a rate.
+
+Two properties are worth remembering:
+
+- With exactly one contribution and one final value, XIRR collapses to CAGR. The two measures are not rivals; XIRR is what CAGR becomes once cash flows are allowed to be uneven.
+- XIRR is a *rupee-weighted* statement: the same portfolio can have a high XIRR simply because most of the money arrived shortly before a rise. That is honest about your outcome, and it says nothing about skill.
+
+## Linking sub-period returns: why the time-weighted figure is legitimate
+
+It is worth seeing where a fund's published figure comes from, because it is not an accounting trick. A time-weighted return chains the returns of each sub-period geometrically:
+
+$$ 1 + R_{\text{time-weighted}} = \prod_{t=1}^{T} \left( 1 + r_t \right) $$
+
+Each sub-period return is measured on the portfolio as it stood at the start of that sub-period, so a contribution or withdrawal changes the starting base but not the percentage earned on it. Chain enough sub-periods and you have the return on a hypothetical rupee that stayed invested throughout — which is exactly what a CAGR is when the endpoints are the only information available. This is why the two definitions agree for an untouched holding and diverge for a portfolio with flows.
+
+The chaining also explains why a single bad period has a permanent effect. A 50% fall requires a 100% rise merely to return to the starting level, so an investor who happens to hold a larger balance through a drawdown carries a lower money-weighted outcome than the chained figure suggests. Time-weighting is not neutral between investors; it is neutral only about *which investor* is being described.
+
+## The two side by side
+
+| | CAGR | XIRR |
+| --- | --- | --- |
+| Inputs | Start value, end value, period | Dated cash flows including final value |
+| Weights | Not applicable — two points only | Each flow weighted by when it occurred |
+| Return type | Time-weighted | Money-weighted |
+| Correct for | Comparing two endpoints; index or fund performance | Judging an account with contributions and withdrawals |
+| Fails when | Money moved in or out but was not accounted for | Cash flows change sign repeatedly; period is very short |
+| Risk content | None | None |
+
+The final row is the important one. Neither figure says anything about the path taken, and a smoother route to the same endpoint is not a different return — it is a different experience, which a distribution measure describes and a single rate cannot.
+
+## Worked example: the fund goes nowhere special, the investor does fine
+
+This is an illustrative construction, not observed performance. An investor puts ₹1,00,000 into a fund at the start of each of three consecutive years. The fund's net asset value is ₹100 at the first purchase, ₹80 a year later, and ₹125 a year after that, and it closes the third year still at ₹125.
+
+The first ₹1,00,000 buys 1,000 units. The second buys 1,250 units, because the price fell. The third buys 800 units. The holding is 3,050 units, worth ₹3,81,250 at the end — against ₹3,00,000 contributed.
+
+- The **fund's own CAGR**, from a net asset value of ₹100 to ₹125 over three years, is:
+
+$$ \left( \frac{125}{100} \right)^{\frac{1}{3}} - 1 \approx 7.7\% $$
+
+- The **investor's XIRR**, solving the dated-cash-flow equation for contributions of ₹1,00,000 in each of the first three years and a final value of ₹3,81,250, is approximately **12.5%**.
+
+The fund compounded at about 7.7% a year and the investor earned about 12.5%, because the middle contribution bought units at the depressed price of ₹80. Neither number is wrong; they are answers to different questions. An investor who read only the fund's CAGR would conclude that they had underperformed their own holding.
+
+## Where CAGR actively misleads
+
+Two failure modes are common enough to be recognisable.
+
+**The contribution illusion.** A portfolio stands at ₹10,00,000 and, five years later, at ₹20,00,000, while the investor contributed ₹2,00,000 a year throughout — ₹10,00,000 in total. The arithmetic gives a "CAGR" of about 14.9%:
+
+$$ \left( \frac{20}{10} \right)^{\frac{1}{5}} - 1 \approx 14.9\% $$
+
+Yet if the value rose by exactly the amount that was added, the investments themselves contributed nothing, and the honest money-weighted answer is near zero. This is the single most common way a portfolio return is overstated, and it is not even dishonest arithmetic — it is simply the endpoint formula applied to a quantity that was never a single investment.
+
+**The systematic-investment gap.** A monthly investor in a market that falls for two years and recovers will often see a modest fund CAGR and an attractive XIRR, because the later instalments bought cheaply. The reverse happens when most money arrives near the top. The fund's figure describes the market; only XIRR describes the outcome.
+
+## Where XIRR misleads
+
+XIRR has its own failure modes.
+
+- **Multiple sign changes.** If cash flows alternate between negative and positive several times — contributions, a withdrawal, more contributions — the equation can have more than one rate that solves it. Net present value, expressed in rupees, does not suffer this problem and is the safer comparison tool there.
+- **Very short periods.** Annualising a return observed over six weeks multiplies a small move into an implausible one. A 4% gain in five weeks annualises to roughly 47%, which describes nothing except the arithmetic.
+- **Cash flows you control.** Deliberately or accidentally, adding money just before a rally raises XIRR without any change in the portfolio's behaviour.
+- **Missing or estimated dates.** The whole measure depends on dates being right; unrecorded switches and in-kind transfers silently corrupt it.
+
+## How to choose
+
+A short rule set:
+
+1. Did money move more than once? If yes, compute XIRR. If it moved once and stayed, compute CAGR.
+2. Is the figure describing an instrument or an account? Instruments get time-weighted figures; accounts get money-weighted ones.
+3. Is the period long enough to annualise? Under a year, report the absolute return and the period, and treat any annualised number as decoration.
+4. Did cash flows change sign repeatedly? Then reach for net present value rather than a rate.
+5. Is the number net? Costs, tax and inflation are separate deductions, taken after the return measure is settled.
+
+## What this does not tell you
+
+A return measure is a description of the past, and both of these are backward-looking by construction. Neither contains any information about risk, drawdown or the range of outcomes you might face; a single rate is compatible with a placid path and with a violent one. And both are nominal and gross of costs, taxes and inflation unless the person quoting them says otherwise — a distinction the next article in this series takes apart. Finally, XIRR is not a verdict on a decision: a high money-weighted return from a lucky arrival date is luck, and a low one from an unlucky one may still reflect a sensible holding.
+
+## Open questions
+
+- Should Indian fund factsheets be required to publish a money-weighted figure alongside the time-weighted one, so that investor experience is visible next to portfolio performance?
+- What is the least misleading convention for annualising a return observed over less than a year, given that every convention flatters short holding periods?
+- When cash-flow dates are reconstructed from memory or from incomplete statements, how much error does the resulting XIRR absorb before the figure stops being useful?
+
+The practical habit that follows is simple. Before you read a percentage, ask which question it answers — endpoint or dated cash flows — and whether the arithmetic counts your money or merely the market's.

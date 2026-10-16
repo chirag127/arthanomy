@@ -1,0 +1,147 @@
+---
+title: 'Anatomy of a Bank Fixed Deposit: Rate, Compounding and Exit Rules'
+description: 'What a fixed-deposit rate actually yields once compounding, premature-withdrawal penalties and joint-holding rules are accounted for, and how to compare two offers on equivalent terms.'
+shortTitle: 'Anatomy of a Bank Fixed Deposit'
+category: debt
+series: debt-encyclopedia
+seriesOrder: 1
+topics: ['fixed deposits', 'compounding', 'premature withdrawal', 'deposit insurance']
+tags: ['banking', 'debt', 'deposit-insurance']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 9
+keyTakeaways:
+  - 'A fixed-deposit rate is nominal; the compounding convention decides what the balance actually grows to.'
+  - 'Premature withdrawal typically costs interest already earned, not just future interest, because the bank recomputes the whole deposit at a lower applicable rate.'
+  - 'The effective annual rate, not the headline rate, is the only figure on which two deposit offers can be compared on equivalent terms.'
+  - 'Deposit insurance covers ₹5,00,000 per depositor per bank, principal and interest combined; above that line the depositor is an unsecured creditor of the bank.'
+  - 'Joint-holding and operation mandates decide who runs the deposit and who receives the proceeds, and they do not by themselves change the insurance limit.'
+  - 'A deposit rate is a contractual return; how fixed deposits as a category have actually performed over a period is a separate, historical question.'
+faqs:
+  - question: 'Why does the same headline rate give different maturity amounts?'
+    answer: 'Because the compounding frequency is part of the product, not a presentational detail. A rate compounded quarterly accumulates faster than the same rate compounded annually, so its effective annual rate is higher than the nominal rate printed on the board.'
+  - question: 'What happens if I close a fixed deposit early?'
+    answer: 'The bank typically recomputes interest at the rate applicable to the tenor actually run and applies a penalty, then pays the lower figure; interest already credited may be adjusted. The exact terms sit in the bank rate card and account terms, which is why they should be read before the deposit is opened.'
+  - question: 'Is my entire fixed deposit insured?'
+    answer: 'No. Deposit insurance covers up to ₹5,00,000 per depositor per bank, including principal and interest, aggregated across deposits held in the same right and capacity at that bank. Above the limit the claim ranks with other unsecured creditors.'
+  - question: 'Do joint holders each get separate insurance?'
+    answer: 'The insurance limit is applied per depositor per bank, and how a joint holding is attributed is governed by the deposit-insurance framework rather than by the number of names on the account. Check the framework before assuming a joint account multiplies cover.'
+  - question: 'Are fixed deposits risk-free?'
+    answer: 'Within the insurance limit they carry little credit risk, but they still carry inflation risk and reinvestment risk, and a long tenor locked today can look poor if rates rise later. Risk-free credit is not the same as loss-proof purchasing power.'
+relatedCalculators:
+  - { id: deposit-comparison, label: 'Deposit Comparison' }
+relatedArticles:
+  - recurring-deposit-and-savings-account-economics
+  - corporate-fixed-deposits-and-nbfc-deposit-risk
+  - deposit-insurance-mechanics-per-depositor
+  - treasury-bills-as-the-risk-free-anchor
+glossaryTerms: [yield-to-maturity, repo, g-sec]
+sources:
+  - { id: rbi-fd-rates, supports: 'Published bank deposit and card rates, the spread between term-deposit and lending rates, and the compounding conventions on which deposit rates are set and reported' }
+  - { id: dicgc, supports: 'The statutory deposit-insurance limit of ₹5,00,000 per depositor per bank, its application to principal and interest together, and which institutions fall within the scheme' }
+  - { id: rbi-home, supports: 'Monetary-policy and regulatory context for deposit pricing, including the policy rate environment against which banks set term-deposit rates' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Rates used in this article are illustrative examples of structure, not offers available from any bank; the rate card and terms of a specific deposit govern its outcome.'
+  - 'Deposit insurance covers a stated limit per depositor per bank with defined exclusions; verify the current limit and its scope against the DICGC disclosure before relying on it.'
+applicablePeriods: ['FY 2025-26']
+openQuestions:
+  - 'How much of the premium that small finance banks and cooperative banks pay on deposits compensates genuine credit risk above the deposit-insurance limit?'
+  - 'How is a joint holding attributed when several joint combinations exist at the same bank, and can it create more than one insured entitlement?'
+  - 'How quickly do retail deposit rates follow a change in the policy rate, and is that pass-through symmetric on the way up and on the way down?'
+---
+
+Every fixed deposit in India is sold on one number: the rate. A branch board, an app screen or a comparison table shows a figure such as 7.00 per cent and a tenor such as three years, and the transaction looks finished. Almost nothing that decides the actual outcome is in that figure. The compounding convention decides what the nominal rate accumulates to, the exit rules decide what happens if the money is needed earlier, the holding structure decides who can operate the deposit and who receives the proceeds, and the insurance limit decides how much of the balance is a protected claim on the bank rather than an ordinary one. This opening article of the Debt Encyclopedia takes those pieces apart in order.
+
+## The advertised rate is nominal
+
+A fixed-deposit rate is quoted per annum, but it is not the rate at which the money grows unless compounding happens exactly once a year. Most cumulative deposits compound more often, and the frequency is a term of the product rather than a display choice. The relationship between a nominal annual rate $r$ compounded $n$ times a year and the effective annual rate is:
+
+$$ \text{EAR} = \left(1 + \frac{r}{n}\right)^{n} - 1 $$
+
+Take an illustrative nominal rate of 7.00 per cent — a round number chosen to show the arithmetic, not an offer from any bank — and vary only the compounding frequency:
+
+| Compounding | Effective annual rate on a nominal 7.00 per cent |
+| --- | --- |
+| Annual | 7.000 per cent |
+| Half-yearly | 7.123 per cent |
+| Quarterly | 7.186 per cent |
+| Monthly | 7.229 per cent |
+
+The spread between annual and monthly compounding on the same headline rate is a little over 23 basis points, and it compounds over a long tenor. This is the first reason two deposits quoting the same rate are not the same product. Banks publish a rate card that states both the rate and the compounding basis, and the Reserve Bank's deposit-rate statistics are read alongside that basis rather than as a bare number.
+
+## Explain simply
+
+Put money in, leave it alone, and interest is added. The advertised rate is the yearly rate before anything is decided about how often the interest is added back to the balance. If it is added back four times a year, the money grows a little faster than the headline rate suggests; if it is added back once a year, it grows exactly at the headline rate. Close the deposit early and the bank pays less than promised, usually by recomputing the whole thing from the start at a lower rate. If the bank fails, insurance pays up to ₹5,00,000 per depositor per bank, principal and interest together. Everything above that line depends on the bank's own balance sheet.
+
+## Worked example: two offers that look almost identical
+
+Two banks quote a three-year cumulative deposit on ₹5,00,000. Offer A prints 7.00 per cent compounded annually. Offer B prints 6.95 per cent compounded quarterly. On the headline number A looks better. The effective annual rates say otherwise, and this is an illustrative calculation, not a forecast:
+
+- **Offer A**, effective annual rate: $1.0700 - 1 = 7.000$ per cent. Three-year value: $5{,}00{,}000 \times 1.07^3 = ₹6{,}12{,}522$.
+- **Offer B**, effective annual rate: $(1 + 0.0695/4)^4 - 1 = 7.133$ per cent. Twelve quarterly periods at 1.7375 per cent: $5{,}00{,}000 \times 1.017375^{12} = ₹6{,}14{,}813$.
+
+Offer B, with the lower advertised rate, returns about ₹2,291 more over three years because of the compounding basis. The maturity figure is a contractual outcome given those illustrative terms; it is not an observed result from any bank.
+
+## Premature withdrawal costs history, not just the future
+
+The second term that changes the realised number is the exit rule. When a fixed deposit is closed before maturity, most banks do not simply stop paying interest from the closure date. They recompute the entire deposit at the rate applicable to the tenor that was actually run, and then apply a penalty — commonly a reduction of the applicable rate, and in some cases a payment at the savings-account rate for very short runs. Interest already credited can be adjusted downward.
+
+Consider an illustrative case. A depositor places ₹5,00,000 for five years at an illustrative 7.25 per cent and closes it after 14 months. Suppose the bank applies the rate for the tenor actually run, taken as an illustrative 6.50 per cent, less an illustrative one percentage point penalty, giving 5.50 per cent for the whole 14 months:
+
+- Interest actually paid: $5{,}00{,}000 \times 0.055 \times \frac{14}{12} = ₹32{,}083$.
+- Interest the depositor might have expected at the headline rate: $5{,}00{,}000 \times 0.0725 \times \frac{14}{12} = ₹42{,}292$.
+
+The penalty is not charged as a fee; it is paid through a lower rate applied retrospectively. That is why the effective cost of an early exit is usually larger than the number of months the deposit was left short, and why an emergency reserve held in a separate, shorter deposit is a cheaper arrangement than breaking a long one. Products with a lock-in — certain tax-linked deposits being the familiar example — remove the early-exit option altogether.
+
+## Joint holders, mandates and who receives the money
+
+A fixed deposit can be held singly, or jointly under a mode such as either-or-survivor, former-or-survivor, or jointly with operation by all holders. The mode is not administrative wording; it decides who can operate the deposit during the tenor and who receives the proceeds on the death of a holder. Nomination is a separate instruction to the bank pointing to a named person, and it is a direction about payment rather than a will that overrides succession law. When a depositor wants both shared operation and certainty of transmission, the joint mode and the nomination must be read together, because they answer different questions.
+
+The insurance limit is unaffected by the number of names on the account. The limit applies per depositor per bank, so adding a joint holder is a transmission choice, not a device that creates a second insured entitlement.
+
+## Deposit insurance: the ₹5,00,000 line
+
+Deposit insurance is what makes a bank deposit a different asset from a corporate deposit. Under the scheme administered by the Deposit Insurance and Credit Guarantee Corporation, each depositor is insured up to ₹5,00,000 per bank, covering principal and interest together, and the cover is calculated by aggregating the depositor's deposits in that bank rather than by counting accounts or branches. Banks within the scheme include commercial banks, small finance banks, regional rural banks and cooperative banks. Entities outside it — the NBFC and corporate deposit universe, for instance — have no such backstop.
+
+Above ₹5,00,000 the depositor is an unsecured creditor of the bank. That single sentence explains a large part of the rate differences visible on Indian deposit boards: a small finance bank or a cooperative bank that offers more than a large private bank is paying for funds it finds harder to raise, and part of that premium is compensation for risk that the insurance limit does not reach. Whether that compensation is adequate is a credit question, not an arithmetic one, and it is the subject of later articles in this series.
+
+## Where the deposit rate comes from
+
+A deposit rate is not a gift. It is a bank's cost of funds, set against the yield it can earn on lending and on its securities book. The Reserve Bank's published statistics show the spread between term-deposit rates and lending rates, and that spread has to cover operating costs, credit losses and the return on capital that a bank must earn to keep lending. The level around which deposit rates sit is set by the monetary-policy environment — the policy repo rate is the reference point that anchors short-term rupee rates — and by competition for household savings, which is why deposit rates move in steps rather than continuously.
+
+Read in return lanes, a deposit rate is a contractual return. What fixed deposits as a category actually delivered to savers in an earlier period is a historical realised return, and the two are not interchangeable. The contractual rate tells you what the bank has promised; the historical figure tells you what small depositors received in conditions that no longer apply.
+
+## What this does not tell you
+
+- **Tax.** The taxation of deposit interest, and the deduction of tax at source that may apply, sit outside the official sources used here and outside this article. Interest is generally treated as taxable income in the depositor's hands, but the dated rules belong to the tax reference on this site rather than to this page.
+- **Any actual rate.** Every rate used above is illustrative. No claim is made about what any bank currently offers.
+- **Credit risk above the limit.** The article does not assess the balance sheet of any institution, so nothing here supports a judgement about whether a higher deposit rate is adequate compensation.
+- **Real return.** Deposit rates are nominal. If inflation exceeds the rate actually credited, the real purchasing power of the balance falls, which is an arithmetic consequence of the Fisher relationship rather than a forecast about prices.
+
+## Open questions
+
+- How much of the premium paid by small finance banks and cooperative banks compensates genuine credit risk above the insurance limit, and how much is the cost of weaker distribution?
+- When several joint combinations exist at one bank, how is each holding attributed against the per-depositor limit, and can that create more than one insured entitlement?
+- How quickly and how symmetrically do retail deposit rates follow a change in the policy rate on the way up compared with the way down?
+
+## The comparison checklist
+
+Two deposit offers are only comparable once each of these is settled. Compare them in this order:
+
+1. **Effective annual rate**, computed from the stated nominal rate and compounding frequency — never the headline rate alone.
+2. **Compounding basis** for cumulative deposits, and the payment interval for non-cumulative ones.
+3. **Tenor and reset terms**, including whether the rate is fixed for the whole tenor.
+4. **Premature-withdrawal rule**, including the penalty margin and the rate applied to the tenor actually run.
+5. **Lock-in**, and whether the product can be broken early at all.
+6. **Insurance headroom**, measured against the ₹5,00,000 per bank limit across every deposit already held there.
+7. **Holding mode and nomination**, so that operation and transmission are decided deliberately rather than by default.
+8. **Tax position**, taken from the dated tax reference rather than assumed.
+
+Done in that order, the comparison reduces to a single question: what does each offer actually credit to the balance, and what does it cost to change your mind. The rest of this series takes the same method to recurring deposits, corporate deposits, cooperative banks and the sovereign instruments that sit above all of them on the risk ladder.

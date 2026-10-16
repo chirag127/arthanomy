@@ -1,0 +1,188 @@
+---
+title: 'Yield to Maturity Versus Current Yield: Which Number to Trust'
+description: 'Coupon, current yield and yield to maturity answer three different questions about the same bond. The reinvestment assumption inside yield to maturity decides whether the number you were quoted is the return you will actually get.'
+shortTitle: 'Yield to Maturity Versus Current Yield'
+category: debt
+series: debt-encyclopedia
+seriesOrder: 17
+topics: ['yield to maturity', 'current yield', 'coupon rate', 'reinvestment risk', 'bond pricing']
+tags: ['debt', 'fixed-income', 'bond-mathematics']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'A coupon is a contractual promise applied to face value; current yield is the annual coupon divided by the price you paid; yield to maturity is the single discount rate that reproduces that price from all remaining cash flows.'
+  - 'Yield to maturity is a model-estimated figure, not a contractual one — it holds only if the bond is held to maturity, does not default, and every coupon is reinvested at that same rate.'
+  - 'Buy at a discount and yield to maturity exceeds current yield, which exceeds the coupon; buy at a premium and the order reverses, so a bond can pay an 8% coupon and yield well below it.'
+  - 'The reinvestment assumption is the largest single gap between a quoted yield and a realised return, and it bites hardest on long-dated, high-coupon bonds.'
+  - 'Two bonds can be compared only once the same yield convention, day-count, settlement date and credit standing are aligned; a yield without those qualifiers is a headline.'
+  - 'Duration and convexity describe the risk that a yield figure leaves out — two bonds with the same yield to maturity can carry very different interest-rate exposure.'
+faqs:
+  - question: 'Why is the yield to maturity higher than the coupon on a bond bought at a discount?'
+    answer: 'Because the bond returns a fixed face value at maturity that is larger than the price paid, and that capital gain is spread across the remaining years. The yield to maturity folds the coupon and the pull-to-par gain into one annualised rate, which is why it exceeds both the coupon and the current yield for a discounted purchase.'
+  - question: 'If a bond pays every coupon and returns my principal, do I earn the yield to maturity?'
+    answer: 'Only if you reinvest each coupon at that same yield until maturity. If rates have fallen, you reinvest at lower rates and the annualised return you realise is below the quoted yield, even though nothing defaulted. This is why yield to maturity sits in the model-estimated lane rather than the contractual one.'
+  - question: 'Which figure should I quote when someone asks what a bond yields?'
+    answer: 'Quote the yield to maturity, then state the convention, the price basis, the settlement date, the credit standing of the issuer and the tax basis. Without those five qualifiers the same bond can be quoted at several different yields on the same day.'
+  - question: 'Does a higher yield to maturity mean a better investment?'
+    answer: 'No. A higher yield is a higher promise, and the market prices that promise for a reason. The gap over a comparable government security is the credit spread, which compensates for default risk, delay and illiquidity. Whether the compensation is adequate is a separate question from whether the number is large.'
+  - question: 'What replaces yield to maturity for a callable or perpetual bond?'
+    answer: 'Where the issuer can redeem before the stated maturity, the yield to the earliest redemption date the issuer is likely to use — the yield to call or yield to worst — is the binding figure. Quoting yield to maturity on such an instrument overstates the return available if the bond is called.'
+relatedCalculators:
+  - { id: bond-price-yield, label: 'Bond Price and Yield' }
+  - { id: modified-duration, label: 'Duration Calculator' }
+  - { id: convexity, label: 'Convexity Calculator' }
+  - { id: bond-ladder, label: 'Bond Ladder Planner' }
+relatedArticles:
+  - dated-gsecs-and-the-coupon-myth
+  - treasury-bills-as-the-risk-free-anchor
+  - state-development-loans-yield-question
+  - corporate-fixed-deposits-and-nbfc-deposit-risk
+glossaryTerms: [yield-to-maturity, coupon-rate, accrued-interest, macaulay-duration, modified-duration, convexity, credit-spread]
+sources:
+  - { id: rbi-dbie, supports: 'Time-series context for government-securities yields and policy rates against which rupee debt is benchmarked' }
+  - { id: rbi-home, supports: 'Institutional context for the sovereign benchmark and the monetary-policy framework that sets the risk-free reference level' }
+  - { id: bcbs-credit-risk, supports: 'Formal definitions of probability of default and loss given default, used here to separate a credit spread from a promised return' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Bond prices, coupons and yields in this article are illustrative constructions chosen to expose the arithmetic. They are not quotations of any security, issuer or market.'
+  - 'Yield conventions, day-count conventions and settlement conventions differ across Indian instruments. Any two yields compared in practice must be confirmed to share the same conventions.'
+applicablePeriods: ['FY 2025-26']
+openQuestions:
+  - 'How much of the observed spread between corporate bond yields and comparable G-sec yields is compensation for expected credit loss, and how much is liquidity and tax effects that would not survive an orderly sale?'
+  - 'How large is the practical gap between yield to maturity figures published by different Indian market sources for the same security on the same day, once day-count and settlement conventions are aligned?'
+  - 'For a retail holder who spends coupons rather than reinvesting them, what does a yield to maturity mean — and should a horizon-return measure be quoted by default instead?'
+  - 'How does the reinvestment risk embedded in a long-dated coupon bond compare with the reinvestment risk of repeatedly rolling short-dated deposits?'
+---
+
+Every bond quotation carries at least three numbers that all get called "the yield", and they rarely agree. A screen might show a coupon of 7%, a current yield of 7.3% and a yield to maturity of 8.6%, and a buyer who quotes the wrong one is describing a different instrument from the one being sold. The three are not competing estimates of one truth. They answer three separate questions about the same contract.
+
+This article is about that arithmetic and, more importantly, about the assumption buried inside the middle of it — the reinvestment rate. It is the reason a quoted yield is a model estimate rather than a promise, and the reason the yield to maturity shown at purchase is frequently not what a holder ends up earning.
+
+## Explain simply
+
+A bond is a loan you make to an issuer that pays fixed interest and returns your principal at the end. The coupon is the interest rate printed on the loan. The current yield is that interest divided by what you actually paid, so it moves whenever the price moves. The yield to maturity is a single average rate that would make all the future payments — every coupon plus the return of principal — add up to the price you paid today, assuming you hold the loan to the end and put every coupon back into the same bond at the same rate. The first is a promise, the second is a snapshot, and the third is an arithmetic result resting on an assumption you cannot control. The third is the most useful number on the screen and the easiest one to over-trust.
+
+## Three numbers, three questions
+
+| Number | Basis | What it answers | What it ignores |
+| --- | --- | --- | --- |
+| Coupon rate | Fixed at issue, applied to face value | What the issuer promised to pay each period | The price you paid, and the time remaining |
+| Current yield | Annual coupon divided by price | The income this purchase produces this year | Capital gain or loss, and reinvestment |
+| Yield to maturity | The rate that discounts all remaining cash flows to today's price | The annualised return if held to maturity and coupons are reinvested at that rate | Default, early sale, and any other reinvestment rate |
+
+The table already shows where the confusion begins. The coupon is a term of the contract. The current yield is a ratio any buyer can compute in their head. The yield to maturity is the output of an equation that must be solved, because the unknown rate appears in every denominator at once:
+
+$$ P = \sum_{t=1}^{n} \frac{C}{(1+y)^{t}} + \frac{F}{(1+y)^{n}} $$
+
+Here $P$ is the price paid, $C$ the coupon per period, $F$ the face value returned at maturity, $n$ the number of remaining periods and $y$ the yield to maturity. There is no closed-form solution for $y$; it is found by iteration. That is the first hint that the figure is a construction rather than an observation.
+
+## Discount, premium and the order of the numbers
+
+Whether yield to maturity sits above or below current yield is decided entirely by price.
+
+- Buy **below** face value, at a discount, and the bond returns the coupon plus a capital gain as it pulls back to par. Yield to maturity then sits **above** current yield, which sits above the coupon.
+- Buy **above** face value, at a premium, and the bond surrenders value as it pulls back to par. Yield to maturity then sits **below** current yield, which sits below the coupon.
+
+This is not a technicality. A long-dated bond bought at a premium can pay a coupon of 8% and yield 6%, and an investor who anchors on the coupon has misread the bargain by two percentage points a year before any credit event is considered.
+
+## Yield to maturity is a set of conditions
+
+The equation above is exactly true only under four conditions:
+
+1. The bond is held until redemption.
+2. The issuer pays every coupon and the principal on time.
+3. Each coupon is reinvested immediately at that same yield to maturity.
+4. No sale, put, call or restructuring intervenes.
+
+Condition 3 is the one most often forgotten, and it is not a small correction. Yield to maturity is a *compound* rate: it assumes coupon income itself earns the yield. An 8% yield to maturity on a bond held to maturity does not deliver 8% of the original principal each year; it delivers growth at 8% compound, and that compounding depends on reinvestment. If rates fall after purchase, coupons are reinvested at lower rates and the realised annualised return lands below the quoted yield — even though every coupon was paid and the principal returned in full. Nothing defaulted. The investor simply does not earn the number on the screen.
+
+> **The lane test.** The coupon is contractual. The principal repayment is contractual. The forward reinvestment rate is neither — it is an unobservable input. That single fact moves yield to maturity out of the contractual lane and into the model-estimated one.
+
+## Worked example: one bond, three yields
+
+An illustrative calculation, not a quotation of any security:
+
+A bond has a face value of ₹1,000, pays an annual coupon of 7% (₹70), has exactly three years to maturity, and is available at ₹960.
+
+- **Coupon rate:** 7.00%. Contractual, and unchanged if the price changes.
+- **Current yield:** $70 / 960 = 7.29\%$. What the coupon produces against the price actually paid.
+- **Yield to maturity:** solving $960 = 70/(1+y) + 70/(1+y)^2 + 1070/(1+y)^3$ gives $y \approx 8.57\%$.
+
+Note the ordering: coupon 7.00%, current yield 7.29%, yield to maturity 8.57%. The 1.28 percentage points between current yield and yield to maturity are the pull-to-par gain, annualised over three years. A buyer screening on coupon sees the least informative figure; a buyer screening on yield to maturity sees the total return assuming reinvestment.
+
+Change one number. Suppose the same bond is available at ₹1,040 rather than ₹960.
+
+- **Coupon:** still 7.00%.
+- **Current yield:** $70 / 1040 = 6.73\%$.
+- **Yield to maturity:** the same equation with the higher price gives a figure near 5.5%, because the ₹40 premium is a loss at redemption spread over three years.
+
+Same coupon, same issuer, same maturity, two very different propositions. That is the entire argument for quoting on a yield basis.
+
+## When coupons are reinvested at a different rate
+
+The yield to maturity of about 8.57% in the example is realised only if each ₹70 coupon earns 8.57% until the bond matures. An illustrative comparison on the same ₹960 purchase:
+
+| Reinvestment rate on coupons | Approximate realised annualised return |
+| --- | --- |
+| 8.57% — the yield to maturity itself | about 8.57% |
+| 6.00% | below the quoted yield |
+| 10.00% | above the quoted yield |
+
+Only the first row is a yield to maturity. The others are horizon returns — a different, honest measure, and the one a holder actually experiences. The standard decomposition says that a realised return blends the initial yield, the effect of reinvestment and the effect of any change in price. Drop either of the last two terms and the quoted number stops describing the outcome.
+
+## Accrued interest and the price you actually pay
+
+Between coupon dates a bond trades with interest attached. The seller has held the bond for part of the coupon period and is owed that fraction; the buyer receives the whole of the next coupon. The **accrued interest** is that fraction, computed on a day-count convention, and the settlement amount is the quoted price plus accrued interest. Two bonds can display the same quoted price and require different cheques.
+
+This matters when comparing yields for a second reason: a yield computed on a clean price and a yield computed on the full consideration are different numbers, and the gap is widest immediately before a coupon date. The convention belongs to the specification of the instrument; it is not a detail that can be assumed away.
+
+## Duration: the second number you need
+
+Yield to maturity states the level of return. It says nothing about how much the price moves when that yield changes. That is duration. **Macaulay duration** is the present-value-weighted average time until the cash flows arrive; **modified duration** converts it into a price sensitivity, so a modified duration of 3 implies that a rise of one percentage point in yield costs roughly 3% of value, with the sign reversed. A **convexity** term improves the estimate, because the price-yield relationship is curved: gains from falling yields exceed losses from equal rises.
+
+Two bonds can offer the same yield to maturity and carry very different interest-rate exposure. Comparing them on yield alone compares the reward while ignoring the risk that travels with it. The calculators linked with this article compute price, yield, duration and convexity from the same inputs, so each figure can be checked rather than trusted.
+
+## Which number a buyer should quote
+
+For an Indian corporate bond, the figure to quote is the yield to maturity — with its conditions attached. Specifically:
+
+1. **The convention.** Yield to maturity on an annual basis, a semi-annual bond-equivalent basis, or a compounded basis: Indian market convention differs across instruments and the figure changes with the convention chosen.
+2. **The price basis.** Clean price, or full consideration including accrued interest.
+3. **The settlement date.** The same bond carries more than one yield to maturity depending on when settlement occurs.
+4. **The credit standing.** A yield to maturity is only as good as the issuer's ability to pay the cash flows being discounted. The gap between a corporate bond's yield and a comparable government security is the **credit spread**, and it exists because the market prices default and delay. A high yield to maturity is not a high return; it is a high promised return priced for a reason.
+5. **The tax basis.** Coupon interest is generally taxable in the investor's hands, and the treatment differs by instrument and by holder. After-tax comparisons require dated rates, and the site's tax reference carries them.
+
+Quoted with those five qualifiers, the yield to maturity is the right tool. Quoted without them, it is a headline.
+
+## The four lanes, kept separate
+
+"The yield" is used across four genuinely different kinds of claim, and blending them is how a poor decision comes to look like a good one.
+
+- **Contractual.** The coupon and the principal repayment. The issuer is obliged to pay, and the obligation is only as strong as the issuer.
+- **Model-estimated.** The yield to maturity itself, and any horizon return projected from an assumed reinvestment rate. These are arithmetic outputs from stated assumptions.
+- **Historical realised.** What holders of a comparable bond actually earned over a past window, after reinvestment and defaults. Informative, but a property of that window and that population.
+- **Speculative.** The possibility that the spread narrows or rates fall, producing a capital gain on top of the coupon. Real, occasionally large, never contractual.
+
+A yield to maturity of about 8.57% is a model estimate resting on a contractual coupon and a speculative reinvestment path. Calling it "the return" collapses all four lanes into one.
+
+## What this does not tell you
+
+- **It does not give a default probability.** A yield to maturity of 12% on a weak credit may be a poor outcome after expected loss. The spread over a comparable government security is the market's price for that risk, not an estimate of the probability that the issuer fails.
+- **It does not give the price if the bond is sold early.** Before maturity the price is set by whatever yield the market demands at that time, which may be higher than the one at purchase.
+- **It does not give the after-tax result.** Coupon interest is taxed as it arrives, and the position is a dated, instrument-specific fact. No yield quotation embeds it.
+- **It does not describe liquidity.** An illiquid bond can show an attractive yield to maturity that is unavailable in size and expensive to exit.
+- **It does not apply to callable or perpetual instruments.** Where the issuer can redeem early, the yield to call or yield to worst is the binding figure.
+
+## Open questions
+
+- How much of the observed spread between corporate bond yields and comparable G-sec yields compensates for expected credit loss, and how much reflects liquidity and tax effects that would not survive an orderly sale?
+- How large is the practical gap between yield to maturity figures published by different Indian market sources for the same security on the same day, once day-count and settlement conventions are aligned?
+- For a retail holder who spends coupons rather than reinvesting them, what does a yield to maturity mean — and should a horizon-return measure be the default quotation?
+- How does the reinvestment risk inside a long-dated coupon bond compare with the reinvestment risk of repeatedly rolling short-dated deposits?

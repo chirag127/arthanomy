@@ -1,0 +1,181 @@
+---
+title: 'Compounding Over Decades: What Time Does That Contributions Cannot'
+description: 'Compounding is simple arithmetic with an uncomfortable implication: the last decades of a long horizon produce most of the outcome, and interruptions are expensive. This article works the numbers honestly.'
+shortTitle: 'Compounding Over Decades'
+category: investment-basics
+series: science-of-returns
+seriesOrder: 3
+topics: ['compounding', 'time horizon', 'geometric mean', 'reinvestment', 'sequence of returns']
+tags: ['foundations', 'arithmetic', 'long-term', 'discipline']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'Compounding is multiplication applied repeatedly: terminal wealth is the starting amount multiplied by each period return in sequence, so a single missing period removes its growth from every period that follows.'
+  - 'At a constant ten per cent annual rate over forty years, roughly eighty-five per cent of the terminal value is added during the final twenty years, which is the arithmetic behind the claim that time dominates contribution size.'
+  - 'Starting early beats contributing more: in the illustrative example here, ten early annual contributions end worth more than thirty later contributions at the same rate, because the early money compounds for longer.'
+  - 'Interruptions are asymmetric. A missed decade of return does not cost a decade of contributions; it removes a full multiplicative factor, so the loss is permanent and proportional.'
+  - 'The same arithmetic runs in reverse for inflation, costs and tax, each of which compounds on the interim balance exactly as returns do.'
+  - 'Compounding promises nothing. It multiplies whatever rate is actually earned, including a negative one, and it is silent about the path, about reinvestment and about whether the assumed rate can be earned at all.'
+faqs:
+  - question: 'Is compounding over decades really different from compounding over years?'
+    answer: 'It is the same multiplication, extended. What changes is the size of the numbers and the asymmetry of interruptions. Over five years a missing period is a small dent; over forty years it removes a multiplicative factor that all later growth would have built upon.'
+  - question: 'Why do the later years matter more than the earlier ones?'
+    answer: 'Because each period multiplies an ever-larger balance. A given percentage return applied to a large accumulated corpus adds far more than the same percentage applied to a small one early on, so the absolute additions grow even though the rate is constant.'
+  - question: 'Does compounding work if I spend the income instead of reinvesting it?'
+    answer: 'No. Compounding is the growth of a balance that stays invested. If dividends, rent or interest are spent, the balance does not grow by those amounts and the geometric outcome is the price change alone, not the total return.'
+  - question: 'What does a decade of poor returns do to a forty-year plan?'
+    answer: 'It removes a full multiplicative factor. In the illustration in this article, replacing ten years of a ten per cent return with no return at all reduces the forty-year multiple from about forty-five times to about seventeen times the original amount.'
+  - question: 'Can compounding make a bad rate good?'
+    answer: 'No. Compounding has no opinion about the rate. A high rate compounded is a large number and a negative rate compounded is a large loss; the arithmetic amplifies whatever it is given, which is why a promised high rate over decades deserves more suspicion rather than less.'
+relatedCalculators:
+  - id: cagr
+    label: 'CAGR Calculator'
+  - id: xirr
+    label: 'XIRR Calculator'
+  - id: nominal-vs-real
+    label: 'Nominal vs Real Wealth'
+  - id: post-tax-return
+    label: 'Post-Tax Return Calculator'
+  - id: rolling-returns
+    label: 'Rolling Return Comparator'
+relatedArticles:
+  - what-an-investment-return-actually-is
+  - nominal-returns-and-the-inflation-toll
+  - risk-as-the-price-of-return
+  - drawdowns-and-recoveries
+  - fees-and-the-quiet-return-killer
+glossaryTerms: [geometric-mean, arithmetic-mean, cagr, real-return, opportunity-cost]
+sources: []
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'This article uses no historical return series. Every rate, amount and multiple is an illustrative arithmetic example, not a forecast and not a record of any investment.'
+  - 'Compounding multiplies whatever return is actually earned, including a negative one. The illustrations here are not a promise of any outcome.'
+openQuestions:
+  - 'If the final two decades produce most of the terminal wealth, how should a long-horizon plan be built for the possibility that those two decades deliver a poor sequence of returns?'
+  - 'How much of the practical benefit of compounding is removed by costs and taxes charged on the interim balance rather than once at the end?'
+  - 'Can a saver distinguish compounding from the accident of a favourable starting window, and what evidence would settle the question?'
+---
+
+A fortune built over forty years looks like a stroke of luck and is mostly arithmetic. The arithmetic is a single multiplication applied over and over, and its least intuitive property is that the later repetitions matter more than the earlier ones. That one fact explains why starting early is worth more than contributing more, why an interrupted plan is expensive out of proportion to the interruption, and why a promised rate compounded over decades should raise suspicion rather than settle it.
+
+This article is the third in the Science of Returns series. The first established that a return is a change in wealth over a stated period, and the second subtracted inflation and tax from it. This one takes what remains — a net rate — and compounds it across a working lifetime, then states plainly what that arithmetic does not promise.
+
+## Explain simply
+
+If money grows by a percentage each year, the growth is applied to a balance that already contains every earlier year of growth. That is all compounding is. The consequence is that the balance grows faster in absolute terms the longer the money stays in, even when the percentage never changes. Early on, a year adds very little, because the balance is small. Late on, a year adds a great deal, because the balance is large. So the last few years of a long investment usually contribute more rupees than all the early years combined, and a year that is skipped entirely removes its contribution from everything that would have followed.
+
+## The geometry of compounding
+
+For a single starting amount and a constant annual rate, terminal wealth is:
+
+$$ V_T = V_0 (1 + r)^T $$
+
+where $V_0$ is the amount invested, $r$ the rate per period and $T$ the number of periods. Nothing about this is subtle, and that is the point: an outcome that looks improbable is produced by ordinary multiplication repeated enough times.
+
+When the rate varies from year to year — as it does in every real investment — the same idea applies period by period:
+
+$$ V_T = V_0 \prod_{t=1}^{T} (1 + r_t) $$
+
+The order of the multiplications does not matter, but the presence of every factor does. A missing factor is not an average that someone forgot to include; it is a whole year of growth removed from the chain.
+
+A useful mental tool for long horizons is the doubling time. At a rate of R per cent per year, money roughly doubles every
+
+$$ T_{\text{double}} \approx \frac{72}{R} $$
+
+years. At ten per cent that is about seven years, so a forty-year horizon contains close to five doublings — which is why the multiples become large so quickly. The rule is an approximation, but its message is exact: doubling time is short relative to a lifetime, and the number of doublings, not the size of any single one, drives the endpoint.
+
+## Why the last decades carry the most weight
+
+Apply the arithmetic to a forty-year horizon at a constant ten per cent. One rupee becomes about forty-five rupees. Now split the horizon in half. After twenty years, the same rupee has become only about six and three-quarter rupees. The second twenty years therefore account for roughly thirty-eight of the forty-five rupees — about eighty-five per cent of the terminal wealth.
+
+That is the arithmetic behind every statement that time dominates the size of a contribution. It also explains a familiar experience: a plan that looks unimpressive for a decade and then appears to accelerate. Nothing changed. The rate was constant throughout; the balance it was applied to was not.
+
+There is a second implication, less comfortable. If most of the outcome arrives late, then most of the outcome is provisional for a very long time. A forty-year plan is, in wealth terms, a twenty-year plan that happens to have a long run-up. For most of its life the terminal number depends on returns that have not happened yet.
+
+## Time dominates contribution size
+
+Hold the rate constant and change the schedule instead. Consider two savers, both assumed to earn ten per cent a year, in an illustrative example.
+
+- Ana contributes ₹1,00,000 at the end of each year for ten years, from year one to year ten, and then contributes nothing more. She has put in ₹10,00,000.
+- Ben starts ten years later, in year eleven, and contributes ₹1,00,000 at the end of each year for thirty years, through to year forty. He has put in ₹30,00,000.
+
+Ben has contributed three times as much. Ana has given her money more time. The arithmetic in the worked example below shows Ana finishing ahead, and not narrowly.
+
+The asymmetry is easy to see once stated: a rupee contributed in year one is multiplied by every subsequent year return, while a rupee contributed in year thirty-nine is multiplied once. Contributions are equal in size but not in time, and time is the multiplier. This is why the ordering of decisions in personal finance places the start date above the amount, and why a small amount begun early is a different instrument from a large amount begun late.
+
+## The fragility of interruptions
+
+Because the factors multiply, an interruption is not merely a pause. It removes a factor from the chain, and every later year would have compounded the remainder that the missing factor created.
+
+Return to the forty-year horizon at ten per cent, where one rupee becomes about forty-five. Suppose ten of those years — say the twenty-first through the thirtieth — deliver no return at all. The chain becomes a ten-year run at ten per cent, a ten-year run at zero, then a twenty-year run at ten per cent:
+
+$$ 1.10^{10} \times 1.00^{10} \times 1.10^{20} \approx 2.59 \times 1.00 \times 6.73 \approx 17.4 $$
+
+One rupee becomes about seventeen rupees instead of about forty-five. A decade of zero return removed roughly sixty-two per cent of the terminal wealth, even though it also removed a quarter of the elapsed time. Interruptions are expensive in proportion to how much later compounding they prevent, not in proportion to how long they last.
+
+The same mechanism punishes withdrawals at the wrong moment. Selling part of the corpus during a fall converts a temporary mark-down into a permanent reduction of every future balance that would have compounded. This is why the sequence of returns matters for anyone taking money out and not for anyone still accumulating, and it is the reason the drawdown articles in this series treat recoveries as a separate subject.
+
+## What compounding does not promise
+
+The arithmetic is reliable; the claims made about it frequently are not. Compounding promises none of the following.
+
+- **A positive rate.** Compounding multiplies whatever rate is actually earned, including a negative one. ₹100 held through ten years of a ten per cent annual loss becomes about ₹35 — a large, compounded loss. The arithmetic is symmetrical and has no preference.
+- **The continuation of a past rate.** A term such as a projected multiple is a statement about the assumed rate, not about the world. Change the assumption and the multiple changes; print the assumption and the claim becomes inspectable.
+- **That the path will be tolerable.** The endpoint says nothing about the route. A plan can be arithmetically sound and behaviourally impossible, and a corpus cannot be spent for two decades while it is still small.
+- **Reinvestment.** If the income an asset throws off is spent rather than reinvested, the balance does not grow by that income, and the compounding described here does not occur. Total return, and therefore compounding, requires the income to stay in.
+- **Survival of costs and tax.** Each of those runs the same arithmetic in the opposite direction, charged on the interim balance and compounding against you. A cost or a tax levied every year is not a one-off subtraction; it is a reduced multiplier applied many times.
+- **That the horizon will be respected.** The arithmetic assumes the money stays invested. A single unplanned withdrawal at a bad moment can undo years of patient multiplication.
+
+## Worked example: two savers, one rate
+
+The following is an illustrative calculation using a round ten per cent annual rate and no costs, taxes or inflation. No historical series is used, and no investment is represented by the result.
+
+Ana contributes ₹1,00,000 at the end of each year for ten years, then stops. At the end of year ten, the value of her contributions is about ₹15,93,740:
+
+$$ 1{,}00{,}000 \times \frac{(1.10)^{10} - 1}{0.10} = 1{,}00{,}000 \times 15.94 \approx 15{,}93{,}740 $$
+
+That balance then compounds untouched for a further thirty years:
+
+$$ 15{,}93{,}740 \times (1.10)^{30} \approx 15{,}93{,}740 \times 17.45 \approx 2{,}78{,}10{,}000 $$
+
+Ana contributed ₹10,00,000 in total and finishes with roughly ₹2.78 crore.
+
+Ben contributes ₹1,00,000 at the end of each year for thirty years, from year eleven to year forty. At the end of year forty his contributions are worth about ₹1,64,49,000:
+
+$$ 1{,}00{,}000 \times \frac{(1.10)^{30} - 1}{0.10} = 1{,}00{,}000 \times 164.49 \approx 1{,}64{,}49{,}000 $$
+
+Ben contributed ₹30,00,000 and finishes with roughly ₹1.64 crore.
+
+| Saver | Years contributing | Total contributed | Illustrative value at year forty |
+| --- | --- | --- | --- |
+| Ana | Years 1 to 10 | ₹10,00,000 | ≈ ₹2.78 crore |
+| Ben | Years 11 to 40 | ₹30,00,000 | ≈ ₹1.64 crore |
+
+Ana contributed a third as much and finished with roughly sixty-nine per cent more. Nothing in the example depends on superior selection or on a lucky asset; it depends only on how many times each rupee was multiplied. The illustration deliberately omits inflation and tax, and both would compound against the saver in exactly the way returns compound for the saver. Stripped to its essentials, real growth in purchasing power is:
+
+$$ V_T^{\text{real}} = V_0 \left( \frac{1 + r}{1 + i} \right)^T $$
+
+At ten per cent nominal and five per cent inflation, the annual real factor is about 1.0476, and over forty years one rupee becomes about ₹6.43 in purchasing power, against ₹45.26 in nominal terms. The arithmetic of compounding is the same in both cases; only the rate being compounded changed. Costs and taxes act as a further reduction in that rate, which is why the order of the deductions matters as much as the size of any single one.
+
+## Reading a compounding claim honestly
+
+Four questions will usually separate the honest use of this arithmetic from the persuasive one.
+
+1. **What rate is being compounded, and who established it?** A historical rate, a contractual rate and an assumed rate are different things, and the first article in this series set out why blending them is the source of most bad decisions.
+2. **Is the income reinvested, or spent?** If it is spent, the price change alone is being compounded, and any figure that assumes full reinvestment is overstated for that investor.
+3. **What has been omitted below the line?** Costs, tax and inflation all compound. A long-horizon projection that shows none of them is not optimistic; it is incomplete.
+4. **What happens if the horizon is interrupted?** A plan that works only if nothing is withdrawn and no decade is poor is a plan with two unstated assumptions.
+
+## Open questions
+
+- If the final decades produce most of the terminal wealth, how should a plan be structured around the possibility that those decades arrive as a poor sequence of returns rather than a good one?
+- How much of the practical benefit of compounding is surrendered to costs and taxes charged on the interim balance, and does that cost justify the attempt to earn a higher rate?
+- Can a saver ever distinguish genuine compounding from the good fortune of a favourable starting window, or is the distinction only visible after the fact?
+- What is the honest way to present a multi-decade projection when the rate, the reinvestment and the sequence are all uncertain, without either flattering the reader or paralysing them?

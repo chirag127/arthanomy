@@ -19,7 +19,11 @@ interface Props {
 }
 
 const { sources, heading = 'Sources' } = Astro.props;
-if (sources.length === 0) throw new Error('SourceList rendered with no sources');
+
+/* An article may legitimately cite nothing when it is derived from first
+   principles rather than from external facts. That is stated plainly instead
+   of failing the build or inventing a citation. */
+const uncited = sources.length === 0;
 
 const all = await getCollection('sources');
 const byId = new Map(all.map((entry) => [entry.id, entry.data]));
@@ -42,10 +46,20 @@ const resolved = sources.map((ref) => {
 
 <section class="not-prose" aria-labelledby="sources-heading">
   <h2 id="sources-heading" class="font-serif text-xl font-semibold">{heading}</h2>
-  <p class="mt-1 text-sm text-[var(--color-ink-muted)]">
-    Every claim in this article that depends on an external fact is traced to a source below. Sources are
-    classified by quality; secondary sources never carry a load-bearing claim on their own.
-  </p>
+  {
+    uncited ? (
+      <p class="callout callout-note mt-3 text-sm">
+        This article is derived entirely from mathematics or structure rather than from external data, so it cites
+        no source. Every figure in it is a labelled illustrative calculation. If an external claim is added to this
+        page it must carry a citation from the source registry.
+      </p>
+    ) : (
+      <p class="mt-1 text-sm text-[var(--color-ink-muted)]">
+        Every claim in this article that depends on an external fact is traced to a source below. Sources are
+        classified by quality; secondary sources never carry a load-bearing claim on their own.
+      </p>
+    )
+  }
   <ol class="mt-4 space-y-3">
     {
       resolved.map(({ ref, source }, index) => (

@@ -60,14 +60,14 @@
     "note": "Landing page. Individual master directions and circulars are cited by title in articles and must be re-verified against the RBI website at each review because RBI periodically consolidates master directions."
   },
   {
-    "id": "rbi-ombudsman-2021",
-    "title": "Reserve Bank - Integrated Ombudsman Scheme, 2021 (as amended 05-Aug-2022)",
+    "id": "rbi-ombudsman-2026",
+    "title": "Reserve Bank - Integrated Ombudsman Scheme, 2026 (in force 01-Jul-2026; replaces RB-IOS, 2021)",
     "publisher": "Reserve Bank of India",
     "tier": "primary-official",
-    "url": "https://rbidocs.rbi.org.in/rdocs/content/pdfs/RBIOS2021_amendments05082022.pdf",
+    "url": "https://www.rbi.org.in/commonperson/english/scripts/FAQs.aspx?Id=3407",
     "accessedAt": "2026-10-16",
-    "supports": "The single-window RBI grievance-redressal framework: which regulated entities it covers (banks, NBFCs, and other system participants), the requirement to raise the matter with the entity first, and escalation to the RBI Ombudsman. The RBI Complaints page (rbi.org.in/Scripts/Complaints.aspx) links this scheme and the complaint portal at cms.rbi.org.in.",
-    "note": "Verified 16-Oct-2026 from the RBI Complaints page, which links this scheme PDF and the cms.rbi.org.in complaint portal directly.",
+    "supports": "The current RBI grievance-redressal framework. Coverage (banks including co-operative banks with deposit size of Rs 50 crore and above, certain NBFCs with asset size of Rs 100 crore and above or accepting deposits, non-bank prepaid-instrument issuers, credit information companies) and the major exclusions (housing finance companies, core investment companies, etc.); the requirement to approach the regulated entity first; the 30-day wait, or the higher period set by RBI, NPCI or card-network guidelines; the 90-day window to escalate measured from that deadline or from the last communication; filing through cms.rbi.org.in or the CRPC; no fee; no cap on the disputed amount, with compensation up to Rs 30 lakh for consequential loss and up to Rs 3 lakh for time, expenses and harassment; and the 30-day appeal window.",
+    "note": "Replaces the 2021 scheme, which continues to govern complaints received before 01-Jul-2026 and appeals/awards arising under it. The scheme text is at rbidocs.rbi.org.in (SCHEME16012026_A.pdf); the RBI Complaints page still linked the 2021 PDF on 16-Oct-2026, so this FAQ page is the operative citation.",
     "topic": [
       "financial-system",
       "fraud-risk",

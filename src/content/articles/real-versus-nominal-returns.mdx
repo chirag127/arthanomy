@@ -1,0 +1,176 @@
+---
+title: 'Real Versus Nominal Returns: The Inflation Subtraction'
+description: 'A nominal return counts rupees; a real return counts purchasing power. This article derives the exact relationship between the two, shows where the familiar subtraction breaks down, and gives the worked arithmetic for a twenty-year hold.'
+shortTitle: 'Real Versus Nominal Returns'
+category: financial-mathematics
+series: financial-mathematics
+seriesOrder: 3
+topics: ['real return', 'inflation', 'purchasing power', 'Fisher equation']
+tags: ['financial-mathematics', 'arithmetic', 'inflation']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'Nominal return measures the change in the number of rupees; real return measures the change in what those rupees buy.'
+  - 'The exact relationship is multiplicative: one plus the real return equals one plus the nominal return divided by one plus inflation.'
+  - 'Subtracting inflation is an approximation whose error grows with the inflation rate and compounds over long holding periods; it flatters the investor.'
+  - 'The honest sequence is nominal, then costs, then tax, then inflation — and the inflation step is the one that is never deducted from an account.'
+  - 'A single nominal return maps to many real returns, because inflation differs by index and by household; the deflator you choose is part of the result.'
+relatedCalculators:
+  - { id: cagr, label: 'CAGR Calculator' }
+  - { id: bond-price-yield, label: 'Bond Price and Yield' }
+  - { id: monte-carlo, label: 'Monte Carlo Simulator' }
+relatedArticles:
+  - cagr-versus-xirr
+  - compounding-discrete-and-continuous
+  - deflating-returns-with-cpi
+  - present-and-future-value-of-annuities
+glossaryTerms: [fisher-equation, compounding, discount-factor, effective-annual-rate, rule-of-72]
+sources:
+  - { id: mospi-home, supports: 'Producer of the consumer and wholesale price indices that serve as the national deflators in the real-return calculation' }
+  - { id: markowitz-1952, supports: 'The mean-variance framework in which returns are the input, and which inherits whatever units those returns are stated in' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+faqs:
+  - question: 'Is real return just nominal minus inflation?'
+    answer: 'No. The exact figure is one plus nominal, divided by one plus inflation, minus one. Subtraction is a shorthand that overstates the real return, and the overstatement compounds over long periods.'
+  - question: 'Which inflation index should I use to deflate a return?'
+    answer: 'Use the index that best matches what the money will be spent on. The consumer price index is the usual benchmark for household purchasing power; wholesale prices track a different basket and will give a different answer, so the choice must be stated.'
+  - question: 'If my return equals the inflation rate, have I broken even?'
+    answer: 'In purchasing power, yes — the real return is exactly zero, and the money grows only as fast as the prices around it. Before tax and costs you have preserved the power of the money, which is a real outcome even though the nominal figure looks healthy.'
+  - question: 'Why does the difference between the exact and approximate figure matter?'
+    answer: 'Because it compounds. At a nominal 8% and 4.5% inflation the shortcut overstates the annual real return by about 0.15 percentage points, which is roughly a 3% overstatement of accumulated purchasing power across twenty years.'
+warnings:
+  - 'Every rate used in the examples is an illustrative construction chosen to show the arithmetic; none is an observed return, an official inflation figure or a forecast.'
+openQuestions:
+  - 'Which deflator best represents the purchasing power of a long-horizon Indian saver, given that household baskets differ substantially from the national average?'
+  - 'How much of the gap between indexed and nominal instruments is a genuine risk premium rather than a mispriced inflation expectation?'
+---
+
+A fixed deposit advertises 8%. A gold holding is said to have "beaten inflation". A portfolio is described as "up a lot over a decade". Each of these is a statement about the number of rupees involved, and none of them is a statement about what those rupees will buy. The distance between the two is inflation, and the arithmetic that bridges them is small enough to hold in the head — once the subtraction habit is unlearned.
+
+## Explain simply
+
+A nominal return tells you how much the money grew. A real return tells you how much the *purchasing power* grew, after allowing for the fact that prices rose too. If your investment grows 8% and prices rise 4.5%, you have not gained 3.5% in buying power; you have gained about 3.35%, because the price rise applies to an already-grown amount. The correct arithmetic divides rather than subtracts. The gap between the two methods looks trivial for one year and grows quietly over twenty, always in the investor's favour, which is why the subtraction version survives.
+
+## Two rulers for the same gain
+
+Suppose an investment of ₹1,00,000 grows to ₹1,08,000 over a year, a nominal return of 8%. In the same year, the price level of a representative basket of goods rises 4.5%. Two things are now true:
+
+- The investor holds 8% more rupees.
+- Those rupees buy less each than they did a year earlier.
+
+To describe the second, the ending value must be expressed in start-of-year prices — divided by the price level that now applies. The ratio of the money growth to the price growth gives the purchasing-power growth. This is not an adjustment or a fudge factor; it is a change of units, from a nominal unit to a real one, exactly as converting a distance from kilometres to miles.
+
+## The exact relationship
+
+Let the nominal rate be $r$ and the inflation rate be $i$. The Fisher relationship states the exact connection between the two and the real rate:
+
+$$ 1 + r_{\text{real}} = \frac{1 + r_{\text{nominal}}}{1 + i} $$
+
+which rearranges to the working formula:
+
+$$ r_{\text{real}} = \frac{1 + r_{\text{nominal}}}{1 + i} - 1 $$
+
+For a nominal 8% and inflation of 4.5%:
+
+$$ r_{\text{real}} = \frac{1.08}{1.045} - 1 \approx 3.35\% $$
+
+The popular shortcut gives 3.5%. The difference of roughly 0.15 percentage points is the error term, and it has a tidy form. Since
+
+$$ r_{\text{real}} = \frac{r_{\text{nominal}} - i}{1 + i} $$
+
+subtracting the inflation rate from the nominal rate overstates the truth by a factor of $1 + i$. At low inflation the factor is close to one, which is precisely why the shortcut is taught and why it is dangerous in high-inflation conditions — the same approximation degrades exactly when the answer matters most.
+
+## Worked example: twenty years of purchasing power
+
+This is an illustrative construction, not observed data. An investment compounds at a nominal 8% a year for twenty years, while prices rise 4.5% a year.
+
+- Nominal wealth factor: the money multiplies by about 4.7 over the twenty years.
+- Price level factor: prices multiply by about 2.41 over the same period.
+- Real wealth factor: the ratio of the two.
+
+$$ \frac{1.08^{20}}{1.045^{20}} \approx 1.93 $$
+
+The purchasing power of the money roughly doubles. The shortcut path would have used a real rate of 3.5% and produced a factor of about 1.99 — an accumulated purchasing power roughly 3% higher than the honest answer of 1.93. A 3% error on a twenty-year horizon is small in absolute terms and wrong in a specific direction: it always says the saver is doing slightly better than they are.
+
+The same arithmetic run backwards is useful. At 4.5% inflation, a rupee held in cash for twenty years buys about 41 paise of what it buys today, and prices double in roughly sixteen years — which is the rule of 72 in action, with 72 divided by 4.5 giving 16. Cash is not the absence of a position; it is a position with a guaranteed negative real return.
+
+## Where the measure misleads
+
+Three traps are worth naming, because each one survives careful arithmetic.
+
+**One nominal return, many real returns.** The same nominal 12% is a real 7.7% if inflation is 4%, a real 5.7% at 6%, and a real 3.7% at 8%. The asset did exactly the same thing in all three cases. The real answer changed entirely because of the deflator. Any statement of a real return is therefore incomplete without the inflation assumption printed next to it.
+
+| Nominal return (illustrative) | Inflation 4% | Inflation 6% | Inflation 8% |
+| --- | --- | --- | --- |
+| 8% | 3.85% | 1.89% | 0.00% |
+| 12% | 7.69% | 5.66% | 3.70% |
+
+Read the top-right cell: a nominal 8% against 8% inflation is a real return of exactly zero. The account grew, the statement looks positive, and the owner is running to stand still. Nothing in the nominal figure reveals this.
+
+**Deflating a figure that was already real.** An instrument whose payout is itself indexed to prices — an inflation-linked bond, for instance — already carries a real coupon. Subtracting headline inflation from that coupon to obtain "the real return" double-counts the adjustment and produces a nonsense number. Before deflating anything, establish whether the figure is nominal or real. This is a lane error: nominal money growth, contractual nominal yield and real yield are different quantities, and only one of them needs the deflator.
+
+**Annualising a real return from one year.** Real returns computed over a single year are dominated by the volatility of inflation, not by anything the asset did. A positive number in one year says almost nothing about whether the asset will preserve purchasing power over a decade. Real returns only become a meaningful signal across periods long enough for price movements to average out and for compounding to dominate.
+
+## The order of operations
+
+A nominal return is not yet an investor's return, and inflation is only one of the deductions. The honest sequence is:
+
+**nominal → after costs → after tax → after inflation**
+
+Each arrow removes something certain. Costs are contractual and known in advance. Tax, where it applies, is levied on nominal amounts rather than on inflation-adjusted ones — a point the taxation series takes up with the dated rules — which is one reason two investors with the same gross return can have different real outcomes. Inflation is the only deduction that is never invoiced: nobody sends a statement for it, and it is the largest of the three over long periods.
+
+Two consequences follow. First, comparing a post-tax nominal return with an inflation rate is a category error; both must be in the same units. Second, the phrase "beats inflation" should always be completed: after costs? after tax? on the CPI, or on the basket the money will actually be spent on?
+
+## Deflators are not interchangeable
+
+India's statistics ministry publishes both a consumer price index, built from a large household basket of goods and services, and a wholesale price index, built from prices at an earlier stage of the supply chain. They measure different things and they do not move together.
+
+For an individual investor, the consumer index is the natural benchmark, because a person's consumption is what purchasing power is for. A wholesale index answers a question about producer prices, which is useful for other purposes and is not the cost of living. Reporting a real return deflated by one and comparing it with a figure deflated by the other is as misleading as comparing a temperature in Celsius with one in Fahrenheit and calling the gap a change in the weather.
+
+## Your basket is not the national basket
+
+A price index is an average over a population. The average household's basket includes items that an individual household does not buy, with weights that no household individually experiences. Rent, education, healthcare and transport are large in the budgets of many urban households and have their own price dynamics; a household carrying heavy weights in those categories can experience an inflation rate above the national average for years at a time.
+
+The response is not to abandon the published index. It is the only comparable and auditable benchmark, and any alternative is a private construction. The response is to overlay it: track the prices of the two or three largest items in your own budget over years rather than months, and treat the national figure as the floor of a plausible range rather than the truth. A real-return calculation built on a national average while the household's costs are rising faster is arithmetically correct and personally wrong.
+
+## The four lanes, restated in real terms
+
+Real return is not a single quantity either, and the same distinction that applies to nominal returns applies to real ones. A **realised** real return is computed from what actually happened to prices over the period. A **contractual** real return is written into the terms of an instrument, as with a payout that is explicitly indexed to a price index. A **model-estimated** real return is an assumption about future inflation dressed in arithmetic. A **speculative** real return is a hope with no figure attached at all.
+
+The error to avoid is deflating a model estimate with realised inflation and then presenting the result as though it were historical fact. Deflating is a legitimate operation on any nominal figure, but the label must survive it: a real return built on an assumed inflation path is still an estimate, and it should be shown with the inflation assumption visible next to it.
+
+## When inflation is negative
+
+The relationship runs in both directions. When the general price level falls, a nominal holding does more than its stated rate in purchasing-power terms — so a rupee kept as cash, earning nothing nominally, gains real value. A 0% nominal return becomes a positive real return, and the same arithmetic that penalises cash when prices rise rewards it when they fall. Nothing about the asset changed; the measuring rod did.
+
+This has a counter-intuitive consequence for anyone who equates falling prices with good news. Deflation also makes fixed obligations heavier in real terms, so a borrower's real burden rises even as the price of goods falls, and a wage that is sticky in nominal terms can be cut in real terms without any negotiation. That is why policy frameworks treat sustained deflation as a risk to be avoided rather than a gift to savers.
+
+## Restating a claim in real terms
+
+A short procedure that can be applied to almost any return claim:
+
+1. **Identify what is being measured.** Realised, contractual, estimated or speculative. If it cannot be placed in one lane, stop there.
+2. **Identify the deflator and say so.** A consumer price index is the usual benchmark for household purchasing power; a wholesale index answers a different question and will give a different answer.
+3. **Divide, do not subtract.** The exact relationship is the ratio of the two growth factors.
+4. **State the period and avoid annualising from a fraction of a year**, because the inflation rate for a short window is largely noise.
+5. **Layer costs and tax before inflation**, in that order, so that each deduction is applied to the amount it is actually levied on.
+6. **Overlay the personal basket** if a decision depends on the answer.
+
+## What this does not tell you
+
+A real return is still a backward-looking description of one path. It carries no information about risk or dispersion, and a modest real return earned smoothly is not the same experience as a larger average real return punctuated by deep losses. It is also sensitive to the window chosen: a decade that begins with high inflation and ends with low inflation will report a different real return from a decade in the opposite order, for the same nominal performance. And because tax is assessed on nominal amounts, the same real return can correspond to different post-tax outcomes depending on whether the gain arrived as interest, dividend or capital appreciation — the tax lane must be layered on top, not folded into the arithmetic here.
+
+## Open questions
+
+- Which deflator best represents a long-horizon Indian saver's purchasing power, given how far household baskets diverge from the national average?
+- How much of the yield gap between inflation-linked instruments and nominal ones is a genuine real risk premium rather than a mispriced inflation expectation?
+- For a household whose largest costs rise faster than the index, how should planning inputs be stated so that a real-return assumption is not quietly optimistic?
+
+Once the deflator is established, the real return is the only figure that answers the question the investor actually asked: not how many rupees the account gained, but what those rupees will buy.

@@ -1,0 +1,163 @@
+---
+title: 'Bond Pricing from Cash Flows to Present Value'
+description: 'How a bond price is built by discounting each coupon and the redemption amount at a chosen yield, why annual and semi-annual conventions give different answers, and how to price a simple bond by hand.'
+shortTitle: 'Bond Pricing from Cash Flows'
+category: debt
+series: debt-encyclopedia
+seriesOrder: 16
+topics: ['bond pricing', 'present value', 'discounting', 'yield to maturity']
+tags: ['debt', 'fixed-income', 'financial-mathematics']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'A bond is nothing but a dated list of cash flows, and its price is the sum of those cash flows discounted at a chosen yield.'
+  - 'The discount rate is the yield the buyer requires; changing it changes the price, and the two always move in opposite directions.'
+  - 'A coupon above the required yield produces a premium price, a coupon below it produces a discount price, and equality produces par.'
+  - 'Annual and semi-annual conventions discount the same cash flows differently, so two bonds with identical coupons can price differently on convention alone.'
+  - 'A bond price is an observable market fact at a point in time; a projected future price is a model output and belongs in a different lane.'
+faqs:
+  - question: 'What actually determines a bond price?'
+    answer: 'Two things: the contractual cash flows, which are fixed by the issuer, and the yield the market requires for those cash flows. The cash flows are known; the required yield is the market judgement, and it is the only moving part.'
+  - question: 'Why does a higher yield mean a lower price?'
+    answer: 'Because the same future rupees are discounted more heavily. If the buyer demands a higher return, the amount the buyer is willing to pay today for the same promised cash flows falls.'
+  - question: 'Does the coupon frequency change the price?'
+    answer: 'Yes, slightly. Paying the same annual coupon in two half-yearly instalments changes the timing of the cash flows, and because money received earlier is worth more, the price shifts to reflect that. The difference is small but real.'
+  - question: 'What is the difference between pricing a bond and valuing it?'
+    answer: 'Pricing uses one discount rate, the yield to maturity, applied to every cash flow. Valuing allows a different rate for each maturity along the curve. Pricing is the market convention; a full valuation uses the whole curve.'
+  - question: 'Can I price a bond without a spreadsheet?'
+    answer: 'For a short-dated bond with few coupons, yes. A three-year annual-pay bond needs three discount factors, which can be computed by hand. As maturity and coupon frequency grow, the arithmetic is better left to the calculator, but the method is unchanged.'
+relatedCalculators:
+  - { id: bond-price-yield, label: 'Bond Price and Yield' }
+  - { id: modified-duration, label: 'Duration Calculator' }
+  - { id: convexity, label: 'Convexity Calculator' }
+relatedArticles:
+  - dated-gsecs-and-the-coupon-myth
+  - treasury-bills-as-the-risk-free-anchor
+  - bank-fixed-deposit-anatomy
+  - state-development-loans-yield-question
+glossaryTerms: [coupon-rate, yield-to-maturity, accrued-interest, macaulay-duration]
+sources:
+  - { id: rbi-home, supports: 'Issuance, coupon and settlement conventions for government securities within which the pricing arithmetic is applied' }
+  - { id: rbi-dbie, supports: 'Published sovereign yield series used as the benchmark curve against which rupee bond cash flows are discounted' }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'The prices computed here are illustrative constructions from assumed yields; they are not quotations for any security and no market price is asserted.'
+applicablePeriods: ['FY 2025-26']
+openQuestions:
+  - 'Which day-count convention governs accrued interest on Indian dated securities in secondary-market settlement, and how does it interact with the discounting convention?'
+  - 'For a full curve-based valuation rather than a single-yield price, how large is the pricing error introduced by using one yield to maturity for a long-dated bond?'
+  - 'How much of the observed dispersion in prices for similar bonds is convention, liquidity and tax rather than credit?'
+---
+
+A bond frightens people because it is quoted by two numbers that seem to point in opposite directions. One is a coupon, which sounds like income. The other is a price, which moves around, sometimes above and sometimes below the amount printed on the certificate. The two are connected by a single idea: a bond is a list of future cash flows, and a price is what those cash flows are worth today. Pricing a bond is therefore not a valuation of a company or a judgement about an economy. It is discounting, applied honestly and repeatedly. This article builds the method from one cash flow upward and shows how to price a simple bond by hand.
+
+## A bond is a dated list of cash flows
+
+Strip away the language and a plain vanilla bond is unremarkable. It promises a fixed periodic payment, called the coupon, expressed as a percentage of face value, on stated dates until maturity. It also promises to repay the face value on the maturity date. That is the entire contract. Everything else about bonds — the yield, the price, the duration, the spread — is a way of summarising what the market thinks those promised cash flows are worth.
+
+Two features of that list drive everything that follows. The coupons are fixed in rupee terms by the coupon rate applied to face value, and they are contractual in the sense that the issuer is obliged to pay them. The face value is fixed as well. What is not fixed is the price the market will pay today for that stream, because that depends on the return a buyer requires.
+
+## Explain simply
+
+Imagine someone promises to give you ₹60 next year, ₹60 the year after, and ₹1,060 in three years. What is that promise worth right now? Less than ₹1,180, because money you have to wait for is worth less than money in hand. How much less depends on the return you insist on. If you insist on 8 per cent a year, each payment is divided down by the effect of 8 per cent compounded over the years you wait. Add up those reduced amounts and you have the price. Change the return you insist on, and the price changes in the opposite direction.
+
+## Discounting one future cash flow
+
+The building block is the present value of a single payment. A cash flow $CF$ arriving in $t$ years, discounted at an annual rate $y$, is worth:
+
+$$ PV = \frac{CF}{(1 + y)^{t}} $$
+
+The factor $1/(1+y)^t$ is the discount factor for that date. It is always less than one for positive $y$, and it falls as either the rate or the time increases. That single sentence explains most of bond mathematics: a longer wait and a higher required return both reduce what a future rupee is worth today.
+
+## The general pricing formula
+
+A coupon bond is a series of single cash flows, so its price is the sum of their present values. With face value $F$, annual coupon $C$, $n$ years to maturity and a required yield $y$:
+
+$$ P = \sum_{t=1}^{n} \frac{C}{(1 + y)^{t}} + \frac{F}{(1 + y)^{n}} $$
+
+The coupon makes the bond a package of a small annuity and a single redemption payment. Because the numerator of every coupon term is identical while the discount factors differ, the price is a weighted sum in which the nearest coupons are discounted least and the redemption payment is discounted most. If the required yield equals the coupon rate divided by the frequency of payment and applied consistently, every term telescopes and the price lands exactly on face value. Any deviation in the yield pushes the price away from face value in the direction the reader should now expect.
+
+## Worked example: pricing a three-year bond by hand
+
+Take an illustrative three-year bond with a face value of ₹1,000 and a 6 per cent annual coupon, and suppose a buyer requires 8 per cent. This is a constructed example to show the arithmetic; it is not a quotation.
+
+| Year | Cash flow | Discount factor at 8 per cent | Present value |
+| --- | --- | --- | --- |
+| 1 | ₹60 | 0.925926 | ₹55.56 |
+| 2 | ₹60 | 0.857339 | ₹51.44 |
+| 3 | ₹1,060 | 0.793832 | ₹841.46 |
+| Total | | | ₹948.46 |
+
+The bond pays a 6 per cent coupon but prices at ₹948.46, a discount to face value, because the buyer requires 8 per cent. The ₹51.54 gap between face value and price is exactly the compensation that makes the coupons and the redemption add up to an 8 per cent return on the price actually paid. That is the whole of the relationship: the coupon fixes the cash, the yield fixes the price.
+
+## Why price and yield move in opposite directions
+
+Because the yield is the denominator of every discount factor, an increase in the yield reduces every present value and therefore reduces the price. This is not a market convention that could have been chosen differently; it is arithmetic.
+
+The sensitivity of the price to the yield is not uniform across bonds. A bond with distant cash flows has more of its value in heavily discounted terms, so a change in the yield moves its price more. Macaulay duration expresses that exposure as a weighted-average time to the cash flows, and modified duration converts it into an approximate percentage price change for a one-percentage-point move in yield. For a short annual-pay bond the reader can verify the direction by hand: raising the required yield from 7 to 8 per cent in the table above reduces the price, and lowering it raises the price.
+
+## Premium, par and discount
+
+The three cases follow directly from the arithmetic.
+
+- **Par.** Required yield equals the coupon rate on the applicable compounding basis. Price equals face value.
+- **Premium.** Required yield is below the coupon rate. The fixed coupon is generous relative to the market, so buyers bid the price above face value, and the excess is returned through the fact that only face value is repaid at maturity.
+- **Discount.** Required yield is above the coupon rate. The coupon is thin relative to the market, so the price falls below face value, and the gain to redemption is part of the buyer's return.
+
+A single bond can move across all three states over its life as market yields change, even though its coupon never changes.
+
+## Semi-annual conventions change the answer
+
+Indian dated government securities pay their coupon periodically, typically semi-annually, and the market quotes the yield on a convention that matches that frequency. Each coupon is half the annual rate applied to face value, and the quoted annual yield is divided by two for each six-month period. For a bond with $n$ years to maturity, the price becomes:
+
+$$ P = \sum_{t=1}^{2n} \frac{C/2}{(1 + y/2)^{t}} + \frac{F}{(1 + y/2)^{2n}} $$
+
+Pricing the same illustrative ₹1,000, 6 per cent, three-year bond with the coupon split into two ₹30 payments a year and an 8 per cent nominal yield divided into 4 per cent per period gives:
+
+$$ P = 30 \times \frac{1 - (1.04)^{-6}}{0.04} + \frac{1000}{(1.04)^{6}} = ₹947.58 $$
+
+The annual version of the same bond priced at ₹948.46. The nearly ₹0.88 difference is the convention at work, not a change in the promise. It arises because semi-annual coupons arrive earlier, and earlier money is worth more, which slightly lowers the price needed to deliver the same annual yield. The comparison also shows why a nominal semi-annual yield of 8 per cent is not the same as an effective annual 8 per cent: compounding the half-yearly rate gives an effective annual rate of 8.16 per cent.
+
+## Two bonds, identical coupons, different prices
+
+Once the formula is understood, the puzzle of identical-coupon bonds trading at different prices resolves into a short list of explainable differences.
+
+- **Different required yields.** Two bonds with the same coupon can face different credit, liquidity or tax circumstances, so the market demands different returns for them and prices them differently.
+- **Different maturities.** The same yield applied to different cash-flow dates produces different prices, because the discount factor depends on time.
+- **Different coupon frequencies.** The convention changes the timing of the cash flows, as the semi-annual example shows.
+- **Different settlement dates.** A bond bought between coupon dates includes accrued interest, so the amount settled exceeds the clean price and two otherwise identical bonds can appear to trade at different levels.
+- **Different conventions quoted.** One price may be clean and the other dirty, which is a labelling difference rather than a valuation difference.
+
+## Clean price, dirty price and accrued interest
+
+Coupons are paid on fixed dates, but bonds trade every day between them. The seller has earned a slice of the next coupon simply by holding the bond, and the buyer pays for that slice at settlement. The interest accrued since the last coupon date is therefore added to the quoted price.
+
+The result is that every trade has two prices. The clean price is the quoted price of the security itself. The dirty price is the clean price plus accrued interest, and it is the amount actually paid. Day-count conventions for measuring the accrued slice differ across instruments and markets, so the accrued figure should be taken from the settlement statement rather than assumed. A reader comparing two bonds on clean price alone is comparing figures that carry different amounts of already-earned interest.
+
+## Where pricing ends and forecasting begins
+
+Bond pricing is a deterministic calculation from inputs. The cash flows come from the contract, and the yield comes from the market. Any price produced by that arithmetic from a chosen yield is a statement about the arithmetic, not a prediction.
+
+This is the boundary that keeps the return lanes separate. A price observed in the market at a moment in time is a fact of that moment. A yield is a contractual summary of what the buyer would earn if holding to maturity with coupons reinvested. A projected future price, produced by assuming future yields, is a model output. And a hoped-for capital gain from a fall in yields is speculation. The formula prices a bond under an assumption about the yield; it says nothing about what the yield will be next year, and no amount of arithmetic will change that.
+
+## What this does not tell you
+
+- **Which yield to use.** The formula prices a bond given a yield. Choosing that yield is a market question involving the curve, credit, liquidity and tax, not a calculation.
+- **Credit risk.** The arithmetic treats the promised cash flows as certain. A corporate bond's cash flows are not certain, so a full analysis adds a credit spread and a loss expectation.
+- **The curve.** Using one yield to maturity for every cash flow is the market convention, but a full valuation discounts each cash flow at the rate for its own maturity along the spot curve.
+- **Tax.** Taxation of coupon income and of any gain or loss on sale is a dated matter handled by the tax reference on this site.
+
+## Open questions
+
+- Which day-count convention is actually used to settle accrued interest on Indian dated securities, and how does it interact with the discounting convention?
+- How large is the pricing error from using a single yield to maturity rather than the whole spot curve for a long-dated bond?
+- Of the observed dispersion in prices across similar securities, how much is credit, how much is liquidity, and how much is convention?
+
+Pricing is the least mysterious part of fixed income once it is reduced to what it is: a set of discount factors applied to a set of promised dates. Everything harder in this series — duration, convexity, spread, default and recovery — is built on that one relationship. A bond is a list of dates and amounts, and its price is what those dates and amounts are worth today at the return the buyer demands.

@@ -1,0 +1,192 @@
+---
+title: 'Large-Cap Funds: Role, Benchmark and Expectations'
+description: 'Large-cap funds are the market''s core holding, and the category rule makes them comparable in a way few others are. What the label fixes, what the benchmark decides, how tracking difference and cost interact, and what these funds can reasonably be expected to deliver.'
+shortTitle: 'Large-Cap Funds: Role and Benchmark'
+category: mutual-funds
+series: mutual-fund-atlas
+seriesOrder: 4
+topics: ['large-cap funds', 'index construction', 'benchmarks', 'tracking error']
+tags: ['mutual-funds', 'equity', 'benchmarks', 'costs']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 12
+keyTakeaways:
+  - 'The category fixes a segment, not a strategy: a large-cap fund must hold a minimum share of assets in the largest companies, but which ones it holds, and in what weight, is the manager''s decision.'
+  - 'Large caps are treated as the market''s core because they are the deepest, most liquid and most heavily researched part of the market — not because large-cap equity is safe equity.'
+  - 'The benchmark is the hurdle, and it is a choice: a narrow index and a broad index produce different verdicts on the same fund if the periods or compositions differ.'
+  - 'Tracking difference is the return gap over a period; tracking error is the volatility of that gap. They answer different questions and a fund can look good on one and poor on the other.'
+  - 'Costs are the part of the outcome that is certain. A one percentage point annual cost compounds into a material share of the terminal corpus over a long holding period.'
+  - 'A large-cap fund should be expected to deliver roughly the large-cap index return less its costs, plus or minus whatever active risk it takes — the category does not supply excess return by definition.'
+faqs:
+  - question: 'Are large-cap funds the safest equity funds?'
+    answer: 'They are the least volatile and most diversified part of the equity market, but the category imposes no protection against loss. The rule constrains which companies the fund holds; it says nothing about what the market will do to their prices.'
+  - question: 'Why do two large-cap funds with the same benchmark behave differently?'
+    answer: 'Because they hold different securities in different weights, carry different cash levels, trade at different frequencies and charge different fees. Inside the same mandate, those choices produce dispersion — that dispersion is the active risk the investor has accepted.'
+  - question: 'Is a large-cap index fund better than an active large-cap fund?'
+    answer: 'That is a question about the hurdle, not about philosophy. A cheap index fund sets a high bar: an active fund must recover its higher cost through selection before it draws level. Whether any particular active fund clears that bar is an empirical question, and the scheme NAV data allow it to be computed rather than assumed.'
+  - question: 'What does the benchmark tell me?'
+    answer: 'It tells you what the fund is being measured against, and therefore what the manager is implicitly trying to beat. Because it is disclosed, it can also be compared with the fund''s category: a benchmark that is narrower or broader than the category segment makes outperformance easier or harder to interpret.'
+  - question: 'Does the size of a large-cap fund matter?'
+    answer: 'Less than in small-cap categories, because the underlying stocks are liquid enough to absorb large trades with limited price impact. That capacity is a structural advantage, and it is also why the category competes directly with index funds and exchange-traded funds.'
+relatedCalculators:
+  - { id: expense-ratio-impact, label: 'Expense Ratio Impact' }
+  - { id: tracking-error, label: 'Tracking Difference Calculator' }
+  - { id: sip, label: 'SIP Calculator' }
+  - { id: post-tax-return, label: 'Post-Tax Return Calculator' }
+relatedArticles:
+  - how-sebi-categorises-mutual-funds
+  - multicap-funds-and-minimum-equity-rules
+  - flexicap-funds-and-manager-discretion
+  - large-and-midcap-funds-allocation-question
+  - midcap-funds-and-volatility-acceptance
+glossaryTerms: [nav, expense-ratio, total-expense-ratio, tracking-error, direct-plan, aum]
+sources:
+  - { id: sebi-mf-categorisation, supports: 'The large-cap category definition, the minimum portfolio holding that defines it, and the market-capitalisation segments the framework refers to' }
+  - { id: nse-indices-methodology, supports: 'Index-construction rules for the large-cap indices used as benchmarks: eligibility screens, free-float weighting and the rebalancing process' }
+  - { id: amfi-home, supports: 'The published market-capitalisation classification, category-level scheme data and the industry statistics used to compare funds within the category' }
+  - { id: sebi-mf-ter-disclosure, supports: 'The disclosed expense ratio, portfolio and turnover data against which a fund''s cost and index-tracking gap can be checked' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'No historical return, dispersion or expense figure for any scheme is stated here. Where a number is used it is an illustrative calculation of structure, not observed performance.'
+  - 'This article does not recommend a category, a scheme, an index or a plan type, and nothing in it is advice.'
+openQuestions:
+  - 'How much of the dispersion between large-cap funds is explained by cost and cash levels rather than by security selection, and how stable is that split over time?'
+  - 'As index products capture more of the large-cap segment, does the segment become more efficiently priced, weakening the case for active management, or less, because fewer managers do the research?'
+  - 'Should performance presentation be required to show a tracking difference against the benchmark alongside the point-to-point return, so that a single favourable period cannot carry the narrative?'
+  - 'Where a fund''s benchmark is materially narrower than the segment its category permits, does the benchmark choice make outperformance systematically easier to report?'
+---
+
+The large-cap category is the least complicated place in the mutual fund universe, and for that reason the most useful place to learn how funds are actually judged. The rule is simple, the benchmark is usually a well-known index, the cost is disclosed, and the comparison between an active fund and a cheap index product can be made with arithmetic rather than opinion. This article works through what the category fixes, what the index contains, what the benchmark decides, and what a large-cap fund should be expected to deliver.
+
+## What the category fixes
+
+The categorisation framework places large-cap funds in the equity group and defines them by segment: a large-cap fund must hold a minimum share of its net assets in the largest companies by market capitalisation — the segment the framework treats as large cap, and which the industry classification list defines for the market as a whole.
+
+Everything else is left to the manager. Within the floor, the fund may:
+
+- choose which of the largest companies to hold and which to omit;
+- hold them in weights that differ substantially from the index, including not holding some index constituents at all;
+- hold some cash, keeping the portfolio near the regulatory floor rather than fully invested;
+- trade the portfolio as often or as rarely as it thinks fit, subject to the turnover it reports.
+
+That is the whole mandate. It is a constraint on the segment, not on the strategy. The strategic choices above are what produce dispersion between funds with identical labels, and they are also the room in which a manager can add or destroy value relative to the index.
+
+## Why large caps are treated as the market's core
+
+The segment at the top of the market capitalisation list has a set of properties that follow directly from its size.
+
+- **Liquidity.** The largest companies trade in volumes that allow a fund to build and unwind positions without moving prices much. That is why a large-cap strategy can absorb large assets, and why it is the one segment where a low-cost index product is a realistic substitute for active management.
+- **Analyst coverage.** The most heavily covered part of the market. More information is public, more opinions exist, and the informational advantage available to any one manager is correspondingly smaller.
+- **Diversification across sectors.** The largest companies span the economy's major industries, so the segment is a broad exposure rather than a bet on one sector — although a free-float weighted index still concentrates where market value concentrates.
+- **Weight as a benchmark.** Because the segment is the bulk of the investable market by value, most equity portfolios are, whether they intend to be or not, measured against it.
+
+None of this makes large-cap equity safe: the properties describe the market's structure, not its direction. Nothing in the category definition prevents a large drawdown in the segment, and nothing in it repairs one. Diversity reduces the risk of any single company, not the risk of the asset class.
+
+## What is actually in a large-cap index
+
+A large-cap fund's benchmark is almost always an index of large-cap companies, so the index's construction rules determine the hurdle.
+
+The methodology of the major large-cap indices works along consistent lines. An eligible universe is formed from listed companies that satisfy screens on listing history, liquidity — typically measured through the price impact of trading — and free float, meaning the share of shares actually available to trade rather than held in a controlling stake. Constituents are then weighted so that larger and more freely traded companies carry more weight, and the composition is reviewed periodically, so the index is reconstituted rather than frozen.
+
+Three consequences matter to an investor reading a fund's performance.
+
+First, **the index is not a fixed list of companies.** Constituents enter and leave at reviews, which means a fund's benchmark has itself changed over any long period.
+
+Second, **weights are not equal.** A free-float weighted index is dominated by its largest constituents, so a fund benchmarked to it is implicitly taking concentration risk that the label "diversified" does not communicate.
+
+Third, **different large-cap indices are not interchangeable.** Indices differ in how many constituents they hold, where the segment boundary is drawn, whether caps are applied to single-stock or single-sector weights, and how frequently they rebalance. Two funds benchmarked to two different large-cap indices are being set different hurdles.
+
+## The benchmark question: which hurdle, and why it flatters or exposes
+
+The benchmark is the single most under-read line in a fund's documents, and it is a choice.
+
+A fund benchmarked to a narrow, concentrated index is measured against fewer names, and its manager has more freedom to differ from it — which increases the chance of a large outperformance and an equally large underperformance. A fund benchmarked to a broad index is measured against a wider set of companies, so the same decisions produce a smaller gap. Neither benchmark is dishonest, but the pair (category, benchmark) determines how much of the reported number is skill and how much is the yardstick.
+
+Two further points are structural.
+
+- **Total return matters.** An index can be published in a form that includes the dividends paid by its constituents, or a form that does not. A fund receives dividends. Comparing a fund's growth in net asset value against a price-only index mixes two different bases, and the direction of the error depends on which side of the comparison the dividends are on.
+- **The benchmark is disclosed in the scheme documents** alongside the asset allocation pattern, so the comparison can always be checked rather than inferred. Where a fund's benchmark has changed, the change is disclosed too — and a benchmark change dates the comparisons either side of it.
+
+## Tracking difference and tracking error: the two gaps
+
+Two measures are frequently used interchangeably and mean different things.
+
+**Tracking difference** is the simple gap between the fund's return and the benchmark's return over a period. It is a single number, it can be positive or negative, and for an index fund the expected value is roughly minus the expense ratio minus the drag from holding cash.
+
+**Tracking error** is the standard deviation of that gap — a measure of how volatile the difference is, not how large it is. A fund can track an index closely on average with a high tracking error, if the deviations offset each other, or with a low tracking error and a persistent shortfall.
+
+The distinction does real work:
+
+- For an **index fund or exchange-traded fund**, low tracking error means the replication is faithful, and the tracking difference tells you what it costs. Both belong in the assessment, because a fund can be faithful and expensive.
+- For an **active fund**, tracking error is the amount of benchmark-relative risk the manager is taking, and it is the denominator of the information ratio. A fund with very low tracking error that charges active fees is asking to be paid for taking almost no active risk — the question is what the fee is buying.
+
+## Cost: the part of the outcome that is certain
+
+Returns are unknown and costs are disclosed. The expense ratio — the recurring annual charge against the scheme's assets — is the quantity over which the investor has the most control, because it varies between schemes and between the direct and regular plans of the same scheme.
+
+Because it is charged on the corpus every year, its effect is multiplicative rather than additive. An illustrative calculation, not a projection: a corpus growing at 10 per cent a year gross for twenty years would multiply about 6.73 times; at a 9 per cent net return, after a one percentage point annual cost, it would multiply about 5.60 times. The cost has consumed roughly 16.7 per cent of the terminal corpus, from a charge that looks like a rounding difference in any single year's table.
+
+That is not an argument that fees are never worth paying. It is an argument about the hurdle. A cheaper index product sets the bar an active fund must clear, and the gap between the two expense ratios is the amount of gross active return the active fund must generate simply to draw level.
+
+## What these funds should be expected to deliver
+
+Set expectations from the structure rather than from a track record.
+
+A large-cap fund should be expected to deliver, approximately, the return of the large-cap index it is measured against, less its costs, plus or minus whatever active return its deviations produce. For a fund that holds the index closely, the costs dominate: the expected outcome is the index minus the expense ratio, which is why a low-cost index product is the natural comparator in this segment. For a fund that differs from the index, the active return arrives with active risk, and it can be negative.
+
+Three implications follow, and they are the expectations worth carrying:
+
+1. **The category supplies exposure, not outperformance.** Holding a large-cap fund does not tilt the odds in favour of beating the market; it delivers the market's largest segment.
+2. **Dispersion is the honest measure of active management.** The spread of outcomes between funds in the category is the visible trace of active risk. That spread can be computed from scheme-level NAV data, and it should be, rather than inferred from one fund's best period.
+3. **A shortfall against a cheap alternative is a decision, not bad luck.** Once costs are known, the comparison between an active large-cap fund and a low-cost index product is arithmetic, and the burden of proof sits with the higher-cost option.
+
+## Core and satellite: the role in an allocation
+
+In portfolio construction terms, the large-cap segment is the natural core of an equity allocation. It contains the market's most liquid, most diversified and most efficiently priced exposure, which makes it the segment where the argument for a low-cost, rules-based holding is strongest and where a manager's freedom is least likely to be rewarded by information advantage.
+
+That is an argument from structure, stated as an argument. It does not follow that active large-cap management cannot add value; it follows that the bar is set by the cheapest available way to obtain the exposure, and that the bar is high enough to be worth measuring rather than assuming.
+
+The satellites — mid-cap, small-cap, thematic and specialised mandates — are separate categories with separate rules and separate liquidity constraints, and the series treats them in turn. The one point that carries across is that the core is where the allocation decision lives, and cost is the most controllable variable inside it.
+
+## Explain simply
+
+A large-cap fund has to keep a large share of its money in the biggest companies on the market. That makes it the most diversified and most liquid kind of equity fund, and it makes it comparable to a cheap index fund holding the same segment. The benchmark tells you what the fund is measured against, and the gap between the fund's return and the benchmark has two parts: how big it is over a period, and how jumpy it is over time. Because the index return and the expense ratio are both visible, whether an active large-cap fund is worth its fee is arithmetic rather than opinion — and the arithmetic starts from cost.
+
+## Worked example: decomposing a return against the benchmark
+
+An illustrative calculation, entirely invented, showing how the pieces fit together. No scheme's returns are being described.
+
+Assume a large-cap index, measured on a total-return basis, returns 11.0 per cent over a year. Consider two funds in the same category.
+
+| Component | Active fund | Index fund |
+| --- | --- | --- |
+| Benchmark return | 11.0% | 11.0% |
+| Active return from selection and weights | +0.8% | 0.0% |
+| Cash drag from holding part of the portfolio uninvested | −0.2% | −0.05% |
+| Expense ratio | −1.2% | −0.2% |
+| Net return to the investor | 10.4% | 10.75% |
+| Tracking difference against the benchmark | −0.6% | −0.25% |
+
+Read the arithmetic rather than the outcome. The active fund generated 0.8 percentage points of gross value from its decisions — a real contribution — and still finished 0.35 percentage points behind the index fund, because it started 1.0 percentage point behind on cost and gave back part of its selection gain to cash drag. That is what a high bar looks like.
+
+Now change the active return from +0.8 per cent to +1.5 per cent, keeping everything else constant. The active fund returns 11.1 per cent and wins by 0.35 points. Nothing about the fund changed except the outcome of its decisions, which is precisely why the decision cannot be made from one year's number and why the cost gap has to be treated as the reliable input.
+
+## What this does not tell you
+
+This article contains no observed returns, no expense ratios and no dispersion statistics for any scheme, because those figures belong to the disclosures and should be read or computed from them directly. It does not establish that active large-cap management fails or succeeds; it establishes what the comparison is and what it costs to run it. The category-level distribution of outcomes can be built from scheme-level NAV data, and that computation — not a chart or a claim — is the evidence for any conclusion about the segment.
+
+Two matters are deliberately outside this piece: the tax treatment of the gains a large-cap fund distributes or accrues, which is governed by the Income-tax Act and covered separately on this site, and the choice between direct and regular plans, which is a question about the value of an intermediary's services against its cumulative cost. Nothing here is advice, no scheme or index is recommended, and no return is promised or implied.
+
+## Open questions
+
+- How much of the dispersion between large-cap funds is explained by cost and cash levels rather than by security selection, and how stable is that split over time?
+- As index products capture more of the large-cap segment, does the segment become more efficiently priced, weakening the case for active management, or less, because fewer managers do the research?
+- Should performance presentation be required to show a tracking difference against the benchmark alongside the point-to-point return, so that a single favourable period cannot carry the narrative?
+- Where a fund's benchmark is materially narrower than the segment its category permits, does the benchmark choice make outperformance systematically easier to report?
+- Does the availability of a cheap replica of the core change what a fair fee for an active core fund looks like?

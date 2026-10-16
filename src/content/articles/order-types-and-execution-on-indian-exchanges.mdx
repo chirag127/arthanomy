@@ -1,0 +1,160 @@
+---
+title: 'Order Types and Execution on Indian Exchanges'
+description: 'Market, limit and stop-loss instructions, validity and disclosed-quantity orders, price bands and the auctions that frame the session — and the situations in which each order type behaves badly.'
+shortTitle: 'Order Types and Execution'
+category: equity
+series: equity-mastery
+seriesOrder: 2
+topics: ['order types', 'execution', 'slippage', 'stop-loss']
+tags: ['equity', 'market-mechanics', 'trading', 'foundations']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'An order is an instruction with several independent attributes — price condition, validity, quantity displayed and time of activation — and conflating them is the usual source of surprises.'
+  - 'A market order buys certainty of execution and sells certainty of price; in a thin book the price you receive can be far from the last traded price.'
+  - 'A limit order buys certainty of price and sells certainty of execution; an unfilled limit is not a neutral outcome when the market has moved.'
+  - 'A stop-loss trigger is a trigger, not a fill: an individually triggered market order after a price gap executes at the next available price, which can be well below the trigger.'
+  - 'Price bands, auctions and the depth of the free float determine what an order can actually do, which is why the same instruction behaves differently across securities.'
+faqs:
+  - question: 'Is a market order always executed?'
+    answer: 'No. It is matched against the liquidity available at that moment, and any part that cannot be filled cannot rest in the book, so it is cancelled under the exchange''s order rules. In a security with a narrow price band or thin liquidity, a market order may fill only partially or not at all.'
+  - question: 'Does a stop-loss order guarantee my exit price?'
+    answer: 'No. The trigger activates the order; the fill depends on the prices available after activation. If the market gaps through the trigger, the resulting market order executes at whatever the book offers, which may be materially below the trigger.'
+  - question: 'Why did my large order move the price?'
+    answer: 'Because it consumed several levels of the order book. Each successive level is a worse price, so the average fill is above the best ask for a buy and below the best bid for a sell. This is market impact, and it is larger in securities with a low free float.'
+  - question: 'What is an after-market order for?'
+    answer: 'It queues an instruction for the next trading session rather than executing immediately, which is useful outside market hours. It still executes at whatever prices are available when the market opens, so it carries the same price uncertainty as any order placed at the open.'
+relatedCalculators:
+  - { id: opportunity-cost, label: 'Opportunity Cost Calculator' }
+  - { id: dividend-return, label: 'Total Return Decomposition' }
+relatedArticles:
+  - how-a-share-reaches-your-demat-account
+  - t-plus-one-settlement-and-what-changed
+  - reading-a-shareholding-pattern
+  - primary-market-ipo-process-and-asba
+glossaryTerms: [free-float, market-capitalisation]
+sources:
+  - { id: nse-india, supports: 'Order-book mechanics on the National Stock Exchange, including trade data, contract specifications and the session structure within which orders execute' }
+  - { id: bse-india, supports: 'The corresponding order and trade framework on the BSE, including historical price series for BSE-listed securities' }
+  - { id: sebi-home, supports: 'The market-conduct and price-band framework within which exchange order types operate' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Order-book and price figures in the worked example are illustrative constructions, not quotes from any exchange or security.'
+applicablePeriods: ['2026']
+openQuestions:
+  - 'How much of observed intraday volatility in low-float securities is caused by execution mechanics rather than by information?'
+  - 'Do stop-loss orders stabilise or amplify moves when many participants place them at similar levels?'
+---
+
+An order is not a single instruction. It is a bundle of independent decisions: what price you are willing to accept, how long the instruction should remain alive, how much of it should be visible, and when it should become active. Choosing an order type is choosing a trade-off between price certainty and execution certainty, and the type that is appropriate for one intention can be actively harmful for another.
+
+This is the second article in the Equity Mastery series, and it follows the first on settlement mechanics. That sequence matters. An order determines what you buy; settlement determines when you own it. Confusing the two produces the common misconception that a limit order which never fills is somehow harmless.
+
+## The order book and price-time priority
+
+Every listed security has an order book: the collection of resting buy and sell instructions, each with a price and a quantity. Buy orders are bids, sell orders are offers, and the best bid and best offer define the spread. The difference between them is the first cost of trading, and the depth behind each level determines how much can be traded before the price moves.
+
+When a new order arrives that can be matched, the exchange matches it against the best available opposite price, then the next, and so on, until either the order is filled or no further match is possible. Time determines priority among orders at the same price. That rule is why queue position matters to a trader, and why an order placed early at the best price is worth more than the same order placed late.
+
+The practical implication is that the headline price you see is a statement about a small quantity. The last traded price is not a price at which your order can execute; it is the price at which the last one did.
+
+## Market orders: certain execution, uncertain price
+
+A market order carries no price limit. It is matched immediately against whatever liquidity is available. If the book is deep and the spread is narrow — the normal condition for a large, freely floated company — the average fill price is very close to the best quote and the instruction is well behaved.
+
+The instruction stops being well behaved as liquidity thins. In a small-cap, a recently listed company or a security that has hit a price band, a market order walks down the book and takes progressively worse prices. The average fill can be far from the quote that was on screen when the order was placed. Because an unfilled residue cannot rest in the book, any part that cannot be matched is cancelled under the exchange's order rules rather than held.
+
+The honest characterisation is that a market order is a promise about execution and a hope about price. It is appropriate when completing the transaction matters more than a small difference in price, and dangerous when the security is illiquid or when a large quantity is involved.
+
+## Limit orders: certain price, uncertain execution
+
+A limit order states a maximum price at which you will buy or a minimum price at which you will sell. If the order is marketable, it executes at that price or better. If it is not, it rests in the book and waits.
+
+The guarantee is real but narrow. A buy limit at a price does not guarantee that you will pay that price; it guarantees that you will not pay more. You may be filled at a better price if the book allows, and you may wait indefinitely and receive nothing.
+
+The failure mode of a limit order is asymmetric and easy to misread. When your buy limit does not fill because the market moved up, you have avoided an asset that then became more expensive — which, if the decision was sound, is a cost rather than a saving. When your limit does fill, it is often because the market moved towards you, which is exactly when you might have preferred not to transact. This selection effect is structural, not a matter of skill, and it is why tick-level comparisons of limit and market orders overstate the limit order's advantage.
+
+## Stop-loss orders: the trigger is not the fill
+
+A stop-loss order is dormant until a trigger price is reached. Once triggered, it becomes a live order. In Indian exchange terminology the two common forms are the stop-loss order, which converts into a limit order at a specified price, and the stop-loss market order, which converts into a market order.
+
+Understanding the distinction prevents a specific and expensive disappointment.
+
+- **A triggered stop-loss market order** will attempt to execute immediately at whatever the book offers. It prioritises exiting over price.
+- **A triggered stop-loss limit order** will attempt to execute only at its stated price or better. It prioritises price over exiting, and it can sit unfilled in a falling market, which defeats the purpose of a stop.
+
+The central failure mode of both is the price gap. A trigger is evaluated against traded or quoted prices; the fill happens in the book afterwards. If the security opens or gaps below the trigger — an overnight event, a news item, a limit-down move — the market order that follows fills at the next available price, which can be several percent below the trigger. Stop-loss orders do not cap losses; they convert a watched position into an instruction, and the size of the loss depends on what happens in the seconds or minutes after the trigger.
+
+There is a second, subtler issue. Stop levels cluster at round numbers and at visible technical levels, so when a price reaches such a level, several stops may trigger together and consume the same shallow liquidity. The resulting move can be sharper than the trigger price implied, and it can be temporary.
+
+## Validity, disclosed quantity and other instructions
+
+Beyond the price condition, four attributes shape the order's behaviour.
+
+- **Validity.** A day order expires at the end of the session. An order with a stated longer validity remains alive until its date or until the exchange's maximum permitted validity, whichever is earlier. Long-validity orders risk acquiring a meaning they did not have when placed, because the market they were calibrated against no longer exists.
+- **Immediate or cancel.** The order executes against available liquidity and any unfilled portion is cancelled at once. It is the correct tool for taking liquidity without leaving a resting instruction, and the wrong tool for building a position patiently.
+- **Disclosed quantity.** An order can display only part of its size, with the remainder hidden. This reduces the signal a large instruction sends to the book, but it does not remove market impact; the hidden quantity still consumes liquidity when it executes.
+- **Activation time.** After-market orders queue for the next session, and at-the-open orders participate in the opening session. Both inherit the price uncertainty of trading at the open, when the book is being discovered.
+
+Modifying and cancelling orders are separately useful capabilities. Cancelling a resting order costs nothing beyond the loss of queue position; that is precisely why the queue position, not the mere presence of an order, is the scarce resource.
+
+## Price bands and the auctions that frame the day
+
+Indian exchanges apply daily price bands to most securities, limiting how far the price may move from the previous reference price. The bands are prescribed within the regulatory framework and vary by security and by segment. Their effect on execution is direct: when a security trades at the band, there may be no liquidity at all on the other side, so a market order can be rejected or unfilled, and a limit order outside the band cannot be placed.
+
+Session boundaries matter for the same reason. The opening price is often determined through a call auction in which orders accumulate and are matched at a single clearing price, and closing prices may be struck in a dedicated session. An order that behaves well in continuous trading can behave differently at an auction, because the mechanism is different: you are contributing to a single price rather than competing along a book.
+
+## What your order actually costs
+
+Execution costs divide into the visible and the invisible, and the visible ones are usually the smaller.
+
+- **Explicit costs** are brokerage, exchange transaction charges, regulatory turnover fees, stamp duty and the tax on the tax — the goods and services tax on the service components. They are published, predictable and small relative to the trade value in most retail transactions.
+- **Implicit costs** are the spread and the market impact. The spread is paid on every trade that crosses it. Market impact is paid in proportion to how much of the book the order consumes and is the dominant cost for anything other than a small order in a liquid security.
+
+A useful discipline is to add the two and express them as a fraction of the trade value, then compare that fraction to the expected return from the position. An instruction whose execution cost consumes a material share of a plausible annual return has already made the decision for you.
+
+The liquidity that determines implicit cost is largely a function of the free float — the proportion of shares actually available to trade — rather than of market capitalisation alone. A large company with a small free float can be harder to trade than a mid-sized company with a fully floated shareholding, because the tradeable supply is what absorbs orders.
+
+## Choosing an order for an intention
+
+| Intention | Reasonable order | Where it behaves badly |
+| --- | --- | --- |
+| Acquire promptly regardless of small price differences | Market order in a liquid security | Thin book, price band, opening auction |
+| Acquire only up to a price | Buy limit | Market runs away and the order never fills |
+| Exit a position to protect against a large fall | Stop-loss market | Price gaps through the trigger |
+| Exit only above a floor price | Stop-loss limit | Order sits unfilled in a falling market |
+| Take liquidity without leaving a resting order | Immediate or cancel | Repeated use pays the spread each time |
+| Build a large position quietly | Limit orders with disclosed quantity | Impact is reduced, not eliminated |
+
+The table is a decision aid, not a recommendation. The correct order for any situation depends on which risk the participant is less willing to bear: the risk of a bad price, or the risk of no transaction.
+
+## Explain simply
+
+The exchange holds a list of buy and sell instructions at different prices. A market order takes whatever is offered, so it fills quickly but at an uncertain price. A limit order names a price, so it fills at that price or better but may never fill. A stop-loss order sleeps until the price reaches a trigger, then becomes a live order — and if the price has jumped past the trigger, it fills at the next available price, which can be much worse. Big orders eat through several prices in the book, and that difference is a real cost. In a thinly traded share, all of these effects are much larger.
+
+## Worked example
+
+An illustrative construction using a simplified order book, not a quotation from any exchange or security. Suppose the sell side of a book contains 100 shares at ₹250.00, 400 at ₹250.20, 1,500 at ₹250.75 and 3,000 at ₹251.30.
+
+A buy market order for 5,000 shares consumes all four levels: 100 at ₹250.00, 400 at ₹250.20, 1,500 at ₹250.75 and 3,000 at ₹251.30. The total is ₹12,55,105, an average of ₹251.02 per share. The best ask on screen was ₹250.00, so the market impact is ₹1.02 per share, or about ₹5,105 on the trade — roughly 0.4% of the value. In a deeper book the same order would have filled closer to the best ask; in a shallower one it would have cost more.
+
+Now consider a stop-loss market order with a trigger at ₹250 on an existing holding. An overnight development causes the security to trade at ₹235 in the morning. The trigger has been passed, so the order becomes a market order and fills at the available price, around ₹235 — a 6% shortfall against the trigger. The stop limited nothing that had already happened; it simply ensured the position was exited.
+
+## What this does not tell you
+
+This article describes how orders execute; it does not tell you what to trade, when to trade or how large a position should be. Position sizing, holding period and the difference between owning a business and trading a ticker are separate questions, and the rest of the series treats them separately.
+
+Three limitations should be kept in view. First, execution mechanics vary by segment and by security, and a detailed order-type specification is always the exchange's own documentation rather than a summary. Second, the liquidity that governs implicit cost is not stable; it thins precisely when volatility rises, so the cost estimated in calm conditions understates the cost in the conditions that matter. Third, order types are tools for expressing an intention, and no order type repairs an intention that was badly formed.
+
+## Open questions
+
+- How much of the intraday volatility observed in low-free-float securities is a property of the underlying business rather than of the execution mechanics around it?
+- When many participants place stop orders at similar levels, do those orders dampen moves or amplify them?
+- How should implicit execution cost be disclosed so that a retail participant can compare it with the explicit brokerage figure?

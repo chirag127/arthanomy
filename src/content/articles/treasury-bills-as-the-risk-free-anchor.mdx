@@ -1,0 +1,152 @@
+---
+title: 'Treasury Bills as the Risk-Free Anchor of Indian Finance'
+description: 'How Treasury bill tenors, discount pricing and auction cut-offs work in India, how to turn a cut-off price into an effective yield, and what the resulting number means for every other rupee asset.'
+shortTitle: 'Treasury Bills: The Risk-Free Anchor'
+category: debt
+series: debt-encyclopedia
+seriesOrder: 6
+topics: ['treasury bills', 'money market', 'discount pricing', 'risk-free rate']
+tags: ['sovereign-debt', 'debt', 'money-market']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'A Treasury bill is a zero-coupon obligation of the Central Government, issued at a discount to face value and redeemed at face value, with no periodic interest at all.'
+  - 'The same cut-off price converts into several different quoted yields — a discount rate and a simple investment yield among them — and the headline number depends on which convention is used.'
+  - 'Retail bidders on the RBI Retail Direct platform bid non-competitively and are allotted at the weighted average price or yield that emerges from competitive bidding.'
+  - 'The T-bill yield is the shortest point of the rupee sovereign curve, and every credit spread in the money market is read as a margin above it.'
+  - 'A T-bill is free of credit risk in nominal rupee terms, but it is not free of inflation risk, reinvestment risk or liquidity risk.'
+faqs:
+  - question: 'Do Treasury bills pay interest?'
+    answer: 'No. They are zero-coupon securities. The investor buys them below face value and receives face value at maturity; the difference is the entire return, and there is no coupon and therefore no accrued interest to settle when they change hands.'
+  - question: 'Is the cut-off yield the same as my return?'
+    answer: 'The cut-off yield is the market result of the auction, quoted on a stated convention. If a retail investor is allotted at the weighted average rather than the cut-off, the allotment price may differ slightly, and the simple-annualised and compound versions of the same price are different numbers again.'
+  - question: 'How do I buy a Treasury bill as an individual?'
+    answer: 'Through the RBI Retail Direct platform, by opening a Retail Direct Gilt account and placing a non-competitive bid in a primary auction, or by buying an existing bill in the secondary market through the platform NDS-OM interface.'
+  - question: 'Why does the T-bill yield matter if I never buy one?'
+    answer: 'Because it is the base rate of the rupee system. Every money-market spread, every short-term deposit comparison and the floating benchmark under many retail loans are read against short sovereign rates, so the T-bill is the reference against which other short-term promises are priced.'
+  - question: 'Are Treasury bills a good place for money needed soon?'
+    answer: 'They remove credit risk and lock in a known rupee amount at a known date, which is what short-horizon money usually needs. They do not protect against inflation, and selling before maturity depends on secondary-market liquidity that can be thin.'
+relatedCalculators:
+  - { id: bond-price-yield, label: 'Bond Price and Yield' }
+  - { id: bond-ladder, label: 'Bond Ladder Planner' }
+relatedArticles:
+  - bank-fixed-deposit-anatomy
+  - dated-gsecs-and-the-coupon-myth
+  - rbi-retail-direct-bidding-walkthrough
+  - corporate-fixed-deposits-and-nbfc-deposit-risk
+glossaryTerms: [repo, g-sec, yield-to-maturity, macaulay-duration]
+sources:
+  - { id: rbiretaildirect, supports: 'Retail bidding mechanics for Treasury bills, the non-competitive allocation rule, the minimum bid size and secondary-market access through the platform' }
+  - { id: rbi-home, supports: 'The auction calendar and press releases, the tenors in which Treasury bills are issued, settlement practice, and the policy rate environment that anchors short-term rupee rates' }
+  - { id: rbi-dbie, supports: 'Published time series for short-term sovereign yields and policy rates used to describe the shape of the rupee yield curve' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Prices and yields used in the worked example are illustrative constructions to show the arithmetic; they are not the result of any particular auction.'
+applicablePeriods: ['FY 2025-26']
+openQuestions:
+  - 'How much of the retail non-competitive allotment at each auction reflects informed bidding rather than a default allocation at the average?'
+  - 'Which convention should a retail saver use when comparing a T-bill effective yield with a bank fixed-deposit rate, given that deposits are quoted on a compounding basis and bills on a discount basis?'
+  - 'How deep is the odd-lot NDS-OM secondary market for T-bills, and at what cost does a retail holder actually exit before maturity?'
+---
+
+The safest rupee promise in the Indian financial system is also one of the least understood. A Treasury bill is a short-dated obligation of the Central Government with no coupon, no credit risk in nominal rupee terms, and a price discovered at a weekly auction. Its yield is not important because many people buy it. It is important because it is the number against which every other short-term rupee promise is measured. This article explains what a T-bill is, how the discount pricing works, how to read an auction result, and why the resulting yield is called the risk-free anchor.
+
+## What a Treasury bill is
+
+Treasury bills are money-market instruments issued by the Government of India, through auctions conducted by the Reserve Bank, to bridge the gap between the government's receipts and its expenditure. They are issued in three standard tenors: 91 days, 182 days and 364 days. They carry no coupon. A bill is sold at a discount to its face value and redeemed at face value on a stated date, and the difference between the discounted purchase price and the face value received is the whole of the return.
+
+That structure has consequences worth stating plainly. Because there is no coupon, there is no accrued interest to settle when a bill changes hands between investors: the transaction price is the whole of the consideration. Because the cash flow arrives exactly once, at maturity, the Macaulay duration of a bill equals its time to maturity — it is the cleanest example of duration in the market. And because the issuer is the sovereign borrowing in its own currency, the bill is the domestic asset closest to a default-free nominal promise.
+
+The Reserve Bank also issues Cash Management Bills, which share the discount-and-redemption structure but are used to manage temporary cash mismatches, and whose tenors are generally shorter than the standard 91-day bill.
+
+## Explain simply
+
+A Treasury bill is the government borrowing for a few months and promising to repay a fixed amount, say ₹100, on a fixed date. Because the government wants the money now and the buyer wants a return, the buyer pays less than ₹100 today. If the price is ₹98.60 for a 91-day bill, the buyer gets ₹1.40 of return for a little over four months of waiting, and that is the entire deal. There is no interest cheque, no credit risk from a company defaulting, and no way to receive more than the face value. The only questions are the price, the date, and what the resulting rate is when someone writes it as an annual percentage.
+
+## Tenors, auctions and the quarterly calendar
+
+The Reserve Bank conducts auctions for the standard T-bill tenors, typically on a weekly cycle, and settles the allotted bills shortly after the auction on a settlement date set by the auction notice. A quarterly issuance calendar is published in advance so that participants can plan cash and bids; within that calendar, each auction's notified amount and issue details are announced in a press release before the bidding window opens.
+
+That sequence matters to anyone reading the market rather than buying. The notified amount is how much the government intends to raise at that auction. The bids received are separated into a competitive segment, where participants quote a price or a yield, and a non-competitive segment reserved for investors who are willing to accept whatever price the auction produces. The auction result then reports the cut-off price, the cut-off yield, an implicit yield at the cut-off price, the weighted average price or yield, and any amount that could not be sold and was devolved on the primary dealers. Each of those figures is a different way of summarising the same auction, and knowing which one is being quoted is half of reading the result correctly.
+
+## Discount pricing: from cut-off price to effective yield
+
+A bill's price and its yield are two views of the same fact. For a bill with face value $F$ bought at price $P$ with $t$ days to maturity, the simple annualised investment yield is:
+
+$$ y = \frac{F - P}{P} \times \frac{365}{t} $$
+
+That is the annualisation the buyer actually experiences in a simple-interest sense: the gain over the price paid, scaled to a year. But markets also quote a discount rate, which expresses the same discount against the face value rather than the price, and over a 360-day year:
+
+$$ d = \frac{F - P}{F} \times \frac{360}{t} $$
+
+Because the discount rate divides by the larger number and uses a shorter year, it is always lower than the investment yield for the same price. A third version, the compound annualised yield, treats the bill as a single cash flow and asks what constant annual rate takes the price to the face value:
+
+$$ y_c = \left(\frac{F}{P}\right)^{365/t} - 1 $$
+
+All three are legitimate, and the choice among them is a convention rather than an ambiguity in the arithmetic. The only error is to compare one convention on one instrument with a different convention on another.
+
+## Worked example: one price, three quoted yields
+
+Take an illustrative 91-day Treasury bill with a face value of ₹100, purchased at ₹98.60. This is a constructed example to show the arithmetic; it is not the result of any auction.
+
+- **Discount rate**: $(1.40/100) \times (360/91) = 5.54$ per cent.
+- **Simple investment yield**: $(1.40/98.60) \times (365/91) = 5.70$ per cent.
+- **Compound annualised yield**: $(100/98.60)^{365/91} - 1 = 5.82$ per cent.
+
+The same trade is 5.54 per cent, 5.70 per cent or 5.82 per cent depending on the label. Scaled to a nominal ₹1,00,000 purchase, the investor pays ₹98,600 now and receives ₹1,00,000 at maturity, a gain of ₹1,400 — that rupee amount is the only unambiguous statement in the list.
+
+The gap matters when a T-bill is compared with a bank fixed deposit. A deposit rate is quoted on a compounding basis and is contractual; a bill is quoted on a discount or simple-yield basis and its return is also contractual once the bill is allotted. To compare them honestly, convert both to an effective annual rate on the same day-count and compounding convention first.
+
+## Reading an auction result
+
+An auction press release can be read as a short story about demand. Start with the notified amount and the issue date, then look at the split between competitive and non-competitive bids. A large non-competitive inflow, which includes retail bids placed through Retail Direct, is money that will be allotted at the auction average rather than at a self-chosen price. The competitive bids then set the cut-off: bids more aggressive than the cut-off are accepted in full, and the cut-off itself is the marginal price at which the government is willing to borrow.
+
+The relationship between the cut-off yield and the secondary-market yield on a comparable bill is the market's immediate verdict: a cut-off above the prevailing secondary level suggests that participants demanded more compensation, whether because of supply, liquidity conditions or a general repricing of short rates.
+
+For retail investors, the crucial line in an auction is the allotment basis. Non-competitive bidders are allotted at the weighted average price or yield that emerges from the competitive bids, not at the cut-off, which is why a Retail Direct bid can settle at a slightly different figure from the headline cut-off yield reported afterwards.
+
+## Why the T-bill anchors the short end of the curve
+
+Sovereign yields, plotted against maturity, form the rupee yield curve. Its shortest point is the T-bill complex: 91, 182 and 364 days. Everything short-dated and credit-risky is priced as a spread above that point. A bank certificate of deposit, a commercial paper issue or a short corporate bond is quoted relative to the corresponding sovereign yield, with the spread compensating for default risk, liquidity and any tax or regulatory difference between the instruments.
+
+The policy rate sits behind all of this. The repo rate is the Reserve Bank's principal policy signal, and it sets the floor of the money market in the sense that secured overnight and short-term funding transacts around it. T-bill yields are market-determined expectations of where those short rates will average out over the bill's life, adjusted for supply and for the calendar of government borrowing. When the policy stance changes, the short end of the curve is where the change appears first.
+
+This is the practical meaning of the phrase risk-free anchor. It is not that a T-bill can never produce a poor outcome. It is that the T-bill yield is the purest available expression of the time value of rupee money, and every other short-term yield is that number plus something. Separating the something is exactly what a credit spread does.
+
+## Buying a T-bill as a retail investor
+
+An individual can hold Treasury bills directly through the RBI Retail Direct scheme. The investor opens a Retail Direct Gilt account with the Reserve Bank, and can then bid in primary auctions on a non-competitive basis, accepting the auction average, and can also buy and sell existing bills in the secondary market through the platform's NDS-OM interface.
+
+The practical constraints are set by the scheme: a minimum bid size for Treasury bills, a cap on the aggregate allocation to the non-competitive segment of each auction, and settlement against the linked bank account. Those parameters are published by the platform and by the auction notices, and they are the figures to check before bidding rather than rates of thumb. The mechanics of account opening and bidding are worked through in the companion Retail Direct article in this series.
+
+## The three return lanes, kept separate
+
+A T-bill yield needs to be placed in the right lane before it is used to judge anything.
+
+- **Contractual.** The rupee amount received at maturity is fixed once the bill is allotted. This is the strongest form of claim available in the domestic market.
+- **Historical realised.** Cut-off yields have moved across cycles, so what a bill paid at a past auction is a historical fact about that period, not a description of what is on offer now.
+- **Model-estimated.** The short rate implied by the curve is an input to pricing models and to forward-rate calculations, not an observable outcome.
+
+Blending these is what produces the common error of treating a low current cut-off as a permanent condition, or a past high cut-off as achievable today.
+
+## What this does not tell you
+
+- **Tax.** Treasury bill gains are treated as interest income for a holder, with rules that belong to the tax reference on this site; nothing in the official sources used here settles an individual's tax position.
+- **Real return.** A bill locks a nominal rupee amount. If prices rise faster than the discount implies, the purchasing power of that amount falls.
+- **Reinvestment.** A bill matures and returns cash, which must then be redeployed at whatever rate prevails. Short-dated safety carries this reinvestment risk in full.
+- **Liquidity.** Holding to maturity needs no market. Exiting early requires a counterparty in the secondary market, and for smaller odd-lot holdings that market is thinner than the primary auction.
+
+## Open questions
+
+- How much of each auction's retail non-competitive inflow is deliberate allocation and how much is default acceptance of the average?
+- What single convention should a saver use to compare a T-bill with a compounding fixed deposit on genuinely equal terms?
+- How deep is the odd-lot secondary market, and what does a retail holder actually give up when leaving a bill before maturity?
+
+The T-bill answers one question exactly — what a rupee received on a known near-term date is worth today. Everything else in the debt market is that answer plus a spread. The next article in this series takes the same logic to dated government securities, where a coupon arrives along the way and the arithmetic of price and yield becomes the whole story.

@@ -1,0 +1,168 @@
+---
+title: 'The No-Guarantee Rule and the Credit-Enhancement Ban'
+description: 'RBI bars peer-to-peer platforms from guaranteeing returns and from providing credit enhancement. That rule makes assured-return propositions easy to audit: if the promise cannot legally be made, the offer is describing something that does not exist.'
+shortTitle: 'The No-Guarantee Rule'
+category: p2p-lending
+series: p2p-first-principles
+seriesOrder: 5
+topics: ['P2P lending', 'guaranteed returns', 'credit enhancement', 'investor protection']
+tags: ['p2p', 'regulation', 'fraud-risk', 'credit']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'Under the RBI framework a peer-to-peer platform may not guarantee returns, provide credit enhancement, promise liquidity or lend on its own account; the ban preserves the marketplace-not-principal structure.'
+  - 'Any assured-return proposition in this space is either a misdescription of an ordinary unsecured loan or a scheme operating outside the framework entirely, and both are worth refusing for different reasons.'
+  - 'The marketing language that works around the rule — assured yield, guaranteed buyback, capital protection, assured exit, sponsor support — is the same claim in softer words, and the correct test is what happens on the first missed payment.'
+  - 'A guarantee is not a legal formality; it is an unfunded liability. If the platform cannot legally hold the risk, then the promise has no balance sheet behind it, and the arithmetic of the promised yield is simply wrong.'
+  - 'A third party that appears to stand behind the loans raises a further question rather than answering one, because the framework does not permit the platform to shift the structure into a de facto credit-enhancement arrangement.'
+  - 'SEBI and RBI both publish red-flag material and unauthorised-entity alerts, and the correct route for a suspicious offer is to check the offer against those published lists and report it, not to test it with money.'
+faqs:
+  - question: 'Can a platform offer a higher rate and call it a guarantee?'
+    answer: 'No. Assured or fixed returns are not a permissible product feature under the framework, and the platform is barred from providing credit enhancement. A proposition that describes an assured outcome is therefore not a description of a regulated peer-to-peer loan.'
+  - question: 'What is credit enhancement, in plain terms?'
+    answer: 'Credit enhancement is any arrangement that reduces the loss a lender would otherwise bear — a guarantee, insurance, a first-loss cushion, a buyback, an assured exit. It is a normal feature of some structured products and is precisely what the peer-to-peer framework does not permit the platform to provide.'
+  - question: 'If a co-lender or a group company offers the guarantee, is that allowed?'
+    answer: 'It raises a question rather than settling one. The prohibition is on the platform providing credit enhancement, and an arrangement that puts a related or affiliated entity behind the loans has to be tested against that rule and against the requirement that the platform act only as an intermediary. Treat any such structure as unverified until the platform explains it in writing against the direction.'
+  - question: 'Is a peer-to-peer loan with a guaranteed return a deposit?'
+    answer: 'No. Peer-to-peer loans are not deposits and carry no deposit-insurance protection, which covers bank deposits as a separate product category. A guaranteed-return description does not convert the product into a deposit; it misdescribes it.'
+  - question: 'Where do I report an assured-return scheme?'
+    answer: 'Check the offer against the official red-flag material and the unauthorised-entity lists published by the securities and banking regulators, and report it through the channel those regulators publish. The correct destination depends on what the scheme actually is, which is a question the regulators are better placed to answer than the person being solicited.'
+relatedArticles:
+  - rbi-p2p-licensing-framework
+  - platform-as-intermediary-not-lender
+  - escrow-account-mechanics-in-p2p-lending
+  - lender-exposure-limits-across-platforms
+  - risk-grading-systems-on-p2p-platforms
+glossaryTerms: [nbfc-p2p, lender, default, recovery]
+relatedCalculators:
+  - { id: p2p-stress, label: 'P2P Stress Test' }
+  - { id: default-recovery, label: 'Expected Credit Loss' }
+  - { id: p2p-return, label: 'P2P Realised Return' }
+sources:
+  - { id: rbi-p2p-md, supports: 'The prohibition on platforms guaranteeing returns or providing credit enhancement, and the permitted intermediary business model it protects' }
+  - { id: sebi-unsolicited-tips, supports: 'Official investor alerts and red-flag lists on guaranteed-return schemes and unauthorised entities, and the reporting route for a suspicious proposition' }
+  - { id: rbi-home, supports: 'The wider regulatory context, including the point that peer-to-peer loans are not deposits and are not covered by deposit insurance' }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'This article describes a regulatory prohibition and how to recognise propositions that work around it. It does not identify any platform, and it is not legal advice. The master direction is the operative document and has been amended; verify its current wording before relying on this summary.'
+  - 'A suspicious offer should be checked against the regulators'' published alerts and registers and reported through their official channels. Do not test an offer by committing money to it.'
+openQuestions:
+  - 'How far can a platform''s group entity or a third-party co-lender stand behind loans before the arrangement becomes credit enhancement in substance rather than form?'
+  - 'Is the framework''s prohibition on credit enhancement enforced consistently across marketing material, product documentation and the loan contract itself?'
+  - 'What proportion of assured-return propositions that are refused by informed investors are, in fact, unregistered schemes rather than misdescribed regulated products?'
+  - 'How should a lender verify a platform''s compliance claim when the underlying documents are disclosed only after onboarding?'
+---
+
+Most of the rules governing peer-to-peer lending describe how the market should work. One of them does something more useful: it prohibits the single feature that makes a bad lender feel safe. Under the RBI framework a platform may not guarantee returns, may not provide credit enhancement, may not promise liquidity and may not lend on its own account. Once that prohibition is understood, a large class of marketing becomes self-refuting, and an assured-return proposition stops being persuasive and starts being evidence.
+
+## The rule
+
+The prohibition sits alongside the requirement that the platform act only as an intermediary. The platform may run the marketplace — onboarding, know-your-customer checks, matching, documentation, escrow flows, reporting and servicing — but it may not take a position that makes it the party who owes the money.
+
+In practice the ban has four faces:
+
+- **No guarantee of returns.** Assured or fixed yields are not a permissible feature for the platform to offer, however the offer is worded.
+- **No credit enhancement.** The platform may not arrange to absorb the lender's loss, because a marketplace that insures its participants has stopped being a marketplace.
+- **No promise of liquidity.** There is no assured exit and no buyback obligation at the lender's option.
+- **No lending on its own account**, and no deposit-taking. The platform intermediates; it does not fund, and it is not a bank.
+
+The specific wording, and any amendments to it, live in the master direction, which should be read directly rather than through a summary. What the summary establishes clearly enough is the shape of the rule: the platform is kept out of the position of principal, insurer and guarantor on purpose.
+
+## Why the ban exists
+
+It is tempting to read the prohibition as consumer protection alone. It is more than that; it is structural.
+
+A lender who is guaranteed an outcome is not a lender. That person is a depositor, or a creditor of the guarantor. If a platform guarantees the loans on its marketplace, then the credit risk has moved from the lenders to the platform, and the platform has taken on an obligation that its capital, its regulation and its business model were never designed to hold. Doing that at scale is what banks do, under banking regulation, with capital requirements and deposit insurance attached. The framework declines to let a marketplace become a bank by marketing.
+
+So the prohibition is the mechanism that keeps the four roles separate — marketplace operator, lender, borrower and (where it exists) genuine guarantor. Everything else in the framework depends on that separation holding.
+
+## What credit enhancement means
+
+Credit enhancement is any arrangement that reduces the loss a lender would otherwise bear. The concept is ordinary in finance: a first-loss tranche in a securitisation, a corporate guarantee, a letter of comfort, an insurance policy on a pool of receivables, a buyback obligation, or an assured exit price are all forms in which one party takes on the loss that another party would have taken.
+
+Recognising it is straightforward, because the test is about outcomes rather than labels. Ask what happens on the first missed instalment. If the answer is that the lender receives the scheduled amount anyway, then someone is bearing credit risk other than the borrower, and that someone is providing credit enhancement. Under the framework, the platform cannot be that someone.
+
+The terminology matters for a second reason. Because credit enhancement is a legitimate feature of structured finance, its vocabulary sounds respectable, and marketing borrowed from that vocabulary can make an unpermissible arrangement sound like a sophisticated product feature rather than a regulatory breach.
+
+## The marketing that works around the rule
+
+Prohibitions do not remove demand for assurance; they push it into softer wording. The recurring forms are recognisable.
+
+| What is said | What it means | Why it is a problem |
+| --- | --- | --- |
+| Assured, fixed or committed returns | A promised yield | Assured returns are not a permissible product feature |
+| Guaranteed buyback or assured exit | A liquidity promise | The platform may not promise liquidity |
+| Capital protection or principal assured | Protection of the amount lent | That is credit enhancement |
+| Sponsor or group support, comfort letter | A related entity stands behind the loans | It asks whether the enhancement ban is being routed around |
+| Protection from a "risk pool" or reserve fund | A cushion against losses | A cushion is enhancement unless provided by someone permitted to hold the risk |
+| Interest assured "by the platform's partner" | A guarantee by a third party | It requires verification against the direction, and it does not transfer the framework's obligations |
+| Recoveries "made good" by the platform | De facto insurance | The platform may not absorb the lender's loss |
+
+None of this requires an investor to make a legal judgement on the spot. The working test is narrow and mechanical: **who pays when the borrower does not?** If the answer is not the borrower, the proposition needs to be explained in writing against the direction before it is believed.
+
+## Why an assured return is arithmetic, not a promise
+
+A guarantee is not a sentence; it is a liability, and liabilities are funded or they are fiction. The framework's ban matters precisely because it removes the funding.
+
+If a portfolio generates a yield that reflects the credit risk of its borrowers, and a platform promises a fixed return above what that portfolio can be expected to earn, then the difference has to come from somewhere. Under the framework, it cannot come from the platform's own balance sheet, because the platform may not hold the risk. It cannot come from insurance the platform cannot lawfully provide. It cannot come from a reserve the platform is not permitted to operate as enhancement. What remains is that it comes from nothing — which is to say, it does not come at all when the first loss arrives.
+
+That is why an assured-return proposition in this space is a clean signal. Under the framework it cannot be a description of a regulated peer-to-peer loan. It is either an ordinary unsecured loan misdescribed as a guaranteed product, or it is a scheme outside the framework altogether. The first is a risk the lender did not agree to; the second is a different problem entirely.
+
+## The regulator's red-flag lists
+
+The investor does not have to reason this out from first principles alone, because the regulators publish the material. SEBI maintains investor alerts and lists of unauthorised entities, covering unregistered advisers and unauthorised collective investment schemes, and publishes the enforcement route for reporting them. The RBI publishes the registers of entities it has authorised in the categories it regulates, and the framework documents themselves.
+
+The practical procedure for a suspicious offer is short:
+
+1. Check whether the entity appears in the regulator's own register for the activity it claims to conduct.
+2. Check the offer against the published investor alerts and red-flag material for the pattern it resembles.
+3. Refuse to act on a link, a downloaded application or a referral that bypasses the regulator's own material.
+4. Report it through the channel the relevant regulator publishes, which is a more useful action than arguing with the seller.
+
+Which regulator is relevant depends on what the scheme actually is, and that is a question the regulators are better placed to answer than the person being solicited. What matters for the investor is that the check is done against official material rather than against the offer's own reassurance.
+
+## Where the boundary sits, and what replaces the guarantee
+
+Two questions at the edge of the rule are worth stating honestly rather than resolving confidently.
+
+The first is whether a third party — a group company, an affiliate, a co-lending partner — may stand behind the loans. The prohibition is on the platform providing credit enhancement, not on the existence of any risk holder anywhere in the economy. But an arrangement that locates the enhancement in a related entity, or that in substance transfers the lender's loss to someone the platform controls, has to be tested against the rule and against the intermediary requirement. Treat any such structure as unverified until the platform explains it against the direction in writing. This article does not settle the question.
+
+The second is what the lender receives instead of a guarantee. The answer is the discipline that the framework substitutes for it: exposure limits that force diffusion, risk grading that makes the platform's opinion visible, vintage analysis that shows whether underwriting is improving or deteriorating, recovery histories that show what actually came back, and escrow arrangements that keep the money separate. None of these is a promise. All of them are evidence, which is the only thing a lender should be paid for taking risk they agreed to take.
+
+## Explain simply
+
+The rules for peer-to-peer platforms say the platform cannot promise you a return, cannot promise to buy your loans back, cannot put a cushion under your losses, and cannot lend its own money to fill the gap. That is on purpose. A platform that promises you a fixed return has taken the risk onto itself, and that is a bank's job, done under banking rules. So when an app or an agent offers an assured return on peer-to-peer lending, one of two things is true. Either it is an ordinary loan dressed up as a guarantee, in which case you are taking a risk you were not told about, or it is not a regulated platform at all. In both cases, the offer itself is the warning. The regulators publish lists and alerts for exactly this, and the right move is to check there and report, not to test it with money.
+
+## Worked example
+
+The following is an illustrative calculation, not observed data and not a forecast. It shows why a guarantee is arithmetic before it is a promise.
+
+Suppose an illustrative pool of ₹1,00,00,000 is lent through a platform, and assume purely illustratively that 8 per cent of the exposure defaults within the year with a loss given default of 50 per cent. The expected credit loss on the pool is:
+
+$$ 1{,}00{,}00{,}000 \times 0.08 \times 0.50 = 4{,}00{,}000 $$
+
+That is ₹4,00,000, or 4 per cent of the pool. Now suppose the platform has promised lenders an assured return, and that the pool's contractual interest is sufficient to pay it only if losses stay near zero. The ₹4,00,000 does not disappear because it was promised away. Someone has to fund it, and under the framework the platform may not legally be that party and may not arrange enhancement to make itself one. The promise therefore has no balance sheet behind it — it is unfunded by construction.
+
+Change the assumption to show the point more sharply: if the assured return were set at an illustrative 12 per cent and the pool's risk-adjusted earning power were an illustrative 8 per cent, the shortfall would have to be met every year, not only in a bad one. A funded guarantee of that kind is a business decision by a well-capitalised institution. An unfunded one is a description of a return that will not be paid when it is needed.
+
+## What this does not tell you
+
+- **It is not the master direction.** The prohibition is set out in the direction, which has been amended; the current text governs and should be read directly.
+- **It does not name any platform**, and nothing here should be read as an allegation about a particular business.
+- **It does not settle the third-party question.** Whether a related entity or co-lender can bear the loss without breaching the rule is treated here as an open question requiring verification.
+- **It does not cover regimes outside India**, where the availability of guarantees, credit enhancement and deposit protection differs.
+- **It is not advice to lend or not to lend.** It is a description of what the framework permits and how to recognise a proposition that is inconsistent with it.
+
+## Open questions
+
+- How far can a group entity or a third-party co-lender stand behind loans before the arrangement becomes credit enhancement in substance rather than form?
+- Is the prohibition enforced consistently across marketing material, product documentation and the loan contract itself?
+- Of the assured-return propositions that informed investors refuse, what proportion are misdescribed regulated products and what proportion are unregistered schemes?
+- How should a lender verify a platform's compliance claim when the loan documents are disclosed only after onboarding?

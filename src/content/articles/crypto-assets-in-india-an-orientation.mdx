@@ -1,0 +1,170 @@
+---
+title: 'Crypto Assets in India: An Orientation'
+description: 'What a crypto asset is, which categories an Indian resident can encounter, where the law actually stands, why there is no product-level investor protection, and how income from transfers is taxed today.'
+shortTitle: 'Crypto Assets in India'
+category: digital-assets
+series: digital-assets-lab
+seriesOrder: 1
+topics: ['crypto assets', 'virtual digital assets', 'Indian regulation', 'custody risk']
+tags: ['digital-assets', 'regulation', 'taxation', 'first-principles']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 12
+keyTakeaways:
+  - 'A crypto asset is a transferable claim recorded on a blockchain; what it represents varies enormously, and the category name hides that variation.'
+  - 'Crypto assets are not legal tender in India, are not a regulated investment product, and carry no depositor or investor protection comparable to bank deposits or mutual funds.'
+  - 'Income from transferring a virtual digital asset is taxed at a flat 30% under the current VDA regime, with no deduction for expenses other than cost of acquisition and no set-off of losses against other income.'
+  - 'A 1% deduction at source applies to transfer consideration above the prescribed threshold and is creditable against the final liability; nothing in this article is a route to reducing either.'
+  - 'Whoever holds the private key controls the asset, which removes exchange counterparty risk and replaces it with irreversible operational risk.'
+  - 'Valuation frameworks built for equities rely on cash flows and residual claims; most crypto assets have neither, so the frameworks do not transfer without modification.'
+faqs:
+  - question: 'Is it illegal to hold or trade crypto assets in India?'
+    answer: 'There is no general prohibition on an Indian resident holding or transferring crypto assets, but they are not legal tender, not a regulated security and not protected by any investor-compensation scheme. The activity sits outside the regulated financial product framework rather than inside a licensed one.'
+  - question: 'Does deposit insurance cover crypto held on an exchange?'
+    answer: 'No. Deposit insurance covers bank deposits within a defined limit and applies only to insured banks. A crypto balance on an exchange is an unsecured claim on that company, and a balance in self-custody is protected by nothing but your own key management.'
+  - question: 'Can I set a crypto loss against gains from shares or mutual funds?'
+    answer: 'Under the current VDA regime a loss on a virtual digital asset cannot be set off against any other income, including gains from other assets. The tax is computed separately on each transfer, which is a deliberate feature of the regime rather than an oversight.'
+  - question: 'Why does the industry warn "not your keys, not your coins"?'
+    answer: 'Because a custodian holds the private keys when your balance sits on an exchange. If that company fails, is hacked or freezes withdrawals, the assets are a claim in an insolvency queue rather than property in your hands.'
+relatedCalculators:
+  - { id: max-drawdown, label: 'Drawdown Analyser' }
+  - { id: risk-of-ruin, label: 'Risk of Ruin' }
+  - { id: currency-impact, label: 'Currency Impact on Foreign Returns' }
+  - { id: opportunity-cost, label: 'Opportunity Cost Calculator' }
+relatedArticles:
+  - exchanges-kyc-and-custody-basics
+  - wallet-custody-self-versus-custodial
+  - blockchain-basics-for-investors
+  - stablecoins-and-depeg-risk
+  - nfts-and-digital-collectibles
+glossaryTerms: [virtual-digital-asset, private-key, self-custody, stablecoin, tokenisation, proof-of-stake]
+sources:
+  - { id: rbi-home, supports: 'The Reserve Bank of India''s published position on private crypto assets, its cautions to the public, and the boundary of the regulated payments and deposit system that these assets sit outside' }
+  - { id: sebi-home, supports: 'The securities-market perimeter within which tokenised or pooled digital-asset offerings may fall, and the investor-protection machinery that does not extend to unregulated tokens' }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Tax treatment described here follows the virtual digital asset provisions of the Income-tax Act, 1961. The Income-tax Act, 2025 consolidates and renumbers these sections, and the exact correspondence is pending verification.'
+  - 'Nothing in this article describes or endorses any method of avoiding tax, deduction at source, or reporting obligations on virtual digital assets.'
+  - 'Volatility and loss figures used in the worked example are illustrative arithmetic, not observed market data.'
+applicablePeriods: ['FY 2026-27', 'AY 2027-28']
+openQuestions:
+  - 'Whether crypto assets will be classified as securities, commodities or a separate asset class under Indian law remains unresolved; the current position is a tax category rather than a regulatory home.'
+  - 'How a self-custodied or foreign-custodied VDA holding should be disclosed in a resident''s annual information statements is an operational question that continues to evolve.'
+  - 'The enforceability of arrangements that argue a tokenised offering falls outside Indian securities law has not been settled by a comprehensive body of decisions.'
+---
+
+A crypto asset is a transferable entry recorded on a distributed ledger, secured by cryptography, and controlled by whoever holds the corresponding private key. That is the entire technical core, and it is genuinely useful: it means the asset can move across borders, settle without a bank, and be verified by anyone. Everything else — what the token represents, what backs it, who is liable for it, what it is worth — is a matter of design and of law, and the two words "crypto asset" conceal about as much as they reveal.
+
+This orientation is the first article in the Digital Assets Laboratory. It is deliberately about definitions and the legal position rather than about prices. Its purpose is to let a reader know what is being bought, what protections exist when it is bought, and where Indian law currently stands, before any transaction is contemplated.
+
+## What a crypto asset actually is
+
+A blockchain is a ledger maintained by a network of participants who follow a shared rule for accepting new entries. Some networks secure the ledger with mining, a computational competition; others use proof of stake, in which validators lock their own tokens as collateral and forfeit part of the stake if they validate dishonestly. The security of a staked network is therefore tied to the market value of the token being staked — a circularity worth noticing, because a collapse in price weakens the mechanism that protects the ledger.
+
+Ownership on the ledger is controlled by a private key: a cryptographic secret that authorises transfers from an address. There is no account manager, no password reset and no reversal. A transfer signed with a compromised key is final in the same way that a completed bank transfer is final, except that no bank exists to complain to and no regulator has jurisdiction over the counterparty.
+
+That combination — finality without recourse — is the defining feature of the asset class. It is what makes some of its uses powerful and what makes loss permanent.
+
+## The categories an Indian resident can encounter
+
+The label covers several economically distinct things, and treating them as one asset class is the most common analytical error in the field.
+
+- **Payment and store-of-value tokens.** Networks whose primary function is transferring value and whose tokens are used to pay transaction fees and settle transfers.
+- **Protocol and utility tokens.** Tokens that provide access to, or governance over, a software protocol. Their value depends on the protocol being used, which is a demand question rather than a dividend question.
+- **Stablecoins.** Tokens designed to hold a constant value against a reference currency, usually through reserves held by an issuer, algorithmic mechanisms, or over-collateralisation with other crypto assets.
+- **Non-fungible tokens.** Individually unique tokens representing an item or a claim on one, including digital collectibles and, sometimes, fractional or whole interests in real-world assets.
+- **Tokenised conventional assets.** Bonds, fund units, invoices or property claims represented as tokens so they can be split and transferred. This category is the one most likely to fall inside an existing regulator's perimeter.
+
+The Indian tax statute groups these into a single statutory category, the virtual digital asset, defined as any information, code, number or token generated through cryptographic means that provides a digital representation of value and can be transferred, stored or traded electronically. The definition deliberately excludes gift cards, vouchers, loyalty points and central-bank digital currency, so the tax category is broader than the intuitive idea of "a cryptocurrency" and narrower than "anything digital".
+
+## The Indian legal position
+
+Three facts matter more than any other.
+
+First, crypto assets are not legal tender. The rupee remains the only legal tender in India. No merchant is obliged to accept a token in discharge of a debt, and no token carries a sovereign guarantee.
+
+Second, there is no general statutory prohibition on a resident holding or transferring crypto assets. Legality to hold is not the same as regulatory approval, and the distinction is routinely collapsed in both directions — by promoters who treat absence of prohibition as endorsement, and by sceptics who treat the regulators' cautions as a ban. Neither reading is accurate.
+
+Third, and most consequentially, crypto assets are not a regulated investment product in India. There is no registration regime for the tokens themselves, no mandated disclosure document, no suitability requirement, and no statutory product-level framework. The Reserve Bank of India has repeatedly and publicly cautioned against private crypto assets, while the Securities and Exchange Board of India's perimeter reaches tokenised offerings only where they constitute securities offered to the public. The result is a gap: the activity is tolerated, taxed, and largely outside the protective architecture that governs every other Indian financial product.
+
+This is why the article emphasises orientation rather than participation. When there is no product regulator, the investor is the entire due-diligence function.
+
+## No product-level investor protection
+
+It is worth being precise about what protection exists elsewhere and is absent here, because the absence is the practical risk.
+
+- **Bank deposits** benefit from deposit insurance up to a statutory limit per depositor per bank, plus a resolution framework and an ombudsman. Crypto balances have no equivalent.
+- **Listed securities and mutual funds** benefit from mandated disclosure, custody rules, a registrar and transfer agent, a grievance mechanism, and a compensation framework for certain intermediary failures. A token traded on an unregulated venue has none of these.
+- **Insurance products** benefit from a solvency regime and a policyholder-protection account.
+
+There is no such backstop for a crypto holding. A balance held on an exchange is an unsecured claim on a private company; the historical failures of large global exchanges demonstrate that this claim can be worth very little after a collapse. A balance held in self-custody has no counterparty at all, and therefore no one to recover from if the key is lost or phishing succeeds. Both routes trade one risk for another rather than eliminating risk.
+
+## How income from crypto is taxed today
+
+The Indian tax position is a category rather than a regime, and it is unusually blunt. The following describes the currently applicable rules; it is not advice, and nothing here should be read as a method of reducing tax.
+
+- Income from the transfer of a virtual digital asset is taxed at a flat 30%, without the slabs that apply to ordinary income.
+- No deduction is allowed for any expense other than the cost of acquisition. Mining costs, fees, gas, platform charges and interest are not deductible against the transfer income.
+- A loss on one virtual digital asset cannot be set off against a gain on another, and cannot be set off against any other income — salary, business income, or capital gains from shares and property. The loss simply does not reduce taxable income elsewhere.
+- A deduction at source of 1% applies to the consideration on a transfer, above a prescribed threshold, and is creditable against the final liability. It is a collection mechanism, not an additional tax, but it applies to the transaction regardless of whether a gain was made.
+
+Two consequences follow. The first is that the effective tax rate on a profitable trade can be considerably higher than 30% relative to the economic gain, because a single disallowed expense is the whole cost base. The second is that a VDA portfolio that ends the year flat or down produces no offsetting tax benefit, so the only reliable way to reduce the tax bill is to make less profit — which is to say, the tax code is not a factor in whether the investment makes sense, only in how the outcome is shared.
+
+The Income-tax Act, 2025 consolidates and renumbers these provisions. The section numbers in circulation today follow the 1961 Act, and the exact correspondence between the old and new numbering is pending verification. Any filing decision should be made against the statute in force at the relevant time.
+
+## Custody: the private key is the asset
+
+On a blockchain, ownership is not registered to a name; it is proven by control of a key. That produces a hard trade-off.
+
+**Custodial holding** — leaving the asset on an exchange — replaces key management with counterparty risk. It is operationally simple and removes the risk of a lost key, but it means the exchange controls the asset, the exchange's solvency is your exposure, and withdrawal terms can change without notice.
+
+**Self-custody** — holding the key yourself — removes that counterparty. Nobody can freeze the asset, and an exchange failure cannot take it. In exchange, every operational error is permanent: a lost seed phrase, a malware infection, a signed transfer to a spoofed address. There is no depositary, no ombudsman and no recovery. Self-custody is often described as assuming the role of your own bank; the accurate version is that you assume the role of your own bank and your own vault and there is no insurer behind either.
+
+The distribution question is the one that matters for how the assets are lost. Exchange failures concentrate losses in a single event; self-custody failures are idiosyncratic and irreversible.
+
+## Stablecoins and tokenised assets
+
+Two categories deserve a note because they are the ones most likely to be mistaken for something safer than they are.
+
+A stablecoin promises a stable value, but that promise rests on the design. A reserve-backed coin is only as good as the quality, custody and auditability of its reserves; a poorly disclosed reserve is an invitation to a run, and the mechanism that keeps the peg can break exactly when many holders try to exit at once. Algorithmic designs remove the reserve and rely on market incentives, which have failed under stress in global markets. Stablecoins remain outside the regulated payments system in India, so a merchant or platform accepting one is doing so without the settlement finality that the regulated system provides.
+
+Tokenisation — representing a bond, fund unit, invoice or property claim as a token — is genuinely interesting and, in India, falls within the securities regulator's perimeter when offered to the public. Outside regulated venues, most tokenised offerings are structured to argue that they fall outside Indian securities law. That argument may or may not survive scrutiny; it should be treated as untested rather than as settled.
+
+## Why equity valuation frameworks do not transfer
+
+Equity analysis works because a share is a residual claim on a business with cash flows. You can discount those cash flows, compare the price to earnings, examine the balance sheet and estimate a value range. The framework's power comes from the claim and the cash flows, not from the price chart.
+
+Most crypto assets have neither. A protocol token typically confers no claim on revenue, no liquidation right and no enforceable governance power in the sense a shareholder has. There is no earnings figure to divide into the price, no book value to compare against. What remains is the price itself and the question of who will buy next. That does not make valuation impossible — usage, fee revenue retained by a protocol, and the cost of securing the network are all measurable — but it makes the familiar ratios inapplicable, and it means that the strongest available disciplines are position sizing, loss tolerance and custody, not earnings estimates.
+
+## Explain simply
+
+A crypto asset is a digital entry on a public ledger that you control with a secret key. Some are meant to move money, some give access to software, some claim to stay equal to a rupee or dollar, and some are unique collectibles. In India you can legally hold and transfer them, but they are not rupees, not regulated products, and not covered by any compensation scheme. You pay a flat 30% on any profit, cannot deduct most costs, and cannot use a loss to reduce tax on anything else. If you keep the key yourself, nobody can take the asset but nobody can help you recover it either. That is the whole of the practical situation.
+
+## Worked example
+
+Three illustrative calculations. The numbers are chosen to expose the arithmetic and are not observed market data or offers.
+
+**Recovery after a drawdown.** A fall of 80% requires a gain of 400% on the remaining value to return to the starting point, because recovering from 20 to 100 is a fivefold increase. A fall of 90% requires a 900% gain. This asymmetry is why the maximum drawdown of an asset matters more than its average return, and it is what the drawdown analyser is built to display.
+
+**A profitable transfer.** Suppose a holding is acquired for ₹1,00,000 and transferred for ₹1,50,000. The income is ₹50,000 and the tax at the flat rate is ₹15,000 before surcharge and cess. A 1% deduction at source, if applicable above the threshold, is ₹1,500 of the consideration and is creditable against the final liability. The remaining economics depend on the actual disposal price rather than the average purchase price.
+
+**A loss-making transfer.** Suppose the same holding is acquired for ₹1,00,000 and transferred for ₹60,000. There is no tax on the transfer, but the ₹40,000 loss cannot be set off against salary, business income or capital gains from any other asset. The loss is real in cash terms and inert in tax terms.
+
+## What this does not tell you
+
+This article does not assess whether any crypto asset is worth holding, and it does not give a price or return expectation for any of them. It also does not cover the mechanics of wallets, exchanges, key storage, smart contracts or staking in any depth; each has a dedicated article in this series.
+
+Three gaps deserve emphasis. First, the legal position is genuinely unsettled at the classification level: whether these assets will ultimately be treated as securities, commodities or a sui generis category is a live policy question, and the answer would change the applicable protections. Second, the tax position described is the current one and has changed more than once; the consolidation into the 2025 Act makes the section numbering, not the substance, the immediate uncertainty. Third, the absence of protection is not a temporary gap to be waited out — it is the defining feature of the asset class as it currently exists in India, and it should be priced into any decision rather than treated as a reason to defer judgement.
+
+## Open questions
+
+- How should a VDA holding be classified for regulatory purposes, and would classification as a security change the disclosure and custody obligations that apply?
+- What is the correct disclosure treatment for a self-custodied or foreign-custodied holding in an Indian resident's annual filings?
+- Do the arrangements that place tokenised offerings outside Indian securities law hold up under enforcement, and what evidence base exists either way?
+- How much of the observed volatility in these assets reflects genuine fundamental uncertainty rather than the absence of a valuation anchor?

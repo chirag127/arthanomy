@@ -1,0 +1,156 @@
+---
+title: 'How a Share Reaches Your Demat Account'
+description: 'The journey from a matched order to a credited holding: ISIN identity, clearing, novation, pay-in and pay-out, dematerialisation, corporate actions and what happens when a seller fails to deliver.'
+shortTitle: 'How a Share Reaches Your Demat'
+category: equity
+series: equity-mastery
+seriesOrder: 1
+topics: ['settlement', 'demat account', 'ISIN', 'clearing corporation']
+tags: ['equity', 'market-mechanics', 'custody', 'foundations']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'A demat account is held with a depository through a Depository Participant; the broker is only the interface, and the depository keeps the authoritative record of who owns what.'
+  - 'Every security is identified by an ISIN, so a settlement obligation is a quantity of a specific ISIN rather than a company name, which is what makes automatic matching possible.'
+  - 'A trade becomes a binding contract when it is matched and executed, but ownership of the shares transfers only when the demat holding is credited during settlement.'
+  - 'The clearing corporation novates the trade, becoming counterparty to both sides, which is why a specific seller defaulting does not cost the buyer the shares.'
+  - 'Corporate actions, pledges and transmission all operate on the depository record, so the demat entry is the legal and operational centre of equity ownership.'
+faqs:
+  - question: 'Does my broker own my shares?'
+    answer: 'No. Client securities are credited to a demat account in the client''s own name at the depository, and the broker acts only as a participant in the chain. A broker failure affects your cash and your unsettled trades, but it does not seize shares already credited to your demat account.'
+  - question: 'Why does the share appear a day after I paid for it?'
+    answer: 'Because Indian equity trades settle on a short cycle, currently one business day after the trade. The trade is a binding contract immediately; the depository credit, which is the transfer of ownership, happens on the settlement date.'
+  - question: 'What happens if the seller does not deliver the shares?'
+    answer: 'The clearing corporation treats it as a short delivery and arranges delivery from the market, with the cost borne by the defaulting member. The buyer receives the shares rather than the seller''s failure.'
+  - question: 'Do I need to submit physical certificates to sell inherited or old shares?'
+    answer: 'Yes, if they are still held in physical form. They must first be dematerialised through a Depository Participant so that the holding exists as an electronic balance, because transfer of listed securities now happens only in dematerialised form.'
+relatedCalculators:
+  - { id: dividend-return, label: 'Total Return Decomposition' }
+  - { id: opportunity-cost, label: 'Opportunity Cost Calculator' }
+relatedArticles:
+  - order-types-and-execution-on-indian-exchanges
+  - t-plus-one-settlement-and-what-changed
+  - reading-a-shareholding-pattern
+  - primary-market-ipo-process-and-asba
+glossaryTerms: [promoter-holding]
+sources:
+  - { id: nse-india, supports: 'Exchange-side trade records and the market microstructure through which a matched trade becomes a settlement obligation' }
+  - { id: nsdl-cdsl, supports: 'Dematerialisation mechanics, ISIN identification, depository charge schedules, pledge and margin-pledge rules, and transmission-on-death procedures' }
+  - { id: sebi-home, supports: 'The regulatory framework for settlement, dematerialised transfer of listed securities and client-asset protection by intermediaries' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Rupee figures in the worked example are illustrative arithmetic, not prices or charges quoted by any exchange, depository or broker.'
+applicablePeriods: ['2026']
+openQuestions:
+  - 'How much credit risk survives novation when a large clearing member defaults rather than a small seller?'
+  - 'Would a shorter settlement cycle reduce retail exposure further, or simply shift risk to the clearing infrastructure?'
+---
+
+You place an order, it executes, and the money leaves your bank. The shares do not appear for another day. In that gap, something has already happened that most investors never see: your specific seller has been replaced by an institution that guarantees delivery, and your ownership has been recorded in a form that no certificate can represent. Understanding that gap is the difference between hoping a trade settles and knowing what to check when it does not.
+
+This is the first article in the Equity Mastery series. It follows a share from the moment an order is matched to the moment it sits in a demat account, and it explains the identifiers, the institutions and the failure modes along the way. Trading technique comes later; settlement mechanics come first, because everything else rests on them.
+
+## You do not hold shares on paper any more
+
+Listed shares in India exist as electronic balances with a depository. There are two depositories, NSDL and CDSL, and between them they hold the authoritative record of who owns which security. You do not open an account with a depository directly. You open it through a Depository Participant, usually a broker or a bank, which is the depository's registered intermediary. The account is yours at the depository; the participant is the channel through which you operate it.
+
+This three-layer arrangement — you, the participant, the depository — explains several things that otherwise look strange. The annual maintenance charge is a depository charge collected by the participant. The statement you receive is generated from depository records. And if a broker fails, the shares credited to your account are not part of the broker's estate, because they were never the broker's assets. Cash sitting with a broker is a different matter entirely.
+
+## The ISIN: how a security is identified
+
+Every security in the depository system carries an International Securities Identification Number, or ISIN. It is a globally unique code, and in India it is issued and maintained within the depository framework. Equity shares of a company, its preference shares, its debentures and its exchange-traded fund units each carry their own ISIN.
+
+The ISIN matters because settlement obligations are expressed as quantities of a specific ISIN rather than as a company name. Two listed companies can carry confusingly similar names; two series of the same company's shares carry different ISINs. When a trade is matched, the obligation is unambiguous: a stated number of units of one ISIN, against a stated amount of money. Nothing about identity is left to interpretation, which is exactly what allows clearing to be automated.
+
+When you dematerialise a physical certificate, the certificate's distinctive numbers are surrendered and replaced by an electronic balance of that ISIN. After that point, the distinctive numbers no longer exist as far as the market is concerned; ownership is the ISIN balance.
+
+## The trade is matched, then novated
+
+An order reaches the exchange, is matched against a resting order under the exchange's price-time priority rules, and becomes an executed trade. The exchange reports the trade to its clearing corporation — NSE Clearing for the National Stock Exchange, the Indian Clearing Corporation for the BSE.
+
+The clearing corporation then does something that is easy to overlook and crucial to understand: it interposes itself between the two sides. This is called novation. After novation, the seller's obligation is to the clearing corporation and the buyer's obligation is to the clearing corporation, not to each other.
+
+Before novation, you would be exposed to the specific person on the other side of your trade. After novation, you are exposed to the clearing corporation and to the risk framework behind it. That is the single most important piece of risk transfer in the entire settlement process, and it is why a buyer does not need to know, or care, who sold.
+
+## Clearing: netting many trades into few obligations
+
+Clearing is the arithmetic between execution and settlement. Each clearing member's trades are aggregated, and the obligations are netted: if a broker bought 10,000 units of a security and sold 9,500 units of the same security on the same settlement date, the net obligation is to receive 500 units. Netting drastically reduces the number of securities and the amount of money that must actually move, and it concentrates the process on net positions rather than gross turnover.
+
+You never see this layer directly, because your broker presents you with your own trades. But the obligation that settles in your account is a commitment running from the clearing corporation through your participant, and it exists independently of whatever contract notes you have been issued.
+
+## Pay-in and pay-out: the settlement legs
+
+On the settlement date, two movements occur. In the securities leg, sellers deliver the net quantity of each ISIN into the clearing corporation's account, and the clearing corporation delivers the corresponding quantities to the buyers' participants. In the funds leg, buyers pay and sellers receive. The securities move by book entry between depository accounts; nothing physical changes hands.
+
+Settlement in Indian equities currently runs on a short cycle of one business day after the trade, known as T+1, and that cycle is the subject of its own article in this series. The mechanics that matter here are the ordering: pay-in first, then pay-out, so that no buyer is credited with a security the clearing corporation has not received.
+
+## When do you actually own the share?
+
+Three moments matter, and they are not the same.
+
+1. **Execution** creates a binding, enforceable contract. Neither side can simply walk away, and both are exposed to the clearing corporation's discipline from that point.
+2. **Settlement** is when the security moves. The pay-out credits your demat account, and at that moment your holding is a depository balance in your name.
+3. **Reflection in your broker's app** is a presentation layer over the depository record. A delay in the app displaying a credit is not a delay in ownership.
+
+For practical purposes, ownership is the demat credit. Until it occurs, you hold a claim against a chain of intermediaries that is protected by novation and the clearing corporation's risk framework but is not yet a share.
+
+One consequence follows immediately: if you buy and sell the same security on the same day, the two trades net against each other and there is no delivery at all. Intraday positions settle as a cash difference, which is why a broker's margin requirement for them differs from a delivery purchase.
+
+## Dematerialisation: moving physical shares in
+
+Old holdings still exist as physical certificates. To sell them, or simply to hold them in a usable form, they must be dematerialised. The route is: submit the certificates with a demat request form to your participant; the participant lodges the request with the depository; the depository routes it to the company's registrar and transfer agent; the registrar verifies the certificates against the register and confirms the request; the depository credits your account and the certificates are cancelled.
+
+Two details cause most delays. The certificates must be in the name of the account holder, and the signatures must match the specimen the registrar holds. A transmission, a name change after marriage or a mismatch in initials can turn a routine dematerialisation into a multi-month correspondence. Because transfer of listed securities now happens only in dematerialised form, a physical certificate cannot be sold until this is completed; the certificate is a record of ownership, not a tradeable instrument.
+
+## Corporate actions arrive through the depository
+
+Corporate actions — bonuses, splits, dividends, buybacks, rights issues — operate on the depository record. For a bonus or a split, the company's registrar credits the additional or re-denominated shares to the accounts on the register as of the record date. You do not apply for these; they arrive. The ex-date is the date on which the market price adjusts to account for the action, so a fall in price on the ex-date of a bonus is arithmetic rather than a loss.
+
+Dividends follow a different path: the company pays through the banking system to the account you have registered, while the entitlement is determined from the depository record. Rights issues and buybacks work from the same record, which is why the record date is the single most important date in any corporate action and why buying on or after the ex-date does not create the entitlement. The same depository record is the source of the quarterly shareholding pattern that discloses promoter holding, which is why that disclosure is reliable in a way that a company's own press statement is not.
+
+## Pledge, margin pledge and freeze
+
+A demat holding is not frozen by default; it can be encumbered. Pledging creates a security interest in favour of a lender, and a margin pledge is the specific form used to secure obligations to a clearing member, including for derivative positions. A pledged balance cannot be sold or transferred until the pledge is released, and the participant cannot release it unilaterally if the pledgee objects.
+
+A freeze is a simpler instruction: it blocks any debit from the account until it is removed, and it is available to you directly. It is a useful response to a suspected compromise of your participant login, because it acts on the depository record rather than on the broker's interface.
+
+## Transmission on death
+
+When an account holder dies, the holding does not pass automatically. It is transmitted to the nominee or legal heir through a documented process run by the participant, involving a death certificate and, depending on the value and the presence of a nomination, additional proof of entitlement. A nomination does not transfer ownership during life; it identifies who receives the holding on death and spares the heirs a more onerous procedure. Without one, the process runs through succession documentation.
+
+## When settlement fails
+
+The most common failure is a short delivery: a seller's account does not contain the securities that were promised. The clearing corporation does not pass the problem to the buyer. It arranges delivery by buying the securities in the market through a buy-in or auction process, and the cost is borne by the defaulting member, with penalties on top. The buyer receives the shares, though not necessarily on the original settlement date.
+
+A second class of failure is operational and sits on the buyer's side: a demat credit rejected because the account is closed, frozen or has a name mismatch, or a trade stuck because the participant has not received funds. These are rare in a functioning broker relationship and common enough in neglected dormant accounts to be worth knowing about.
+
+## Explain simply
+
+When you buy a share, the exchange matches your order with a seller. Before anything moves, the clearing corporation steps in and becomes the counterparty to both of you, so you no longer depend on that particular seller. At settlement, the seller's shares are debited and yours are credited in the depository's records — a book entry, not a certificate. The security has an identity code called an ISIN, and everything from corporate actions to pledges works off the depository balance. Your demat account, held through a broker but recorded with the depository, is where ownership actually lives.
+
+## Worked example
+
+An illustrative calculation, not a quotation of prices or charges from any source.
+
+Suppose 100 shares of a company, ISIN of that company's equity, are bought at ₹250 each. The trade value is ₹25,000. On execution, the contract is binding. On the next business day, the seller's clearing member delivers 100 units of that ISIN into the clearing corporation, and the clearing corporation pays out 100 units to your participant, which credits your demat account. Your broker debits ₹25,000 plus applicable statutory charges and brokerage from your ledger.
+
+Now suppose the seller fails to deliver. The clearing corporation arranges a buy-in from the market. If it has to pay ₹265 per share to obtain them, the ₹15 per share difference — ₹1,500 on 100 shares — is recovered from the defaulting member, together with penalties, and you are credited 100 shares without bearing that cost. The relevant lesson is not the rupee amount but the direction of the exposure: delivery risk is borne by the failing member, not by the buyer who did nothing wrong.
+
+## What this does not tell you
+
+This article explains the mechanics; it does not tell you whether a security is worth owning, how liquid it is, or how its price will behave. It also does not cover the order-execution layer in any depth — the difference between a market order and a limit order, and how each behaves when the book is thin — which is the next article in this series.
+
+Two limitations are worth stating explicitly. First, the description is of the standard equity path. Derivative contracts, exchange-traded funds and debt securities route through the same depositories but with different settlement terms and, in some cases, different clearing arrangements. Second, the risk transfer described is only as strong as the clearing corporation's risk framework and the capital behind it. Novation converts a small counterparty risk into a concentrated one, and the honest question is what happens when the concentrated party is the one in trouble.
+
+## Open questions
+
+- How much residual credit risk does a buyer carry through novation, and how is it disclosed?
+- Would a shorter settlement cycle reduce retail exposure, or simply compress the window in which clearing infrastructure absorbs shocks?
+- What proportion of dematerialisation delays are caused by registrar documentation issues rather than by the depository process itself?

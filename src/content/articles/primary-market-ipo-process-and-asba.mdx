@@ -1,0 +1,157 @@
+---
+title: 'The IPO Process and the ASBA Application Route'
+description: 'Book building, price bands, investor categories and allotment logic, the ASBA mechanism that blocks rather than pays your money, and the timeline from bid close to listing.'
+shortTitle: 'The IPO Process and ASBA'
+category: equity
+series: equity-mastery
+seriesOrder: 6
+topics: ['IPO', 'book building', 'ASBA', 'allotment']
+tags: ['equity', 'primary-market', 'regulation', 'foundations']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'A public issue is the one transaction in which the seller is the company or an existing shareholder rather than another investor, so the proceeds go to the issuer or to selling shareholders and not to the market.'
+  - 'In book building the price is not set in advance; the issuer publishes a band and the allocation and cut-off price emerge from the bids received within it.'
+  - 'ASBA blocks the application money in the bank account and debits only the amount actually allotted, which is why an unallotted application costs nothing beyond the temporary block.'
+  - 'Retail allotment in an oversubscribed issue is by draw of lots, so an application is a chance at an allocation rather than a purchase.'
+  - 'Listing is not a profit event by construction: the listing price is discovered by the market and can be below the issue price.'
+faqs:
+  - question: 'Is the money for an IPO debited when I apply?'
+    answer: 'No, under ASBA the amount is blocked in your bank account and only the value of the shares actually allotted is debited. If you receive nothing, the entire blocked amount is released; if you receive part, the remainder is released.'
+  - question: 'What does oversubscription tell me about the company?'
+    answer: 'It tells you that demand at the published band exceeded supply. It does not tell you whether the price is reasonable, whether the business will earn a return on the new capital, or what the shares will be worth after listing. Demand and value are different measurements.'
+  - question: 'Can I apply for more than the retail limit by using multiple accounts?'
+    answer: 'Applications are subject to the identity of the applicant and to the rules on multiple and duplicate bids, and the registrar and exchange systems identify them. Attempting to exceed a category limit through separate accounts breaches the issue terms and risks rejection of every bid traced to the applicant.'
+  - question: 'Why does the share price sometimes fall below the issue price on listing?'
+    answer: 'Because the issue price is set by the issuer and its advisers within a band, while the listing price is set by the market with full information and no obligation to be supportive. The two are discovered by different processes and can legitimately differ in either direction.'
+relatedCalculators:
+  - { id: opportunity-cost, label: 'Opportunity Cost Calculator' }
+  - { id: cagr, label: 'CAGR Calculator' }
+relatedArticles:
+  - how-a-share-reaches-your-demat-account
+  - order-types-and-execution-on-indian-exchanges
+  - follow-on-public-offers-and-book-building
+  - offer-for-sale-mechanics
+  - promoter-pledge-as-a-risk-signal
+glossaryTerms: [market-capitalisation, free-float, pe-ratio, eps, promoter-holding]
+sources:
+  - { id: sebi-home, supports: 'The regulatory framework for public issues, including the issue process, category allocation rules and the ASBA mechanism' }
+  - { id: nse-india, supports: 'Exchange-side listing and bidding infrastructure, including the platform on which public-issue bids are collected and the listing of the resulting securities' }
+  - { id: bse-india, supports: 'The corresponding bidding and listing platform, and the corporate disclosures that follow listing' }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Category percentages, application-size limits and listing timelines are prescribed in the regulations and change from time to time; the offer document and the current regulations are authoritative for any live issue.'
+  - 'Rupee and share figures in the worked example are illustrative constructions, not terms of any actual offer.'
+applicablePeriods: ['2026']
+openQuestions:
+  - 'How well does the offer document''s comparison with listed peers predict post-listing valuation once the lock-in on pre-issue shareholders expires?'
+  - 'Do anchor allocations improve price discovery at listing, or do they substitute for it?'
+  - 'How much of first-day listing volatility is explained by a low free float rather than by the issue''s fundamentals?'
+---
+
+An initial public offering is the only routine transaction in an equity market where the counterparty is the company itself, or a shareholder selling out, rather than another investor. That single difference changes almost everything: the price is set by a negotiated process rather than by continuous trading, the money leaves the secondary market entirely, and the application mechanism is built around the fact that the applicant does not know whether they will receive anything.
+
+This article in the Equity Mastery series follows a mainboard public issue from the filing of the offer document through book building, application, allotment and listing. It is about process, not about whether any particular issue is worth applying to.
+
+## What a public issue is, and who is selling
+
+A public issue can raise money in two structurally different ways.
+
+A **fresh issue** creates new shares. The proceeds go to the company, which is expected to deploy them, and the share count rises. This is capital formation in the literal sense: the business receives the money.
+
+An **offer for sale** does not create shares. Existing shareholders — promoters, private investors, employees holding vested options — sell part of their holding. The proceeds go to those sellers, and the company receives nothing. The share count is unchanged.
+
+Many public issues combine both. The distinction is the first thing to establish when reading an offer document, because a large issue that is entirely an offer for sale raises no capital for the business, whatever the headline size suggests. The related articles on follow-on offers and offer-for-sale mechanics take up the variations.
+
+## The document trail
+
+The process begins with a draft offer document filed with the securities regulator and the exchanges. It contains the business description, the financial statements, the objects of the issue, the risks, the capital structure, the litigation, the related-party transactions and the terms of the offer. After the regulator's observations and any revisions, the document is finalised, and the final offer document is the version against which the issue is actually made.
+
+The final offer document is the only document with statutory backing. Everything else — advertising, research notes from the lead managers, television commentary, the rumour circulating on social media about the subscription level — is marketing or opinion. When the two conflict, the document governs, and reading it is the only due diligence a retail applicant can do on equal terms with everyone else.
+
+## Book building and the price band
+
+In a book-built issue the price is not announced in advance. The issuer publishes a price band, and investors bid at prices within it. The bids build a book of demand across the band, and the issue is priced at or below its top, with the discovered price reflecting where demand is strongest.
+
+Several features of this process are commonly misunderstood.
+
+- **The band is not a valuation.** It is a range the issuer and its lead managers believe will clear, informed by comparable listed companies and by demand during the marketing period.
+- **Applying at the cut-off price** instructs the system to accept whatever price is discovered at or below the top of the band. It is the standard retail approach when the applicant is willing to pay any price the book produces.
+- **Anchor investors** may be allocated a portion of the institutional category before the issue opens, subject to lock-in periods prescribed in the regulations. The purpose is to signal institutional support and to reduce opening uncertainty; the allocation is at the top of the band.
+- **A fixed-price issue** is the older alternative in which the price is announced in advance. It survives mainly in smaller issues.
+
+Bidding is open for a short window, typically a few working days, during which bids may be revised or withdrawn within the rules of the process. The final subscription position only becomes known when the window closes.
+
+## The investor categories and allotment logic
+
+The offer is divided into categories, and the allocation rules differ by category. For a book-built mainboard issue the framework has historically set out a minimum share for qualified institutional buyers, a minimum for retail individual investors and a cap on the non-institutional category, commonly described as 50%, 35% and 15% of the net offer respectively. These percentages are prescribed in the regulations and should be read from the offer document of a live issue rather than assumed.
+
+Within the categories:
+
+- **Qualified institutional buyers** are institutions — mutual funds, insurers, pension funds, foreign portfolio investors and similar. Allocation within the category is broadly proportionate to the bids received.
+- **Non-institutional investors** are everyone else who is not a retail investor, most visibly high-net-worth individuals bidding in larger sizes. Allocation is again broadly proportionate when the category is oversubscribed.
+- **Retail individual investors** are individuals applying within an application-size ceiling prescribed in the regulations — ₹2,00,000 at the time of writing, subject to change. Because retail bids are numerous but individually small, an oversubscribed retail category is allotted by a computerised draw of lots rather than proportionately.
+- **Employee and shareholder quotas**, where offered, are separate and have their own allotment terms.
+
+The consequence of the draw is that a retail application in an oversubscribed issue is not a purchase. It is an entry in a lottery, and the probability of allocation is approximately the ratio of shares on offer in the category to shares bid for. A reader who understands only one thing about public issues should understand that.
+
+## ASBA: money blocked, not paid
+
+Application Supported by Blocked Amount is the mechanism that removed the worst feature of the older process, in which application money left the applicant's account and refunds arrived weeks later.
+
+Under ASBA, the application amount is blocked in the bank account rather than transferred. The bank, acting as a self-certified syndicate bank, records the block; the registrar determines the allotment; and the bank then debits only the value of the shares actually allotted and releases the rest of the block. If the applicant receives no shares, nothing is debited and the full amount is released.
+
+Three practical consequences follow. An application has an opportunity cost equal to the blocked amount for the duration of the block, and no cash cost otherwise. An applicant cannot accidentally overspend, because the money is not spent. And the bank balance continues to hold the funds, so the amount must be genuinely available at the time of blocking.
+
+## Applying through UPI and net banking
+
+Retail applications on the mainboard are most commonly made through the unified payments interface. The applicant enters the bid in the broker's or exchange platform, the system raises a mandate for the blocked amount, and the applicant approves the mandate in their payments app. Larger applications in the non-institutional category, and applicants who prefer a direct route, use net banking through the ASBA facility.
+
+Two rules matter more than the mechanics. First, the application must be in the applicant's own name and paid from the applicant's own account. Second, multiple and duplicate bids by the same applicant across different platforms are detected and treated as invalid. The impulse to apply through several accounts to multiply the odds runs directly into the rules on identity, and the consequence is rejected applications rather than better odds.
+
+## From close to listing
+
+Once the bidding window closes, the registrar and the lead managers finalise the basis of allotment in accordance with the regulations and the exchange, the allotment is executed, and the funds are debited for the allotted shares only. Allotted shares are credited to the applicant's demat account, which is the mechanism described in the first article of this series, before the shares begin trading.
+
+The process is compressed into a short window. Listing currently occurs within a very small number of working days after the issue closes — three working days for mainboard issues at the time of writing, subject to change — which is why the interval between applying and listing feels brief compared with the months of preparation that preceded it.
+
+## Lock-ins, free float and what listing does
+
+Listing changes the shareholder base rather than the business. Three consequences are worth noting.
+
+- **The free float increases.** Before the issue, the shares were closely held. Afterwards, a portion is held by the public. A small free float makes the listed price more sensitive to modest flows, which is a mechanical property of thin supply rather than a judgement about the company.
+- **Pre-issue shareholders are subject to lock-ins.** Promoters and other pre-issue holders can be restricted from selling for prescribed periods, with the provisions specified in the offer document. Expiry of a lock-in releases supply, which is a scheduled event rather than a surprise.
+- **Market capitalisation is set by the listing price.** The offer document typically shows the resulting market capitalisation at the top and bottom of the band, alongside the earnings per share of the last reported year and a comparison with the price-to-earnings ratios of listed peers. Those figures are arithmetic presented for context. They are not a claim that the issue price is cheap, and the choice of comparable companies is the issuer's.
+
+## Explain simply
+
+When a company lists, it — or its existing owners — sells shares to the public. A range of prices is published and investors bid inside it, and the final price emerges from those bids. The offer is split into categories, and if there are more bids than shares, retail applicants are picked by a lottery rather than given a proportional share. Your application money is not paid, it is blocked in your bank account, and only the shares actually given to you are debited. A few days later the shares list and trade at whatever price the market decides, which can be higher or lower than the issue price.
+
+## Worked example
+
+An illustrative construction. Numbers are chosen to show the mechanics and are not terms of any actual offer.
+
+Suppose a retail individual investor bids for one lot of 150 shares at the cut-off price of ₹100, giving an application value of ₹15,000. The amount is blocked in the bank account rather than debited.
+
+Now suppose the retail category was oversubscribed ten times: 35,00,000 shares bid for against 3,50,000 shares on offer. Because retail allotment is by draw, each application carries roughly a one-in-ten chance of allocation. If this applicant is selected, they receive one lot and ₹15,000 is debited, with the shares credited to the demat account before listing. If they are not selected, nothing is debited and the full ₹15,000 is released. The expected outcome is not an allocation at a discount; it is a small probability of an allocation at the issue price.
+
+Contrast this with the non-institutional category, where allocation is proportionate. A bid for 15,000 shares in a category oversubscribed twice over would receive approximately half the quantity applied for, in proportion to the bids received, with the balance released.
+
+## What this does not tell you
+
+This article explains the mechanism; it does not evaluate any issue. It cannot tell you whether an issue price is reasonable, whether the objects of the issue will be executed, or what the shares will be worth after listing. Those are questions of valuation and of governance, and the offer document plus the company's subsequent disclosures are the evidence base for them.
+
+One caution deserves to be explicit. Subscription levels, anchor participation and the informal premium quoted in unregulated grey markets are not regulated indicators of value, and none of them constrains the listing price. An oversubscribed issue can list below its issue price, and the arithmetic of a draw means that a large number of applicants will experience that outcome without ever having received the shares at a better price. Applying to a public issue is a decision to buy a business at a stated price through an allocation process with a probability attached; treating it as an arbitrage is a category error.
+
+## Open questions
+
+- How predictive is the offer document's peer comparison once the pre-issue lock-in expires and the free float settles?
+- Do anchor allocations improve price discovery at listing, or do they substitute institutional judgement for genuine demand?
+- What proportion of first-day volatility in newly listed securities is explained by a low free float rather than by news about the business?

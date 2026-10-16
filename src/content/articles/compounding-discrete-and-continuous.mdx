@@ -1,0 +1,191 @@
+---
+title: 'Compounding: Discrete Periods and the Continuous Limit'
+description: 'The same nominal rate produces different outcomes depending on how often interest is added back to the base. This article derives the discrete compounding formula, the effective annual rate, and the continuous limit that sits behind it.'
+shortTitle: 'Compounding: Discrete and Continuous'
+category: financial-mathematics
+series: financial-mathematics
+seriesOrder: 1
+topics: ['compounding', 'effective annual rate', 'continuous compounding', 'discounting']
+tags: ['mathematics', 'foundations', 'interest']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'A nominal rate is incomplete without its compounding convention: the same 8% produces a different rupee outcome under annual, quarterly and monthly rests.'
+  - 'The effective annual rate converts any convention into one comparable annual number, and it always sits at or above the nominal rate when there is more than one rest per year.'
+  - 'Continuous compounding is the mathematical limit of ever-finer rests, equal to the exponential of the rate; it is a modelling device rather than a product anyone is offered.'
+  - 'Because compounding multiplies, logarithms turn it into addition, which is why log returns can be summed across periods while simple returns cannot.'
+  - 'The Rule of 72 is a serviceable mental approximation between roughly 4% and 15%, and it drifts as the rate rises.'
+  - 'Discounting is compounding run backwards; the same algebra that grows a present value into a future one converts a future cash flow into today''s equivalent.'
+faqs:
+  - question: 'Does continuous compounding mean I can earn an infinite amount?'
+    answer: 'No. As the number of rests per year grows, the effective annual rate approaches a finite ceiling, the exponential of the nominal rate minus one. Going from daily rests to infinitely many barely changes the money; the limit matters for mathematics, not for a larger payout.'
+  - question: 'Why do two deposit offers with the same rate pay different amounts?'
+    answer: 'Because the rate is nominal and the compounding convention is separate. A product that adds interest quarterly builds a larger base within the year than one that adds it annually, so its effective annual rate is higher even though the quoted rate is identical.'
+  - question: 'Which rate should I use to compare products?'
+    answer: 'Use the effective annual rate, computed from the stated nominal rate and rest frequency, before any tax or fee. Then compare like with like on liquidity, credit risk and tax treatment, because the compounding convention is only one of several differences.'
+  - question: 'Is the nominal-minus-inflation shortcut for the real rate exact?'
+    answer: 'It is an approximation, and it is only close when rates and inflation are low. The exact relationship multiplies rather than subtracts, and the gap becomes material at high nominal rates or high inflation.'
+relatedCalculators:
+  - { id: cagr, label: 'CAGR Calculator' }
+  - { id: sip, label: 'SIP Calculator' }
+  - { id: emi, label: 'EMI Calculator' }
+  - { id: bond-price-yield, label: 'Bond Price and Yield' }
+  - { id: monte-carlo, label: 'Monte Carlo Simulator' }
+relatedArticles:
+  - cagr-versus-xirr
+  - real-versus-nominal-returns
+  - present-and-future-value-of-annuities
+  - logarithmic-returns-in-practice
+  - npv-and-internal-rate-of-return
+glossaryTerms: [compounding, effective-annual-rate, discount-factor, fisher-equation, rule-of-72, irr]
+sources:
+  - { id: rbi-fd-rates, supports: 'Published nominal deposit and lending rates, which are quoted together with a compounding convention and therefore differ from the effective annual rate' }
+  - { id: merton-1973, supports: 'The use of continuous-time mathematics in finance, where the exponential of a rate rather than a discrete product is the natural object' }
+  - { id: black-scholes-1973, supports: 'The continuous-time setting in which continuous compounding and continuous hedging are modelling assumptions rather than product features' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+hasDiagram: true
+warnings:
+  - 'All rates used here are illustrative numbers chosen to expose the arithmetic, not offers from any bank, fund or product.'
+applicablePeriods: ['2026']
+openQuestions:
+  - 'Which compounding convention a particular bank applies to a given cumulative deposit is product-specific, so any comparison should read the product terms rather than assume a default.'
+  - 'Should Indian deposit advertising be required to show an effective annual rate alongside the nominal rate, as some other jurisdictions do?'
+---
+
+A nominal interest rate is a number with a second number hidden inside it. The hidden number is the convention — how often the interest is added back to the balance so that it can earn interest itself. Two products that both advertise 8% can pay materially different amounts in the same year, and neither advertisement is lying. The difference is arithmetic, and once you can see it, a whole class of comparisons becomes straightforward.
+
+This is the first article in the Financial Mathematics series. It derives the discrete compounding formula, defines the effective annual rate, and then takes the mathematical limit that produces continuous compounding. Nothing here requires more than school algebra; the point is to be able to convert any quoted rate into a form you can compare.
+
+## Interest that earns interest
+
+Simple interest applies a rate to the original principal only. A deposit of ₹1,00,000 at 8% simple earns ₹8,000 every year, for ever, and the balance grows linearly. Compound interest applies the rate to the balance, including interest already credited, so the base itself grows. The difference is negligible in the first year and enormous over decades, because growth that feeds on itself is geometric rather than linear.
+
+The same mechanism runs in reverse on debt. Interest that is not paid is capitalised and then earns interest of its own, which is why a credit-card balance left alone can escalate faster than the borrower expects. Compounding is morally neutral; it simply applies to whatever balance exists.
+
+The single most important consequence is that a rate and a convention are two separate facts. The rate says how fast the base grows at each rest. The convention says how often the base is allowed to grow. Quoting one without the other is incomplete.
+
+## The discrete formula and the rest frequency
+
+Let the nominal annual rate be $r$, the number of compounding periods per year be $n$, and the term in years be $t$. The future value of a present amount is:
+
+$$ A = P \left(1 + \frac{r}{n}\right)^{n t} $$
+
+Each rest multiplies the balance by the factor $1 + r/n$. Over one year there are $n$ such multiplications, which is why the exponent is the product $n t$. When $n = 1$ the interest is added once a year, when $n = 2$ half-yearly, when $n = 4$ quarterly, when $n = 12$ monthly, and when $n = 365$ daily.
+
+```mermaid
+graph LR
+  P[Starting balance] --> R[Multiply by one plus rate over n]
+  R --> B[New and larger base]
+  B --> R
+```
+
+Two details are worth stating plainly. First, $n$ must be an integer in any real product, because a bank cannot credit interest 7.4 times a year. Second, the rate inside the bracket is the periodic rate, obtained by dividing the nominal annual rate by the number of rests. A nominal 8% compounded quarterly is a 2% quarterly rate, not an 8% quarterly rate.
+
+## The same nominal rate, six different outcomes
+
+The following table holds the nominal rate fixed at 8% and the principal fixed at ₹1,00,000 for one year, and varies only the convention. It is an illustrative calculation, not a quote from any product.
+
+| Convention | Rests per year | Value after one year | Interest earned |
+| --- | --- | --- | --- |
+| Annual | 1 | ₹1,08,000.00 | ₹8,000.00 |
+| Half-yearly | 2 | ₹1,08,160.00 | ₹8,160.00 |
+| Quarterly | 4 | ₹1,08,243.22 | ₹8,243.22 |
+| Monthly | 12 | ₹1,08,299.95 | ₹8,299.95 |
+| Daily | 365 | ₹1,08,327.76 | ₹8,327.76 |
+| Continuous | — | ₹1,08,328.71 | ₹8,328.71 |
+
+Two facts jump out. The spread across conventions at this rate is modest — about ₹329 on a lakh, or a third of a percent — but it is entirely determined by the paperwork rather than by any extra risk. And the extra interest shrinks rapidly as the rests get finer: monthly to daily adds about ₹28, while daily to the continuous limit adds less than a rupee.
+
+That second pattern is the whole reason continuous compounding exists as a mathematical object. The gains from finer rests are diminishing, and they converge.
+
+## The effective annual rate
+
+To compare products quoted under different conventions, convert each to a single annual number. The effective annual rate answers the question: what single annual rate, compounded once, would produce the same year-end value?
+
+$$ \text{EAR} = \left(1 + \frac{r}{n}\right)^{n} - 1 $$
+
+For the table above the effective annual rates are 8.0000% under annual rests, 8.1600% half-yearly, 8.2432% quarterly, 8.3000% monthly and 8.3278% daily. The nominal rate has not changed once; only the convention has.
+
+The gap between nominal and effective rates widens with both the stated rate and the frequency. At a low rate the difference is a rounding matter; at a high rate, or on a large balance over years, it is not. For a borrower the same arithmetic works against them, because a loan rate applied monthly costs more than the same nominal rate applied annually. This is the gap that APR-style disclosures exist to close.
+
+## Taking the limit: continuous compounding
+
+What happens if the convention is allowed to become as fine as possible? Set the rest frequency growing without bound and ask where the accumulation factor settles:
+
+$$ \lim_{n \to \infty} \left(1 + \frac{r}{n}\right)^{n} = e^{r} $$
+
+The right-hand side contains $e$, the base of natural logarithms, defined as the limit of $(1 + 1/n)^n$ as $n$ grows. Substituting a rate $r$ into that definition gives the expression above. So the continuous-compounding formula is:
+
+$$ A = P e^{r t} $$
+
+and the continuous effective annual rate is the exponential of the nominal rate minus one, which at 8% is 8.3287%. That is the ceiling the discrete table was climbing towards, and it is finite for every finite rate.
+
+The practical translation is that continuous compounding is not a product feature. No deposit is credited interest at every instant, and even if one were, the difference from daily compounding at ordinary rates is under a rupee per lakh per year. What the limit provides is a rate whose behaviour under scaling is clean: doubling the term doubles the exponent, and adding two periods adds their exponents.
+
+## Why the continuous limit is useful
+
+Continuous compounding earns its place in finance because continuous time makes many models tractable. Option pricing in the Black–Scholes and Merton tradition works in continuous time, assumes continuous hedging, and therefore writes rates and returns as exponentials rather than as discrete products. Those assumptions are idealisations — real Indian option markets have discrete strikes, transaction costs and gaps — but the continuous formulation is what makes a closed-form price possible at all.
+
+The other use is measurement. If a single period's growth factor is $1 + r$, then the continuously compounded equivalent is its natural logarithm, written $\ln(1 + r)$. Because logarithms turn multiplication into addition, returns expressed this way can be summed across periods. Add the log returns of two consecutive years and you get the log return of the two-year stretch; do the same with ordinary percentage returns and you will be wrong. This is why log returns appear wherever returns are aggregated over time, and it is the subject of a later article in this series.
+
+## Compounding backwards: discounting
+
+Every compounding formula has a mirror image. To move a future cash flow back to today, divide rather than multiply:
+
+$$ PV = \frac{FV}{(1 + r)^{n}} $$
+
+The multiplier that does this, one divided by the growth factor, is the discount factor. Discount factors are the primitive objects of valuation: a sequence of them, one per period, prices a bond, evaluates a project and defines the net present value of a stream of cash flows. In continuous form the same operation is a negative exponent, with the present value equal to the future value multiplied by the exponential of minus the rate times the time.
+
+The asymmetry to remember is that compounding is certain in its arithmetic and uncertain in its inputs. The formula is exact; the rate you feed it is an assumption that may not survive the term.
+
+## The Rule of 72 and where it breaks
+
+A widely used mental shortcut says that money doubles in approximately $72 / r$ years at a rate of $r$ percent. The exact doubling time comes from logarithms:
+
+$$ t_{double} = \frac{\ln 2}{\ln(1 + r)} $$
+
+At 8% the shortcut gives 9 years and the exact answer is 9.006 years, which is close enough for conversation. At 5% the shortcut gives 14.4 years and the exact answer is 14.21. At 24% the shortcut gives 3 years while the exact answer is about 3.22 — an error of more than two months, which is why the rule is usually described as serviceable between roughly 4% and 15% and unreliable outside that range.
+
+The rule is a reminder, not a calculation. Its value is that it makes long horizons intuitive: a rate near 7% roughly doubles wealth each decade, and a 2% fee taken from the return pushes the doubling time out by years rather than months.
+
+## Where the convention bites in real products
+
+In Indian deposit and loan markets, rates are published as nominal annual figures, and the compounding convention is stated in the product terms rather than in the headline. Reserve Bank of India and scheduled-bank rate publications are the reference point for the nominal rates themselves; the effective rate you experience is a function of those rates and the convention applied on top.
+
+For a term deposit, the convention typically governs how interest is credited and whether it is reinvested. For a loan, the convention determines the periodic rate applied to the reducing balance, which is what an equated monthly instalment calculation uses. For a bond, the convention is embedded in the compounding assumed when a yield is quoted from a price. In all three cases, the honest comparison is between effective annual rates computed on identical terms, with tax and fees treated separately.
+
+## Explain simply
+
+Compounding means interest earns interest. How often the interest is added back matters, because a larger base earns more next time. If you are told only the rate, you have half the information: you also need to know whether interest is added yearly, quarterly or monthly. The effective annual rate squeezes both facts into one number so you can compare fairly. Continuous compounding is what you get if you keep making the additions more frequent for ever; the total rises towards a fixed ceiling and stops there. It is used in mathematics and in option pricing, not to pay depositors marginally more.
+
+## Worked example
+
+An illustrative calculation, using a nominal rate of 8% and a principal of ₹1,00,000. These are chosen to expose the arithmetic and are not offers from any institution.
+
+- **One year, annual rests.** ₹1,00,000 × 1.08 = ₹1,08,000.
+- **One year, quarterly rests.** The periodic rate is 2%, applied four times: ₹1,00,000 × 1.02 to the fourth power = ₹1,08,243.22.
+- **One year, continuous.** ₹1,00,000 × the exponential of 0.08 = ₹1,08,328.71.
+- **Two years, annual rests.** ₹1,00,000 × 1.08 squared = ₹1,16,640.
+- **Two years, quarterly rests.** ₹1,00,000 × 1.02 to the eighth power = ₹1,17,165.94.
+- **Two years, continuous.** ₹1,00,000 × the exponential of 0.16 = ₹1,17,351.09.
+
+The first three lines show the convention effect within a single year. The last three show that the effect compounds: the quarterly-versus-annual gap grows from about ₹243 in year one to about ₹526 across two years. Reducing the nominal rate by even a tenth of a percentage point would erase that gap, which is why the equivalent annual rate, not the quoted rate, is the number to compare.
+
+## What this does not tell you
+
+This article is about the arithmetic of a single constant rate. It does not tell you which product to hold. Credit risk, liquidity, lock-in, tax treatment and the strength of any guarantee are all differences that the compounding formula cannot see, and a higher effective rate from a weaker counterparty is not the same product at a better price.
+
+It also assumes the rate stays constant, which no real rate does. Products reprice, loans are linked to benchmarks, and a term deposit matures into whatever the market offers next. Finally, inflation lies outside the nominal formula entirely. The exact relationship between nominal rates, real rates and inflation multiplies rather than subtracts, and the familiar nominal-minus-inflation shortcut is only close when both numbers are small.
+
+## Open questions
+
+- Which compounding convention a given cumulative deposit applies is product-specific, so a comparison should read the terms rather than assume a default.
+- Whether Indian deposit and loan advertising should be required to display an effective annual rate alongside the nominal rate remains an open disclosure question.
+- Continuous compounding is exact only as a limit of a model; the extent to which continuous-time assumptions distort option pricing in a market with discrete trading and gaps is a live research question rather than a settled one.

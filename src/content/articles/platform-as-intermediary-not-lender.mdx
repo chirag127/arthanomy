@@ -1,0 +1,160 @@
+---
+title: 'The Platform Is Not the Lender: Legal Roles in P2P Lending'
+description: 'In an RBI-regulated peer-to-peer marketplace, three parties hold three different promises. Knowing which one owes you money decides where your claim sits in a dispute — and what happens if the platform fails.'
+shortTitle: 'The Platform Is Not the Lender'
+category: p2p-lending
+series: p2p-first-principles
+seriesOrder: 2
+topics: ['P2P lending', 'legal roles', 'RBI framework', 'escrow', 'credit risk']
+tags: ['p2p', 'regulation', 'credit', 'lending']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'The RBI framework permits a peer-to-peer platform to act as an intermediary running a marketplace; the loan contract is between the lender and the borrower, and the platform is not the borrower''s debtor.'
+  - 'Because your claim runs against the borrower under the loan document, a default is pursued through the loan contract and the platform''s collection and servicing arrangements, not through a promise owed by the platform.'
+  - 'The prohibition on guarantees, credit enhancement, promised liquidity and lending on its own account is what keeps the platform out of the position of principal; it is structural, not promotional.'
+  - 'Money is routed through escrow arrangements that separate lender funds from the platform''s own funds, which limits commingling but does not add a guarantee to the loans.'
+  - 'The exposure limits that apply to lenders across borrowers and platforms are a direct statement that the lender, not the platform, holds the default risk.'
+  - 'Some questions about a dispute — who may enforce the loan, how recovery is allocated, and what happens on platform failure — depend on the loan documents and the current direction, and should be verified rather than assumed.'
+faqs:
+  - question: 'If a borrower defaults, can I claim from the platform?'
+    answer: 'No. The platform is the marketplace operator, not the borrower''s guarantor, and the framework denies it the role of insurer of the loans. Your claim is the one the loan contract gives you against the borrower, pursued through whatever collection and servicing arrangements the platform operates.'
+  - question: 'What happens to my loans if the platform itself fails?'
+    answer: 'The loans are not the platform''s assets to lose; they are instruments between you and the borrowers. Platform failure is therefore a separate risk from borrower default, affecting servicing, collections and access to records rather than the existence of the contract. How outstanding positions are handled in that situation is a question for the loan documents and the regulator, and it should be verified.'
+  - question: 'Does escrow mean my money is safe?'
+    answer: 'It means your money is kept separate from the platform''s own funds while it moves through disbursement and repayment, which limits the risk of commingling. It is not a guarantee against borrower default, and it does not make a peer-to-peer loan a deposit.'
+  - question: 'Who actually signs the loan contract?'
+    answer: 'The framework is built on a contract between the lender and the borrower, with the platform documenting and operating the marketplace around it. The exact form of the documents, and who is named in them, is set out by the platform and the master direction, so read the loan document you are shown rather than assuming its structure.'
+  - question: 'What are the current exposure limits?'
+    answer: 'The framework imposes caps on a lender''s exposure to a single borrower and across platforms, and they have been revised over time. The operative figures live in the master direction and should be read there rather than quoted from a summary, including this one.'
+relatedArticles:
+  - rbi-p2p-licensing-framework
+  - escrow-account-mechanics-in-p2p-lending
+  - no-guarantee-rule-and-credit-enhancement-ban
+  - lender-exposure-limits-across-platforms
+  - how-p2p-loans-are-underwritten-in-india
+  - risk-grading-systems-on-p2p-platforms
+glossaryTerms: [nbfc-p2p, lender, borrower, escrow-account, risk-grade, default]
+relatedCalculators:
+  - { id: default-recovery, label: 'Expected Credit Loss' }
+  - { id: p2p-return, label: 'P2P Realised Return' }
+sources:
+  - { id: rbi-p2p-md, supports: 'The master direction defining the NBFC-P2P intermediary model, the prohibitions on guarantees and credit enhancement, escrow mechanics, disclosure obligations and exposure limits' }
+  - { id: rbi-home, supports: 'The wider regulatory context, including the NBFC framework and the point that peer-to-peer loans are not deposits and carry no deposit-insurance protection' }
+  - { id: cibil-credit-bureau, supports: 'The credit-report structure that records how a lender has treated a borrower, relevant to how a defaulted loan is evidenced and reported' }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'This article describes the regulatory structure, not any particular platform and not legal advice. The master direction is the operative document and has been amended; verify its current wording, and any platform''s documents, before relying on it.'
+  - 'Peer-to-peer lending carries credit risk with no statutory compensation scheme, and nothing here is advice to lend. Where this article reasons about a dispute or a platform failure, it is identifying questions to verify, not giving answers.'
+openQuestions:
+  - 'How is recovery actually allocated between lenders on a shared loan when collections arrive over months rather than at once, and is that documented in the loan contract?'
+  - 'In a platform failure, what is the mechanism by which lenders take control of servicing, collections and the escrow balances, and how quickly can it operate?'
+  - 'Are risk grades and disclosure obligations sufficient for a lender to identify the borrower counterparty well enough to pursue a claim?'
+  - 'Does the framework permit any arrangement — such as a third-party co-lender taking first-loss risk — that operates as credit enhancement without breaching the letter of the prohibition?'
+---
+
+A peer-to-peer loan looks, from the app, like a deposit: money leaves the bank account, a schedule of repayments appears, an interest rate is quoted. The resemblance is superficial, and the framework is designed to make it so. Underneath the screen are three parties and three different promises, and the practical question a lender has to answer is not "what rate am I getting" but "who owes me what, and what do I hold if it is not paid". This article is about that second question.
+
+## Three parties, three separate promises
+
+The structure separates the marketplace from the credit, and it does so deliberately.
+
+- **The lender** commits money through the platform to one or several borrowers, in units of participating loans, and bears the credit risk directly.
+- **The borrower** is the person or eligible entity that owes repayment under the loan contract, after whatever identity and credit assessment the framework prescribes.
+- **The platform** is a company registered with the RBI as an NBFC-P2P, which runs the marketplace: onboarding, know-your-customer checks, matching, documentation, escrow flows, reporting and the collection plumbing that follows a default.
+
+Three promises follow. The borrower promises repayment under the loan contract. The platform promises to operate the marketplace in accordance with the framework. The lender holds the first promise and pays for the second. Blurring the last two is the error that a great deal of platform marketing encourages, and the framework exists partly to prevent it.
+
+## What the platform is licensed to do
+
+An NBFC-P2P is a company registered with the RBI under the master direction governing peer-to-peer platforms. Registration is substantive: it brings legal-form, capital, governance, technology, risk and reporting conditions with it, and it means the entity is supervised and accountable to a stated rulebook.
+
+The permitted business model is a marketplace. The platform may provide the venue, conduct the onboarding and credit assessment, document the loans, operate the escrow arrangements, report to the regulator, publish the disclosures it is required to publish, and service the loans as they perform. One framing that holds up across the framework is that the platform may do everything that helps a lender and a borrower find and administer each other, and nothing that makes the platform the party that owes the money.
+
+## What the platform is not
+
+The prohibitions carry more information than the permissions, because they define the boundary the framework is protecting. The platform is forbidden from:
+
+- **Guaranteeing returns**, in the form of assured or fixed yields presented as a product feature.
+- **Providing credit enhancement**, that is, making arrangements that would reduce the lender's loss and thereby turn the platform into something closer to an insurer of the loans.
+- **Promising liquidity**, in the sense of an assured exit or buyback at the lender's option.
+- **Lending on its own account** to fund the marketplace.
+- **Taking deposits.** Peer-to-peer loans are not deposits, and nothing in the chain carries deposit-insurance protection, which covers bank deposits as a different product category.
+
+The design intent of that list is coherence, not caution. A marketplace that guarantees its participants' outcomes has become a principal, and a principal with a regulated range of creditors is a bank in all but name. The framework declines to license that. The specific text and its amendments live in the master direction, and it is worth reading there rather than relying on any summary, including this one.
+
+## Where the loan contract actually sits
+
+The framework is built around a contract between the lender and the borrower, with the platform operating as intermediary. That is the legal centre of gravity, and it has practical consequences:
+
+- **The debt is owed to the lender**, not to the platform, so the lender's remedy on non-payment is the remedy the loan contract provides.
+- **The platform is not a debtor** to the lender in respect of the loan. Where the platform owes the lender anything, it is the performance of the marketplace services, not the repayment of principal and interest.
+- **Enforcement follows the document.** Whether the platform is named as a collection agent, whether it may enforce the loan on the lenders' behalf, and how recoveries are shared, are all matters the loan documents and the platform's operating arrangements address. Those should be read, not assumed.
+
+The reason this matters is what it does to expectations. A lender who believes the platform stands behind the loan will behave differently on the first missed payment from one who understands that the platform is the postman. The framework is explicit that the risk is the lender's, and the exposure limits reinforce it.
+
+## Escrow, and why the money takes a detour
+
+Funds do not sit with the platform. The architecture routes them through escrow arrangements permitted by the framework, so that lender money is kept separate from the platform's own funds while loans are disbursed and repayments are collected and distributed.
+
+The purpose is containment rather than guarantee. Separation reduces the risk that money in transit is used for the platform's own purposes or is caught up in its failure, and it supports orderly settlement of collections, refunds and fees. It does not put a floor under the loans, and it does not make a peer-to-peer loan a deposit. A lender should understand the specific arrangement in use — how disbursements flow, how repayments are routed, and what happens to money in transit — because the mechanics determine the timing of cash arriving in the lender's account.
+
+## What happens when a borrower defaults
+
+A default is the failure to meet a contractual obligation when due, and under the framework the loan then follows the path the loan contract and the platform's servicing arrangements provide: internal collections, then whatever escalation the documents contemplate, with recoveries shared among lenders in proportion to their exposure.
+
+Three consequences follow from the structure.
+
+- **The loss is the lender's.** The default does not create a claim against the platform, because the platform never promised repayment.
+- **Recovery is a process with a tail.** Money collected after a loan stops performing counts, and recovery performance varies with the borrower segment and the platform's collection infrastructure. The gap between the headline default rate and the realised loss is precisely the recovery rate.
+- **The borrower's record is affected.** A defaulting loan is reported in the borrower's credit record, which is one of the pressures that makes recovery more likely than it would be in an unrecorded transaction, and which also explains why the platform's reporting obligations matter to the borrower.
+
+## What happens when the platform fails
+
+Platform failure is a distinct risk from borrower default, and separating them is one of the cleaner consequences of the legal structure.
+
+The loans are not the platform's assets. They are contracts between lenders and borrowers, and their existence does not depend on the platform continuing to trade. What platform failure threatens is everything around the contract: servicing, collections, the collection of instalments, access to loan records, and the operation of the escrow arrangements. A lender whose portfolio is performing may still find that instalments stop arriving on schedule because the machinery that moved them has stopped.
+
+What this article will not do is state the mechanism by which lenders take control of servicing and escrow balances in that event. That is a question of the loan documents, the escrow arrangements and the current direction, and it should be verified before it matters rather than assumed from the structure. What can be said with confidence is that the framework's insistence on the platform not being the principal is what keeps the loans outside the platform's estate.
+
+## The exposure limits as a statement about risk
+
+The framework imposes caps on both sides of the marketplace — what a borrower may raise in aggregate across platforms of this type, and what a lender may hold outstanding to a single borrower and in aggregate across platforms. The lender-side cap exists because the lender owns the default risk and because diffuse exposure is a structural requirement rather than a preference.
+
+That is the framework telling the lender what the product is: many small exposures rather than a few large ones, so that the arithmetic of independent defaults can work. A concentrated peer-to-peer portfolio is not a higher-return version of a diversified one; it is a different risk, and one the framework caps deliberately. The current figures are set out in the master direction and have changed over time, so they should be read there rather than quoted from any secondary source.
+
+## Explain simply
+
+When you lend through a peer-to-peer platform, you are lending to a borrower. The platform is the marketplace that introduces you and keeps the records — it is not the borrower, and it does not owe you the money back. The rules stop the platform from guaranteeing your returns, from promising to buy your loans back, and from lending its own money alongside you, because any of those would make it the party on the hook. Your money moves through a separate escrow account rather than sitting with the company, and the rules limit how much you can have with any one borrower and across the whole market. If a borrower stops paying, that is your loss to pursue under the loan contract; if the platform itself fails, the loans still exist, but keeping them serviced and collected becomes the problem.
+
+## Worked example
+
+The following is an illustrative calculation, not observed data and not a forecast. It shows how the structure turns a rate into an expected loss, using figures chosen for arithmetic only.
+
+Suppose an illustrative ₹1,00,000 is spread across 100 loans of ₹1,000 each. Assume, purely illustratively, that 4 per cent of the exposure defaults within the year and that 60 per cent of the defaulted exposure is ultimately recovered, leaving a loss given default of 40 per cent. Expected credit loss is then:
+
+$$ 1{,}00{,}000 \times 0.04 \times 0.40 = 1{,}600 $$
+
+That is an expected loss of ₹1,600 on ₹1,00,000, or 1.6 per cent of the amount lent, before fees and tax. Note what the calculation does not do. It does not reduce the loss because the face of the marketplace looks reassuring, because the platform is licensed, or because the money sat in escrow. None of those changes the borrower's obligation. The loss is borne by the lender because the lender holds the claim, and the only inputs that move the answer are the probability of default, the recovery rate and the size of the exposure.
+
+## What this does not tell you
+
+- **It is not the master direction.** The direction is the operative document, it has been amended, and its current wording governs. Where this article describes a boundary, the boundary should be confirmed against the direction itself.
+- **It is not a platform review.** Nothing here assesses any named platform, its documents or its practices.
+- **It does not resolve the enforcement questions.** Who may sue on a loan, how recoveries are shared, and what happens on platform failure are matters of contract and regulation that should be verified specifically.
+- **It does not quantify platform risk.** The loss in a platform failure is not the same as a credit loss and is not estimated here.
+- **It is not advice to lend.** Peer-to-peer lending can lose money, and the framework is explicit that the risk sits with the lender.
+
+## Open questions
+
+- How are recoveries allocated between lenders on a shared loan when collections arrive in instalments, and is that allocation documented in the loan contract?
+- If a platform fails, by what mechanism and how quickly do lenders take control of servicing, collections and escrow balances?
+- Are the risk grade and disclosure obligations enough for a lender to identify the borrower counterparty with the precision a claim would require?
+- Does the framework permit arrangements — such as a third party bearing first-loss risk — that function as credit enhancement without breaching the prohibition as drafted?

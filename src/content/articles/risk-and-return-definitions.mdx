@@ -1,0 +1,167 @@
+---
+title: 'Risk and Return: Working Definitions'
+description: 'Expected return, risk and the risk-free rate are three separate constructions, and each commits an investor to something different. Here is what the portfolio-theory vocabulary actually means before it is put to work.'
+shortTitle: 'Risk and Return Defined'
+category: asset-allocation
+series: portfolio-theory
+seriesOrder: 1
+topics: ['expected return', 'risk measures', 'risk-free rate', 'Sharpe ratio']
+tags: ['portfolio-theory', 'foundations', 'measurement']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+featured: true
+keyTakeaways:
+  - 'An expected return is an average over a distribution of possible outcomes — not a promise, and not a forecast of any single year.'
+  - 'Risk has at least four operational meanings — volatility, downside deviation, permanent loss and shortfall probability — and the measure chosen for convenience silently changes the answer.'
+  - 'The risk-free rate is a modelling construction: a default-free obligation of the same currency and horizon, quoted in nominal terms, so it is a yardstick rather than a rate anyone actually earns.'
+  - 'The reward-to-variability ratio Sharpe introduced compares excess return with total volatility, and its author attached caveats about using a single past sample to rank portfolios.'
+  - 'Portfolio expected return is the weighted average of component returns, but portfolio risk is not the weighted average of component risks — that gap is the whole subject of diversification.'
+faqs:
+  - question: 'Is expected return a prediction of what I will earn?'
+    answer: 'No. It is the mean of an assumed distribution of outcomes. Realised return is whichever single path you happen to experience, and for a volatile asset the two can diverge for years at a time.'
+  - question: 'Is volatility the same thing as risk?'
+    answer: 'It is one measure of risk, chosen because it is easy to compute and combine across assets. It treats an unusually good year and an unusually bad year as the same kind of event, which is exactly what many investors do not do.'
+  - question: 'What is the risk-free rate in India?'
+    answer: 'In principle, the yield on a default-free sovereign obligation in the same currency and over the same horizon as the cash flow being valued. In practice it is proxied by Government of India obligations of a matching maturity, so its value changes with the horizon chosen.'
+  - question: 'Why does a higher Sharpe ratio not guarantee a better portfolio?'
+    answer: 'Because it compresses a whole distribution into one number, using past data, and assumes volatility is the risk that matters. Two portfolios can share a ratio while offering very different exposures to loss and to sequence risk.'
+relatedCalculators:
+  - id: sharpe
+    label: 'Sharpe Ratio Calculator'
+  - id: portfolio-allocation
+    label: 'Portfolio Allocation Analyser'
+  - id: monte-carlo
+    label: 'Monte Carlo Simulator'
+relatedArticles:
+  - diversification-and-its-mathematics
+  - the-efficient-frontier
+  - capm-and-its-testable-claims
+  - mean-variance-optimisation-in-practice
+  - correlation-instability-across-regimes
+glossaryTerms: [asset-allocation, correlation, efficient-frontier, sequence-of-returns-risk]
+sources:
+  - id: sharpe-1966
+    supports: 'Origin of the reward-to-variability ratio now called the Sharpe ratio, and its original caveats about ranking portfolios on a single past sample'
+  - id: markowitz-1952
+    supports: 'The mean-variance framework and the distinction between diversifiable and non-diversifiable risk that underpins the portfolio definitions here'
+  - id: kahneman-tversky-1979
+    supports: 'Loss aversion and reference dependence — the evidence for why investors describe risk differently from the way a statistician measures it'
+  - id: shiller-cape
+    supports: 'Long-horizon return and valuation series used to separate short-horizon noise from long-horizon return expectation'
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'All expected returns, volatilities and risk-free rates quoted in examples are illustrative inputs for arithmetic, not forecasts or offers available in the market.'
+openQuestions:
+  - 'How much of the observed dispersion in Indian asset returns is genuinely forecastable at long horizons, and how much is noise that any risk measure will misread?'
+---
+
+Two investors can look at the same listed business and disagree about both halves of the phrase "risk and return". One calls it cheap and safe; the other calls it expensive and dangerous. Both are using the same four words to mean four different quantities, and until those quantities are separated there is nothing to argue about — only vocabulary colliding with vocabulary.
+
+This article fixes the working definitions the Portfolio Theory series will use. It is not about choosing an allocation. It is about what each term commits an investor to, so that later articles on diversification, the efficient frontier and optimisation have something unambiguous to build on.
+
+## Explain simply
+
+An expected return is a forecast, not a fact: it is the average outcome you would record if the very same bet were repeated many times under unchanged conditions. Risk is the spread of outcomes around that average, and there is more than one way to measure a spread. The risk-free rate is the return you could lock in with no default risk for the same period, used purely as a yardstick. Put together, the three let you ask a precise question — for the risk actually taken, what excess return was earned? The rest of portfolio theory is elaboration on that one question.
+
+## Expected return is a forecast about a distribution
+
+Start with what an expected return is not. It is not the return you will receive. It is the probability-weighted average of the returns an asset could produce, under a set of assumptions about the world. If a coin pays ₹100 on heads and nothing on tails, the expected value is ₹50 and you will never actually see ₹50.
+
+Two consequences follow from that definition and both matter later:
+
+- **Expected return is model-estimated, not observed.** It sits in a different lane from a historical realised return (what happened) and from a contractual yield (what a counterparty is bound to pay). When a pitch mixes those lanes, the mixture is usually doing the work the number cannot do on its own.
+- **The estimate is only as good as its inputs.** An expected return built from assumptions is inspectable — the assumptions can be written down and argued with. One quoted without them is not an estimate at all; it is a claim.
+
+Long-horizon return expectation is a different exercise from short-horizon movement. Valuation ratios have been used to frame the return an asset class might deliver over decades precisely because, over one or two years, price changes are dominated by things no input captures. That distinction — long-horizon expectation against short-horizon noise — is why this series treats expected return as a slow-moving planning input rather than a trading signal.
+
+## Risk is not one thing
+
+The word "risk" is where most arguments actually live. At least four operational definitions are in common use, and they do not agree.
+
+**1. Volatility — the standard deviation of returns.** This is the default in mean-variance portfolio theory. It is symmetric: a year of unusually strong gains counts as risk exactly as much as a year of unusually large losses. Its virtue is arithmetic convenience — volatilities and correlations combine into a portfolio figure with a closed-form formula, which is what makes the rest of this series possible. Its vice is that no investor experiences symmetry; the upside dispersion is not what keeps anyone awake.
+
+**2. Downside risk — deviation below a target.** Semi-deviation and the downward portion of the return distribution measure only the part investors dislike. This is a more faithful description of felt risk, but it does not combine into as clean an algebra, and it relies on a target that must be chosen.
+
+**3. Permanent loss of capital.** The risk that the money does not come back, as distinct from the risk that its quoted price dips. A fall that reverses is not the same event as a business that fails, and no standard deviation can tell the two apart.
+
+**4. Shortfall probability.** The risk of failing a specific goal: running out of money, missing a funding date, being forced to sell at the wrong moment. This is the definition a person actually holds, and it is a property of a plan — withdrawal rate, horizon, flexibility — rather than of an asset.
+
+These four are not rivals to be settled once. They answer different questions, and the honest move is to say which one is being used. A risk measure selected because it is easy to compute is a decision, and it should be visible as one.
+
+There is a further gap between measured risk and perceived risk. Experimental work on decision under risk found that people evaluate outcomes against a reference point and weight losses more heavily than equivalent gains. The practical effect is that investors do not treat a drawdown as volatility with a sign; they treat it as a loss to be avoided, often by selling at the worst possible moment. A model built on volatility will systematically mispredict the behaviour of the person holding the portfolio unless that behaviour is allowed for.
+
+## The risk-free rate is a construction
+
+Comparisons need a common yardstick. Mean-variance theory supplies one: the return on an asset with no default risk over the relevant horizon, conventionally called the risk-free rate. Everything else is then measured as a *spread* over it, which is what makes a 12% return from a corporate borrower and a 12% return from sovereign paper different numbers even though they print identically.
+
+The definition is exact; the implementation is not. Four frictions matter:
+
+- **Horizon.** A three-month obligation and a thirty-year obligation are different assets. Matching the yardstick to the length of the cash flow being valued is the whole point, and mismatch is a silent source of error.
+- **Default risk.** The pure risk-free rate assumes no possibility of non-payment. In practice it is proxied by the obligations of a sovereign issuer, which carries its own small credit and political risk.
+- **Nominal versus real.** The rate is usually quoted in nominal terms. A nominal yardstick says nothing about purchasing power, so a real comparison requires a real reference — and a real risk-free rate has to be estimated, not read off a screen.
+- **Currency.** The yardstick is currency-specific. Comparing a rupee return with a dollar risk-free rate without accounting for the currency is a category error.
+
+None of this makes the risk-free rate unusable. It makes it a stated assumption. When a report says "the risk-free rate is 6%", the number to ask about is not the 6% but the horizon and currency behind it.
+
+## Reward per unit of risk, and its author's caveats
+
+The first widely used statistic that combined the three definitions was the reward-to-variability ratio introduced by William Sharpe in the 1966 study of mutual-fund performance. It divides excess return — return above the risk-free rate — by total volatility:
+
+$$ \text{ratio} = \frac{E[R] - R_f}{\sigma} $$
+
+Read literally, the ratio asks how much extra return was earned for each unit of fluctuation taken. Two things about it are worth holding onto.
+
+First, the numerator must be an *excess* return. Ranking assets by return alone, or by volatility alone, tells you almost nothing; the ratio exists because the two must be read together. Second, a ratio computed from one past sample is a description of that sample, not a property of the strategy. Sharpe himself attached caveats to using it to rank portfolios — among them that the comparison assumes the portfolio is the investor's whole holding, that it says nothing about leverage, and that a single volatility figure summarises a distribution that may be badly behaved. The ratio is one number standing in for a shape.
+
+That is the right way to use it: as a summary that has earned its place, kept alongside the drawdown history, the return distribution and the sample size, never in place of them.
+
+## Why portfolios need their own definitions
+
+Two facts about portfolios are worth stating here, because the next article is built on them.
+
+Portfolio expected return is the **weighted average** of the component expected returns. That is a simple, exact, uncontroversial statement:
+
+$$ E[R_p] = \sum_i w_i E[R_i] $$
+
+Portfolio risk is **not** the weighted average of the component risks. Combine two assets whose returns are imperfectly related and the portfolio volatility can fall below every one of its parts. The mechanism is the covariance between the assets, and the distinction between the risk that combination removes — diversifiable risk — and the risk that remains — non-diversifiable or market risk — is the central result of the mean-variance framework.
+
+This is also where the definitions earn their keep. "Diversify" is advice; "combine assets with correlation below one and the variance term falls toward the average covariance" is a statement you can compute with and test. The mathematics of that statement is the subject of the next article.
+
+## Worked example: same return, different risk
+
+An illustrative calculation, not a forecast. Suppose an investor is choosing between two assets with the same estimated expected return, 12% a year, and a stated risk-free rate of 6% a year — all three inputs chosen for the arithmetic, none of them an offer.
+
+- Asset A has an estimated annualised volatility of 24%.
+- Asset B has an estimated annualised volatility of 12%.
+
+Using the reward-to-variability ratio:
+
+$$ \text{A} = \frac{12\% - 6\%}{24\%} = 0.25 \qquad \text{B} = \frac{12\% - 6\%}{12\%} = 0.50 $$
+
+Asset B earned twice as much excess return per unit of fluctuation in the sample used. On the ratio alone, B looks preferable. But the same example shows why the ratio is not a verdict: if B's lower volatility came from a shorter history, from a peg or from a valuation that has not yet been tested, the input is doing the deciding rather than the strategy. The ratio ranks the inputs. It cannot rank the things the inputs fail to capture.
+
+A second illustrative point about the yardstick. If volatility is 12% and one year is not a meaningful sample, the estimate itself carries error. A single year of data is rarely enough to distinguish two ratios of this size; the ranking is a hypothesis, not a finding.
+
+## What this does not tell you
+
+- **It does not produce an allocation.** Definitions do not optimise; the definitions only make optimisation meaningful.
+- **It does not forecast returns.** Every expected return above is an input to be supplied and defended, not a fact the framework discovers.
+- **It does not settle which risk measure is correct.** The series uses volatility as its working measure because it combines, and flags that choice whenever a conclusion depends on it.
+- **It says nothing about taxes, costs or liquidity.** Those enter later, and when they do they can reverse a ranking that looked clean on risk-adjusted terms.
+- **It assumes a single-period view.** Holding period, rebalancing and the order in which returns arrive can matter more than the average of them, which is why sequence-of-returns risk gets its own treatment.
+
+## Open questions
+
+- How stable are volatility and correlation estimates across market regimes, and by how much does that instability undermine the clean arithmetic the framework depends on?
+- Does the reward-to-variability ratio retain any ranking power once the assumptions behind it — normal-ish distributions, a total-portfolio interpretation — are relaxed?
+- How much of the historically observed return premium is a genuine compensation for risk, and how much is a rerating that cannot repeat?
+- Should a household's risk measure be volatility at all, or should it be defined at the plan level, as the probability of failing the goal the money was committed to?
+
+Those questions are not objections to the definitions. They are what the definitions allow you to ask next.

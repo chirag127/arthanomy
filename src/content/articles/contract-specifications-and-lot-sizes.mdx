@@ -1,0 +1,184 @@
+---
+title: 'Contract Specifications and Lot Sizes'
+description: 'An Indian derivative is not a product name, it is a specification: underlying, lot size, strike interval, expiry convention and settlement type. What each parameter means, and how to verify the current one at the source instead of from an article.'
+shortTitle: 'Contract Specifications and Lot Sizes'
+category: derivatives
+series: derivatives-lab
+seriesOrder: 2
+topics: ['contract specification', 'lot size', 'expiry convention', 'strike interval', 'settlement type']
+tags: ['derivatives', 'futures', 'reference']
+difficulty: foundational
+status: published
+kind: reference
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 11
+keyTakeaways:
+  - 'A derivative contract is defined entirely by its specification — underlying, lot size, tick size, strike interval, expiry convention, quotation unit and settlement type — and the specification is set by the exchange within SEBI’s framework.'
+  - 'Lot size converts a quoted price into contract value, so the money at stake is the price multiplied by the lot; every other risk figure scales from that product.'
+  - 'Lot sizes and expiry conventions are revised by exchanges and SEBI, so the only reliable source is the current contract specification and the latest circular, with its effective date noted.'
+  - 'Index derivatives are settled in cash at the exchange’s expiry settlement price, while stock derivatives move to physical delivery in the current framework — a difference that changes what a position obliges the holder to do.'
+  - 'SEBI’s 2024 measures raised minimum contract sizes for index derivatives, rationalised weekly expiries, required option premium up front, removed the calendar-spread margin benefit and added intraday monitoring of position limits.'
+  - 'Reading a specification correctly does not reduce the risk of the position; it only ensures that the risk being taken is the one intended, which is a necessary and not a sufficient condition.'
+faqs:
+  - question: 'Why is a lot size quoted separately from the price?'
+    answer: 'Because the quoted price is per unit of the underlying, while a contract trades in fixed multiples of units. The lot size is that multiple, and the actual exposure is the price multiplied by it. Two products with identical prices can therefore carry very different amounts at risk.'
+  - question: 'Where should the authoritative specification be read?'
+    answer: 'From the exchange’s contract specification for that product, together with the most recent circular affecting it, noting the effective date. Articles, screenshots and older broker notes are useful for orientation and unreliable as a source of current parameters.'
+  - question: 'Why do specifications change so often?'
+    answer: 'Because lot sizes, strike schemes and expiry conventions are used as policy levers to influence minimum contract size and participation. When SEBI increased contract sizes and rationalised weekly expiries in 2024, the changed parameters applied to live contracts in the manner and from the dates the circular specified.'
+  - question: 'Do stock and index derivatives settle the same way?'
+    answer: 'No. Index derivatives settle in cash because the index itself cannot be delivered, while stock derivatives in the current framework move to physical delivery. The specification states which applies, and the settlement type determines whether a position can end with a delivery obligation rather than a cash adjustment.'
+  - question: 'Does a specification tell me whether a contract is suitable?'
+    answer: 'No. A specification states the terms of the contract, not the risk of the position or its suitability for any holder. The lot size and margin together determine how much a small adverse move costs, which is the figure a prospective participant needs and which the specification alone does not compute.'
+relatedCalculators:
+  - { id: futures-fair-value, label: 'Futures Fair Value and Basis' }
+  - { id: margin-requirement, label: 'Futures Margin and Liquidation' }
+  - { id: option-payoff, label: 'Option Payoff Calculator' }
+relatedArticles:
+  - futures-contracts-from-first-principles
+  - margins-span-exposure-and-peak-margin
+  - mark-to-market-and-daily-settlement
+  - stock-futures-and-single-name-leverage
+  - options-calls-and-puts-payoffs
+glossaryTerms: [futures, settlement, span-margin, open-interest]
+sources:
+  - { id: nse-derivatives-cm, supports: 'Contract specifications, strike intervals, lot sizes, expiry-day conventions and settlement mechanics for index and stock derivatives' }
+  - { id: sebi-derivatives-2024, supports: 'The 2024 index-derivatives measures that changed contract sizes, weekly expiries, premium collection, calendar-spread margin and position-limit monitoring' }
+dataConfidence: medium
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'This article deliberately states no lot size, strike interval, tick size, expiry day or trading hour. Those are dated facts, they are revised, and they must be read from the current exchange specification.'
+  - 'Every number used in the worked example is hypothetical and chosen for arithmetic. It is not the specification of any listed contract.'
+applicablePeriods: ['FY 2025-26']
+openQuestions:
+  - 'How frequently do Indian derivative contract specifications change in practice, and how often does a participant trading a live position encounter a change mid-life?'
+  - 'Do retail participants read the specification of the contract they are trading, and how does that compare with the attention paid to price screens?'
+  - 'How much do higher minimum contract sizes reduce participation, and how much do they simply shift it towards smaller-tick products?'
+  - 'Does physical delivery on stock derivatives produce post-expiry cash obligations that participants do not anticipate at entry?'
+---
+
+A derivative is often discussed as though its name were the whole of it — "index futures", "a call option on a large bank". The name identifies a family. What makes a derivative contract a specific, tradable, enforceable thing is its **specification**: a published set of parameters that states exactly what the contract is, what it obliges each side to do, and when. Two contracts on the same underlying can be as different as two loan agreements once the parameters are read.
+
+This article is about those parameters and how to read them. It deliberately does not state the current values, because lot sizes, strike schemes and expiry conventions are revised, and a number copied from an article is a liability. What follows is the structure, a worked example using hypothetical parameters, and a procedure for verifying the real one at the source.
+
+## Explain simply
+
+Think of a derivative contract as a form with the blanks already filled in by the exchange and published for anyone to read. One blank says what the contract is on; one says how many units are in one contract, which is the lot size; one says when it expires; one says how the price is quoted and in what increments it can move; and one says whether the contract ends in cash or in delivery of the asset. Read the form before trading it, because the lot size decides how much money is actually at stake and the settlement type decides whether the position can end with an obligation to take or give something rather than just a cash adjustment. None of these terms is optional, and none of them can be inferred from the quoted price.
+
+## What a specification has to define
+
+Every listed derivative answers the same closed set of questions. Getting any one of them wrong changes the position being taken, not merely its presentation.
+
+| Parameter | What it fixes | What goes wrong if misread |
+| --- | --- | --- |
+| Underlying | The instrument the contract references | The position is exposed to something other than intended |
+| Lot size | Units per contract | Exposure is wrong by a multiple, and so is every risk figure |
+| Tick size | Smallest permitted price increment | Cost and slippage assumptions break down |
+| Strike interval | Spacing of listed strike prices | A chosen strike may not exist or may be further out than expected |
+| Expiry convention | Which day the contract expires and how it is determined | The holding period is shorter or longer than assumed |
+| Quotation unit | The basis on which price is expressed | Premium and settlement arithmetic are misapplied |
+| Settlement type | Cash or physical delivery | A delivery obligation may arise that was not anticipated |
+| Last trading day | When the contract stops trading | A position may be carried into settlement unintentionally |
+
+Notice that none of these parameters says anything about direction, valuation or suitability. A specification states the rules of the game, not the odds.
+
+## Lot size and the multiplication that matters
+
+The quoted price of a derivative is per unit of the underlying. The lot size is the number of units in one contract. Everything of practical consequence begins with one multiplication:
+
+$$ \text{Contract value} = \text{Quoted price} \times \text{Lot size} $$
+
+This single product determines the exposure, and from it follow the margin (a fraction of the exposure), the value of a one-tick move, the value of a one-point move in the underlying, and the cash difference at settlement. A participant who knows the price but not the lot size knows nothing about the size of the position.
+
+It also explains why the same "small" price move can be trivial on one contract and material on another. The underlying price is similar; the lot size is not. This is the parameter that exchanges use when they want to change the minimum size of a trade, and it is why SEBI's 2024 measures focused on contract size directly.
+
+## Strike intervals and tick size
+
+Options are listed across a range of **strike prices** — the exercise prices at which the underlying can be bought or sold. They are spaced at regular intervals that the exchange publishes, and the interval is not a universal constant: it depends on the underlying and can differ by expiry. A strike price a participant wants may turn out to be unavailable, or may be several intervals away from where they thought it was.
+
+**Tick size** is the smallest permitted increment in the quoted price. It is small relative to the price level, but it is not cosmetic: it sets the minimum granularity of a quote and therefore the practical cost of crossing the spread and the precision with which any strike or level can be priced.
+
+Both parameters are specification facts. Neither can be inferred from the underlying's price, and neither should be taken from a secondary source.
+
+## Expiry conventions have been revised
+
+Expiry is the date the contract stops existing and settlement is determined. The convention that decides which day that is — and how many expiries are listed at any time, including whether weekly contracts are available — is part of the specification and has been revised repeatedly by SEBI and the exchanges.
+
+The 2024 package explicitly included a rationalisation of weekly expiries for index derivatives, alongside higher contract sizes and other changes. The practical implication is blunt: **any expiry day, week or pattern read from a source written before the revision is likely to be wrong**, and the registry entry behind this article carries exactly that warning. The current convention must be read from the exchange's own contract specification and the latest circular on the subject.
+
+## Settlement type: cash or physical
+
+Settlement is how the obligations of a contract are discharged. Two formats exist, and the specification states which applies:
+
+- **Cash settlement.** The difference between the contract price and the expiry settlement price prescribed by the exchange is paid in cash. Index derivatives settle this way, because an index cannot be delivered.
+- **Physical delivery.** The holder of a position carried into settlement must give or take the underlying. Stock derivatives move to physical delivery in the current framework, which means the obligation is not merely a cash difference but a purchase or sale of the full contract value.
+
+This distinction changes the cash requirement at expiry, the margin that applies as expiry approaches, and the consequence of forgetting about a position. A leveraged exposure sized around the margin can end with an obligation many times larger.
+
+## Trading session and the rest of the framework
+
+The exchange publishes the trading session for the derivatives segment, and it is not safe to assume the session is identical to the cash market's. Timings, holidays and any special sessions are exchange facts to be read at source rather than inferred.
+
+Around the specification itself sit the trading-framework parameters: margin computed by the exchange's portfolio-based risk system, collected from both sides of a futures contract and from option writers; position limits, now monitored intraday for index derivatives; and open interest, which counts the contracts still outstanding in a series. Each of these is published by the exchange and each is a dated fact.
+
+## Worked example: from a quote to a contract value
+
+An illustrative calculation using hypothetical parameters for a single stock derivative. None of these numbers is a listed specification.
+
+Suppose the underlying trades at ₹500 per share, the market lot is 800 shares, the tick size is ₹0.05 and the initial margin requirement is 15%.
+
+- **Contract value:** $500 \times 800$ = ₹4,00,000.
+- **Value of one tick:** $800 \times 0.05$ = ₹40 per contract.
+- **Initial margin:** $0.15 \times 400000$ = ₹60,000, posted by the participant.
+- **Leverage implied:** ₹4,00,000 of exposure against ₹60,000 of margin, about 6.7 times.
+- **A 3% adverse move:** $0.03 \times 400000$ = ₹12,000, one fifth of the margin, and about 300 ticks of adverse movement at ₹40 each.
+
+Now suppose the same underlying were offered with a lot of 4,000 shares instead. The contract value becomes ₹20,00,000: five times the exposure, five times the margin, five times the cash consequence of the same 3% move. Nothing about the price changed. Only the specification did.
+
+## How to verify a specification yourself
+
+A short procedure, repeatable at each roll:
+
+1. **Go to the exchange's product page** for the derivative segment and open the contract specification for the specific underlying.
+2. **Read the parameters in order:** underlying, lot size, tick size, strike scheme, expiry convention, quotation unit, settlement type, last trading day.
+3. **Open the most recent circular** affecting that product or the framework generally, and note its effective date. Changes can apply to live contracts, so the effective date is as important as the change.
+4. **Confirm which expiry is being quoted** — a weekly and a monthly contract on the same underlying are different instruments.
+5. **Separate the specification from the framework.** Margin rates, position limits and operating ranges are published separately from the contract specification and change on a different cycle.
+6. **Record the access date.** A specification verified a year ago is a claim about the past.
+
+The last step is the one that matters for this library's standards: a figure is only as good as the date on which it was read.
+
+## Payoff structure, not strategies
+
+Because lot size multiplies exposure and margin is a fraction of that exposure, derivative positions can lose more than intuition suggests. A misread lot size does not merely misstate the size of the bet; it can create a position several times larger than intended, with margin calls and settlement obligations that follow from the specification rather than from the trader's plan. Futures have no premium floor, and a written option can lose far more than the premium received, so the loss is not bounded by the amount initially committed.
+
+This article describes what a specification is and how to read it. It does not describe which contracts to trade, and nothing here is a strategy or a recommendation.
+
+## Which numbers are specified and which are not
+
+It is worth separating four kinds of claim that all appear when a derivative is discussed, because only the first is part of the contract:
+
+- **Contractual.** The specification parameters themselves — underlying, lot size, tick size, strike scheme, expiry convention, quotation unit and settlement type. These are terms published by the exchange, and settlement is guaranteed by the clearing corporation that stands between the two sides.
+- **Model-estimated.** Any contract value, margin figure or fair value computed from those parameters. These are arithmetic outputs from stated inputs, and they change the moment an input changes.
+- **Historical realised.** What a contract or a similar position actually returned over a past period, including the costs of trading and rolling. Informative about that window, silent about the next one.
+- **Speculative.** The result of the position itself — the gain or loss that depends on where the underlying settles. No specification can state this in advance, and no reading of a specification converts it into anything other than a risk taken.
+
+Read a derivative discussion with the lane in mind. Statements about parameters are checkable facts; statements about outcomes are not.
+
+## What this does not tell you
+
+- **It does not give current parameter values.** Deliberately so: they are dated facts, and the exchange is the only acceptable source.
+- **It does not price any contract.** Valuation depends on the underlying, the time to expiry, financing rates and, for options, volatility, none of which is part of the specification.
+- **It does not compute margin.** Margin depends on the exchange's risk framework, the composition of the portfolio and the broker's own requirements.
+- **It does not state the tax treatment.** Derivative gains and losses fall into dated tax categories carried elsewhere on this site.
+- **It does not make a contract suitable.** A correctly read specification is a precondition for understanding a risk, not evidence that the risk should be taken.
+
+## Open questions
+
+- How frequently do Indian derivative specifications change in practice, and how often does a participant holding a live position encounter a change during its life?
+- What proportion of retail participants can correctly state the lot size and settlement type of the contract they are trading?
+- Do higher minimum contract sizes reduce participation, or mainly redirect it towards contracts that still fit smaller balances?
+- How often does physical delivery on stock derivatives produce post-expiry cash obligations that the participant did not anticipate at entry?

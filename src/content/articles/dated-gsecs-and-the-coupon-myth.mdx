@@ -1,0 +1,147 @@
+---
+title: 'Dated G-Secs and the Coupon Myth: Price, Yield and Total Return'
+description: 'Why the coupon on a dated government security is not the return, how price and yield trade off against each other, and how to reason about the full return a retail holder actually earns.'
+shortTitle: 'Dated G-Secs and the Coupon Myth'
+category: debt
+series: debt-encyclopedia
+seriesOrder: 7
+topics: ['government securities', 'coupon', 'yield to maturity', 'total return']
+tags: ['sovereign-debt', 'debt', 'fixed-income']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 10
+keyTakeaways:
+  - 'The coupon is a fixed rate applied to face value; it is not the return a buyer earns, because the price paid is not face value.'
+  - 'Price and yield move in opposite directions, and a long-dated bond carries far more price risk than a short-dated one for the same change in yield.'
+  - 'If a bond is held to maturity, the yield at purchase is the return, before tax and assuming coupons are reinvested at that same rate.'
+  - 'A bond bought below par accrues price toward par as maturity approaches, which is how part of the yield is delivered through capital rather than income.'
+  - 'Accrued interest changes hands between coupon dates, so the price quoted and the amount settled are not the same figure.'
+faqs:
+  - question: 'If the coupon is 7 per cent, why is my return not 7 per cent?'
+    answer: 'Because the price you pay is rarely exactly face value. Buy at a premium and your yield is below the coupon; buy at a discount and it is above. The coupon describes the cash paid, not the return on the money you invested.'
+  - question: 'Can a government security lose money?'
+    answer: 'Held to maturity, the rupee amounts are contractual and paid by the sovereign. Sold before maturity, the price depends on the yield prevailing at that time, and a holder who sells after yields have risen realises less than face value.'
+  - question: 'What does held to maturity really guarantee?'
+    answer: 'It guarantees the coupon amounts and the redemption of face value, and it delivers the purchase yield only if the coupons received along the way can be reinvested at that same yield. Reinvestment is the one assumption the buyer does not control.'
+  - question: 'What is the difference between the clean price and the amount I pay?'
+    answer: 'The clean price excludes the interest that has accrued since the last coupon date. The seller is owed that accrued interest, so the amount actually settled is the clean price plus accrued interest, which is called the dirty price.'
+  - question: 'Do dated government securities pay interest twice a year?'
+    answer: 'Indian dated government securities pay their stated coupon periodically, typically semi-annually, on the face value. The yield is quoted on a convention that matches that payment frequency, which is why the per-period discount rate is half the quoted annual yield.'
+relatedCalculators:
+  - { id: bond-price-yield, label: 'Bond Price and Yield' }
+  - { id: modified-duration, label: 'Duration Calculator' }
+  - { id: convexity, label: 'Convexity Calculator' }
+relatedArticles:
+  - treasury-bills-as-the-risk-free-anchor
+  - rbi-retail-direct-bidding-walkthrough
+  - bank-fixed-deposit-anatomy
+  - state-development-loans-yield-question
+glossaryTerms: [coupon-rate, yield-to-maturity, accrued-interest, macaulay-duration, modified-duration, g-sec]
+sources:
+  - { id: rbiretaildirect, supports: 'Retail access to dated government securities in the primary auction and the secondary market, and the pricing information shown to bidders' }
+  - { id: rbi-home, supports: 'The auction and issuance framework for dated government securities, coupon and settlement conventions, and the policy backdrop for sovereign yields' }
+  - { id: rbi-dbie, supports: 'Published sovereign yield series and the shape of the rupee yield curve across maturities' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Yields, prices and durations used in the worked examples are illustrative constructions to show the arithmetic; they are not quotations for any security.'
+applicablePeriods: ['FY 2025-26']
+openQuestions:
+  - 'For which day-count convention are secondary-market accrued-interest calculations on Indian dated securities actually settled, and how does it differ from the convention quoted to retail buyers?'
+  - 'How much of the retail purchase of long-dated securities is duration seeking rather than a search for a higher contractual coupon?'
+  - 'Does the retail secondary market price long-dated securities close enough to the institutional market for a small holder to realise a fair exit?'
+---
+
+Of all the myths in Indian fixed income, the most persistent is that the coupon is the return. A government security "paying 7 per cent" is described as a 7 per cent investment, in the same breath as a fixed deposit at 7 per cent, as though the two were the same object. They are not. The coupon fixes the cash the issuer pays each period. The return to a buyer depends on the price the buyer pays for that cash, and on what happens to the price between purchase and exit. This article explains the mechanism and shows how to reason about the full return a retail holder actually earns.
+
+## What a dated G-sec is
+
+A dated government security is a debt obligation of the Central Government with a stated maturity date and a stated coupon. The coupon is a fixed percentage applied to the face value of the security, and it is paid periodically for the life of the security, with the face value repaid at maturity. These are the instruments most people mean when they say "government bonds", as distinct from Treasury bills, which are the short-dated zero-coupon variety that pay nothing until maturity.
+
+The issuer is the sovereign borrowing in its own currency. That is why the yields on dated securities form the benchmark curve for all rupee debt: a corporate bond is priced as a spread over the government security of comparable maturity, with the spread compensating for credit risk, liquidity and any tax or regulatory difference. Retail investors can buy these securities directly through the RBI Retail Direct scheme, both in primary auctions and in the secondary market, and through gilt accounts held with banks and primary dealers.
+
+## Explain simply
+
+The coupon is like a rent the government pays you on the amount printed on the bond, not on the amount you paid for it. Two people can own the same bond and receive exactly the same rupee coupon each year, yet earn different returns, because one paid more for it than the other. If you pay less than the printed amount, you get the coupon and a bonus when the bond repays its full printed value at the end. If you pay more, the coupon is partly a refund of the premium you paid. Your real return therefore depends on your entry price, and on what the price is when you exit.
+
+## The coupon is a rate on face value, not a return
+
+The confusion has a precise origin. The coupon rate is applied to face value, so a ₹1,000 bond at a 7 per cent coupon pays ₹70 a year. But a bond in the secondary market does not trade at face value once its coupon differs from the yield the market currently demands. It trades at whatever price makes the cash flows attractive relative to alternatives.
+
+That price is set by discounting, which the next article in this series derives in full. For now, the operative fact is this: a security whose coupon is above the market yield must trade above face value, and one whose coupon is below the market yield must trade below it. A buyer who pays a premium holds a security that will repay only face value at maturity, and the return is correspondingly reduced. A buyer who pays a discount receives the coupon and a gain on the price as the security converges to face value.
+
+## Price, yield and the pull to par
+
+Yield to maturity is the single discount rate that makes the present value of all remaining coupons and the redemption amount equal to the price. It is the measure that reconciles the coupon the issuer pays with the price the buyer pays, and it is the number worth comparing across securities.
+
+The relationship between price and yield is inverse and convex. When yields rise, prices fall; when yields fall, prices rise. And because a long-dated security has many distant cash flows, its price is far more sensitive to a change in yield than a short-dated one. That sensitivity is measured by duration. Macaulay duration is the present-value-weighted average time to the cash flows, and for a coupon-paying bond it is always shorter than the time to maturity, because the coupons arrive along the way. Modified duration converts that into an approximate percentage price change for a one-percentage-point move in yield.
+
+The "pull to par" is the consequence that catches new investors. A discount bond's price rises toward face value as maturity approaches, even if the yield never changes; a premium bond's price falls toward face value. The capital movement is not a prediction. It is arithmetic built into the discounting, and it is how the yield is delivered through a mix of income and price.
+
+## Worked example: one coupon, three buyers
+
+Consider an illustrative three-year security with a face value of ₹1,000 and a 7 per cent annual coupon, priced by three hypothetical buyers who each require a different yield. This is a constructed example to show the arithmetic, not a quotation.
+
+| Buyer requires | Price paid | Relationship to face value |
+| --- | --- | --- |
+| 6.00 per cent | ₹1,026.73 | premium |
+| 7.00 per cent | ₹1,000.00 | par |
+| 8.00 per cent | ₹974.23 | discount |
+
+The coupon is identical in all three rows. The buyer at a 6 per cent required yield pays ₹1,026.73, receives three ₹70 coupons and ₹1,000 at maturity, and earns 6 per cent on the money actually invested. The buyer at an 8 per cent required yield pays ₹974.23 for the same coupons and the same redemption, and earns 8 per cent because the purchase price is lower. The coupon told none of them what their return would be.
+
+The same arithmetic in the semi-annual convention that Indian dated government securities actually use: each coupon is half the annual rate applied to face value, and the quoted annual yield is discounted at half its value per six-month period. For an illustrative ₹1,000 security with a nominal 8 per cent coupon paid semi-annually, three years to maturity, and a nominal 10 per cent yield, the price is:
+
+$$ P = 40 \times \frac{1 - (1.05)^{-6}}{0.05} + \frac{1000}{(1.05)^{6}} = ₹949.25 $$
+
+## Total return has three parts
+
+A bond's realised return over a holding period is the sum of three things, and keeping them separate is what stops a coupon from being mistaken for a return:
+
+1. **Coupon income** received and, if the security is held through a coupon date, the rupee amount the holder actually banks.
+2. **Price change** between purchase and exit, whether by sale or by redemption at par. For a held-to-maturity discount bond this is the accretion to face value; for an early sale it is whatever the market pays.
+3. **Reinvestment** of the coupons received along the way, at whatever rate prevails when each coupon lands.
+
+Yield to maturity assumes the third of these happens at the same rate as the yield itself. That assumption is the honest limitation of the measure: the buyer controls the purchase price but not the future rates at which the coupons will be reinvested. A security bought at an 8 per cent yield delivers precisely 8 per cent only if every coupon can be reinvested at 8 per cent.
+
+## Why price moves dominate as the tenor lengthens
+
+The longer the remaining life of a security, the more of its value sits in distant cash flows, and the more its price responds to a change in yield. An illustrative calculation shows the magnitude of that effect. For the same three-year 7 per cent security priced at par, the Macaulay duration is about 2.81 years and the modified duration about 2.62 years. A one-percentage-point rise in yield therefore implies an approximate price fall of about 2.6 per cent, taking the price to roughly ₹974 — which is exactly the discount price computed above for an 8 per cent required yield.
+
+Now imagine the same coupon on a security with twenty years to maturity. Its modified duration is many times larger, so the same one-percentage-point move produces a far bigger price change. This is the honest answer to why a retail investor holding long-dated securities must be able to hold them. A holder who is forced to sell into a yield rise converts a temporary price fall into a permanent loss, while a holder who waits to maturity receives the coupons and the face value regardless. Duration is not risk by itself; duration plus a forced sale is.
+
+## Accrued interest, clean price and dirty price
+
+Government securities pay coupons on fixed dates, and trades happen on every other date in between. To prevent the seller from giving away the interest earned during the holding period, the buyer pays the seller the coupon interest that has accrued since the last payment date. That accrued interest is added to the quoted price.
+
+The consequence is that two prices exist for the same trade. The clean price is the quoted price of the security itself; the dirty price, or settlement amount, is the clean price plus accrued interest. Day-count conventions for measuring the accrued amount differ between instruments and markets, which is one reason a settlement figure should never be assumed from the quoted price alone. A buyer comparing securities on clean price alone is comparing figures that do not include the same amount of already-earned interest.
+
+## What a retail investor actually earns
+
+The answer depends on the holding decision, and it belongs in one of three lanes.
+
+- **Contractual.** If the security is held to maturity, the coupon dates, the coupon amounts and the redemption of face value are fixed obligations of the sovereign. The purchase yield is the return, before tax and before the reinvestment caveat.
+- **Historical realised.** What holders of a security actually earned over a past window depended on the entry price, the coupons, and the price at exit. A rising-yield period and a falling-yield period produce very different realised returns from the same coupon.
+- **Model-estimated and speculative.** Any projection of future prices or future yields is a model output, not a promise, and should be labelled as such whenever it is shown.
+
+The coupon myth collapses the first lane into an assertion about the third. A coupon describes contracted cash. Whether that cash amounts to a good or poor return is decided by price, holding period and reinvestment.
+
+## What this does not tell you
+
+- **Tax.** The treatment of government security interest and of any capital gain or loss on sale is a dated tax question that belongs to the tax reference on this site, not to this article.
+- **Any specific security.** Every figure above is illustrative. Nothing here is a quotation, and no current yield is asserted for any security.
+- **Reinvestment outcomes.** The article states the assumption inside yield to maturity; it does not predict future reinvestment rates.
+- **Liquidity in practice.** Whether a small holder can exit a specific security near the institutional price is a market-microstructure question, not an arithmetic one.
+
+## Open questions
+
+- Which day-count convention is actually used to settle accrued interest on Indian dated securities in the secondary market, and how does it compare with what a retail buyer is shown?
+- How much of retail participation in long-dated auctions reflects duration seeking rather than a search for a higher contracted coupon?
+- Is the retail secondary market deep enough to give a small holder a fair exit from a long-dated position?
+
+The coupon is a fact about the issuer's promise. The yield is a fact about the price the buyer paid. Keeping those two sentences apart is most of what it takes to reason about what a dated government security will actually return — and the arithmetic that connects them is the subject of the next article.

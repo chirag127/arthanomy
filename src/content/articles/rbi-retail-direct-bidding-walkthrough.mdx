@@ -1,0 +1,143 @@
+---
+title: 'RBI Retail Direct: Bidding in Auctions Without a Broker'
+description: 'How an individual can open a Retail Direct Gilt account, bid in government securities auctions without quoting a price, settle the allotment, hold to maturity and sell in the secondary market.'
+shortTitle: 'RBI Retail Direct Walkthrough'
+category: debt
+series: debt-encyclopedia
+seriesOrder: 9
+topics: ['RBI Retail Direct', 'primary auction', 'government securities', 'settlement']
+tags: ['sovereign-debt', 'debt', 'market-access']
+difficulty: foundational
+status: published
+kind: explainer
+publishedAt: 2026-10-16
+researchDate: 2026-10-16
+reviewedAt: 2026-10-16
+readingMinutes: 9
+keyTakeaways:
+  - 'Retail Direct is an RBI-run portal through which an individual opens a Retail Direct Gilt account and deals in government securities without a broker in the middle.'
+  - 'Retail bids in the primary auction are non-competitive: the investor does not quote a price or yield, and is allotted at the weighted average that the competitive bidders produce.'
+  - 'What the investor pays is not the quoted clean price but the clean price plus accrued interest, so the settlement amount can be higher than the headline price suggests.'
+  - 'Sovereign Gold Bonds, dated government securities, Treasury bills and State Development Loans are all available on the platform, subject to published minimum bid sizes and segment caps.'
+  - 'Holdings can be sold before maturity in the secondary market through the platform NDS-OM interface, but that market is thinner than an exchange-traded one.'
+faqs:
+  - question: 'Do I need a broker or a demat account to use Retail Direct?'
+    answer: 'No broker is needed. The investor opens a Retail Direct Gilt account with the Reserve Bank itself, through the portal, and the securities are held in that account. It is a separate arrangement from a broking relationship.'
+  - question: 'Can I choose the price I am willing to pay in an auction?'
+    answer: 'A retail bid on Retail Direct is placed on a non-competitive basis, which means the bidder accepts the price or yield that emerges from competitive bidding. There is no price to quote and no risk of being rejected for bidding outside the accepted range.'
+  - question: 'Why is the amount debited more than the price shown?'
+    answer: 'Because the settlement amount includes accrued interest since the last coupon date when the security is a reissue. The quoted price is the clean price; the amount paid is the clean price plus accrued interest, which is the dirty price.'
+  - question: 'Can I sell a government security before it matures?'
+    answer: 'Yes, through the platform secondary-market interface, which provides access to the order-matching system for government securities. Selling early means accepting the market price at that time, which may be above or below what was paid.'
+  - question: 'What can I not buy through Retail Direct?'
+    answer: 'The platform is for central government securities, Treasury bills, State Development Loans and Sovereign Gold Bonds. It is not a route to corporate bonds, mutual funds, equities or any credit instrument, and it offers no investment advice.'
+relatedCalculators:
+  - { id: bond-price-yield, label: 'Bond Price and Yield' }
+  - { id: bond-ladder, label: 'Bond Ladder Planner' }
+relatedArticles:
+  - treasury-bills-as-the-risk-free-anchor
+  - dated-gsecs-and-the-coupon-myth
+  - bank-fixed-deposit-anatomy
+  - state-development-loans-yield-question
+glossaryTerms: [g-sec, coupon-rate, yield-to-maturity, accrued-interest]
+sources:
+  - { id: rbiretaildirect, supports: 'Account opening for a Retail Direct Gilt account, the instruments available, non-competitive bidding and allotment, minimum bid sizes, segment caps and the secondary-market interface' }
+  - { id: rbi-home, supports: 'The auction framework and issuance announcements for government securities and Treasury bills that the platform is built around' }
+dataConfidence: high
+hasPlainEnglish: true
+hasWorkedExample: true
+warnings:
+  - 'Minimum bid sizes, segment caps and settlement figures are set and revised by the scheme; those used here are illustrative of structure and should be checked against the platform and the auction notice.'
+applicablePeriods: ['FY 2025-26']
+openQuestions:
+  - 'How does allotment inside the non-competitive segment behave when the aggregate retail bid exceeds the segment cap for an auction?'
+  - 'What effective bid-offer cost does a small retail holder bear when leaving a position through the odd-lot secondary market?'
+  - 'How does the availability of a direct sovereign account change household allocation between deposits and government securities over time?'
+---
+
+For most of India's financial history, an individual who wanted a government bond had to go through an intermediary. A bank or a primary dealer held the securities, the investor held a claim, and the coupon arrived net of someone else's margin. The Retail Direct scheme changed that by giving individuals a direct account with the Reserve Bank and a place in the primary auction. This article walks through what the platform is, how a retail bid is placed, what is actually debited at settlement, and the limits of what the account can and cannot do.
+
+## What Retail Direct is
+
+Retail Direct is a facility run by the Reserve Bank through which an individual opens a Retail Direct Gilt account, commonly abbreviated as an RDG account, held directly with the central bank. With that account, the investor can bid in primary auctions for Government of India Treasury bills, dated government securities, State Development Loans and Sovereign Gold Bonds, and can also buy and sell government securities in the secondary market.
+
+The important structural point is the absence of a broker in the primary auction. The RBI's platform is a one-stop arrangement: the investor opens the account on the portal, links a bank account, subscribes to auctions, and receives coupon interest and maturity proceeds into that linked bank account. The securities sit in the RDG account rather than with an intermediary whose credit the investor has to consider.
+
+## Explain simply
+
+The government regularly auctions the right to receive a stream of fixed interest payments and a final repayment. Ordinarily you take part through a bank or broker. Retail Direct cuts the bank out: you open an account with the RBI, and when an auction is open you say how much you want, not what price you will pay. The price is decided by the professionals who did quote prices. You then pay for what you were given, receive the interest as it falls due, and get your money back at the end unless you choose to sell earlier on the platform.
+
+## Opening a Retail Direct Gilt account
+
+The account is opened online through the Retail Direct portal. Because it is a securities account with the central bank rather than a bank deposit, the application asks for the standard identity and banking material: a rupee savings bank account maintained in India into which interest and redemption proceeds will be paid, a Permanent Account Number, an officially valid document for know-your-customer verification, and valid contact details in the form of a mobile number and an email address.
+
+The facility is aimed at individual investors, and eligibility is defined by the scheme rather than by a bank's product rules. There is no minimum balance requirement of the kind a bank deposit imposes, and no advisory relationship is created: the platform executes, it does not recommend. Because the account is a securities account, the investor needs to be comfortable reading an auction notice and a settlement figure, which is the point of the rest of this walkthrough.
+
+## What can be bought, and at what sizes
+
+The platform covers four instrument families, and each has its own economics:
+
+| Instrument | Nature | Return |
+| --- | --- | --- |
+| Treasury bills | Short-dated, zero coupon | Discount to face value |
+| Dated government securities | Coupon bearing, fixed maturity | Periodic coupon plus redemption |
+| State Development Loans | Coupon bearing, issued by states | Periodic coupon plus redemption |
+| Sovereign Gold Bonds | Gold-linked, issued in tranches | Defined by the tranche terms |
+
+Bid sizes are set by the scheme. The minimum bid is ₹10,000 for Treasury bills, dated government securities and State Development Loans, and bids are placed in multiples of that amount. Caps apply too: the non-competitive segment of an auction is limited to a share of the notified amount, and there is a ceiling on the face value an individual can take in a single security in one auction. Those parameters are published by the platform and in each auction notice, and they are revised from time to time, so they should be read there rather than remembered.
+
+## Competitive and non-competitive bidding
+
+An auction discovers a price by accepting bids and stopping at the level that clears the notified amount. The bidders who quote prices or yields are the competitive segment, and they carry the risk of bidding outside the accepted range and being rejected. Retail bidders on Retail Direct sit in the other segment: the bid is non-competitive, meaning no price or yield is quoted at all.
+
+The consequence is simple and worth stating precisely. A non-competitive bid is allotted at the weighted average price or yield that emerges from the competitive bidding in that auction. The retail bidder therefore accepts the market's aggregated judgement rather than making a call, and is not rejected for being off the mark. Where the total non-competitive demand exceeds the share reserved for that segment, allotment inside the segment is not guaranteed in full.
+
+The trade-off is transparent. The retail bidder gains certainty of process and loses the ability to buy more cheaply than the average, which a skilled competitive bidder might achieve and might equally fail to achieve.
+
+## Worked example: what a non-competitive bid actually costs
+
+Consider an illustrative reissue of a dated government security with a 7.00 per cent coupon. A depositor bids for ₹1,00,000 of face value on a non-competitive basis. This is a constructed example to show the arithmetic, not a record of any auction.
+
+- The auction produces a **weighted average clean price** of ₹99.20 per ₹100 of face value.
+- Because the security is a reissue, coupons have been accruing since the last coupon date. Take **accrued interest** of ₹1.77 per ₹100 of face value, which corresponds to roughly 91 days at a 7 per cent coupon on a 30-day-month convention.
+- The amount actually settled is therefore the dirty price: $₹99.20 + ₹1.77 = ₹100.97$ per ₹100 of face value.
+- For ₹1,00,000 of face value, the investor pays $₹1{,}00{,}970$ and receives securities with a face value of ₹1,00,000.
+
+Two lessons follow. First, a clean price below ₹100 does not mean the investor pays less than face value; accrued interest can push the settlement amount above it. Second, because the allotment price is not par, the yield the investor earns is not the 7.00 per cent coupon — it is slightly higher, since the security was bought marginally below face value once the accrued interest is properly separated from the price.
+
+The platform shows an indicative settlement amount while the bid is being placed, and any difference between that indicative figure and the final allotment amount is settled after the auction, with the excess refunded.
+
+## Settlement, holding and income
+
+After the auction, allotment is made, the settlement amount is debited from the linked bank account, and the securities are credited to the RDG account. Settlement runs through the clearing infrastructure with a short lag after the auction, and the auction notice states the settlement date.
+
+Once allotted, the security behaves as any government security does. Coupons arrive periodically for coupon-bearing instruments, and the maturity proceeds are credited on redemption. For Treasury bills there is no coupon at all: the return is the difference between the discounted purchase price and the face value received at maturity. In all cases the income is paid to the linked bank account rather than accumulated inside the platform.
+
+## The secondary market: leaving before maturity
+
+A holder who does not want to wait until maturity can sell in the secondary market through the platform's interface to the order-matching system for government securities. That interface exposes the odd-lot and request-for-quote segments, provides live pricing, matches orders anonymously, and settles trades against the linked bank account and the RDG account on the exchange's usual short cycle.
+
+Two honest qualifications belong here. The platform itself does not interpose a brokerage margin, but the secondary market for government securities is a professional market, and a small odd-lot order may transact at a wider spread than the size of the position would suggest. And the price received is the market price at that moment: a holder who sells after yields have risen realises less than face value, even though the sovereign's promise to repay face value at maturity was never in question. The price risk sits with the seller, not with the issuer.
+
+## What a retail investor cannot do here
+
+- **Quote a price or yield in the primary auction.** Retail bids are non-competitive by construction, so the allotment price is the auction average.
+- **Buy credit instruments.** The platform is confined to central government securities, Treasury bills, State Development Loans and Sovereign Gold Bonds. It is not a route to corporate bonds, mutual funds or equities, so it cannot be used to reach for yield.
+- **Leverage or trade intraday.** There is no margin, no short-selling and no trading book. This is a holding account, not a trading account.
+- **Obtain advice or discretionary management.** Nothing on the platform recommends a security or a tenor, and no intermediary is answerable for the choice.
+- **Count on immediate liquidity.** Selling before maturity depends on a counterparty in a market that is thinner for small odd-lot positions than an exchange-traded market would be.
+
+## What this does not tell you
+
+- **Tax.** The tax treatment of coupon income and of any gain or loss on a secondary-market sale is a dated question handled by the tax reference on this site, not by the scheme documentation.
+- **Any live figure.** Minimums, caps, prices and yields used above are illustrative of structure. Current values must be read from the platform and the auction notice.
+- **Credit assessment of states or tranches.** The article explains access, not the relative risk of one issuer or tranche against another.
+- **Allotment certainty.** Where the non-competitive segment is oversubscribed relative to its cap, full allotment is not assured.
+
+## Open questions
+
+- When the aggregate retail bid exceeds the reserved non-competitive share, exactly how is the scale-back applied across bids?
+- What effective bid-offer cost does a small holder bear when exiting through the odd-lot segment, and how does it compare with holding to maturity?
+- Over a full cycle, does direct access to a sovereign account shift household allocation meaningfully away from bank deposits, or does it remain a marginal channel?
+
+Retail Direct removes an intermediary, not a risk. It converts a broker relationship into a direct securities account, gives the investor the auction average instead of a quoted price, and leaves the price risk of early exit exactly where it always was: with the holder. Used with that in mind, it is the most direct way an individual can hold the debt of the Government of India.
