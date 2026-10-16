@@ -25,6 +25,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Sync Astro content types
+        run: npx astro sync
       - name: Lint
         run: npm run lint
       - name: Type-check
