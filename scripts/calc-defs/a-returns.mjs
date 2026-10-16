@@ -51,13 +51,13 @@ export default [
       { latex: '\\sum_{i=0}^{n} \\frac{CF_i}{(1+r)^{(d_i - d_0)/365}} = 0', label: 'XIRR solves for r', assumption: 'Cash flows must be dated and must include at least one negative (contribution) and one positive (receipt).' },
     ],
     inputs: [
-      num('amount1', 'Cash flow 1 (negative = you paid out)', 'currency', -100000, { unit: '₹' }),
+      num('amount1', 'Cash flow 1 (negative = you paid out)', -100000, { unit: '₹' }),
       inp('date1', 'Date of cash flow 1', 'date', '2021-04-01'),
-      num('amount2', 'Cash flow 2', 'currency', -100000, { unit: '₹' }),
+      num('amount2', 'Cash flow 2', -100000, { unit: '₹' }),
       inp('date2', 'Date of cash flow 2', 'date', '2022-04-01'),
-      num('amount3', 'Cash flow 3', 'currency', 150000, { unit: '₹' }),
+      num('amount3', 'Cash flow 3', 150000, { unit: '₹' }),
       inp('date3', 'Date of cash flow 3', 'date', '2024-04-01'),
-      num('amount4', 'Cash flow 4 (final value or 0)', 'currency', 120000, { unit: '₹' }),
+      num('amount4', 'Cash flow 4 (final value or 0)', 120000, { unit: '₹' }),
       inp('date4', 'Date of cash flow 4', 'date', '2026-04-01', { help: 'Enter the current or terminal value as the last positive flow.' }),
     ],
     workedExample:

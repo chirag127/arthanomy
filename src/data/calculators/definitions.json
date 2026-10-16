@@ -69,7 +69,8 @@
         "id": "amount1",
         "label": "Cash flow 1 (negative = you paid out)",
         "kind": "number",
-        "default": "currency"
+        "default": -100000,
+        "unit": "₹"
       },
       {
         "id": "date1",
@@ -81,7 +82,8 @@
         "id": "amount2",
         "label": "Cash flow 2",
         "kind": "number",
-        "default": "currency"
+        "default": -100000,
+        "unit": "₹"
       },
       {
         "id": "date2",
@@ -93,7 +95,8 @@
         "id": "amount3",
         "label": "Cash flow 3",
         "kind": "number",
-        "default": "currency"
+        "default": 150000,
+        "unit": "₹"
       },
       {
         "id": "date3",
@@ -105,7 +108,8 @@
         "id": "amount4",
         "label": "Cash flow 4 (final value or 0)",
         "kind": "number",
-        "default": "currency"
+        "default": 120000,
+        "unit": "₹"
       },
       {
         "id": "date4",
